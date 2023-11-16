@@ -12,13 +12,19 @@ distFiles.forEach((file) => {
   console.log('mv %s', file);
   if (file === BUILD_DEST) {
     fs.mkdirSync(`${BUILD_DEST}/${file}`, { recursive: true });
-    spawnSync('mv', [`${file}/*`, `${BUILD_DEST}/${file}/`], { shell: true, stdio: 'inherit' });
+    spawnSync('mv', [`${file}/*`, `${BUILD_DEST}/${file}/`], {
+      shell: true,
+      stdio: 'inherit',
+    });
   }
 });
 
 distFiles.forEach((file) => {
   console.log('mv %s', file);
   if (file !== BUILD_DEST) {
-    spawnSync('mv', [file, `${BUILD_DEST}/${file}`], { shell: true, stdio: 'inherit' });
+    spawnSync('mv', [file, `${BUILD_DEST}/${file}`], {
+      shell: true,
+      stdio: 'inherit',
+    });
   }
 });

@@ -15,7 +15,7 @@ import { encodeJsxStringNode } from './encodeJsxAttrString';
 import { unwrapJsExprQuoteInJsx } from './jsxHelpers';
 import { isNodeSchema } from '../utils/deprecated';
 import { isValidIdentifier } from './validate';
-import {IProjectSchema } from '../types';
+import { IProjectSchema } from '../types';
 
 function mergeNodeGeneratorConfig(
   cfg1: NodeGeneratorConfig,
@@ -203,8 +203,8 @@ function generateSimpleNode(
   const basicParts = generateBasicNode(nodeItem, scope, config) || [];
   const attrParts = generateAttrs(nodeItem, scope, config) || [];
   const childrenParts: CodePiece[] = [];
-  
-  if (nodeItem.components && config?.self ) {
+
+  if (nodeItem.components && config?.self) {
     // @ts-ignore
     const childrenStr = config.self(nodeItem.components, scope);
 
@@ -307,7 +307,7 @@ export function createNodeGenerator(
   };
 
   return (nodeItem: IProjectSchema, scope: IScope) =>
-    unwrapJsExprQuoteInJsx(generateNode(nodeItem, scope)) ;
+    unwrapJsExprQuoteInJsx(generateNode(nodeItem, scope));
 }
 
 const defaultReactGeneratorConfig: NodeGeneratorConfig = {

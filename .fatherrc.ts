@@ -2,8 +2,6 @@ export default {
   umd: {
     entry: 'src/worker.ts',
   },
-  esm:{
-
-  },
-  platform: 'browser'
+  esm: {},
+  platform: 'browser',
 };

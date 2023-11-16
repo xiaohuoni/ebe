@@ -12,7 +12,10 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     };
     next.ir.deps.push(getImportFrom('alita', 'history'));
     next.ir.deps.push(
-      ...getImportsFrom('@lingxiteam/engine-app/es/components/MessageApi', ['Modal','messageApi']),
+      ...getImportsFrom('@lingxiteam/engine-app/es/components/MessageApi', [
+        'Modal',
+        'messageApi',
+      ]),
     );
     next.ir.deps.push(
       ...getImportsFrom('@lingxiteam/engine-app', [

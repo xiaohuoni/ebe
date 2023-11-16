@@ -11,7 +11,7 @@ export default {
     mobileLayout,
     commonDeps,
   },
-  hooks:{
-    hackEngineApis
-  }
+  hooks: {
+    hackEngineApis,
+  },
 };

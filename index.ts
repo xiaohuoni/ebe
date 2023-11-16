@@ -11,7 +11,9 @@ import { createDiskPublisher } from './src/core/publisher/disk';
   // 读取 Schema
   const schema = await loadSchemaFile(schemaFile);
   schema.pageId = testPlatformIsH5 ? 'pageId' : '1028120483871506432';
-  schema.appId = testPlatformIsH5 ? '1024143353417228288' : '1024143353417228288';
+  schema.appId = testPlatformIsH5
+    ? '1024143353417228288'
+    : '1024143353417228288';
 
   const projectBuilder = testPlatformIsH5 ? alita() : alita();
 

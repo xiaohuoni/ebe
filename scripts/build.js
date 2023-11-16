@@ -16,10 +16,19 @@ function buildAll() {
   concurrently(
     [
       // { name: 'build:types', command: 'sh scripts/build-types' },
-      { name: 'build:cjs', command: 'node scripts/build --format=cjs --out=lib' },
-      { name: 'build:esm', command: 'node scripts/build --format=esm --out=es' },
+      {
+        name: 'build:cjs',
+        command: 'node scripts/build --format=cjs --out=lib',
+      },
+      {
+        name: 'build:esm',
+        command: 'node scripts/build --format=esm --out=es',
+      },
       // { name: 'build:standalone', command: 'node scripts/build-standalone' },
-      { name: 'build:standalone-worker', command: 'node scripts/build-standalone-worker' },
+      {
+        name: 'build:standalone-worker',
+        command: 'node scripts/build-standalone-worker',
+      },
       // { name: 'build:standalone-loader', command: 'node scripts/build-standalone-loader' },
       // { name: 'build:cli', command: 'node scripts/build-cli' },
     ],
@@ -67,7 +76,11 @@ function buildFormat(format, outDir) {
       });
     }
 
-    console.log('built %s in %ds', format, ((Date.now() - startTime) / 1000).toFixed(2));
+    console.log(
+      'built %s in %ds',
+      format,
+      ((Date.now() - startTime) / 1000).toFixed(2),
+    );
   } catch (e) {
     console.error(e);
     process.exit(1);

@@ -32,7 +32,7 @@ export default function createIceJsProjectBuilder(
         reactContainer(),
         containerLifeCycle(),
         reactJsx({
-          nodePlugins:[alita.hooks.hackEngineApis],
+          nodePlugins: [alita.hooks.hackEngineApis],
           nodeTypeMapping: {
             Page: 'div',
           },

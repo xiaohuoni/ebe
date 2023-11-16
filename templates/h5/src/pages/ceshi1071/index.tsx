@@ -1,16 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 
-import { View, Loop, Button } from '@lingxiteam/factory/es/index.component';
+import { Button, Loop, View } from '@lingxiteam/factory/es/index.component';
 
 import { history, setPageNavBar } from 'alita';
 
 import {
-  Modal,
   messageApi,
+  Modal,
 } from '@lingxiteam/engine-app/es/components/MessageApi';
 
-import { createApp, getApis, user } from '@lingxiteam/engine-platform';
+import { createApp, getApis } from '@lingxiteam/engine-platform';
 
 import {
   checkIfCMDHasReturn,
@@ -24,13 +24,13 @@ import Meta from '@lingxiteam/engine-meta';
 
 import monitt from '@lingxiteam/engine-plog';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Sandbox from '@lingxiteam/engine-sandbox';
 
 import { transformValueDefined } from '@lingxiteam/engine-utils';
 
-import { SandBoxContext, $$compDefine } from '@lingxiteam/types';
+import { $$compDefine, SandBoxContext } from '@lingxiteam/types';
 
 interface PageProps extends SandBoxContext {
   CMDGenerator?: any;
@@ -96,12 +96,12 @@ const withHOC = (WrappedComponent: React.FC<PageProps>, options: any) => {
         targetEventData: any,
         args: any,
         EventName: string,
-        $$compDefine: $$compDefine
+        $$compDefine: $$compDefine,
       ) => {
         return CMDParse(
           targetEventData,
           '',
-          engineApis
+          engineApis,
         )(args, {
           ...context,
           checkIfCMDHasReturn,
@@ -110,7 +110,7 @@ const withHOC = (WrappedComponent: React.FC<PageProps>, options: any) => {
           checkIfRefValueByObject: (
             val: string | Record<string, any>,
             field: Record<string, any>,
-            cmd?: any
+            cmd?: any,
           ) => {
             return checkIfRefValueByObject(val, field, cmd, engineApis);
           },
@@ -126,7 +126,7 @@ const withHOC = (WrappedComponent: React.FC<PageProps>, options: any) => {
           history,
           sandBoxRun: (
             code: string,
-            extendAllowMap: Record<string, any> = {}
+            extendAllowMap: Record<string, any> = {},
           ) => {
             return Sandbox.run(code, {
               ...context,

@@ -71,11 +71,17 @@ const buildConfig = {
     if (enableAnalyze) {
       const metaFile = buildConfig.outfile.replace(/\.js/, '.meta.json');
       const statsFile = buildConfig.outfile.replace(/\.js/, '.stats.html');
-      fs.writeFileSync(metaFile, JSON.stringify(result.metafile || {}), { encoding: 'utf-8' });
-      spawnSync('npx', ['esbuild-visualizer', '--metadata', metaFile, '--filename', statsFile], {
-        shell: true,
-        stdio: 'inherit',
+      fs.writeFileSync(metaFile, JSON.stringify(result.metafile || {}), {
+        encoding: 'utf-8',
       });
+      spawnSync(
+        'npx',
+        ['esbuild-visualizer', '--metadata', metaFile, '--filename', statsFile],
+        {
+          shell: true,
+          stdio: 'inherit',
+        },
+      );
       spawnSync('open', [statsFile], {
         shell: true,
         stdio: 'inherit',
@@ -94,8 +100,12 @@ const buildConfig = {
       sourcefile: path.basename(buildConfig.outfile),
     });
 
-    fs.writeFileSync(minifiedOutFile, minifiedResult.code, { encoding: 'utf-8' });
-    fs.writeFileSync(`${minifiedOutFile}.map`, minifiedResult.map, { encoding: 'utf-8' });
+    fs.writeFileSync(minifiedOutFile, minifiedResult.code, {
+      encoding: 'utf-8',
+    });
+    fs.writeFileSync(`${minifiedOutFile}.map`, minifiedResult.map, {
+      encoding: 'utf-8',
+    });
 
     minifiedResult.warnings.forEach((warnings) => {
       console.log(warnings);

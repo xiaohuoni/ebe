@@ -25,7 +25,7 @@ class runComPreprocess {
     obj: ComponentRunProcessType,
     platform: PlatformType,
   ) {
-    this.runComPreprocess??={}
+    this.runComPreprocess ??= {};
     this.runComPreprocess[platform] = obj;
   }
 

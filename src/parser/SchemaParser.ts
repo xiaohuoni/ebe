@@ -50,8 +50,8 @@ export class SchemaParser implements ISchemaParser {
       }
       return compLib;
     };
-    const getComponentsMap = (root:any) => {
-      root.components.forEach((info:any) => {
+    const getComponentsMap = (root: any) => {
+      root.components.forEach((info: any) => {
         if (info.type) {
           compDeps[info.type] = {
             package: getPackage(info.compLib),

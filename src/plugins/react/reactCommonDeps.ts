@@ -46,7 +46,10 @@ import React from 'react';`,
       getImportFrom('@lingxiteam/engine-utils', 'transformValueDefined'),
     );
     next.ir.deps.push(
-      ...getImportsFrom('@lingxiteam/types', ['SandBoxContext', '$$compDefine']),
+      ...getImportsFrom('@lingxiteam/types', [
+        'SandBoxContext',
+        '$$compDefine',
+      ]),
     );
     return next;
   };

@@ -98,12 +98,12 @@ const withHOC = (WrappedComponent: React.FC<PageProps>, options: any) => {
         targetEventData: any,
         args: any,
         EventName: string,
-        $$compDefine: $$compDefine
+        $$compDefine: $$compDefine,
       ) => {
         return CMDParse(
           targetEventData,
           '',
-          engineApis
+          engineApis,
         )(args, {
           ...context,
           checkIfCMDHasReturn,
@@ -112,7 +112,7 @@ const withHOC = (WrappedComponent: React.FC<PageProps>, options: any) => {
           checkIfRefValueByObject: (
             val: string | Record<string, any>,
             field: Record<string, any>,
-            cmd?: any
+            cmd?: any,
           ) => {
             return checkIfRefValueByObject(val, field, cmd, engineApis);
           },
@@ -128,7 +128,7 @@ const withHOC = (WrappedComponent: React.FC<PageProps>, options: any) => {
           history,
           sandBoxRun: (
             code: string,
-            extendAllowMap: Record<string, any> = {}
+            extendAllowMap: Record<string, any> = {},
           ) => {
             return Sandbox.run(code, {
               ...context,

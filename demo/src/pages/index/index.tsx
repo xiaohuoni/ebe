@@ -37,7 +37,9 @@ export default function ({}) {
           } as any);
           // src/pages/ceshi1071/index.tsx
           if (result?.dirs?.[0]?.dirs?.[0]?.dirs?.[0]?.files?.[0]?.content) {
-            setCode(result?.dirs?.[0]?.dirs?.[0]?.dirs?.[0]?.files?.[0]?.content);
+            setCode(
+              result?.dirs?.[0]?.dirs?.[0]?.dirs?.[0]?.files?.[0]?.content,
+            );
           }
           console.log(result); // 出码结果(默认是递归结构描述的，可以传 flattenResult: true 以生成扁平结构的结果)
         }}
@@ -48,7 +50,11 @@ export default function ({}) {
       <MonacoEditor
         height="350px"
         width="100%"
-        options={{ autoFocus: true, automaticLayout: true,moduleResolution:'nodenext' }}
+        options={{
+          autoFocus: true,
+          automaticLayout: true,
+          moduleResolution: 'nodenext',
+        }}
         language="typescript"
         value={code}
       />

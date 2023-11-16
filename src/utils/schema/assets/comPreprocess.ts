@@ -25,7 +25,7 @@ class comPreprocess {
     obj: ComPreprocessTypes,
     platform: PlatformType,
   ) {
-    this.comPreprocess ??={}
+    this.comPreprocess ??= {};
     this.comPreprocess[platform] = obj;
   }
 

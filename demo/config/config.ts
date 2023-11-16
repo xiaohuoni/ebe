@@ -18,5 +18,5 @@ export default defineConfig({
       changeOrigin: true,
       pathRewrite: { '^/ebe': '' },
     },
-  }
+  },
 });

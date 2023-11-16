@@ -1,155 +1,144 @@
 {
-	"id": "09010154",
-	"pageContainerType": "Page",
-	"events": [],
-	"actions": [],
-	"pageName": "cdd",
-	"pagePath": "/cdd5883",
-	"pageLayout": "BaseLayout",
-	"pageDynamicFlag": false,
-	"catalogItemId": "-1",
-	"ignoreLogin": false,
-	"layout": "BaseLayout",
-	"searchParams": [
-		{
-			"name": "业务主键",
-			"code": "bizId"
-		},
-		{
-			"name": "业务场景",
-			"code": "sceneCode"
-		},
-		{
-			"name": "业务数据",
-			"code": "bizData"
-		}
-	],
-	"compState": [
-		{
-			"name": "业务主键",
-			"code": "bizId"
-		},
-		{
-			"name": "业务场景",
-			"code": "sceneCode"
-		},
-		{
-			"name": "业务数据",
-			"code": "bizData"
-		}
-	],
-	"style": {
-		
-	},
-	"setEvents": [
-		{
-			"dataName": "event",
-			"dataId": "652091",
-			"path": [],
-			"value": "useEffect",
-			"params": [],
-			"children": []
-		}
-	],
-	"editorVersion": "3.2.1.10271633",
-	"createdEditorVersion": "1.0.12.10080829",
-	"terminalType": "PC",
-	"extras": {
-		"multiForm": true
-	},
-	"platform": "pc",
-	"platformType": "LowCode",
-	"imgInfoList": [],
-	"appId": "1024143353417228288",
-	"defaultVersionId": "1028120483871506433",
-	"currentPageVersionId": "1028120483871506433",
-	"previewValidVersionId": "1028120483871506433",
-	"pageId": "1028120483871506432",
-	"dataSource": [],
-	"components": [
-		{
-			"id": "View_884363",
-			"label": "普通容器",
-			"compName": "View",
-			"type": "View",
-			"compType": 0,
-			"compLib": "custom",
-			"props": {
-				"name": "普通容器1",
-				"basicStatus": 1
-			},
-			"style": {
-				"display": "block",
-				"flexDirection": "column",
-				"padding": "0px 0px 0px 0px",
-				"width": "100%",
-				"backgroundColor": "#FFFFFF"
-			},
-			"isContainer": true,
-			"isBusiObjContainer": false,
-			"cmdgroup": [
-				"basic"
-			],
-			"platform": "pc",
-			"icon": "View",
-			"description": "",
-			"image": "",
-			"groupsName": "容器",
-			"setEvents": [],
-			"isLabelDropBoxChild": false,
-			"components": [
-				{
-					"id": "Button_576841",
-					"label": "按钮",
-					"compName": "Button",
-					"type": "Button",
-					"compType": 1,
-					"compLib": "comm",
-					"props": {
-						"name": "按钮",
-						"basicStatus": 1,
-						"classification": "default",
-						"autoProcessFlow": false,
-						"flowProcessResult": "common",
-						"iconPosition": "left",
-						"ghost": false,
-						"block": false,
-						"size": "default",
-						"disabled": false,
-						"type": "default",
-						"btnIcon": "none",
-						"hasIcon": false,
-						"shape": "default",
-						"loading": false,
-						"btnText": "按钮"
-					},
-					"style": {
-						"textAlign": "center"
-					},
-					"isContainer": false,
-					"isBusiObjContainer": false,
-					"cmdgroup": [
-						"basic"
-					],
-					"platform": "pc",
-					"icon": "Button",
-					"description": "",
-					"image": "",
-					"groupsName": "通用",
-					"isInlineBlock": true,
-					"setEvents": [],
-					"isLabelDropBoxChild": false,
-					"components": [],
-					"path": [
-						"09010154",
-						"View_884363"
-					]
-				}
-			],
-			"path": [
-				"09010154"
-			]
-		}
-	],
-	"path": []
+  "id": "09010154",
+  "pageContainerType": "Page",
+  "events": [],
+  "actions": [],
+  "pageName": "cdd",
+  "pagePath": "/cdd5883",
+  "pageLayout": "BaseLayout",
+  "pageDynamicFlag": false,
+  "catalogItemId": "-1",
+  "ignoreLogin": false,
+  "layout": "BaseLayout",
+  "searchParams": [
+    {
+      "name": "业务主键",
+      "code": "bizId"
+    },
+    {
+      "name": "业务场景",
+      "code": "sceneCode"
+    },
+    {
+      "name": "业务数据",
+      "code": "bizData"
+    }
+  ],
+  "compState": [
+    {
+      "name": "业务主键",
+      "code": "bizId"
+    },
+    {
+      "name": "业务场景",
+      "code": "sceneCode"
+    },
+    {
+      "name": "业务数据",
+      "code": "bizData"
+    }
+  ],
+  "style": {},
+  "setEvents": [
+    {
+      "dataName": "event",
+      "dataId": "652091",
+      "path": [],
+      "value": "useEffect",
+      "params": [],
+      "children": []
+    }
+  ],
+  "editorVersion": "3.2.1.10271633",
+  "createdEditorVersion": "1.0.12.10080829",
+  "terminalType": "PC",
+  "extras": {
+    "multiForm": true
+  },
+  "platform": "pc",
+  "platformType": "LowCode",
+  "imgInfoList": [],
+  "appId": "1024143353417228288",
+  "defaultVersionId": "1028120483871506433",
+  "currentPageVersionId": "1028120483871506433",
+  "previewValidVersionId": "1028120483871506433",
+  "pageId": "1028120483871506432",
+  "dataSource": [],
+  "components": [
+    {
+      "id": "View_884363",
+      "label": "普通容器",
+      "compName": "View",
+      "type": "View",
+      "compType": 0,
+      "compLib": "custom",
+      "props": {
+        "name": "普通容器1",
+        "basicStatus": 1
+      },
+      "style": {
+        "display": "block",
+        "flexDirection": "column",
+        "padding": "0px 0px 0px 0px",
+        "width": "100%",
+        "backgroundColor": "#FFFFFF"
+      },
+      "isContainer": true,
+      "isBusiObjContainer": false,
+      "cmdgroup": ["basic"],
+      "platform": "pc",
+      "icon": "View",
+      "description": "",
+      "image": "",
+      "groupsName": "容器",
+      "setEvents": [],
+      "isLabelDropBoxChild": false,
+      "components": [
+        {
+          "id": "Button_576841",
+          "label": "按钮",
+          "compName": "Button",
+          "type": "Button",
+          "compType": 1,
+          "compLib": "comm",
+          "props": {
+            "name": "按钮",
+            "basicStatus": 1,
+            "classification": "default",
+            "autoProcessFlow": false,
+            "flowProcessResult": "common",
+            "iconPosition": "left",
+            "ghost": false,
+            "block": false,
+            "size": "default",
+            "disabled": false,
+            "type": "default",
+            "btnIcon": "none",
+            "hasIcon": false,
+            "shape": "default",
+            "loading": false,
+            "btnText": "按钮"
+          },
+          "style": {
+            "textAlign": "center"
+          },
+          "isContainer": false,
+          "isBusiObjContainer": false,
+          "cmdgroup": ["basic"],
+          "platform": "pc",
+          "icon": "Button",
+          "description": "",
+          "image": "",
+          "groupsName": "通用",
+          "isInlineBlock": true,
+          "setEvents": [],
+          "isLabelDropBoxChild": false,
+          "components": [],
+          "path": ["09010154", "View_884363"]
+        }
+      ],
+      "path": ["09010154"]
+    }
+  ],
+  "path": []
 }

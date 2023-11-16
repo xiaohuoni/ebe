@@ -222,10 +222,7 @@ type CompositeTypeGenerator<I, T> =
   | BaseGenerator<I, T, CompositeValueGeneratorOptions>
   | Array<BaseGenerator<I, T, CompositeValueGeneratorOptions>>;
 
-export type NodeGenerator<T> = (
-  nodeItem: IProjectSchema,
-  scope: IScope,
-) => T;
+export type NodeGenerator<T> = (nodeItem: IProjectSchema, scope: IScope) => T;
 
 export interface HandlerSet<T> {
   string?: CompositeTypeGenerator<string, T>;
