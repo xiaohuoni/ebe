@@ -1,0 +1,31 @@
+{
+  "name": "@lingxiteam/engine-assets",
+  "version": "3.2.1-alpha.42",
+  "license": "MIT",
+  "author": "LimMem <qin.chuanlong@iwhalecloud.com>",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "typings": "es/index.d.ts",
+  "files": [
+    "lib",
+    "es"
+  ],
+  "scripts": {
+    "build": "cross-env FATHER_CACHE=none father build",
+    "dev": "father dev"
+  },
+  "dependencies": {
+    "@lingxiteam/assets": "3.2.1-alpha.1",
+    "@lingxiteam/functors": "0.3.1",
+    "@lingxiteam/types": "^3.2.1-alpha.42"
+  },
+  "optionalDependencies": {
+    "@wufengteam/core": "3.2.1-alpha.4"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "gitHead": "618a91f0def9d38c400ad78f6d2ca080fc5312f8"
+}
