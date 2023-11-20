@@ -24,33 +24,36 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
 import React from 'react';`,
       linkAfter: [],
     });
-    next.ir.deps.push(
-      ...getImportsFrom('@lingxiteam/engine-command', [
-        'checkIfCMDHasReturn',
-        'checkIfRefValue',
-        'checkIfRefValueByObject',
-        'CMDParse',
-        'CONDrun',
-      ]),
-    );
+    // next.ir.deps.push(
+    //   ...getImportsFrom('@lingxiteam/engine-command', [
+    //     'checkIfCMDHasReturn',
+    //     'checkIfRefValue',
+    //     'checkIfRefValueByObject',
+    //     'CMDParse',
+    //     'CONDrun',
+    //   ]),
+    // );
 
-    next.ir.deps.push(getImportFrom('@lingxiteam/engine-meta', 'Meta', false));
+    // next.ir.deps.push(getImportFrom('@lingxiteam/engine-meta', 'Meta', false));
+    // next.ir.deps.push(
+    //   getImportFrom('@lingxiteam/engine-plog', 'monitt', false),
+    // );
+    next.ir.deps.push(...getImportsFrom('react', ['useEffect']));
     next.ir.deps.push(
-      getImportFrom('@lingxiteam/engine-plog', 'monitt', false),
+      ...getImportsFrom('@/utils/withPageHOC', ['PageProps', 'withPageHOC']),
     );
-    next.ir.deps.push(...getImportsFrom('react', ['useEffect', 'useState']));
-    next.ir.deps.push(
-      getImportFrom('@lingxiteam/engine-sandbox', 'Sandbox', false),
-    );
-    next.ir.deps.push(
-      getImportFrom('@lingxiteam/engine-utils', 'transformValueDefined'),
-    );
-    next.ir.deps.push(
-      ...getImportsFrom('@lingxiteam/types', [
-        'SandBoxContext',
-        '$$compDefine',
-      ]),
-    );
+    // next.ir.deps.push(
+    //   getImportFrom('@lingxiteam/engine-sandbox', 'Sandbox', false),
+    // );
+    // next.ir.deps.push(
+    //   getImportFrom('@lingxiteam/engine-utils', 'transformValueDefined'),
+    // );
+    // next.ir.deps.push(
+    //   ...getImportsFrom('@lingxiteam/types', [
+    //     'SandBoxContext',
+    //     '$$compDefine',
+    //   ]),
+    // );
     return next;
   };
   return plugin;

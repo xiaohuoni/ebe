@@ -34,122 +34,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: CLASS_DEFINE_CHUNK_NAME.Start,
       content: `
-      interface PageProps extends SandBoxContext {
-        CMDGenerator?: any;
-        injectData?: any;
-      }
-      const withHOC = (WrappedComponent: React.FC<PageProps>, options: any) => {
-        return () => {
-          const [data, setData] = useState<any>();
-          const refs = useRef<any>({});
-          let meta: Meta;
-          const init = async () => {
-            const appId = '1024143353417228288';
-            const api = getApis({ appId });
-            const appInst: any = await createApp({
-              appId,
-              isInstallComponent: false,
-              isUsePermission: false,
-              isCheckUsedOldFlow: false,
-              isCF: false,
-              isMock: false,
-              dataCollect: false,
-              isOpenTheme: false,
-              // beforeCreateApp: () => user.init(),
-            });
-            const defaultContext = {
-              lcdpApi: appInst.lcdpApi,
-            };
-            meta = new Meta({
-              SandBox: Sandbox,
-              trigger: ({ relationMap }) => {
-                meta.updateComponentWithRelationMap(relationMap);
-              },
-              pageInst: {
-                dataSource: options?.dataSource || [],
-              },
-              service: api,
-              // @ts-ignore
-              context: defaultContext,
-              provideData: {},
-              state: {},
-              engineStateChange: () => {
-                console.log('engineStateChange');
-              },
-              dataDidUpdate: () => {
-                console.log('dataDidUpdate');
-              },
-            });
-      
-            appInst.use(meta.globalInstance);
-            // 收集内置数据
-            await meta.initialData();
-            const context = meta?.getContext(defaultContext);
-            const injectData = {
-              getEngineApis: () => {
-                return {
-                  downloadFileByFileCode: '',
-                  getLocale: () => '',
-                };
-              },
-            };
-            const engineApis = injectData.getEngineApis();
-            const CMDGenerator = (
-              targetEventData: any,
-              args: any,
-              EventName: string,
-              $$compDefine: $$compDefine,
-            ) => {
-              return CMDParse(targetEventData,'',engineApis,)(args, {
-                ...context,
-                checkIfCMDHasReturn,
-                checkIfRefValue,
-                transformValueDefined,
-                checkIfRefValueByObject: (
-                  val: string | Record<string, any>,
-                  field: Record<string, any>,
-                  cmd?: any,
-                ) => {
-                  return checkIfRefValueByObject(val, field, cmd, engineApis);
-                },
-                CMDParse,
-                CONDrun,
-                monitt,
-                EventName,
-                $$compDefine,
-                Modal,
-                messageApi,
-                refs,
-                utils: engineApis,
-                history,
-                sandBoxRun: (
-                  code: string,
-                  extendAllowMap: Record<string, any> = {},
-                ) => {
-                  return Sandbox.run(code, {
-                    ...context,
-                    ...engineApis,
-                    ...extendAllowMap,
-                  });
-                },
-              });
-            };
-            setData({ ...context, CMDGenerator, injectData, refs });
-            meta.dataDidUpdate = () => {
-              setData({ ...context, CMDGenerator, injectData, refs });
-            };
-          };
-          useEffect(() => {
-            init();
-          }, []);
-      
-          if (!data || Object.keys(data).length === 0) {
-            return <div>loading</div>;
-          }
-          return <WrappedComponent {...data} />;
-        };
-      };
-      
       const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, injectData, refs}) => {`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
@@ -279,7 +163,9 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.FileExport,
-      content: `export default withHOC(${type}, {
+      content: `export default withPageHOC(${type}, {
+        // TODO: appId
+        appId:'1024143353417228288',
         dataSource: ${JSON.stringify(ir.dataSource)},
       });`,
       linkAfter: [

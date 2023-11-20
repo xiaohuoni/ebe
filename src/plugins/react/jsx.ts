@@ -50,7 +50,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     const scope: IScope = Scope.createRootScope();
     const jsxContent = generator(ir, scope);
 
-    next.ir.deps.push(getImportFrom('react', 'useRef'));
+    // next.ir.deps.push(getImportFrom('react', 'useRef'));
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: cfg.fileType,

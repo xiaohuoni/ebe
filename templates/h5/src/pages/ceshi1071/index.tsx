@@ -3,154 +3,11 @@ import React from 'react';
 
 import { Button, Loop, View } from '@lingxiteam/factory/es/index.component';
 
-import { history, setPageNavBar } from 'alita';
+import { useEffect } from 'react';
 
-import {
-  messageApi,
-  Modal,
-} from '@lingxiteam/engine-app/es/components/MessageApi';
+import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
-import { createApp, getApis } from '@lingxiteam/engine-platform';
-
-import {
-  checkIfCMDHasReturn,
-  checkIfRefValue,
-  checkIfRefValueByObject,
-  CMDParse,
-  CONDrun,
-} from '@lingxiteam/engine-command';
-
-import Meta from '@lingxiteam/engine-meta';
-
-import monitt from '@lingxiteam/engine-plog';
-
-import { useEffect, useRef, useState } from 'react';
-
-import Sandbox from '@lingxiteam/engine-sandbox';
-
-import { transformValueDefined } from '@lingxiteam/engine-utils';
-
-import { $$compDefine, SandBoxContext } from '@lingxiteam/types';
-
-interface PageProps extends SandBoxContext {
-  CMDGenerator?: any;
-  injectData?: any;
-}
-const withHOC = (WrappedComponent: React.FC<PageProps>, options: any) => {
-  return () => {
-    const [data, setData] = useState<any>();
-    const refs = useRef<any>({});
-    let meta: Meta;
-    const init = async () => {
-      const appId = '1024143353417228288';
-      const api = getApis({ appId });
-      const appInst: any = await createApp({
-        appId,
-        isInstallComponent: false,
-        isUsePermission: false,
-        isCheckUsedOldFlow: false,
-        isCF: false,
-        isMock: false,
-        dataCollect: false,
-        isOpenTheme: false,
-        // beforeCreateApp: () => user.init(),
-      });
-      const defaultContext = {
-        lcdpApi: appInst.lcdpApi,
-      };
-      meta = new Meta({
-        SandBox: Sandbox,
-        trigger: ({ relationMap }) => {
-          meta.updateComponentWithRelationMap(relationMap);
-        },
-        pageInst: {
-          dataSource: options?.dataSource || [],
-        },
-        service: api,
-        // @ts-ignore
-        context: defaultContext,
-        provideData: {},
-        state: {},
-        engineStateChange: () => {
-          console.log('engineStateChange');
-        },
-        dataDidUpdate: () => {
-          console.log('dataDidUpdate');
-        },
-      });
-
-      appInst.use(meta.globalInstance);
-      // 收集内置数据
-      await meta.initialData();
-      const context = meta?.getContext(defaultContext);
-      const injectData = {
-        getEngineApis: () => {
-          return {
-            downloadFileByFileCode: '',
-            getLocale: () => '',
-          };
-        },
-      };
-      const engineApis = injectData.getEngineApis();
-      const CMDGenerator = (
-        targetEventData: any,
-        args: any,
-        EventName: string,
-        $$compDefine: $$compDefine,
-      ) => {
-        return CMDParse(
-          targetEventData,
-          '',
-          engineApis,
-        )(args, {
-          ...context,
-          checkIfCMDHasReturn,
-          checkIfRefValue,
-          transformValueDefined,
-          checkIfRefValueByObject: (
-            val: string | Record<string, any>,
-            field: Record<string, any>,
-            cmd?: any,
-          ) => {
-            return checkIfRefValueByObject(val, field, cmd, engineApis);
-          },
-          CMDParse,
-          CONDrun,
-          monitt,
-          EventName,
-          $$compDefine,
-          Modal,
-          messageApi,
-          refs,
-          utils: engineApis,
-          history,
-          sandBoxRun: (
-            code: string,
-            extendAllowMap: Record<string, any> = {},
-          ) => {
-            return Sandbox.run(code, {
-              ...context,
-              ...engineApis,
-              ...extendAllowMap,
-            });
-          },
-        });
-      };
-      setData({ ...context, CMDGenerator, injectData, refs });
-      meta.dataDidUpdate = () => {
-        setData({ ...context, CMDGenerator, injectData, refs });
-      };
-    };
-    useEffect(() => {
-      init();
-    }, []);
-
-    if (!data || Object.keys(data).length === 0) {
-      return <div>loading</div>;
-    }
-    return <WrappedComponent {...data} />;
-  };
-};
+import { setPageNavBar } from 'alita';
 
 const Ceshi1071$$Page: React.FC<PageProps> = ({
   data,
@@ -358,7 +215,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
           id: 'View_4060305',
           uid: 'View_4060305',
           pageId: 'pageId',
-          appId: 'appId',
+          appId: '1024143353417228288',
           platform: 'h5',
           type: 'View',
         }}
@@ -386,7 +243,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
             id: 'Loop_087174',
             uid: 'Loop_087174',
             pageId: 'pageId',
-            appId: 'appId',
+            appId: '1024143353417228288',
             platform: 'h5',
             type: 'Loop',
           }}
@@ -420,7 +277,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
                         id: 'Button_197969',
                         uid: 'Button_197969',
                         pageId: 'pageId',
-                        appId: 'appId',
+                        appId: '1024143353417228288',
                         platform: 'h5',
                         type: 'Button',
                       }}
@@ -442,7 +299,9 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
   );
 };
 
-export default withHOC(Ceshi1071$$Page, {
+export default withPageHOC(Ceshi1071$$Page, {
+  // TODO: appId
+  appId: '1024143353417228288',
   dataSource: [
     {
       id: 169891588296195260,

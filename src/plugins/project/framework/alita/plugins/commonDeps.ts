@@ -10,20 +10,20 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     const next: ICodeStruct = {
       ...pre,
     };
-    next.ir.deps.push(getImportFrom('alita', 'history'));
-    next.ir.deps.push(
-      ...getImportsFrom('@lingxiteam/engine-app/es/components/MessageApi', [
-        'Modal',
-        'messageApi',
-      ]),
-    );
-    next.ir.deps.push(
-      ...getImportsFrom('@lingxiteam/engine-app', [
-        'createApp',
-        'getApis',
-        'user',
-      ]),
-    );
+    // next.ir.deps.push(getImportFrom('alita', 'history'));
+    // next.ir.deps.push(
+    //   ...getImportsFrom('@lingxiteam/engine-app/es/components/MessageApi', [
+    //     'Modal',
+    //     'messageApi',
+    //   ]),
+    // );
+    // next.ir.deps.push(
+    //   ...getImportsFrom('@lingxiteam/engine-app', [
+    //     'createApp',
+    //     'getApis',
+    //     'user',
+    //   ]),
+    // );
     return next;
   };
   return plugin;
