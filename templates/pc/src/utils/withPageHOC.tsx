@@ -1,19 +1,3 @@
-// 注意: 出码模块正在调试
-import React from 'react';
-
-import { View } from 'custom';
-
-import { Button } from 'comm';
-
-import { history } from 'alita';
-
-import {
-  Modal,
-  messageApi,
-} from '@lingxiteam/engine-app/es/components/MessageApi';
-
-import { createApp, getApis, user } from '@lingxiteam/engine-app';
-
 import {
   checkIfCMDHasReturn,
   checkIfRefValue,
@@ -21,33 +5,50 @@ import {
   CMDParse,
   CONDrun,
 } from '@lingxiteam/engine-command';
-
 import Meta from '@lingxiteam/engine-meta';
-
+import {
+  message,
+  Modal,
+} from '@lingxiteam/engine-pc/es/components/EnhanceAntdComp';
+import {
+  closeProgressMsg,
+  closeProgressNotification,
+  openProgressMsg,
+  showProgressNotification,
+} from '@lingxiteam/engine-pc/es/components/ProgressComp';
+import { createApp, getApis, user } from '@lingxiteam/engine-platform';
 import monitt from '@lingxiteam/engine-plog';
-
-import { useEffect, useState, useRef } from 'react';
-
 import Sandbox from '@lingxiteam/engine-sandbox';
-
 import { transformValueDefined } from '@lingxiteam/engine-utils';
+import { $$compDefine, SandBoxContext } from '@lingxiteam/types';
+import { history } from 'alita';
 
-import { SandBoxContext, $$compDefine } from '@lingxiteam/types';
+import React, { useEffect, useRef, useState } from 'react';
 
-interface PageProps extends SandBoxContext {
+export interface PageProps extends SandBoxContext {
   CMDGenerator?: any;
   injectData?: any;
+  [key: string]: any;
 }
-const withHOC = (WrappedComponent: React.FC<PageProps>, options: any) => {
+
+export interface PageHOCOptions {
+  appId: string;
+  dataSource: any[];
+  hasLogin?: boolean;
+}
+
+export const withPageHOC = (
+  WrappedComponent: React.FC<PageProps>,
+  options: PageHOCOptions,
+) => {
   return () => {
     const [data, setData] = useState<any>();
     const refs = useRef<any>({});
     let meta: Meta;
     const init = async () => {
-      const appId = '1024143353417228288';
-      const api = getApis({ appId });
+      const api = getApis({ appId: options?.appId });
       const appInst: any = await createApp({
-        appId,
+        appId: options?.appId,
         isInstallComponent: false,
         isUsePermission: false,
         isCheckUsedOldFlow: false,
@@ -55,7 +56,7 @@ const withHOC = (WrappedComponent: React.FC<PageProps>, options: any) => {
         isMock: false,
         dataCollect: false,
         isOpenTheme: false,
-        // beforeCreateApp: () => user.init(),
+        beforeCreateApp: () => options?.hasLogin && user.init(),
       });
       const defaultContext = {
         lcdpApi: appInst.lcdpApi,
@@ -121,8 +122,15 @@ const withHOC = (WrappedComponent: React.FC<PageProps>, options: any) => {
           monitt,
           EventName,
           $$compDefine,
+          messageApi: {
+            ...message,
+            openProgressMsg,
+            closeProgressMsg,
+            showProgressNotification,
+            closeProgressNotification,
+          },
+          message,
           Modal,
-          messageApi,
           refs,
           utils: engineApis,
           history,
@@ -153,81 +161,3 @@ const withHOC = (WrappedComponent: React.FC<PageProps>, options: any) => {
     return <WrappedComponent {...data} />;
   };
 };
-
-const Cdd5883$$Page: React.FC<PageProps> = ({
-  data,
-  CMDGenerator,
-  injectData,
-  refs,
-}) => {
-  useEffect(() => {
-    return () => {};
-  }, []);
-
-  useEffect(() => {});
-
-  return (
-    <div>
-      <View
-        name="普通容器1"
-        basicStatus={1}
-        $$componentItem={{
-          id: 'View_884363',
-          uid: 'View_884363',
-          pageId: '1028120483871506432',
-          appId: '1024143353417228288',
-          platform: 'pc',
-          type: 'View',
-        }}
-        disabled={false}
-        visible={true}
-        readOnly={false}
-        style={{
-          display: 'block',
-          flexDirection: 'column',
-          padding: '0px 0px 0px 0px',
-          width: '100%',
-          backgroundColor: '#FFFFFF',
-        }}
-        ref={(r: any) => (refs['View_884363'] = r)}
-        {...injectData}
-      >
-        <Button
-          name="按钮"
-          basicStatus={1}
-          classification="default"
-          autoProcessFlow={false}
-          flowProcessResult="common"
-          iconPosition="left"
-          ghost={false}
-          block={false}
-          size="default"
-          disabled={false}
-          type="default"
-          btnIcon="none"
-          hasIcon={false}
-          shape="default"
-          loading={false}
-          btnText="按钮"
-          $$componentItem={{
-            id: 'Button_576841',
-            uid: 'Button_576841',
-            pageId: '1028120483871506432',
-            appId: '1024143353417228288',
-            platform: 'pc',
-            type: 'Button',
-          }}
-          visible={true}
-          readOnly={false}
-          style={{ textAlign: 'center' }}
-          ref={(r: any) => (refs['Button_576841'] = r)}
-          {...injectData}
-        />
-      </View>
-    </div>
-  );
-};
-
-export default withHOC(Cdd5883$$Page, {
-  dataSource: [],
-});

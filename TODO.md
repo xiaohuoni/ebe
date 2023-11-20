@@ -7,6 +7,10 @@
 - [x] 页面生命周期
 - [x] engine apis 支持
 - [x] 循环列表
+- [x] mobile setPageNavBar
 - [ ] form onValuesChange - 备选方案，直接加标识响应数据变化
 - [ ] 命令源码化
 - [x] Web Worker
+- [ ] get keepalive
+- [x] pc templates
+- [ ] pc

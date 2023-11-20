@@ -4,13 +4,15 @@ import alita from './src/solutions/alita';
 import { createDiskPublisher } from './src/core/publisher/disk';
 // import { createZipPublisher } from './src/core/publisher/zip';
 (async () => {
-  const testPlatformIsH5 = true;
+  const testPlatformIsH5 = false;
   const schemaFile = testPlatformIsH5
     ? 'lingxi-page-h5.json'
     : 'lingxi-page-pc.json';
   // 读取 Schema
   const schema = await loadSchemaFile(schemaFile);
-  schema.pageId = testPlatformIsH5 ? 'pageId' : '1028120483871506432';
+  schema.pageId = testPlatformIsH5
+    ? '1024143466269171712'
+    : '1028120483871506432';
   schema.appId = testPlatformIsH5
     ? '1024143353417228288'
     : '1024143353417228288';
