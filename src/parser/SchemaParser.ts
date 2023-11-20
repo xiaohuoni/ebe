@@ -43,10 +43,14 @@ export class SchemaParser implements ISchemaParser {
     // 解析三方组件依赖
     const getPackage = (compLib: string) => {
       // 遗留问题，组件包应该正确写明 compLib
-      if (compLib === '@/components') {
+      if (
+        compLib === '@/components' ||
+        compLib === 'custom' ||
+        compLib === 'comm'
+      ) {
         return schema.platform === 'h5'
           ? '@lingxiteam/factory/es/index.component'
-          : '@lingxiteam/pcfactory';
+          : '@lingxiteam/pcfactory/es/index.component';
       }
       return compLib;
     };

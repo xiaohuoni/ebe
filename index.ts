@@ -1,6 +1,7 @@
 import * as fs from 'fs-extra';
 import { jsonc } from 'jsonc';
 import alita from './src/solutions/alita';
+import alitapc from './src/solutions/alita-pc';
 import { createDiskPublisher } from './src/core/publisher/disk';
 // import { createZipPublisher } from './src/core/publisher/zip';
 (async () => {
@@ -17,7 +18,7 @@ import { createDiskPublisher } from './src/core/publisher/disk';
     ? '1024143353417228288'
     : '1024143353417228288';
 
-  const projectBuilder = testPlatformIsH5 ? alita() : alita();
+  const projectBuilder = testPlatformIsH5 ? alita() : alitapc();
 
   const project = await projectBuilder.generateProject(
     schema, // 编排搭建出来的 schema

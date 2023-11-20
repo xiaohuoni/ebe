@@ -13,4 +13,4 @@
 - [x] Web Worker
 - [ ] get keepalive
 - [x] pc templates
-- [ ] pc
+- [x] pc solutions - pc 段的插件集

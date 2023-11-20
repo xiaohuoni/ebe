@@ -4,12 +4,11 @@ import type { FlattenFile } from './core/types/file';
 
 declare const Worker: any;
 declare const self: any;
-// declare const PACKAGE_VERSION: string;
+declare const __PACKAGE_VERSION__: string;
 
-// const packageVersion = PACKAGE_VERSION ?? 'latest';
+const packageVersion = __PACKAGE_VERSION__ ?? 'latest';
 
-// export const DEFAULT_WORKER_JS = `https://cdn.jsdelivr.net/npm/ebe@${packageVersion}/es/worker.js`;
-export const DEFAULT_WORKER_JS = `https://cdn.jsdelivr.net/npm/ebe@0.0.8/dist/worker.js`;
+export const DEFAULT_WORKER_JS = `https://cdn.jsdelivr.net/npm/ebe@${packageVersion}/dist/worker.js`;
 
 export const DEFAULT_TIMEOUT_IN_MS = 60 * 10000;
 

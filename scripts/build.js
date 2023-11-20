@@ -5,6 +5,7 @@ const esbuild = require('esbuild');
 const concurrently = require('concurrently');
 const argv = require('yargs-parser')(process.argv.slice(2));
 const packageJson = require('../package.json');
+const packageVersion = packageJson.version;
 
 if (!argv.format) {
   buildAll();
@@ -65,6 +66,15 @@ function buildFormat(format, outDir) {
       external: _.keys(packageJson.dependencies),
       minify: false,
       legalComments: 'external',
+      define: {
+        process: JSON.stringify({
+          env: {
+            NODE_ENV: 'production',
+            STANDALONE: 'true',
+          },
+        }),
+        __PACKAGE_VERSION__: JSON.stringify(packageVersion),
+      },
     });
     if (result.errors.length > 0) {
       throw result.errors;

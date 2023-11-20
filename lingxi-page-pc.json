@@ -46,10 +46,75 @@
       "path": [],
       "value": "useEffect",
       "params": [],
-      "children": []
+      "children": [
+        {
+          "dataName": "action",
+          "dataId": 170047181697512220,
+          "todoOptions": [
+            "modalType",
+            "title",
+            "content",
+            "okText",
+            "cancelText"
+          ],
+          "path": ["652091"],
+          "options": {
+            "compId": "showModal",
+            "compName": "system",
+            "id": "4090913",
+            "pageJsonId": "09010154",
+            "title": "你好，pc",
+            "content": "这是一个正确的弹窗",
+            "type": "success"
+          },
+          "actionObjId": "showModal",
+          "actionObjName": "system",
+          "value": "showModal",
+          "children": [
+            {
+              "dataName": "callback",
+              "dataId": 170047181697582800,
+              "value": "callback1",
+              "path": ["652091", 170047181697512220],
+              "params": [],
+              "children": [
+                {
+                  "dataName": "action",
+                  "dataId": 170047186680601950,
+                  "todoOptions": ["valueArray"],
+                  "path": ["652091", 170047181697512220, 170047181697582800],
+                  "options": {
+                    "compId": "console",
+                    "compName": "system",
+                    "id": "031162",
+                    "pageJsonId": "09010154",
+                    "value": ["点击了确认按钮"]
+                  },
+                  "actionObjId": "console",
+                  "actionObjName": "system",
+                  "value": "console",
+                  "children": [],
+                  "elseIfs": []
+                }
+              ],
+              "elseIfs": []
+            },
+            {
+              "dataName": "callback",
+              "dataId": 170047181697548900,
+              "value": "callback2",
+              "path": ["652091", 170047181697512220],
+              "params": [],
+              "children": [],
+              "elseIfs": []
+            }
+          ],
+          "elseIfs": []
+        }
+      ]
     }
   ],
-  "editorVersion": "3.2.1.10271633",
+  "editorVersion": "3.2.1.11100826",
   "createdEditorVersion": "1.0.12.10080829",
   "terminalType": "PC",
   "extras": {
@@ -74,14 +139,17 @@
       "compLib": "custom",
       "props": {
         "name": "普通容器1",
-        "basicStatus": 1
+        "basicStatus": 1,
+        "backgroundType": {
+          "type": "cleanColor",
+          "color": "#FFFFFF"
+        }
       },
       "style": {
         "display": "block",
         "flexDirection": "column",
         "padding": "0px 0px 0px 0px",
-        "width": "100%",
-        "backgroundColor": "#FFFFFF"
+        "width": "100%"
       },
       "isContainer": true,
       "isBusiObjContainer": false,
@@ -111,7 +179,6 @@
             "ghost": false,
             "block": false,
             "size": "default",
-            "disabled": false,
             "type": "default",
             "btnIcon": "none",
             "hasIcon": false,
