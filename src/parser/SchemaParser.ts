@@ -20,6 +20,7 @@ import enRunPreprocess from '@lingxiteam/factory/es/index.enRunPreprocess';
 import enPreprocessPC from '@lingxiteam/pcfactory/es/index.enPreprocess';
 import enRunPreprocessPC from '@lingxiteam/pcfactory/es/index.enRunPreprocess';
 import assetHelper from '../utils/schema/assets/assets';
+import { LINGXI_PROJECT_VERSION } from '../constants';
 
 function getInternalDep(
   internalDeps: Record<string, IInternalDependency>,
@@ -64,9 +65,11 @@ export class SchemaParser implements ISchemaParser {
             exportName: info.exportName ?? info.type,
             // TODO: 先写死的版本号，因为现在主版本号上不是最新的
             version:
-              info.version || info.compLib === '@/components'
-                ? '3.2.1-alpha.44'
-                : '*',
+              info.compLib === '@/components' ||
+              info.compLib === 'custom' ||
+              info.compLib === 'comm'
+                ? LINGXI_PROJECT_VERSION
+                : info.version ?? '*',
             destructuring: info.destructuring ?? true,
           };
         }

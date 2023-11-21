@@ -5,7 +5,7 @@ import alitapc from './src/solutions/alita-pc';
 import { createDiskPublisher } from './src/core/publisher/disk';
 // import { createZipPublisher } from './src/core/publisher/zip';
 (async () => {
-  const testPlatformIsH5 = false;
+  const testPlatformIsH5 = true;
   const schemaFile = testPlatformIsH5
     ? 'lingxi-page-h5.json'
     : 'lingxi-page-pc.json';

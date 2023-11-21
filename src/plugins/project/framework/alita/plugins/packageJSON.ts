@@ -13,7 +13,7 @@ import {
 import { isNpmInfo } from '../../../../../core/utils/schema';
 import { getErrorMessage } from '../../../../../core/utils/errors';
 import { calcCompatibleVersion } from '../../../../../core/utils/version';
-
+import { LINGXI_TYPES_VERSION } from '../../../../../constants';
 const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
     const next: ICodeStruct = {
@@ -46,12 +46,9 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
       },
       dependencies: {
         '@alita/flow': '*',
-        '@lingxiteam/cli': '^0.4.6',
-        '@lingxiteam/engine-app': '^3.2.1-alpha.44',
-        '@lingxiteam/types': '^3.2.1-alpha.44',
+        '@lingxiteam/types': LINGXI_TYPES_VERSION,
         alita: '3.3.7',
-        'antd-mobile-5': '5.26.0',
-        'react-loadable': '^5.5.0',
+        ...cfg?.dependencies,
         // 其他组件库
         ...npmDeps.reduce<Record<string, string>>(
           (acc, npm) => ({

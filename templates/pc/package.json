@@ -1,7 +1,7 @@
 {
-  "name": "app-mobile",
-  "version": "1.0.0",
+  "name": "app-pc",
   "private": true,
+  "version": "1.0.0",
   "scripts": {
     "build:app": "alita build",
     "dev:app": "alita dev",
@@ -23,13 +23,21 @@
   },
   "dependencies": {
     "@alita/flow": "*",
-    "@lingxiteam/cli": "^0.4.6",
-    "@lingxiteam/engine-app": "^3.2.1-alpha.44",
-    "@lingxiteam/pcfactory": "*",
-    "@lingxiteam/types": "^3.2.1-alpha.44",
+    "@lingxiteam/types": "3.3.1-alpha.1",
     "alita": "3.3.7",
-    "antd-mobile-5": "5.26.0",
-    "react-loadable": "^5.5.0"
+    "antd": "4.18.8",
+    "@lingxiteam/icons": "*",
+    "@lingxiteam/assets": "3.3.1-alpha.7",
+    "@lingxiteam/engine-pc": "3.2.1-alpha.44",
+    "@lingxiteam/engine-assets": "3.2.1-alpha.44",
+    "@lingxiteam/sys-action": "3.2.1-alpha.44",
+    "@lingxiteam/engine-command": "3.2.1-alpha.44",
+    "@lingxiteam/engine-meta": "3.2.1-alpha.44",
+    "@lingxiteam/engine-platform": "3.2.1-alpha.44",
+    "@lingxiteam/engine-plog": "3.2.1-alpha.44",
+    "@lingxiteam/engine-sandbox": "3.2.1-alpha.44",
+    "@lingxiteam/engine-utils": "3.2.1-alpha.44",
+    "@lingxiteam/pcfactory": "3.3.1-alpha.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",

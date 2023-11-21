@@ -1,7 +1,7 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 
-import { Button, Loop, View } from '@lingxiteam/factory/es/index.component';
+import { View, Loop, Button } from '@lingxiteam/factory/es/index.component';
 
 import { useEffect } from 'react';
 
@@ -214,7 +214,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
         $$componentItem={{
           id: 'View_4060305',
           uid: 'View_4060305',
-          pageId: 'pageId',
+          pageId: '1024143466269171712',
           appId: '1024143353417228288',
           platform: 'h5',
           type: 'View',
@@ -242,7 +242,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
           $$componentItem={{
             id: 'Loop_087174',
             uid: 'Loop_087174',
-            pageId: 'pageId',
+            pageId: '1024143466269171712',
             appId: '1024143353417228288',
             platform: 'h5',
             type: 'Loop',
@@ -276,7 +276,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
                       $$componentItem={{
                         id: 'Button_197969',
                         uid: 'Button_197969',
-                        pageId: 'pageId',
+                        pageId: '1024143466269171712',
                         appId: '1024143353417228288',
                         platform: 'h5',
                         type: 'Button',

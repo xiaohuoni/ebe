@@ -41,7 +41,16 @@ export default function createIceJsProjectBuilder(
         esModule({ fileType: FileType.TSX }),
       ],
 
-      packageJSON: [alita.plugins.packageJSON()],
+      packageJSON: [
+        alita.plugins.packageJSON({
+          dependencies: {
+            '@lingxiteam/cli': '^0.4.6',
+            '@lingxiteam/engine-app': '^3.2.1-alpha.44',
+            'antd-mobile-5': '5.26.0',
+            'react-loadable': '^5.5.0',
+          },
+        }),
+      ],
     },
     postProcessors: [prettier()],
     // postProcessors: [],
