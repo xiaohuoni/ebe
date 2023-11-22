@@ -39,24 +39,26 @@ export default function createIceJsProjectBuilder(
         // 最前面的代码，其实是最后生成的
         esModule({ fileType: FileType.TSX }),
       ],
-      packageJSON: [alita.plugins.packageJSON({
-        packageName:'app-pc',
-        dependencies:{
-          antd: "4.18.8",
-          // TODO: 这些插件都需要装在开发项目中吗？
-          "@lingxiteam/icons":"*",
-          "@lingxiteam/assets":"3.3.1-alpha.7",
-          "@lingxiteam/engine-pc":"3.2.1-alpha.44",
-          "@lingxiteam/engine-assets":"3.2.1-alpha.44",
-          "@lingxiteam/sys-action":"3.2.1-alpha.44",
-          "@lingxiteam/engine-command":"3.2.1-alpha.44",
-          "@lingxiteam/engine-meta":"3.2.1-alpha.44",
-          "@lingxiteam/engine-platform":"3.2.1-alpha.44",
-          "@lingxiteam/engine-plog":"3.2.1-alpha.44",
-          "@lingxiteam/engine-sandbox":"3.2.1-alpha.44",
-          "@lingxiteam/engine-utils":"3.2.1-alpha.44",
-        }
-      })],
+      packageJSON: [
+        alita.plugins.packageJSON({
+          packageName: 'app-pc',
+          dependencies: {
+            antd: '4.18.8',
+            // TODO: 这些插件都需要装在开发项目中吗？
+            '@lingxiteam/icons': '*',
+            '@lingxiteam/assets': '3.3.1-alpha.7',
+            '@lingxiteam/engine-pc': '3.2.1-alpha.44',
+            '@lingxiteam/engine-assets': '3.2.1-alpha.44',
+            '@lingxiteam/sys-action': '3.2.1-alpha.44',
+            '@lingxiteam/engine-command': '3.2.1-alpha.44',
+            '@lingxiteam/engine-meta': '3.2.1-alpha.44',
+            '@lingxiteam/engine-platform': '3.2.1-alpha.44',
+            '@lingxiteam/engine-plog': '3.2.1-alpha.44',
+            '@lingxiteam/engine-sandbox': '3.2.1-alpha.44',
+            '@lingxiteam/engine-utils': '3.2.1-alpha.44',
+          },
+        }),
+      ],
     },
     postProcessors: [prettier()],
     // postProcessors: [],

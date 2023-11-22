@@ -40,7 +40,7 @@ export default function createIceJsProjectBuilder(
         // 最前面的代码，其实是最后生成的
         esModule({ fileType: FileType.TSX }),
       ],
-
+      appConfig: [alita.plugins.config()],
       packageJSON: [
         alita.plugins.packageJSON({
           dependencies: {
@@ -52,7 +52,7 @@ export default function createIceJsProjectBuilder(
         }),
       ],
     },
-    postProcessors: [prettier()],
-    // postProcessors: [],
+    // postProcessors: [prettier()],
+    postProcessors: [],
   });
 }

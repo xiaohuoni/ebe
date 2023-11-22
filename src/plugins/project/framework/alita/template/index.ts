@@ -13,6 +13,10 @@ const alitaTemplate: IProjectTemplate = {
       path: [],
       fileName: 'package',
     },
+    appConfig: {
+      path: ['config'],
+      fileName: 'config',
+    },
   },
 
   generateTemplate(): ResultDir {

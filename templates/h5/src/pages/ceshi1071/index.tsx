@@ -1,7 +1,7 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 
-import { View, Loop, Button } from '@lingxiteam/factory/es/index.component';
+import { Button, Loop, View } from '@lingxiteam/factory/es/index.component';
 
 import { useEffect } from 'react';
 

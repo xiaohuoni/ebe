@@ -14,3 +14,4 @@
 - [ ] get keepalive
 - [x] pc templates
 - [x] pc solutions - pc 段的插件集
+- [x] solutions 依赖区分

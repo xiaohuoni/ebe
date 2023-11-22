@@ -26,7 +26,7 @@ import { createDiskPublisher } from './src/core/publisher/disk';
   // 写入到 zip 包
   await createDiskPublisher().publish({
     project, // 上一步生成的 project
-    outputPath: './templates/', // 输出目录
+    outputPath: './dist/', // 输出目录
     projectSlug: testPlatformIsH5 ? 'h5' : 'pc', // 项目标识 -- 对应生成 lingxi-project-slug.zip 文件
   });
 
