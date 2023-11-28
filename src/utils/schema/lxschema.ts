@@ -145,6 +145,14 @@ export const parseSchema = (schema: IProjectSchema, isRoot: boolean) => {
   target.components = components?.map((schem: any) => {
     return parseSchema(schem, false) ?? schem;
   });
+  if (schema.busiComp) {
+    Object.keys(schema.busiComp).forEach((key: any) => {
+      schema.busiComp[key] = parseSchema(
+        schema.busiComp[key] as IProjectSchema,
+        true,
+      );
+    });
+  }
   return schema;
 };
 

@@ -34,7 +34,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: CLASS_DEFINE_CHUNK_NAME.Start,
       content: `
-      const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, injectData, refs}) => {`,
+      const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, injectData, refs, state, functorsMap, getValue }) => {`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
         COMMON_CHUNK_NAME.InternalDepsImport,
@@ -118,25 +118,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,
-      name: REACT_CHUNK_NAME.WillUnmountStart,
-      content: 'return () => {',
-      linkAfter: [REACT_CHUNK_NAME.DidMountContent],
-    });
-
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: REACT_CHUNK_NAME.WillUnmountEnd,
-      content: '  };',
-      linkAfter: [
-        REACT_CHUNK_NAME.WillUnmountContent,
-        REACT_CHUNK_NAME.WillUnmountStart,
-      ],
-    });
-
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
       name: REACT_CHUNK_NAME.RenderStart,
       content: 'return (',
       linkAfter: [
@@ -159,14 +140,21 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       ],
     });
 
+    const defaultState: any = {};
+    ir?.compState?.forEach((item) => {
+      defaultState[item.code] = '';
+    });
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.FileExport,
       content: `export default withPageHOC(${type}, {
         // TODO: appId
-        appId:'1024143353417228288',
-        dataSource: ${JSON.stringify(ir.dataSource)},
+        appId:'868681578956083200',
+        pageId:'1044513617322823680',
+        hasLogin: ${!!ir.ignoreLogin},
+        dataSource: ${JSON.stringify(ir.dataSource ?? [])},
+        defaultState:${JSON.stringify(defaultState)},
       });`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,

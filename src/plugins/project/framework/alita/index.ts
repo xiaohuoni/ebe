@@ -1,9 +1,10 @@
 import template from './template';
+import busiComp from './plugins/busiComp';
 import packageJSON from './plugins/packageJSON';
 import mobileLayout from './plugins/mobileLayout';
 import commonDeps from './plugins/commonDeps';
 import config from './plugins/config';
-import hackEngineApis from './hooks/hackEngineApis';
+import hackNodeAttr from './hooks/hackNodeAttr';
 
 export default {
   template,
@@ -12,8 +13,9 @@ export default {
     mobileLayout,
     commonDeps,
     config,
+    busiComp,
   },
   hooks: {
-    hackEngineApis,
+    hackNodeAttr,
   },
 };

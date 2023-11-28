@@ -492,7 +492,7 @@
               "compLib": "@/components",
               "props": {
                 "name": "按钮",
-                "btnIcon": false,
+                "btnIcon": "none",
                 "type": "primary",
                 "size": "large",
                 "loading": false,
@@ -531,6 +531,51 @@
           "path": ["181337953", "View_4060305"]
         }
       ],
+      "path": ["181337953"]
+    },
+    {
+      "id": "BOFramer_888504",
+      "label": "新增H5业务组件",
+      "compName": "BOFramer",
+      "type": "BOFramer",
+      "compType": 4,
+      "compLib": "@/components",
+      "props": {
+        "busiCompId": "1046689438983856129",
+        "name": "新增H5业务组件",
+        "busiCompStates": {
+          "title": "$\"$data.nothing.param$\"$",
+          "data": "$\"$data.nothing$\"$"
+        }
+      },
+      "style": {
+        "margin": "0 0 12px 0"
+      },
+      "isContainer": false,
+      "isBusiObjContainer": false,
+      "cmdgroup": ["basic"],
+      "platform": "h5",
+      "description": "",
+      "image": "",
+      "groupsName": "容器",
+      "setEvents": [],
+      "icon": "BOFramer",
+      "isLabelDropBoxChild": false,
+      "functors": {
+        "busiCompStates": {
+          "title": {
+            "title": "$\"$data.nothing.param$\"$",
+            "value": "$data.nothing.param$",
+            "dependOtherIds": []
+          },
+          "data": {
+            "title": "$\"$data.nothing$\"$",
+            "value": "$data.nothing$",
+            "dependOtherIds": []
+          }
+        }
+      },
+      "components": [],
       "path": ["181337953"]
     }
   ],

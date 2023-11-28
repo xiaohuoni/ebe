@@ -37,29 +37,42 @@ export class SchemaParser implements ISchemaParser {
   }
   parse(schemaSrc: IProjectSchema | string): IParseResult {
     const schema = this.decodeSchema(schemaSrc);
+    const busiComp = schema?.busiComp || {};
     const compDeps: Record<string, IExternalDependency> = {};
     const internalDeps: Record<string, IInternalDependency> = {};
 
     // compLib schema.platform
     // 解析三方组件依赖
-    const getPackage = (compLib: string) => {
-      // 遗留问题，组件包应该正确写明 compLib
-      if (
-        compLib === '@/components' ||
-        compLib === 'custom' ||
-        compLib === 'comm'
-      ) {
-        return schema.platform === 'h5'
-          ? '@lingxiteam/factory/es/index.component'
-          : '@lingxiteam/pcfactory/es/index.component';
-      }
-      return compLib;
+    const getPackage = ({ compLib, type }) => {
+      // TODO：遗留问题，组件包应该正确写明 compLib，现在先写死
+      // if (
+      //   compLib === '@/components' ||
+      //   compLib === 'custom' ||
+      //   compLib === 'comm'
+      // ) {
+
+      return schema.platform === 'h5'
+        ? '@lingxiteam/factory/es/index.component'
+        : '@lingxiteam/pcfactory/es/index.component';
+      // }
+      // return compLib;
     };
     const getComponentsMap = (root: any) => {
       root.components.forEach((info: any) => {
-        if (info.type) {
+        // 业务组件特殊处理，这里忽略，在 hack 中处理
+        if (info.type === 'BOFramer') {
+          // const typeBOFramer = `${info.pageContainerType}${info.id}`;
+          // compDeps[typeBOFramer] = {
+          //   package: `@/components/${typeBOFramer}`,
+          //   dependencyType: DependencyType.External,
+          //   type: InternalDependencyType.COMPONENT,
+          //   exportName: typeBOFramer,
+          //   version: '*',
+          //   destructuring: false,
+          // };
+        } else if (info.type) {
           compDeps[info.type] = {
-            package: getPackage(info.compLib),
+            package: getPackage(info),
             dependencyType: DependencyType.External,
             type: info.type,
             exportName: info.exportName ?? info.type,
@@ -91,6 +104,23 @@ export class SchemaParser implements ISchemaParser {
         isUsingRef: false,
       },
     });
+    if (busiComp) {
+      Object.keys(busiComp).forEach((key) => {
+        // @ts-ignore
+        const busiCompCode = busiComp[key];
+        containers.push({
+          ...busiCompCode,
+          moduleName: `${busiCompCode.pageContainerType}${busiCompCode.id}`,
+          containerType: busiCompCode.pageContainerType ?? 'BusiComp',
+          type: busiCompCode.pageContainerType ?? 'BusiComp',
+          analyzeResult: {
+            isUsingRef: false,
+          },
+        });
+        // 也要找业务组件的依赖
+        getComponentsMap(busiCompCode);
+      });
+    }
     // 建立所有容器的内部依赖索引
     containers.forEach((container) => {
       let type;

@@ -8,10 +8,15 @@
 - [x] engine apis 支持
 - [x] 循环列表
 - [x] mobile setPageNavBar
-- [ ] form onValuesChange - 备选方案，直接加标识响应数据变化
-- [ ] 命令源码化
 - [x] Web Worker
-- [ ] get keepalive
+- [x] 免登录 dsl 中有 ignoreLogin
 - [x] pc templates
 - [x] pc solutions - pc 段的插件集
 - [x] solutions 依赖区分
+- [ ] 业务组件 BOFramer 优先级高
+- [ ] 页面容器 ？？？
+- [ ] form onValuesChange - 备选方案，直接加标识响应数据变化
+- [ ] 命令源码化
+- [ ] keepalive dsl 中有 pageDynamicFlag
+- [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
+- [ ]

@@ -38,15 +38,15 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     };
 
     const { tolerateEvalErrors = true } = next.contextData;
-
+    const ir = next.ir as IContainerInfo;
     const generatorPlugins: NodeGeneratorConfig = {
       ...cfg,
       tagMapping: (v) => nodeTypeMapping[v] || v,
       tolerateEvalErrors,
+      ir,
     };
     const generator = createReactNodeGenerator(generatorPlugins);
 
-    const ir = next.ir as IContainerInfo;
     const scope: IScope = Scope.createRootScope();
     const jsxContent = generator(ir, scope);
 

@@ -48,57 +48,130 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
 
     const keys = Object.keys(ir.events ?? {});
     // 只有在页面级别设置的生命周期才生效
-    if (ir.type === 'Page' && keys.length > 0) {
+    if ((ir.type === 'Page' || ir.type === 'BusiComp') && keys.length > 0) {
       const { events } = ir;
-      const chunks = keys.map<ICodeChunk | null>((e: any) => {
-        // 过滤掉非法数据（有些场景下会误传入空字符串或 null)
-        if (
-          !isJSFunction(events[e]) &&
-          !isJSExpressionFn(events[e]) &&
-          !isJSExpression(events[e]) &&
-          !isEventData(events[e])
-        ) {
-          return null;
-        }
-        if (e === 'stateChange') {
-          return {
-            type: ChunkType.STRING,
-            fileType: cfg.fileType,
-            name: REACT_CHUNK_NAME.DidUpdateContent,
-            content: generateFunction(events[e], {
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: cfg.fileType,
+        name: REACT_CHUNK_NAME.DidUpdateContent,
+        content: events?.stateChange
+          ? generateFunction(events?.stateChange, {
               name: ir.platform,
-            }),
-            linkAfter: [REACT_CHUNK_NAME.DidUpdateStart],
-          };
-        }
-        if (e === 'willUnmount') {
-          return {
-            type: ChunkType.STRING,
-            fileType: cfg.fileType,
-            name: REACT_CHUNK_NAME.WillUnmountContent,
-            content: generateFunction(events[e], {
-              name: ir.platform,
-            }),
-            linkAfter: [REACT_CHUNK_NAME.WillUnmountStart],
-          };
-        }
-        if (e === 'useEffect') {
-          return {
-            type: ChunkType.STRING,
-            fileType: cfg.fileType,
-            name: REACT_CHUNK_NAME.DidMountContent,
-            content: generateFunction(events[e], {
-              name: ir.platform,
-            }),
-            linkAfter: [REACT_CHUNK_NAME.DidMountStart],
-          };
-        }
-        // 如果不是已知的生命周期事件，先忽略
-        return null;
+            })
+          : '',
+        linkAfter: [REACT_CHUNK_NAME.DidUpdateStart],
       });
-      next.chunks.push(...chunks.filter((x): x is ICodeChunk => x !== null));
-    }
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: FileType.TSX,
+        name: REACT_CHUNK_NAME.WillUnmountStart,
+        content: 'return () => {',
+        linkAfter: [REACT_CHUNK_NAME.DidMountContent],
+      });
 
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: FileType.TSX,
+        name: REACT_CHUNK_NAME.WillUnmountEnd,
+        content: '  };',
+        linkAfter: [
+          REACT_CHUNK_NAME.WillUnmountContent,
+          REACT_CHUNK_NAME.WillUnmountStart,
+        ],
+      });
+
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: cfg.fileType,
+        name: REACT_CHUNK_NAME.WillUnmountContent,
+        content: events?.willUnmount
+          ? generateFunction(events?.willUnmount, {
+              name: ir.platform,
+            })
+          : '',
+        linkAfter: [REACT_CHUNK_NAME.WillUnmountStart],
+      });
+
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: cfg.fileType,
+        name: REACT_CHUNK_NAME.DidMountContent,
+        content: events?.useEffect
+          ? generateFunction(events.useEffect, {
+              name: ir.platform,
+            })
+          : '',
+        linkAfter: [REACT_CHUNK_NAME.DidMountStart],
+      });
+
+      // const chunks = keys.map<ICodeChunk | null>((e: any) => {
+      //   // 过滤掉非法数据（有些场景下会误传入空字符串或 null)
+      //   if (
+      //     !isJSFunction(events[e]) &&
+      //     !isJSExpressionFn(events[e]) &&
+      //     !isJSExpression(events[e]) &&
+      //     !isEventData(events[e])
+      //   ) {
+      //     return null;
+      //   }
+      //   if (e === 'stateChange') {
+      //     return {
+      //       type: ChunkType.STRING,
+      //       fileType: cfg.fileType,
+      //       name: REACT_CHUNK_NAME.DidUpdateContent,
+      //       content: generateFunction(events[e], {
+      //         name: ir.platform,
+      //       }),
+      //       linkAfter: [REACT_CHUNK_NAME.DidUpdateStart],
+      //     };
+      //   }
+      //   if (e === 'willUnmount') {
+      //     next.chunks.push({
+      //       type: ChunkType.STRING,
+      //       fileType: FileType.TSX,
+      //       name: REACT_CHUNK_NAME.WillUnmountStart,
+      //       content: 'return () => {',
+      //       linkAfter: [REACT_CHUNK_NAME.DidMountContent],
+      //     });
+
+      //     next.chunks.push({
+      //       type: ChunkType.STRING,
+      //       fileType: FileType.TSX,
+      //       name: REACT_CHUNK_NAME.WillUnmountEnd,
+      //       content: '  };',
+      //       linkAfter: [
+      //         REACT_CHUNK_NAME.WillUnmountContent,
+      //         REACT_CHUNK_NAME.WillUnmountStart,
+      //       ],
+      //     });
+
+      //     return {
+      //       type: ChunkType.STRING,
+      //       fileType: cfg.fileType,
+      //       name: REACT_CHUNK_NAME.WillUnmountContent,
+      //       content: generateFunction(events[e], {
+      //         name: ir.platform,
+      //       }),
+      //       linkAfter: [REACT_CHUNK_NAME.WillUnmountStart],
+      //     };
+      //   }
+      //   if (e === 'useEffect') {
+      //     return {
+      //       type: ChunkType.STRING,
+      //       fileType: cfg.fileType,
+      //       name: REACT_CHUNK_NAME.DidMountContent,
+      //       content: generateFunction(events[e], {
+      //         name: ir.platform,
+      //       }),
+      //       linkAfter: [REACT_CHUNK_NAME.DidMountStart],
+      //     };
+      //   }
+      //   // 如果不是已知的生命周期事件，先忽略
+      //   return null;
+      // });
+
+      // next.chunks.push(...chunks.filter((x): x is ICodeChunk => x !== null));
+    }
     return next;
   };
   return plugin;

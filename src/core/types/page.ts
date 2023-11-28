@@ -17,7 +17,7 @@ export interface IProjectSchema extends Component {
   dataSource?: any[];
   props?: JSONValue;
   compName?: string;
-  events: any[];
+  events: any;
   actions: any[];
   pageName: string;
   pageTitle?: string;
@@ -39,6 +39,8 @@ export interface IProjectSchema extends Component {
   platformType: PlatformType;
   path: string[];
   components: IProjectSchema[];
+  // 业务组件的真实代码
+  busiComp?: any;
 }
 
 export interface PackageJSON {

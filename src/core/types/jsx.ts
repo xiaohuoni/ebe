@@ -37,7 +37,7 @@ export interface NodeGeneratorConfig {
   attrPlugins?: AttrPlugin[];
   nodePlugins?: NodePlugin[];
   self?: NodeGenerator<string>;
-
+  ir?: any;
   /**
    * 是否要容忍对 JSExpression 求值时的异常
    * 默认：true

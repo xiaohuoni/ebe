@@ -32,6 +32,9 @@ function mergeNodeGeneratorConfig(
   if (cfg1.tagMapping || cfg2.tagMapping) {
     resCfg.tagMapping = cfg2.tagMapping || cfg1.tagMapping;
   }
+  if (cfg1.ir || cfg2.ir) {
+    resCfg.ir = cfg2.ir || cfg1.ir;
+  }
 
   if (cfg1.attrPlugins || cfg2.attrPlugins) {
     resCfg.attrPlugins = [];
@@ -150,8 +153,13 @@ function generateAttrs(
   }
 
   // 处理 events
-  // TODO: Page 事件处理方式不同
-  if (events && Object.keys(events).length > 0 && type !== 'Page') {
+  // TODO: BusiComp Page 事件处理方式不同
+  if (
+    events &&
+    Object.keys(events).length > 0 &&
+    type !== 'Page' &&
+    type !== 'BusiComp'
+  ) {
     Object.keys(events).forEach((eventName: any) => {
       if (isValidIdentifier(eventName)) {
         const { value = [] } = events[eventName];

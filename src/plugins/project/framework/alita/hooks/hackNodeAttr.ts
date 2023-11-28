@@ -29,6 +29,12 @@ export default function hackEngineApis(
       value: '{...injectData}',
     });
   }
+  // 如果是业务组件要改名字
+  if (nodeTags === 'BOFramer') {
+    pieces[0].value = `BusiComp${
+      config?.ir?.busiComp?.[nodeItem?.props?.busiCompId]?.id
+    }`;
+  }
   if (nodeTags === 'Loop') {
     // Loop 不需要孩子
     pieces = pieces.filter((i) => i.type !== 'NodeCodePieceChildren');

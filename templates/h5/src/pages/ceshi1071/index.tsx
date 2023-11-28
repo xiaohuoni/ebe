@@ -9,11 +9,16 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import { setPageNavBar } from 'alita';
 
+import BusiComp9635362 from '@/components/BusiComp9635362';
+
 const Ceshi1071$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
   injectData,
   refs,
+  state,
+  functorsMap,
+  getValue,
 }) => {
   useEffect(() => {
     const eventDatashowModal: any = [
@@ -237,7 +242,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
           name="循环容器"
           itemKey="item"
           indexKey="i"
-          dataSource={data.list}
+          dataSource={data?.list}
           uniqueField="param"
           $$componentItem={{
             id: 'Loop_087174',
@@ -272,7 +277,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
                       mImagePostion="left"
                       shape="default"
                       status="1"
-                      children={item.title}
+                      children={item?.title}
                       $$componentItem={{
                         id: 'Button_197969',
                         uid: 'Button_197969',
@@ -295,13 +300,35 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
           }}
         />
       </View>
+      <BusiComp9635362
+        busiCompId="1046689438983856129"
+        name="新增H5业务组件"
+        // busiCompStates={{ title: data?.nothing?.param, data: data?.nothing }}
+        $$componentItem={{
+          id: 'BOFramer_888504',
+          uid: 'BOFramer_888504',
+          pageId: '1024143466269171712',
+          appId: '1024143353417228288',
+          platform: 'h5',
+          type: 'BOFramer',
+        }}
+        visible={true}
+        lcdpParentRenderId={undefined}
+        appId={undefined}
+        pageId={undefined}
+        style={{ margin: '0 0 12px 0' }}
+        ref={(r: any) => (refs['BOFramer_888504'] = r)}
+        {...injectData}
+      />
     </div>
   );
 };
 
 export default withPageHOC(Ceshi1071$$Page, {
   // TODO: appId
-  appId: '1024143353417228288',
+  appId: '868681578956083200',
+  pageId: '1044513617322823680',
+  hasLogin: false,
   dataSource: [
     {
       id: 169891588296195260,
@@ -344,4 +371,5 @@ export default withPageHOC(Ceshi1071$$Page, {
       rootOutParams: { type: 'static', value: '[{param:1},{param:}]2' },
     },
   ],
+  defaultState: { bizId: {}, sceneCode: {}, bizData: {} },
 });

@@ -98,7 +98,12 @@ function generateCodeString(value: any): string {
 
 function generateVarString(value: any): string {
   // 去掉头尾$，感觉不太保险
-  return value.replace(/^\$|\$$/g, '');
+  // 去掉尾部分号 ; 不知道加这个的意义是啥！
+  // 将 `.` 改成 `?.`
+  return value
+    .replace(/^\$|\$$/g, '')
+    .replace(/;/g, '')
+    .replace(/\./g, '?.');
 }
 
 function generateNumber(value: number): string {

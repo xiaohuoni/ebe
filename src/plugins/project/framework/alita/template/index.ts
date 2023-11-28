@@ -6,9 +6,9 @@ const alitaTemplate: IProjectTemplate = {
     pages: {
       path: ['src', 'pages'],
     },
-    // components: {
-    //   path: ['src', 'components'],
-    // },
+    components: {
+      path: ['src', 'components'],
+    },
     packageJSON: {
       path: [],
       fileName: 'package',
