@@ -13,7 +13,7 @@
 - [x] pc templates
 - [x] pc solutions - pc 段的插件集
 - [x] solutions 依赖区分
-- [ ] 业务组件 BOFramer 优先级高
+- [x] 业务组件 BOFramer 优先级高
 - [ ] 页面容器 ？？？
 - [ ] form onValuesChange - 备选方案，直接加标识响应数据变化
 - [ ] 命令源码化
