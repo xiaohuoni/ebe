@@ -17,6 +17,9 @@ const alitaTemplate: IProjectTemplate = {
       path: ['config'],
       fileName: 'config',
     },
+    pageview: {
+      path: ['src', 'components', 'Pageview'],
+    },
   },
 
   generateTemplate(): ResultDir {

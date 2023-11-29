@@ -26,7 +26,6 @@ export default function createIceJsProjectBuilder(
     plugins: {
       components: [
         reactCommonDeps(),
-        alita.plugins.busiComp(),
         reactContainer(),
         containerLifeCycle(),
         reactJsx({
@@ -43,7 +42,6 @@ export default function createIceJsProjectBuilder(
         reactCommonDeps(),
         alita.plugins.commonDeps(),
         alita.plugins.mobileLayout(),
-        alita.plugins.busiComp(),
         reactContainer(),
         containerLifeCycle(),
         reactJsx({
@@ -54,6 +52,10 @@ export default function createIceJsProjectBuilder(
         }),
         // 最前面的代码，其实是最后生成的
         esModule({ fileType: FileType.TSX }),
+      ],
+      pageview: [
+        esModule({ fileType: FileType.TSX }),
+        alita.plugins.pageview(),
       ],
       appConfig: [alita.plugins.config()],
       packageJSON: [

@@ -51,7 +51,7 @@ export interface ProjectBuilderInitOptions {
   inStrictMode?: boolean;
 
   /** 一些额外的上下文数据 */
-  extraContextData?: Record<string, unknown>;
+  extraContextData?: IContextData;
 
   /**
    * Hook which is used to customize original options, we can reorder/add/remove plugins/processors
@@ -138,7 +138,10 @@ export class ProjectBuilder implements IProjectBuilder {
 
     // Collect Deps
     // Parse JSExpression
-    const parseResult: IParseResult = schemaParser.parse(schema);
+    const parseResult: IParseResult = schemaParser.parse(
+      schema,
+      this.extraContextData?.options,
+    );
 
     const projectRoot = await this.template.generateTemplate(parseResult);
 
@@ -175,6 +178,17 @@ export class ProjectBuilder implements IProjectBuilder {
       }),
     );
     buildResult = buildResult.concat(containerBuildResult);
+    // pageview
+    if (parseResult.pageview && builders.pageview) {
+      const { files } = await builders.pageview.generateModule(
+        parseResult.pageview,
+      );
+
+      buildResult.push({
+        path: this.template.slots.pageview.path,
+        files,
+      });
+    }
 
     // router
     if (parseResult.globalRouter && builders.router) {

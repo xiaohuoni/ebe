@@ -123,7 +123,10 @@ export interface ICodeGenerator {
 
 export interface ISchemaParser {
   validate: (schema: IProjectSchema) => boolean;
-  parse: (schema: IProjectSchema | string) => IParseResult;
+  parse: (
+    schema: IProjectSchema | string,
+    options?: LXProjectOptions,
+  ) => IParseResult;
 }
 
 export interface IProjectTemplate {
@@ -140,6 +143,12 @@ export interface IProjectPlugins {
   [slotName: string]: BuilderComponentPlugin[];
 }
 
+export interface LXProjectOptions {
+  platform: string;
+  appId: string;
+  pageIdMapping: any;
+  busiCompMapping?: any;
+}
 export interface IProjectBuilderOptions {
   /** 是否处于严格模式 (默认：否) */
   inStrictMode?: boolean;
@@ -173,6 +182,9 @@ export interface IProjectBuilderOptions {
   customizeBuilderOptions?(
     originalOptions: ProjectBuilderInitOptions,
   ): ProjectBuilderInitOptions;
+
+  // TODO: 一些平台需要的数据
+  options?: LXProjectOptions;
 }
 
 export interface IProjectBuilder {

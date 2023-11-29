@@ -10,6 +10,7 @@ import {
   IDependency,
   INpmPackage,
   IPublicTypeNodeDataType,
+  LXProjectOptions,
 } from '../core';
 import { handleSubNodes, parseSchema } from '../utils/schema/lxschema';
 import { uniqueArray } from '../core/utils/common';
@@ -21,6 +22,7 @@ import enPreprocessPC from '@lingxiteam/pcfactory/es/index.enPreprocess';
 import enRunPreprocessPC from '@lingxiteam/pcfactory/es/index.enRunPreprocess';
 import assetHelper from '../utils/schema/assets/assets';
 import { LINGXI_PROJECT_VERSION } from '../constants';
+import { capitalize } from 'lodash';
 
 function getInternalDep(
   internalDeps: Record<string, IInternalDependency>,
@@ -35,12 +37,16 @@ export class SchemaParser implements ISchemaParser {
     // TODO: 这里要检测数据合法性
     return true;
   }
-  parse(schemaSrc: IProjectSchema | string): IParseResult {
-    const schema = this.decodeSchema(schemaSrc);
-    const busiComp = schema?.busiComp || {};
+  parse(
+    schemaSrc: IProjectSchema | string,
+    options?: LXProjectOptions,
+  ): IParseResult {
+    const schemaData = this.decodeSchema(schemaSrc);
+    const schemaArr = Array.isArray(schemaData) ? schemaData : [schemaData];
     const compDeps: Record<string, IExternalDependency> = {};
     const internalDeps: Record<string, IInternalDependency> = {};
 
+    const { platform = 'h5', busiCompMapping = {} } = options || {};
     // compLib schema.platform
     // 解析三方组件依赖
     const getPackage = ({ compLib, type }) => {
@@ -51,7 +57,7 @@ export class SchemaParser implements ISchemaParser {
       //   compLib === 'comm'
       // ) {
 
-      return schema.platform === 'h5'
+      return platform === 'h5'
         ? '@lingxiteam/factory/es/index.component'
         : '@lingxiteam/pcfactory/es/index.component';
       // }
@@ -59,17 +65,27 @@ export class SchemaParser implements ISchemaParser {
     };
     const getComponentsMap = (root: any) => {
       root.components.forEach((info: any) => {
-        // 业务组件特殊处理，这里忽略，在 hack 中处理
-        if (info.type === 'BOFramer') {
-          // const typeBOFramer = `${info.pageContainerType}${info.id}`;
-          // compDeps[typeBOFramer] = {
-          //   package: `@/components/${typeBOFramer}`,
-          //   dependencyType: DependencyType.External,
-          //   type: InternalDependencyType.COMPONENT,
-          //   exportName: typeBOFramer,
-          //   version: '*',
-          //   destructuring: false,
-          // };
+        if (info.type === 'Pageview') {
+          compDeps[info.type] = {
+            package: `@/components/${info.type}`,
+            dependencyType: DependencyType.External,
+            type: info.type,
+            exportName: info.exportName ?? info.type,
+            version: '*',
+            destructuring: false,
+          };
+        } else if (info.type === 'BOFramer') {
+          const typeBOFramer = `BusiComp${
+            busiCompMapping[info?.props?.busiCompId] ?? ''
+          }`;
+          compDeps[typeBOFramer] = {
+            package: `@/components/${typeBOFramer}`,
+            dependencyType: DependencyType.External,
+            type: typeBOFramer,
+            exportName: typeBOFramer,
+            version: '*',
+            destructuring: false,
+          };
         } else if (info.type) {
           compDeps[info.type] = {
             package: getPackage(info),
@@ -91,60 +107,41 @@ export class SchemaParser implements ISchemaParser {
         }
       });
     };
-    getComponentsMap(schema);
 
     let containers: any[] = [];
-
-    containers.push({
-      ...schema,
-      moduleName: schema.pagePath,
-      containerType: schema.pageContainerType ?? 'Page',
-      type: schema.pageContainerType ?? 'Page',
-      analyzeResult: {
-        isUsingRef: false,
-      },
+    const formatModuleName = (str: string) => {
+      let resetStr = str.startsWith('/') ? str.slice(1) : str;
+      return capitalize(resetStr);
+    };
+    containers = schemaArr.map((schema) => {
+      getComponentsMap(schema);
+      return {
+        ...parseSchema(schema, true),
+        // 简写 业务组件没有 pagePath
+        moduleName: schema.pagePath
+          ? formatModuleName(schema.pagePath)
+          : `${schema.pageContainerType}${schema.id}`,
+        containerType: schema.pageContainerType ?? 'Page',
+        type: schema.pageContainerType ?? 'Page',
+        analyzeResult: {
+          isUsingRef: false,
+        },
+      };
     });
-    if (busiComp) {
-      Object.keys(busiComp).forEach((key) => {
-        // @ts-ignore
-        const busiCompCode = busiComp[key];
-        containers.push({
-          ...busiCompCode,
-          moduleName: `${busiCompCode.pageContainerType}${busiCompCode.id}`,
-          containerType: busiCompCode.pageContainerType ?? 'BusiComp',
-          type: busiCompCode.pageContainerType ?? 'BusiComp',
-          analyzeResult: {
-            isUsingRef: false,
-          },
-        });
-        // 也要找业务组件的依赖
-        getComponentsMap(busiCompCode);
-      });
-    }
+
     // 建立所有容器的内部依赖索引
     containers.forEach((container) => {
-      let type;
-      switch (container.containerType) {
-        case 'Page':
-          type = InternalDependencyType.PAGE;
-          break;
-        case 'Block':
-          type = InternalDependencyType.BLOCK;
-          break;
-        default:
-          type = InternalDependencyType.COMPONENT;
-          break;
+      if (container.containerType === 'Page') {
+        const dep: IInternalDependency = {
+          type: container.moduleName,
+          moduleName: container.moduleName,
+          destructuring: false,
+          exportName: container.moduleName,
+          dependencyType: DependencyType.Internal,
+        };
+
+        internalDeps[dep.moduleName] = dep;
       }
-
-      const dep: IInternalDependency = {
-        type,
-        moduleName: container.moduleName,
-        destructuring: true,
-        exportName: container.moduleName,
-        dependencyType: DependencyType.Internal,
-      };
-
-      internalDeps[dep.moduleName] = dep;
     });
 
     const containersDeps = ([] as IDependency[]).concat(
@@ -152,30 +149,29 @@ export class SchemaParser implements ISchemaParser {
     );
 
     containers.forEach((container) => {
-      const depNames = this.getCompNames(container.components);
+      const depNames = this.getCompNames(container.components, options);
       container.deps = uniqueArray<string>(depNames, (i: string) => i)
-        .map(
-          (depName) =>
-            getInternalDep(internalDeps, depName) || compDeps[depName],
-        )
+        .map((depName) => {
+          return internalDeps[depName] || compDeps[depName];
+        })
         .filter(Boolean);
     });
 
-    const routes: IRouterInfo['routes'] = [];
-    routes.push({
-      path: schema.pagePath,
-      fileName: schema.pagePath,
-      type: schema.pageName,
-    });
-    const routerDeps: IInternalDependency[] = [
-      {
-        dependencyType: DependencyType.Internal,
-        destructuring: false,
-        exportName: schema.pageName,
-        moduleName: schema.pageName,
-        type: InternalDependencyType.PAGE,
-      },
-    ];
+    // 分析路由配置
+    const routes: IRouterInfo['routes'] = containers
+      .filter((container) => container.containerType === 'Page')
+      .map((page) => {
+        return {
+          path: page.pagePath,
+          fileName: page.pagePath,
+          type: formatModuleName(page.pagePath),
+        };
+      });
+
+    const routerDeps = routes
+      .map((r) => internalDeps[r.type] || compDeps[r.type])
+      .filter((dep) => !!dep);
+
     // 分析项目 npm 依赖
     let npms: INpmPackage[] = [];
     containers.forEach((con) => {
@@ -193,20 +189,18 @@ export class SchemaParser implements ISchemaParser {
 
     npms = uniqueArray<INpmPackage>(npms, (i) => i.package).filter(Boolean);
 
-    // containers: IContainerInfo[];
-    // globalUtils?: IUtilInfo;
-    // globalI18n?: IPublicTypeI18nMap;
-    // globalRouter?: IRouterInfo;
-    // project?: IProjectInfo;
     return {
       containers,
-      globalRouter: {
-        routes,
-        deps: routerDeps,
-      },
+      // globalRouter: {
+      //   routes,
+      //   deps: routerDeps,
+      // },
       project: {
         containersDeps,
         packages: npms || [],
+      },
+      pageview: {
+        routes,
       },
     };
   }
@@ -226,20 +220,33 @@ export class SchemaParser implements ISchemaParser {
     let schema: IProjectSchema;
     if (typeof schemaSrc === 'string') {
       try {
-        schema = parseSchema(JSON.parse(schemaSrc), true);
+        schema = JSON.parse(schemaSrc);
       } catch (error) {
         throw new Error(`Parse schema failed: unknown reason`);
       }
     } else {
-      schema = parseSchema(schemaSrc, true);
+      schema = schemaSrc;
     }
     return schema;
   }
-  getCompNames(components: IPublicTypeNodeDataType): string[] {
+  getCompNames(
+    components: IPublicTypeNodeDataType,
+    options?: LXProjectOptions,
+  ): string[] {
     return handleSubNodes<string>(
       components,
       {
-        node: (i: any) => i.type,
+        node: (i: any) => {
+          if (i.type === 'BOFramer') {
+            const otherType =
+              options?.busiCompMapping[i?.props?.busiCompId] ?? '';
+            if (otherType) {
+              return `BusiComp${otherType}`;
+            }
+            return i.type;
+          }
+          return i.type;
+        },
       },
       {
         rerun: true,

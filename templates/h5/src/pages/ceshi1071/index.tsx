@@ -3,13 +3,13 @@ import React from 'react';
 
 import { Button, Loop, View } from '@lingxiteam/factory/es/index.component';
 
+import BusiComp9635362 from '@/components/BusiComp9635362';
+
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import { setPageNavBar } from 'alita';
-
-import BusiComp9635362 from '@/components/BusiComp9635362';
 
 const Ceshi1071$$Page: React.FC<PageProps> = ({
   data,
@@ -19,6 +19,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
   state,
   functorsMap,
   getValue,
+  componentItem,
 }) => {
   useEffect(() => {
     const eventDatashowModal: any = [
@@ -219,10 +220,8 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
         $$componentItem={{
           id: 'View_4060305',
           uid: 'View_4060305',
-          pageId: '1024143466269171712',
-          appId: '1024143353417228288',
-          platform: 'h5',
           type: 'View',
+          ...componentItem,
         }}
         style={{
           display: 'flex',
@@ -247,10 +246,8 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
           $$componentItem={{
             id: 'Loop_087174',
             uid: 'Loop_087174',
-            pageId: '1024143466269171712',
-            appId: '1024143353417228288',
-            platform: 'h5',
             type: 'Loop',
+            ...componentItem,
           }}
           visible={true}
           style={{
@@ -281,10 +278,8 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
                       $$componentItem={{
                         id: 'Button_197969',
                         uid: 'Button_197969',
-                        pageId: '1024143466269171712',
-                        appId: '1024143353417228288',
-                        platform: 'h5',
                         type: 'Button',
+                        ...componentItem,
                       }}
                       visible={true}
                       disabled={false}
@@ -303,21 +298,32 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
       <BusiComp9635362
         busiCompId="1046689438983856129"
         name="新增H5业务组件"
-        // busiCompStates={{ title: data?.nothing?.param, data: data?.nothing }}
-        $$componentItem={{
-          id: 'BOFramer_888504',
-          uid: 'BOFramer_888504',
-          pageId: '1024143466269171712',
-          appId: '1024143353417228288',
-          platform: 'h5',
-          type: 'BOFramer',
-        }}
-        visible={true}
-        lcdpParentRenderId={undefined}
-        appId={undefined}
-        pageId={undefined}
+        busiCompStates={{ title: data?.nothing?.param, data: data?.nothing }}
         style={{ margin: '0 0 12px 0' }}
         ref={(r: any) => (refs['BOFramer_888504'] = r)}
+        {...injectData}
+      />
+      <Button
+        name="按钮"
+        btnIcon={false}
+        type="primary"
+        size="large"
+        loading={false}
+        mImagePostion="left"
+        shape="default"
+        status="1"
+        children={state?.title}
+        $$componentItem={{
+          id: 'Button_7815635',
+          uid: 'Button_7815635',
+          type: 'Button',
+          ...componentItem,
+        }}
+        visible={true}
+        disabled={false}
+        readOnly={false}
+        style={{ textAlign: 'center' }}
+        ref={(r: any) => (refs['Button_7815635'] = r)}
         {...injectData}
       />
     </div>
@@ -371,5 +377,5 @@ export default withPageHOC(Ceshi1071$$Page, {
       rootOutParams: { type: 'static', value: '[{param:1},{param:}]2' },
     },
   ],
-  defaultState: { bizId: {}, sceneCode: {}, bizData: {} },
+  defaultState: { bizId: '', sceneCode: '', bizData: '', title: '' },
 });

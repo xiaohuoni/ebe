@@ -7,6 +7,7 @@ export interface IParseResult {
   globalUtils?: IUtilInfo;
   globalRouter?: IRouterInfo;
   project?: IProjectInfo;
+  pageview?: IRouterInfo;
 }
 
 export interface IWithDependency {

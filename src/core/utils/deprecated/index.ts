@@ -6,3 +6,4 @@ export * from './isJSFunction';
 export * from './isJSSlot';
 export * from './isNodeSchema';
 export * from './isJSVar';
+export * from './isLXComponent';

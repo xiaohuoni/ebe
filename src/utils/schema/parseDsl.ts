@@ -183,12 +183,7 @@ const replaceFunctorValue = (comp: IPublicSchemaType = {}, isRoot = false) => {
   });
 };
 
-const parseDsl = (
-  schema: IPublicSchemaType,
-  isRoot: boolean,
-  appId: string,
-  pageId?: string,
-) => {
+const parseDsl = (schema: IPublicSchemaType, isRoot: boolean) => {
   // 如果是跟节点，需要添加事件
   if (isRoot) {
     pareseDataSoure(schema);
@@ -206,12 +201,6 @@ const parseDsl = (
         value: eValue,
       };
     });
-    if (appId) {
-      schema.appId = appId;
-    }
-    if (pageId) {
-      schema.pageId = pageId;
-    }
   } else {
     // 函数表达式替换真实值
     replaceFunctorValue(schema);

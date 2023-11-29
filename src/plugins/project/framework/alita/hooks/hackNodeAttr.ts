@@ -5,6 +5,7 @@ import {
   NodePlugin,
   NodeGeneratorConfig,
   IProjectSchema,
+  LXProjectOptions,
 } from '../../../../../core/types';
 
 export default function hackEngineApis(
@@ -31,9 +32,9 @@ export default function hackEngineApis(
   }
   // 如果是业务组件要改名字
   if (nodeTags === 'BOFramer') {
-    pieces[0].value = `BusiComp${
-      config?.ir?.busiComp?.[nodeItem?.props?.busiCompId]?.id
-    }`;
+    const { options = {} } = config!;
+    const { busiCompMapping = {} } = options as LXProjectOptions;
+    pieces[0].value = `BusiComp${busiCompMapping[nodeItem?.props?.busiCompId]}`;
   }
   if (nodeTags === 'Loop') {
     // Loop 不需要孩子

@@ -4,6 +4,7 @@ import {
   isJSSlot,
   isJSCode,
   isJSVar,
+  isLXComponent,
 } from '../utils/deprecated';
 import _ from 'lodash';
 
@@ -96,6 +97,10 @@ function generateCodeString(value: any): string {
   return value.value;
 }
 
+function generateLXComponentString(value: any): string {
+  // 去掉头尾##
+  return value.replace(/^##{|}##$/g, '');
+}
 function generateVarString(value: any): string {
   // 去掉头尾$，感觉不太保险
   // 去掉尾部分号 ; 不知道加这个的意义是啥！
@@ -156,6 +161,9 @@ function generateUnknownType(
     return generateCodeString(value);
   }
 
+  if (isLXComponent(value)) {
+    return generateLXComponentString(value);
+  }
   if (isJSVar(value)) {
     return generateVarString(value);
   }

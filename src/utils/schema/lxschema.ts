@@ -1,7 +1,11 @@
 import * as _ from 'lodash';
 import { CodeGeneratorError } from '../../core/types/error';
 import { ProcessFunctionType, PlatformType } from '@lingxiteam/types';
-import { IProjectSchema, IPublicTypeNodeDataType } from '../../core/types';
+import {
+  IProjectSchema,
+  IPublicTypeNodeDataType,
+  LXProjectOptions,
+} from '../../core';
 import { parseDsl } from './parseDsl';
 import assetHelper from './assets/assets';
 import { isNodeSchema } from '../../core/utils/deprecated';
@@ -77,9 +81,6 @@ export function handleSubNodes<T>(
   return childrenRes;
 }
 
-// TODO: 写在这里不对啊，先放着
-let pageId = '';
-let appId = '';
 /**
  * 控件属性预处理-只执行一次
  * @param schema
@@ -95,10 +96,13 @@ const preprocessComponentSchema = (
   const extraData = {} as any;
   const sandBoxContext = {};
   // 预处理事件
-  newSchema = parseDsl(schema, isRoot, '', '');
-  if (isRoot) {
-    pageId = newSchema.pageId;
-    appId = newSchema.appId;
+  newSchema = parseDsl(schema, isRoot);
+  // 业务组件和页面容器不需要预处理
+  if (
+    isRoot ||
+    schema.compName === 'Pageview' ||
+    schema.compName === 'BOFramer'
+  ) {
     return newSchema;
   }
   const methods = assetHelper.comPreprocess.getComPreprocessMethods(
@@ -111,16 +115,12 @@ const preprocessComponentSchema = (
   const originProps = schema?.props || {};
   const props = {
     ...originProps,
-    $$componentItem: {
-      id: schema.id,
-      uid: schema.id,
-      pageId: pageId,
-      appId: appId,
-      platform: schema.platform,
-      // TODO: fusionMode
-      // fusionMode: schema?.fusionMode,
-      type: schema.compName,
-    },
+    // pageId: pageId,
+    // appId: appId,
+    // platform: schema.platform,
+    // TODO: fusionMode
+    // fusionMode: schema?.fusionMode,
+    $$componentItem: `##{{id: '${schema.id}',uid: '${schema.id}',type: '${schema.compName}',...componentItem}}##`,
   };
 
   // 执行组件预处理
@@ -145,14 +145,6 @@ export const parseSchema = (schema: IProjectSchema, isRoot: boolean) => {
   target.components = components?.map((schem: any) => {
     return parseSchema(schem, false) ?? schem;
   });
-  if (schema.busiComp) {
-    Object.keys(schema.busiComp).forEach((key: any) => {
-      schema.busiComp[key] = parseSchema(
-        schema.busiComp[key] as IProjectSchema,
-        true,
-      );
-    });
-  }
   return schema;
 };
 
@@ -163,7 +155,10 @@ export const parseSchema = (schema: IProjectSchema, isRoot: boolean) => {
  */
 const modifySchemaCompName = (schema: IProjectSchema, isRoot: boolean) => {
   const compName = schema?.compName || schema?.type;
-
+  if (schema.path) {
+    // @ts-ignore
+    delete schema.path;
+  }
   if (!isRoot && compName) {
     if (schema.compName) {
       schema.compName = compName;

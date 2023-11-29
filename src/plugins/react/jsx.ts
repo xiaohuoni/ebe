@@ -37,13 +37,11 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       ...pre,
     };
 
-    const { tolerateEvalErrors = true } = next.contextData;
     const ir = next.ir as IContainerInfo;
     const generatorPlugins: NodeGeneratorConfig = {
       ...cfg,
       tagMapping: (v) => nodeTypeMapping[v] || v,
-      tolerateEvalErrors,
-      ir,
+      ...next.contextData,
     };
     const generator = createReactNodeGenerator(generatorPlugins);
 

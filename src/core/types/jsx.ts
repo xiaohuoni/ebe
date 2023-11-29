@@ -1,4 +1,9 @@
-import { HandlerSet, BaseGenerator, NodeGenerator } from './core';
+import {
+  HandlerSet,
+  BaseGenerator,
+  NodeGenerator,
+  LXProjectOptions,
+} from './core';
 import { IProjectSchema } from './';
 
 export enum PIECE_TYPE {
@@ -37,7 +42,6 @@ export interface NodeGeneratorConfig {
   attrPlugins?: AttrPlugin[];
   nodePlugins?: NodePlugin[];
   self?: NodeGenerator<string>;
-  ir?: any;
   /**
    * 是否要容忍对 JSExpression 求值时的异常
    * 默认：true
@@ -45,4 +49,5 @@ export interface NodeGeneratorConfig {
    *     catch 到异常时默认会抛出一个 CustomEvent 事件里面包含异常信息和求值的表达式
    */
   tolerateEvalErrors?: boolean;
+  options?: LXProjectOptions;
 }

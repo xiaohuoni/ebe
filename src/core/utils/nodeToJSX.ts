@@ -318,16 +318,16 @@ export function createNodeGenerator(
     unwrapJsExprQuoteInJsx(generateNode(nodeItem, scope));
 }
 
-const defaultReactGeneratorConfig: NodeGeneratorConfig = {
-  nodePlugins: [
-    // TODO: 这里可以做一些前置处理
-  ],
-};
+// const defaultReactGeneratorConfig: NodeGeneratorConfig = {
+//   nodePlugins: [
+//     // TODO: 这里可以做一些前置处理
+//   ],
+// };
 
 export function createReactNodeGenerator(
   cfg?: NodeGeneratorConfig,
 ): NodeGenerator<string> {
-  const newCfg = mergeNodeGeneratorConfig(defaultReactGeneratorConfig, cfg);
+  // const newCfg = mergeNodeGeneratorConfig(defaultReactGeneratorConfig, cfg);
 
-  return createNodeGenerator(newCfg);
+  return createNodeGenerator(cfg);
 }
