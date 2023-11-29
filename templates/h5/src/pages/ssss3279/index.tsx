@@ -73,9 +73,8 @@ const Ssss3279$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Ssss3279$$Page, {
-  // TODO: appId
-  appId: '868681578956083200',
-  pageId: '1044513617322823680',
+  appId: '1024143353417228288',
+  pageId: '1024161040026025984',
   hasLogin: false,
   dataSource: [
     {

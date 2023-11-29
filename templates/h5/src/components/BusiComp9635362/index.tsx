@@ -76,9 +76,8 @@ const BusiComp9635362$$BusiComp: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(BusiComp9635362$$BusiComp, {
-  // TODO: appId
-  appId: '868681578956083200',
-  pageId: '1044513617322823680',
+  appId: '1024143353417228288',
+  pageId: 'pageId 未找到',
   hasLogin: false,
   dataSource: [],
   defaultState: { title: '', data: '' },
