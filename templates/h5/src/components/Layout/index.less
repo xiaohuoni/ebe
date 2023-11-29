@@ -1,0 +1,58 @@
+.filterBtn {
+  position: absolute;
+  top: 65%;
+  right: 16 * @hd;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40 * @hd;
+  height: 60 * @hd;
+  background: linear-gradient(180deg, #7ba3ff 0%, #47e 100%);
+  border-radius: 100px;
+  box-shadow: 0 12px 48px 16px rgba(92, 140, 252, 3%),
+    0 9px 28px 0 rgba(92, 140, 252, 5%), 0 6px 16px -8px rgba(92, 140, 252, 8%);
+
+  & > span {
+    color: #fff;
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  .menuIcon {
+    width: 20 * @hd;
+    height: 20 * @hd;
+  }
+}
+
+.closeIcon {
+  position: absolute;
+  top: calc(65% + 64 * @hd;);
+  right: 26 * @hd;
+  z-index: 999;
+  width: 20 * @hd;
+  height: 20 * @hd;
+}
+
+.hideMenuBtn {
+  position: absolute;
+  top: 65%;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 20 * @hd;
+  height: 32 * @hd;
+  background: linear-gradient(180deg, #7ba3ff 0%, #47e 100%);
+  border-radius: 100px 0 0 100px;
+  box-shadow: 0 12px 48px 16px rgba(92, 140, 252, 3%),
+    0 9px 28px 0 rgba(92, 140, 252, 5%), 0 6px 16px -8px rgba(92, 140, 252, 8%);
+  opacity: 0.8;
+
+  .hideMenuIcon {
+    width: 14 * @hd;
+    height: 14 * @hd;
+  }
+}

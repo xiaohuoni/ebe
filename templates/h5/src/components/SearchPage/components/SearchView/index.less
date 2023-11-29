@@ -1,0 +1,31 @@
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+
+.searchView {
+  display: flex;
+  align-items: center;
+  height: 56 * @hd;
+
+  .leftFilter {
+    width: 100 * @hd;
+    font-size: 13 * @hd;
+
+    .dropdownTitle {
+      color: @brand-primary;
+    }
+  }
+
+  .rightSearch {
+    flex: 1;
+    padding-right: 16 * @hd;
+  }
+
+  :global {
+    .adm-dropdown-open .adm-dropdown-nav {
+      border-bottom: none !important;
+    }
+
+    .adm-input-element {
+      font-size: 13px;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+
+.memuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40 * @hd;
+  border-bottom: solid 1px #efefef;
+
+  .leftContent {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+
+    .catalogItemName {
+      flex: 1;
+      height: 22 * @hd;
+      font-size: 13 * @hd;
+      font-weight: 400;
+      color: rgba(28, 36, 46, 85%);
+      line-height: 22 * @hd;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .activeItem {
+      color: @brand-primary;
+    }
+  }
+}
