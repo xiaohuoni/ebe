@@ -1,6 +1,4 @@
 import { history } from 'alita';
-import React from 'react';
-import BaseLayout from './components/Layout';
 
 const titleList = [
   {
@@ -31,7 +29,6 @@ export const mobileLayout = {
   navBar,
   tabBar,
   titleList,
-  customHeader: <BaseLayout />,
 };
 
 export function getKeepAlive(keepalive: any) {

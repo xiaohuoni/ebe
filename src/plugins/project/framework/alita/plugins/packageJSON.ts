@@ -36,7 +36,6 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
         'lint-staged:js': 'eslint --ext .ts,.tsx',
         plugin: 'alita plugin list',
         start: 'alita dev',
-        test: 'jest',
       },
       'lint-staged': {
         '**/*.less': 'stylelint --syntax less',
@@ -101,8 +100,11 @@ function getNpmDependencies(project: IProjectInfo): IPublicTypeNpmInfo[] {
     if (!isNpmInfo(dep)) {
       return;
     }
-
+    if (dep.package.startsWith('@/')) {
+      return;
+    }
     const existing = npmNameToPkgMap.get(dep.package);
+    // 过滤内部的依赖
     if (!existing) {
       npmNameToPkgMap.set(dep.package, dep);
       npmDeps.push(dep);

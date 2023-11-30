@@ -35,4 +35,5 @@ export interface IDependency {
   main?: string; // 包导出组件入口文件路径 /lib/input
   dependencyType?: DependencyType; // 依赖类型 内/外
   type?: string; // 导入后名称
+  package?: string; // 包名
 }

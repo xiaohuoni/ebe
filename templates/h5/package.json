@@ -9,8 +9,7 @@
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .ts,.tsx",
     "plugin": "alita plugin list",
-    "start": "alita dev",
-    "test": "jest"
+    "start": "alita dev"
   },
   "lint-staged": {
     "**/*.less": "stylelint --syntax less",
@@ -22,8 +21,6 @@
     ]
   },
   "dependencies": {
-    "@/components/BusiComp9635362": "*",
-    "@/components/Pageview": "*",
     "@alita/flow": "*",
     "@lingxiteam/cli": "^0.4.6",
     "@lingxiteam/engine-app": "^3.2.1-alpha.44",

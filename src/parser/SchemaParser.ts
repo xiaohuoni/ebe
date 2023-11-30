@@ -22,7 +22,6 @@ import enPreprocessPC from '@lingxiteam/pcfactory/es/index.enPreprocess';
 import enRunPreprocessPC from '@lingxiteam/pcfactory/es/index.enRunPreprocess';
 import assetHelper from '../utils/schema/assets/assets';
 import { LINGXI_PROJECT_VERSION } from '../constants';
-import { capitalize } from 'lodash';
 
 function getInternalDep(
   internalDeps: Record<string, IInternalDependency>,
@@ -109,17 +108,14 @@ export class SchemaParser implements ISchemaParser {
     };
 
     let containers: any[] = [];
-    const formatModuleName = (str: string) => {
-      let resetStr = str.startsWith('/') ? str.slice(1) : str;
-      return capitalize(resetStr);
-    };
+
     containers = schemaArr.map((schema) => {
       getComponentsMap(schema);
       return {
         ...parseSchema(schema, true),
         // 简写 业务组件没有 pagePath
         moduleName: schema.pagePath
-          ? formatModuleName(schema.pagePath)
+          ? schema.pagePath
           : `${schema.pageContainerType}${schema.id}`,
         containerType: schema.pageContainerType ?? 'Page',
         type: schema.pageContainerType ?? 'Page',
@@ -164,7 +160,7 @@ export class SchemaParser implements ISchemaParser {
         return {
           path: page.pagePath,
           fileName: page.pagePath,
-          type: formatModuleName(page.pagePath),
+          type: page.pagePath,
         };
       });
 

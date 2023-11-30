@@ -6,7 +6,6 @@ import {
   FileType,
   ICodeStruct,
 } from '../../../../../core/types';
-import { lowerCase } from 'lodash';
 
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
@@ -39,9 +38,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
             (route: any) => ` '${route.path}': React.lazy(
               () =>
                 import(
-                  /* webpackChunkName: "src__pages__${lowerCase(
-                    route.type,
-                  )}__index" */ '@/pages${route.path}'
+                  /* webpackChunkName: "src__pages__${route.type}__index" */ '@/pages${route.path}'
                 ),
             )`,
           )

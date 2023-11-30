@@ -3,7 +3,7 @@ import { jsonc } from 'jsonc';
 import alita from './src/solutions/alita';
 import alitapc from './src/solutions/alita-pc';
 import { createDiskPublisher } from './src/core/publisher/disk';
-// import { createZipPublisher } from './src/core/publisher/zip';
+import { createZipPublisher } from './src/core/publisher/zip';
 (async () => {
   const testPlatformIsH5 = true;
   const schemaFile = testPlatformIsH5
@@ -35,10 +35,10 @@ import { createDiskPublisher } from './src/core/publisher/disk';
     schema, // 编排搭建出来的 schema
   );
   // 写入到 zip 包
-  await createDiskPublisher().publish({
+  await createZipPublisher().publish({
     project, // 上一步生成的 project
-    outputPath: './templates/', // 输出目录
-    projectSlug: testPlatformIsH5 ? 'h5' : 'pc', // 项目标识 -- 对应生成 lingxi-project-slug.zip 文件
+    outputPath: './dist/', // 输出目录
+    projectSlug: testPlatformIsH5 ? 'h5' : 'pc', // 项目标识 -- 对应生成 h5.zip 文件
   });
 
   async function loadSchemaFile(schemaFile: string): Promise<any> {

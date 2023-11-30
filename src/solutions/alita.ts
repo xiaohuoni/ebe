@@ -36,7 +36,9 @@ export default function createIceJsProjectBuilder(
           },
         }),
         // 最前面的代码，其实是最后生成的
-        esModule({ fileType: FileType.TSX }),
+        esModule({
+          fileType: FileType.TSX,
+        }),
       ],
       pages: [
         reactCommonDeps(),
@@ -51,10 +53,14 @@ export default function createIceJsProjectBuilder(
           },
         }),
         // 最前面的代码，其实是最后生成的
-        esModule({ fileType: FileType.TSX }),
+        esModule({
+          fileType: FileType.TSX,
+        }),
       ],
       pageview: [
-        esModule({ fileType: FileType.TSX }),
+        esModule({
+          fileType: FileType.TSX,
+        }),
         alita.plugins.pageview(),
       ],
       appConfig: [alita.plugins.config()],
@@ -62,7 +68,7 @@ export default function createIceJsProjectBuilder(
         alita.plugins.packageJSON({
           dependencies: {
             '@lingxiteam/cli': '^0.4.6',
-            '@lingxiteam/engine-app': '^3.2.1-alpha.44',
+            '@lingxiteam/engine-app': '3.2.1-alpha.44',
             'antd-mobile-5': '5.26.0',
             'react-loadable': '^5.5.0',
           },
