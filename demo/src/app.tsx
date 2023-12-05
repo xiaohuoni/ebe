@@ -1,7 +1,7 @@
 import type { ResponseError } from 'alita';
 
 export const request = {
-  prefix: '/api',
+  prefix: '',
   method: 'get',
   errorHandler: (error: ResponseError) => {
     // 集中处理错误

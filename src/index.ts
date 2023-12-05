@@ -1,7 +1,9 @@
 import fetch from 'node-fetch';
 import type { IProjectSchema, ResultDir } from './core';
 import type { FlattenFile } from './core/types/file';
-
+import alita from './solutions/alita';
+import { createDiskPublisher } from './core/publisher/disk';
+import { createZipPublisher } from './core/publisher/zip';
 declare const Worker: any;
 declare const self: any;
 declare const __PACKAGE_VERSION__: string;
@@ -131,3 +133,12 @@ function printErr(msg: string, ...args: unknown[]) {
   // eslint-disable-next-line no-console
   console.debug(`[code-generator/loader]: %c${msg}`, 'color:red', ...args);
 }
+
+export const solutions = {
+  alita,
+};
+
+export const publishers = {
+  disk: createDiskPublisher,
+  zip: createZipPublisher,
+};

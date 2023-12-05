@@ -23,11 +23,14 @@
   "dependencies": {
     "@alilc/lowcode-code-generator": "^1.1.6",
     "@alita/flow": "^3.1.1",
+    "@lingxiteam/assets": "3.2.1-alpha.1",
     "@monaco-editor/react": "^4.6.0",
     "alita": "^3.2.27",
     "antd": "^5.11.1",
     "antd-mobile": "^5.15.1",
-    "ebe": "0.0.2",
+    "body-parser": "^1.20.2",
+    "ebe": "file://../",
+    "es6-proxy-polyfill": "^2.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -15,11 +15,11 @@ import {
 import { handleSubNodes, parseSchema } from '../utils/schema/lxschema';
 import { uniqueArray } from '../core/utils/common';
 // @ts-ignore
-import enPreprocess from '@lingxiteam/factory/es/index.enPreprocess';
+import enPreprocess from '@lingxiteam/factory/lib/index.enPreprocess';
 // @ts-ignore
-import enRunPreprocess from '@lingxiteam/factory/es/index.enRunPreprocess';
-import enPreprocessPC from '@lingxiteam/pcfactory/es/index.enPreprocess';
-import enRunPreprocessPC from '@lingxiteam/pcfactory/es/index.enRunPreprocess';
+import enRunPreprocess from '@lingxiteam/factory/lib/index.enRunPreprocess';
+import enPreprocessPC from '@lingxiteam/pcfactory/lib/index.enPreprocess';
+import enRunPreprocessPC from '@lingxiteam/pcfactory/lib/index.enRunPreprocess';
 import assetHelper from '../utils/schema/assets/assets';
 import { LINGXI_PROJECT_VERSION } from '../constants';
 

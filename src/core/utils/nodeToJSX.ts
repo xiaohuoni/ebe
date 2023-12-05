@@ -100,13 +100,14 @@ function generateAttr(
     // FIXME: 在经过 generateCompositeType 处理过之后，其实已经无法通过传入值的类型判断传出值是否为纯字面值字符串了（可能包裹了加工函数之类的）
     //        因此这个处理最好的方式是对传出值做语法分析，判断以哪种模版产出 Attr 值
     let newValue: string;
-    if (p.value && isPureString(p.value)) {
-      // 似乎多次一举，目前的诉求是处理多种引号类型字符串的 case，正确处理转义
-      const content = getStaticExprValue<string>(p.value);
-      newValue = JSON.stringify(encodeJsxStringNode(content));
-    } else {
-      newValue = `{${p.value}}`;
-    }
+    // TODO: "use strict";return ("共" + state?.phonelist_result?.total + "条")
+    // if (p.value && isPureString(p.value)) {
+    //   // 似乎多次一举，目前的诉求是处理多种引号类型字符串的 case，正确处理转义
+    //   const content = getStaticExprValue<string>(p.value);
+    //   newValue = JSON.stringify(encodeJsxStringNode(content));
+    // } else {
+    newValue = `{${p.value}}`;
+    // }
 
     return {
       value: `${p.name}=${newValue}`,
@@ -306,10 +307,11 @@ export function createNodeGenerator(
       handlers: cfg.handlers,
       nodeGenerator: generateNode as any,
     });
+    // TODO: "use strict";return ("共" + state?.phonelist_result?.total + "条")
 
-    if (isPureString(valueStr)) {
-      return encodeJsxStringNode(getStaticExprValue<string>(valueStr));
-    }
+    // if (isPureString(valueStr)) {
+    //   return encodeJsxStringNode(getStaticExprValue<string>(valueStr));
+    // }
 
     return `{${valueStr}}`;
   };
