@@ -19,12 +19,12 @@
 - [ ] 页面容器动态查找页面，可能是带参数或者是拼接字符找到对应页面
 - [x] 一键生成 zip
 - [ ] prettier 格式化规则使用 alita/prettier
+- [ ] 页面类型为弹窗
 - [ ] form onValuesChange - 备选方案，直接加标识响应数据变化
 - [ ] 命令源码化
 - [ ] keepalive dsl 中有 pageDynamicFlag
 - [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
-- [ ]context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67
-
-- [ ] node: 根据 appId 查询所有页面的 dsl
-- [ ] node: 根据页面 dsl 分析用到的业务组件，并获取对应的 dsl
+- [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67
+- [x] node: 根据 appId 查询所有页面的 dsl
+- [x] node: 根据页面 dsl 分析用到的业务组件，并获取对应的 dsl
 - [ ] node:
