@@ -52,8 +52,10 @@ export async function findAppPolymerizationInfo(params): Promise<any> {
     'Content-Type': 'application/json',
     'APP-ID': params.appId,
   };
+  // app/appPage/findAppPolymerizationInfo
   return request('/app/appPage/findAppPolymerizationInfo', {
     params,
+    method: 'GET',
     headers: {
       ...headers,
       'X-SIGN': security.httpEncryption.createHttpSignStr(
@@ -77,6 +79,7 @@ export async function getPageVersionById(params): Promise<any> {
     'X-B-Auth': 1,
     'X-B-Target-Id': params.pageId,
   };
+
   return request('/app/appPage/getPageVersionById', {
     params,
     headers: {

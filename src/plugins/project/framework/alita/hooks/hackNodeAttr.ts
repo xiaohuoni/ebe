@@ -36,7 +36,8 @@ export default function hackEngineApis(
     const { busiCompMapping = {} } = options as LXProjectOptions;
     pieces[0].value = `BusiComp${busiCompMapping[nodeItem?.props?.busiCompId]}`;
   }
-  if (nodeTags === 'Loop') {
+  // 循环容器 和 动态待办
+  if (nodeTags === 'Loop' || nodeTags === 'DynamicList') {
     // Loop 不需要孩子
     pieces = pieces.filter((i) => i.type !== 'NodeCodePieceChildren');
     let LoopchildrenStr = '';
@@ -44,7 +45,6 @@ export default function hackEngineApis(
       // @ts-ignore
       LoopchildrenStr = config.self(nodeItem.components, scope);
     }
-
     pieces.push({
       type: PIECE_TYPE.ATTR,
       value: `getEngineApis={() => {
@@ -54,7 +54,7 @@ export default function hackEngineApis(
             renderer: null,
             MemoLoopItem: (props: any) => {
               const item = props[props.itemKey];
-              return (${LoopchildrenStr})
+              return (<>${LoopchildrenStr}</>)
             },
           },
         };

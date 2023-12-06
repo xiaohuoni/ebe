@@ -4,13 +4,17 @@ import {
   findBusiCompById,
   getPageVersionById,
 } from '@/services/api';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
+import { useEffect, useState } from 'react';
+// @ts-ignore
+import { generateCode, init, publishers } from 'ebe';
+
 const Item = Form.Item;
 
 const getPageDsls = (resultObjects) => {
   return resultObjects
-    .map((i) => JSON.parse(i.resultObject.attrMappingJson))
-    .filter(Boolean);
+    .filter(Boolean)
+    .map((i) => JSON.parse(i.resultObject.attrMappingJson));
 };
 function findAllItem<T = any>(
   target: T[],
@@ -53,28 +57,60 @@ export function findItem<T = any>(
   }
   return null;
 }
+function cleanTree(tree, fields) {
+  let fieldSet = new Set(fields); // 使用set结构可以提高查询速度
+
+  if (Array.isArray(tree)) {
+    return tree.map((item) => cleanTree(item, fields));
+  } else if (typeof tree === 'object' && tree !== null) {
+    return Object.entries(tree).reduce((newTree, [key, value]) => {
+      if (!fieldSet.has(key)) {
+        newTree[key] = cleanTree(value, fields);
+      }
+      return newTree;
+    }, {});
+  } else {
+    return tree;
+  }
+}
 
 const Page = () => {
-  const onFinish = async (values: any) => {
+  const ii = async () => {
+    await init({});
+  };
+  useEffect(() => {
+    ii();
+  }, []);
+  const [loading, setLoading] = useState(false);
+
+  const [form] = Form.useForm();
+  const onFinish = async (values: any, bower: boolean = false) => {
+    setLoading(true);
+    // 根据 appId 获取当前应用的全部页面
     const { resultObject } = await findAppPolymerizationInfo({
       appId: values.appId,
       terminalType: 'APP',
+      operationType: 'publish',
     });
     console.log(resultObject);
     const pageIdMapping: any = {};
-    const appPageList = resultObject?.appPageList.map((i) => {
-      pageIdMapping[i.pagePath] = i.pageId;
-      return i.pageId;
-    });
+    // TODO: 这里先只支持普通页面，弹窗页面那些未支持
+    const appPageList = resultObject?.appPageList
+      // .filter((i) => i.pageContainerType === 'Page')
+      .map((i) => {
+        pageIdMapping[i.pagePath] = i.pageId;
+        return i;
+      });
     console.log(appPageList);
     let lastPageId: any = '';
     // 根据 pageId 获得 dsl
     const data = await Promise.all(
       appPageList.map((i) => {
-        lastPageId = i;
+        lastPageId = i.pageId;
         return getPageVersionById({
           appId: values.appId,
-          pageId: i,
+          pageId: i.pageId,
+          actionType: 'publish',
         });
       }),
     );
@@ -83,9 +119,11 @@ const Page = () => {
     console.log(pages);
     // busiCompId 过滤重复
     const itemHash: any = {};
+    // 找到所有页面使用到的 业务组件
     findAllItem(pages, (item) => item.compName === 'BOFramer', itemHash);
     console.log(itemHash);
     const itemLists = Object.keys(itemHash);
+    // 请求所有业务组件的 dsl
     const busiData = await Promise.all(
       itemLists.map((i) =>
         findBusiCompById({
@@ -104,7 +142,11 @@ const Page = () => {
       busiCompMapping[itemLists[index]] = busiData.id;
       return busiData;
     });
-    console.log('pages', [...pages, ...busiPages]);
+    // 合并页面，生成器那边支持页面类型和业务组件类型
+    const pageDSLS = [...pages, ...busiPages];
+    // 清理dsl
+
+    console.log('pages', pageDSLS);
     const options = {
       platform: 'h5',
       appId: values.appId,
@@ -112,36 +154,71 @@ const Page = () => {
       busiCompMapping,
     };
     console.log(options);
-
+    let cleanedTree = cleanTree(pageDSLS, ['path', 'originCode']); // 清理字段'b'和字段'e'
+    console.log('cleanedTree', cleanedTree);
+    if (bower) {
+      const result = await generateCode({
+        solution: 'alita', // 出码方案
+        options,
+        schema: cleanedTree, // 编排搭建出来的 schema
+        // workerJsUrl: '/ebe/worker.js',
+      } as any);
+      console.log(result); // 出码结果(默认是递归结构描述的，可以传 flattenResult: true 以生成扁平结构的结果)
+      publishers.zip().publish({
+        project: result, // 上一步生成的 project
+        projectSlug: values.appId, // 项目标识
+      });
+      setLoading(false);
+      return;
+    }
     const res = await code({
-      pages: [...pages, ...busiPages],
+      pages: cleanedTree,
       options,
       appId: values.appId,
+      cache: false,
     });
     console.log(res);
+    if (res.resultCode === '0') {
+      message.success(res.resultObject.message);
+      window.open(`/download?appId=${values.appId}`);
+    } else {
+      message.error(res.resultObject.message);
+    }
+    setLoading(false);
   };
   return (
-    <Form
-      name="basic"
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 600 }}
-      autoComplete="off"
-      onFinish={onFinish}
-      initialValues={{
-        appId: '868681578956083200',
-        // appId: '1024143353417228288',
-      }}
-    >
-      <Item name="appId" label="AppID">
-        <Input />
-      </Item>
-      <Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
-          提交
-        </Button>
-      </Item>
-    </Form>
+    <>
+      <Form
+        name="basic"
+        form={form}
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        style={{ maxWidth: 600 }}
+        autoComplete="off"
+        onFinish={onFinish}
+        initialValues={{
+          appId: '868681578956083200',
+          // appId: '1024143353417228288',
+        }}
+      >
+        <Item name="appId" label="AppID">
+          <Input />
+        </Item>
+        <Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type="primary" htmlType="submit" loading={loading}>
+            服务端出码
+          </Button>
+          <Button
+            loading={loading}
+            onClick={async () => {
+              onFinish(form.getFieldsValue(), true);
+            }}
+          >
+            浏览器出码
+          </Button>
+        </Item>
+      </Form>
+    </>
   );
 };
 

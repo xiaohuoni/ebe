@@ -21,27 +21,24 @@
     ]
   },
   "dependencies": {
-    "@alilc/lowcode-code-generator": "^1.1.6",
     "@alita/flow": "^3.1.1",
     "@lingxiteam/assets": "3.2.1-alpha.1",
     "@monaco-editor/react": "^4.6.0",
     "alita": "^3.2.27",
     "antd": "^5.11.1",
     "antd-mobile": "^5.15.1",
+    "archiver": "^6.0.1",
     "body-parser": "^1.20.2",
+    "compression": "^1.7.4",
     "ebe": "file://../",
     "es6-proxy-polyfill": "^2.1.1",
+    "file-saver": "^2.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13",
-    "@types/jest": "^27",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
-    "@types/testing-library__jest-dom": "^5.14.5",
-    "jest": "^27",
     "prettier": "^2",
     "ts-node": "^10",
     "typescript": "^4"

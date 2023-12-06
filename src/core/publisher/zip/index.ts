@@ -7,9 +7,10 @@ import {
 } from '../../types';
 import { getErrorMessage } from '../../utils/errors';
 import { isNodeProcess, writeZipToDisk, generateProjectZip } from './utils';
+import { saveAs } from 'file-saver';
 
-// export type ZipBuffer = Buffer | Blob;
-export type ZipBuffer = Buffer;
+export type ZipBuffer = Buffer | Blob;
+// export type ZipBuffer = Buffer;
 
 declare type ZipPublisherResponse = string | ZipBuffer;
 
@@ -56,6 +57,9 @@ export const createZipPublisher: PublisherFactory<
       const projectOutputPath = options.outputPath || outputPath;
       if (projectOutputPath && isNodeProcess()) {
         await writeZipToDisk(projectOutputPath, zipContent, zipName);
+      } else {
+        // 非 node 端即为浏览器端，浏览器端不需要路径
+        saveAs(zipContent as Blob, `${zipName}.zip`);
       }
 
       return { success: true, payload: zipContent };

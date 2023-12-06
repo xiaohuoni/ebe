@@ -105,10 +105,13 @@ function generateVarString(value: any): string {
   // 去掉头尾$，感觉不太保险
   // 去掉尾部分号 ; 不知道加这个的意义是啥！
   // 将 `.` 改成 `?.`
+  // 代码里面可能自己写了 ?. 最终会是 ??. 将它修正
+  // TODO: 图方便，看不爽可以补充一下逻辑
   return value
     .replace(/^\$|\$$/g, '')
     .replace(/;/g, '')
-    .replace(/\./g, '?.');
+    .replace(/\./g, '?.')
+    .replace(/\?\?\./g, '?.');
 }
 
 function generateNumber(value: number): string {

@@ -33,8 +33,9 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: CLASS_DEFINE_CHUNK_NAME.Start,
+      // TODO: 为了表单增删控件，塞一个 i
       content: `
-      const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, injectData, refs, state, functorsMap, getValue, componentItem }) => {`,
+      const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, injectData, refs, state, functorsMap, getValue, componentItem, i=1 }) => {`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
         COMMON_CHUNK_NAME.InternalDepsImport,
@@ -141,9 +142,11 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     });
 
     const defaultState: any = {};
-    ir?.compState?.forEach((item) => {
-      defaultState[item.code] = '';
-    });
+    if(Array.isArray(ir?.compState)){
+      ir?.compState?.forEach((item) => {
+        defaultState[item.code] = '';
+      });
+    }
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,

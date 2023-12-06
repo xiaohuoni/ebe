@@ -70,7 +70,12 @@ export function createModuleBuilder(
       files = files.map((file) => {
         let { content, ext: type, name } = file;
         options.postProcessors.forEach((processer) => {
-          content = processer(content, type, name);
+          try {
+            // 尝试使用压缩
+            content = processer(content, type, name);
+          } catch (error) {
+            console.log(error);
+          }
         });
 
         return createResultFile(file.name, type, content);

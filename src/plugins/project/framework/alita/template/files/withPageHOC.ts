@@ -135,6 +135,7 @@ export default function getFile(): [string[], ResultFile] {
                 downloadFileByFileCode: () => null,
                 downloadByFileId: () => null,
                 getLocale: () => '',
+                ...api,
               };
             },
           };
@@ -156,6 +157,7 @@ export default function getFile(): [string[], ResultFile] {
               engineApis,
             )(args, {
               ...context,
+              api,
               checkIfCMDHasReturn: (cmddata: any[]) => {
                 return checkIfCMDHasReturn(cmddata, engineApis);
               },

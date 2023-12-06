@@ -29,6 +29,7 @@ export type Result = ResultDir | FlattenFile[];
 export async function generateCode(options: {
   solution: 'alita';
   schema: IProjectSchema;
+  options: any;
   flattenResult?: boolean;
   workerJsUrl?: string;
   timeoutInMs?: number;
@@ -95,6 +96,7 @@ export async function generateCode(options: {
       type: 'run',
       solution: options.solution,
       schema: options.schema,
+      options: options.options,
       flattenResult: options.flattenResult,
     });
   });

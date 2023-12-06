@@ -22,13 +22,14 @@ self.postMessage({ type: 'ready' });
 export async function run(msg: {
   solution: string;
   schema: IProjectSchema;
+  options: any;
   flattenResult?: boolean;
 }) {
   try {
     print('begin run...');
     self.postMessage({ type: 'run:begin' });
 
-    const { solution } = msg;
+    const { solution, options } = msg;
     if (!solution) {
       throw new Error('solution is required');
     }
@@ -38,7 +39,7 @@ export async function run(msg: {
       throw new Error(`solution '${solution}' is invalid`);
     }
 
-    const appBuilder = createAppBuilder();
+    const appBuilder = createAppBuilder(options);
 
     print('generating from schema: %o', msg.schema);
 
