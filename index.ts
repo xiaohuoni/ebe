@@ -23,6 +23,9 @@ import { createZipPublisher } from './src/core/publisher/zip';
     // pagePath: pageId
     pageIdMapping: {
       '/ceshi1071': '1024143466269171712',
+      '/model28529': '1051421568049684480',
+      '/buchong4160': '1051387196217495552',
+      '/model7813': '1049266938740068352',
       '/ssss3279': '1024161040026025984',
     },
     busiCompMapping: {
@@ -35,9 +38,9 @@ import { createZipPublisher } from './src/core/publisher/zip';
     schema, // 编排搭建出来的 schema
   );
   // 写入到 zip 包
-  await createZipPublisher().publish({
+  await createDiskPublisher().publish({
     project, // 上一步生成的 project
-    outputPath: './dist/', // 输出目录
+    outputPath: './templates/', // 输出目录
     projectSlug: testPlatformIsH5 ? 'h5' : 'pc', // 项目标识 -- 对应生成 h5.zip 文件
   });
 

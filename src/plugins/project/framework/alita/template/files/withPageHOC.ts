@@ -34,6 +34,7 @@ export default function getFile(): [string[], ResultFile] {
     import { $$compDefine, SandBoxContext } from '@lingxiteam/types';
     import { history } from 'alita';
     import React, { useEffect, useRef, useState } from 'react';
+    import ModalView from './Modal';
     
     const getStaticDataSourceService = (
       ds: any[],
@@ -67,9 +68,11 @@ export default function getFile(): [string[], ResultFile] {
       options: PageHOCOptions,
     ) => {
       return (props: any) => {
+        const ModalManagerRef = useRef<any>(); // 页面弹窗的所有实例
         const [data, setData] = useState<any>();
         const refs = useRef<any>({});
         let meta: Meta;
+        const getLocale = (_: string, t: string) => t || _;
         const init = async () => {
           const api = getApis({
             appId: options?.appId,
@@ -99,6 +102,7 @@ export default function getFile(): [string[], ResultFile] {
               ...LcdpTerminalType,
               isH5: true,
             },
+            ModalManagerRef,
           };
           meta = new Meta({
             SandBox: Sandbox,
@@ -134,7 +138,13 @@ export default function getFile(): [string[], ResultFile] {
                 // TODO: 这需要正确的请求
                 downloadFileByFileCode: () => null,
                 downloadByFileId: () => null,
-                getLocale: () => '',
+                getLocale,
+                // 打开弹窗能力
+                openModal: (data: any) =>
+                  ModalManagerRef.current?.openModal({
+                    appId: options?.appId,
+                    ...data,
+                  }),
                 ...api,
               };
             },
@@ -235,7 +245,16 @@ export default function getFile(): [string[], ResultFile] {
         if (!data || Object.keys(data).length === 0) {
           return <div>loading</div>;
         }
-        return <WrappedComponent {...data} {...props} />;
+        return (
+          <>
+            <WrappedComponent {...data} {...props} />
+            <ModalView
+              getLocale={getLocale as any}
+              appId={options.appId}
+              ref={ModalManagerRef}
+            />
+          </>
+        );
       };
     };
     `,

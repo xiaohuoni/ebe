@@ -21,7 +21,7 @@ import enRunPreprocess from '@lingxiteam/factory/lib/index.enRunPreprocess';
 import enPreprocessPC from '@lingxiteam/pcfactory/lib/index.enPreprocess';
 import enRunPreprocessPC from '@lingxiteam/pcfactory/lib/index.enRunPreprocess';
 import assetHelper from '../utils/schema/assets/assets';
-import { LINGXI_PROJECT_VERSION } from '../constants';
+import { LINGXI_PROJECT_VERSION, PAGE_TYPES, MODAL_TYPES } from '../constants';
 
 function getInternalDep(
   internalDeps: Record<string, IInternalDependency>,
@@ -45,7 +45,11 @@ export class SchemaParser implements ISchemaParser {
     const compDeps: Record<string, IExternalDependency> = {};
     const internalDeps: Record<string, IInternalDependency> = {};
 
-    const { platform = 'h5', busiCompMapping = {} } = options || {};
+    const {
+      platform = 'h5',
+      busiCompMapping = {},
+      pageIdMapping = {},
+    } = options || {};
     // compLib schema.platform
     // 解析三方组件依赖
     const getPackage = ({ compLib, type }) => {
@@ -127,7 +131,7 @@ export class SchemaParser implements ISchemaParser {
 
     // 建立所有容器的内部依赖索引
     containers.forEach((container) => {
-      if (container.containerType === 'Page') {
+      if (PAGE_TYPES.includes(container.containerType)) {
         const dep: IInternalDependency = {
           type: container.moduleName,
           moduleName: container.moduleName,
@@ -155,18 +159,42 @@ export class SchemaParser implements ISchemaParser {
 
     // 分析路由配置
     const routes: IRouterInfo['routes'] = containers
-      .filter((container) => container.containerType === 'Page')
+      .filter((container) => PAGE_TYPES.includes(container.containerType))
       .map((page) => {
         return {
           path: page.pagePath,
           fileName: page.pagePath,
           type: page.pagePath,
+          pageId: pageIdMapping[page.pagePath],
         };
       });
 
-    const routerDeps = routes
-      .map((r) => internalDeps[r.type] || compDeps[r.type])
-      .filter((dep) => !!dep);
+    // 获取 model 的弹窗配置
+    const models: IRouterInfo['routes'] = containers
+      .filter((container) => MODAL_TYPES.includes(container.containerType))
+      .map((page) => {
+        // position: 'top' | 'bottom' | 'right' | 'left';
+        // mode: 'alert' | 'sliderLeft' | 'sliderRight' | 'dropdown' | 'popup' | '';
+        // closeOnMaskClick: boolean;
+        // destroyOnClose: boolean;
+        // showCloseButton: boolean;
+        // width?: string;
+        // height?: string;
+        return {
+          path: page.pagePath,
+          fileName: page.pagePath,
+          type: page.pagePath,
+          pageId: pageIdMapping[page.pagePath],
+          position: page.position,
+          width: page.width,
+          mode: page.mode,
+          closeOnMaskClick: page.closeOnMaskClick,
+          height: page.height,
+          closeOnClickOverlay: page.closeOnClickOverlay,
+          destroyOnClose: page.destroyOnClose,
+          showCloseButton: page.showCloseButton,
+        };
+      });
 
     // 分析项目 npm 依赖
     let npms: INpmPackage[] = [];
@@ -197,6 +225,7 @@ export class SchemaParser implements ISchemaParser {
       },
       pageview: {
         routes,
+        models,
       },
     };
   }

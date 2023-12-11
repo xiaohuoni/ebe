@@ -21,7 +21,7 @@ import {
 } from '../types/core';
 import { CodeGeneratorError } from '../types/error';
 import { isBuiltinSlotName } from '../const';
-
+import { PAGE_TYPES } from '../../constants';
 interface IModuleInfo {
   moduleName?: string;
   path: string[];
@@ -160,7 +160,7 @@ export class ProjectBuilder implements IProjectBuilder {
       parseResult.containers.map(async (containerInfo) => {
         let builder: IModuleBuilder;
         let path: string[];
-        if (containerInfo.containerType === 'Page') {
+        if (PAGE_TYPES.includes(containerInfo.containerType)) {
           builder = builders.pages;
           path = this.template.slots.pages.path;
         } else {

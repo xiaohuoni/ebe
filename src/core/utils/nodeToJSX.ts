@@ -9,7 +9,7 @@ import {
   AttrData,
 } from '../types';
 import { generateCompositeType } from './compositeType';
-import { getStaticExprValue } from './common';
+import { PAGE_TYPES } from '../../constants';
 import { executeFunctionStack } from './aopHelper';
 import { encodeJsxStringNode } from './encodeJsxAttrString';
 import { unwrapJsExprQuoteInJsx } from './jsxHelpers';
@@ -154,11 +154,11 @@ function generateAttrs(
   }
 
   // 处理 events
-  // TODO: BusiComp Page 事件处理方式不同
+  // PAGE_TYPES 和 BusiComp 事件处理方式不同
   if (
     events &&
     Object.keys(events).length > 0 &&
-    type !== 'Page' &&
+    !PAGE_TYPES.includes(type) &&
     type !== 'BusiComp'
   ) {
     Object.keys(events).forEach((eventName: any) => {

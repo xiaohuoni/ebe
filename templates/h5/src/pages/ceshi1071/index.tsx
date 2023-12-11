@@ -20,6 +20,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
   functorsMap,
   getValue,
   componentItem,
+  style,
 }) => {
   useEffect(() => {
     const eventDatashowModal: any = [
@@ -213,7 +214,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
   });
 
   return (
-    <div>
+    <div style={style}>
       <View
         name="布局容器1"
         visible={true}

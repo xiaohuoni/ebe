@@ -94,13 +94,10 @@ const Page = () => {
     });
     console.log(resultObject);
     const pageIdMapping: any = {};
-    // TODO: 这里先只支持普通页面，弹窗页面那些未支持
-    const appPageList = resultObject?.appPageList
-      // .filter((i) => i.pageContainerType === 'Page')
-      .map((i) => {
-        pageIdMapping[i.pagePath] = i.pageId;
-        return i;
-      });
+    const appPageList = resultObject?.appPageList.map((i) => {
+      pageIdMapping[i.pagePath] = i.pageId;
+      return i;
+    });
     console.log(appPageList);
     let lastPageId: any = '';
     // 根据 pageId 获得 dsl
@@ -110,7 +107,7 @@ const Page = () => {
         return getPageVersionById({
           appId: values.appId,
           pageId: i.pageId,
-          actionType: 'publish',
+          // actionType: 'publish',
         });
       }),
     );
@@ -197,8 +194,8 @@ const Page = () => {
         autoComplete="off"
         onFinish={onFinish}
         initialValues={{
-          appId: '868681578956083200',
-          // appId: '1024143353417228288',
+          // appId: '868681578956083200',
+          appId: '1024143353417228288',
         }}
       >
         <Item name="appId" label="AppID">

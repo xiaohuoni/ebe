@@ -23,6 +23,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.InternalDepsImport,
       content: `
+        import { parse } from 'qs';
         import React from 'react';
       `,
       linkAfter: [COMMON_CHUNK_NAME.ExternalDepsImport],
@@ -32,6 +33,14 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.FileVarDefine,
       content: `
+      export const RootProps = {
+        ${ir.models
+          ?.map(
+            (modal: any) =>
+              ` '${modal.pageId || modal.path}':${JSON.stringify(modal)}`,
+          )
+          .join(',')}
+      }
       const Pages: any = {
         ${ir.routes
           ?.map(
@@ -39,6 +48,12 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
               () =>
                 import(
                   /* webpackChunkName: "src__pages__${route.type}__index" */ '@/pages${route.path}'
+                ),
+            ),
+            '${route.pageId}': React.lazy(
+              () =>
+                import(
+                  /* webpackChunkName: "${route.pageId}" */ '@/pages${route.path}'
                 ),
             )`,
           )
@@ -58,10 +73,18 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.FileExport,
       content: `
+
+      export function parseSrc(src?: string): [string, any] {
+        const arr = src?.split('?') as string[];
+        return [arr[0], parse(arr[1])];
+      }
+
       const P = (props: any) => <div>{props?.pageSrc} 页面未找到</div>;
       const Pageview = (props: any) => {
-        const Page = Pages[props?.pageSrc] ?? P;
-        return <Page {...props} />;
+        // 页面 src 可能是带参数的如 /a?b=1&c=2
+        const [path, query] = parseSrc(props?.pageSrc);
+        const Page = Pages[path] ?? P;
+        return <Page {...query} {...props} />;
       };
       export default Pageview;
       `,

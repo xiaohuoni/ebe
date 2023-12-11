@@ -21,16 +21,15 @@
 - [x] 浏览器端出码
 - [x] node: 服务端出码
 - [ ] 页面容器，style 应该传递，怎么写合理？
-- [ ] 页面容器动态查找页面，可能是带参数或者是拼接字符找到对应页面
+- [x] 页面容器动态查找页面，可能是带参数或者是拼接字符找到对应页面
 - [ ] prettier 格式化规则使用 alita/prettier
-- [ ] 页面类型为弹窗
-- [ ] 特殊组件: 表单增删控件，当前环境里面塞了变量 i 处理的时候，需要去掉
-- [ ] 特殊组件: CardHeader
-- [ ] 特殊组件: DTalkView 不要渲染，丢弃
-- [ ] 特殊组件: DynamicList
+- [x] 页面类型为弹窗
+- [ ] 页面类型为气泡卡片
+- [x] 特殊组件: 表单增删控件，当前环境里面塞了变量 i 处理的时候，需要去掉
+- [x] 特殊组件: CardHeader
+- [x] 特殊组件: DTalkView 不要渲染，丢弃
+- [x] 特殊组件: DynamicList
 - [ ] form onValuesChange - 备选方案，直接加标识响应数据变化
-- [ ] 命令源码化
 - [ ] keepalive dsl 中有 pageDynamicFlag
 - [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
 - [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67
-

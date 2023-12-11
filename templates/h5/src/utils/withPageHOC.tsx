@@ -26,6 +26,7 @@ import {
 import { $$compDefine, SandBoxContext } from '@lingxiteam/types';
 import { history } from 'alita';
 import React, { useEffect, useRef, useState } from 'react';
+import ModalView from './Modal';
 
 const getStaticDataSourceService = (
   ds: any[],
@@ -59,9 +60,11 @@ export const withPageHOC = (
   options: PageHOCOptions,
 ) => {
   return (props: any) => {
+    const ModalManagerRef = useRef<any>(); // 页面弹窗的所有实例
     const [data, setData] = useState<any>();
     const refs = useRef<any>({});
     let meta: Meta;
+    const getLocale = (_: string, t: string) => t || _;
     const init = async () => {
       const api = getApis({
         appId: options?.appId,
@@ -91,6 +94,7 @@ export const withPageHOC = (
           ...LcdpTerminalType,
           isH5: true,
         },
+        ModalManagerRef,
       };
       meta = new Meta({
         SandBox: Sandbox,
@@ -126,7 +130,14 @@ export const withPageHOC = (
             // TODO: 这需要正确的请求
             downloadFileByFileCode: () => null,
             downloadByFileId: () => null,
-            getLocale: () => '',
+            getLocale,
+            // 打开弹窗能力
+            openModal: (data: any) =>
+              ModalManagerRef.current?.openModal({
+                appId: options?.appId,
+                ...data,
+              }),
+            ...api,
           };
         },
       };
@@ -148,8 +159,13 @@ export const withPageHOC = (
           engineApis,
         )(args, {
           ...context,
-          checkIfCMDHasReturn,
-          checkIfRefValue,
+          api,
+          checkIfCMDHasReturn: (cmddata: any[]) => {
+            return checkIfCMDHasReturn(cmddata, engineApis);
+          },
+          checkIfRefValue: (val: string, field: any, cmd: any) => {
+            return checkIfRefValue(val, field, cmd, engineApis);
+          },
           checkIfRefValueByObject: (
             val: string | Record<string, any>,
             field: Record<string, any>,
@@ -157,8 +173,12 @@ export const withPageHOC = (
           ) => {
             return checkIfRefValueByObject(val, field, cmd, engineApis);
           },
-          CMDParse,
-          CONDrun,
+          CMDParse: (cmddata: string | any[], actionname?: string) => {
+            return CMDParse(cmddata, actionname, engineApis);
+          },
+          CONDrun: (arg0: any, arg1: any, arg2: SandBoxContext, arg3: any) => {
+            return CONDrun(arg0, arg1, arg2, arg3, engineApis);
+          },
           monitt,
           EventName,
           $$compDefine,
@@ -217,6 +237,15 @@ export const withPageHOC = (
     if (!data || Object.keys(data).length === 0) {
       return <div>loading</div>;
     }
-    return <WrappedComponent {...data} {...props} />;
+    return (
+      <>
+        <WrappedComponent {...data} {...props} />
+        <ModalView
+          getLocale={getLocale as any}
+          appId={options.appId}
+          ref={ModalManagerRef}
+        />
+      </>
+    );
   };
 };

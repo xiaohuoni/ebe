@@ -32,6 +32,7 @@ export default function createIceJsProjectBuilder(
           nodePlugins: [alita.hooks.hackNodeAttr],
           nodeTypeMapping: {
             Page: 'div',
+            MobileModal: 'div',
             BusiComp: 'div',
           },
         }),
@@ -50,6 +51,7 @@ export default function createIceJsProjectBuilder(
           nodePlugins: [alita.hooks.hackNodeAttr],
           nodeTypeMapping: {
             Page: 'div',
+            MobileModal: 'div',
           },
         }),
         // 最前面的代码，其实是最后生成的
@@ -68,6 +70,7 @@ export default function createIceJsProjectBuilder(
         alita.plugins.packageJSON({
           dependencies: {
             '@lingxiteam/cli': '^0.4.6',
+            qs: '^6.11.2',
             '@lingxiteam/engine-app': '3.2.1-alpha.44',
             '@lingxiteam/engine-plog': '3.2.1-alpha.44',
             '@lingxiteam/engine-assets': '3.2.1-alpha.44',

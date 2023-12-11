@@ -3,7 +3,7 @@ import {
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
 import { REACT_CHUNK_NAME } from './const';
-
+import { PAGE_TYPES } from '../../constants';
 import { generateFunction } from '../../core/utils/jsExpression';
 
 import {
@@ -48,7 +48,10 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
 
     const keys = Object.keys(ir.events ?? {});
     // 只有在页面级别设置的生命周期才生效
-    if ((ir.type === 'Page' || ir.type === 'BusiComp') && keys.length > 0) {
+    if (
+      PAGE_TYPES.includes(ir.type) ||
+      (ir.type === 'BusiComp' && keys.length > 0)
+    ) {
       const { events } = ir;
       next.chunks.push({
         type: ChunkType.STRING,

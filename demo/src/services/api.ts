@@ -82,6 +82,7 @@ export async function getPageVersionById(params): Promise<any> {
 
   return request('/app/appPage/getPageVersionById', {
     params,
+    method: 'GET',
     headers: {
       ...headers,
       'X-SIGN': security.httpEncryption.createHttpSignStr(

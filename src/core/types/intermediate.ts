@@ -29,6 +29,11 @@ export interface IRouterInfo extends IWithDependency {
     fileName: string;
     type: string;
   }>;
+  models: Array<{
+    path: string;
+    fileName: string;
+    type: string;
+  }>;
 }
 
 /**
