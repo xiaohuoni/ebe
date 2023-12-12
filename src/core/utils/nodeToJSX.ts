@@ -229,10 +229,12 @@ function generateSimpleNode(
 function linkPieces(pieces: CodePiece[]): string {
   const tagsPieces = pieces.filter((p) => p.type === PIECE_TYPE.TAG);
   if (tagsPieces.length !== 1) {
-    throw new CodeGeneratorError(
-      'Only one tag definition required',
-      tagsPieces,
-    );
+    // 因为舍弃了一些组件，如 DTalkView
+    return '';
+    // throw new CodeGeneratorError(
+    //   'Only one tag definition required',
+    //   tagsPieces,
+    // );
   }
   const tagName = tagsPieces[0].value;
 

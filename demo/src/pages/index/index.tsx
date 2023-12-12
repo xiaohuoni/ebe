@@ -11,7 +11,7 @@ import { generateCode, init, publishers } from 'ebe';
 
 const Item = Form.Item;
 
-const getPageDsls = (resultObjects) => {
+const getPageDsls = (resultObjects:any[]) => {
   return resultObjects
     .filter(Boolean)
     .map((i) => JSON.parse(i.resultObject.attrMappingJson));
@@ -28,7 +28,7 @@ function findAllItem<T = any>(
   // eslint-disable-next-line
   const thisArg = arguments[1];
   for (let i = 0; i < length; ) {
-    const element = list[i];
+    const element = list[i] as any;
     if (callback.call(thisArg, element, i, list)) {
       itemHash[element?.props?.busiCompId ?? ''] = 1;
     }
@@ -57,7 +57,7 @@ export function findItem<T = any>(
   }
   return null;
 }
-function cleanTree(tree, fields) {
+function cleanTree(tree:any, fields) {
   let fieldSet = new Set(fields); // 使用set结构可以提高查询速度
 
   if (Array.isArray(tree)) {

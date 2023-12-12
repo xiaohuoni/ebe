@@ -29,7 +29,10 @@
 - [x] 特殊组件: CardHeader
 - [x] 特殊组件: DTalkView 不要渲染，丢弃
 - [x] 特殊组件: DynamicList
-- [ ] form onValuesChange - 备选方案，直接加标识响应数据变化
 - [ ] keepalive dsl 中有 pageDynamicFlag
 - [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
 - [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67
+- [ ] BASE_URL 请求的主路径是否支持配置
+- [ ] 页面 index 冲突
+- [ ] findAppPolymerizationInfo createApp 加个配置不请求
+- [ ] form onValuesChange - 加标识响应数据变化

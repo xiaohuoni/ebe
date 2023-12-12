@@ -1,11 +1,24 @@
 import * as DynamicForm from '@lingxiteam/dform';
+import {
+  messageApi as message,
+  Modal,
+} from '@lingxiteam/engine-app/es/components/MessageApi';
 import assetHelper from '@lingxiteam/engine-assets';
+import {
+  httpConfig,
+  lcdpApi,
+  setPlatformConfig,
+} from '@lingxiteam/engine-platform';
 import componentCMD from '@lingxiteam/factory/es/index.cmdexec';
 import sysAction from '@lingxiteam/sys-action';
 import type { CommandFunction, CondFunction } from '@lingxiteam/types';
+import { setPageNavBar } from 'alita';
 import * as antdMobile5 from 'antd-mobile-5';
+import { Toast } from 'antd-mobile-5';
 import React from 'react';
 import ReactDOM from 'react-dom';
+// @ts-ignore
+window.engineType = 'mobile';
 
 window.React = React;
 window.ReactDOM = ReactDOM;
@@ -43,3 +56,41 @@ const formatKey = (cmd: any, sourceObj: any) => {
 formatKey(sysAction.syscmdexec, sysCmdExec);
 formatKey(sysAction.syscondexec, sysCmdCond);
 registerCommand(sysCmdExec, sysCmdCond, componentCMD);
+
+const platformConfig = {
+  httpSecurityMode: '1.0',
+  apiPrefix: process.env.REACT_APP_REQUEST_PREFIX || '../server/',
+  errorCodeShowType: 'console',
+  platform: 'h5',
+  // useHotUpdate: {
+  //   NODE_ENV: process.env.NODE_ENV,
+  //   pkgInfo: {
+  //     '@lingxiteam/factory': assets,
+  //   },
+  // },
+} as any;
+
+httpConfig(
+  lcdpApi,
+  // @ts-ignore
+  { engineType: window.engineType, openTracking: true },
+);
+
+/**
+ * 注册在【engine-utils】包下http.js文件中用到的 antdmobile 组件, 应用勾子中使用的的到
+ */
+lcdpApi.setAntd({
+  message,
+  notification: Toast,
+  modal: Modal,
+});
+
+assetHelper.otherAsset.registerAsset('setPageNavBar', setPageNavBar);
+// 注册资产库多语言
+// if (locales) {
+//   assetHelper.locale.setLocales(locales);
+// }
+
+// 注册平台信息
+
+setPlatformConfig(platformConfig);
