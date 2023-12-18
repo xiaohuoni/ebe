@@ -1,66 +1,17 @@
 import { parse } from 'qs';
 import React from 'react';
 
-export const RootProps = {
-  '1049266938740068352': {
-    path: '/model7813',
-    fileName: '/model7813',
-    type: '/model7813',
-    pageId: '1049266938740068352',
-    width: '99vw',
-    mode: 'alert',
-    height: '99vh',
-    closeOnClickOverlay: true,
-    destroyOnClose: true,
-    showCloseButton: true,
-  },
-  '1051421568049684480': {
-    path: '/model28529',
-    fileName: '/model28529',
-    type: '/model28529',
-    pageId: '1051421568049684480',
-    width: '50vw',
-    mode: 'alert',
-    height: '50vh',
-    closeOnClickOverlay: true,
-    destroyOnClose: true,
-    showCloseButton: true,
-  },
-};
+export const RootProps = {};
 const Pages: any = {
-  '/buchong4160': React.lazy(
+  '/asd5371': React.lazy(
     () =>
       import(
-        /* webpackChunkName: "src__pages__/buchong4160__index" */ '@/pages/buchong4160'
+        /* webpackChunkName: "src__pages__/asd5371__index" */ '@/pages/asd5371'
       ),
   ),
-  '1051387196217495552': React.lazy(
+  '1024143466269171712': React.lazy(
     () =>
-      import(
-        /* webpackChunkName: "1051387196217495552" */ '@/pages/buchong4160'
-      ),
-  ),
-  '/model7813': React.lazy(
-    () =>
-      import(
-        /* webpackChunkName: "src__pages__/model7813__index" */ '@/pages/model7813'
-      ),
-  ),
-  '1049266938740068352': React.lazy(
-    () =>
-      import(/* webpackChunkName: "1049266938740068352" */ '@/pages/model7813'),
-  ),
-  '/model28529': React.lazy(
-    () =>
-      import(
-        /* webpackChunkName: "src__pages__/model28529__index" */ '@/pages/model28529'
-      ),
-  ),
-  '1051421568049684480': React.lazy(
-    () =>
-      import(
-        /* webpackChunkName: "1051421568049684480" */ '@/pages/model28529'
-      ),
+      import(/* webpackChunkName: "1024143466269171712" */ '@/pages/asd5371'),
   ),
 };
 

@@ -68,7 +68,7 @@ export class SchemaParser implements ISchemaParser {
     };
     const getComponentsMap = (root: any) => {
       root.components.forEach((info: any) => {
-        if (info.type === 'Pageview') {
+        if (info.type === 'Pageview' || info.type === 'Popover') {
           compDeps[info.type] = {
             package: `@/components/${info.type}`,
             dependencyType: DependencyType.External,
@@ -116,12 +116,13 @@ export class SchemaParser implements ISchemaParser {
     let keepalive: string[] = [];
 
     containers = schemaArr.map((schema) => {
-      getComponentsMap(schema);
+      const newSchema = parseSchema(schema, true);
+      getComponentsMap(newSchema);
       if (schema?.pageDynamicFlag && schema.pagePath) {
         keepalive.push(schema.pagePath);
       }
       return {
-        ...parseSchema(schema, true),
+        ...newSchema,
         // 简写 业务组件没有 pagePath
         moduleName: schema.pagePath
           ? schema.pagePath
@@ -235,6 +236,8 @@ export class SchemaParser implements ISchemaParser {
       app: {
         keepalive,
       },
+      // 静态文件生成的时候，可以传递一些简单的配置，比如修改一个代理地址，没有必要单独写一个插件？
+      staticFiles: options,
     };
   }
   decodeSchema(schemaSrc: string | IProjectSchema): IProjectSchema {

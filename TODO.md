@@ -29,11 +29,11 @@
 - [x] 特殊组件: DTalkView 不要渲染，丢弃
 - [x] 特殊组件: DynamicList
 - [x] keepalive dsl 中有 pageDynamicFlag
+- [ ] form onValuesChange - listenerOnValueChange
 - [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
 - [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67
-- [ ] BASE_URL 请求的主路径是否支持配置
-- [ ] 页面 index 冲突
+- [x] BASE_URL 请求的主路径支持配置
+- [x] 页面 index 冲突
 - [ ] findAppPolymerizationInfo createApp 加个配置不请求
-- [ ] form onValuesChange - listenerOnValueChange
 - [ ] 页面类型为气泡卡片
-- [ ] popoverSetting 消息提示，是组件属性，但是逻辑是给他加一个父级容器
+- [x] popoverSetting 消息提示，是组件属性，但是逻辑是给他加一个父级容器

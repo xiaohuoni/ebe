@@ -1,7 +1,7 @@
-import { ResultDir, ResultFile } from '../types';
+import { ResultDir, ResultFile, LXProjectOptions } from '../types';
 import { createResultDir, addDirectory, addFile } from './resultHelper';
 
-type FuncFileGenerator = () => [string[], ResultFile];
+type FuncFileGenerator = (config?: LXProjectOptions) => [string[], ResultFile];
 
 export function insertFile(root: ResultDir, path: string[], file: ResultFile) {
   let current: ResultDir = root;
@@ -19,9 +19,13 @@ export function insertFile(root: ResultDir, path: string[], file: ResultFile) {
   addFile(current, file);
 }
 
-export function runFileGenerator(root: ResultDir, fun: FuncFileGenerator) {
+export function runFileGenerator(
+  root: ResultDir,
+  fun: FuncFileGenerator,
+  config?: LXProjectOptions,
+) {
   try {
-    const result = fun();
+    const result = fun(config);
     const [path, file] = result;
     insertFile(root, path, file);
   } catch (error) {

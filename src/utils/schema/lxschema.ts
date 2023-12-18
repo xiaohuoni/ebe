@@ -134,6 +134,19 @@ const preprocessComponentSchema = (
     newSchema.props = aprops;
   });
 
+  const { popoverSetting, ...otherProps } = newSchema.props;
+  // {value: 'popoverSetting={{"options": {"tipType": "2",\n…"destroyOnHide": false,\n"placement": "top"}}}', type: 'NodeCodePieceAttr'}
+  if (popoverSetting) {
+    return {
+      compLib: 'antd-mobile-5',
+      type: 'Popover',
+      events: {},
+      props: popoverSetting,
+      compName: 'Popover',
+      platform: 'h5',
+      components: [{ ...newSchema, props: otherProps }],
+    };
+  }
   return newSchema;
 };
 
@@ -145,7 +158,7 @@ export const parseSchema = (schema: IProjectSchema, isRoot: boolean) => {
   target.components = components?.map((schem: any) => {
     return parseSchema(schem, false) ?? schem;
   });
-  return schema;
+  return target;
 };
 
 /**

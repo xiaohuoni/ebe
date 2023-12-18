@@ -22,15 +22,18 @@ import { createZipPublisher } from './src/core/publisher/zip';
     appId: '1024143353417228288',
     // pagePath: pageId
     pageIdMapping: {
+      '/asd5371': '1024143466269171712',
       '/ceshi1071': '1024143466269171712',
       '/model28529': '1051421568049684480',
       '/buchong4160': '1051387196217495552',
       '/model7813': '1049266938740068352',
       '/ssss3279': '1024161040026025984',
+      '/kapian9555': '1052397738087833600',
     },
     busiCompMapping: {
       '1046689438983856129': '9635362',
     },
+    baseUrl: 'http://172.21.72.205:10000/',
   };
   const projectBuilder = testPlatformIsH5 ? alita({ options }) : alitapc();
 

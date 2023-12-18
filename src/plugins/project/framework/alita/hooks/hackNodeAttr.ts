@@ -19,11 +19,13 @@ export default function hackEngineApis(
     pieces[0] && pieces[0].type === 'NodeCodePieceTag' ? pieces[0].value : '';
   const ignoreTags = ['div'];
   if (!ignoreTags.includes(nodeTags)) {
-    // TODO: 反正好奇怪，再塞一个 ref
-    pieces.push({
-      type: PIECE_TYPE.ATTR,
-      value: `ref={(r:any)=>refs['${nodeItem.id}'] = r}`,
-    });
+    if (!['Popover'].includes(nodeTags)) {
+      // TODO: 反正好奇怪，再塞一个 ref
+      pieces.push({
+        type: PIECE_TYPE.ATTR,
+        value: `ref={(r:any)=>refs['${nodeItem.id}'] = r}`,
+      });
+    }
     // TODO: 注入属性，直接这么传好怪，但是要写 with Component 感觉更怪
     pieces.push({
       type: PIECE_TYPE.ATTR,

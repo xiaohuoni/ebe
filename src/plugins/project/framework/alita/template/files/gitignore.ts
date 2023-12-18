@@ -5,8 +5,7 @@ export default function getFile(): [string[], ResultFile] {
   const file = createResultFile(
     '.gitignore',
     '',
-    `
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+    `# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 **/node_modules
@@ -25,7 +24,6 @@ yarn.lock
 package-lock.json
 pnpm-lock.yaml
 *bak
-
 
 # visual studio code
 .history

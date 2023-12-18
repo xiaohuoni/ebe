@@ -5,13 +5,11 @@ export default function getFile(): [string[], ResultFile] {
   const file = createResultFile(
     '.prettierrc',
     'js',
-    `
-    const prettier = require('alita/prettier');
+    `const prettier = require('alita/prettier');
 
-    module.exports = {
-      ...prettier,
-    };
-    
+module.exports = {
+  ...prettier,
+};
  `,
   );
 

@@ -32,5 +32,5 @@ export const mobileLayout = {
 };
 
 export function getKeepAlive(keepalive: any) {
-  return ['/buchong4160'];
+  return [];
 }

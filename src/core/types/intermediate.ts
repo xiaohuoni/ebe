@@ -1,7 +1,7 @@
 import { IProjectSchema } from './page';
 import { IDependency, INpmPackage } from './deps';
 import { ICompAnalyzeResult } from './analyze';
-
+import { LXProjectOptions } from './core';
 export interface IParseResult {
   containers: IContainerInfo[];
   globalUtils?: IUtilInfo;
@@ -9,6 +9,7 @@ export interface IParseResult {
   project?: IProjectInfo;
   pageview?: IRouterInfo;
   app?: IRunTimeConfig;
+  staticFiles?: LXProjectOptions;
 }
 
 export interface IRunTimeConfig {

@@ -148,6 +148,7 @@ export interface LXProjectOptions {
   appId: string;
   pageIdMapping: any;
   busiCompMapping?: any;
+  baseUrl?: string;
 }
 export interface IProjectBuilderOptions {
   /** 是否处于严格模式 (默认：否) */

@@ -5,9 +5,7 @@ export default function getFile(): [string[], ResultFile] {
   const file = createResultFile(
     '.npmrc',
     '',
-    `
-    registry=https://registry.npmjs.org/
-    `,
+    `registry=https://registry.npmjs.org/`,
   );
 
   return [[], file];

@@ -5,9 +5,7 @@ export default function getFile(): [string[], ResultFile] {
   const file = createResultFile(
     'constants',
     'ts',
-    `
-export const PLATFORM = 'h5';
-    `,
+    `export const PLATFORM = 'h5';`,
   );
 
   return [['src'], file];
