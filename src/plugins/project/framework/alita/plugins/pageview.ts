@@ -14,7 +14,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     };
 
     const ir = next.ir as any;
-    // 没找到谁又进来了
     if (!ir.routes) {
       return next;
     }

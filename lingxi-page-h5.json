@@ -7,7 +7,7 @@
     "pageName": "buchong",
     "pagePath": "/buchong4160",
     "pageLayout": "BaseLayout",
-    "pageDynamicFlag": false,
+    "pageDynamicFlag": true,
     "catalogItemId": "-1",
     "ignoreLogin": false,
     "hideNavBar": false,

@@ -179,6 +179,15 @@ export class ProjectBuilder implements IProjectBuilder {
     );
     buildResult = buildResult.concat(containerBuildResult);
     // pageview
+    if (parseResult.app && builders.app) {
+      const { files } = await builders.app.generateModule(parseResult.app);
+
+      buildResult.push({
+        path: this.template.slots.app.path,
+        files,
+      });
+    }
+    // pageview
     if (parseResult.pageview && builders.pageview) {
       const { files } = await builders.pageview.generateModule(
         parseResult.pageview,
@@ -189,7 +198,6 @@ export class ProjectBuilder implements IProjectBuilder {
         files,
       });
     }
-
     // router
     if (parseResult.globalRouter && builders.router) {
       const { files } = await builders.router.generateModule(

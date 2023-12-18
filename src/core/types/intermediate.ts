@@ -8,6 +8,11 @@ export interface IParseResult {
   globalRouter?: IRouterInfo;
   project?: IProjectInfo;
   pageview?: IRouterInfo;
+  app?: IRunTimeConfig;
+}
+
+export interface IRunTimeConfig {
+  keepalive?: string[];
 }
 
 export interface IWithDependency {

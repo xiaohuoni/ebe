@@ -20,6 +20,10 @@ const alitaTemplate: IProjectTemplate = {
     pageview: {
       path: ['src', 'components', 'Pageview'],
     },
+    app: {
+      path: ['src'],
+      fileName: 'app',
+    },
   },
 
   generateTemplate(): ResultDir {

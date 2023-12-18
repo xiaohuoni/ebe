@@ -65,6 +65,7 @@ export default function createIceJsProjectBuilder(
         }),
         alita.plugins.pageview(),
       ],
+      app: [alita.plugins.app()],
       appConfig: [alita.plugins.config()],
       packageJSON: [
         alita.plugins.packageJSON({

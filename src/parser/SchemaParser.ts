@@ -112,9 +112,14 @@ export class SchemaParser implements ISchemaParser {
     };
 
     let containers: any[] = [];
+    // keepalive
+    let keepalive: string[] = [];
 
     containers = schemaArr.map((schema) => {
       getComponentsMap(schema);
+      if (schema?.pageDynamicFlag && schema.pagePath) {
+        keepalive.push(schema.pagePath);
+      }
       return {
         ...parseSchema(schema, true),
         // 简写 业务组件没有 pagePath
@@ -226,6 +231,9 @@ export class SchemaParser implements ISchemaParser {
       pageview: {
         routes,
         models,
+      },
+      app: {
+        keepalive,
       },
     };
   }

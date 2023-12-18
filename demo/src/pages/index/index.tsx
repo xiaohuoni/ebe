@@ -11,7 +11,7 @@ import { generateCode, init, publishers } from 'ebe';
 
 const Item = Form.Item;
 
-const getPageDsls = (resultObjects:any[]) => {
+const getPageDsls = (resultObjects: any[]) => {
   return resultObjects
     .filter(Boolean)
     .map((i) => JSON.parse(i.resultObject.attrMappingJson));
@@ -57,7 +57,7 @@ export function findItem<T = any>(
   }
   return null;
 }
-function cleanTree(tree:any, fields) {
+function cleanTree(tree: any, fields) {
   let fieldSet = new Set(fields); // 使用set结构可以提高查询速度
 
   if (Array.isArray(tree)) {

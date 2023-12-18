@@ -1,7 +1,6 @@
 import { ResultDir } from '../../../../../core';
 import { createResultDir } from '../../../../../core/utils/resultHelper';
 import { runFileGenerator } from '../../../../../core/utils/templateHelper';
-import app from './files/app';
 import constants from './files/constants';
 import editorconfig from './files/editorconfig';
 import env from './files/env';
@@ -23,7 +22,6 @@ import typings from './files/typings';
 import withPageHOC from './files/withPageHOC';
 
 export function generateStaticFiles(root = createResultDir('.')): ResultDir {
-  runFileGenerator(root, app);
   runFileGenerator(root, constants);
   runFileGenerator(root, editorconfig);
   runFileGenerator(root, env);
