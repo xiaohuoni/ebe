@@ -5,7 +5,7 @@ import alitapc from './src/solutions/alita-pc';
 import { createDiskPublisher } from './src/core/publisher/disk';
 import { createZipPublisher } from './src/core/publisher/zip';
 (async () => {
-  const schemaFile = 'req.json';
+  const schemaFile = 'cache.json';
   // 读取 Schema
   const schema = await loadSchemaFile(schemaFile);
 
