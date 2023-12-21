@@ -18,25 +18,14 @@ const Kapian9555$$MobilePopover: React.FC<PageProps> = ({
   componentItem,
   style,
 }) => {
-  useEffect(() => {}, []);
+  useEffect(() => {
+    return () => {};
+  }, []);
 
   useEffect(() => {});
 
   return (
-    <MobilePopover
-      useEffect={(...args: unknown[]) => {
-        const eventData: any = [undefined];
-        eventData.params = [] || [];
-        CMDGenerator(eventData, args, 'useEffect', {
-          id: '884755',
-          name: '884755',
-          type: 'MobilePopover',
-          platform: 'h5',
-        });
-      }}
-      ref={(r: any) => (refs['884755'] = r)}
-      {...injectData}
-    >
+    <div style={style}>
       <View
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: 'rgba(255, 255, 255, 1)' }}
@@ -81,7 +70,7 @@ const Kapian9555$$MobilePopover: React.FC<PageProps> = ({
           {...injectData}
         />
       </View>
-    </MobilePopover>
+    </div>
   );
 };
 

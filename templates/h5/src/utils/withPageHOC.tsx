@@ -14,6 +14,7 @@ import {
 import Meta from '@lingxiteam/engine-meta';
 import { createApp, getApis, user } from '@lingxiteam/engine-platform';
 import monitt from '@lingxiteam/engine-plog';
+import AwaitHandleData from '@lingxiteam/engine-render-core/es/utils/AwaitHandleData';
 import Sandbox from '@lingxiteam/engine-sandbox';
 import {
   copyText,
@@ -95,6 +96,11 @@ export const withPageHOC = (
           isH5: true,
         },
         ModalManagerRef,
+        addToAwaitQueue: (
+          compId: string,
+          functionName: string,
+          ...data: any
+        ) => {},
       };
       meta = new Meta({
         SandBox: Sandbox,
@@ -124,6 +130,7 @@ export const withPageHOC = (
       // 收集内置数据
       await meta.initialData();
       const context = meta?.getContext(defaultContext);
+      const awaitHandleData = new AwaitHandleData();
       const injectData = {
         getEngineApis: () => {
           return {
@@ -171,7 +178,13 @@ export const withPageHOC = (
             field: Record<string, any>,
             cmd?: any,
           ) => {
-            return checkIfRefValueByObject(val, field, cmd, engineApis);
+            console.log(val);
+            console.log(field);
+            console.log(cmd);
+            const a = checkIfRefValueByObject(val, field, cmd, engineApis);
+            console.log('asdasdsadsdas');
+            console.log(a);
+            return a;
           },
           CMDParse: (cmddata: string | any[], actionname?: string) => {
             return CMDParse(cmddata, actionname, engineApis);
@@ -187,6 +200,22 @@ export const withPageHOC = (
           refs,
           utils: engineApis,
           history,
+          addToAwaitQueue: (
+            compId: string,
+            functionName: string,
+            ...data: any
+          ) => {
+            console.log(compId);
+            // @ts-ignore
+            refs?.[compId]?.[functionName]?.(data);
+            console.log(refs?.[compId]);
+            console.log(functionName);
+            console.log(data);
+            // awaitHandleData.addToAwaitQueue(compId, functionName, ...data)
+          },
+          runAwaitQueue: (comId: string) => {
+            awaitHandleData.runQueue(comId, refs);
+          },
           sandBoxRun: (
             code: string,
             extendAllowMap: Record<string, any> = {},
@@ -234,6 +263,7 @@ export const withPageHOC = (
       init();
     }, []);
 
+    useEffect(() => {});
     if (!data || Object.keys(data).length === 0) {
       return <div>loading</div>;
     }

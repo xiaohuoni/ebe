@@ -34,6 +34,7 @@ export default function createIceJsProjectBuilder(
             Page: 'div',
             MobileModal: 'div',
             BusiComp: 'div',
+            MobilePopover: 'div',
           },
         }),
         // 最前面的代码，其实是最后生成的
@@ -52,6 +53,7 @@ export default function createIceJsProjectBuilder(
           nodeTypeMapping: {
             Page: 'div',
             MobileModal: 'div',
+            MobilePopover: 'div',
           },
         }),
         // 最前面的代码，其实是最后生成的

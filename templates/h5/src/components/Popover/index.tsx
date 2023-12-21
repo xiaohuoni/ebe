@@ -55,11 +55,11 @@ const DynamicPopover: FC<DynamicPopoverProps> = (props) => {
 
   // useEffect(() => {
   //   const ref = {
-  //     close: () => setPopVisible(false),
+  // close: () => setPopVisible(false),
   //   };
   //   lcdpApi.setPopover(ref);
   //   return () => {
-  //     lcdpApi.removePopover(ref);
+  // lcdpApi.removePopover(ref);
   //   };
   // }, []);
 

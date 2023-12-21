@@ -45,7 +45,7 @@ export function generateStaticFiles(
   runFileGenerator(root, npmrc);
   runFileGenerator(root, popover);
   runFileGenerator(root, popoverwrapper);
-  runFileGenerator(root, npmrc);
+  // runFileGenerator(root, npmrc);
   runFileGenerator(root, prettierignore);
   runFileGenerator(root, prettierrc);
   runFileGenerator(root, proxy, parseResult?.staticFiles);

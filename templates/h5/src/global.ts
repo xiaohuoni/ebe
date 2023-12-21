@@ -65,7 +65,7 @@ const platformConfig = {
   // useHotUpdate: {
   //   NODE_ENV: process.env.NODE_ENV,
   //   pkgInfo: {
-  //     '@lingxiteam/factory': assets,
+  // '@lingxiteam/factory': assets,
   //   },
   // },
 } as any;

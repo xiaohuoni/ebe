@@ -1,9 +1,14 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 
-import { Button, Loop, View } from '@lingxiteam/factory/es/index.component';
+import {
+  Button,
+  DForm,
+  DformInput,
+  View,
+} from '@lingxiteam/factory/es/index.component';
 
-import BusiComp9635362 from '@/components/BusiComp9635362';
+import Popover from '@/components/Popover';
 
 import { useEffect } from 'react';
 
@@ -23,200 +28,23 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
   style,
 }) => {
   useEffect(() => {
-    const eventDatashowModal: any = [
-      {
-        type: 'showModal',
-        dataId: 169923501797812100,
-        options: {
-          compId: 'showModal',
-          compName: 'system',
-          id: '935758',
-          pageJsonId: '181337953',
-          type: 'success',
-          title: '页面加载完成',
-          content: '页面加载完成',
-          okText: '生成成功🏅️',
-        },
-        path: ['7492592'],
-        line_number: 1,
-        callback1: [],
-        callback2: [],
-      },
-    ];
-    eventDatashowModal.params = [] || [];
-    CMDGenerator(eventDatashowModal, {}, 'showModal', {
-      id: 'showModal',
-      name: 'showModal',
-      type: 'showModal',
-      platform: 'h5',
-    });
-    const eventDatacustomActionCode: any = [
-      {
-        type: 'customActionCode',
-        dataId: 169958239462146600,
-        options: {
-          compId: 'customActionCode',
-          compName: 'system',
-          id: '599664',
-          pageJsonId: '181337953',
-          originCode:
-            '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n * 注意：禁止在代码块中直接操作data，state，globalData\n * 否则会出现异常问题！如果需要在代码块中更改数据源，请将更改后数据success 到外部，走设置数据源事件\n */\nfunction main(data, state, success, fail) {\n\tsuccess([{title: 1},{title:2},{title:3}])\n};',
-          code: 'function main(data,state,success,fail){success([{title:1},{title:2},{title:3}])};',
-        },
-        path: ['7492592'],
-        line_number: 2,
-        callback1: [
-          {
-            type: 'setDataSource',
-            dataId: 169958244726922750,
-            options: {
-              compId: 'setDataSource',
-              compName: 'system',
-              id: '168011',
-              pageJsonId: '181337953',
-              dataSourceId: 169958147710874270,
-              dataSourceName: 'list',
-              dataSourceRelType: 'custom',
-              dataSourceSetValue: [
-                {
-                  attrId: '007221',
-                  code: 'param',
-                  name: '属性',
-                  type: 'string',
-                  initialData: { type: 'static' },
-                  showInput: false,
-                },
-              ],
-              newData: '$data_599664$',
-              operateType: 3,
-              onlySetPatch: true,
-              otherObjectArrayOptions: {},
-              targetDataSourcePaths: [],
-            },
-            path: ['7492592', 169958239462146600, 169958239462118560],
-            line_number: 3,
-            callback1: [],
-            callback2: [],
-          },
-        ],
-        callback2: [],
-      },
-    ];
-    eventDatacustomActionCode.params = [] || [];
-    CMDGenerator(eventDatacustomActionCode, {}, 'customActionCode', {
-      id: 'customActionCode',
-      name: 'customActionCode',
-      type: 'customActionCode',
-      platform: 'h5',
-    });
-
     setPageNavBar({
       pagePath: '/ceshi1071',
       navBar: {
         pageTitle: '页面标题自定义',
-        hideNavBar: true,
-
-        onLeftClick: () => {
-          const eventDatahistory: any = [
-            {
-              type: 'history',
-              dataId: 169923525996870180,
-              options: {
-                compId: 'history',
-                compName: 'system',
-                id: '699025',
-                pageJsonId: '181337953',
-                type: 'push',
-                pathname: '/ssss3279',
-                selectedType: 'page',
-                pageId: '1024161040026025984',
-                modalPath: '/ssss3279',
-                paramsObj: {
-                  bizId: '$urlParam.bizId$',
-                  sceneCode: '$urlParam.sceneCode$',
-                  bizData: '$urlParam.bizData$',
-                },
-                paramsObjKeyValueMap: {
-                  bizId: '$urlParam.bizId$',
-                  sceneCode: '$urlParam.sceneCode$',
-                  bizData: '$urlParam.bizData$',
-                },
-              },
-              path: [169923515761609300],
-              line_number: 1,
-            },
-          ];
-          eventDatahistory.params = [] || [];
-          CMDGenerator(eventDatahistory, {}, 'history', {
-            id: 'history',
-            name: 'history',
-            type: 'history',
-            platform: 'h5',
-          });
-        },
+        hideNavBar: false,
       },
     });
 
-    return () => {
-      const eventDatashowModal: any = [
-        {
-          type: 'showModal',
-          dataId: 169923511919269150,
-          options: {
-            compId: 'showModal',
-            compName: 'system',
-            id: '265821',
-            pageJsonId: '181337953',
-            type: 'info',
-            title: '页面退出',
-            content: '页面退出',
-            okText: '再见',
-          },
-          path: [169923510649253800],
-          line_number: 1,
-          callback1: [],
-          callback2: [],
-        },
-      ];
-      eventDatashowModal.params = [] || [];
-      CMDGenerator(eventDatashowModal, {}, 'showModal', {
-        id: 'showModal',
-        name: 'showModal',
-        type: 'showModal',
-        platform: 'h5',
-      });
-    };
+    return () => {};
   }, []);
 
-  useEffect(() => {
-    const eventDataconsole: any = [
-      {
-        type: 'console',
-        dataId: 169923509192794560,
-        options: {
-          compId: 'console',
-          compName: 'system',
-          id: '4100115',
-          pageJsonId: '181337953',
-          value: ['组件状态变化后'],
-        },
-        path: [169923508075470400],
-        line_number: 1,
-      },
-    ];
-    eventDataconsole.params = [] || [];
-    CMDGenerator(eventDataconsole, {}, 'console', {
-      id: 'console',
-      name: 'console',
-      type: 'console',
-      platform: 'h5',
-    });
-  });
+  useEffect(() => {});
 
   return (
     <div style={style}>
       <View
-        name="布局容器1"
+        name={'布局容器1'}
         visible={true}
         $$componentItem={{
           id: 'View_4060305',
@@ -238,95 +66,153 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
         ref={(r: any) => (refs['View_4060305'] = r)}
         {...injectData}
       >
-        <Loop
-          name="循环容器"
-          itemKey="item"
-          indexKey="i"
-          dataSource={data?.list}
-          uniqueField="param"
+        <DForm
+          name={'表单'}
+          formCode={'DForm_038646'}
+          autoLineFeed={true}
+          failScroll={true}
+          errorFlag={true}
+          hiddenBorder={'0'}
+          itemHasStar={true}
           $$componentItem={{
-            id: 'Loop_087174',
-            uid: 'Loop_087174',
-            type: 'Loop',
+            id: 'DForm_038646',
+            uid: 'DForm_038646',
+            type: 'DForm',
             ...componentItem,
           }}
           visible={true}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            borderRadius: '0px 0px 0px 0px',
-          }}
-          ref={(r: any) => (refs['Loop_087174'] = r)}
+          style={{ width: 'auto' }}
+          ref={(r: any) => (refs['DForm_038646'] = r)}
           {...injectData}
-          getEngineApis={() => {
-            return {
-              ...injectData.getEngineApis(),
-              MemoRenderer: {
-                renderer: null,
-                MemoLoopItem: (props: any) => {
-                  const item = props[props.itemKey];
-                  return (
-                    <Button
-                      name="按钮"
-                      btnIcon={false}
-                      type="primary"
-                      size="large"
-                      loading={false}
-                      mImagePostion="left"
-                      shape="default"
-                      status="1"
-                      children={item?.title}
-                      $$componentItem={{
-                        id: 'Button_197969',
-                        uid: 'Button_197969',
-                        type: 'Button',
-                        ...componentItem,
-                      }}
-                      visible={true}
-                      disabled={false}
-                      readOnly={false}
-                      style={{ textAlign: 'center' }}
-                      ref={(r: any) => (refs['Button_197969'] = r)}
-                      {...injectData}
-                    />
-                  );
+        >
+          <DformInput
+            name={'单行输入'}
+            postfix={''}
+            postfixIconPosition={'before'}
+            dformType={'DformInput'}
+            title={'标题1'}
+            placeholder={'请输入'}
+            clear={true}
+            positionType={'horizontal'}
+            status={'1'}
+            inputType={'text'}
+            fieldProps={'fff'}
+            $$componentItem={{
+              id: 'DformInput_8100247',
+              uid: 'DformInput_8100247',
+              type: 'DformInput',
+              ...componentItem,
+            }}
+            visible={true}
+            disabled={false}
+            readOnly={false}
+            style={{
+              inputContent: '1',
+              inputBorderRadius: '4px 4px 4px 4px',
+              textAlign: 'right',
+            }}
+            onChange={(...args: unknown[]) => {
+              const eventData: any = [
+                {
+                  type: 'sysSetValue',
+                  dataId: 170314291780330430,
+                  options: {
+                    compId: 'DformInput_203169',
+                    compLib: '@/components',
+                    pageJsonId: '181337953',
+                    compName: 'DformInput',
+                    id: '570535',
+                    valueList: { DformInput_203169: '$value$' },
+                  },
+                  path: [170314290104851800],
+                  line_number: 1,
+                  callback1: [],
                 },
-              },
-            };
-          }}
-        />
+              ];
+              eventData.params =
+                [
+                  { title: '单行输入框取值', value: '$value$', name: 'value' },
+                ] || [];
+              CMDGenerator(eventData, args, 'onChange', {
+                id: 'DformInput_8100247',
+                name: 'DformInput_8100247',
+                type: 'DformInput',
+                platform: 'h5',
+              });
+            }}
+            ref={(r: any) => (refs['DformInput_8100247'] = r)}
+            {...injectData}
+          />
+          <DformInput
+            name={'单行输入'}
+            postfix={''}
+            postfixIconPosition={'before'}
+            dformType={'DformInput'}
+            title={'标题2'}
+            placeholder={'请输入'}
+            clear={true}
+            positionType={'horizontal'}
+            status={'1'}
+            inputType={'text'}
+            fieldProps={'fsdfsdds'}
+            $$componentItem={{
+              id: 'DformInput_203169',
+              uid: 'DformInput_203169',
+              type: 'DformInput',
+              ...componentItem,
+            }}
+            visible={true}
+            disabled={false}
+            readOnly={false}
+            style={{
+              inputContent: '1',
+              inputBorderRadius: '4px 4px 4px 4px',
+              textAlign: 'right',
+            }}
+            ref={(r: any) => (refs['DformInput_203169'] = r)}
+            {...injectData}
+          />
+        </DForm>
       </View>
-      <BusiComp9635362
-        busiCompId="1046689438983856129"
-        name="新增H5业务组件"
-        busiCompStates={{ title: data?.nothing?.param, data: data?.nothing }}
-        style={{ margin: '0 0 12px 0' }}
-        ref={(r: any) => (refs['BOFramer_888504'] = r)}
-        {...injectData}
-      />
-      <Button
-        name="按钮"
-        btnIcon={false}
-        type="primary"
-        size="large"
-        loading={false}
-        mImagePostion="left"
-        shape="default"
-        status="1"
-        children={state?.title}
-        $$componentItem={{
-          id: 'Button_7815635',
-          uid: 'Button_7815635',
-          type: 'Button',
-          ...componentItem,
+      <Popover
+        page={{
+          pagePath: '/kapian9555',
+          pageId: '1052397738087833600',
+          pageName: 'kapian',
+          options: [
+            { name: '业务主键', code: 'bizId' },
+            { name: '业务场景', code: 'sceneCode' },
+            { name: '业务数据', code: 'bizData' },
+          ],
+          tipType: '1',
+          placement: 'bottom',
         }}
-        visible={true}
-        disabled={false}
-        readOnly={false}
-        style={{ textAlign: 'center' }}
-        ref={(r: any) => (refs['Button_7815635'] = r)}
         {...injectData}
-      />
+      >
+        <Button
+          name={'按钮'}
+          btnIcon={false}
+          type={'primary'}
+          size={'large'}
+          loading={false}
+          mImagePostion={'left'}
+          shape={'default'}
+          status={'1'}
+          children={state?.title}
+          $$componentItem={{
+            id: 'Button_7815635',
+            uid: 'Button_7815635',
+            type: 'Button',
+            ...componentItem,
+          }}
+          visible={true}
+          readOnly={false}
+          disabled={false}
+          style={{ textAlign: 'center' }}
+          ref={(r: any) => (refs['Button_7815635'] = r)}
+          {...injectData}
+        />
+      </Popover>
     </div>
   );
 };
@@ -334,7 +220,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
 export default withPageHOC(Ceshi1071$$Page, {
   appId: '1024143353417228288',
   pageId: '1024143466269171712',
-  hasLogin: false,
+  hasLogin: true,
   dataSource: [
     {
       id: 169891588296195260,

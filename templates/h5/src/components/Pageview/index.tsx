@@ -9,9 +9,27 @@ const Pages: any = {
         /* webpackChunkName: "src__pages__/asd5371__index" */ '@/pages/asd5371'
       ),
   ),
+  '/ceshi1071': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/ceshi1071__index" */ '@/pages/ceshi1071'
+      ),
+  ),
   '1024143466269171712': React.lazy(
     () =>
-      import(/* webpackChunkName: "1024143466269171712" */ '@/pages/asd5371'),
+      import(/* webpackChunkName: "1024143466269171712" */ '@/pages/ceshi1071'),
+  ),
+  '/kapian9555': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/kapian9555__index" */ '@/pages/kapian9555'
+      ),
+  ),
+  '1052397738087833600': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "1052397738087833600" */ '@/pages/kapian9555'
+      ),
   ),
 };
 
