@@ -143,7 +143,10 @@ export class ProjectBuilder implements IProjectBuilder {
       this.extraContextData?.options,
     );
 
-    const projectRoot = await this.template.generateTemplate(parseResult);
+    const projectRoot = await this.template.generateTemplate(
+      parseResult,
+      this.postProcessors,
+    );
 
     let buildResult: IModuleInfo[] = [];
 

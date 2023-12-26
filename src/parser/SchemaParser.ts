@@ -52,20 +52,18 @@ export class SchemaParser implements ISchemaParser {
     } = options || {};
     // compLib schema.platform
     // 解析三方组件依赖
-    const getPackage = ({ compLib, type }) => {
-      // TODO：遗留问题，组件包应该正确写明 compLib，现在先写死
-      // if (
-      //   compLib === '@/components' ||
-      //   compLib === 'custom' ||
-      //   compLib === 'comm'
-      // ) {
+    // const getPackage = ({ compLib, type }) => {
+    //   // TODO：遗留问题，组件包应该正确写明 compLib，现在先写死
+    //   // if (
+    //   //   compLib === '@/components' ||
+    //   //   compLib === 'custom' ||
+    //   //   compLib === 'comm'
+    //   // ) {
 
-      return platform === 'h5'
-        ? '@lingxiteam/factory/es/index.component'
-        : '@lingxiteam/pcfactory/es/index.component';
-      // }
-      // return compLib;
-    };
+    //   return '@/components/factory';
+    //   // }
+    //   // return compLib;
+    // };
     const getComponentsMap = (root: any) => {
       root.components.forEach((info: any) => {
         if (info.type === 'Pageview' || info.type === 'Popover') {
@@ -91,19 +89,27 @@ export class SchemaParser implements ISchemaParser {
           };
         } else if (info.type) {
           compDeps[info.type] = {
-            package: getPackage(info),
+            package: `@/components/factory`,
             dependencyType: DependencyType.External,
             type: info.type,
             exportName: info.exportName ?? info.type,
-            // TODO: 先写死的版本号，因为现在主版本号上不是最新的
-            version:
-              info.compLib === '@/components' ||
-              info.compLib === 'custom' ||
-              info.compLib === 'comm'
-                ? LINGXI_PROJECT_VERSION
-                : info.version ?? '*',
-            destructuring: info.destructuring ?? true,
+            version: '*',
+            destructuring: true,
           };
+          // compDeps[info.type] = {
+          //   package: getPackage(info),
+          //   dependencyType: DependencyType.External,
+          //   type: info.type,
+          //   exportName: info.exportName ?? info.type,
+          //   // TODO: 先写死的版本号，因为现在主版本号上不是最新的
+          //   version:
+          //     info.compLib === '@/components' ||
+          //     info.compLib === 'custom' ||
+          //     info.compLib === 'comm'
+          //       ? LINGXI_PROJECT_VERSION
+          //       : info.version ?? '*',
+          //   destructuring: info.destructuring ?? false,
+          // };
         }
         if (info.components) {
           getComponentsMap(info);

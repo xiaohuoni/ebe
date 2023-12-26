@@ -164,15 +164,17 @@ function generateAttrs(
     Object.keys(events).forEach((eventName: any) => {
       if (isValidIdentifier(eventName)) {
         const { value = [] } = events[eventName];
-        const renderEvent = `(...args: unknown[])=>{const eventData: any = [${JSON.stringify(
+        const renderEvent = `(${value.params
+          .map((i: { name: any }) => i.name + ': any')
+          .join(',')})=>{const eventData: any = [${JSON.stringify(
           value[0],
         )},];eventData.params = ${JSON.stringify(
           value.params,
-        )} || [];CMDGenerator(eventData, args, '${eventName}', { id: '${
+        )} || [];CMDGenerator(eventData, {${value.params
+          .map((i: { name: any }) => i.name)
+          .join(',')}}, '${eventName}', { id: '${nodeItem?.id}',name: '${
           nodeItem?.id
-        }',name: '${nodeItem?.id}',type: '${nodeItem?.type}',platform: '${
-          nodeItem?.platform
-        }',});}`;
+        }',type: '${nodeItem?.type}',platform: '${nodeItem?.platform}',});}`;
         pieces = pieces.concat(
           generateAttr(
             eventName,

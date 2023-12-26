@@ -9,6 +9,10 @@ const Pages: any = {
         /* webpackChunkName: "src__pages__/asd5371__index" */ '@/pages/asd5371'
       ),
   ),
+  '1024143466269171712': React.lazy(
+    () =>
+      import(/* webpackChunkName: "1024143466269171712" */ '@/pages/asd5371'),
+  ),
   '/ceshi1071': React.lazy(
     () =>
       import(

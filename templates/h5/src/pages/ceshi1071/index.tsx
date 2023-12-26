@@ -1,12 +1,7 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 
-import {
-  Button,
-  DForm,
-  DformInput,
-  View,
-} from '@lingxiteam/factory/es/index.component';
+import { Button, DForm, DformInput, View } from '@/components/factory';
 
 import Popover from '@/components/Popover';
 
@@ -111,7 +106,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
               inputBorderRadius: '4px 4px 4px 4px',
               textAlign: 'right',
             }}
-            onChange={(...args: unknown[]) => {
+            onChange={(value: any) => {
               const eventData: any = [
                 {
                   type: 'sysSetValue',
@@ -133,7 +128,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
                 [
                   { title: '单行输入框取值', value: '$value$', name: 'value' },
                 ] || [];
-              CMDGenerator(eventData, args, 'onChange', {
+              CMDGenerator(eventData, { value }, 'onChange', {
                 id: 'DformInput_8100247',
                 name: 'DformInput_8100247',
                 type: 'DformInput',

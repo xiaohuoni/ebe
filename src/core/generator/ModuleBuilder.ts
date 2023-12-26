@@ -71,7 +71,7 @@ export function createModuleBuilder(
         let { content, ext: type, name } = file;
         options.postProcessors.forEach((processer) => {
           try {
-            // 尝试使用压缩
+            // 尝试使用格式化
             content = processer(content, type, name);
           } catch (error) {
             console.log(error);

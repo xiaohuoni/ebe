@@ -1,9 +1,10 @@
-import { ResultDir, IParseResult } from '../../../../../core';
+import { ResultDir, IParseResult, PostProcessor } from '../../../../../core';
 import { createResultDir } from '../../../../../core/utils/resultHelper';
 import { runFileGenerator } from '../../../../../core/utils/templateHelper';
 import constants from './files/constants';
 import editorconfig from './files/editorconfig';
 import env from './files/env';
+import factory from './files/factory';
 import gitignore from './files/gitignore';
 import global from './files/global';
 import globalless from './files/globalless';
@@ -25,33 +26,35 @@ import withPageHOC from './files/withPageHOC';
 
 export function generateStaticFiles(
   parseResult: IParseResult,
+  postProcessors: PostProcessor[],
   root = createResultDir('.'),
 ): ResultDir {
   const hasIndex = !!parseResult?.staticFiles?.pageIdMapping?.['/index'];
-  runFileGenerator(root, constants);
-  runFileGenerator(root, editorconfig);
-  runFileGenerator(root, env);
-  runFileGenerator(root, gitignore);
-  runFileGenerator(root, global);
-  runFileGenerator(root, globalless);
+  runFileGenerator(postProcessors, root, constants);
+  runFileGenerator(postProcessors, root, editorconfig);
+  runFileGenerator(postProcessors, root, env);
+  runFileGenerator(postProcessors, root, factory, parseResult?.staticFiles);
+  runFileGenerator(postProcessors, root, gitignore);
+  runFileGenerator(postProcessors, root, global);
+  runFileGenerator(postProcessors, root, globalless);
   // index 定义了就不生成默认的 index
   if (!hasIndex) {
-    runFileGenerator(root, indexpage);
-    runFileGenerator(root, indexpageless);
+    runFileGenerator(postProcessors, root, indexpage);
+    runFileGenerator(postProcessors, root, indexpageless);
   }
-  runFileGenerator(root, modalindex);
-  runFileGenerator(root, modalmodal);
-  runFileGenerator(root, modaltypes);
-  runFileGenerator(root, npmrc);
-  runFileGenerator(root, popover);
-  runFileGenerator(root, popoverwrapper);
-  // runFileGenerator(root, npmrc);
-  runFileGenerator(root, prettierignore);
-  runFileGenerator(root, prettierrc);
-  runFileGenerator(root, proxy, parseResult?.staticFiles);
-  runFileGenerator(root, stylelintrc);
-  runFileGenerator(root, tsconfig);
-  runFileGenerator(root, typings);
-  runFileGenerator(root, withPageHOC);
+  runFileGenerator(postProcessors, root, modalindex);
+  runFileGenerator(postProcessors, root, modalmodal);
+  runFileGenerator(postProcessors, root, modaltypes);
+  runFileGenerator(postProcessors, root, npmrc);
+  runFileGenerator(postProcessors, root, popover);
+  runFileGenerator(postProcessors, root, popoverwrapper);
+  // runFileGenerator(postProcessors, root, npmrc);
+  runFileGenerator(postProcessors, root, prettierignore);
+  runFileGenerator(postProcessors, root, prettierrc);
+  runFileGenerator(postProcessors, root, proxy, parseResult?.staticFiles);
+  runFileGenerator(postProcessors, root, stylelintrc);
+  runFileGenerator(postProcessors, root, tsconfig);
+  runFileGenerator(postProcessors, root, typings);
+  runFileGenerator(postProcessors, root, withPageHOC);
   return root;
 }

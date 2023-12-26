@@ -12,3 +12,9 @@ export const ensureValidClassName = (name: string) => {
   }
   return name;
 };
+
+export const isFirstLetterUpperCase = (str: string): boolean => {
+  if (!str) return false;
+  const firstLetter = str.charAt(0);
+  return firstLetter === firstLetter.toUpperCase();
+};

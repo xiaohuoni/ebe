@@ -21,6 +21,7 @@ import {
 import Meta from '@lingxiteam/engine-meta';
 import { createApp, getApis, user } from '@lingxiteam/engine-platform';
 import monitt from '@lingxiteam/engine-plog';
+import AwaitHandleData from '@lingxiteam/engine-render-core/es/utils/AwaitHandleData';
 import Sandbox from '@lingxiteam/engine-sandbox';
 import {
   copyText,
@@ -89,6 +90,7 @@ export const withPageHOC = (
         isOpenTheme: false,
         beforeCreateApp: () => options?.hasLogin && user.init(),
       });
+      const awaitHandleData = new AwaitHandleData();
       const defaultContext = {
         lcdpApi: appInst.lcdpApi,
         transformValueDefined,
@@ -102,6 +104,16 @@ export const withPageHOC = (
           isH5: true,
         },
         ModalManagerRef,
+        addToAwaitQueue: (
+          compId: string,
+          functionName: string,
+          ...data: any
+        ) => {
+          awaitHandleData.addToAwaitQueue(compId, functionName, ...data);
+        },
+        runAwaitQueue: (comId: string) => {
+          awaitHandleData.runQueue(comId, refs);
+        },
       };
       meta = new Meta({
         SandBox: Sandbox,

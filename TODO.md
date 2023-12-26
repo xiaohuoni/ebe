@@ -22,21 +22,21 @@
 - [x] node: 服务端出码
 - [x] 页面容器，style 应该传递
 - [x] 页面容器动态查找页面，可能是带参数或者是拼接字符找到对应页面
-- [ ] prettier 格式化规则使用 alita/prettier
 - [x] 页面类型为弹窗
 - [x] 特殊组件: 表单增删控件，当前环境里面塞了变量 i 处理的时候，需要去掉
 - [x] 特殊组件: CardHeader
 - [x] 特殊组件: DTalkView 不要渲染，丢弃
 - [x] 特殊组件: DynamicList
 - [x] keepalive dsl 中有 pageDynamicFlag
-- [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
-- [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67
 - [x] BASE_URL 请求的主路径支持配置
 - [x] 页面 index 冲突
 - [ ] findAppPolymerizationInfo createApp 加个配置不请求
 - [x] 页面类型为气泡卡片
 - [x] popoverSetting 消息提示，是组件属性，但是逻辑是给他加一个父级容器
-- [ ] addToAwaitQueue @lingxiteam/engine-render-core/es/utils/AwaitHandleData
-- [ ] form onValuesChange - listenerOnValueChange
-- [ ] form setValue 是另外塞进去的
-- [ ] form ref 是处理过的
+- [x] addToAwaitQueue @lingxiteam/engine-render-core/es/utils/AwaitHandleData
+- [x] form item fieldProps - setValue
+- [x] form item ref 是处理过的
+- [ ] prettier 格式化规则使用 alita/prettier
+- [] form onValuesChange - listenerOnValueChange
+- [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
+- [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67

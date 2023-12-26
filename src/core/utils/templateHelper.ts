@@ -1,4 +1,9 @@
-import { ResultDir, ResultFile, LXProjectOptions } from '../types';
+import {
+  ResultDir,
+  ResultFile,
+  LXProjectOptions,
+  PostProcessor,
+} from '../types';
 import { createResultDir, addDirectory, addFile } from './resultHelper';
 
 type FuncFileGenerator = (config?: LXProjectOptions) => [string[], ResultFile];
@@ -20,6 +25,7 @@ export function insertFile(root: ResultDir, path: string[], file: ResultFile) {
 }
 
 export function runFileGenerator(
+  postProcessors: PostProcessor[],
   root: ResultDir,
   fun: FuncFileGenerator,
   config?: LXProjectOptions,
@@ -27,7 +33,19 @@ export function runFileGenerator(
   try {
     const result = fun(config);
     const [path, file] = result;
-    insertFile(root, path, file);
+    let { content, ext: type, name, ...other } = file;
+
+    if (postProcessors.length > 0) {
+      postProcessors.forEach((processer) => {
+        try {
+          // 尝试使用格式化
+          content = processer(content, type, name);
+        } catch (error) {
+          console.log(error);
+        }
+      });
+    }
+    insertFile(root, path, { content, ext: type, name, ...other });
   } catch (error) {
     throw new Error(`Error: ${typeof fun}`);
   }

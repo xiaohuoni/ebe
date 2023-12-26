@@ -26,8 +26,8 @@ const alitaTemplate: IProjectTemplate = {
     },
   },
 
-  generateTemplate(parseResult): ResultDir {
-    return generateStaticFiles(parseResult);
+  generateTemplate(parseResult, postProcessors): ResultDir {
+    return generateStaticFiles(parseResult, postProcessors);
   },
 };
 

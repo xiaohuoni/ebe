@@ -131,7 +131,10 @@ export interface ISchemaParser {
 
 export interface IProjectTemplate {
   slots: Record<string, IProjectSlot>;
-  generateTemplate: (data: IParseResult) => ResultDir | Promise<ResultDir>;
+  generateTemplate: (
+    data: IParseResult,
+    postProcessors: PostProcessor[],
+  ) => ResultDir | Promise<ResultDir>;
 }
 
 export interface IProjectSlot {
