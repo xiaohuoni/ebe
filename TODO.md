@@ -36,7 +36,10 @@
 - [x] addToAwaitQueue @lingxiteam/engine-render-core/es/utils/AwaitHandleData
 - [x] form item fieldProps - setValue
 - [x] form item ref 是处理过的
-- [ ] prettier 格式化规则使用 alita/prettier
+- [x] prettier 格式化规则使用 alita/prettier
 - [] form onValuesChange - listenerOnValueChange
 - [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
 - [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67
+- [ ] 命令源码化
+
+调试服务器 http://172.21.72.205:8088/

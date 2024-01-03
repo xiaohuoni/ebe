@@ -16,7 +16,7 @@
     "dev": "father dev"
   },
   "dependencies": {
-    "@lingxiteam/assets": "3.2.1-alpha.1",
+    "@lingxiteam/assets": "3.2.1-alpha.11",
     "@lingxiteam/functors": "0.3.1",
     "@lingxiteam/types": "^3.2.1-alpha.42"
   },

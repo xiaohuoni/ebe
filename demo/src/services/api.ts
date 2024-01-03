@@ -7,6 +7,10 @@ import bu from './bu.json';
 
 const useMock = false;
 
+security.httpEncryption.start({
+  mode: '1.0',
+});
+
 export async function query(): Promise<any> {
   return request('/api/hello', { method: 'POST' });
 }
@@ -33,10 +37,6 @@ export async function findBusiCompById(params): Promise<any> {
     params,
     headers: {
       ...headers,
-      'X-SIGN': security.httpEncryption.createHttpSignStr(
-        '/app/manager/busiComp/findBusiCompById',
-        { method: 'GET', headers, body: {}, search: params },
-      ),
     },
   });
 }
@@ -58,10 +58,6 @@ export async function findAppPolymerizationInfo(params): Promise<any> {
     method: 'GET',
     headers: {
       ...headers,
-      'X-SIGN': security.httpEncryption.createHttpSignStr(
-        '/app/appPage/findAppPolymerizationInfo',
-        { method: 'GET', headers, body: {}, search: params },
-      ),
     },
   });
 }
@@ -85,10 +81,6 @@ export async function getPageVersionById(params): Promise<any> {
     method: 'GET',
     headers: {
       ...headers,
-      'X-SIGN': security.httpEncryption.createHttpSignStr(
-        '/app/appPage/getPageVersionById',
-        { method: 'GET', headers, body: {}, search: params },
-      ),
     },
   });
 }

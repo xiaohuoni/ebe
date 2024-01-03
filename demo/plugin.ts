@@ -7,19 +7,21 @@ import compression from 'compression';
 import archiver from 'archiver';
 // @ts-ignore
 import { fsExtra } from '@umijs/utils';
-import { publishers, solutions } from 'ebe';
+// @ts-ignore
+// import { publishers, solutions } from 'ebe';
 import { existsSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
 
 const generateZip = async ({ options, pages, appId, outputPath }) => {
-  const projectBuilder = solutions?.alita({ options });
+  const ebe = require('ebe');
+  const projectBuilder = ebe.solutions?.alita({ options });
   const project = await projectBuilder.generateProject(
     pages, // 编排搭建出来的 schema
   );
 
   try {
     // 写入到目录
-    await publishers?.disk().publish({
+    await ebe.publishers?.disk().publish({
       project, // 上一步生成的 project
       outputPath, // 输出目录
       projectSlug: appId, // 项目标识 -- 对应生成 h5.zip 文件

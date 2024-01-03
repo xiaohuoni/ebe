@@ -16,3 +16,4 @@ dist
 lib
 es
 pnpm-lock.yaml
+cache.json

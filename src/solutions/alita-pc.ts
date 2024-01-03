@@ -46,7 +46,7 @@ export default function createIceJsProjectBuilder(
             antd: '4.18.8',
             // TODO: 这些插件都需要装在开发项目中吗？
             '@lingxiteam/icons': '*',
-            '@lingxiteam/assets': '3.3.1-alpha.7',
+            '@lingxiteam/assets': '3.3.1-alpha.11',
             '@lingxiteam/engine-pc': '3.2.1-alpha.44',
             '@lingxiteam/engine-assets': '3.2.1-alpha.44',
             '@lingxiteam/sys-action': '3.2.1-alpha.44',

@@ -6,7 +6,7 @@ const ignorePlugin = require('esbuild-plugin-ignore');
 const fs = require('fs');
 const path = require('path');
 
-const UMD_GLOBAL_NAME = 'AliLowCodeCodeGenerator';
+const UMD_GLOBAL_NAME = 'LingxiCodeCodeGenerator';
 
 const enableAnalyze = process.env.ANALYZE === 'true';
 const buildConfig = {
@@ -24,7 +24,7 @@ const buildConfig = {
         resourceRegExp: /^fs$/,
         contextRegExp: /./,
       },
-      // @alilc/lowcode-types 中误依赖了 react，这里忽略下
+      // 依赖了 react，这里忽略下
       {
         resourceRegExp: /^react$/,
         contextRegExp: /./,

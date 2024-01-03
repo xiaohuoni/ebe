@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@alita/flow": "^3.1.1",
-    "@lingxiteam/assets": "3.3.1-alpha.8",
+    "@lingxiteam/assets": "3.3.1-alpha.11",
     "@monaco-editor/react": "^4.6.0",
     "alita": "^3.2.27",
     "antd": "^5.11.1",
