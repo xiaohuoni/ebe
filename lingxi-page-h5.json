@@ -194,7 +194,62 @@
       }
     ],
     "style": {},
-    "setEvents": [],
+    "setEvents": [
+      {
+        "dataName": "event",
+        "dataId": 170426857550391230,
+        "path": [],
+        "value": "useEffect",
+        "params": [],
+        "children": [
+          {
+            "dataName": "action",
+            "dataId": 170426857862397150,
+            "todoOptions": ["valueArray"],
+            "path": [170426857550391230],
+            "options": {
+              "compId": "console",
+              "compName": "system",
+              "id": "264355",
+              "pageJsonId": "181337953",
+              "value": ["124"]
+            },
+            "actionObjId": "console",
+            "actionObjName": "system",
+            "value": "console",
+            "elseIfs": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "dataName": "event",
+        "dataId": 170426948860685440,
+        "path": [],
+        "value": "stateChange",
+        "params": [],
+        "children": [
+          {
+            "dataName": "action",
+            "dataId": 170426951199965300,
+            "todoOptions": ["valueArray"],
+            "path": [170426948860685440],
+            "options": {
+              "compId": "console",
+              "compName": "system",
+              "id": "8323083",
+              "pageJsonId": "181337953",
+              "value": ["$functorsMap.SUM(10,20,30)$"]
+            },
+            "actionObjId": "console",
+            "actionObjName": "system",
+            "value": "console",
+            "elseIfs": [],
+            "children": []
+          }
+        ]
+      }
+    ],
     "editorVersion": "3.2.1.12210824",
     "createdEditorVersion": "1.0.12.09270957",
     "terminalType": "APP",
@@ -380,18 +435,19 @@
                         "todoOptions": ["compId", "valueList"],
                         "path": [170314290104851800],
                         "options": {
-                          "compId": "DformInput_203169",
-                          "compLib": "@/components",
+                          "compId": "sysSetValue",
                           "pageJsonId": "181337953",
-                          "compName": "DformInput",
+                          "compName": "system",
                           "id": "570535",
                           "valueList": {
                             "DformInput_203169": "$value$"
-                          }
+                          },
+                          "compid": ["DformInput_203169"]
                         },
-                        "actionObjId": "DformInput_203169",
-                        "actionObjName": "DformInput",
+                        "actionObjId": "sysSetValue",
+                        "actionObjName": "system",
                         "value": "sysSetValue",
+                        "elseIfs": [],
                         "children": [
                           {
                             "dataName": "callback",
@@ -399,11 +455,10 @@
                             "value": "callback1",
                             "path": [170314290104851800, 170314291780330430],
                             "params": [],
-                            "children": [],
-                            "elseIfs": []
+                            "elseIfs": [],
+                            "children": []
                           }
-                        ],
-                        "elseIfs": []
+                        ]
                       }
                     ]
                   }

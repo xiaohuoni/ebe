@@ -16,6 +16,7 @@ import { unwrapJsExprQuoteInJsx } from './jsxHelpers';
 import { isNodeSchema } from '../utils/deprecated';
 import { isValidIdentifier } from './validate';
 import { IProjectSchema } from '../types';
+import { CMDGeneratorEvent } from './CMDGenerator';
 
 function mergeNodeGeneratorConfig(
   cfg1: NodeGeneratorConfig,
@@ -164,17 +165,18 @@ function generateAttrs(
     Object.keys(events).forEach((eventName: any) => {
       if (isValidIdentifier(eventName)) {
         const { value = [] } = events[eventName];
-        const renderEvent = `(${value.params
-          .map((i: { name: any }) => i.name + ': any')
-          .join(',')})=>{const eventData: any = [${JSON.stringify(
-          value[0],
-        )},];eventData.params = ${JSON.stringify(
-          value.params,
-        )} || [];CMDGenerator(eventData, {${value.params
-          .map((i: { name: any }) => i.name)
-          .join(',')}}, '${eventName}', { id: '${nodeItem?.id}',name: '${
-          nodeItem?.id
-        }',type: '${nodeItem?.type}',platform: '${nodeItem?.platform}',});}`;
+        // const renderEvent = `(${value.params
+        //   .map((i: { name: any }) => i.name + ': any')
+        //   .join(',')})=>{const eventData: any = [${JSON.stringify(
+        //   value[0],
+        // )},];eventData.params = ${JSON.stringify(
+        //   value.params,
+        // )} || [];CMDGenerator(eventData, {${value.params
+        //   .map((i: { name: any }) => i.name)
+        //   .join(',')}}, '${eventName}', { id: '${nodeItem?.id}',name: '${
+        //   nodeItem?.id
+        // }',type: '${nodeItem?.type}',platform: '${nodeItem?.platform}',});}`;
+        const renderEvent = CMDGeneratorEvent(value, nodeItem, eventName);
         pieces = pieces.concat(
           generateAttr(
             eventName,

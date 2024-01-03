@@ -166,6 +166,7 @@ const Hoc = (Component: any, fieldProps: any) => {
 
   return HOC;
 };
+// 低代码组件中，表单组件，要根据 fieldProps 配置，操作 value 和 setValue
 export const DAddressPicker = Hoc(_DAddressPicker, {
   trigger: 'onChange',
   valuePropName: 'defaultValue',

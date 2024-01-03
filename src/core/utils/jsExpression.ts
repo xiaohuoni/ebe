@@ -6,6 +6,7 @@ import { isJSExpression, isJSFunction, isEventData } from './deprecated';
 import { CodeGeneratorError, IScope } from '../types';
 import { transformExpressionLocalRef, ParseError } from './expressionParser';
 import { isJSExpressionFn } from './common';
+import { CMDGeneratorLifeCycle } from './CMDGenerator';
 
 function parseFunction(content: string): t.FunctionExpression | null {
   try {
@@ -148,28 +149,7 @@ export function generateFunction(
   }
 
   if (isEventData(value)) {
-    const { value: v = [] } = value;
-    // 同名的事件增加后缀
-    const count = {} as any;
-    const renderEvent = v.map((v1: any) => {
-      let suffix = '';
-      if (count[v1.type]) {
-        count[v1.type] += 1;
-        suffix = count[v1.type];
-      } else {
-        count[v1.type] = 1;
-      }
-      return `const eventData${v1.type}${suffix}: any = [${JSON.stringify(
-        v1,
-      )},];eventData${v1.type}${suffix}.params = ${JSON.stringify(
-        v.params,
-      )} || [];CMDGenerator(eventData${v1.type}${suffix}, {}, '${
-        v1.type
-      }', { id: '${v1.type}',name: '${v1.type}',type: '${v1.type}',platform: '${
-        config.name
-      }',});`;
-    });
-    return renderEvent;
+    return CMDGeneratorLifeCycle(value?.value ?? [], config);
   }
 
   throw new CodeGeneratorError('Not a JSFunction or JSExpression');

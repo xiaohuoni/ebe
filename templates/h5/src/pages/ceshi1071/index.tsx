@@ -23,6 +23,8 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
   style,
 }) => {
   useEffect(() => {
+    console.log(124);
+
     setPageNavBar({
       pagePath: '/ceshi1071',
       navBar: {
@@ -34,7 +36,9 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
     return () => {};
   }, []);
 
-  useEffect(() => {});
+  useEffect(() => {
+    console.log(functorsMap?.SUM(10, 20, 30));
+  });
 
   return (
     <div style={style}>
@@ -107,17 +111,45 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
               textAlign: 'right',
             }}
             onChange={(value: any) => {
+              const eventDatasysSetValue: any = [
+                {
+                  type: 'sysSetValue',
+                  dataId: 170314291780330430,
+                  options: {
+                    compId: ['DformInput_203169'],
+                    pageJsonId: '181337953',
+                    compName: 'system',
+                    id: '570535',
+                    valueList: { DformInput_203169: '$value$' },
+                    compid: ['DformInput_203169'],
+                  },
+                  path: [170314290104851800],
+                  line_number: 1,
+                  callback1: [],
+                },
+              ];
+              eventDatasysSetValue.params =
+                [
+                  { title: '单行输入框取值', value: '$value$', name: 'value' },
+                ] || [];
+              CMDGenerator(eventDatasysSetValue, { value }, 'sysSetValue', {
+                id: 'sysSetValue',
+                name: 'sysSetValue',
+                type: 'sysSetValue',
+                platform: 'h5',
+              });
+
               const eventData: any = [
                 {
                   type: 'sysSetValue',
                   dataId: 170314291780330430,
                   options: {
-                    compId: 'DformInput_203169',
-                    compLib: '@/components',
+                    compId: ['DformInput_203169'],
                     pageJsonId: '181337953',
-                    compName: 'DformInput',
+                    compName: 'system',
                     id: '570535',
                     valueList: { DformInput_203169: '$value$' },
+                    compid: ['DformInput_203169'],
                   },
                   path: [170314290104851800],
                   line_number: 1,

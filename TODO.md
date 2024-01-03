@@ -40,6 +40,7 @@
 - [] form onValuesChange - listenerOnValueChange
 - [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
 - [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67
-- [ ] 命令源码化
+- [x] 命令源码化 - console
+- [ ] 数据源清理，只保留必须的字段
 
 调试服务器 http://172.21.72.205:8088/

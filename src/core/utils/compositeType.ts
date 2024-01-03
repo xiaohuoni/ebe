@@ -101,7 +101,7 @@ function generateLXComponentString(value: any): string {
   // 去掉头尾##
   return value.replace(/^##{|}##$/g, '');
 }
-function generateVarString(value: any): string {
+export function generateVarString(value: any): string {
   // 去掉头尾$，感觉不太保险
   // 去掉尾部分号 ; 不知道加这个的意义是啥！
   // 将 `.` 改成 `?.`
