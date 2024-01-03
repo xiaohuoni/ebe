@@ -15,6 +15,7 @@ import {
   IContainerInfo,
 } from '../../core/types';
 import { ensureValidClassName } from '../../core/utils/validate';
+import { cleanDataSource } from '../../utils/schema/cleanDataSource';
 
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
@@ -157,7 +158,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           'pageId 未找到'
         }',
         hasLogin: ${!!ir.ignoreLogin},
-        dataSource: ${JSON.stringify(ir.dataSource ?? [])},
+        dataSource: ${JSON.stringify(cleanDataSource(ir.dataSource ?? []))},
         defaultState:${JSON.stringify(defaultState)},
       });`,
       linkAfter: [

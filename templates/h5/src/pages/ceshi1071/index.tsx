@@ -23,6 +23,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
   style,
 }) => {
   useEffect(() => {
+    // console 170426857862397150
     console.log(124);
 
     setPageNavBar({
@@ -37,6 +38,7 @@ const Ceshi1071$$Page: React.FC<PageProps> = ({
   }, []);
 
   useEffect(() => {
+    // console 170426951199965300
     console.log(functorsMap?.SUM(10, 20, 30));
   });
 
@@ -250,12 +252,9 @@ export default withPageHOC(Ceshi1071$$Page, {
   hasLogin: true,
   dataSource: [
     {
-      id: 169891588296195260,
       name: 'nothing',
-      description: 'nothing',
       source: 'custom',
       type: 'object',
-      filterParams: [],
       outParams: [
         {
           attrId: '2606065',
@@ -266,16 +265,12 @@ export default withPageHOC(Ceshi1071$$Page, {
           showInput: true,
         },
       ],
-      config: { hooks: [] },
       rootOutParams: { type: 'static', value: '' },
     },
     {
-      id: 169958147710874270,
       name: 'list',
-      description: 'list',
       source: 'custom',
       type: 'objectArray',
-      filterParams: [],
       outParams: [
         {
           attrId: '007221',
@@ -286,7 +281,6 @@ export default withPageHOC(Ceshi1071$$Page, {
           showInput: false,
         },
       ],
-      config: { hooks: [] },
       rootOutParams: { type: 'static', value: '[{param:1},{param:}]2' },
     },
   ],
