@@ -35,6 +35,7 @@ import { $$compDefine, SandBoxContext } from '@lingxiteam/types';
 import { history } from 'alita';
 import React, { useEffect, useRef, useState } from 'react';
 import ModalView from './Modal';
+import EngineMapping from '@lingxiteam/engine-render/es/utils/EngineMapping';
 
 const getStaticDataSourceService = (
   ds: any[],
@@ -92,6 +93,7 @@ export const withPageHOC = (
       });
       const awaitHandleData = new AwaitHandleData();
       const defaultContext = {
+        engineRelation: EngineMapping.publicMethod,
         lcdpApi: appInst.lcdpApi,
         transformValueDefined,
         processCustomParams,

@@ -38,8 +38,9 @@ export async function run(msg: {
     if (typeof createAppBuilder !== 'function') {
       throw new Error(`solution '${solution}' is invalid`);
     }
+    print('generating from options: %o', options);
 
-    const appBuilder = createAppBuilder(options);
+    const appBuilder = createAppBuilder({ options });
 
     print('generating from schema: %o', msg.schema);
 

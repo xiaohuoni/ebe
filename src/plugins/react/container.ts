@@ -35,7 +35,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: CLASS_DEFINE_CHUNK_NAME.Start,
       content: `
-      const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, injectData, refs, state, functorsMap, getValue, componentItem, style }) => {`,
+      const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, injectData, refs, state, functorsMap, getStaticDataSourceService, getValue, componentItem, style }) => {`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
         COMMON_CHUNK_NAME.InternalDepsImport,

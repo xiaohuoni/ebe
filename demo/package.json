@@ -30,11 +30,11 @@
     "archiver": "^6.0.1",
     "body-parser": "^1.20.2",
     "compression": "^1.7.4",
-    "ebe": "file://../",
+    "ebe": "0.0.14",
     "es6-proxy-polyfill": "^2.1.1",
     "file-saver": "^2.0.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",

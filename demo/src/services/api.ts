@@ -7,10 +7,9 @@ import bu from './bu.json';
 
 const useMock = false;
 
-security.httpEncryption.start({
-  mode: '1.0',
-});
-
+// security.httpEncryption.start({
+//   mode: '1.0',
+// });
 export async function query(): Promise<any> {
   return request('/api/hello', { method: 'POST' });
 }
@@ -30,13 +29,17 @@ export async function findBusiCompById(params): Promise<any> {
   const headers: any = {
     'Content-Type': 'application/json',
     'APP-ID': params.appId,
-    'X-B-Auth': 1,
-    'X-B-Target-Id': params.pageId,
+    'X-B-AUTH': 1,
+    'X-B-TARGET-ID': params.pageId,
   };
   return request('/app/manager/busiComp/findBusiCompById', {
     params,
     headers: {
       ...headers,
+      'X-SIGN': security.httpEncryption.createHttpSignStr(
+        '/app/manager/busiComp/findBusiCompById',
+        { method: 'GET', headers, body: {}, search: params },
+      ),
     },
   });
 }
@@ -58,6 +61,10 @@ export async function findAppPolymerizationInfo(params): Promise<any> {
     method: 'GET',
     headers: {
       ...headers,
+      'X-SIGN': security.httpEncryption.createHttpSignStr(
+        '/app/appPage/findAppPolymerizationInfo',
+        { method: 'GET', headers, body: {}, search: params },
+      ),
     },
   });
 }
@@ -72,8 +79,8 @@ export async function getPageVersionById(params): Promise<any> {
   const headers: any = {
     'Content-Type': 'application/json',
     'APP-ID': params.appId,
-    'X-B-Auth': 1,
-    'X-B-Target-Id': params.pageId,
+    'X-B-AUTH': 1,
+    'X-B-TARGET-ID': params.pageId,
   };
 
   return request('/app/appPage/getPageVersionById', {
@@ -81,6 +88,10 @@ export async function getPageVersionById(params): Promise<any> {
     method: 'GET',
     headers: {
       ...headers,
+      'X-SIGN': security.httpEncryption.createHttpSignStr(
+        '/app/appPage/getPageVersionById',
+        { method: 'GET', headers, body: {}, search: params },
+      ),
     },
   });
 }

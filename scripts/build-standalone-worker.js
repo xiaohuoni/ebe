@@ -23,10 +23,10 @@ const buildConfig = {
         contextRegExp: /./,
       },
       // 依赖了 react，这里忽略下
-      {
-        resourceRegExp: /^react$/,
-        contextRegExp: /./,
-      },
+      // {
+      //   resourceRegExp: /^react$/,
+      //   contextRegExp: /./,
+      // },
       {
         resourceRegExp: /setter-config/,
         contextRegExp: /lowcode-types|..[\\/]types/,

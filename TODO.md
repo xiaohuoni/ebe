@@ -41,6 +41,12 @@
 - [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
 - [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67
 - [x] 命令源码化 - console
+- [ ] bug 0?.00% . 的前后是数字的时候，不能改成 ?.
 - [ ] 数据源清理，只保留必须的字段
+- [x] .app-mobile/src/pages/sousuotanchuang0020/index.tsx:246 ReferenceError: getStaticDataSourceService is not defined
+- [ ] 命令 callParentCustomFunc 用于调用父级页面自定义方法
+- [ ] closeModel 关闭弹窗
+- [ ] urlParam url 参数需要全局
+- [ ] 循环和列表等容器，命令需要传递，item 和 i ，MemoLoopItem 的组件的事件中
 
 调试服务器 http://172.21.72.205:8088/

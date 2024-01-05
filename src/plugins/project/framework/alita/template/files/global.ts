@@ -24,6 +24,12 @@ import * as antdMobile5 from 'antd-mobile-5';
 import { Toast } from 'antd-mobile-5';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { security } from '@lingxiteam/assets';
+
+security.httpEncryption.start({
+  mode: '1.0',
+});
+
 // @ts-ignore
 window.engineType = 'mobile';
 

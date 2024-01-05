@@ -134,9 +134,11 @@ const preprocessComponentSchema = (
     newSchema.props = aprops;
   });
 
-  const { popoverSetting, ...otherProps } = newSchema.props;
+  const { popoverSetting, ...otherProps } = newSchema?.props ?? {};
   // {value: 'popoverSetting={{"options": {"tipType": "2",\n…"destroyOnHide": false,\n"placement": "top"}}}', type: 'NodeCodePieceAttr'}
   if (popoverSetting) {
+    // 如果是弹窗的话，需要用组件包裹原始组件
+    // @ts-ignore
     return {
       compLib: 'antd-mobile-5',
       type: 'Popover',

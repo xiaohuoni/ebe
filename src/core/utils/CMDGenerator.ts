@@ -33,15 +33,19 @@ function getConsoleFunction(item: any, platform?: string) {
       if (isJSVar(v)) {
         return generateVarString(v);
       }
-      return v;
+      return `'${v}'`;
     })
     .filter(Boolean)
     .join(',')})`;
 }
 
 const CMDGenerator = (item: any, params: any, platform: string) => {
+  if (!item?.type) {
+    // 没有事件就抛弃
+    return '';
+  }
   // 先尝试人工实现，再整理
-  if (item.type === 'console') {
+  if (item?.type === 'console') {
     return getConsoleFunction(item);
   }
   let suffix = '';
@@ -81,16 +85,7 @@ export const CMDGeneratorEvent = (
   const renderEvent = `(${value.params
     .map((i: { name: any }) => i.name + ': any')
     .join(',')})=>{ ${CMDGenerator(value[0], value.params, nodeItem?.platform)}
-        
-        const eventData: any = [${JSON.stringify(
-          value[0],
-        )},];eventData.params = ${JSON.stringify(
-    value.params,
-  )} || [];CMDGenerator(eventData, {${value.params
-    .map((i: { name: any }) => i.name)
-    .join(',')}}, '${eventName}', { id: '${nodeItem?.id}',name: '${
-    nodeItem?.id
-  }',type: '${nodeItem?.type}',platform: '${nodeItem?.platform}',});}`;
+    }`;
 
   return renderEvent;
 };

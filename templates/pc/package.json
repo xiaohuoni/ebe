@@ -24,8 +24,8 @@
   "dependencies": {
     "@alita/flow": "*",
     "@lingxiteam/assets": "3.3.1-alpha.11",
-    "@lingxiteam/engine-assets": "3.3.1-alpha.13",
-    "@lingxiteam/engine-command": "3.3.1-alpha.13",
+    "@lingxiteam/engine-assets": "3.3.1-alpha.11",
+    "@lingxiteam/engine-command": "3.3.1-alpha.11",
     "@lingxiteam/engine-meta": "3.2.1-alpha.44",
     "@lingxiteam/engine-pc": "3.2.1-alpha.44",
     "@lingxiteam/engine-platform": "3.2.1-alpha.44",

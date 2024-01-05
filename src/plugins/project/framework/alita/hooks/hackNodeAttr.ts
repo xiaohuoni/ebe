@@ -53,6 +53,8 @@ export default function hackEngineApis(
   if (
     nodeTags === 'Loop' ||
     nodeTags === 'DynamicList' ||
+    nodeTags === 'LoadMore' ||
+    nodeTags === 'BlockSelect' ||
     nodeTags === 'DformList'
   ) {
     // Loop 不需要孩子
@@ -71,7 +73,7 @@ export default function hackEngineApis(
             renderer: null,
             MemoLoopItem: (props: any) => {
               const item = props[props.itemKey];
-              const i = props[props.indexKey];
+              const i = props[props.indexKey] ?? props?.i;
               return (<>${LoopchildrenStr}</>)
             },
           },
