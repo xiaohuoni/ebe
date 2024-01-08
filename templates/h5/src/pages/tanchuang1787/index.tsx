@@ -7,7 +7,9 @@ import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
-const Model7813$$MobileModal: React.FC<PageProps> = ({
+import { setPageNavBar } from 'alita';
+
+const Tanchuang1787$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
   injectData,
@@ -20,6 +22,14 @@ const Model7813$$MobileModal: React.FC<PageProps> = ({
   style,
 }) => {
   useEffect(() => {
+    setPageNavBar({
+      pagePath: '/tanchuang1787',
+      navBar: {
+        pageTitle: 'tanchuang',
+        hideNavBar: false,
+      },
+    });
+
     return () => {};
   }, []);
 
@@ -30,21 +40,21 @@ const Model7813$$MobileModal: React.FC<PageProps> = ({
       <View
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: 'rgba(255, 255, 255, 1)' }}
-        visible={true}
         $$componentItem={{
-          id: 'View_136209_1',
-          uid: 'View_136209_1',
+          id: 'View_244623_1',
+          uid: 'View_244623_1',
           type: 'View',
           ...componentItem,
         }}
+        visible={true}
         style={{
           height: '100%',
           display: 'block',
           padding: '12px 12px 12px 12px',
           flexDirection: 'column',
-          overflowY: 'scroll',
+          overflowY: 'auto',
         }}
-        ref={(r: any) => (refs['View_136209_1'] = r)}
+        ref={(r: any) => (refs['View_244623_1'] = r)}
         {...injectData}
       >
         <Button
@@ -58,8 +68,8 @@ const Model7813$$MobileModal: React.FC<PageProps> = ({
           status={'1'}
           children={'按钮'}
           $$componentItem={{
-            id: 'Button_43856206',
-            uid: 'Button_43856206',
+            id: 'Button_9002984',
+            uid: 'Button_9002984',
             type: 'Button',
             ...componentItem,
           }}
@@ -68,30 +78,40 @@ const Model7813$$MobileModal: React.FC<PageProps> = ({
           readOnly={false}
           style={{ textAlign: 'center' }}
           onClick={(e: any) => {
-            const eventDatacloseModal: any = [
+            const eventDatashowAppCustomModal: any = [
               {
-                type: 'closeModal',
-                dataId: 170442071992190200,
+                type: 'showAppCustomModal',
+                dataId: 170442067444027460,
                 options: {
-                  compId: 'closeModal',
+                  compId: 'showAppCustomModal',
                   compName: 'system',
-                  id: '82137',
-                  pageJsonId: '136209',
+                  id: '83565',
+                  pageJsonId: '244623',
+                  modalname: '/model7813',
+                  pageId: '1049266938740068352',
+                  modalPath: '/model7813',
                 },
-                path: [170442070724278180],
+                path: [170442066627560300],
                 line_number: 1,
+                callback1: [],
+                callback2: [],
               },
             ];
-            eventDatacloseModal.params =
+            eventDatashowAppCustomModal.params =
               [{ title: '事件对象', value: '$e$', name: 'e' }] || [];
-            CMDGenerator(eventDatacloseModal, { e }, 'closeModal', {
-              id: 'closeModal',
-              name: 'closeModal',
-              type: 'closeModal',
-              platform: 'h5',
-            });
+            CMDGenerator(
+              eventDatashowAppCustomModal,
+              { e },
+              'showAppCustomModal',
+              {
+                id: 'showAppCustomModal',
+                name: 'showAppCustomModal',
+                type: 'showAppCustomModal',
+                platform: 'h5',
+              },
+            );
           }}
-          ref={(r: any) => (refs['Button_43856206'] = r)}
+          ref={(r: any) => (refs['Button_9002984'] = r)}
           {...injectData}
         />
       </View>
@@ -99,9 +119,9 @@ const Model7813$$MobileModal: React.FC<PageProps> = ({
   );
 };
 
-export default withPageHOC(Model7813$$MobileModal, {
+export default withPageHOC(Tanchuang1787$$Page, {
   appId: '1024143353417228288',
-  pageId: '1049266938740068352',
+  pageId: '1060380198735069184',
   hasLogin: false,
   dataSource: [],
   defaultState: { bizId: '', sceneCode: '', bizData: '' },

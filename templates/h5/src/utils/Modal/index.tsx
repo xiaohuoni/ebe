@@ -77,7 +77,7 @@ const ModalManager = forwardRef<openModalRef, modePropsType>((props, ref) => {
     }
   };
 
-  const close = (modalId: string, pageId: string) => {
+  const closeModal = (modalId: string, pageId: string) => {
     let canClose = false;
     if (pageId) {
       const modal = modalMap[pageId];
@@ -105,7 +105,7 @@ const ModalManager = forwardRef<openModalRef, modePropsType>((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     openModal,
-    closeModal: close,
+    closeModal,
   }));
 
   const showModel = () => {

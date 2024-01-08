@@ -1,3 +1,4 @@
+import { security } from '@lingxiteam/assets';
 import * as DynamicForm from '@lingxiteam/dform';
 import {
   messageApi as message,
@@ -17,6 +18,11 @@ import * as antdMobile5 from 'antd-mobile-5';
 import { Toast } from 'antd-mobile-5';
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+security.httpEncryption.start({
+  mode: '1.0',
+});
+
 // @ts-ignore
 window.engineType = 'mobile';
 

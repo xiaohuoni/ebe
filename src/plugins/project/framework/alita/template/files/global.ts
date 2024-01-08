@@ -5,7 +5,8 @@ export default function getFile(): [string[], ResultFile] {
   const file = createResultFile(
     'global',
     'ts',
-    `import * as DynamicForm from '@lingxiteam/dform';
+    `import { security } from '@lingxiteam/assets';
+import * as DynamicForm from '@lingxiteam/dform';
 import {
   messageApi as message,
   Modal,
@@ -24,7 +25,6 @@ import * as antdMobile5 from 'antd-mobile-5';
 import { Toast } from 'antd-mobile-5';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { security } from '@lingxiteam/assets';
 
 security.httpEncryption.start({
   mode: '1.0',

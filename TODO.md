@@ -45,7 +45,7 @@
 - [ ] 数据源清理，只保留必须的字段
 - [x] .app-mobile/src/pages/sousuotanchuang0020/index.tsx:246 ReferenceError: getStaticDataSourceService is not defined
 - [ ] 命令 callParentCustomFunc 用于调用父级页面自定义方法
-- [ ] closeModel 关闭弹窗
+- [x] closeModel 关闭弹窗
 - [ ] urlParam url 参数需要全局
 - [ ] 循环和列表等容器，命令需要传递，item 和 i ，MemoLoopItem 的组件的事件中
 

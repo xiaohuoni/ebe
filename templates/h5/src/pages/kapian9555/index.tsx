@@ -14,6 +14,7 @@ const Kapian9555$$MobilePopover: React.FC<PageProps> = ({
   refs,
   state,
   functorsMap,
+  getStaticDataSourceService,
   getValue,
   componentItem,
   style,

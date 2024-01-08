@@ -1,8 +1,43 @@
 import { parse } from 'qs';
 import React from 'react';
 
-export const RootProps = {};
+export const RootProps = {
+  '1049266938740068352': {
+    path: '/model7813',
+    fileName: '/model7813',
+    type: '/model7813',
+    pageId: '1049266938740068352',
+    width: '99vw',
+    mode: 'alert',
+    height: '99vh',
+    closeOnClickOverlay: true,
+    destroyOnClose: true,
+    showCloseButton: true,
+  },
+};
 const Pages: any = {
+  '/model7813': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/model7813__index" */ '@/pages/model7813'
+      ),
+  ),
+  '1049266938740068352': React.lazy(
+    () =>
+      import(/* webpackChunkName: "1049266938740068352" */ '@/pages/model7813'),
+  ),
+  '/tanchuang1787': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/tanchuang1787__index" */ '@/pages/tanchuang1787'
+      ),
+  ),
+  '1060380198735069184': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "1060380198735069184" */ '@/pages/tanchuang1787'
+      ),
+  ),
   '/asd5371': React.lazy(
     () =>
       import(

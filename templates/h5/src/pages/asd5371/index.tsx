@@ -18,6 +18,7 @@ const Asd5371$$Page: React.FC<PageProps> = ({
   refs,
   state,
   functorsMap,
+  getStaticDataSourceService,
   getValue,
   componentItem,
   style,

@@ -15,6 +15,7 @@ import Meta from '@lingxiteam/engine-meta';
 import { createApp, getApis, user } from '@lingxiteam/engine-platform';
 import monitt from '@lingxiteam/engine-plog';
 import AwaitHandleData from '@lingxiteam/engine-render-core/es/utils/AwaitHandleData';
+import EngineMapping from '@lingxiteam/engine-render/es/utils/EngineMapping';
 import Sandbox from '@lingxiteam/engine-sandbox';
 import {
   copyText,
@@ -26,8 +27,8 @@ import {
 } from '@lingxiteam/engine-utils';
 import { $$compDefine, SandBoxContext } from '@lingxiteam/types';
 import { history } from 'alita';
-import React, { useEffect, useRef, useState } from 'react';
-import ModalView from './Modal';
+import React, { useContext, useEffect, useState } from 'react';
+import { Context } from './Context/context';
 
 const getStaticDataSourceService = (
   ds: any[],
@@ -61,19 +62,21 @@ export const withPageHOC = (
   options: PageHOCOptions,
 ) => {
   return (props: any) => {
-    const ModalManagerRef = useRef<any>(); // 页面弹窗的所有实例
+    const { ModalManagerRef, refs } = useContext(Context);
     const [data, setData] = useState<any>();
-    const refs = useRef<any>({});
     let meta: Meta;
     const getLocale = (_: string, t: string) => t || _;
     const init = async () => {
+      const appId = options?.appId;
+      // 页面容器会传 pageId
+      const pageId = props?.pageId ?? options?.pageId;
       const api = getApis({
-        appId: options?.appId,
+        appId,
         // 页面容器会传 pageId
-        pageId: props?.pageId ?? options?.pageId,
+        pageId,
       });
       const appInst: any = await createApp({
-        appId: options?.appId,
+        appId,
         isInstallComponent: false,
         isUsePermission: false,
         isCheckUsedOldFlow: false,
@@ -85,6 +88,9 @@ export const withPageHOC = (
       });
       const awaitHandleData = new AwaitHandleData();
       const defaultContext = {
+        appId,
+        pageId,
+        engineRelation: EngineMapping.publicMethod,
         lcdpApi: appInst.lcdpApi,
         transformValueDefined,
         processCustomParams,
@@ -106,6 +112,9 @@ export const withPageHOC = (
         },
         runAwaitQueue: (comId: string) => {
           awaitHandleData.runQueue(comId, refs);
+        },
+        closeModal: (modalId: string) => {
+          ModalManagerRef.current?.closeModal(modalId, pageId);
         },
       };
       meta = new Meta({
@@ -249,15 +258,6 @@ export const withPageHOC = (
     if (!data || Object.keys(data).length === 0) {
       return <div>loading</div>;
     }
-    return (
-      <>
-        <WrappedComponent {...data} {...props} />
-        <ModalView
-          getLocale={getLocale as any}
-          appId={options.appId}
-          ref={ModalManagerRef}
-        />
-      </>
-    );
+    return <WrappedComponent {...data} {...props} />;
   };
 };

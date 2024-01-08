@@ -2,6 +2,7 @@ import { ResultDir, IParseResult, PostProcessor } from '../../../../../core';
 import { createResultDir } from '../../../../../core/utils/resultHelper';
 import { runFileGenerator } from '../../../../../core/utils/templateHelper';
 import constants from './files/constants';
+import context from './files/context';
 import editorconfig from './files/editorconfig';
 import env from './files/env';
 import factory from './files/factory';
@@ -10,6 +11,7 @@ import global from './files/global';
 import globalless from './files/globalless';
 import indexpage from './files/indexpage';
 import indexpageless from './files/indexpageless';
+import layout from './files/layout';
 import modalindex from './files/modalindex';
 import modalmodal from './files/modalmodal';
 import modaltypes from './files/modaltypes';
@@ -31,6 +33,7 @@ export function generateStaticFiles(
 ): ResultDir {
   const hasIndex = !!parseResult?.staticFiles?.pageIdMapping?.['/index'];
   runFileGenerator(postProcessors, root, constants);
+  runFileGenerator(postProcessors, root, context);
   runFileGenerator(postProcessors, root, editorconfig);
   runFileGenerator(postProcessors, root, env);
   runFileGenerator(postProcessors, root, factory, parseResult?.staticFiles);
@@ -42,6 +45,7 @@ export function generateStaticFiles(
     runFileGenerator(postProcessors, root, indexpage);
     runFileGenerator(postProcessors, root, indexpageless);
   }
+  runFileGenerator(postProcessors, root, layout, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, modalindex);
   runFileGenerator(postProcessors, root, modalmodal);
   runFileGenerator(postProcessors, root, modaltypes);

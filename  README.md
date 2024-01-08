@@ -1,62 +1,65 @@
-## @lingxiteam/code-creator RFC
+# ebe 端构建到端方案
 
-## 使用
+## 出码模块的基本原理
 
-```js
-// 解决方案的配置
-const option = {
-  template,
-  plugins,
-  postProcessors,
-  extraContextData,
-};
+出码模块的核心任务是将低代码编排出的页面 DSL（Domain Specific Language，领域特定语言）通过解析和拆解，转换成最终可执行的代码。
 
-// 生成一个解决方案
-const solution = createSolution(option);
-
-// 生成一个解决方案实例
-const runner = solution();
-
-// 仅生成当前页面
-const page = runner.createPage(schema);
-
-// 生成一个可执行项目
-const pkg = runner.createPkg(scheme);
-
-// 生成 zip
-await publishers.zip({
-  project: pkg, // 上一步生成的 project
-  outputPath: '/path/to/your/output/dir', // 输出目录
-  projectSlug: 'lingxi-project-slug', // 项目标识
-});
+```mermaid
+graph LR
+A[schema] --> B[ebe]
+C[solution] --> B
+B --> D[源代码]
 ```
 
-## 实现
+这个过程的输入和输出是非常直观的：输入是符合特定规范的搭建协议（schema），以及具体的项目框架（solution）；输出则是生成的源代码，通常以目录树的形式进行描述。
 
-### 前置处理
+出码模块的流程和编译器的流程类似，都是将代码的一种表现形式转换成另一种表现形式。其工作流程大致分为如下几个步骤：获取数据、协议解析、前置优化、代码生成、后置优化。
 
-#### preparer
+```mermaid
+graph LR
+A[获取数据] --> B[协议解析]
+B --> C[前置优化]
+C --> D[代码生成]
+D --> E[后置优化]
+E --> F[源代码]
+```
 
-preparer 是准备给 checker 和 runner 用的 context，基于 schema 分析结果
+## 出码流程详解
 
-#### checker
+### 获取页面数据
 
-对分析结果做一些必要性的监测校验，简单的比如 schema 是否完整
+通过网络请求使用平台接口获取到所有需要的数据
 
-#### runner
+```mermaid
+graph
+A[开始] --> B[输入 appId 和 platform]
+B --> C[「http」获取全部的页面信息]
+C --> Z[记录页面的对应关系 pageIdMapping]
+C --> D[「http」获取全部的页面DSL信息]
+D --> E[<a href="#分析使用中的业务组件">分析使用中的业务组件</a>]
+E --> F[「http」获取全部的业务组件DSL信息]
+D --> G[合并页面数据（业务组件实质上是页面）]
+F --> G
+G --> H[<a href="#清理页面数据">清理页面数据</a>，减少网络传输]
+H --> Y[得到所有页面DSL（pages）和对应关系 pageIdMapping]
+Z --> Y
+Y --> X[下一步]
+```
 
-解决方案的执行者，同样的数据，针对不同的解决方案，产出不同
+#### 分析使用中的业务组件
 
-### 解决方案
+业务组件的每一次被使用都是一个新的实例，但是实际上可能用到的是同一个业务组件，在页面的 DSL 中只保存了业务组件的实例 id ，因此需要整理后获取到真实在使用的业务组件配置数据（DSL）
 
-#### h5
+#### 清理页面数据
 
-针对移动端平台的解决方案，包含执行插件和模版等内容
+某一些数据在源码生成时没有用处的，可以在此时进行首次清理
 
-#### pc
+### 协议解析
 
-针对 pc 平台的解决方案，包含执行插件和模版等内容
+协议解析的主要任务是将输入的 schema 解析成更适合出码模块内部使用的数据结构。这样在后面的代码生成过程中就可以直接用这些数据，不必重复解析。
 
-### postprocessor
+## 参考文档
 
-后置处理器，对最终产物做一个后置优化，如 prettier 等
+[出码模块设计](https://lowcode-engine.cn/site/docs/guide/design/generator)
+
+[使用出码功能](https://lowcode-engine.cn/site/docs/guide/expand/runtime/codeGeneration)
