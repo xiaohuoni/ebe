@@ -30,14 +30,15 @@
 - [x] keepalive dsl 中有 pageDynamicFlag
 - [x] BASE_URL 请求的主路径支持配置
 - [x] 页面 index 冲突
-- [ ] findAppPolymerizationInfo createApp 加个配置不请求
+
 - [x] 页面类型为气泡卡片
 - [x] popoverSetting 消息提示，是组件属性，但是逻辑是给他加一个父级容器
 - [x] addToAwaitQueue @lingxiteam/engine-render-core/es/utils/AwaitHandleData
 - [x] form item fieldProps - setValue
 - [x] form item ref 是处理过的
 - [x] prettier 格式化规则使用 alita/prettier
-- [] form onValuesChange - listenerOnValueChange
+- [ ] findAppPolymerizationInfo createApp 加个配置不请求
+- [ ] form onValuesChange - listenerOnValueChange
 - [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
 - [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67
 - [x] 命令源码化 - console
@@ -50,3 +51,9 @@
 - [ ] 循环和列表等容器，命令需要传递，item 和 i ，MemoLoopItem 的组件的事件中
 
 调试服务器 http://172.21.72.205:8088/
+
+资产DSL - 林喜
+PC 端 实习生打卡
+DICT
+指令源码化
+源数据 dataSource 清理

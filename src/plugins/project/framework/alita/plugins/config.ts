@@ -13,7 +13,7 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
       ...pre,
     };
 
-    const packageJson = `import { defineConfig } from 'alita';
+    const cfg = `import { defineConfig } from 'alita';
     import proxy from './proxy';
     
     export default defineConfig({
@@ -51,7 +51,7 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
       type: ChunkType.STRING,
       fileType: FileType.TS,
       name: COMMON_CHUNK_NAME.FileMainContent,
-      content: packageJson,
+      content: cfg,
       linkAfter: [],
     });
 
