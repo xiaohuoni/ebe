@@ -300,8 +300,8 @@ B --> C[生成属性字符串]
 全部环节生成完毕后，按照 标签、属性、子集的特定顺序将字符串拼接到一起。与其他插件相同的是，JSX 生成也是一个插件，可以用下面的伪代码表达。
 
 ```tsx
-const name = 'RenderStart'
-const linkAfter = 'RenderJSX'
+const name = 'RenderJSX'
+const linkAfter = 'RenderStart'
 const content = `<${tagName}${attrsParts}>${childrenParts}</${tagName}>`
 ```
 最终生成代码为

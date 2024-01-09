@@ -149,6 +149,7 @@ const Page = () => {
       appId: values.appId,
       pageIdMapping,
       busiCompMapping,
+      baseURl: 'http://172.21.72.205:10000/',
     };
     console.log(options);
     let cleanedTree = cleanTree(pageDSLS, ['path', 'originCode']); // 清理字段'b'和字段'e'
