@@ -126,8 +126,8 @@ function generateAttrs(
 ): CodePiece[] {
   // event 是预处理之后塞进去的
   // @ts-ignore
-  const { props, style, events, type } = nodeItem;
-
+  const { props, style: _style, customStyle = {}, events, type } = nodeItem;
+  const style = { ..._style, ...customStyle };
   let pieces: CodePiece[] = [];
 
   if (props) {

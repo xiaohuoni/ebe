@@ -34,8 +34,10 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     };
 
     const ir = next.ir as IContainerInfo;
+    const cfg = next.contextData.options;
+    const isMobile = cfg?.platform === 'h5';
     // 只有在页面级别才生效
-    if (ir.type !== 'Page') {
+    if (ir.type !== 'Page' || !isMobile) {
       return next;
     }
     next.ir.deps.push(getImportFrom('alita', 'setPageNavBar'));
@@ -64,7 +66,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
 
     next.chunks.push({
       type: ChunkType.STRING,
-      fileType: cfg.fileType,
+      fileType: FileType.TSX,
       name: MOBILE_CHUNK_NAME.NavBarContent,
       content: `pageTitle: '${ir.pageTitle ?? ir.pageName}',hideNavBar:${
         ir.hideNavBar
@@ -78,7 +80,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     if (events && events?.onLeftClick) {
       next.chunks.push({
         type: ChunkType.STRING,
-        fileType: cfg.fileType,
+        fileType: FileType.TSX,
         name: MOBILE_CHUNK_NAME.NavBarContent,
         content: `onLeftClick:()=>{${generateFunction(events.onLeftClick, {
           name: ir.platform,

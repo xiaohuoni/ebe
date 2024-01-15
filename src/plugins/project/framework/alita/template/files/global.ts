@@ -1,28 +1,45 @@
-import { ResultFile } from '../../../../../../core';
+import { ResultFile, LXProjectOptions } from '../../../../../../core';
 import { createResultFile } from '../../../../../../core/utils/resultHelper';
 
-export default function getFile(): [string[], ResultFile] {
+export default function getFile(
+  config?: LXProjectOptions,
+): [string[], ResultFile] {
+  const isMobile = config?.platform === 'h5';
+
   const file = createResultFile(
     'global',
     'ts',
     `import { security } from '@lingxiteam/assets';
-import * as DynamicForm from '@lingxiteam/dform';
+${
+  isMobile
+    ? `import * as DynamicForm from '@lingxiteam/dform';
 import {
   messageApi as message,
   Modal,
-} from '@lingxiteam/engine-app/es/components/MessageApi';
+} from '@lingxiteam/engine-app/es/components/MessageApi';`
+    : `import { message, Modal, notification } from 'antd';
+// 直接引入 pcfactory 打包好的 css，不需要主工程再单独构建了
+import '@lingxiteam/pcfactory/dist/index.component.min.css';`
+}
 import assetHelper from '@lingxiteam/engine-assets';
 import {
   httpConfig,
   lcdpApi,
   setPlatformConfig,
 } from '@lingxiteam/engine-platform';
-import componentCMD from '@lingxiteam/factory/es/index.cmdexec';
+import componentCMD from '@lingxiteam/${
+      isMobile ? 'factory' : 'pcfactory'
+    }/es/index.cmdexec';
 import sysAction from '@lingxiteam/sys-action';
 import type { CommandFunction, CondFunction } from '@lingxiteam/types';
-import { setPageNavBar } from 'alita';
+${
+  isMobile
+    ? `import { setPageNavBar } from 'alita';
 import * as antdMobile5 from 'antd-mobile-5';
-import { Toast } from 'antd-mobile-5';
+import { Toast as notification } from 'antd-mobile-5';`
+    : ''
+}
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -30,15 +47,19 @@ security.httpEncryption.start({
   mode: '1.0',
 });
 
-// @ts-ignore
+${
+  isMobile
+    ? `// @ts-ignore
 window.engineType = 'mobile';
-
-window.React = React;
-window.ReactDOM = ReactDOM;
 // @ts-ignore
 window.antdMobile = antdMobile5;
 // @ts-ignore
-window.DynamicForm = DynamicForm;
+window.DynamicForm = DynamicForm;`
+    : ''
+}
+
+window.React = React;
+window.ReactDOM = ReactDOM;
 
 const registerCommand = (
   sysCmdexec: Record<string, CommandFunction>,
@@ -68,13 +89,14 @@ const formatKey = (cmd: any, sourceObj: any) => {
 };
 formatKey(sysAction.syscmdexec, sysCmdExec);
 formatKey(sysAction.syscondexec, sysCmdCond);
+// @ts-ignore
 registerCommand(sysCmdExec, sysCmdCond, componentCMD);
 
 const platformConfig = {
   httpSecurityMode: '1.0',
   apiPrefix: process.env.REACT_APP_REQUEST_PREFIX || '../server/',
   errorCodeShowType: 'console',
-  platform: 'h5',
+  platform: '${isMobile ? 'h5' : 'pc'}',
   // useHotUpdate: {
   //   NODE_ENV: process.env.NODE_ENV,
   //   pkgInfo: {
@@ -94,11 +116,14 @@ httpConfig(
  */
 lcdpApi.setAntd({
   message,
-  notification: Toast,
+  notification,
   modal: Modal,
 });
-
-assetHelper.otherAsset.registerAsset('setPageNavBar', setPageNavBar);
+${
+  isMobile
+    ? `assetHelper.otherAsset.registerAsset('setPageNavBar', setPageNavBar);`
+    : ''
+}
 // 注册资产库多语言
 // if (locales) {
 //   assetHelper.locale.setLocales(locales);

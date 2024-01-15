@@ -54,9 +54,8 @@ Y --> X[下一步]
 某一些数据在源码生成时没有用处的，可以在此时进行首次清理
 
 ### 协议解析
- 
-协议解析的主要任务是将输入的 schema 解析成更适合出码模块内部使用的数据结构。也是进一步对数据的清理和修改。在这个环节处理低代码平台的DSL前置处理。方便在后续的出码流程中使用。
 
+协议解析的主要任务是将输入的 schema 解析成更适合出码模块内部使用的数据结构。也是进一步对数据的清理和修改。在这个环节处理低代码平台的 DSL 前置处理。方便在后续的出码流程中使用。
 
 ```mermaid
 graph
@@ -90,15 +89,13 @@ K--> X[下一步]
 通用文件和简单的配置文件修改等都归位静态文件生成，使用统一的静态文件生成模块，执行所有的静态文件生成器。如：
 
 ```ts
-export default function getFile(config?: LXProjectOptions): [string[], ResultFile] {
+export default function getFile(
+  config?: LXProjectOptions,
+): [string[], ResultFile] {
   // config 上一环节生成的项目配置
-  const file = createResultFile(
-    '文件名，如 index',
-    '.tsx|.ts',
-    `文件内容`,
-  );
+  const file = createResultFile('文件名，如 index', '.tsx|.ts', `文件内容`);
 
-  return [['文件写入路径','src','xxx'], file];
+  return [['文件写入路径', 'src', 'xxx'], file];
 }
 ```
 
@@ -149,22 +146,24 @@ B --> C[文件树]
 React 文件结构拆解指的是将 React 的组件文件按照生命周期和文件结构拆解成独立的插槽，供插件化使用。插件可以单独在插槽之间插入代码，也可以在插槽之间再开插槽。
 
 ```tsx
-const Page = ()=>{              // Start
-                                             // ConstructorStart
-                                             // ConstructorEnd
-  useEffect(() => {               // DidMountStart
+const Page = () => {
+  // Start
+  // ConstructorStart
+  // ConstructorEnd
+  useEffect(() => {
+    // DidMountStart
+  }, []); // DidMountEnd
 
-  },[])                                    // DidMountEnd
-
-  useEffect(() => {               // DidUpdateStart
-
-  })                                        // DidUpdateEnd
-  return (                              // RenderStart
+  useEffect(() => {
+    // DidUpdateStart
+  }); // DidUpdateEnd
+  return (
+    // RenderStart
     <div></div>
-  )                                         // RenderEnd
-}                                           //End
+  ); // RenderEnd
+}; //End
 
-export default Page;          // FileExport
+export default Page; // FileExport
 ```
 
 ##### 页面生命周期
@@ -174,18 +173,20 @@ export default Page;          // FileExport
 比如：页面生命周期 -- 【组件状态变化后】
 
 ```tsx
-const name = 'DidUpdateContent'
-const linkAfter = 'DidUpdateStart'
-const content = 'console.log("stateChange")'
+const name = 'DidUpdateContent';
+const linkAfter = 'DidUpdateStart';
+const content = 'console.log("stateChange")';
 ```
 
 表示增加一个插槽名称为 DidUpdateContent ，linkAfter 定义了它将被插到 DidUpdateStart 之后，它的内容为 content，最终生成的代码就是
 
 ```tsx
-  useEffect(() => {               // DidUpdateStart
-    console.log("stateChange")
-  })                                        // DidUpdateEnd
+useEffect(() => {
+  // DidUpdateStart
+  console.log('stateChange');
+}); // DidUpdateEnd
 ```
+
 <!-- return [...basicParts, ...attrParts, ...childrenParts]; -->
 
 ##### React JSX 生成
@@ -261,22 +262,22 @@ B --> C[生成属性字符串]
 
 ```tsx
 // 循环容器 和 动态待办
-  if (
-    nodeTags === 'Loop' ||
-    nodeTags === 'DynamicList' ||
-    nodeTags === 'LoadMore' ||
-    nodeTags === 'BlockSelect' ||
-    nodeTags === 'DformList'
-  ) {
-    // Loop 不需要孩子
-    pieces = pieces.filter((i) => i.type !== 'NodeCodePieceChildren');
-    let LoopchildrenStr = '';
-    if (nodeItem.components && config?.self) {
-      LoopchildrenStr = config.self(nodeItem.components, scope);
-    }
-    pieces.push({
-      type: PIECE_TYPE.ATTR,
-      value: `getEngineApis={() => {
+if (
+  nodeTags === 'Loop' ||
+  nodeTags === 'DynamicList' ||
+  nodeTags === 'LoadMore' ||
+  nodeTags === 'BlockSelect' ||
+  nodeTags === 'DformList'
+) {
+  // Loop 不需要孩子
+  pieces = pieces.filter((i) => i.type !== 'NodeCodePieceChildren');
+  let LoopchildrenStr = '';
+  if (nodeItem.components && config?.self) {
+    LoopchildrenStr = config.self(nodeItem.components, scope);
+  }
+  pieces.push({
+    type: PIECE_TYPE.ATTR,
+    value: `getEngineApis={() => {
         return {
           ...injectData.getEngineApis(),
           MemoRenderer: {
@@ -289,8 +290,8 @@ B --> C[生成属性字符串]
           },
         };
       }}`,
-    });
-  }
+  });
+}
 ```
 
 ###### 子组件生成
@@ -300,25 +301,28 @@ B --> C[生成属性字符串]
 全部环节生成完毕后，按照 标签、属性、子集的特定顺序将字符串拼接到一起。与其他插件相同的是，JSX 生成也是一个插件，可以用下面的伪代码表达。
 
 ```tsx
-const name = 'RenderJSX'
-const linkAfter = 'RenderStart'
-const content = `<${tagName}${attrsParts}>${childrenParts}</${tagName}>`
+const name = 'RenderJSX';
+const linkAfter = 'RenderStart';
+const content = `<${tagName}${attrsParts}>${childrenParts}</${tagName}>`;
 ```
+
 最终生成代码为
+
 ```tsx
-  return (                              // RenderStart
-    <Button
-      type='primary'
-      size='large'
-      children={title}
-      style={{ textAlign: 'center' }}
-      onClick={(e: any) => {}}
-    />
-  )                                         // RenderEnd
+return (
+  // RenderStart
+  <Button
+    type="primary"
+    size="large"
+    children={title}
+    style={{ textAlign: 'center' }}
+    onClick={(e: any) => {}}
+  />
+); // RenderEnd
 ```
 
 ### 后置优化
- 
+
 后置优化分为文件级别和项目级别两种：文件级别的后置优化在生成完一个文件后进行处理；项目级别的后置优化在所有文件都生成完了之后进行处理。
 
 当前的后置优化内置了 prettier 对生成的字符串进行格式化处理

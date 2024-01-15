@@ -32,26 +32,39 @@ export function generateStaticFiles(
   root = createResultDir('.'),
 ): ResultDir {
   const hasIndex = !!parseResult?.staticFiles?.pageIdMapping?.['/index'];
-  runFileGenerator(postProcessors, root, constants);
-  runFileGenerator(postProcessors, root, context);
+  const isMobile = parseResult?.staticFiles?.platform === 'h5';
+  runFileGenerator(postProcessors, root, constants, parseResult?.staticFiles);
+  runFileGenerator(postProcessors, root, context, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, editorconfig);
-  runFileGenerator(postProcessors, root, env);
+  runFileGenerator(postProcessors, root, env, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, factory, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, gitignore);
-  runFileGenerator(postProcessors, root, global);
-  runFileGenerator(postProcessors, root, globalless);
+  runFileGenerator(postProcessors, root, global, parseResult?.staticFiles);
+  runFileGenerator(postProcessors, root, globalless, parseResult?.staticFiles);
   // index 定义了就不生成默认的 index
   if (!hasIndex) {
-    runFileGenerator(postProcessors, root, indexpage);
-    runFileGenerator(postProcessors, root, indexpageless);
+    runFileGenerator(postProcessors, root, indexpage, parseResult?.staticFiles);
+    runFileGenerator(
+      postProcessors,
+      root,
+      indexpageless,
+      parseResult?.staticFiles,
+    );
   }
   runFileGenerator(postProcessors, root, layout, parseResult?.staticFiles);
-  runFileGenerator(postProcessors, root, modalindex);
-  runFileGenerator(postProcessors, root, modalmodal);
-  runFileGenerator(postProcessors, root, modaltypes);
+  runFileGenerator(postProcessors, root, modalindex, parseResult?.staticFiles);
+  runFileGenerator(postProcessors, root, modalmodal, parseResult?.staticFiles);
+  runFileGenerator(postProcessors, root, modaltypes, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, npmrc);
-  runFileGenerator(postProcessors, root, popover);
-  runFileGenerator(postProcessors, root, popoverwrapper);
+  runFileGenerator(postProcessors, root, popover, parseResult?.staticFiles);
+  if (isMobile) {
+    runFileGenerator(
+      postProcessors,
+      root,
+      popoverwrapper,
+      parseResult?.staticFiles,
+    );
+  }
   // runFileGenerator(postProcessors, root, npmrc);
   runFileGenerator(postProcessors, root, prettierignore);
   runFileGenerator(postProcessors, root, prettierrc);
@@ -59,6 +72,6 @@ export function generateStaticFiles(
   runFileGenerator(postProcessors, root, stylelintrc);
   runFileGenerator(postProcessors, root, tsconfig);
   runFileGenerator(postProcessors, root, typings);
-  runFileGenerator(postProcessors, root, withPageHOC);
+  runFileGenerator(postProcessors, root, withPageHOC, parseResult?.staticFiles);
   return root;
 }

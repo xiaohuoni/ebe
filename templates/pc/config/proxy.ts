@@ -1,4 +1,4 @@
-const BASE_URL = 'http://172.21.72.205:10000/'; // 开发环境
+const BASE_URL = 'http://10.10.179.140:8048/HJF/';
 
 const DEV_URL = process.env.LCDP_SERVICE_URL || `${BASE_URL}lcdp-app/server/`;
 

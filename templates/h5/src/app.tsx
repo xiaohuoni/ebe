@@ -1,5 +1,4 @@
 import { history } from 'alita';
-
 const titleList = [
   {
     pagePath: '/',
@@ -30,7 +29,6 @@ export const mobileLayout = {
   tabBar,
   titleList,
 };
-
 export function getKeepAlive(keepalive: any) {
   return [];
 }

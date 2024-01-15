@@ -12,27 +12,23 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
     const next: ICodeStruct = {
       ...pre,
     };
-
+    const options = next.contextData.options;
+    const isMobile = options?.platform === 'h5';
     const cfg = `import { defineConfig } from 'alita';
     import proxy from './proxy';
     
     export default defineConfig({
-      appType: 'h5',
+      appType: '${isMobile ? 'h5' : 'pc'}',
       mfsu: false,
       hash: false,
       npmClient: 'yarn',
       proxy,
-      mobileLayout: true,
-      autoprefixer: {
-        remove: false,
-      },
+      ${
+        isMobile
+          ? `mobileLayout: true,
       headScripts: [
         \`\${process.env.REACT_APP_REQUEST_PREFIX?.replace(/\\/+$/, '')}/app/env/info\`,
       ],
-      retainLog: process.env.COMPRESS === 'none',
-      publicPath: process.env.PUBLIC_PATH || './',
-      outputPath: 'build',
-      keepalive: [],
       hd: {
         px2rem: {
           selectorDoubleRemList: [/.adm-/, /\\:root/],
@@ -43,7 +39,20 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
       },
       alias: {
         zlib: require.resolve('browserify-zlib'),
+      },`
+          : `antd: {
+        configProvider: {
+          prefixCls: 'pcfactory',
+        },
+      },`
+      }
+      autoprefixer: {
+        remove: false,
       },
+      retainLog: process.env.COMPRESS === 'none',
+      publicPath: process.env.PUBLIC_PATH || './',
+      outputPath: 'build',
+      keepalive: [],
     });
     `;
 

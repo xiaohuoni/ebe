@@ -17,7 +17,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
 
     next.chunks.push({
       type: ChunkType.STRING,
-      fileType: FileType.JSX,
+      fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.InternalDepsImport,
       content: "import * from 'react';",
       linkAfter: [],

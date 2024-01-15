@@ -8,16 +8,9 @@ export default defineConfig({
   npmClient: 'yarn',
   proxy,
   mobileLayout: true,
-  autoprefixer: {
-    remove: false,
-  },
   headScripts: [
     `${process.env.REACT_APP_REQUEST_PREFIX?.replace(/\/+$/, '')}/app/env/info`,
   ],
-  retainLog: process.env.COMPRESS === 'none',
-  publicPath: process.env.PUBLIC_PATH || './',
-  outputPath: 'build',
-  keepalive: [],
   hd: {
     px2rem: {
       selectorDoubleRemList: [/.adm-/, /\:root/],
@@ -29,4 +22,11 @@ export default defineConfig({
   alias: {
     zlib: require.resolve('browserify-zlib'),
   },
+  autoprefixer: {
+    remove: false,
+  },
+  retainLog: process.env.COMPRESS === 'none',
+  publicPath: process.env.PUBLIC_PATH || './',
+  outputPath: 'build',
+  keepalive: [],
 });

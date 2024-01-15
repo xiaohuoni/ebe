@@ -5,6 +5,7 @@ import mobileLayout from './plugins/mobileLayout';
 import commonDeps from './plugins/commonDeps';
 import config from './plugins/config';
 import pageview from './plugins/pageview';
+import styleInject from './plugins/styleInject';
 import hackNodeAttr from './hooks/hackNodeAttr';
 
 export default {
@@ -16,6 +17,7 @@ export default {
     commonDeps,
     config,
     pageview,
+    styleInject,
   },
   hooks: {
     hackNodeAttr,

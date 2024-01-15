@@ -7,13 +7,13 @@ export default defineConfig({
   hash: false,
   npmClient: 'yarn',
   proxy,
-  autoprefixer: {
-    remove: false,
-  },
   antd: {
     configProvider: {
       prefixCls: 'pcfactory',
     },
+  },
+  autoprefixer: {
+    remove: false,
   },
   retainLog: process.env.COMPRESS === 'none',
   publicPath: process.env.PUBLIC_PATH || './',

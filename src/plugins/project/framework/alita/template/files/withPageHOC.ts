@@ -1,15 +1,23 @@
-import { ResultFile } from '../../../../../../core';
+import { ResultFile, LXProjectOptions } from '../../../../../../core';
 import { createResultFile } from '../../../../../../core/utils/resultHelper';
 
-export default function getFile(): [string[], ResultFile] {
+export default function getFile(
+  config?: LXProjectOptions,
+): [string[], ResultFile] {
+  const isMobile = config?.platform === 'h5';
+
   const file = createResultFile(
     'withPageHOC',
     'tsx',
     `import { PLATFORM } from '@/constants';
-import {
+${
+  isMobile
+    ? `import {
   messageApi,
   Modal,
-} from '@lingxiteam/engine-app/es/components/MessageApi';
+} from '@lingxiteam/engine-app/es/components/MessageApi';`
+    : `import { message as messageApi, Modal } from 'antd';`
+}
 import assetHelper from '@lingxiteam/engine-assets';
 import {
   checkIfCMDHasReturn,
@@ -19,12 +27,16 @@ import {
   CONDrun,
 } from '@lingxiteam/engine-command';
 import Meta from '@lingxiteam/engine-meta';
+import locales from '@lingxiteam/engine-${
+      isMobile ? 'app' : 'pc'
+    }/es/utils/locales';
 import { createApp, getApis, user } from '@lingxiteam/engine-platform';
 import monitt from '@lingxiteam/engine-plog';
 import AwaitHandleData from '@lingxiteam/engine-render-core/es/utils/AwaitHandleData';
 import Sandbox from '@lingxiteam/engine-sandbox';
 import {
   copyText,
+  i18n,
   LcdpTerminalType,
   processCustomParams,
   SERVICE_SOURCE,
@@ -57,7 +69,6 @@ export interface PageProps extends SandBoxContext {
   [key: string]: any;
 }
 export interface PageHOCOptions {
-  appId: string;
   pageId: string;
   dataSource: any[];
   defaultState: any;
@@ -69,12 +80,20 @@ export const withPageHOC = (
   options: PageHOCOptions,
 ) => {
   return (props: any) => {
-    const { ModalManagerRef, refs } = useContext(Context);
+    const { ModalManagerRef, refs, appId } = useContext(Context);
+    const { getLocaleLanguage, getLocale, getLocaleEnv, locale, language } =
+      i18n.useLocale(
+        {
+          locale: props.i18n?.locale!,
+          remoteLocale: props.i18n?.remoteLocale,
+          language: props.i18n?.language!,
+          configLocale: assetHelper.locale.locales,
+        },
+        locales,
+      );
     const [data, setData] = useState<any>();
     let meta: Meta;
-    const getLocale = (_: string, t: string) => t || _;
     const init = async () => {
-      const appId = options?.appId;
       // 页面容器会传 pageId
       const pageId = props?.pageId ?? options?.pageId;
       const api = getApis({
@@ -152,26 +171,52 @@ export const withPageHOC = (
       // 收集内置数据
       await meta.initialData();
       const context = meta?.getContext(defaultContext);
+      const sandBoxRun = (
+        code: string,
+        extendAllowMap: Record<string, any> = {},
+      ) => {
+        return Sandbox.run(code, {
+          ...context,
+          ...extendAllowMap,
+        });
+      };
       const injectData = {
         getEngineApis: () => {
           return {
             // TODO: 这需要正确的请求
             downloadFileByFileCode: () => null,
             downloadByFileId: () => null,
+            getLocaleLanguage,
             getLocale,
+            getLocaleEnv,
+            locale,
+            language,
             // 打开弹窗能力
             openModal: (data: any) =>
               ModalManagerRef.current?.openModal({
-            appId: options?.appId,
+            appId,
             ...data,
               }),
+              sandBoxRun,
+            sandBoxSafeRun: (
+              code: string,
+              extendAllowMap: Record<string, any> = {},
+            ) => {
+              try {
+                return sandBoxRun(code, extendAllowMap);
+                // eslint-disable-next-line no-empty
+              } catch {}
+              return undefined;
+            },
+            // ??? 外层和 service 都需要？
+            service: api,
             ...api,
           };
         },
       };
       const componentItem = {
-        appId: options?.appId,
-        pageId: props?.pageId ?? options?.pageId,
+        appId,
+        pageId,
         platform: PLATFORM,
       };
       const engineApis = injectData.getEngineApis();

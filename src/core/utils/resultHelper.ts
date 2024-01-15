@@ -7,7 +7,7 @@ import { FlattenFile } from '../types/file';
 
 export function createResultFile(
   name: string,
-  ext = 'jsx',
+  ext = 'tsx',
   content = '',
 ): ResultFile {
   return {

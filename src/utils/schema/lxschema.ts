@@ -93,7 +93,25 @@ const preprocessComponentSchema = (
 ): IProjectSchema => {
   let newSchema: any = _.cloneDeep(schema);
   // TODO: extraData sandBoxContext
-  const extraData = {} as any;
+  const StaticDataKey = 'attrDataMap';
+
+  const extraData = {
+    collectRelationKey: (
+      compId: string,
+      attrNbrKey: string,
+      childKeys?: string[],
+    ) => {
+      if (!attrNbrKey) {
+        return '';
+      }
+      if (Array.isArray(childKeys) && childKeys.length > 0) {
+        return `$${StaticDataKey}['${attrNbrKey}'].filter(item=>${JSON.stringify(
+          childKeys,
+        )}.includes(item.attrValue))$`;
+      }
+      return `$${StaticDataKey}['${attrNbrKey}']$`;
+    },
+  } as any;
   const sandBoxContext = {};
   // 预处理事件
   newSchema = parseDsl(schema, isRoot);

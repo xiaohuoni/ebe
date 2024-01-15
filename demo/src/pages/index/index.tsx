@@ -4,7 +4,7 @@ import {
   findBusiCompById,
   getPageVersionById,
 } from '@/services/api';
-import { Button, Form, Input, message } from 'antd';
+import { Button, Form, Input, message, Switch } from 'antd';
 import { useEffect, useState } from 'react';
 // @ts-ignore
 import { generateCode, init, publishers } from 'ebe';
@@ -86,11 +86,12 @@ const Page = () => {
   const [form] = Form.useForm();
   const onFinish = async (values: any, bower: boolean = false) => {
     setLoading(true);
+
     // 根据 appId 获取当前应用的全部页面
     const { resultObject } = await findAppPolymerizationInfo({
       appId: values.appId,
-      terminalType: 'APP',
-      operationType: 'publish',
+      terminalType: values.platform ? 'APP' : 'PC',
+      // operationType: 'publish',
     });
     console.log(resultObject);
     const pageIdMapping: any = {};
@@ -145,18 +146,18 @@ const Page = () => {
 
     console.log('pages', pageDSLS);
     const options = {
-      platform: 'h5',
+      platform: values.platform ? 'h5' : 'pc',
       appId: values.appId,
       pageIdMapping,
       busiCompMapping,
-      baseURl: 'http://172.21.72.205:10000/',
+      baseUrl: process.env.BASE_URL,
     };
     console.log(options);
     let cleanedTree = cleanTree(pageDSLS, ['path', 'originCode']); // 清理字段'b'和字段'e'
     console.log('cleanedTree', cleanedTree);
     if (bower) {
       const result = await generateCode({
-        solution: 'alita', // 出码方案
+        solution: values.platform ? 'alita' : 'alita-pc', // 出码方案
         options,
         schema: cleanedTree, // 编排搭建出来的 schema
         // workerJsUrl: '/ebe/worker.js',
@@ -173,7 +174,7 @@ const Page = () => {
       pages: cleanedTree,
       options,
       appId: values.appId,
-      cache: false,
+      cache: true,
     });
     console.log(res);
     if (res.resultCode === '0') {
@@ -196,11 +197,15 @@ const Page = () => {
         onFinish={onFinish}
         initialValues={{
           // appId: '868681578956083200',
-          appId: '1024143353417228288',
+          appId: '1056454276662820864',
+          platform: false,
         }}
       >
         <Item name="appId" label="AppID">
           <Input />
+        </Item>
+        <Item name="platform" label="是否是 H5">
+          <Switch />
         </Item>
         <Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit" loading={loading}>

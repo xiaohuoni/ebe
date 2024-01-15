@@ -35,7 +35,10 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: CLASS_DEFINE_CHUNK_NAME.Start,
       content: `
-      const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, injectData, refs, state, functorsMap, getStaticDataSourceService, getValue, componentItem, style }) => {`,
+      const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, 
+        // ??? 这是哈
+        attrDataMap={},
+        injectData, refs, state, functorsMap, getStaticDataSourceService, getValue, componentItem, style }) => {`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
         COMMON_CHUNK_NAME.InternalDepsImport,
@@ -152,12 +155,11 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.FileExport,
       content: `export default withPageHOC(${type}, {
-        appId:'${next?.contextData?.options?.appId ?? 'appId 未找到'}',
         pageId:'${
           next?.contextData?.options?.pageIdMapping[ir.pagePath] ??
           'pageId 未找到'
         }',
-        hasLogin: ${!!ir.ignoreLogin},
+        hasLogin: ${!!!ir.ignoreLogin},
         dataSource: ${JSON.stringify(cleanDataSource(ir.dataSource ?? []))},
         defaultState:${JSON.stringify(defaultState)},
       });`,

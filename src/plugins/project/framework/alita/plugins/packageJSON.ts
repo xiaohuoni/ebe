@@ -23,9 +23,10 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
     const ir = next.ir as IProjectInfo;
 
     const npmDeps = getNpmDependencies(ir);
-
+    const options = next.contextData.options;
+    const isMobile = options?.platform === 'h5';
     const packageJson: PackageJSON = {
-      name: cfg?.packageName || 'app-mobile',
+      name: cfg?.packageName || isMobile ? 'app-mobile' : 'app-pc',
       private: true,
       version: cfg?.packageVersion || '1.0.0',
       scripts: {
@@ -47,7 +48,7 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
         '@alita/flow': '*',
         '@lingxiteam/types': LINGXI_TYPES_VERSION,
         alita: '3.3.7',
-        ...cfg?.dependencies,
+        ...(isMobile ? cfg?.dependencies : cfg?.dependenciesPc),
         // 其他组件库
         ...npmDeps.reduce<Record<string, string>>(
           (acc, npm) => ({

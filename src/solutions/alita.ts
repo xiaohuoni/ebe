@@ -46,6 +46,7 @@ export default function createIceJsProjectBuilder(
         reactCommonDeps(),
         alita.plugins.commonDeps(),
         alita.plugins.mobileLayout(),
+        alita.plugins.styleInject(),
         reactContainer(),
         containerLifeCycle(),
         reactJsx({
@@ -71,6 +72,22 @@ export default function createIceJsProjectBuilder(
       appConfig: [alita.plugins.config()],
       packageJSON: [
         alita.plugins.packageJSON({
+          dependenciesPc: {
+            antd: '4.18.8',
+            // TODO: 这些插件都需要装在开发项目中吗？
+            '@lingxiteam/icons': '*',
+            '@lingxiteam/assets': '3.3.1-alpha.11',
+            '@lingxiteam/engine-pc': '3.3.1-alpha.13',
+            '@lingxiteam/engine-assets': '3.3.1-alpha.13',
+            '@lingxiteam/sys-action': '3.3.1-alpha.13',
+            '@lingxiteam/engine-command': '3.3.1-alpha.13',
+            '@lingxiteam/engine-meta': '3.3.1-alpha.13',
+            '@lingxiteam/engine-platform': '3.3.1-alpha.13',
+            '@lingxiteam/engine-plog': '3.3.1-alpha.13',
+            '@lingxiteam/engine-sandbox': '3.3.1-alpha.13',
+            '@lingxiteam/engine-utils': '3.3.1-alpha.13',
+            '@lingxiteam/pcfactory': '3.3.1-alpha.4',
+          },
           dependencies: {
             '@lingxiteam/cli': '^0.4.6',
             qs: '^6.11.2',

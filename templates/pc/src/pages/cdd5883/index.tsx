@@ -1,7 +1,7 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 
-import { Button, View } from '@lingxiteam/pcfactory/es/index.component';
+import { Button, View } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -12,6 +12,12 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
   CMDGenerator,
   injectData,
   refs,
+  state,
+  functorsMap,
+  getStaticDataSourceService,
+  getValue,
+  componentItem,
+  style,
 }) => {
   useEffect(() => {
     const eventDatashowModal: any = [
@@ -61,18 +67,16 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
   useEffect(() => {});
 
   return (
-    <div>
+    <div style={style}>
       <View
-        name="普通容器1"
+        name={'普通容器1'}
         basicStatus={1}
         backgroundType={{ type: 'cleanColor', color: '#FFFFFF' }}
         $$componentItem={{
           id: 'View_884363',
           uid: 'View_884363',
-          pageId: '1028120483871506432',
-          appId: '1024143353417228288',
-          platform: 'pc',
           type: 'View',
+          ...componentItem,
         }}
         disabled={false}
         visible={true}
@@ -87,28 +91,26 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <Button
-          name="按钮"
+          name={'按钮'}
           basicStatus={1}
-          classification="default"
+          classification={'default'}
           autoProcessFlow={false}
-          flowProcessResult="common"
-          iconPosition="left"
+          flowProcessResult={'common'}
+          iconPosition={'left'}
           ghost={false}
           block={false}
-          size="default"
-          type="default"
-          btnIcon="none"
+          size={'default'}
+          type={'default'}
+          btnIcon={'none'}
           hasIcon={false}
-          shape="default"
+          shape={'default'}
           loading={false}
-          btnText="按钮"
+          btnText={'按钮'}
           $$componentItem={{
             id: 'Button_576841',
             uid: 'Button_576841',
-            pageId: '1028120483871506432',
-            appId: '1024143353417228288',
-            platform: 'pc',
             type: 'Button',
+            ...componentItem,
           }}
           disabled={false}
           visible={true}
@@ -123,7 +125,8 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Cdd5883$$Page, {
-  // TODO: appId
-  appId: '1024143353417228288',
+  pageId: 'pageId 未找到',
+  hasLogin: false,
   dataSource: [],
+  defaultState: { bizId: '', sceneCode: '', bizData: '' },
 });

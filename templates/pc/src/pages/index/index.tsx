@@ -1,9 +1,10 @@
+import { useAppData } from 'alita';
 import React, { FC } from 'react';
 import styles from './index.less';
-
 interface HomePageProps {}
 
 const HomePage: FC<HomePageProps> = (props) => {
+  const { clientRoutes } = useAppData();
   return (
     <div className={styles.indexPage}>
       <div className={styles.indexText}>
@@ -11,10 +12,11 @@ const HomePage: FC<HomePageProps> = (props) => {
       </div>
       <div
         onClick={() => {
-          props.history.push('/ceshi1071');
+          // @ts-ignore
+          props.history.push(`/${clientRoutes[0]?.children[0]?.path}`);
         }}
       >
-        暂无登录
+        暂无登录,尝试跳转到可用页面
       </div>
     </div>
   );

@@ -44,7 +44,7 @@ export class SchemaParser implements ISchemaParser {
     const schemaArr = Array.isArray(schemaData) ? schemaData : [schemaData];
     const compDeps: Record<string, IExternalDependency> = {};
     const internalDeps: Record<string, IInternalDependency> = {};
-
+    let customClass = '';
     const {
       platform = 'h5',
       busiCompMapping = {},
@@ -66,6 +66,9 @@ export class SchemaParser implements ISchemaParser {
     // };
     const getComponentsMap = (root: any) => {
       root.components.forEach((info: any) => {
+        if (info?.customClass) {
+          customClass += info?.customClass;
+        }
         if (info.type === 'Pageview' || info.type === 'Popover') {
           compDeps[info.type] = {
             package: `@/components/${info.type}`,

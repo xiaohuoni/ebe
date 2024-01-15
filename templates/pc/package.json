@@ -9,8 +9,7 @@
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .ts,.tsx",
     "plugin": "alita plugin list",
-    "start": "alita dev",
-    "test": "jest"
+    "start": "alita dev"
   },
   "lint-staged": {
     "**/*.less": "stylelint --syntax less",
@@ -24,17 +23,17 @@
   "dependencies": {
     "@alita/flow": "*",
     "@lingxiteam/assets": "3.3.1-alpha.11",
-    "@lingxiteam/engine-assets": "3.3.1-alpha.11",
-    "@lingxiteam/engine-command": "3.3.1-alpha.11",
-    "@lingxiteam/engine-meta": "3.2.1-alpha.44",
-    "@lingxiteam/engine-pc": "3.2.1-alpha.44",
-    "@lingxiteam/engine-platform": "3.2.1-alpha.44",
-    "@lingxiteam/engine-plog": "3.2.1-alpha.44",
-    "@lingxiteam/engine-sandbox": "3.2.1-alpha.44",
-    "@lingxiteam/engine-utils": "3.2.1-alpha.44",
+    "@lingxiteam/engine-assets": "3.3.1-alpha.13",
+    "@lingxiteam/engine-command": "3.3.1-alpha.13",
+    "@lingxiteam/engine-meta": "3.3.1-alpha.13",
+    "@lingxiteam/engine-pc": "3.3.1-alpha.13",
+    "@lingxiteam/engine-platform": "3.3.1-alpha.13",
+    "@lingxiteam/engine-plog": "3.3.1-alpha.13",
+    "@lingxiteam/engine-sandbox": "3.3.1-alpha.13",
+    "@lingxiteam/engine-utils": "3.3.1-alpha.13",
     "@lingxiteam/icons": "*",
     "@lingxiteam/pcfactory": "3.3.1-alpha.4",
-    "@lingxiteam/sys-action": "3.2.1-alpha.44",
+    "@lingxiteam/sys-action": "3.3.1-alpha.13",
     "@lingxiteam/types": "3.3.1-alpha.1",
     "alita": "3.3.7",
     "antd": "4.18.8"

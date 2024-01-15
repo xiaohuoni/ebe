@@ -1,11 +1,10 @@
 import * as fs from 'fs-extra';
 import { jsonc } from 'jsonc';
 import alita from './src/solutions/alita';
-import alitapc from './src/solutions/alita-pc';
 import { createDiskPublisher } from './src/core/publisher/disk';
 import { createZipPublisher } from './src/core/publisher/zip';
 (async () => {
-  const testPlatformIsH5 = true;
+  const testPlatformIsH5 = false;
   const schemaFile = testPlatformIsH5
     ? 'lingxi-page-h5.json'
     : 'lingxi-page-pc.json';
@@ -18,8 +17,8 @@ import { createZipPublisher } from './src/core/publisher/zip';
   //   ? '1024143353417228288'
   //   : '1024143353417228288';
   const options = {
-    platform: 'h5',
-    appId: '1024143353417228288',
+    platform: testPlatformIsH5 ? 'h5' : 'pc',
+    appId: '1056454276662820864',
     // pagePath: pageId
     pageIdMapping: {
       '/asd5371': '1024143466269171712',
@@ -30,13 +29,15 @@ import { createZipPublisher } from './src/core/publisher/zip';
       '/model7813': '1049266938740068352',
       '/ssss3279': '1024161040026025984',
       '/kapian9555': '1052397738087833600',
+      '/guanliyuanshouye0496': '1056843976424230912',
     },
     busiCompMapping: {
       '1046689438983856129': '9635362',
     },
-    baseUrl: 'http://172.21.72.205:10000/',
+    baseUrl: 'http://10.10.179.140:8048/HJF/',
   };
-  const projectBuilder = testPlatformIsH5 ? alita({ options }) : alitapc();
+  // const projectBuilder = testPlatformIsH5 ? alita({ options }) : alitapc({ options });
+  const projectBuilder = alita({ options });
 
   const project = await projectBuilder.generateProject(
     schema, // 编排搭建出来的 schema
