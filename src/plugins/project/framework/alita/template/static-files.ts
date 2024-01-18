@@ -16,11 +16,14 @@ import modalindex from './files/modalindex';
 import modalmodal from './files/modalmodal';
 import modaltypes from './files/modaltypes';
 import npmrc from './files/npmrc';
+import pcmodalindex from './files/pcmodalindex';
+import pcmodalmodal from './files/pcmodalmodal';
 import popover from './files/popover';
 import popoverwrapper from './files/popoverwrapper';
 import prettierignore from './files/prettierignore';
 import prettierrc from './files/prettierrc';
 import proxy from './files/proxy';
+import styleInject from './files/styleInject';
 import stylelintrc from './files/stylelintrc';
 import tsconfig from './files/tsconfig';
 import typings from './files/typings';
@@ -52,9 +55,7 @@ export function generateStaticFiles(
     );
   }
   runFileGenerator(postProcessors, root, layout, parseResult?.staticFiles);
-  runFileGenerator(postProcessors, root, modalindex, parseResult?.staticFiles);
-  runFileGenerator(postProcessors, root, modalmodal, parseResult?.staticFiles);
-  runFileGenerator(postProcessors, root, modaltypes, parseResult?.staticFiles);
+
   runFileGenerator(postProcessors, root, npmrc);
   runFileGenerator(postProcessors, root, popover, parseResult?.staticFiles);
   if (isMobile) {
@@ -64,11 +65,43 @@ export function generateStaticFiles(
       popoverwrapper,
       parseResult?.staticFiles,
     );
+    runFileGenerator(
+      postProcessors,
+      root,
+      modalindex,
+      parseResult?.staticFiles,
+    );
+    runFileGenerator(
+      postProcessors,
+      root,
+      modalmodal,
+      parseResult?.staticFiles,
+    );
+    runFileGenerator(
+      postProcessors,
+      root,
+      modaltypes,
+      parseResult?.staticFiles,
+    );
+  } else {
+    runFileGenerator(
+      postProcessors,
+      root,
+      pcmodalindex,
+      parseResult?.staticFiles,
+    );
+    runFileGenerator(
+      postProcessors,
+      root,
+      pcmodalmodal,
+      parseResult?.staticFiles,
+    );
   }
   // runFileGenerator(postProcessors, root, npmrc);
   runFileGenerator(postProcessors, root, prettierignore);
   runFileGenerator(postProcessors, root, prettierrc);
   runFileGenerator(postProcessors, root, proxy, parseResult?.staticFiles);
+  runFileGenerator(postProcessors, root, styleInject, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, stylelintrc);
   runFileGenerator(postProcessors, root, tsconfig);
   runFileGenerator(postProcessors, root, typings);

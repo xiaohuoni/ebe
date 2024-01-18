@@ -93,6 +93,41 @@ export const withPageHOC = (
         beforeCreateApp: () => options?.hasLogin && user.init(),
       });
       const awaitHandleData = new AwaitHandleData();
+      const injectData = {
+        getEngineApis: () => {
+          return {
+            // TODO: 这需要正确的请求
+            downloadFileByFileCode: () => null,
+            downloadByFileId: () => null,
+            getLocaleLanguage,
+            getLocale,
+            getLocaleEnv,
+            locale,
+            language,
+            // 打开弹窗能力
+            openModal: (data: any) =>
+              ModalManagerRef.current?.openModal({
+                appId,
+                ...data,
+              }),
+            sandBoxRun,
+            sandBoxSafeRun: (
+              code: string,
+              extendAllowMap: Record<string, any> = {},
+            ) => {
+              try {
+                return sandBoxRun(code, extendAllowMap);
+                // eslint-disable-next-line no-empty
+              } catch {}
+              return undefined;
+            },
+            // ??? 外层和 service 都需要？
+            service: api,
+            ...api,
+          };
+        },
+      };
+      const engineApis = injectData.getEngineApis();
       const defaultContext = {
         appId,
         pageId,
@@ -122,6 +157,7 @@ export const withPageHOC = (
         closeModal: (modalId: string) => {
           ModalManagerRef.current?.closeModal(modalId, pageId);
         },
+        utils: engineApis,
       };
       meta = new Meta({
         SandBox: Sandbox,
@@ -160,46 +196,12 @@ export const withPageHOC = (
           ...extendAllowMap,
         });
       };
-      const injectData = {
-        getEngineApis: () => {
-          return {
-            // TODO: 这需要正确的请求
-            downloadFileByFileCode: () => null,
-            downloadByFileId: () => null,
-            getLocaleLanguage,
-            getLocale,
-            getLocaleEnv,
-            locale,
-            language,
-            // 打开弹窗能力
-            openModal: (data: any) =>
-              ModalManagerRef.current?.openModal({
-                appId,
-                ...data,
-              }),
-            sandBoxRun,
-            sandBoxSafeRun: (
-              code: string,
-              extendAllowMap: Record<string, any> = {},
-            ) => {
-              try {
-                return sandBoxRun(code, extendAllowMap);
-                // eslint-disable-next-line no-empty
-              } catch {}
-              return undefined;
-            },
-            // ??? 外层和 service 都需要？
-            service: api,
-            ...api,
-          };
-        },
-      };
+
       const componentItem = {
         appId,
         pageId,
         platform: PLATFORM,
       };
-      const engineApis = injectData.getEngineApis();
       const CMDGenerator = (
         targetEventData: any,
         args: any,
@@ -238,7 +240,6 @@ export const withPageHOC = (
           Modal,
           messageApi,
           refs,
-          utils: engineApis,
           history,
           sandBoxRun: (
             code: string,

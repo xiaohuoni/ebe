@@ -44,11 +44,16 @@ import {
   transformValueDefined,
 } from '@lingxiteam/engine-utils';
 import { $$compDefine, SandBoxContext } from '@lingxiteam/types';
-import { history } from 'alita';
+import { history, useLocation } from 'alita';
 import React, { useContext, useEffect, useState } from 'react';
 import EngineMapping from '@lingxiteam/engine-render/es/utils/EngineMapping';
+import { parse } from 'qs';
 import { Context } from './Context/context';
-
+${
+  isMobile
+    ? ''
+    : `import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';`
+}
 const getStaticDataSourceService = (
   ds: any[],
   labelKey: string,
@@ -74,13 +79,15 @@ export interface PageHOCOptions {
   defaultState: any;
   hasLogin?: boolean;
 }
-
 export const withPageHOC = (
   WrappedComponent: React.FC<PageProps>,
   options: PageHOCOptions,
 ) => {
-  return (props: any) => {
+  return React.forwardRef((props: any,ref) => {
+    const location = useLocation();
+    const urlParam = parse((location?.search ?? '?')?.split('?')[1]);
     const { ModalManagerRef, refs, appId } = useContext(Context);
+    const ExpBusiObjModalRef = React.useRef<any>();
     const { getLocaleLanguage, getLocale, getLocaleEnv, locale, language } =
       i18n.useLocale(
         {
@@ -93,9 +100,9 @@ export const withPageHOC = (
       );
     const [data, setData] = useState<any>();
     let meta: Meta;
+    const pageId = props?.pageId ?? options?.pageId;
     const init = async () => {
       // 页面容器会传 pageId
-      const pageId = props?.pageId ?? options?.pageId;
       const api = getApis({
         appId,
         // 页面容器会传 pageId
@@ -113,6 +120,41 @@ export const withPageHOC = (
         beforeCreateApp: () => options?.hasLogin && user.init(),
       });
       const awaitHandleData = new AwaitHandleData();
+      const injectData = {
+        getEngineApis: () => {
+          return {
+            // TODO: 这需要正确的请求
+            downloadFileByFileCode: () => null,
+            downloadByFileId: () => null,
+            getLocaleLanguage,
+            getLocale,
+            getLocaleEnv,
+            locale,
+            language,
+            // 打开弹窗能力
+            openModal: (data: any) =>
+              ModalManagerRef.current?.openModal({
+                appId,
+                ...data,
+              }),
+            sandBoxRun,
+            sandBoxSafeRun: (
+              code: string,
+              extendAllowMap: Record<string, any> = {},
+            ) => {
+              try {
+                return sandBoxRun(code, extendAllowMap);
+                // eslint-disable-next-line no-empty
+              } catch {}
+              return undefined;
+            },
+            // ??? 外层和 service 都需要？
+            service: api,
+            ...api,
+          };
+        },
+      };
+      const engineApis = injectData.getEngineApis();
       const defaultContext = {
         appId,
         pageId,
@@ -129,6 +171,7 @@ export const withPageHOC = (
           isH5: true,
         },
         ModalManagerRef,
+        ExpBusiObjModalRef,
         addToAwaitQueue: (
           compId: string,
           functionName: string,
@@ -142,6 +185,7 @@ export const withPageHOC = (
         closeModal: (modalId: string) => {
           ModalManagerRef.current?.closeModal(modalId, pageId);
         },
+        utils: engineApis,
       };
       meta = new Meta({
         SandBox: Sandbox,
@@ -159,6 +203,7 @@ export const withPageHOC = (
           ...(options?.defaultState || {}),
           ...(props?.busiCompStates || {}),
           ...(props?.pageViewCompState || {}),
+          ...(props?.state || {}),
         },
         engineStateChange: () => {
           console.log('engineStateChange');
@@ -180,46 +225,12 @@ export const withPageHOC = (
           ...extendAllowMap,
         });
       };
-      const injectData = {
-        getEngineApis: () => {
-          return {
-            // TODO: 这需要正确的请求
-            downloadFileByFileCode: () => null,
-            downloadByFileId: () => null,
-            getLocaleLanguage,
-            getLocale,
-            getLocaleEnv,
-            locale,
-            language,
-            // 打开弹窗能力
-            openModal: (data: any) =>
-              ModalManagerRef.current?.openModal({
-            appId,
-            ...data,
-              }),
-              sandBoxRun,
-            sandBoxSafeRun: (
-              code: string,
-              extendAllowMap: Record<string, any> = {},
-            ) => {
-              try {
-                return sandBoxRun(code, extendAllowMap);
-                // eslint-disable-next-line no-empty
-              } catch {}
-              return undefined;
-            },
-            // ??? 外层和 service 都需要？
-            service: api,
-            ...api,
-          };
-        },
-      };
+
       const componentItem = {
         appId,
         pageId,
         platform: PLATFORM,
       };
-      const engineApis = injectData.getEngineApis();
       const CMDGenerator = (
         targetEventData: any,
         args: any,
@@ -230,7 +241,7 @@ export const withPageHOC = (
           targetEventData,
           '',
           engineApis,
-        )(args, {
+        )({ ...args, urlParam }, {
           ...context,
           api,
           checkIfCMDHasReturn: (cmddata: any[]) => {
@@ -310,8 +321,26 @@ export const withPageHOC = (
     if (!data || Object.keys(data).length === 0) {
       return <div>loading</div>;
     }
-    return (<WrappedComponent {...data} {...props} />);
-  };
+    return (
+      <>
+        {' '}
+        <WrappedComponent {...data} {...props} urlParam={urlParam} forwardedRef={ref}/>
+        ${
+          isMobile
+            ? ''
+            : `<ExpBusiObjModal
+          ref={ExpBusiObjModalRef}
+          key={\`ExpBusiObjModal-\${pageId}\`}
+          api={data.api}
+          pageId={pageId}
+          appId={appId}
+          utils={data.utils}
+          getLocale={getLocale}
+        />`
+        }
+      </>
+    );
+  });
 };
 `,
   );

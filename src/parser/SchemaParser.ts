@@ -208,6 +208,10 @@ export class SchemaParser implements ISchemaParser {
           closeOnClickOverlay: page.closeOnClickOverlay,
           destroyOnClose: page.destroyOnClose,
           showCloseButton: page.showCloseButton,
+          // pc model 需要的参数
+          pageName: page.pageName,
+          customWidth: page.customWidth,
+          customHeight: page.customHeight,
         };
       });
 

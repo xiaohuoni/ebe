@@ -121,7 +121,7 @@ export default function getFile(
       useImperativeHandle(compProps.ref, () => imperative);
   
       // 统一处理部分逻辑
-      return <Component {...compProps} />;
+      return <Component {...compProps} {...(compProps?.extendProps||{})} />;
     });
   
     return HOC;

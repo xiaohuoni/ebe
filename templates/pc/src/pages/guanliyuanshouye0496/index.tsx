@@ -21,59 +21,8 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 import { styleInject } from '@/utils/styleInject';
 
 styleInject(
-  `
-
-.ued-progress-wrapper{
-    width: 100%;
-}
-.pcfactory-progress{
-    width: 100%;
-    margin-bottom: -30%;
-}
-.pcfactory-progress-circle .pcfactory-progress-inner{
-    width: 100% !important;
-    height: 100% !important;
-}.ued-loop-list-nobox{
-    background-color: transparent !important;
-}
-.select{
-background: #417FFB !important;
-color: #FFFFFF !important;
-}
-.ued-input-wrap.whiteStyle .pcfactory-input-group-addon:first-child{
-        border-top-left-radius:8px;
-    border-bottom-left-radius:8px;
-    background-color: #fff;
-    border: none;
-}
-.ued-input-wrap.greyStyle .pcfactory-input-group-addon:first-child{
-    border-top-left-radius:8px;
-    border-bottom-left-radius:8px;
-    background-color: #fff;
-    border: none;
-}
-.pcfactory-input-group .pcfactory-input-affix-wrapper:not(:first-child){
-    border: none;
-}
-.pcfactory-input-affix-wrapper:not(.pcfactory-input-affix-wrapper-disabled):hover{
-    border:none
-}
- .pcfactory-input-affix-wrapper-focused{
-    border: none;
-    box-shadow: none;
-}.ued-loop-list-nobox{
-    background-color: transparent;
-}.pcfactory-row{
-    flex-wrap: nowrap;
-}
-.ued-loop-list-nobox{
-    background-color: transparent !important;
-}.pcfactory-row{
-    flex-wrap: nowrap;
-}
-
-`,
-  16482,
+  '.__CustomClass_16482__ .View_3015756 .ued-progress-wrapper{width:100%;}.__CustomClass_16482__ .View_3015756 .pcfactory-progress{width:100%;margin-bottom:-30%;}.__CustomClass_16482__ .View_3015756 .pcfactory-progress-circle .pcfactory-progress-inner{width:100%!important;height:100%!important;}.__CustomClass_16482__ .View_657089 .ued-loop-list-nobox{background-color:transparent!important;}.__CustomClass_16482__ .View_657089 .select{background:#417FFB!important;color:#FFFFFF!important;}.__CustomClass_16482__ .View_657089 .ued-input-wrap.whiteStyle .pcfactory-input-group-addon:first-child{border-top-left-radius:8px;border-bottom-left-radius:8px;background-color:#fff;border:none;}.__CustomClass_16482__ .View_657089 .ued-input-wrap.greyStyle .pcfactory-input-group-addon:first-child{border-top-left-radius:8px;border-bottom-left-radius:8px;background-color:#fff;border:none;}.__CustomClass_16482__ .View_657089 .pcfactory-input-group .pcfactory-input-affix-wrapper:not(:first-child){border:none;}.__CustomClass_16482__ .View_657089 .pcfactory-input-affix-wrapper:not(.pcfactory-input-affix-wrapper-disabled):hover{border:none;}.__CustomClass_16482__ .View_657089 .pcfactory-input-affix-wrapper-focused{border:none;box-shadow:none;}.__CustomClass_16482__ .LoopList_795129 .ued-loop-list-nobox{background-color:transparent;}.__CustomClass_16482__ .View_900735 .pcfactory-row{flex-wrap:nowrap;}.__CustomClass_16482__ .View_900735 .ued-loop-list-nobox{background-color:transparent!important;}.__CustomClass_16482__ .LoopList_824234 .pcfactory-row{flex-wrap:nowrap;}',
+  '16482',
 );
 
 const Guanliyuanshouye0496$$Page: React.FC<PageProps> = ({
@@ -229,7 +178,7 @@ const Guanliyuanshouye0496$$Page: React.FC<PageProps> = ({
   useEffect(() => {});
 
   return (
-    <div style={style}>
+    <div style={style} className="__CustomClass_16482__">
       <View
         name={'页面'}
         basicStatus={1}
@@ -986,6 +935,7 @@ const Guanliyuanshouye0496$$Page: React.FC<PageProps> = ({
                     name={'普通容器32'}
                     basicStatus={1}
                     backgroundType={{ type: 'cleanColor', color: '#FFFFFF' }}
+                    className={'View_3015756'}
                     $$componentItem={{
                       id: 'View_3015756',
                       uid: 'View_3015756',
@@ -1573,6 +1523,7 @@ const Guanliyuanshouye0496$$Page: React.FC<PageProps> = ({
               type: 'cleanColor',
               color: 'rgba(255, 255, 255, 0)',
             }}
+            className={'View_657089'}
             $$componentItem={{
               id: 'View_657089',
               uid: 'View_657089',
@@ -1629,6 +1580,7 @@ const Guanliyuanshouye0496$$Page: React.FC<PageProps> = ({
                   value: 'F',
                 },
               ]}
+              className={'LoopList_795129'}
               $$componentItem={{
                 id: 'LoopList_795129',
                 uid: 'LoopList_795129',
@@ -2037,6 +1989,7 @@ const Guanliyuanshouye0496$$Page: React.FC<PageProps> = ({
               type: 'cleanColor',
               color: 'rgba(255, 255, 255, 0)',
             }}
+            className={'View_900735'}
             $$componentItem={{
               id: 'View_900735',
               uid: 'View_900735',
@@ -2073,6 +2026,7 @@ const Guanliyuanshouye0496$$Page: React.FC<PageProps> = ({
               gridMode={false}
               gridData={data?.queryAllInternDataList?.list}
               valueKey={'id'}
+              className={'LoopList_824234'}
               $$componentItem={{
                 id: 'LoopList_824234',
                 uid: 'LoopList_824234',

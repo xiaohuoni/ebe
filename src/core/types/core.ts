@@ -264,4 +264,6 @@ export interface IScope {
 
   // TODO: 需要有上下文信息吗？ 描述什么内容
   createSubScope: (ownIndentifiers: string[]) => IScope;
+
+  parentType?: string;
 }

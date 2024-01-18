@@ -176,7 +176,12 @@ function generateAttrs(
         //   .join(',')}}, '${eventName}', { id: '${nodeItem?.id}',name: '${
         //   nodeItem?.id
         // }',type: '${nodeItem?.type}',platform: '${nodeItem?.platform}',});}`;
-        const renderEvent = CMDGeneratorEvent(value, nodeItem, eventName);
+        const renderEvent = CMDGeneratorEvent(
+          value,
+          nodeItem,
+          eventName,
+          scope,
+        );
         pieces = pieces.concat(
           generateAttr(
             eventName,

@@ -2,7 +2,7 @@ import {
   CLASS_DEFINE_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
-import { REACT_CHUNK_NAME } from './const';
+import { REACT_CHUNK_NAME, MODAL_CHUNK_NAME } from './const';
 import { PAGE_TYPES } from '../../constants';
 import { generateFunction } from '../../core/utils/jsExpression';
 
@@ -53,6 +53,59 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       (ir.type === 'BusiComp' && keys.length > 0)
     ) {
       const { events } = ir;
+      if (!events) {
+        return next;
+      }
+
+      // const onOk = ()=>{
+
+      // }
+      // const onCancel = ()=>{
+
+      // }
+      // React.useImperativeHandle(ref, () => ({
+      //   onOk,
+      //   onCancel,
+      // }));
+      // ConstructorStart
+      if (events?.onOk || events?.onCancel) {
+        next.chunks.push({
+          type: ChunkType.STRING,
+          fileType: cfg.fileType,
+          name: MODAL_CHUNK_NAME.OnOk,
+          content: events?.onOk
+            ? `const onOk = ()=>{ ${generateFunction(events?.onOk, {
+                name: ir.platform,
+              })} }`
+            : '',
+          linkAfter: [
+            ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
+          ],
+        });
+        next.chunks.push({
+          type: ChunkType.STRING,
+          fileType: cfg.fileType,
+          name: MODAL_CHUNK_NAME.OnCancel,
+          content: events?.onCancel
+            ? `const onCancel = ()=>{ ${generateFunction(events?.onCancel, {
+                name: ir.platform,
+              })} }`
+            : '',
+          linkAfter: [
+            ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
+          ],
+        });
+        next.chunks.push({
+          type: ChunkType.STRING,
+          fileType: cfg.fileType,
+          name: MODAL_CHUNK_NAME.ImperativeHandle,
+          content: `React.useImperativeHandle(forwardedRef, () => ({
+            ${events?.onOk ? 'onOk,' : ''}
+            ${events?.onCancel ? 'onCancel,' : ''}
+          }));`,
+          linkAfter: [MODAL_CHUNK_NAME.OnOk, MODAL_CHUNK_NAME.OnCancel],
+        });
+      }
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: cfg.fileType,

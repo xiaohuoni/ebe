@@ -41,6 +41,7 @@ export interface IProjectSchema extends Component {
   components: IProjectSchema[];
   // 业务组件的真实代码
   busiComp?: any;
+  customClass?: string;
 }
 
 export interface PackageJSON {

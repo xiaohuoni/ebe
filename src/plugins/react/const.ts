@@ -13,3 +13,9 @@ export const REACT_CHUNK_NAME = {
   WillUnmountEnd: 'ReactComponentWillUnmountEnd',
   WillUnmountContent: 'ReactComponentWillUnmountContent',
 };
+
+export const MODAL_CHUNK_NAME = {
+  OnOk: 'ModalEventOnOk',
+  OnCancel: 'ModalEventOnCancel',
+  ImperativeHandle: 'ModalEventUseImperativeHandle',
+};

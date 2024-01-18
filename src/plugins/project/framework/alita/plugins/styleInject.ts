@@ -9,7 +9,7 @@ import {
   IContainerInfo,
 } from '../../../../../core/types';
 import { getImportFrom } from '../../../../../utils/depsHelper';
-
+import { normalizeCSS } from 'css-string-utils';
 export interface PluginConfig {
   fileType?: string;
   exportNameMapping?: Record<string, string>;
@@ -39,10 +39,11 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       return next;
     }
     let customClass = '';
+    const classRoot = `__CustomClass_${ir.id}__`;
     const getComponentsMap = (root: any) => {
       root.components.forEach((info: any) => {
         if (info?.customClass) {
-          customClass += info?.customClass;
+          customClass += `.${info.id} { ${info?.customClass} }`;
         }
         if (info.components) {
           getComponentsMap(info);
@@ -51,37 +52,39 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     };
     getComponentsMap(ir);
 
-    // import { styleInject } from '@/utils/styleInject';
-    next.ir.deps.push(getImportFrom('@/utils/styleInject', 'styleInject'));
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: INJECT_STYLE_CHUNK_NAME.InjectStyleStart,
-      content: `styleInject(\``,
-      linkAfter: [
-        COMMON_CHUNK_NAME.ExternalDepsImport,
-        COMMON_CHUNK_NAME.InternalDepsImport,
-        COMMON_CHUNK_NAME.ImportAliasDefine,
-        COMMON_CHUNK_NAME.FileVarDefine,
-        COMMON_CHUNK_NAME.FileUtilDefine,
-      ],
-    });
+    if (customClass) {
+      // import { styleInject } from '@/utils/styleInject';
+      next.ir.deps.push(getImportFrom('@/utils/styleInject', 'styleInject'));
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: FileType.TSX,
+        name: INJECT_STYLE_CHUNK_NAME.InjectStyleStart,
+        content: `styleInject(`,
+        linkAfter: [
+          COMMON_CHUNK_NAME.ExternalDepsImport,
+          COMMON_CHUNK_NAME.InternalDepsImport,
+          COMMON_CHUNK_NAME.ImportAliasDefine,
+          COMMON_CHUNK_NAME.FileVarDefine,
+          COMMON_CHUNK_NAME.FileUtilDefine,
+        ],
+      });
 
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: INJECT_STYLE_CHUNK_NAME.InjectStyleEnd,
-      content: `\`,${ir.id ?? 'id'});`,
-      linkAfter: [INJECT_STYLE_CHUNK_NAME.InjectStyleContent],
-    });
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: FileType.TSX,
+        name: INJECT_STYLE_CHUNK_NAME.InjectStyleEnd,
+        content: `,'${ir.id ?? 'id'}');`,
+        linkAfter: [INJECT_STYLE_CHUNK_NAME.InjectStyleContent],
+      });
 
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: INJECT_STYLE_CHUNK_NAME.InjectStyleContent,
-      content: customClass ?? ' ',
-      linkAfter: [INJECT_STYLE_CHUNK_NAME.InjectStyleStart],
-    });
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: FileType.TSX,
+        name: INJECT_STYLE_CHUNK_NAME.InjectStyleContent,
+        content: `'${normalizeCSS(customClass ?? ' ', classRoot)}'`,
+        linkAfter: [INJECT_STYLE_CHUNK_NAME.InjectStyleStart],
+      });
+    }
     return next;
   };
   return plugin;

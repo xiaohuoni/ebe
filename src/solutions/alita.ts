@@ -55,6 +55,7 @@ export default function createIceJsProjectBuilder(
             Page: 'div',
             MobileModal: 'div',
             MobilePopover: 'div',
+            Modal: 'div',
           },
         }),
         // 最前面的代码，其实是最后生成的
@@ -76,9 +77,9 @@ export default function createIceJsProjectBuilder(
             antd: '4.18.8',
             // TODO: 这些插件都需要装在开发项目中吗？
             '@lingxiteam/icons': '*',
-            '@lingxiteam/assets': '3.3.1-alpha.11',
+            '@lingxiteam/assets': '3.3.1-alpha.13',
             '@lingxiteam/engine-pc': '3.3.1-alpha.13',
-            '@lingxiteam/engine-assets': '3.3.1-alpha.13',
+            '@lingxiteam/engine-assets': '3.3.1-alpha.11',
             '@lingxiteam/sys-action': '3.3.1-alpha.13',
             '@lingxiteam/engine-command': '3.3.1-alpha.13',
             '@lingxiteam/engine-meta': '3.3.1-alpha.13',

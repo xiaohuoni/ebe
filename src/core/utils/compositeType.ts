@@ -106,11 +106,11 @@ export function generateVarString(value: any): string {
   // 去掉尾部分号 ; 不知道加这个的意义是啥！
   // 将 `.` 改成 `?.`
   // 代码里面可能自己写了 ?. 最终会是 ??. 将它修正
-  // TODO: 图方便，看不爽可以补充一下逻辑
+  // 数字的不能转 比如0.1 不能变成 0?.1
   return value
     .replace(/^\$|\$$/g, '')
     .replace(/;/g, '')
-    .replace(/\./g, '?.')
+    .replace(/(?<!\d)\.(?!\d)/g, '?.')
     .replace(/\?\?\./g, '?.');
 }
 

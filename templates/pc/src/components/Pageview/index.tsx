@@ -15,6 +15,18 @@ const Pages: any = {
         /* webpackChunkName: "1056843976424230912" */ '@/pages/guanliyuanshouye0496'
       ),
   ),
+  '/shixishengxinxiguanli_2754312': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/shixishengxinxiguanli_2754312__index" */ '@/pages/shixishengxinxiguanli_2754312'
+      ),
+  ),
+  '1056462279824314368': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "1056462279824314368" */ '@/pages/shixishengxinxiguanli_2754312'
+      ),
+  ),
 };
 
 export function parseSrc(src?: string): [string, any] {

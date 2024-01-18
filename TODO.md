@@ -37,24 +37,24 @@
 - [x] form item fieldProps - setValue
 - [x] form item ref 是处理过的
 - [x] prettier 格式化规则使用 alita/prettier
-- [ ] findAppPolymerizationInfo createApp 加个配置不请求
-- [ ] form onValuesChange - listenerOnValueChange
-- [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
-- [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67
 - [x] 命令源码化 - console
-- [ ] bug 0?.00% . 的前后是数字的时候，不能改成 ?.
-- [ ] 数据源清理，只保留必须的字段
 - [x] .app-mobile/src/pages/sousuotanchuang0020/index.tsx:246 ReferenceError: getStaticDataSourceService is not defined
-- [ ] 命令 callParentCustomFunc 用于调用父级页面自定义方法
 - [x] closeModel 关闭弹窗
-- [ ] urlParam url 参数需要全局
+- [x] urlParam url 参数需要全局
 - [x] 循环和列表等容器，命令需要传递，item 和 i ，MemoLoopItem 的组件的事件中
 - [x] 自定义当前控件样式 customStyle innerStyle
 - [x] 自定义内部空间样式 customClass
 - [x] 国际化
-- [ ]
-
-调试服务器 http://172.21.72.205:8088/
+- [x] pc 端弹窗
+- [x] bug 0?.00% . 的前后是数字的时候，不能改成 ?.
+- [x] pc 端 Form 渲染存在差异
+- [x] 表单组件需要标记父级 compType isFormRootChild extendProps
+- [ ] findAppPolymerizationInfo createApp 加个配置不请求
+- [ ] form onValuesChange - listenerOnValueChange
+- [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
+- [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67 调试服务器 http://172.21.72.205:8088/
+- [ ] 命令 callParentCustomFunc 用于调用父级页面自定义方法
+- [ ] 数据源清理，只保留必须的字段
 
 资产 DSL - 林喜 PC 端 实习生打卡 DICT 指令源码化？源数据 dataSource 清理？
 

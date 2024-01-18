@@ -1,5 +1,5 @@
 // 命令源码化
-
+import { IScope } from '../types';
 import { isJSVar } from './deprecated';
 import { generateVarString } from './compositeType';
 // 同名的事件增加后缀
@@ -39,11 +39,18 @@ function getConsoleFunction(item: any, platform?: string) {
     .join(',')})`;
 }
 
-const CMDGenerator = (item: any, params: any, platform: string) => {
+const CMDGenerator = (
+  item: any,
+  params: any,
+  platform: string,
+  scope: IScope,
+) => {
   if (!item?.type) {
     // 没有事件就抛弃
     return '';
   }
+  const isLoopChildren = scope && scope?.parentType === 'Loop';
+
   // 先尝试人工实现，再整理
   if (item?.type === 'console') {
     return getConsoleFunction(item);
@@ -62,6 +69,7 @@ const CMDGenerator = (item: any, params: any, platform: string) => {
     // @ts-ignore
     params,
   )} || [];CMDGenerator(eventData${item.type}${suffix}, {${params
+    .concat(isLoopChildren ? [{ name: 'item' }, { name: 'i' }] : [])
     .map((i: { name: any }) => i.name)
     .filter(Boolean)
     .join(',')}}, '${item.type}', { id: '${item.type}',name: '${
@@ -74,17 +82,23 @@ export const CMDGeneratorLifeCycle = (value: any[], config: any) => {
     return CMDGenerator(v1, value.params, config.name);
   });
 
-  return renderEvent;
+  return renderEvent.join('');
 };
 
 export const CMDGeneratorEvent = (
   value: any,
   nodeItem: any,
   eventName: any,
+  scope: IScope,
 ) => {
   const renderEvent = `(${value.params
     .map((i: { name: any }) => i.name + ': any')
-    .join(',')})=>{ ${CMDGenerator(value[0], value.params, nodeItem?.platform)}
+    .join(',')})=>{ ${CMDGenerator(
+    value[0],
+    value.params,
+    nodeItem?.platform,
+    scope,
+  )}
     }`;
 
   return renderEvent;

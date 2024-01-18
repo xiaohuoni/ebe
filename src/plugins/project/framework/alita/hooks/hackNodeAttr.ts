@@ -35,6 +35,10 @@ export default function hackEngineApis(
       type: PIECE_TYPE.ATTR,
       value: 'style={style}',
     });
+    pieces.push({
+      type: PIECE_TYPE.ATTR,
+      value: `className="__CustomClass_${nodeItem.id}__"`,
+    });
   }
 
   // 如果是业务组件要改名字
@@ -62,7 +66,10 @@ export default function hackEngineApis(
     let LoopchildrenStr = '';
     if (nodeItem.components && config?.self) {
       // @ts-ignore
-      LoopchildrenStr = config.self(nodeItem.components, scope);
+      LoopchildrenStr = config.self(nodeItem.components, {
+        ...scope,
+        parentType: 'Loop',
+      });
     }
     pieces.push({
       type: PIECE_TYPE.ATTR,

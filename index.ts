@@ -30,6 +30,7 @@ import { createZipPublisher } from './src/core/publisher/zip';
       '/ssss3279': '1024161040026025984',
       '/kapian9555': '1052397738087833600',
       '/guanliyuanshouye0496': '1056843976424230912',
+      '/shixishengxinxiguanli_2754312': '1056462279824314368',
     },
     busiCompMapping: {
       '1046689438983856129': '9635362',

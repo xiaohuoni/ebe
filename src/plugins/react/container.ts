@@ -4,7 +4,7 @@ import {
   CLASS_DEFINE_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
-import { REACT_CHUNK_NAME } from './const';
+import { REACT_CHUNK_NAME, MODAL_CHUNK_NAME } from './const';
 
 import {
   BuilderComponentPlugin,
@@ -30,15 +30,20 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       `${changeCase.pascalCase(ir.moduleName)}$$${ir.containerType}`,
     );
 
+    const isModal =
+      ir.containerType === 'MobileModal' || ir.containerType === 'Modal';
+
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: CLASS_DEFINE_CHUNK_NAME.Start,
       content: `
-      const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, 
-        // ??? 这是哈
-        attrDataMap={},
-        injectData, refs, state, functorsMap, getStaticDataSourceService, getValue, componentItem, style }) => {`,
+        const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, 
+          // ??? 这是哈
+          attrDataMap={},
+          injectData, refs, state, functorsMap, getStaticDataSourceService, getValue, componentItem, style, urlParam, ${
+            isModal ? 'forwardedRef,' : ''
+          } }) => {`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
         COMMON_CHUNK_NAME.InternalDepsImport,
@@ -85,7 +90,10 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: REACT_CHUNK_NAME.DidMountStart,
       content: '  useEffect(() => {',
-      linkAfter: [...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End]],
+      linkAfter: [
+        ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
+        MODAL_CHUNK_NAME.ImperativeHandle,
+      ],
     });
 
     next.chunks.push({

@@ -199,5 +199,8 @@ const modifySchemaCompName = (schema: IProjectSchema, isRoot: boolean) => {
     if (schema.type) {
       schema.type = compName;
     }
+    if (schema?.customClass) {
+      schema.props.className = schema.id;
+    }
   }
 };

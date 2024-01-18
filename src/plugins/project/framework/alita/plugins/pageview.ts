@@ -32,7 +32,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.FileVarDefine,
       content: `
-      export const RootProps = {
+      export const RootProps: any  = {
         ${ir.models
           ?.map(
             (modal: any) =>
@@ -79,12 +79,12 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       }
 
       const P = (props: any) => <div>{props?.pageSrc} 页面未找到</div>;
-      const Pageview = (props: any) => {
+      const Pageview = React.forwardRef<any, any>((props, ref) => {
         // 页面 src 可能是带参数的如 /a?b=1&c=2
         const [path, query] = parseSrc(props?.pageSrc);
         const Page = Pages[path] ?? P;
-        return <Page {...query} {...props} />;
-      };
+        return <Page ref={ref} {...query} {...props} />;
+      });
       export default Pageview;
       `,
       linkAfter: [
