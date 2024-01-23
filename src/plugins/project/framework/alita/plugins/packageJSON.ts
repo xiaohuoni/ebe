@@ -66,6 +66,7 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
         prettier: '^2',
         'ts-node': '^10',
         typescript: '^4',
+        ...cfg?.devDependencies,
       },
       engines: {
         node: '>=14.0.1',

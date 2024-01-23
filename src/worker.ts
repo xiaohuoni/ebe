@@ -29,7 +29,7 @@ export async function run(msg: {
     print('begin run...');
     self.postMessage({ type: 'run:begin' });
 
-    const { solution, options } = msg;
+    const { solution, options, schema } = msg;
     if (!solution) {
       throw new Error('solution is required');
     }
@@ -42,9 +42,9 @@ export async function run(msg: {
 
     const appBuilder = createAppBuilder({ options });
 
-    print('generating from schema: %o', msg.schema);
+    print('generating from schema: %o', schema);
 
-    const result = await appBuilder.generateProject(msg.schema);
+    const result = await appBuilder.generateProject(schema);
 
     print('generated result: %o', result);
 

@@ -30,7 +30,6 @@
 - [x] keepalive dsl 中有 pageDynamicFlag
 - [x] BASE_URL 请求的主路径支持配置
 - [x] 页面 index 冲突
-
 - [x] 页面类型为气泡卡片
 - [x] popoverSetting 消息提示，是组件属性，但是逻辑是给他加一个父级容器
 - [x] addToAwaitQueue @lingxiteam/engine-render-core/es/utils/AwaitHandleData
@@ -55,7 +54,8 @@
 - [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67 调试服务器 http://172.21.72.205:8088/
 - [ ] 命令 callParentCustomFunc 用于调用父级页面自定义方法
 - [ ] 数据源清理，只保留必须的字段
-
+- [ ] 表格数据导入
+- [ ] 表格数据导出
 资产 DSL - 林喜 PC 端 实习生打卡 DICT 指令源码化？源数据 dataSource 清理？
 
 决策标准：

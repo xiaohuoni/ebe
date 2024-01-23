@@ -1,7 +1,6 @@
 import * as fs from 'fs-extra';
 import { jsonc } from 'jsonc';
 import alita from './src/solutions/alita';
-import alitapc from './src/solutions/alita-pc';
 import { createDiskPublisher } from './src/core/publisher/disk';
 import { createZipPublisher } from './src/core/publisher/zip';
 (async () => {

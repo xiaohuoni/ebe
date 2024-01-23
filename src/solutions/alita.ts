@@ -75,11 +75,15 @@ export default function createIceJsProjectBuilder(
         alita.plugins.packageJSON({
           dependenciesPc: {
             antd: '4.18.8',
+            '@lingxiteam/engine-render': '3.2.1-alpha.44',
+            '@lingxiteam/engine-render-core': '3.2.1-alpha.44',
+            lodash: '^4.17.21',
+            qs: '^6.11.2',
             // TODO: 这些插件都需要装在开发项目中吗？
             '@lingxiteam/icons': '*',
             '@lingxiteam/assets': '3.3.1-alpha.13',
             '@lingxiteam/engine-pc': '3.3.1-alpha.13',
-            '@lingxiteam/engine-assets': '3.3.1-alpha.11',
+            '@lingxiteam/engine-assets': '3.3.1-alpha.13',
             '@lingxiteam/sys-action': '3.3.1-alpha.13',
             '@lingxiteam/engine-command': '3.3.1-alpha.13',
             '@lingxiteam/engine-meta': '3.3.1-alpha.13',
@@ -107,6 +111,10 @@ export default function createIceJsProjectBuilder(
             'antd-mobile-5': '5.26.0',
             'react-loadable': '^5.5.0',
             '@lingxiteam/antd-mobile-v2-theme': '^0.0.1',
+          },
+          devDependencies: {
+            '@types/qs': '^6.9.6',
+            '@types/lodash': '^4.14.162',
           },
         }),
       ],

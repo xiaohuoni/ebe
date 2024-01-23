@@ -157,7 +157,7 @@ const Page = () => {
     console.log('cleanedTree', cleanedTree);
     if (bower) {
       const result = await generateCode({
-        solution: values.platform ? 'alita' : 'alita-pc', // 出码方案
+        solution: 'alita', // 出码方案
         options,
         schema: cleanedTree, // 编排搭建出来的 schema
         // workerJsUrl: '/ebe/worker.js',
@@ -208,9 +208,9 @@ const Page = () => {
           <Switch />
         </Item>
         <Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit" loading={loading}>
+          {/* <Button type="primary" htmlType="submit" loading={loading}>
             服务端出码
-          </Button>
+          </Button> */}
           <Button
             loading={loading}
             onClick={async () => {
