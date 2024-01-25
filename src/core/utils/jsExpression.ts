@@ -149,7 +149,7 @@ export function generateFunction(
   }
 
   if (isEventData(value)) {
-    return CMDGeneratorLifeCycle(value?.value ?? [], config);
+    return CMDGeneratorLifeCycle(value?.value ?? [], config?.name);
   }
 
   throw new CodeGeneratorError('Not a JSFunction or JSExpression');

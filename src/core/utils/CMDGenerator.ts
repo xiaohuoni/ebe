@@ -36,7 +36,7 @@ function getConsoleFunction(item: any, platform?: string) {
       return `'${v}'`;
     })
     .filter(Boolean)
-    .join(',')})`;
+    .join(',')});\n`;
 }
 
 const CMDGenerator = (
@@ -50,7 +50,6 @@ const CMDGenerator = (
     return '';
   }
   const isLoopChildren = scope && scope?.parentType === 'Loop';
-
   // 先尝试人工实现，再整理
   if (item?.type === 'console') {
     return getConsoleFunction(item);
@@ -62,6 +61,7 @@ const CMDGenerator = (
   } else {
     count[item.type] = 1;
   }
+
   return `const eventData${item.type}${suffix}: any = [${JSON.stringify(
     item,
   )},];eventData${item.type}${suffix}.params = ${JSON.stringify(
@@ -69,36 +69,41 @@ const CMDGenerator = (
     // @ts-ignore
     params,
   )} || [];CMDGenerator(eventData${item.type}${suffix}, {${params
-    .concat(isLoopChildren ? [{ name: 'item' }, { name: 'i' }] : [])
+    .concat(
+      isLoopChildren
+        ? [
+            // @ts-ignore
+            { name: scope?.parent?.props?.itemKey ?? 'item' },
+            // @ts-ignore
+            { name: scope?.parent?.props?.indexKey ?? 'i' },
+            { name: 'item' },
+            { name: 'i' },
+          ]
+        : [],
+    )
     .map((i: { name: any }) => i.name)
     .filter(Boolean)
     .join(',')}}, '${item.type}', { id: '${item.type}',name: '${
     item.type
   }',type: '${item.type}',platform: '${platform}',});`;
 };
-export const CMDGeneratorLifeCycle = (value: any[], config: any) => {
+export const CMDGeneratorLifeCycle = (
+  value: any[],
+  platform: any,
+  scope?: IScope,
+) => {
   const renderEvent = value.map((v1: any) => {
     // @ts-ignore
-    return CMDGenerator(v1, value.params, config.name);
+    return CMDGenerator(v1, value.params, platform, scope);
   });
 
   return renderEvent.join('');
 };
 
-export const CMDGeneratorEvent = (
-  value: any,
-  nodeItem: any,
-  eventName: any,
-  scope: IScope,
-) => {
+export const CMDGeneratorEvent = (value: any, nodeItem: any, scope: IScope) => {
   const renderEvent = `(${value.params
     .map((i: { name: any }) => i.name + ': any')
-    .join(',')})=>{ ${CMDGenerator(
-    value[0],
-    value.params,
-    nodeItem?.platform,
-    scope,
-  )}
+    .join(',')})=>{ ${CMDGeneratorLifeCycle(value, nodeItem?.platform, scope)}
     }`;
 
   return renderEvent;

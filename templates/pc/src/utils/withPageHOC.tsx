@@ -8,6 +8,7 @@ import {
   CONDrun,
 } from '@lingxiteam/engine-command';
 import Meta from '@lingxiteam/engine-meta';
+import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';
 import locales from '@lingxiteam/engine-pc/es/utils/locales';
 import { createApp, getApis, user } from '@lingxiteam/engine-platform';
 import monitt from '@lingxiteam/engine-plog';
@@ -24,11 +25,11 @@ import {
   transformValueDefined,
 } from '@lingxiteam/engine-utils';
 import { $$compDefine, SandBoxContext } from '@lingxiteam/types';
-import { history } from 'alita';
+import { history, useLocation } from 'alita';
 import { message as messageApi, Modal } from 'antd';
+import { parse } from 'qs';
 import React, { useContext, useEffect, useState } from 'react';
 import { Context } from './Context/context';
-
 const getStaticDataSourceService = (
   ds: any[],
   labelKey: string,
@@ -54,13 +55,15 @@ export interface PageHOCOptions {
   defaultState: any;
   hasLogin?: boolean;
 }
-
 export const withPageHOC = (
   WrappedComponent: React.FC<PageProps>,
   options: PageHOCOptions,
 ) => {
-  return (props: any) => {
+  return React.forwardRef((props: any, ref) => {
+    const location = useLocation();
+    const urlParam = parse((location?.search ?? '?')?.split('?')[1]);
     const { ModalManagerRef, refs, appId } = useContext(Context);
+    const ExpBusiObjModalRef = React.useRef<any>();
     const { getLocaleLanguage, getLocale, getLocaleEnv, locale, language } =
       i18n.useLocale(
         {
@@ -73,9 +76,9 @@ export const withPageHOC = (
       );
     const [data, setData] = useState<any>();
     let meta: Meta;
+    const pageId = props?.pageId ?? options?.pageId;
     const init = async () => {
       // 页面容器会传 pageId
-      const pageId = props?.pageId ?? options?.pageId;
       const api = getApis({
         appId,
         // 页面容器会传 pageId
@@ -129,6 +132,7 @@ export const withPageHOC = (
       };
       const engineApis = injectData.getEngineApis();
       const defaultContext = {
+        urlParam,
         appId,
         pageId,
         engineRelation: EngineMapping.publicMethod,
@@ -144,6 +148,7 @@ export const withPageHOC = (
           isH5: true,
         },
         ModalManagerRef,
+        ExpBusiObjModalRef,
         addToAwaitQueue: (
           compId: string,
           functionName: string,
@@ -175,6 +180,7 @@ export const withPageHOC = (
           ...(options?.defaultState || {}),
           ...(props?.busiCompStates || {}),
           ...(props?.pageViewCompState || {}),
+          ...(props?.state || {}),
         },
         engineStateChange: () => {
           console.log('engineStateChange');
@@ -212,46 +218,55 @@ export const withPageHOC = (
           targetEventData,
           '',
           engineApis,
-        )(args, {
-          ...context,
-          api,
-          checkIfCMDHasReturn: (cmddata: any[]) => {
-            return checkIfCMDHasReturn(cmddata, engineApis);
+        )(
+          { ...args, urlParam },
+          {
+            ...context,
+            api,
+            checkIfCMDHasReturn: (cmddata: any[]) => {
+              return checkIfCMDHasReturn(cmddata, engineApis);
+            },
+            checkIfRefValue: (val: string, field: any, cmd: any) => {
+              return checkIfRefValue(val, field, cmd, engineApis);
+            },
+            checkIfRefValueByObject: (
+              val: string | Record<string, any>,
+              field: Record<string, any>,
+              cmd?: any,
+            ) => {
+              return checkIfRefValueByObject(val, field, cmd, engineApis);
+            },
+            CMDParse: (cmddata: string | any[], actionname?: string) => {
+              return CMDParse(cmddata, actionname, engineApis);
+            },
+            CONDrun: (
+              arg0: any,
+              arg1: any,
+              arg2: SandBoxContext,
+              arg3: any,
+            ) => {
+              return CONDrun(arg0, arg1, arg2, arg3, engineApis);
+            },
+            monitt,
+            EventName,
+            $$compDefine,
+            Modal,
+            messageApi,
+            refs,
+            utils: engineApis,
+            history,
+            sandBoxRun: (
+              code: string,
+              extendAllowMap: Record<string, any> = {},
+            ) => {
+              return Sandbox.run(code, {
+                ...context,
+                ...engineApis,
+                ...extendAllowMap,
+              });
+            },
           },
-          checkIfRefValue: (val: string, field: any, cmd: any) => {
-            return checkIfRefValue(val, field, cmd, engineApis);
-          },
-          checkIfRefValueByObject: (
-            val: string | Record<string, any>,
-            field: Record<string, any>,
-            cmd?: any,
-          ) => {
-            return checkIfRefValueByObject(val, field, cmd, engineApis);
-          },
-          CMDParse: (cmddata: string | any[], actionname?: string) => {
-            return CMDParse(cmddata, actionname, engineApis);
-          },
-          CONDrun: (arg0: any, arg1: any, arg2: SandBoxContext, arg3: any) => {
-            return CONDrun(arg0, arg1, arg2, arg3, engineApis);
-          },
-          monitt,
-          EventName,
-          $$compDefine,
-          Modal,
-          messageApi,
-          refs,
-          history,
-          sandBoxRun: (
-            code: string,
-            extendAllowMap: Record<string, any> = {},
-          ) => {
-            return Sandbox.run(code, {
-              ...context,
-              ...engineApis,
-              ...extendAllowMap,
-            });
-          },
-        });
+        );
       };
       const getValue = (id: string, stateName?: string) => {
         if (stateName) {
@@ -291,6 +306,25 @@ export const withPageHOC = (
     if (!data || Object.keys(data).length === 0) {
       return <div>loading</div>;
     }
-    return <WrappedComponent {...data} {...props} />;
-  };
+    return (
+      <>
+        {' '}
+        <WrappedComponent
+          {...data}
+          {...props}
+          urlParam={urlParam}
+          forwardedRef={ref}
+        />
+        <ExpBusiObjModal
+          ref={ExpBusiObjModalRef}
+          key={`ExpBusiObjModal-${pageId}`}
+          api={data.api}
+          pageId={pageId}
+          appId={appId}
+          utils={data.utils}
+          getLocale={getLocale}
+        />
+      </>
+    );
+  });
 };

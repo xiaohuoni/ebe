@@ -1,156 +1,104 @@
 import Pageview, { RootProps } from '@/components/Pageview';
-import CenterPopup from 'antd-mobile-5/es/components/center-popup';
-import Popup from 'antd-mobile-5/es/components/popup';
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useState,
-} from 'react';
-import type { ModelProps, modePropsType } from './types';
-const pos = {
-  sliderLeft: 'left',
-  sliderRight: 'right',
-  popup: 'bottom',
-  dropdown: 'top',
-};
-const defaultPopupProps: ModelProps = {
-  position: 'bottom',
-  mode: '',
-  closeOnMaskClick: true,
-  destroyOnClose: false,
-  showCloseButton: false,
-};
+import { Modal } from '@lingxiteam/engine-pc/es/components/EnhanceAntdComp';
+import { Spin } from 'antd';
+import classnames from 'classnames';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 
-const Modal = forwardRef<any, modePropsType>((props, ref) => {
+const DM = forwardRef((props: any) => {
   const {
     pageId,
-    visible = false,
-    onOk,
-    onCancel,
-    onClose,
-    sceneCode,
-    params,
-    modalId,
+    modalInstId,
+    setStatue,
     managerRef,
+    onCancel,
+    onOk,
+    params,
+    sceneCode,
+    className,
     lcdpParentRenderId,
-    appId,
+    title,
     getLocale,
+    ...restProp
   } = props;
-
-  const [popupProps, setPopupProps] = useState<ModelProps>(defaultPopupProps);
-  const [show, setShow] = useState(false);
-  const style = useMemo(() => {
-    const { width } = popupProps;
-    switch (popupProps.mode) {
-      case 'alert':
-        return {
-          '--min-width': width,
-          '--max-width': width,
-        };
-
-      default:
-        break;
-    }
-    return {};
-  }, [popupProps]);
-  const bodyStyle = useMemo(() => {
-    const { width, height } = popupProps;
-    switch (popupProps.mode) {
-      case 'alert':
-        return {
-          width: width || '75vw',
-          height,
-        };
-      case 'sliderLeft':
-        return {
-          minWidth: width || '30vw',
-          width,
-          borderBottomRightRadius: '8px',
-          borderTopRightRadius: '8px',
-          overflow: 'hidden',
-        };
-      case 'sliderRight':
-        return {
-          minWidth: width || '30vw',
-          width,
-          borderBottomLeftRadius: '8px',
-          borderTopLeftRadius: '8px',
-          overflow: 'hidden',
-        };
-      case 'dropdown':
-        return {
-          borderBottomLeftRadius: '8px',
-          borderBottomRightRadius: '8px',
-          overflow: 'hidden',
-          minHeight: height || '30vh',
-          height,
-        };
-      case 'popup':
-        return {
-          borderTopLeftRadius: '8px',
-          borderTopRightRadius: '8px',
-          overflow: 'hidden',
-          minHeight: height,
-          height,
-          // minHeight: '30vh',
-        };
-      default:
-        break;
-    }
-    return {};
-  }, [popupProps]);
-
+  const [mProps, setMDProps] = useState<any>({ title: '' });
+  const [modalLoading, setModalLoading] = useState<boolean>(false);
+  const mRef = useRef<any>();
+  // 设置弹窗抽屉属性
   useEffect(() => {
-    setShow(visible);
-  }, [visible]);
-
-  useEffect(() => {
-    const modalProps = RootProps[pageId || ''] || defaultPopupProps;
-    setPopupProps(modalProps);
+    const pageInst = RootProps[pageId || ''];
+    const mdProps: any = {
+      title: pageInst.modalTitle || pageInst.pageName,
+      width:
+        pageInst.width === 'custom'
+          ? pageInst.customWidth || 624
+          : pageInst.width,
+      height:
+        pageInst.width === 'custom'
+          ? pageInst.customHeight || 'auto'
+          : pageInst.height,
+      okText: pageInst.okText || getLocale('confirm', '确定'),
+      cancelText: pageInst.cancelText || getLocale('cancelText', '取消'),
+      placement: pageInst.placement || 'right',
+      maskClosable: pageInst.closeOnClickOverlay !== false,
+    };
+    if (pageInst.footer === 0) {
+      mdProps.footer = null;
+    }
+    setMDProps(mdProps);
   }, [pageId]);
-  useImperativeHandle(ref, () => ({
-    close: onClose,
-    modalId,
-  }));
-
-  const MyModal = useMemo(() => {
-    if (popupProps.mode === 'alert') {
-      return CenterPopup;
-    }
-    if (popupProps.mode === 'popup') {
-      return Popup;
-    }
-    return Popup;
-  }, [popupProps.mode]);
-
-  if (!MyModal) {
-    return null;
-  }
-
   return (
-    <MyModal
-      // @ts-ignore
-      round
-      {...popupProps}
-      style={style}
-      bodyClassName={`dynamic_modal_${pageId || ''}`}
-      bodyStyle={bodyStyle}
-      visible={show}
-      getContainer={document.body}
-      onClose={() => {
-        onClose && onClose(popupProps.destroyOnClose);
-      }}
-      afterClose={onCancel}
-    >
-      <Pageview pageSrc={pageId} />
-    </MyModal>
+    <>
+      <Modal
+        {...mProps}
+        {...restProp}
+        maskClosable={modalLoading ? false : mProps?.maskClosable}
+        style={modalLoading ? { display: 'none' } : {}}
+        destroyOnClose
+        className={classnames(
+          className,
+          'ued-modal-wrap',
+          `dynamic_modal_${pageId || ''}`,
+        )}
+        onOk={() => {
+          console.log('里面会回调 props.onOK');
+          console.log(mRef);
+          if (mRef.current && typeof mRef.current.onOk === 'function') {
+            mRef.current.onOk(); // 这里面会回调 props.onOK
+          }
+        }}
+        onCancel={() => {
+          let cancelResult;
+          if (mRef.current && typeof mRef.current.onCancel === 'function') {
+            // 返回false阻止默认窗口关闭动作
+            cancelResult = mRef.current.onCancel();
+          }
+
+          // onCancel为内置取消处理函数，用于关闭弹窗
+          if (cancelResult !== false && onCancel) {
+            onCancel();
+          }
+        }}
+      >
+        <Spin spinning={modalLoading}>
+          <div
+            style={
+              mProps.height
+                ? { height: mProps.height, overflow: 'auto' }
+                : { overflowX: 'auto' }
+            }
+          >
+            <Pageview pageSrc={pageId} state={params} ref={mRef} />
+          </div>
+        </Spin>
+      </Modal>
+      {/* 弹窗等到页面信息读取后再加载 */}
+      {modalLoading && <Spin spinning className="modal-spinning-mask" />}
+    </>
   );
 });
 
-Modal.defaultProps = {
-  getLocale: () => '',
+DM.defaultProps = {
+  getLocale: (k?: string, p?: string) => p ?? '',
 };
 
-export default Modal;
+export default DM;

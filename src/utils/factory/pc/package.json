@@ -1,0 +1,64 @@
+{
+  "name": "@lingxiteam/pcfactory",
+  "version": "3.3.1",
+  "description": "演示 demo",
+  "keywords": [],
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "es",
+    "lib",
+    "dist",
+    "*.md",
+    "umd"
+  ],
+  "scripts": {
+    "build": "npm run export && cross-env FATHER_CACHE=none father build && lingxi build && npm run build-gitHead",
+    "build-gitHead": "lingxi setGitHead paths=../../",
+    "dev": "npm run export && cross-env NODE_OPTIONS=--max-old-space-size=8192 father dev",
+    "export": "node ./scripts/prebuild.js",
+    "hot:compName": "lingxi build --compName=",
+    "nodemon-yalc-watch": "nodemon --ignore dist/ --ignore node_modules/ --watch src -C -e tsx,js,ts,html,less,scss --debug -x \"father-build && yalc push\"",
+    "prepublishOnly": "lingxi publishRules && npm run build-gitHead",
+    "watch": "npm run export && father dev",
+    "yalc-publish": "yalc publish"
+  },
+  "dependencies": {
+    "@lingxiteam/charts-common": "3.3.1-alpha.1",
+    "@lingxiteam/richtext": "0.5.0",
+    "@lingxiteam/types": "3.2.1-alpha.44",
+    "@paciolan/remote-component": "^2.12.1",
+    "classnames": "^2.2.6",
+    "echarts": "^5.1.2",
+    "lcdp-message": "0.1.9",
+    "qr-code-with-logo": "1.1.0",
+    "rc-tween-one": "3.0.6",
+    "react-player": "2.11.0",
+    "react-quill": "^2.0.0",
+    "react-resizable": "^3.0.4",
+    "react-soundplayer": "^1.0.5",
+    "size-sensor": " ^1.0.1"
+  },
+  "devDependencies": {
+    "@lingxiteam/icons": "^0.0.3",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2",
+    "father": "^4.1.9"
+  },
+  "peerDependencies": {
+    "@lingxiteam/assets": "^3.3.1-alpha.13",
+    "@lingxiteam/icons": "^0.0.3",
+    "ahooks": "^3.0.0",
+    "antd": ">=4.18.8",
+    "lodash": "^4.0.0",
+    "moment": "^2.29.1",
+    "react": ">=16.8.6",
+    "react-loadable": "^5.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "40313fabb621ce2639485e4631153bb019d17c29"
+}

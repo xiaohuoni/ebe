@@ -15,13 +15,14 @@ import {
 import { handleSubNodes, parseSchema } from '../utils/schema/lxschema';
 import { uniqueArray } from '../core/utils/common';
 // @ts-ignore
-import enPreprocess from '@lingxiteam/factory/lib/index.enPreprocess';
+import enPreprocess from '@lingxiteam/factory/es/index.enPreprocess';
 // @ts-ignore
-import enRunPreprocess from '@lingxiteam/factory/lib/index.enRunPreprocess';
-import enPreprocessPC from '@lingxiteam/pcfactory/lib/index.enPreprocess';
-import enRunPreprocessPC from '@lingxiteam/pcfactory/lib/index.enRunPreprocess';
+import enRunPreprocess from '@lingxiteam/factory/es/index.enRunPreprocess';
+import enPreprocessPC from '../utils/factory/pc/index.enPreprocess';
+import enRunPreprocessPC from '../utils/factory/pc/index.enRunPreprocess';
 import assetHelper from '../utils/schema/assets/assets';
 import { LINGXI_PROJECT_VERSION, PAGE_TYPES, MODAL_TYPES } from '../constants';
+import * as _ from 'lodash';
 
 function getInternalDep(
   internalDeps: Record<string, IInternalDependency>,
@@ -44,6 +45,7 @@ export class SchemaParser implements ISchemaParser {
     const schemaArr = Array.isArray(schemaData) ? schemaData : [schemaData];
     const compDeps: Record<string, IExternalDependency> = {};
     const internalDeps: Record<string, IInternalDependency> = {};
+    const pageStaticData: any = {};
     let customClass = '';
     const {
       platform = 'h5',
@@ -64,10 +66,14 @@ export class SchemaParser implements ISchemaParser {
     //   // }
     //   // return compLib;
     // };
-    const getComponentsMap = (root: any) => {
+    const getComponentsMap = (root: any, pageId: string) => {
       root.components.forEach((info: any) => {
         if (info?.customClass) {
           customClass += info?.customClass;
+        }
+        if (info?.props?.staticData?.type === 'static') {
+          pageStaticData[pageId] ??= [];
+          pageStaticData[pageId].push(info?.props?.staticData?.data?.attrNbr);
         }
         if (info.type === 'Pageview' || info.type === 'Popover') {
           compDeps[info.type] = {
@@ -115,7 +121,7 @@ export class SchemaParser implements ISchemaParser {
           // };
         }
         if (info.components) {
-          getComponentsMap(info);
+          getComponentsMap(info, pageId);
         }
       });
     };
@@ -125,19 +131,19 @@ export class SchemaParser implements ISchemaParser {
     let keepalive: string[] = [];
 
     containers = schemaArr.map((schema) => {
+      getComponentsMap(_.cloneDeep(schema), pageIdMapping[schema.pagePath]);
       const newSchema = parseSchema(schema, true);
-      getComponentsMap(newSchema);
-      if (schema?.pageDynamicFlag && schema.pagePath) {
-        keepalive.push(schema.pagePath);
+      if (newSchema?.pageDynamicFlag && newSchema.pagePath) {
+        keepalive.push(newSchema.pagePath);
       }
       return {
         ...newSchema,
         // 简写 业务组件没有 pagePath
-        moduleName: schema.pagePath
-          ? schema.pagePath
-          : `${schema.pageContainerType}${schema.id}`,
-        containerType: schema.pageContainerType ?? 'Page',
-        type: schema.pageContainerType ?? 'Page',
+        moduleName: newSchema.pagePath
+          ? newSchema.pagePath
+          : `${newSchema.pageContainerType}${newSchema.id}`,
+        containerType: newSchema.pageContainerType ?? 'Page',
+        type: newSchema.pageContainerType ?? 'Page',
         analyzeResult: {
           isUsingRef: false,
         },
@@ -231,7 +237,7 @@ export class SchemaParser implements ISchemaParser {
     });
 
     npms = uniqueArray<INpmPackage>(npms, (i) => i.package).filter(Boolean);
-
+    console.log(pageStaticData);
     return {
       containers,
       // globalRouter: {
@@ -245,6 +251,7 @@ export class SchemaParser implements ISchemaParser {
       pageview: {
         routes,
         models,
+        pageStaticData,
       },
       app: {
         keepalive,

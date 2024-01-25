@@ -20,6 +20,7 @@ import {
   Radio as _Radio,
   RangePicker as _RangePicker,
   Rate as _Rate,
+  RichTextEditor as _RichTextEditor,
   Select as _Select,
   Slider as _Slider,
   StdUpload as _StdUpload,
@@ -80,6 +81,7 @@ export {
   VerticalView,
   VideoPlayer,
   View,
+  VirtualGroup,
   Webview,
 } from '@lingxiteam/pcfactory/es/index.component';
 
@@ -160,7 +162,7 @@ const Hoc = (Component: any, fieldProps: any) => {
     useImperativeHandle(compProps.ref, () => imperative);
 
     // 统一处理部分逻辑
-    return <Component {...compProps} />;
+    return <Component {...compProps} {...(compProps?.extendProps || {})} />;
   });
 
   return HOC;
@@ -227,6 +229,10 @@ export const RangePicker = Hoc(_RangePicker, {
   valuePropName: 'value',
 });
 export const Rate = Hoc(_Rate, { trigger: 'onChange', valuePropName: 'value' });
+export const RichTextEditor = Hoc(_RichTextEditor, {
+  trigger: 'onChange',
+  valuePropName: 'value',
+});
 export const Select = Hoc(_Select, {
   trigger: 'onChange',
   valuePropName: 'value',

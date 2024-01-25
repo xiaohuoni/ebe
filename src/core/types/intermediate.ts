@@ -40,6 +40,7 @@ export interface IRouterInfo extends IWithDependency {
     fileName: string;
     type: string;
   }>;
+  pageStaticData: Array<string>;
 }
 
 /**

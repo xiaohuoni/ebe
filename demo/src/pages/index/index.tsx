@@ -197,7 +197,7 @@ const Page = () => {
         onFinish={onFinish}
         initialValues={{
           // appId: '868681578956083200',
-          appId: '1056454276662820864',
+          appId: '1040452624180850688',
           platform: false,
         }}
       >
@@ -208,9 +208,9 @@ const Page = () => {
           <Switch />
         </Item>
         <Item wrapperCol={{ offset: 8, span: 16 }}>
-          {/* <Button type="primary" htmlType="submit" loading={loading}>
+          <Button type="primary" htmlType="submit" loading={loading}>
             服务端出码
-          </Button> */}
+          </Button>
           <Button
             loading={loading}
             onClick={async () => {

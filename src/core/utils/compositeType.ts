@@ -75,7 +75,6 @@ function generateObject(
     }
     return `this._i18nText(${JSON.stringify(_.omit(value, 'type'))})`; // TODO: 优化：这里可以考虑提取成个常量...
   }
-
   const body = Object.keys(value)
     .map((key) => {
       const propName = JSON.stringify(key);
@@ -109,7 +108,7 @@ export function generateVarString(value: any): string {
   // 数字的不能转 比如0.1 不能变成 0?.1
   return value
     .replace(/^\$|\$$/g, '')
-    .replace(/;/g, '')
+    .replace(/;$/, '')
     .replace(/(?<!\d)\.(?!\d)/g, '?.')
     .replace(/\?\?\./g, '?.');
 }

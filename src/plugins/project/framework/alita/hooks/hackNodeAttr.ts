@@ -68,6 +68,7 @@ export default function hackEngineApis(
       // @ts-ignore
       LoopchildrenStr = config.self(nodeItem.components, {
         ...scope,
+        parent: nodeItem,
         parentType: 'Loop',
       });
     }
@@ -79,6 +80,12 @@ export default function hackEngineApis(
           MemoRenderer: {
             renderer: null,
             MemoLoopItem: (props: any) => {
+              const ${
+                nodeItem?.props?.itemKey ?? 'item'
+              } = props[props.itemKey] ?? props?.item;
+              const ${
+                nodeItem?.props?.indexKey ?? 'i'
+              } = props[props.indexKey] ?? props?.i;
               const item = props[props.itemKey] ?? props?.item;
               const i = props[props.indexKey] ?? props?.i;
               return (<>${LoopchildrenStr}</>)

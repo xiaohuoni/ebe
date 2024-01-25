@@ -48,6 +48,12 @@
 - [x] bug 0?.00% . 的前后是数字的时候，不能改成 ?.
 - [x] pc 端 Form 渲染存在差异
 - [x] 表单组件需要标记父级 compType isFormRootChild extendProps
+- [x] 循环容器 itemKey
+- [x] js 变量行尾分号 - 平台额外添加的，意义不明，去除
+- [x] 组件属性 staticData
+- [ ] Cascader onClickStaticOption packages/pcFactory/src/index.enPreprocess.ts
+- [ ] basicStatus 2 为隐藏
+- [ ] pc form 非表单组件 布局异常
 - [ ] findAppPolymerizationInfo createApp 加个配置不请求
 - [ ] form onValuesChange - listenerOnValueChange
 - [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
@@ -55,8 +61,7 @@
 - [ ] 命令 callParentCustomFunc 用于调用父级页面自定义方法
 - [ ] 数据源清理，只保留必须的字段
 - [ ] 表格数据导入
-- [ ] 表格数据导出
-资产 DSL - 林喜 PC 端 实习生打卡 DICT 指令源码化？源数据 dataSource 清理？
+- [ ] 表格数据导出资产 DSL - 林喜 PC 端 实习生打卡 DICT 指令源码化？源数据 dataSource 清理？
 
 决策标准：
 

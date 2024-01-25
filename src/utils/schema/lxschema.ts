@@ -140,7 +140,6 @@ const preprocessComponentSchema = (
     // fusionMode: schema?.fusionMode,
     $$componentItem: `##{{id: '${schema.id}',uid: '${schema.id}',type: '${schema.compName}',...componentItem}}##`,
   };
-
   // 执行组件预处理
   const methodsRun = assetHelper.comRunPreprocess.getRunComPreprocessMethods(
     schema.compName!,

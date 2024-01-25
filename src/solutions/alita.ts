@@ -119,7 +119,7 @@ export default function createIceJsProjectBuilder(
         }),
       ],
     },
-    postProcessors: [prettier()],
-    // postProcessors: [],
+    // postProcessors: [prettier()],
+    postProcessors: [], //const i = props[props.indexKey] ?? props?.i;
   });
 }

@@ -54,6 +54,10 @@ ${
     ? ''
     : `import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';`
 }
+import { pageStaticData } from '@/components/Pageview';
+
+const awaitKeys: Set<string> = new Set();
+const cacheKeys: Set<string> = new Set();
 const getStaticDataSourceService = (
   ds: any[],
   labelKey: string,
@@ -119,6 +123,87 @@ export const withPageHOC = (
         isOpenTheme: false,
         beforeCreateApp: () => options?.hasLogin && user.init(),
       });
+
+      const getStaticAttrByKeys = async (attrNbrKeys: string[]) => {
+        const { attrDataMap = {} } = data;
+        const reqNbrKeys = attrNbrKeys.filter((key) => !cacheKeys.has(key));
+        if (reqNbrKeys.length) {
+          const params = {
+            attrCodes: reqNbrKeys,
+            appId,
+            pageId,
+          };
+          let res: any = {};
+          if (process.env.LCDP_VERSION === '1.0.9') {
+            res = await api.batchGetAppStaticAttr109(params);
+          } else {
+            res = await api.batchGetAppStaticAttr(params);
+          }
+          reqNbrKeys.forEach((key) => {
+            const list = res[key];
+            if (list?.length > 0) {
+              attrDataMap[key] = (list || []).map((item: any) => {
+                // 记录子级静态数据与编码关系
+                const zattrNbrValueMap: Record<any, any[]> = {};
+                if (
+                  Array.isArray(item.relatedAttrSpecList) &&
+                  item.relatedAttrSpecList.length
+                ) {
+                  const children = item.relatedAttrSpecList
+                    .map((aItem: any) => {
+                      if (aItem.zrelatedAttrValueList) {
+                        // 记录子级编码
+                        const zattrValues = new Set();
+                        // 这级只做展示不做选择
+                        const zChildren = aItem.zrelatedAttrValueList.map(
+                          (zItem: any) => {
+                            zattrValues.add(zItem.zattrValue);
+                            return {
+                              label: zItem.zattrValueName,
+                              title: zItem.zattrValueName,
+                              value: zItem.zattrValue,
+                              isLeaf: false,
+                            };
+                          },
+                        );
+                        zattrNbrValueMap[aItem.zattrNbr] = [...zattrValues];
+                        return zChildren;
+                      }
+                      return undefined;
+                    })
+                    .filter(Boolean)
+                    .flat();
+                  if (children.length) {
+                    return {
+                      ...item,
+                      label: item.attrValueName,
+                      title: item.attrValueName,
+                      value: item.attrValue,
+                      relatedAttrSpecList: item.relatedAttrSpecList,
+                      children,
+                      zattrNbrValueMap,
+                    };
+                  }
+                }
+                return {
+                  ...item,
+                  label: item.attrValueName,
+                  title: item.attrValueName,
+                  value: item.attrValue,
+                  relatedAttrSpecList: item.relatedAttrSpecList,
+                };
+              });
+              cacheKeys.add(key);
+              awaitKeys.delete(key);
+            }
+          });
+        }
+        return Promise.resolve(attrDataMap);
+      };
+
+      const attrDataMap = await getStaticAttrByKeys(
+        pageStaticData[pageId] ?? [],
+      );
       const awaitHandleData = new AwaitHandleData();
       const injectData = {
         getEngineApis: () => {
@@ -156,6 +241,7 @@ export const withPageHOC = (
       };
       const engineApis = injectData.getEngineApis();
       const defaultContext = {
+        urlParam,
         appId,
         pageId,
         engineRelation: EngineMapping.publicMethod,
@@ -299,6 +385,7 @@ export const withPageHOC = (
         functorsMap: assetHelper.function.functorsMap,
         getValue,
         componentItem,
+        attrDataMap,
       });
       console.log(context);
       meta.dataDidUpdate = () => {
@@ -311,6 +398,7 @@ export const withPageHOC = (
           functorsMap: assetHelper.function.functorsMap,
           getValue,
           componentItem,
+          attrDataMap,
         });
       };
     };
