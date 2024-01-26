@@ -58,6 +58,7 @@ import { pageStaticData } from '@/components/Pageview';
 
 const awaitKeys: Set<string> = new Set();
 const cacheKeys: Set<string> = new Set();
+const cacheAttrDataMap: any = {};
 const getStaticDataSourceService = (
   ds: any[],
   labelKey: string,
@@ -121,11 +122,12 @@ export const withPageHOC = (
         isMock: false,
         dataCollect: false,
         isOpenTheme: false,
-        beforeCreateApp: () => options?.hasLogin && user.init(),
+        // TODO: 页面开启免登录，页面里面又绑定了用户信息，怎么处理？
+        beforeCreateApp: () => user.init(),
+        // beforeCreateApp: () => options?.hasLogin && user.init(),
       });
 
       const getStaticAttrByKeys = async (attrNbrKeys: string[]) => {
-        const { attrDataMap = {} } = data;
         const reqNbrKeys = attrNbrKeys.filter((key) => !cacheKeys.has(key));
         if (reqNbrKeys.length) {
           const params = {
@@ -142,7 +144,7 @@ export const withPageHOC = (
           reqNbrKeys.forEach((key) => {
             const list = res[key];
             if (list?.length > 0) {
-              attrDataMap[key] = (list || []).map((item: any) => {
+              cacheAttrDataMap[key] = (list || []).map((item: any) => {
                 // 记录子级静态数据与编码关系
                 const zattrNbrValueMap: Record<any, any[]> = {};
                 if (
@@ -198,7 +200,7 @@ export const withPageHOC = (
             }
           });
         }
-        return Promise.resolve(attrDataMap);
+        return Promise.resolve(cacheAttrDataMap);
       };
 
       const attrDataMap = await getStaticAttrByKeys(
@@ -387,9 +389,7 @@ export const withPageHOC = (
         componentItem,
         attrDataMap,
       });
-      console.log(context);
       meta.dataDidUpdate = () => {
-        console.log(context);
         setData({
           ...context,
           CMDGenerator,

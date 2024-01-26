@@ -51,17 +51,20 @@
 - [x] 循环容器 itemKey
 - [x] js 变量行尾分号 - 平台额外添加的，意义不明，去除
 - [x] 组件属性 staticData
+- [x] basicStatus 2 为隐藏 3 不可交互 4 只读
+- [ ] 页面开启免登录，页面里面又绑定了用户信息，怎么处理？
+- [ ] 显隐规则配置错误时，如何处理？比如 用户配置 basicStatus "$data.xxxxxxx.list$".length?2:1 实际上不存在 xxxxxxx
 - [ ] Cascader onClickStaticOption packages/pcFactory/src/index.enPreprocess.ts
-- [ ] basicStatus 2 为隐藏
 - [ ] pc form 非表单组件 布局异常
 - [ ] findAppPolymerizationInfo createApp 加个配置不请求
-- [ ] form onValuesChange - listenerOnValueChange
 - [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
 - [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67 调试服务器 http://172.21.72.205:8088/
 - [ ] 命令 callParentCustomFunc 用于调用父级页面自定义方法
 - [ ] 数据源清理，只保留必须的字段
 - [ ] 表格数据导入
-- [ ] 表格数据导出资产 DSL - 林喜 PC 端 实习生打卡 DICT 指令源码化？源数据 dataSource 清理？
+- [ ] 表格数据导出
+
+资产 DSL - 林喜 PC 端 实习生打卡 DICT 指令源码化？源数据 dataSource 清理？
 
 决策标准：
 

@@ -237,7 +237,7 @@ export class SchemaParser implements ISchemaParser {
     });
 
     npms = uniqueArray<INpmPackage>(npms, (i) => i.package).filter(Boolean);
-    console.log(pageStaticData);
+
     return {
       containers,
       // globalRouter: {

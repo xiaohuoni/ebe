@@ -8,7 +8,8 @@ import {
 } from '../../core';
 import { parseDsl } from './parseDsl';
 import assetHelper from './assets/assets';
-import { isNodeSchema } from '../../core/utils/deprecated';
+import { isNodeSchema, isJSVar } from '../../core/utils/deprecated';
+import { generateVarString } from '../../core/utils/compositeType';
 
 const noop = () => undefined;
 
@@ -151,7 +152,8 @@ const preprocessComponentSchema = (
     newSchema.props = aprops;
   });
 
-  const { popoverSetting, ...otherProps } = newSchema?.props ?? {};
+  // TOTO: popoverSetting pc
+  const { popoverSetting, basicStatus, ...otherProps } = newSchema?.props ?? {};
   // {value: 'popoverSetting={{"options": {"tipType": "2",\n…"destroyOnHide": false,\n"placement": "top"}}}', type: 'NodeCodePieceAttr'}
   if (popoverSetting) {
     // 如果是弹窗的话，需要用组件包裹原始组件
@@ -166,6 +168,13 @@ const preprocessComponentSchema = (
       components: [{ ...newSchema, props: otherProps }],
     };
   }
+  if (isJSVar(basicStatus)) {
+    const basicStatusStr = generateVarString(basicStatus);
+    newSchema.props.disabled = `$\`\${${basicStatusStr}}\` === '3'$`;
+    newSchema.props.visible = `$\`\${${basicStatusStr}}\` !== '2'$`;
+    newSchema.props.readOnly = `$\`\${${basicStatusStr}}\` === '4'$`;
+  }
+  delete newSchema.props.basicStatus;
   return newSchema;
 };
 
