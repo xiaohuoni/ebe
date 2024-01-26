@@ -52,6 +52,7 @@
 - [x] js 变量行尾分号 - 平台额外添加的，意义不明，去除
 - [x] 组件属性 staticData
 - [x] basicStatus 2 为隐藏 3 不可交互 4 只读
+- [x] 命令源码化 - ifelse
 - [ ] 页面开启免登录，页面里面又绑定了用户信息，怎么处理？
 - [ ] 显隐规则配置错误时，如何处理？比如 用户配置 basicStatus "$data.xxxxxxx.list$".length?2:1 实际上不存在 xxxxxxx
 - [ ] Cascader onClickStaticOption packages/pcFactory/src/index.enPreprocess.ts

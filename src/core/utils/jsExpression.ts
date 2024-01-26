@@ -6,7 +6,7 @@ import { isJSExpression, isJSFunction, isEventData } from './deprecated';
 import { CodeGeneratorError, IScope } from '../types';
 import { transformExpressionLocalRef, ParseError } from './expressionParser';
 import { isJSExpressionFn } from './common';
-import { CMDGeneratorLifeCycle } from './CMDGenerator';
+import { CMDGeneratorFunction } from './CMDGenerator';
 
 function parseFunction(content: string): t.FunctionExpression | null {
   try {
@@ -149,7 +149,11 @@ export function generateFunction(
   }
 
   if (isEventData(value)) {
-    return CMDGeneratorLifeCycle(value?.value ?? [], config?.name);
+    return CMDGeneratorFunction(
+      value?.value ?? [],
+      value?.value?.params,
+      config?.name,
+    );
   }
 
   throw new CodeGeneratorError('Not a JSFunction or JSExpression');
