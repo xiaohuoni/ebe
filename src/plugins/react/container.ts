@@ -39,7 +39,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       name: CLASS_DEFINE_CHUNK_NAME.Start,
       content: `
         const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, 
-          // ??? 这是哈
           attrDataMap={},
           injectData, refs, state, functorsMap, getStaticDataSourceService, getValue, componentItem, style, urlParam, ${
             isModal ? 'forwardedRef,' : ''

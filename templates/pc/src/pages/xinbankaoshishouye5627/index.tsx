@@ -10,7 +10,6 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 const Xinbankaoshishouye5627$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
-  // ??? 这是哈
   attrDataMap = {},
   injectData,
   refs,

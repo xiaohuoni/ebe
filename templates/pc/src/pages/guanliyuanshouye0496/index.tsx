@@ -28,7 +28,6 @@ styleInject(
 const Guanliyuanshouye0496$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
-  // ??? 这是哈
   attrDataMap = {},
   injectData,
   refs,
