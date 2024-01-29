@@ -4,7 +4,7 @@ import {
   NodeGenerator,
   LXProjectOptions,
 } from './core';
-import { IProjectSchema } from './';
+import { IProjectSchema, IContainerInfo } from './';
 
 export enum PIECE_TYPE {
   BEFORE = 'NodeCodePieceBefore',
@@ -50,4 +50,6 @@ export interface NodeGeneratorConfig {
    */
   tolerateEvalErrors?: boolean;
   options?: LXProjectOptions;
+  // 指令需要操作 import
+  ir?: IContainerInfo;
 }

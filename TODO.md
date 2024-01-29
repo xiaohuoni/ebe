@@ -53,6 +53,10 @@
 - [x] 组件属性 staticData
 - [x] basicStatus 2 为隐藏 3 不可交互 4 只读
 - [x] 命令源码化 - ifelse
+- [x] 命令源码化增加插件 - 允许命令解析式import新对象
+- [x] 命令源码化 - resetCurrentForm
+- [x] 表格数据导出
+- [ ] bug 表格导出需要点两次才有效，第一次请求数据都成功，但是发起任务的数据为空
 - [ ] 页面开启免登录，页面里面又绑定了用户信息，怎么处理？
 - [ ] 显隐规则配置错误时，如何处理？比如 用户配置 basicStatus "$data.xxxxxxx.list$".length?2:1 实际上不存在 xxxxxxx
 - [ ] Cascader onClickStaticOption packages/pcFactory/src/index.enPreprocess.ts
@@ -63,7 +67,7 @@
 - [ ] 命令 callParentCustomFunc 用于调用父级页面自定义方法
 - [ ] 数据源清理，只保留必须的字段
 - [ ] 表格数据导入
-- [ ] 表格数据导出
+
 
 资产 DSL - 林喜 PC 端 实习生打卡 DICT 指令源码化？源数据 dataSource 清理？
 

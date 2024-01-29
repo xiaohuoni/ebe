@@ -1,3 +1,5 @@
+import { IDependency } from '../core';
+
 export const getImportFrom = (
   pkg: string,
   type: string,
@@ -5,7 +7,7 @@ export const getImportFrom = (
   exportName?: string,
   version = '*',
   dependencyType = 'External',
-) => {
+): IDependency => {
   return {
     package: pkg,
     type: type,
@@ -13,7 +15,7 @@ export const getImportFrom = (
     version,
     dependencyType,
     destructuring,
-  };
+  } as IDependency;
 };
 
 export const getImportsFrom = (
@@ -23,7 +25,7 @@ export const getImportsFrom = (
   _?: string,
   version = '*',
   dependencyType = 'External',
-) => {
+): IDependency[] => {
   return types.map((p) => {
     return getImportFrom(
       pkg,

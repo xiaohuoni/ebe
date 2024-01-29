@@ -68,6 +68,7 @@ function generateAttrValue(
   const valueStr = generateCompositeType(attrData.attrValue, scope, {
     handlers: config?.handlers,
     nodeGenerator: config?.self,
+    ir: config?.ir,
   });
   return [
     {
@@ -176,7 +177,7 @@ function generateAttrs(
         //   .join(',')}}, '${eventName}', { id: '${nodeItem?.id}',name: '${
         //   nodeItem?.id
         // }',type: '${nodeItem?.type}',platform: '${nodeItem?.platform}',});}`;
-        const renderEvent = CMDGeneratorEvent(value, nodeItem, scope);
+        const renderEvent = CMDGeneratorEvent(value, nodeItem, scope, config);
         pieces = pieces.concat(
           generateAttr(
             eventName,
@@ -219,7 +220,7 @@ function generateSimpleNode(
 
   if (nodeItem.components && config?.self) {
     // @ts-ignore
-    const childrenStr = config.self(nodeItem.components, scope);
+    const childrenStr = config.self(nodeItem.components, scope, config);
 
     childrenParts.push({
       type: PIECE_TYPE.CHILDREN,
@@ -312,6 +313,7 @@ export function createNodeGenerator(
     const valueStr = generateCompositeType(nodeItem, scope, {
       handlers: cfg.handlers,
       nodeGenerator: generateNode as any,
+      ir: cfg?.ir,
     });
     // TODO: "use strict";return ("共" + state?.phonelist_result?.total + "条")
 

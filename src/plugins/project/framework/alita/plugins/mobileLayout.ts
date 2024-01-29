@@ -82,9 +82,13 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         type: ChunkType.STRING,
         fileType: FileType.TSX,
         name: MOBILE_CHUNK_NAME.NavBarContent,
-        content: `onLeftClick:()=>{${generateFunction(events.onLeftClick, {
-          name: ir.platform,
-        })}}`,
+        content: `onLeftClick:()=>{${generateFunction(
+          events.onLeftClick,
+          {
+            name: ir.platform,
+          },
+          { ir },
+        )}}`,
         linkAfter: [MOBILE_CHUNK_NAME.NavBarStart],
       });
     }

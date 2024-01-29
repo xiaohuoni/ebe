@@ -2,3 +2,4 @@
 export { getConsole } from './console';
 export { getDefault } from './defaultCmd';
 export { getIfelse } from './ifelse';
+export { getResetCurrentForm } from './resetCurrentForm';

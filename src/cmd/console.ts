@@ -1,7 +1,10 @@
 import { isJSVar } from '../core/utils/deprecated';
 import { generateVarString } from '../core/utils/compositeType';
-import { IScope } from '../core/types';
-import { CMDGeneratorFunction } from '../core/utils/CMDGenerator';
+import {
+  IScope,
+  CompositeValueGeneratorOptions,
+  CMDGeneratorPrames,
+} from '../core/types';
 
 // const eventDataconsole2: any = [
 //     {
@@ -27,13 +30,8 @@ import { CMDGeneratorFunction } from '../core/utils/CMDGenerator';
 //     type: 'console',
 //     platform: 'h5',
 //   });
-export function getConsole(
-  item: any,
-  params: any,
-  platform: string,
-  scope: IScope,
-): string {
-  const { options, type, dataId } = item;
+export function getConsole({ value }: CMDGeneratorPrames): string {
+  const { options, type, dataId } = value;
   return `// ${type} ${dataId} \n console.log(${options?.value
     .map((v: string) => {
       if (isJSVar(v)) {

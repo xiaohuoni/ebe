@@ -1,6 +1,10 @@
 import { isJSVar } from '../core/utils/deprecated';
 import { generateVarString } from '../core/utils/compositeType';
-import { IScope } from '../core/types';
+import {
+  IScope,
+  CompositeValueGeneratorOptions,
+  CMDGeneratorPrames,
+} from '../core/types';
 import { CMDGeneratorFunction } from '../core/utils/CMDGenerator';
 
 // const eventDataifelse5: any = [
@@ -270,37 +274,41 @@ const getCondition = (condition: any[]) => {
     .join(' ');
 };
 
-const getElseIfs = (
-  elseIfs: any[],
-  params: any,
-  platform: string,
-  scope: IScope,
-) => {
+const getElseIfs = ({
+  value: elseIfs,
+  params,
+  platform,
+  scope,
+  config = {},
+}: CMDGeneratorPrames) => {
   return elseIfs
     .filter(Boolean)
-    .map((c) => {
-      const { options, condition, callback = [], elseIfs } = c;
+    .map((c: any) => {
+      const { condition, callback = [] } = c;
       return `else if(${getCondition(condition)}){ ${CMDGeneratorFunction(
         callback,
         params,
         platform,
         scope,
+        config,
       )} }`;
     })
     .join(' ');
 };
 
-export function getIfelse(
-  item: any,
-  params: any,
-  platform: string,
-  scope: IScope,
-): string {
-  const { options, condition, callback1 = [], elseIfs } = item;
+export function getIfelse({
+  value,
+  params,
+  platform,
+  scope,
+  config = {},
+}: CMDGeneratorPrames): string {
+  const { condition, callback1 = [], elseIfs } = value;
   return `if(${getCondition(condition)}){${CMDGeneratorFunction(
     callback1,
     params,
     platform,
     scope,
-  )}} ${getElseIfs(elseIfs, params, platform, scope)} `;
+    config,
+  )}} ${getElseIfs({ value: elseIfs, params, platform, scope, config })} `;
 }

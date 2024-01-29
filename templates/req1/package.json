@@ -1,0 +1,62 @@
+{
+  "name": "app-pc",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build:app": "alita build",
+    "dev:app": "alita dev",
+    "format": "prettier --write .",
+    "lint-staged": "lint-staged",
+    "lint-staged:js": "eslint --ext .ts,.tsx",
+    "plugin": "alita plugin list",
+    "start": "alita dev"
+  },
+  "lint-staged": {
+    "**/*.less": "stylelint --syntax less",
+    "**/*.css": "stylelint --syntax css",
+    "**/*.{ts,tsx}": "npm run lint-staged:js",
+    "**/*.{ts,tsx,json,jsx,less}": [
+      "git add",
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "@alita/flow": "*",
+    "@lingxiteam/types": "3.3.1-alpha.1",
+    "alita": "3.3.7",
+    "antd": "4.18.8",
+    "@lingxiteam/engine-render": "3.2.1-alpha.44",
+    "@lingxiteam/engine-render-core": "3.2.1-alpha.44",
+    "lodash": "^4.17.21",
+    "qs": "^6.11.2",
+    "@lingxiteam/icons": "*",
+    "@lingxiteam/assets": "3.3.1-alpha.13",
+    "@lingxiteam/engine-pc": "3.3.1-alpha.13",
+    "@lingxiteam/engine-assets": "3.3.1-alpha.13",
+    "@lingxiteam/sys-action": "3.3.1-alpha.13",
+    "@lingxiteam/engine-command": "3.3.1-alpha.13",
+    "@lingxiteam/engine-meta": "3.3.1-alpha.13",
+    "@lingxiteam/engine-platform": "3.3.1-alpha.13",
+    "@lingxiteam/engine-plog": "3.3.1-alpha.13",
+    "@lingxiteam/engine-sandbox": "3.3.1-alpha.13",
+    "@lingxiteam/engine-utils": "3.3.1-alpha.13",
+    "@lingxiteam/pcfactory": "3.3.1-alpha.4"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "cross-env": "^6.0.3",
+    "prettier": "^2",
+    "ts-node": "^10",
+    "typescript": "^4",
+    "@types/qs": "^6.9.6",
+    "@types/lodash": "^4.14.162"
+  },
+  "engines": {
+    "node": ">=14.0.1"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "alita verify-commit"
+  }
+}

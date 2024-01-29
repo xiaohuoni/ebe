@@ -121,14 +121,17 @@ function generateBool(value: boolean): string {
   return value ? 'true' : 'false';
 }
 
-function genFunction(value: any): string {
+function genFunction(
+  value: any,
+  options: CompositeValueGeneratorOptions = {},
+): string {
   const globalVars = parseExpressionGetKeywords(value.value);
 
   if (globalVars.includes('arguments')) {
-    return generateFunction(value, { isBindExpr: true });
+    return generateFunction(value, { isBindExpr: true }, options);
   }
 
-  return generateFunction(value, { isArrow: true });
+  return generateFunction(value, { isArrow: true }, options);
 }
 
 function genJsSlot(
@@ -184,7 +187,7 @@ function generateUnknownType(
   }
 
   if (isJSFunction(value) || isJSExpressionFn(value)) {
-    return genFunction(value);
+    return genFunction(value, options);
   }
 
   if (isJSSlot(value)) {

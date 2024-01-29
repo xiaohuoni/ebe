@@ -3,7 +3,11 @@ import generate from '@babel/generator';
 import traverse from '@babel/traverse';
 import * as t from '@babel/types';
 import { isJSExpression, isJSFunction, isEventData } from './deprecated';
-import { CodeGeneratorError, IScope } from '../types';
+import {
+  CodeGeneratorError,
+  IScope,
+  CompositeValueGeneratorOptions,
+} from '../types';
 import { transformExpressionLocalRef, ParseError } from './expressionParser';
 import { isJSExpressionFn } from './common';
 import { CMDGeneratorFunction } from './CMDGenerator';
@@ -125,6 +129,7 @@ export function generateFunction(
     isArrow: false,
     isBindExpr: false,
   },
+  options: CompositeValueGeneratorOptions = {},
 ) {
   if (isBroadJSFunction(value)) {
     const functionCfg = value as any;
@@ -153,6 +158,8 @@ export function generateFunction(
       value?.value ?? [],
       value?.value?.params,
       config?.name,
+      {} as IScope,
+      options,
     );
   }
 

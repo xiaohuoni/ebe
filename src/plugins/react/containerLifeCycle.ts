@@ -74,9 +74,13 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           fileType: cfg.fileType,
           name: MODAL_CHUNK_NAME.OnOk,
           content: events?.onOk
-            ? `const onOk = ()=>{ ${generateFunction(events?.onOk, {
-                name: ir.platform,
-              })} }`
+            ? `const onOk = ()=>{ ${generateFunction(
+                events?.onOk,
+                {
+                  name: ir.platform,
+                },
+                { ir },
+              )} }`
             : '',
           linkAfter: [
             ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
@@ -87,9 +91,13 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           fileType: cfg.fileType,
           name: MODAL_CHUNK_NAME.OnCancel,
           content: events?.onCancel
-            ? `const onCancel = ()=>{ ${generateFunction(events?.onCancel, {
-                name: ir.platform,
-              })} }`
+            ? `const onCancel = ()=>{ ${generateFunction(
+                events?.onCancel,
+                {
+                  name: ir.platform,
+                },
+                { ir },
+              )} }`
             : '',
           linkAfter: [
             ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
@@ -111,9 +119,13 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         fileType: cfg.fileType,
         name: REACT_CHUNK_NAME.DidUpdateContent,
         content: events?.stateChange
-          ? generateFunction(events?.stateChange, {
-              name: ir.platform,
-            })
+          ? generateFunction(
+              events?.stateChange,
+              {
+                name: ir.platform,
+              },
+              { ir },
+            )
           : '',
         linkAfter: [REACT_CHUNK_NAME.DidUpdateStart],
       });
@@ -141,9 +153,13 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         fileType: cfg.fileType,
         name: REACT_CHUNK_NAME.WillUnmountContent,
         content: events?.willUnmount
-          ? generateFunction(events?.willUnmount, {
-              name: ir.platform,
-            })
+          ? generateFunction(
+              events?.willUnmount,
+              {
+                name: ir.platform,
+              },
+              { ir },
+            )
           : '',
         linkAfter: [REACT_CHUNK_NAME.WillUnmountStart],
       });
@@ -153,9 +169,13 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         fileType: cfg.fileType,
         name: REACT_CHUNK_NAME.DidMountContent,
         content: events?.useEffect
-          ? generateFunction(events.useEffect, {
-              name: ir.platform,
-            })
+          ? generateFunction(
+              events.useEffect,
+              {
+                name: ir.platform,
+              },
+              { ir },
+            )
           : '',
         linkAfter: [REACT_CHUNK_NAME.DidMountStart],
       });

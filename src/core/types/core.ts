@@ -3,6 +3,7 @@ import { ResultDir, ResultFile } from './files';
 import type { ProjectBuilderInitOptions } from '../generator/ProjectBuilder';
 import { IScopeBindings } from '../utils/ScopeBindings';
 import { IParseResult } from './intermediate';
+import { IContainerInfo } from './';
 
 export enum FileType {
   CSS = 'css',
@@ -250,6 +251,8 @@ export interface CompositeValueGeneratorOptions {
   handlers?: HandlerSet<string>;
   nodeGenerator?: NodeGenerator<string>;
   tolerateEvalErrors?: boolean;
+  // 指令需要操作 import
+  ir?: IContainerInfo;
 }
 
 /**
@@ -266,4 +269,12 @@ export interface IScope {
   createSubScope: (ownIndentifiers: string[]) => IScope;
 
   parentType?: string;
+}
+
+export interface CMDGeneratorPrames {
+  value: any | any[];
+  params?: any;
+  platform?: string;
+  scope?: IScope;
+  config?: CompositeValueGeneratorOptions;
 }

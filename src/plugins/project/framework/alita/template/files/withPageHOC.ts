@@ -30,7 +30,7 @@ import Meta from '@lingxiteam/engine-meta';
 import locales from '@lingxiteam/engine-${
       isMobile ? 'app' : 'pc'
     }/es/utils/locales';
-import { createApp, getApis, user } from '@lingxiteam/engine-platform';
+import { createApp, getApis, getRunningUtils, user } from '@lingxiteam/engine-platform';
 import monitt from '@lingxiteam/engine-plog';
 import AwaitHandleData from '@lingxiteam/engine-render-core/es/utils/AwaitHandleData';
 import Sandbox from '@lingxiteam/engine-sandbox';
@@ -49,6 +49,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import EngineMapping from '@lingxiteam/engine-render/es/utils/EngineMapping';
 import { parse } from 'qs';
 import { Context } from './Context/context';
+import { merge } from 'lodash';
 ${
   isMobile
     ? ''
@@ -207,6 +208,11 @@ export const withPageHOC = (
         pageStaticData[pageId] ?? [],
       );
       const awaitHandleData = new AwaitHandleData();
+      const platformUtils = getRunningUtils({
+        appId: appId,
+        pageId: pageId,
+        language,
+      });
       const injectData = {
         getEngineApis: () => {
           return {
@@ -273,7 +279,7 @@ export const withPageHOC = (
         closeModal: (modalId: string) => {
           ModalManagerRef.current?.closeModal(modalId, pageId);
         },
-        utils: engineApis,
+        utils: merge(platformUtils, engineApis),
       };
       meta = new Meta({
         SandBox: Sandbox,
@@ -406,8 +412,9 @@ export const withPageHOC = (
       init();
     }, []);
 
+    // 可以在这里加 loading
     if (!data || Object.keys(data).length === 0) {
-      return <div>loading</div>;
+      return <div></div>;
     }
     return (
       <>
@@ -419,7 +426,7 @@ export const withPageHOC = (
             : `<ExpBusiObjModal
           ref={ExpBusiObjModalRef}
           key={\`ExpBusiObjModal-\${pageId}\`}
-          api={data.api}
+          api={data.utils}
           pageId={pageId}
           appId={appId}
           utils={data.utils}

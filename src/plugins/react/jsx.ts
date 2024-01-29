@@ -42,6 +42,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       ...cfg,
       tagMapping: (v) => nodeTypeMapping[v] || v,
       ...next.contextData,
+      ir
     };
     const generator = createReactNodeGenerator(generatorPlugins);
 
