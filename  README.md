@@ -246,7 +246,7 @@ nodeTypeMapping: {
 
 ###### 属性生成
 
-属性生成，主要是处理 props，style，setEvents。主要就是针对这些属性的值惊醒操作，但是需要注意的是每个环节的处理方式都有所不同。
+属性生成，主要是处理 props，style，setEvents。主要就是针对这些属性的值进行操作，但是需要注意的是每个环节的处理方式都有所不同。
 
 ```mermaid
 graph LR
