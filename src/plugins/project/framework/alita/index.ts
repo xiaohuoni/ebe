@@ -4,6 +4,7 @@ import packageJSON from './plugins/packageJSON';
 import mobileLayout from './plugins/mobileLayout';
 import commonDeps from './plugins/commonDeps';
 import config from './plugins/config';
+import dataSource from './plugins/dataSource';
 import pageview from './plugins/pageview';
 import styleInject from './plugins/styleInject';
 import hackNodeAttr from './hooks/hackNodeAttr';
@@ -18,6 +19,7 @@ export default {
     config,
     pageview,
     styleInject,
+    dataSource,
   },
   hooks: {
     hackNodeAttr,

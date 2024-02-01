@@ -51,6 +51,54 @@ export default function hackEngineApis(
   if (nodeTags === 'CardHeader') {
     pieces[0].value = `Card.Header`;
   }
+  // 如果是 Form 给孩子打上标记 isFormRootChild
+  if (nodeTags === 'Form') {
+    console.log('Form');
+    // 先删掉孩子 再插入 isFormRootChild 再生成
+    // 在 解析 dsl 那边处理或许会更好？
+    pieces = pieces.filter((i) => i.type !== 'NodeCodePieceChildren');
+    let LoopchildrenStr = '';
+    if (nodeItem.components && config?.self) {
+      // @ts-ignore
+      LoopchildrenStr = config.self(
+        nodeItem.components.map((item: any) => {
+          // 如果被 Form 包裹的子级不是输入组件，则需要增加 schema
+          if (item?.compType !== 2) {
+            const schema = {
+              compType: item?.compType,
+              props: {
+                formItemIndex: item?.props?.formItemIndex,
+                style: item?.props?.style,
+                selfSpan: item?.props?.selfSpan,
+              },
+            };
+            delete item?.props?.formItemIndex;
+            delete item?.props?.style;
+            delete item?.props?.selfSpan;
+            return {
+              ...item,
+              props: {
+                ...item.props,
+                isFormRootChild: true,
+                schema,
+              },
+            };
+          }
+          return {
+            ...item,
+            props: {
+              ...item.props,
+              isFormRootChild: true,
+            },
+          };
+        }),
+      );
+    }
+    pieces.push({
+      type: PIECE_TYPE.CHILDREN,
+      value: LoopchildrenStr,
+    });
+  }
   // 循环容器 和 动态待办
   if (
     nodeTags === 'Loop' ||

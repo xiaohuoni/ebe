@@ -1,5 +1,5 @@
+import { pageStaticData } from '@/components/Pageview';
 import { PLATFORM } from '@/constants';
-import { message as messageApi, Modal } from 'antd';
 import assetHelper from '@lingxiteam/engine-assets';
 import {
   checkIfCMDHasReturn,
@@ -9,6 +9,7 @@ import {
   CONDrun,
 } from '@lingxiteam/engine-command';
 import Meta from '@lingxiteam/engine-meta';
+import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';
 import locales from '@lingxiteam/engine-pc/es/utils/locales';
 import {
   createApp,
@@ -18,9 +19,11 @@ import {
 } from '@lingxiteam/engine-platform';
 import monitt from '@lingxiteam/engine-plog';
 import AwaitHandleData from '@lingxiteam/engine-render-core/es/utils/AwaitHandleData';
+import EngineMapping from '@lingxiteam/engine-render/es/utils/EngineMapping';
 import Sandbox from '@lingxiteam/engine-sandbox';
 import {
   copyText,
+  getStateListener,
   i18n,
   LcdpTerminalType,
   processCustomParams,
@@ -30,13 +33,11 @@ import {
 } from '@lingxiteam/engine-utils';
 import { $$compDefine, SandBoxContext } from '@lingxiteam/types';
 import { history, useLocation } from 'alita';
-import React, { useContext, useEffect, useState } from 'react';
-import EngineMapping from '@lingxiteam/engine-render/es/utils/EngineMapping';
-import { parse } from 'qs';
-import { Context } from './Context/context';
+import { message as messageApi, Modal } from 'antd';
 import { merge } from 'lodash';
-import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';
-import { pageStaticData } from '@/components/Pageview';
+import { parse } from 'qs';
+import React, { useContext, useEffect, useState } from 'react';
+import { Context } from './Context/context';
 
 const awaitKeys: Set<string> = new Set();
 const cacheKeys: Set<string> = new Set();
@@ -62,7 +63,7 @@ export interface PageProps extends SandBoxContext {
 }
 export interface PageHOCOptions {
   pageId: string;
-  dataSource: any[];
+  dataSource?: any[];
   defaultState: any;
   hasLogin?: boolean;
 }
@@ -211,6 +212,11 @@ export const withPageHOC = (
                 appId,
                 ...data,
               }),
+            getVisible: (compId: string) => {
+              // @ts-ignore
+              return refs[compId]?.visible;
+            },
+            stateListener: getStateListener(pageId),
             sandBoxRun,
             sandBoxSafeRun: (
               code: string,
@@ -401,8 +407,9 @@ export const withPageHOC = (
       init();
     }, []);
 
+    // 可以在这里加 loading
     if (!data || Object.keys(data).length === 0) {
-      return <div>loading</div>;
+      return <div></div>;
     }
     return (
       <>

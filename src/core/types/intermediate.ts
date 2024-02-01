@@ -4,6 +4,7 @@ import { ICompAnalyzeResult } from './analyze';
 import { LXProjectOptions } from './core';
 export interface IParseResult {
   containers: IContainerInfo[];
+  dataSources: IContainerInfo[];
   globalUtils?: IUtilInfo;
   globalRouter?: IRouterInfo;
   project?: IProjectInfo;

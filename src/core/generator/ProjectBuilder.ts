@@ -181,6 +181,30 @@ export class ProjectBuilder implements IProjectBuilder {
       }),
     );
     buildResult = buildResult.concat(containerBuildResult);
+    // dataSource
+    if (parseResult.dataSources && builders.dataSources) {
+      const dataSourceBuildResult: IModuleInfo[] =
+        await Promise.all<IModuleInfo>(
+          parseResult.dataSources.map(async (containerInfo) => {
+            let path: string[];
+            if (PAGE_TYPES.includes(containerInfo.containerType)) {
+              path = this.template.slots.pages.path;
+            } else {
+              path = this.template.slots.components.path;
+            }
+            const { files } = await builders.dataSources.generateModule(
+              containerInfo,
+            );
+            return {
+              moduleName: containerInfo.moduleName,
+              path,
+              files,
+            };
+          }),
+        );
+      buildResult = buildResult.concat(dataSourceBuildResult);
+    }
+
     // pageview
     if (parseResult.app && builders.app) {
       const { files } = await builders.app.generateModule(parseResult.app);
@@ -343,9 +367,7 @@ export class ProjectBuilder implements IProjectBuilder {
       let targetDir = getDirFromRoot(projectRoot, moduleInfo.path);
       // if project only contain single component, skip creation of directory.
       if (moduleInfo.moduleName && !isSingleComponent) {
-        const dir = createResultDir(moduleInfo.moduleName);
-        addDirectory(targetDir, dir);
-        targetDir = dir;
+        targetDir = getDirFromRoot(targetDir, [moduleInfo.moduleName]);
       }
       moduleInfo.files.forEach((file) => addFile(targetDir, file));
     });

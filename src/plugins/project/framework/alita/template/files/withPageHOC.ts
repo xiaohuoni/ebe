@@ -36,6 +36,7 @@ import AwaitHandleData from '@lingxiteam/engine-render-core/es/utils/AwaitHandle
 import Sandbox from '@lingxiteam/engine-sandbox';
 import {
   copyText,
+  getStateListener,
   i18n,
   LcdpTerminalType,
   processCustomParams,
@@ -81,7 +82,7 @@ export interface PageProps extends SandBoxContext {
 }
 export interface PageHOCOptions {
   pageId: string;
-  dataSource: any[];
+  dataSource?: any[];
   defaultState: any;
   hasLogin?: boolean;
 }
@@ -230,6 +231,11 @@ export const withPageHOC = (
                 appId,
                 ...data,
               }),
+            getVisible: (compId: string) => {
+              // @ts-ignore
+              return refs[compId]?.visible;
+            },
+            stateListener: getStateListener(pageId),
             sandBoxRun,
             sandBoxSafeRun: (
               code: string,

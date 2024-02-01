@@ -46,6 +46,26 @@ export function getDefault({
     count[value.type] = 1;
   }
 
+  const otherParams = [{ name: 'item' }, { name: 'i' }];
+  if (
+    // @ts-ignore
+    scope?.parent?.props?.itemKey &&
+    // @ts-ignore
+    scope?.parent?.props?.itemKey !== 'item'
+  ) {
+    // @ts-ignore
+    otherParams.push({ name: scope?.parent?.props?.itemKey });
+  }
+  if (
+    // @ts-ignore
+    scope?.parent?.props?.indexKey &&
+    // @ts-ignore
+    scope?.parent?.props?.indexKey !== 'i'
+  ) {
+    // @ts-ignore
+    otherParams.push({ name: scope?.parent?.props?.indexKey });
+  }
+
   return `const eventData${value.type}${suffix}: any = [${JSON.stringify(
     value,
   )},];eventData${value.type}${suffix}.params = ${JSON.stringify(
@@ -53,18 +73,7 @@ export function getDefault({
     // @ts-ignore
     params,
   )} || [];CMDGenerator(eventData${value.type}${suffix}, {${params
-    .concat(
-      isLoopChildren
-        ? [
-            // @ts-ignore
-            { name: scope?.parent?.props?.itemKey ?? 'item' },
-            // @ts-ignore
-            { name: scope?.parent?.props?.indexKey ?? 'i' },
-            { name: 'item' },
-            { name: 'i' },
-          ]
-        : [],
-    )
+    .concat(isLoopChildren ? otherParams : [])
     .map((i: { name: any }) => i.name)
     .filter(Boolean)
     .join(',')}}, '${value.type}', { id: '${value.type}',name: '${

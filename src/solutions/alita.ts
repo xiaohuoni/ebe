@@ -63,6 +63,7 @@ export default function createIceJsProjectBuilder(
           fileType: FileType.TSX,
         }),
       ],
+      dataSources: [alita.plugins.dataSource()],
       pageview: [
         esModule({
           fileType: FileType.TSX,

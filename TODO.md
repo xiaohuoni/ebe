@@ -53,21 +53,23 @@
 - [x] 组件属性 staticData
 - [x] basicStatus 2 为隐藏 3 不可交互 4 只读
 - [x] 命令源码化 - ifelse
-- [x] 命令源码化增加插件 - 允许命令解析式import新对象
+- [x] 命令源码化增加插件 - 允许命令解析式 import 新对象
 - [x] 命令源码化 - resetCurrentForm
 - [x] 表格数据导出
+- [x] pc form 非表单组件 布局异常 extendProps 如何传递
+- [x] dataSource 独立文件
+- [x] 支持同目录写入多个文件
+- [x] 修复指令传参错误
 - [ ] bug 表格导出需要点两次才有效，第一次请求数据都成功，但是发起任务的数据为空
 - [ ] 页面开启免登录，页面里面又绑定了用户信息，怎么处理？
 - [ ] 显隐规则配置错误时，如何处理？比如 用户配置 basicStatus "$data.xxxxxxx.list$".length?2:1 实际上不存在 xxxxxxx
 - [ ] Cascader onClickStaticOption packages/pcFactory/src/index.enPreprocess.ts
-- [ ] pc form 非表单组件 布局异常
 - [ ] findAppPolymerizationInfo createApp 加个配置不请求
 - [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
 - [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67 调试服务器 http://172.21.72.205:8088/
 - [ ] 命令 callParentCustomFunc 用于调用父级页面自定义方法
 - [ ] 数据源清理，只保留必须的字段
 - [ ] 表格数据导入
-
 
 资产 DSL - 林喜 PC 端 实习生打卡 DICT 指令源码化？源数据 dataSource 清理？
 

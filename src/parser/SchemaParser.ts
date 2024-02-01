@@ -22,6 +22,8 @@ import enPreprocessPC from '../utils/factory/pc/index.enPreprocess';
 import enRunPreprocessPC from '../utils/factory/pc/index.enRunPreprocess';
 import assetHelper from '../utils/schema/assets/assets';
 import { LINGXI_PROJECT_VERSION, PAGE_TYPES, MODAL_TYPES } from '../constants';
+import { cleanDataSource } from '../utils/schema/cleanDataSource';
+
 import * as _ from 'lodash';
 
 function getInternalDep(
@@ -130,11 +132,29 @@ export class SchemaParser implements ISchemaParser {
     // keepalive
     let keepalive: string[] = [];
 
+    // dataSource
+    let dataSources: any[] = [];
     containers = schemaArr.map((schema) => {
       getComponentsMap(_.cloneDeep(schema), pageIdMapping[schema.pagePath]);
       const newSchema = parseSchema(schema, true);
       if (newSchema?.pageDynamicFlag && newSchema.pagePath) {
         keepalive.push(newSchema.pagePath);
+      }
+      if (newSchema.dataSource) {
+        dataSources.push({
+          moduleName: newSchema.pagePath
+            ? newSchema.pagePath
+            : `${newSchema.pageContainerType}${newSchema.id}`,
+          containerType: newSchema.pageContainerType ?? 'Page',
+          type: newSchema.pageContainerType ?? 'Page',
+          analyzeResult: {
+            isUsingRef: false,
+          },
+          dataSource: JSON.stringify(
+            cleanDataSource(newSchema.dataSource ?? []),
+          ),
+        });
+        // delete newSchema.dataSource;
       }
       return {
         ...newSchema,
@@ -240,6 +260,7 @@ export class SchemaParser implements ISchemaParser {
 
     return {
       containers,
+      dataSources,
       // globalRouter: {
       //   routes,
       //   deps: routerDeps,

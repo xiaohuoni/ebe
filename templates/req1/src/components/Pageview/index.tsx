@@ -31,85 +31,101 @@ export const RootProps: any = {
   },
 };
 const Pages: any = {
-  '/kaoshitimu9180copy': React.lazy(() =>
-    import(
-      /* webpackChunkName: "src__pages__/kaoshitimu9180copy__index" */ '@/pages/kaoshitimu9180copy'
-    ),
+  '/kaoshitimu9180copy': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/kaoshitimu9180copy__index" */ '@/pages/kaoshitimu9180copy'
+      ),
   ),
-  '1053839668338454528': React.lazy(() =>
-    import(
-      /* webpackChunkName: "1053839668338454528" */ '@/pages/kaoshitimu9180copy'
-    ),
+  '1053839668338454528': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "1053839668338454528" */ '@/pages/kaoshitimu9180copy'
+      ),
   ),
-  '/gerenkaoshi8972': React.lazy(() =>
-    import(
-      /* webpackChunkName: "src__pages__/gerenkaoshi8972__index" */ '@/pages/gerenkaoshi8972'
-    ),
+  '/gerenkaoshi8972': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/gerenkaoshi8972__index" */ '@/pages/gerenkaoshi8972'
+      ),
   ),
-  '1053668469436280832': React.lazy(() =>
-    import(
-      /* webpackChunkName: "1053668469436280832" */ '@/pages/gerenkaoshi8972'
-    ),
+  '1053668469436280832': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "1053668469436280832" */ '@/pages/gerenkaoshi8972'
+      ),
   ),
-  '/kaoshengpeizhi6102': React.lazy(() =>
-    import(
-      /* webpackChunkName: "src__pages__/kaoshengpeizhi6102__index" */ '@/pages/kaoshengpeizhi6102'
-    ),
+  '/kaoshengpeizhi6102': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/kaoshengpeizhi6102__index" */ '@/pages/kaoshengpeizhi6102'
+      ),
   ),
-  '1052411612038131712': React.lazy(() =>
-    import(
-      /* webpackChunkName: "1052411612038131712" */ '@/pages/kaoshengpeizhi6102'
-    ),
+  '1052411612038131712': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "1052411612038131712" */ '@/pages/kaoshengpeizhi6102'
+      ),
   ),
-  '/xinbankaoshishouye5627': React.lazy(() =>
-    import(
-      /* webpackChunkName: "src__pages__/xinbankaoshishouye5627__index" */ '@/pages/xinbankaoshishouye5627'
-    ),
+  '/xinbankaoshishouye5627': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/xinbankaoshishouye5627__index" */ '@/pages/xinbankaoshishouye5627'
+      ),
   ),
-  '1066920654087147520': React.lazy(() =>
-    import(
-      /* webpackChunkName: "1066920654087147520" */ '@/pages/xinbankaoshishouye5627'
-    ),
+  '1066920654087147520': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "1066920654087147520" */ '@/pages/xinbankaoshishouye5627'
+      ),
   ),
-  '/chaxunfenyeshuju_7915695modal': React.lazy(() =>
-    import(
-      /* webpackChunkName: "src__pages__/chaxunfenyeshuju_7915695modal__index" */ '@/pages/chaxunfenyeshuju_7915695modal'
-    ),
+  '/chaxunfenyeshuju_7915695modal': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/chaxunfenyeshuju_7915695modal__index" */ '@/pages/chaxunfenyeshuju_7915695modal'
+      ),
   ),
-  '1040468589346041856': React.lazy(() =>
-    import(
-      /* webpackChunkName: "1040468589346041856" */ '@/pages/chaxunfenyeshuju_7915695modal'
-    ),
+  '1040468589346041856': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "1040468589346041856" */ '@/pages/chaxunfenyeshuju_7915695modal'
+      ),
   ),
-  '/kaoshiguanli_948507': React.lazy(() =>
-    import(
-      /* webpackChunkName: "src__pages__/kaoshiguanli_948507__index" */ '@/pages/kaoshiguanli_948507'
-    ),
+  '/kaoshiguanli_948507': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/kaoshiguanli_948507__index" */ '@/pages/kaoshiguanli_948507'
+      ),
   ),
-  '1040468594920271872': React.lazy(() =>
-    import(
-      /* webpackChunkName: "1040468594920271872" */ '@/pages/kaoshiguanli_948507'
-    ),
+  '1040468594920271872': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "1040468594920271872" */ '@/pages/kaoshiguanli_948507'
+      ),
   ),
-  '/kaoshitimu9180': React.lazy(() =>
-    import(
-      /* webpackChunkName: "src__pages__/kaoshitimu9180__index" */ '@/pages/kaoshitimu9180'
-    ),
+  '/kaoshitimu9180': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/kaoshitimu9180__index" */ '@/pages/kaoshitimu9180'
+      ),
   ),
-  '1040532731008397312': React.lazy(() =>
-    import(
-      /* webpackChunkName: "1040532731008397312" */ '@/pages/kaoshitimu9180'
-    ),
+  '1040532731008397312': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "1040532731008397312" */ '@/pages/kaoshitimu9180'
+      ),
   ),
-  '/kaotipeizhi6839': React.lazy(() =>
-    import(
-      /* webpackChunkName: "src__pages__/kaotipeizhi6839__index" */ '@/pages/kaotipeizhi6839'
-    ),
+  '/kaotipeizhi6839': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/kaotipeizhi6839__index" */ '@/pages/kaotipeizhi6839'
+      ),
   ),
-  '1040511037455740928': React.lazy(() =>
-    import(
-      /* webpackChunkName: "1040511037455740928" */ '@/pages/kaotipeizhi6839'
-    ),
+  '1040511037455740928': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "1040511037455740928" */ '@/pages/kaotipeizhi6839'
+      ),
   ),
 };
 

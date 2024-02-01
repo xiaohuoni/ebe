@@ -15,7 +15,8 @@ import {
   IContainerInfo,
 } from '../../core/types';
 import { ensureValidClassName } from '../../core/utils/validate';
-import { cleanDataSource } from '../../utils/schema/cleanDataSource';
+import { getImportFrom } from '../../utils/depsHelper';
+import { PAGE_TYPES } from '../../constants';
 
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
@@ -157,6 +158,15 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         defaultState[item.code] = '';
       });
     }
+    let hasDataSource = false;
+    if (PAGE_TYPES.includes(ir.containerType)) {
+      // import dataSource from './dataSource';
+      next.ir.deps.push(
+        getImportFrom('./dataSource.json', 'dataSource', false),
+      );
+      hasDataSource = true;
+    }
+
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,
@@ -166,9 +176,9 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           next?.contextData?.options?.pageIdMapping[ir.pagePath] ??
           'pageId 未找到'
         }',
-        hasLogin: ${!!!ir.ignoreLogin},
-        dataSource: ${JSON.stringify(cleanDataSource(ir.dataSource ?? []))},
-        defaultState:${JSON.stringify(defaultState)},
+        hasLogin: ${!!!ir.ignoreLogin},${
+        hasDataSource ? 'dataSource,' : ''
+      }defaultState:${JSON.stringify(defaultState)},
       });`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,

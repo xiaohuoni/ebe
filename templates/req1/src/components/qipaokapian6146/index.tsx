@@ -1,7 +1,7 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 
-import { View, Button } from '@/components/factory';
+import { Button, View } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -199,6 +199,5 @@ const Qipaokapian6146$$Popover: React.FC<PageProps> = ({
 export default withPageHOC(Qipaokapian6146$$Popover, {
   pageId: '1066979929069211648',
   hasLogin: true,
-  dataSource: [],
   defaultState: { bizId: '', sceneCode: '', bizData: '' },
 });
