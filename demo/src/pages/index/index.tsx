@@ -99,6 +99,7 @@ const Page = () => {
       pageIdMapping[i.pagePath] = i.pageId;
       return i;
     });
+    const appConfig = resultObject?.appConfig ?? {};
     console.log(appPageList);
     let lastPageId: any = '';
     // 根据 pageId 获得 dsl
@@ -151,6 +152,7 @@ const Page = () => {
       pageIdMapping,
       busiCompMapping,
       baseUrl: process.env.BASE_URL,
+      appConfig,
     };
     console.log(options);
     let cleanedTree = cleanTree(pageDSLS, ['path', 'originCode']); // 清理字段'b'和字段'e'
@@ -197,7 +199,7 @@ const Page = () => {
         onFinish={onFinish}
         initialValues={{
           // appId: '868681578956083200',
-          appId: '1040452624180850688',
+          appId: '871672424566726656',
           platform: false,
         }}
       >

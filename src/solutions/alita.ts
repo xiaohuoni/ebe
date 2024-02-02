@@ -76,23 +76,24 @@ export default function createIceJsProjectBuilder(
         alita.plugins.packageJSON({
           dependenciesPc: {
             antd: '4.18.8',
-            '@lingxiteam/engine-render': '3.2.1-alpha.44',
-            '@lingxiteam/engine-render-core': '3.2.1-alpha.44',
             lodash: '^4.17.21',
             qs: '^6.11.2',
             // TODO: 这些插件都需要装在开发项目中吗？
-            '@lingxiteam/icons': '*',
             '@lingxiteam/assets': '3.3.1-alpha.13',
-            '@lingxiteam/engine-pc': '3.3.1-alpha.13',
-            '@lingxiteam/engine-assets': '3.3.1-alpha.13',
-            '@lingxiteam/sys-action': '3.3.1-alpha.13',
-            '@lingxiteam/engine-command': '3.3.1-alpha.13',
-            '@lingxiteam/engine-meta': '3.3.1-alpha.13',
-            '@lingxiteam/engine-platform': '3.3.1-alpha.13',
-            '@lingxiteam/engine-plog': '3.3.1-alpha.13',
-            '@lingxiteam/engine-sandbox': '3.3.1-alpha.13',
-            '@lingxiteam/engine-utils': '3.3.1-alpha.13',
-            '@lingxiteam/pcfactory': '3.3.1-alpha.4',
+            '@lingxiteam/engine-assets': '3.3.1-alpha.14',
+            '@lingxiteam/engine-command': '3.3.1-alpha.14',
+            '@lingxiteam/engine-meta': '3.3.1-alpha.14',
+            '@lingxiteam/engine-pc': '3.3.1-alpha.14',
+            '@lingxiteam/engine-platform': '3.3.1-alpha.14',
+            '@lingxiteam/engine-plog': '3.3.1-alpha.14',
+            '@lingxiteam/engine-render': '3.3.1-alpha.14',
+            '@lingxiteam/engine-render-core': '3.3.1-alpha.14',
+            '@lingxiteam/engine-sandbox': '3.3.1-alpha.14',
+            '@lingxiteam/engine-utils': '3.3.1-alpha.14',
+            '@lingxiteam/icons': '0.0.3',
+            '@lingxiteam/pcfactory': '3.4.1-alpha.5',
+            '@lingxiteam/sys-action': '3.3.1-alpha.14',
+            '@lingxiteam/types': '3.3.1-alpha.14',
           },
           dependencies: {
             '@lingxiteam/cli': '^0.4.6',
@@ -120,7 +121,7 @@ export default function createIceJsProjectBuilder(
         }),
       ],
     },
-    postProcessors: [prettier()],
-    // postProcessors: [], //const i = props[props.indexKey] ?? props?.i;
+    // postProcessors: [prettier()],
+    postProcessors: [], //const i = props[props.indexKey] ?? props?.i;
   });
 }

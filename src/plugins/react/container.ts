@@ -13,11 +13,13 @@ import {
   FileType,
   ICodeStruct,
   IContainerInfo,
+  IScope,
 } from '../../core/types';
 import { ensureValidClassName } from '../../core/utils/validate';
 import { getImportFrom } from '../../utils/depsHelper';
 import { PAGE_TYPES } from '../../constants';
-
+import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
+import { getEvents } from '../../utils/schema/parseDsl';
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
     const next: ICodeStruct = {
@@ -166,7 +168,15 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       );
       hasDataSource = true;
     }
-
+    // "customFuctions": [
+    //   {
+    //       "eventName": "选中节点",
+    //       "externalCall": false,
+    //       "implementation": "event",
+    //       "remark": "",
+    //       "eventCode": "select_node",
+    //       "inParams": {},
+    //       "setEvents
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,
@@ -179,6 +189,32 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         hasLogin: ${!!!ir.ignoreLogin},${
         hasDataSource ? 'dataSource,' : ''
       }defaultState:${JSON.stringify(defaultState)},
+      customActionMap:{
+        ${(ir?.customFuctions || [])
+          .map((e) => {
+            const value = e.setEvents.map((event: any) => {
+              const { eName, eValue } = getEvents(event);
+              return {
+                id: `${eName}`,
+                value: eValue,
+              };
+            });
+            const item = value[0];
+            // const { eName, eValue } = events;
+            // schema.events[eName] = {
+            //   id: `${eName}`,
+            //   value: eValue,
+            // };
+            return `${item?.id}:${CMDGeneratorEvent(
+              item?.value,
+              next?.contextData,
+              {} as IScope,
+              { ir },
+              'CMDGenerator: any, ',
+            )}`;
+          })
+          .join(',')}
+      }
       });`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,

@@ -153,7 +153,8 @@ const preprocessComponentSchema = (
   });
 
   // TOTO: popoverSetting pc
-  const { popoverSetting, basicStatus, ...otherProps } = newSchema?.props ?? {};
+  const { popoverSetting, basicStatus, collapseColumns, ...otherProps } =
+    newSchema?.props ?? {};
   // {value: 'popoverSetting={{"options": {"tipType": "2",\n…"destroyOnHide": false,\n"placement": "top"}}}', type: 'NodeCodePieceAttr'}
   if (popoverSetting) {
     // 如果是弹窗的话，需要用组件包裹原始组件
@@ -175,6 +176,10 @@ const preprocessComponentSchema = (
     newSchema.props.readOnly = `$\`\${${basicStatusStr}}\` === '4'$`;
   }
   delete newSchema.props.basicStatus;
+  // 预处理中已经将 collapseColumns 转成子集，这里删掉
+  if (collapseColumns) {
+    delete newSchema.props.collapseColumns;
+  }
   return newSchema;
 };
 

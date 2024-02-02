@@ -40,7 +40,6 @@ export default function hackEngineApis(
       value: `className="__CustomClass_${nodeItem.id}__"`,
     });
   }
-
   // 如果是业务组件要改名字
   if (nodeTags === 'BOFramer') {
     const { options = {} } = config!;
@@ -99,6 +98,12 @@ export default function hackEngineApis(
       value: LoopchildrenStr,
     });
   }
+  if (nodeTags === 'CollapsePanel') {
+    pieces.push({
+      type: PIECE_TYPE.ATTR,
+      value: `uid='${nodeItem?.id}'`,
+    });
+  }
   // 循环容器 和 动态待办
   if (
     nodeTags === 'Loop' ||
@@ -107,7 +112,9 @@ export default function hackEngineApis(
     nodeTags === 'BlockSelect' ||
     nodeTags === 'DformList' ||
     // PC
-    nodeTags === 'LoopList'
+    nodeTags === 'LoopList' ||
+    nodeTags === 'GridView'
+    // nodeTags === 'CollapsePanel'
   ) {
     // Loop 不需要孩子
     pieces = pieces.filter((i) => i.type !== 'NodeCodePieceChildren');
@@ -120,6 +127,28 @@ export default function hackEngineApis(
         parentType: 'Loop',
       });
     }
+    const otherParams = [
+      { name: 'item', item: true },
+      { name: 'i', item: false },
+    ];
+    if (
+      // @ts-ignore
+      nodeItem?.props?.itemKey &&
+      // @ts-ignore
+      nodeItem?.props?.itemKey !== 'item'
+    ) {
+      // @ts-ignore
+      otherParams.push({ name: nodeItem?.props?.itemKey, item: true });
+    }
+    if (
+      // @ts-ignore
+      nodeItem?.props?.indexKey &&
+      // @ts-ignore
+      nodeItem?.props?.indexKey !== 'i'
+    ) {
+      // @ts-ignore
+      otherParams.push({ name: nodeItem?.props?.indexKey, item: false });
+    }
     pieces.push({
       type: PIECE_TYPE.ATTR,
       value: `getEngineApis={() => {
@@ -128,14 +157,15 @@ export default function hackEngineApis(
           MemoRenderer: {
             renderer: null,
             MemoLoopItem: (props: any) => {
-              const ${
-                nodeItem?.props?.itemKey ?? 'item'
-              } = props[props.itemKey] ?? props?.item;
-              const ${
-                nodeItem?.props?.indexKey ?? 'i'
-              } = props[props.indexKey] ?? props?.i;
-              const item = props[props.itemKey] ?? props?.item;
-              const i = props[props.indexKey] ?? props?.i;
+              ${otherParams
+                .map(
+                  (i) =>
+                    `const ${i.name} = props[props.${
+                      i.item ? 'itemKey' : 'indexKey'
+                    }] ?? props?.${i.item ? 'itemKey' : 'indexKey'};`,
+                )
+                .filter(Boolean)
+                .join(' ')}
               return (<>${LoopchildrenStr}</>)
             },
           },
@@ -143,6 +173,7 @@ export default function hackEngineApis(
       }}`,
     });
   }
+
   // 舍弃不渲染
   const blackComponents = ['DTalkView'];
   if (blackComponents.includes(nodeTags)) {

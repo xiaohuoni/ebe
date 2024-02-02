@@ -42,10 +42,15 @@ export function addFile(target: ResultDir, file: ResultFile): void {
   ) {
     target.files.push(file);
   } else {
-    throw new CodeGeneratorError(
+    console.log(
       `Adding same file to one directory: ${file.name} -> ${target.name}`,
     );
   }
+  // else {
+  //   throw new CodeGeneratorError(
+  //     `Adding same file to one directory: ${file.name} -> ${target.name}`,
+  //   );
+  // }
 }
 
 export function flattenResult(dir: ResultDir, cwd = ''): FlattenFile[] {

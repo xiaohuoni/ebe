@@ -266,9 +266,9 @@ const getVarStr = (str: string) => {
 const getCondition = (condition: any[]) => {
   return condition
     .map((c) => {
-      return `${c?.connector ?? ''} ${getVarStr(c.options.context)} ${
-        c.options.operate
-      } ${getVarStr(c.options.manualValue)}`;
+      return `${c?.connector ?? ''} ${getVarStr(c?.options?.context)} ${
+        c?.options?.operate
+      } ${getVarStr(c.options?.manualValue)}`;
     })
     .filter(Boolean)
     .join(' ');

@@ -2026,11 +2026,7 @@ const Xinbankaoshishouye5627$$Page: React.FC<PageProps> = ({
                 type: 'View',
                 ...componentItem,
               }}
-              disabled={
-                `${
-                  data?.queryTaskByMyRelareController?.list?.length ? 1 : 2
-                }` === '3'
-              }
+              disabled={basicStatus === '3'}
               visible={
                 `${
                   data?.queryTaskByMyRelareController?.list?.length ? 1 : 2

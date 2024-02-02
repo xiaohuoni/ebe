@@ -1,23 +1,5 @@
-import { ResultFile, LXProjectOptions } from '../../../../../../core';
-import { createResultFile } from '../../../../../../core/utils/resultHelper';
-
-export default function getFile(
-  config?: LXProjectOptions,
-): [string[], ResultFile] {
-  const isMobile = config?.platform === 'h5';
-
-  const file = createResultFile(
-    'withPageHOC',
-    'tsx',
-    `import { PLATFORM } from '@/constants';
-${
-  isMobile
-    ? `import {
-  messageApi,
-  Modal,
-} from '@lingxiteam/engine-app/es/components/MessageApi';`
-    : `import { message as messageApi, Modal } from 'antd';`
-}
+import { pageStaticData } from '@/components/Pageview';
+import { PLATFORM } from '@/constants';
 import assetHelper from '@lingxiteam/engine-assets';
 import {
   checkIfCMDHasReturn,
@@ -27,12 +9,17 @@ import {
   CONDrun,
 } from '@lingxiteam/engine-command';
 import Meta from '@lingxiteam/engine-meta';
-import locales from '@lingxiteam/engine-${
-      isMobile ? 'app' : 'pc'
-    }/es/utils/locales';
-import { createApp, getApis, getRunningUtils, user } from '@lingxiteam/engine-platform';
+import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';
+import locales from '@lingxiteam/engine-pc/es/utils/locales';
+import {
+  createApp,
+  getApis,
+  getRunningUtils,
+  user,
+} from '@lingxiteam/engine-platform';
 import monitt from '@lingxiteam/engine-plog';
 import AwaitHandleData from '@lingxiteam/engine-render-core/es/utils/AwaitHandleData';
+import EngineMapping from '@lingxiteam/engine-render/es/utils/EngineMapping';
 import Sandbox from '@lingxiteam/engine-sandbox';
 import {
   copyText,
@@ -46,17 +33,11 @@ import {
 } from '@lingxiteam/engine-utils';
 import { $$compDefine, SandBoxContext } from '@lingxiteam/types';
 import { history, useLocation } from 'alita';
-import React, { useContext, useEffect, useState } from 'react';
-import EngineMapping from '@lingxiteam/engine-render/es/utils/EngineMapping';
-import { parse } from 'qs';
-import { Context } from './Context/context';
+import { message as messageApi, Modal } from 'antd';
 import { merge } from 'lodash';
-${
-  isMobile
-    ? ''
-    : `import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';`
-}
-import { pageStaticData } from '@/components/Pageview';
+import { parse } from 'qs';
+import React, { useContext, useEffect, useState } from 'react';
+import { Context } from './Context/context';
 
 const awaitKeys: Set<string> = new Set();
 const cacheKeys: Set<string> = new Set();
@@ -91,7 +72,7 @@ export const withPageHOC = (
   WrappedComponent: React.FC<PageProps>,
   options: PageHOCOptions,
 ) => {
-  return React.forwardRef((props: any,ref) => {
+  return React.forwardRef((props: any, ref) => {
     const location = useLocation();
     const urlParam = parse((location?.search ?? '?')?.split('?')[1]);
     const { ModalManagerRef, refs, appId } = useContext(Context);
@@ -358,48 +339,56 @@ export const withPageHOC = (
           targetEventData,
           '',
           engineApis,
-        )({ ...args, urlParam }, {
-          ...context,
-          api,
-          checkIfCMDHasReturn: (cmddata: any[]) => {
-            return checkIfCMDHasReturn(cmddata, engineApis);
+        )(
+          { ...args, urlParam },
+          {
+            ...context,
+            api,
+            checkIfCMDHasReturn: (cmddata: any[]) => {
+              return checkIfCMDHasReturn(cmddata, engineApis);
+            },
+            checkIfRefValue: (val: string, field: any, cmd: any) => {
+              return checkIfRefValue(val, field, cmd, engineApis);
+            },
+            checkIfRefValueByObject: (
+              val: string | Record<string, any>,
+              field: Record<string, any>,
+              cmd?: any,
+            ) => {
+              return checkIfRefValueByObject(val, field, cmd, engineApis);
+            },
+            CMDParse: (cmddata: string | any[], actionname?: string) => {
+              return CMDParse(cmddata, actionname, engineApis);
+            },
+            CONDrun: (
+              arg0: any,
+              arg1: any,
+              arg2: SandBoxContext,
+              arg3: any,
+            ) => {
+              return CONDrun(arg0, arg1, arg2, arg3, engineApis);
+            },
+            customActionMap,
+            monitt,
+            EventName,
+            $$compDefine,
+            Modal,
+            messageApi,
+            refs,
+            utils: engineApis,
+            history,
+            sandBoxRun: (
+              code: string,
+              extendAllowMap: Record<string, any> = {},
+            ) => {
+              return Sandbox.run(code, {
+                ...context,
+                ...engineApis,
+                ...extendAllowMap,
+              });
+            },
           },
-          checkIfRefValue: (val: string, field: any, cmd: any) => {
-            return checkIfRefValue(val, field, cmd, engineApis);
-          },
-          checkIfRefValueByObject: (
-            val: string | Record<string, any>,
-            field: Record<string, any>,
-            cmd?: any,
-          ) => {
-            return checkIfRefValueByObject(val, field, cmd, engineApis);
-          },
-          CMDParse: (cmddata: string | any[], actionname?: string) => {
-            return CMDParse(cmddata, actionname, engineApis);
-          },
-          CONDrun: (arg0: any, arg1: any, arg2: SandBoxContext, arg3: any) => {
-            return CONDrun(arg0, arg1, arg2, arg3, engineApis);
-          },
-          customActionMap,
-          monitt,
-          EventName,
-          $$compDefine,
-          Modal,
-          messageApi,
-          refs,
-          utils: engineApis,
-          history,
-          sandBoxRun: (
-            code: string,
-            extendAllowMap: Record<string, any> = {},
-          ) => {
-            return Sandbox.run(code, {
-              ...context,
-              ...engineApis,
-              ...extendAllowMap,
-            });
-          },
-        });
+        );
       };
       setData({
         ...context,
@@ -433,26 +422,22 @@ export const withPageHOC = (
     return (
       <>
         {' '}
-        <WrappedComponent {...data} {...props} urlParam={urlParam} forwardedRef={ref}/>
-        ${
-          isMobile
-            ? ''
-            : `<ExpBusiObjModal
+        <WrappedComponent
+          {...data}
+          {...props}
+          urlParam={urlParam}
+          forwardedRef={ref}
+        />
+        <ExpBusiObjModal
           ref={ExpBusiObjModalRef}
-          key={\`ExpBusiObjModal-\${pageId}\`}
+          key={`ExpBusiObjModal-${pageId}`}
           api={data.utils}
           pageId={pageId}
           appId={appId}
           utils={data.utils}
           getLocale={getLocale}
-        />`
-        }
+        />
       </>
     );
   });
 };
-`,
-  );
-
-  return [['src', 'utils'], file];
-}

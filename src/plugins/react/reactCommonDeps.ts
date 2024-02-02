@@ -21,7 +21,9 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       name: COMMON_CHUNK_NAME.ExternalDepsImport,
       content: `
 // 注意: 出码模块正在调试
-import React from 'react';`,
+import React from 'react';
+// 默认都加，应该用到再加
+import Popover from '@/components/Popover';`,
       linkAfter: [],
     });
     // next.ir.deps.push(

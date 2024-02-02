@@ -5,7 +5,7 @@ import parseEventCtx from './parseEventCtx';
 
 export declare type IPublicSchemaType = Record<string, any>;
 
-const getEvents = (_events: any) => {
+export const getEvents = (_events: any) => {
   // 收集打开自定义弹窗的动作
   const [modalActions, drawerActions] = [[], []];
   let ind = 0;

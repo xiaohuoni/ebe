@@ -5,9 +5,7 @@ import { createDiskPublisher } from './src/core/publisher/disk';
 import { createZipPublisher } from './src/core/publisher/zip';
 (async () => {
   const testPlatformIsH5 = false;
-  const schemaFile = testPlatformIsH5
-    ? 'lingxi-page-h5.json'
-    : 'lingxi-page-pc.json';
+  const schemaFile = testPlatformIsH5 ? 'lingxi-page-h5.json' : 'a.json';
   // 读取 Schema
   const schema = await loadSchemaFile(schemaFile);
   // schema.pageId = testPlatformIsH5
@@ -18,7 +16,7 @@ import { createZipPublisher } from './src/core/publisher/zip';
   //   : '1024143353417228288';
   const options = {
     platform: testPlatformIsH5 ? 'h5' : 'pc',
-    appId: '1056454276662820864',
+    appId: '871672424566726656',
     // pagePath: pageId
     pageIdMapping: {
       '/asd5371': '1024143466269171712',
@@ -30,12 +28,9 @@ import { createZipPublisher } from './src/core/publisher/zip';
       '/ssss3279': '1024161040026025984',
       '/kapian9555': '1052397738087833600',
       '/guanliyuanshouye0496': '1056843976424230912',
-      '/shixishengxinxiguanli_2754312': '1056462279824314368',
+      '/auditStart': '887537833022541824',
     },
-    busiCompMapping: {
-      '1046689438983856129': '9635362',
-    },
-    baseUrl: 'http://10.10.179.140:8048/HJF/',
+    baseUrl: 'http://10.10.193.65:9015/',
   };
   // const projectBuilder = testPlatformIsH5 ? alita({ options }) : alitapc({ options });
   const projectBuilder = alita({ options });
@@ -47,7 +42,7 @@ import { createZipPublisher } from './src/core/publisher/zip';
   await createDiskPublisher().publish({
     project, // 上一步生成的 project
     outputPath: './templates/', // 输出目录
-    projectSlug: testPlatformIsH5 ? 'h5' : 'pc', // 项目标识 -- 对应生成 h5.zip 文件
+    projectSlug: testPlatformIsH5 ? 'h5' : 'zs', // 项目标识 -- 对应生成 h5.zip 文件
   });
 
   async function loadSchemaFile(schemaFile: string): Promise<any> {

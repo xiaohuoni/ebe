@@ -60,8 +60,10 @@ export const CMDGeneratorEvent = (
   nodeItem: any,
   scope: IScope,
   options: CompositeValueGeneratorOptions = {},
+  // TODO: 后续无用移除
+  prefix: string = '',
 ) => {
-  const renderEvent = `(${value.params
+  const renderEvent = `(${prefix}${value.params
     .map((i: { name: any }) => i.name + ': any')
     .join(',')})=>{ ${CMDGeneratorFunction(
     value,
