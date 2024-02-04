@@ -1,3 +1,3 @@
 export function getKeepAlive(keepalive: any) {
-  return ['/auditStart'];
+  return [];
 }

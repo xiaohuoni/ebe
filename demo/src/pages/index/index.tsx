@@ -101,6 +101,7 @@ const Page = () => {
     });
     const appConfig = resultObject?.appConfig ?? {};
     console.log(appPageList);
+    console.log(appConfig);
     let lastPageId: any = '';
     // 根据 pageId 获得 dsl
     const data = await Promise.all(

@@ -127,11 +127,15 @@ function generateAttrs(
 ): CodePiece[] {
   // event 是预处理之后塞进去的
   // @ts-ignore
-  const { props, style: _style, customStyle = {}, events, type } = nodeItem;
-  const style = { ..._style, ...customStyle };
+  const { props, style: _style, customStyle = {}, events, type, id } = nodeItem;
+  const style = { ...props?.style, ..._style, ...customStyle };
   let pieces: CodePiece[] = [];
 
   if (props) {
+    if (props?.style) {
+      // Card 不知道哪里来的 style，上面已经处理了
+      delete props?.style;
+    }
     if (!Array.isArray(props)) {
       Object.keys(props).forEach((propName: string) => {
         if (isValidIdentifier(propName)) {
@@ -149,6 +153,9 @@ function generateAttrs(
         }
       });
     }
+  }
+  if (id === 'Card_886999') {
+    console.log('Card_886999');
   }
   // 处理 style
   if (style && Object.keys(style).length > 0) {

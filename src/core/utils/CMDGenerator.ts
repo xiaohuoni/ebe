@@ -21,9 +21,10 @@ const CMDGenerator = (prames: CMDGeneratorPrames) => {
     case 'console':
       str = getConsole(prames);
       break;
-    case 'ifelse':
-      str = getIfelse(prames);
-      break;
+    // TODO: ifelse 条件没写全，待补充，如 "operate": "notEmpty"
+    // case 'ifelse':
+    //   str = getIfelse(prames);
+    //   break;
     case 'resetCurrentForm':
       str = getResetCurrentForm(prames);
       break;

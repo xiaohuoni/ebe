@@ -60,8 +60,12 @@
 - [x] dataSource 独立文件
 - [x] 支持同目录写入多个文件
 - [x] 修复指令传参错误
-- [x] customFuctions 自定义事件
-- [ ] 应用勾子？
+- [x] customFuctions 自定义事件 options - 不可用，函数需要上下文
+- [x] customFuctions 自定义事件 组件内方案
+- [x] pc 端 Popover
+- [ ] 应用勾子？-- 内部发起都处理，若移除 createApp 则需要重新处理
+- [ ] 应用勾子 pageDidMount 这个应该在页面处理
+- [ ] 组件 pc 端 GridView 选中状态样式
 - [ ] bug 表格导出需要点两次才有效，第一次请求数据都成功，但是发起任务的数据为空
 - [ ] 页面开启免登录，页面里面又绑定了用户信息，怎么处理？
 - [ ] 显隐规则配置错误时，如何处理？比如 用户配置 basicStatus "$data.xxxxxxx.list$".length?2:1 实际上不存在 xxxxxxx

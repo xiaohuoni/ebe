@@ -19,3 +19,8 @@ export const MODAL_CHUNK_NAME = {
   OnCancel: 'ModalEventOnCancel',
   ImperativeHandle: 'ModalEventUseImperativeHandle',
 };
+
+export const CUSTOM_ACTION_CHUNK_NAME = {
+  Map: 'CustomActionMap',
+  ImperativeHandle: 'CustomActionMapUseImperativeHandle',
+};

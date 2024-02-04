@@ -4,15 +4,17 @@ import React from 'react';
 export const pageStaticData: any = {};
 export const RootProps: any = {};
 const Pages: any = {
-  '/auditStart': React.lazy(
+  '/auditOrderPrepare': React.lazy(
     () =>
       import(
-        /* webpackChunkName: "src__pages__/auditStart__index" */ '@/pages/auditStart'
+        /* webpackChunkName: "src__pages__/auditOrderPrepare__index" */ '@/pages/auditOrderPrepare'
       ),
   ),
-  '887537833022541824': React.lazy(
+  '884045146848604160': React.lazy(
     () =>
-      import(/* webpackChunkName: "887537833022541824" */ '@/pages/auditStart'),
+      import(
+        /* webpackChunkName: "884045146848604160" */ '@/pages/auditOrderPrepare'
+      ),
   ),
 };
 

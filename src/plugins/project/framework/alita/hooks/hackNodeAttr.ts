@@ -33,7 +33,7 @@ export default function hackEngineApis(
     // 页面容器可能会传 style
     pieces.push({
       type: PIECE_TYPE.ATTR,
-      value: 'style={style}',
+      value: 'style={{ height: "100%", ...style }}',
     });
     pieces.push({
       type: PIECE_TYPE.ATTR,
@@ -162,7 +162,7 @@ export default function hackEngineApis(
                   (i) =>
                     `const ${i.name} = props[props.${
                       i.item ? 'itemKey' : 'indexKey'
-                    }] ?? props?.${i.item ? 'itemKey' : 'indexKey'};`,
+                    }] ?? props?.${i.item ? 'item' : 'i'};`,
                 )
                 .filter(Boolean)
                 .join(' ')}

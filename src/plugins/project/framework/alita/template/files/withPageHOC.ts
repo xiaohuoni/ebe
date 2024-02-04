@@ -83,7 +83,6 @@ export interface PageProps extends SandBoxContext {
 export interface PageHOCOptions {
   pageId: string;
   dataSource?: any[];
-  customActionMap?: any;
   defaultState: any;
   hasLogin?: boolean;
 }
@@ -96,6 +95,7 @@ export const withPageHOC = (
     const urlParam = parse((location?.search ?? '?')?.split('?')[1]);
     const { ModalManagerRef, refs, appId } = useContext(Context);
     const ExpBusiObjModalRef = React.useRef<any>();
+    const customActionMapRef = React.useRef<any>();
     const { getLocaleLanguage, getLocale, getLocaleEnv, locale, language } =
       i18n.useLocale(
         {
@@ -347,13 +347,6 @@ export const withPageHOC = (
         EventName: string,
         $$compDefine: $$compDefine,
       ) => {
-        //TODO: 先这么处理，指令源码化后就不需要 CMDGenerator 了
-        const customActionMap: any = {};
-        Object.keys(options?.customActionMap ?? {}).forEach((key: any) => {
-          customActionMap[key] = (...arg: any) => {
-            options?.customActionMap[key]?.(CMDGenerator, ...arg);
-          };
-        });
         return CMDParse(
           targetEventData,
           '',
@@ -380,7 +373,7 @@ export const withPageHOC = (
           CONDrun: (arg0: any, arg1: any, arg2: SandBoxContext, arg3: any) => {
             return CONDrun(arg0, arg1, arg2, arg3, engineApis);
           },
-          customActionMap,
+          customActionMap: customActionMapRef.current,
           monitt,
           EventName,
           $$compDefine,
@@ -433,7 +426,7 @@ export const withPageHOC = (
     return (
       <>
         {' '}
-        <WrappedComponent {...data} {...props} urlParam={urlParam} forwardedRef={ref}/>
+        <WrappedComponent {...data} {...props} urlParam={urlParam} forwardedRef={ref} customActionMapRef={customActionMapRef}/>
         ${
           isMobile
             ? ''

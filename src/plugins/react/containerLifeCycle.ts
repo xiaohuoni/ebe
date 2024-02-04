@@ -2,7 +2,11 @@ import {
   CLASS_DEFINE_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
-import { REACT_CHUNK_NAME, MODAL_CHUNK_NAME } from './const';
+import {
+  REACT_CHUNK_NAME,
+  MODAL_CHUNK_NAME,
+  CUSTOM_ACTION_CHUNK_NAME,
+} from './const';
 import { PAGE_TYPES } from '../../constants';
 import { generateFunction } from '../../core/utils/jsExpression';
 
@@ -84,6 +88,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             : '',
           linkAfter: [
             ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
+            CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
           ],
         });
         next.chunks.push({

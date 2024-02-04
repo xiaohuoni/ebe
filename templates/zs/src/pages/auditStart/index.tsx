@@ -1,12 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
   Button,
   Collapse,
   CollapsePanel,
   GridView,
+  HorizontalView,
+  Icon,
   Input,
   Text,
   VerticalView,
@@ -23,6 +26,7 @@ const AuditStart$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
   attrDataMap = {},
+  customActionMapRef,
   injectData,
   refs,
   state,
@@ -33,36 +37,1459 @@ const AuditStart$$Page: React.FC<PageProps> = ({
   style,
   urlParam,
 }) => {
-  console.log(data);
-
-  console.log('data?.selectAlltreeNodeCode?.resultData');
-  console.log(data?.selectAlltreeNodeCode?.resultData);
-  useEffect(() => {
-    if (urlParam?.origin == '0') {
-      const eventDatasetVisible: any = [
-        {
-          type: 'setVisible',
-          dataId: 167145169088039000,
-          options: {
-            compId: 'Button_3119094',
-            compLib: 'comm',
-            pageJsonId: '866861',
-            compName: 'Button',
-            id: '924952',
-            visible: 'true',
-          },
-          path: [166305314341954340, 167145167099027330],
-          line_number: 2,
+  const select_node = (options_485879: any) => {
+    const eventDatacustomActionCode: any = [
+      {
+        type: 'customActionCode',
+        dataId: 166341180903246180,
+        options: {
+          compId: 'customActionCode',
+          compName: 'page',
+          id: '437422',
+          pageJsonId: '866861',
+          originCode:
+            '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n\tconst nodeMap = data?.selectedNodes?.nodes || {};\n\tconst nodeKey = item.nodeKey;\n\tconst selectedChildren = item.children.filter(e => vals.includes(e.nodeKey));\n\tnodeMap[nodeKey] = selectedChildren;\n\tsuccess(nodeMap);\n};',
+          code: 'function main(data,state,success,fail){var _data$selectedNodes;var nodeMap=(data===null||data===void 0?void 0:(_data$selectedNodes=data.selectedNodes)===null||_data$selectedNodes===void 0?void 0:_data$selectedNodes.nodes)||{};var nodeKey=item.nodeKey;var selectedChildren=item.children.filter(function(e){return vals.includes(e.nodeKey)});nodeMap[nodeKey]=selectedChildren;success(nodeMap)};',
         },
-      ];
-      eventDatasetVisible.params = [] || [];
-      CMDGenerator(eventDatasetVisible, {}, 'setVisible', {
-        id: 'setVisible',
-        name: 'setVisible',
-        type: 'setVisible',
+        path: [166341180709877100],
+        line_number: 1,
+        callback1: [
+          {
+            type: 'setDataSource',
+            dataId: 166341180903389900,
+            options: {
+              compId: 'setDataSource',
+              compName: 'page',
+              id: '886778',
+              pageJsonId: '866861',
+              dataSourceId: 166341035337970140,
+              dataSourceName: 'selectedNodes',
+              dataSourceRelType: 'custom',
+              dataSourceReloadFilter: [],
+              dataSourceSetValue: [
+                {
+                  attrId: '142214',
+                  code: 'nodes',
+                  name: '属性',
+                  type: 'object',
+                  initialData: { type: 'static' },
+                  value: { type: ['context', '$data_437422$'], code: '' },
+                },
+              ],
+              operateType: 1,
+              onlySetPatch: true,
+              otherObjectArrayOptions: {},
+            },
+            path: [166341180709877100, 166341180903246180, 166341180903304160],
+            line_number: 2,
+            callback1: [
+              {
+                type: 'console',
+                dataId: 166341188639034050,
+                options: {
+                  compId: 'debug',
+                  compName: 'system',
+                  id: '2731613',
+                  pageJsonId: '866861',
+                  value: ['$data.selectedNodes$'],
+                },
+                path: [
+                  166341180709877100, 166341180903246180, 166341180903304160,
+                  166341180903389900, 166341180903337600,
+                ],
+                line_number: 3,
+              },
+            ],
+            callback2: [],
+          },
+        ],
+        callback2: [],
+      },
+    ];
+    eventDatacustomActionCode.params =
+      [
+        {
+          title: '事件入参',
+          name: 'options_485879',
+          value: '$options_485879$',
+        },
+      ] || [];
+    CMDGenerator(
+      eventDatacustomActionCode,
+      { options_485879 },
+      'customActionCode',
+      {
+        id: 'customActionCode',
+        name: 'customActionCode',
+        type: 'customActionCode',
         platform: 'undefined',
-      });
-    }
+      },
+    );
+  };
+  const onLoadSceneNode = (options_485601: any) => {
+    const eventDatagetValue: any = [
+      {
+        type: 'getValue',
+        dataId: 166964690601845380,
+        options: {
+          compId: 'Input_5357175',
+          compLib: 'comm',
+          pageJsonId: '866861',
+          compName: 'Input',
+          id: '2211283',
+        },
+        path: [166964682728661540],
+        line_number: 1,
+        callback1: [
+          {
+            type: 'customActionCode',
+            dataId: 166971285997154140,
+            options: {
+              compId: 'customActionCode',
+              compName: 'page',
+              id: '847923',
+              pageJsonId: '866861',
+              actionTitle: '',
+              originCode:
+                '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n\tsuccess({})\n};',
+              code: 'function main(data,state,success,fail){success({})};',
+            },
+            path: [166964682728661540, 166964690601845380, 166964690601857570],
+            line_number: 2,
+            callback1: [
+              {
+                type: 'setDataSource',
+                dataId: 166971285997174300,
+                options: {
+                  compId: 'setDataSource',
+                  compName: 'page',
+                  id: '765493',
+                  pageJsonId: '866861',
+                  dataSourceId: 166341035337970140,
+                  dataSourceName: 'selectedNodes',
+                  dataSourceRelType: 'custom',
+                  dataSourceReloadFilter: [],
+                  dataSourceSetValue: [
+                    {
+                      attrId: '142214',
+                      code: 'nodes',
+                      name: '属性',
+                      type: 'object',
+                      initialData: { type: 'static' },
+                      value: { type: ['context', '$data_847923$'], code: '' },
+                    },
+                  ],
+                  operateType: 1,
+                  onlySetPatch: false,
+                  otherObjectArrayOptions: {},
+                },
+                path: [
+                  166964682728661540, 166964690601845380, 166964690601857570,
+                  166971285997154140, 166971285997151740,
+                ],
+                line_number: 3,
+                callback1: [],
+                callback2: [],
+              },
+            ],
+            callback2: [],
+          },
+          {
+            type: 'reloadDataSource',
+            dataId: 166964693509999100,
+            options: {
+              compId: 'reloadDataSource',
+              compName: 'page',
+              id: '495284',
+              pageJsonId: '866861',
+              dataSourceId: 166305304245640540,
+              dataSourceName: 'selectAlltreeNodeCode',
+              dataSourceRelType: 'service',
+              dataSourceReloadFilter: [
+                {
+                  attrId: '222926',
+                  code: 'header',
+                  name: '请求头参数',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                },
+                {
+                  attrId: '7399277',
+                  code: 'path',
+                  name: '请求路径参数',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                },
+                {
+                  attrId: '858874',
+                  code: 'query',
+                  name: 'URL 参数',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                },
+                {
+                  attrId: '831632',
+                  code: 'body',
+                  name: '请求体',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                  children: [
+                    {
+                      attrId: '951212',
+                      code: 'nodeValue',
+                      name: '新增节点',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                      value: { type: ['context', '$value_2211283$'], code: '' },
+                    },
+                    {
+                      attrId: '3285892',
+                      code: 'nodeKey',
+                      name: 'nodeKey',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                      value: { type: ['customize'], code: 'CLS_TY' },
+                    },
+                    {
+                      attrId: '053',
+                      code: 'releaseChannel',
+                      name: '新增节点',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                      value: { type: ['customize'], code: '1001' },
+                    },
+                  ],
+                },
+              ],
+              dataSourceSetValue: [
+                {
+                  attrId: '937773463',
+                  code: 'resultMsgCode',
+                  name: 'resultMsgCode',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'string',
+                },
+                {
+                  attrId: '5201218',
+                  code: 'resultMsg',
+                  name: 'resultMsg',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'string',
+                },
+                {
+                  attrId: '37018',
+                  code: 'resultCode',
+                  name: 'resultCode',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'string',
+                },
+                {
+                  attrId: '17578',
+                  code: 'resultData',
+                  name: 'resultData',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'objectArray',
+                  children: [
+                    {
+                      attrId: '059641',
+                      code: 'nodeValue',
+                      name: 'nodeValue',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                    },
+                    {
+                      attrId: '486331',
+                      code: 'nodeKey',
+                      name: 'nodeKey',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                    },
+                    {
+                      attrId: '594082',
+                      code: 'parentCode',
+                      name: 'parentCode',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                    },
+                    {
+                      attrId: '43752',
+                      code: 'children',
+                      name: 'children',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'objectArray',
+                      children: [
+                        {
+                          attrId: '741171',
+                          code: 'nodeKey',
+                          name: 'nodeKey',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'string',
+                        },
+                        {
+                          attrId: '774947',
+                          code: 'children',
+                          name: 'children',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'fieldArray',
+                          children: [
+                            {
+                              attrId: '03089',
+                              code: 'listItem',
+                              name: '列表元素',
+                              sort: { isSort: true },
+                              initialData: { type: 'static' },
+                              type: 'object',
+                            },
+                          ],
+                        },
+                        {
+                          attrId: '4665593',
+                          code: 'parentCode',
+                          name: 'parentCode',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'string',
+                        },
+                        {
+                          attrId: '349837',
+                          code: 'nodeValue',
+                          name: 'nodeValue',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'string',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+              otherObjectArrayOptions: {},
+            },
+            path: [166964682728661540, 166964690601845380, 166964690601857570],
+            line_number: 4,
+            callback1: [
+              {
+                type: 'console',
+                dataId: 167946903856097860,
+                options: {
+                  compId: 'debug',
+                  compName: 'system',
+                  id: '11798239',
+                  pageJsonId: '866861',
+                  value: ['$refData.current.selectAlltreeNodeCode$', '这个'],
+                },
+                path: [
+                  166964682728661540, 166964690601845380, 166964690601857570,
+                  166964693509999100, 166964693509937660,
+                ],
+                line_number: 5,
+              },
+              {
+                type: 'ifelse',
+                condition: [
+                  {
+                    condId: '704605',
+                    options: {
+                      context:
+                        '$refData.current.selectAlltreeNodeCode.resultData.length$',
+                      operate: '>',
+                      useManual: true,
+                      manualValue: '0',
+                    },
+                    conditionType: 'checkContextValue',
+                    objType: 'system',
+                    objId: 'sys',
+                  },
+                  {
+                    options: {
+                      context: '$value_2211283$',
+                      operate: 'notEmpty',
+                    },
+                    condId: '283289',
+                    connector: '&&',
+                    conditionType: 'checkContextValue',
+                    objType: 'system',
+                    objId: 'sys',
+                  },
+                ],
+                path: [
+                  166964682728661540, 166964690601845380, 166964690601857570,
+                  166964693509999100, 166964693509937660,
+                ],
+                dataId: 167947020562368130,
+                elseIfs: [],
+                line_number: 6,
+                callback1: [
+                  {
+                    type: 'customActionCode',
+                    dataId: 167947020562376450,
+                    options: {
+                      compId: 'customActionCode',
+                      compName: 'page',
+                      id: '608698',
+                      pageJsonId: '866861',
+                      originCode:
+                        '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n    var activeKeyList = [];\n    activeKeyList.push(1);\n    success(activeKeyList);\n};',
+                      code: 'function main(data,state,success,fail){var activeKeyList=[];activeKeyList.push(1);success(activeKeyList)};',
+                    },
+                    path: [
+                      166964682728661540, 166964690601845380,
+                      166964690601857570, 166964693509999100,
+                      166964693509937660, 167947020562368130,
+                    ],
+                    line_number: 7,
+                    callback1: [
+                      {
+                        type: 'setDataSource',
+                        dataId: 167947020562371000,
+                        options: {
+                          compId: 'setDataSource',
+                          compName: 'page',
+                          id: '6596858',
+                          pageJsonId: '866861',
+                          dataSourceId: 167945326037287900,
+                          dataSourceName: 'activeKeyTyList',
+                          dataSourceRelType: 'custom',
+                          dataSourceReloadFilter: [],
+                          dataSourceSetValue: [
+                            {
+                              attrId: '5011336',
+                              code: 'param',
+                              name: '属性',
+                              type: 'string',
+                              initialData: { type: 'static' },
+                            },
+                          ],
+                          newData: '$data_608698$',
+                          operateType: 3,
+                          onlySetPatch: true,
+                          otherObjectArrayOptions: {},
+                        },
+                        path: [
+                          166964682728661540, 166964690601845380,
+                          166964690601857570, 166964693509999100,
+                          166964693509937660, 167947020562368130,
+                          167947020562376450, 167947020562343040,
+                        ],
+                        line_number: 8,
+                        callback1: [],
+                        callback2: [],
+                      },
+                    ],
+                    callback2: [],
+                  },
+                  {
+                    type: 'console',
+                    dataId: 167947020562305630,
+                    options: {
+                      compId: 'debug',
+                      compName: 'system',
+                      id: '8884926',
+                      pageJsonId: '866861',
+                      value: ['进来1'],
+                    },
+                    path: [
+                      166964682728661540, 166964690601845380,
+                      166964690601857570, 166964693509999100,
+                      166964693509937660, 167947020562368130,
+                    ],
+                    line_number: 9,
+                  },
+                ],
+              },
+            ],
+            callback2: [],
+          },
+          {
+            type: 'reloadDataSource',
+            dataId: 166964693612073860,
+            options: {
+              compId: 'reloadDataSource',
+              compName: 'page',
+              id: '144429',
+              pageJsonId: '866861',
+              dataSourceId: 166305762583687330,
+              dataSourceName: 'jichulei',
+              dataSourceRelType: 'service',
+              dataSourceReloadFilter: [
+                {
+                  attrId: '93142236',
+                  code: 'header',
+                  name: '请求头参数',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                },
+                {
+                  attrId: '5541864',
+                  code: 'path',
+                  name: '请求路径参数',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                },
+                {
+                  attrId: '9000299',
+                  code: 'query',
+                  name: 'URL 参数',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                },
+                {
+                  attrId: '213779',
+                  code: 'body',
+                  name: '请求体',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                  children: [
+                    {
+                      attrId: '536329',
+                      code: 'nodeValue',
+                      name: '新增节点',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                      value: { type: ['context', '$value_2211283$'], code: '' },
+                    },
+                    {
+                      attrId: '792402',
+                      code: 'nodeKey',
+                      name: 'nodeKey',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                      value: { type: ['customize'], code: 'CLS_JC' },
+                    },
+                    {
+                      attrId: '017035',
+                      code: 'releaseChannel',
+                      name: '新增节点',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                      value: { type: ['customize'], code: '1001' },
+                    },
+                  ],
+                },
+              ],
+              dataSourceSetValue: [
+                {
+                  attrId: '1463085',
+                  code: 'resultMsgCode',
+                  name: 'resultMsgCode',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'string',
+                },
+                {
+                  attrId: '7638504',
+                  code: 'resultMsg',
+                  name: 'resultMsg',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'string',
+                },
+                {
+                  attrId: '513151',
+                  code: 'resultCode',
+                  name: 'resultCode',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'string',
+                },
+                {
+                  attrId: '118526',
+                  code: 'resultData',
+                  name: 'resultData',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'objectArray',
+                  children: [
+                    {
+                      attrId: '281217',
+                      code: 'nodeValue',
+                      name: 'nodeValue',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                    },
+                    {
+                      attrId: '379361',
+                      code: 'nodeKey',
+                      name: 'nodeKey',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                    },
+                    {
+                      attrId: '954346',
+                      code: 'parentCode',
+                      name: 'parentCode',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                    },
+                    {
+                      attrId: '90271',
+                      code: 'children',
+                      name: 'children',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'objectArray',
+                      children: [
+                        {
+                          attrId: '585501647',
+                          code: 'nodeKey',
+                          name: 'nodeKey',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'string',
+                        },
+                        {
+                          attrId: '562087',
+                          code: 'children',
+                          name: 'children',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'fieldArray',
+                          children: [
+                            {
+                              attrId: '888576',
+                              code: 'listItem',
+                              name: '列表元素',
+                              sort: { isSort: true },
+                              initialData: { type: 'static' },
+                              type: 'object',
+                            },
+                          ],
+                        },
+                        {
+                          attrId: '748312',
+                          code: 'parentCode',
+                          name: 'parentCode',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'string',
+                        },
+                        {
+                          attrId: '3696457',
+                          code: 'nodeValue',
+                          name: 'nodeValue',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'string',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+              otherObjectArrayOptions: {},
+            },
+            path: [166964682728661540, 166964690601845380, 166964690601857570],
+            line_number: 10,
+            callback1: [
+              {
+                type: 'ifelse',
+                condition: [
+                  {
+                    condId: '704605',
+                    options: {
+                      context: '$refData.current.jichulei.resultData.length$',
+                      operate: '>',
+                      useManual: true,
+                      manualValue: '0',
+                    },
+                    conditionType: 'checkContextValue',
+                    objType: 'system',
+                    objId: 'sys',
+                  },
+                  {
+                    options: {
+                      context: '$value_2211283$',
+                      operate: 'notEmpty',
+                    },
+                    condId: '555457',
+                    connector: '&&',
+                    conditionType: 'checkContextValue',
+                    objType: 'system',
+                    objId: 'sys',
+                  },
+                ],
+                path: [
+                  166964682728661540, 166964690601845380, 166964690601857570,
+                  166964693612073860, 166964693612007400,
+                ],
+                dataId: 167946817472884220,
+                elseIfs: [],
+                line_number: 11,
+                callback1: [
+                  {
+                    type: 'customActionCode',
+                    dataId: 167946817472850400,
+                    options: {
+                      compId: 'customActionCode',
+                      compName: 'page',
+                      id: '8254127',
+                      pageJsonId: '866861',
+                      originCode:
+                        '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n    var activeKeyList = [];\n    activeKeyList.push(2462862);\n    success(activeKeyList);\n};',
+                      code: 'function main(data,state,success,fail){var activeKeyList=[];activeKeyList.push(2462862);success(activeKeyList)};',
+                    },
+                    path: [
+                      166964682728661540, 166964690601845380,
+                      166964690601857570, 166964693612073860,
+                      166964693612007400, 167946817472884220,
+                    ],
+                    line_number: 12,
+                    callback1: [
+                      {
+                        type: 'setDataSource',
+                        dataId: 167946817472848580,
+                        options: {
+                          compId: 'setDataSource',
+                          compName: 'page',
+                          id: '753975',
+                          pageJsonId: '866861',
+                          dataSourceId: 167946809637676670,
+                          dataSourceName: 'activeKeyJcList',
+                          dataSourceRelType: 'custom',
+                          dataSourceReloadFilter: [],
+                          dataSourceSetValue: [
+                            {
+                              attrId: '200399',
+                              code: 'param',
+                              name: '属性',
+                              type: 'string',
+                              initialData: { type: 'static' },
+                            },
+                          ],
+                          newData: '$data_8254127$',
+                          operateType: 3,
+                          onlySetPatch: true,
+                          otherObjectArrayOptions: {},
+                        },
+                        path: [
+                          166964682728661540, 166964690601845380,
+                          166964690601857570, 166964693612073860,
+                          166964693612007400, 167946817472884220,
+                          167946817472850400, 167946817472805020,
+                        ],
+                        line_number: 13,
+                        callback1: [],
+                        callback2: [],
+                      },
+                    ],
+                    callback2: [],
+                  },
+                  {
+                    type: 'console',
+                    dataId: 167946930567288000,
+                    options: {
+                      compId: 'debug',
+                      compName: 'system',
+                      id: '7205906',
+                      pageJsonId: '866861',
+                      value: ['进来2'],
+                    },
+                    path: [
+                      166964682728661540, 166964690601845380,
+                      166964690601857570, 166964693612073860,
+                      166964693612007400, 167946817472884220,
+                    ],
+                    line_number: 14,
+                  },
+                ],
+              },
+              {
+                type: 'console',
+                dataId: 167946905485731550,
+                options: {
+                  compId: 'debug',
+                  compName: 'system',
+                  id: '9764163',
+                  pageJsonId: '866861',
+                  value: ['$refData.current.jichulei$', '这个'],
+                },
+                path: [
+                  166964682728661540, 166964690601845380, 166964690601857570,
+                  166964693612073860, 166964693612007400,
+                ],
+                line_number: 15,
+              },
+            ],
+            callback2: [],
+          },
+          {
+            type: 'reloadDataSource',
+            dataId: 166964693662488320,
+            options: {
+              compId: 'reloadDataSource',
+              compName: 'page',
+              id: '03461657',
+              pageJsonId: '866861',
+              dataSourceId: 166305773466855420,
+              dataSourceName: 'chanpinlei',
+              dataSourceRelType: 'service',
+              dataSourceReloadFilter: [
+                {
+                  attrId: '674198',
+                  code: 'header',
+                  name: '请求头参数',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                },
+                {
+                  attrId: '266602',
+                  code: 'path',
+                  name: '请求路径参数',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                },
+                {
+                  attrId: '777506',
+                  code: 'query',
+                  name: 'URL 参数',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                },
+                {
+                  attrId: '1407874',
+                  code: 'body',
+                  name: '请求体',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                  children: [
+                    {
+                      attrId: '124619',
+                      code: 'nodeValue',
+                      name: '新增节点',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                      value: { type: ['context', '$value_2211283$'], code: '' },
+                    },
+                    {
+                      attrId: '517287',
+                      code: 'nodeKey',
+                      name: 'nodeKey',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                      value: { type: ['customize'], code: 'CLS_CP' },
+                    },
+                    {
+                      attrId: '999588',
+                      code: 'releaseChannel',
+                      name: '新增节点',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                      value: { type: ['customize'], code: '1001' },
+                    },
+                  ],
+                },
+              ],
+              dataSourceSetValue: [
+                {
+                  attrId: '359989',
+                  code: 'resultMsgCode',
+                  name: 'resultMsgCode',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'string',
+                },
+                {
+                  attrId: '41977',
+                  code: 'resultMsg',
+                  name: 'resultMsg',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'string',
+                },
+                {
+                  attrId: '784308',
+                  code: 'resultCode',
+                  name: 'resultCode',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'string',
+                },
+                {
+                  attrId: '14877',
+                  code: 'resultData',
+                  name: 'resultData',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'objectArray',
+                  children: [
+                    {
+                      attrId: '4341527',
+                      code: 'nodeValue',
+                      name: 'nodeValue',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                    },
+                    {
+                      attrId: '992013',
+                      code: 'nodeKey',
+                      name: 'nodeKey',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                    },
+                    {
+                      attrId: '374508',
+                      code: 'parentCode',
+                      name: 'parentCode',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                    },
+                    {
+                      attrId: '145747',
+                      code: 'children',
+                      name: 'children',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'objectArray',
+                      children: [
+                        {
+                          attrId: '746308',
+                          code: 'nodeKey',
+                          name: 'nodeKey',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'string',
+                        },
+                        {
+                          attrId: '008252',
+                          code: 'children',
+                          name: 'children',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'fieldArray',
+                          children: [
+                            {
+                              attrId: '6292188',
+                              code: 'listItem',
+                              name: '列表元素',
+                              sort: { isSort: true },
+                              initialData: { type: 'static' },
+                              type: 'object',
+                            },
+                          ],
+                        },
+                        {
+                          attrId: '324336',
+                          code: 'parentCode',
+                          name: 'parentCode',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'string',
+                        },
+                        {
+                          attrId: '1126966',
+                          code: 'nodeValue',
+                          name: 'nodeValue',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'string',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+              otherObjectArrayOptions: {},
+            },
+            path: [166964682728661540, 166964690601845380, 166964690601857570],
+            line_number: 16,
+            callback1: [
+              {
+                type: 'ifelse',
+                condition: [
+                  {
+                    condId: '704605',
+                    options: {
+                      context: '$refData.current.chanpinlei.resultData.length$',
+                      operate: '>',
+                      useManual: true,
+                      manualValue: '0',
+                    },
+                    conditionType: 'checkContextValue',
+                    objType: 'system',
+                    objId: 'sys',
+                  },
+                  {
+                    options: {
+                      context: '$value_2211283$',
+                      operate: 'notEmpty',
+                    },
+                    condId: '971562',
+                    connector: '&&',
+                    conditionType: 'checkContextValue',
+                    objType: 'system',
+                    objId: 'sys',
+                  },
+                ],
+                path: [
+                  166964682728661540, 166964690601845380, 166964690601857570,
+                  166964693662488320, 166964693662462000,
+                ],
+                dataId: 167946817755054980,
+                elseIfs: [],
+                line_number: 17,
+                callback1: [
+                  {
+                    type: 'customActionCode',
+                    dataId: 167946817755191520,
+                    options: {
+                      compId: 'customActionCode',
+                      compName: 'page',
+                      id: '5848713',
+                      pageJsonId: '866861',
+                      originCode:
+                        '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n    var activeKeyList = [];\n    activeKeyList.push(2423448);\n    success(activeKeyList);\n};',
+                      code: 'function main(data,state,success,fail){var activeKeyList=[];activeKeyList.push(2423448);success(activeKeyList)};',
+                    },
+                    path: [
+                      166964682728661540, 166964690601845380,
+                      166964690601857570, 166964693662488320,
+                      166964693662462000, 167946817755054980,
+                    ],
+                    line_number: 18,
+                    callback1: [
+                      {
+                        type: 'setDataSource',
+                        dataId: 167946817755140130,
+                        options: {
+                          compId: 'setDataSource',
+                          compName: 'page',
+                          id: '2937607',
+                          pageJsonId: '866861',
+                          dataSourceId: 167946812174602900,
+                          dataSourceName: 'activeKeyCpList',
+                          dataSourceRelType: 'custom',
+                          dataSourceReloadFilter: [],
+                          dataSourceSetValue: [
+                            {
+                              attrId: '399925',
+                              code: 'param',
+                              name: '属性',
+                              type: 'string',
+                              initialData: { type: 'static' },
+                            },
+                          ],
+                          newData: '$data_5848713$',
+                          operateType: 3,
+                          onlySetPatch: true,
+                          otherObjectArrayOptions: {},
+                        },
+                        path: [
+                          166964682728661540, 166964690601845380,
+                          166964690601857570, 166964693662488320,
+                          166964693662462000, 167946817755054980,
+                          167946817755191520, 167946817755110940,
+                        ],
+                        line_number: 19,
+                        callback1: [],
+                        callback2: [],
+                      },
+                    ],
+                    callback2: [],
+                  },
+                ],
+              },
+            ],
+            callback2: [],
+          },
+          {
+            type: 'reloadDataSource',
+            dataId: 166964693701786240,
+            options: {
+              compId: 'reloadDataSource',
+              compName: 'page',
+              id: '5391253',
+              pageJsonId: '866861',
+              dataSourceId: 166305775855125120,
+              dataSourceName: 'yingxiaoanlei',
+              dataSourceRelType: 'service',
+              dataSourceReloadFilter: [
+                {
+                  attrId: '6996998',
+                  code: 'header',
+                  name: '请求头参数',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                },
+                {
+                  attrId: '653788',
+                  code: 'path',
+                  name: '请求路径参数',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                },
+                {
+                  attrId: '201335',
+                  code: 'query',
+                  name: 'URL 参数',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                },
+                {
+                  attrId: '2270458',
+                  code: 'body',
+                  name: '请求体',
+                  sort: { isSort: true },
+                  initialData: { type: 'static', value: '' },
+                  type: 'object',
+                  children: [
+                    {
+                      attrId: '3671',
+                      code: 'nodeValue',
+                      name: '新增节点',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                      value: { type: ['context', '$value_2211283$'], code: '' },
+                    },
+                    {
+                      attrId: '336337',
+                      code: 'nodeKey',
+                      name: 'nodeKey',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                      value: { type: ['customize'], code: 'CLS_YX' },
+                    },
+                    {
+                      attrId: '394223',
+                      code: 'releaseChannel',
+                      name: '新增节点',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                      value: { type: ['customize'], code: '1001' },
+                    },
+                  ],
+                },
+              ],
+              dataSourceSetValue: [
+                {
+                  attrId: '673683',
+                  code: 'resultMsgCode',
+                  name: 'resultMsgCode',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'string',
+                },
+                {
+                  attrId: '2283536',
+                  code: 'resultMsg',
+                  name: 'resultMsg',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'string',
+                },
+                {
+                  attrId: '458075',
+                  code: 'resultCode',
+                  name: 'resultCode',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'string',
+                },
+                {
+                  attrId: '917443',
+                  code: 'resultData',
+                  name: 'resultData',
+                  sort: { isSort: true },
+                  initialData: { type: 'static' },
+                  type: 'objectArray',
+                  children: [
+                    {
+                      attrId: '204225',
+                      code: 'nodeValue',
+                      name: 'nodeValue',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                    },
+                    {
+                      attrId: '1199901',
+                      code: 'nodeKey',
+                      name: 'nodeKey',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                    },
+                    {
+                      attrId: '02113',
+                      code: 'parentCode',
+                      name: 'parentCode',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'string',
+                    },
+                    {
+                      attrId: '635566',
+                      code: 'children',
+                      name: 'children',
+                      sort: { isSort: true },
+                      initialData: { type: 'static' },
+                      type: 'objectArray',
+                      children: [
+                        {
+                          attrId: '05122336',
+                          code: 'nodeKey',
+                          name: 'nodeKey',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'string',
+                        },
+                        {
+                          attrId: '0229784',
+                          code: 'children',
+                          name: 'children',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'fieldArray',
+                          children: [
+                            {
+                              attrId: '7212235',
+                              code: 'listItem',
+                              name: '列表元素',
+                              sort: { isSort: true },
+                              initialData: { type: 'static' },
+                              type: 'object',
+                            },
+                          ],
+                        },
+                        {
+                          attrId: '519418',
+                          code: 'parentCode',
+                          name: 'parentCode',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'string',
+                        },
+                        {
+                          attrId: '202486',
+                          code: 'nodeValue',
+                          name: 'nodeValue',
+                          sort: { isSort: true },
+                          initialData: { type: 'static' },
+                          type: 'string',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+              otherObjectArrayOptions: {},
+            },
+            path: [166964682728661540, 166964690601845380, 166964690601857570],
+            line_number: 20,
+            callback1: [
+              {
+                type: 'ifelse',
+                condition: [
+                  {
+                    condId: '704605',
+                    options: {
+                      context:
+                        '$refData.current.yingxiaoanlei.resultData.length$',
+                      operate: '>',
+                      useManual: true,
+                      manualValue: '0',
+                    },
+                    conditionType: 'checkContextValue',
+                    objType: 'system',
+                    objId: 'sys',
+                  },
+                  {
+                    options: {
+                      context: '$value_2211283$',
+                      operate: 'notEmpty',
+                    },
+                    condId: '397169',
+                    connector: '&&',
+                    conditionType: 'checkContextValue',
+                    objType: 'system',
+                    objId: 'sys',
+                  },
+                ],
+                path: [
+                  166964682728661540, 166964690601845380, 166964690601857570,
+                  166964693701786240, 166964693701785060,
+                ],
+                dataId: 167946818032779460,
+                elseIfs: [],
+                line_number: 21,
+                callback1: [
+                  {
+                    type: 'customActionCode',
+                    dataId: 167946818032714050,
+                    options: {
+                      compId: 'customActionCode',
+                      compName: 'page',
+                      id: '717722',
+                      pageJsonId: '866861',
+                      originCode:
+                        '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n    var activeKeyList = [];\n    activeKeyList.push(626254);\n    success(activeKeyList);\n};',
+                      code: 'function main(data,state,success,fail){var activeKeyList=[];activeKeyList.push(626254);success(activeKeyList)};',
+                    },
+                    path: [
+                      166964682728661540, 166964690601845380,
+                      166964690601857570, 166964693701786240,
+                      166964693701785060, 167946818032779460,
+                    ],
+                    line_number: 22,
+                    callback1: [
+                      {
+                        type: 'setDataSource',
+                        dataId: 167946818032739360,
+                        options: {
+                          compId: 'setDataSource',
+                          compName: 'page',
+                          id: '699411',
+                          pageJsonId: '866861',
+                          dataSourceId: 167946815142258800,
+                          dataSourceName: 'activeKeyYxaList',
+                          dataSourceRelType: 'custom',
+                          dataSourceReloadFilter: [],
+                          dataSourceSetValue: [
+                            {
+                              attrId: '223114',
+                              code: 'param',
+                              name: '属性',
+                              type: 'string',
+                              initialData: { type: 'static' },
+                            },
+                          ],
+                          newData: '$data_717722$',
+                          operateType: 3,
+                          onlySetPatch: true,
+                          otherObjectArrayOptions: {},
+                        },
+                        path: [
+                          166964682728661540, 166964690601845380,
+                          166964690601857570, 166964693701786240,
+                          166964693701785060, 167946818032779460,
+                          167946818032714050, 167946818032780260,
+                        ],
+                        line_number: 23,
+                        callback1: [],
+                        callback2: [],
+                      },
+                    ],
+                    callback2: [],
+                  },
+                ],
+              },
+            ],
+            callback2: [],
+          },
+        ],
+      },
+    ];
+    eventDatagetValue.params =
+      [
+        {
+          title: '事件入参',
+          name: 'options_485601',
+          value: '$options_485601$',
+        },
+      ] || [];
+    CMDGenerator(eventDatagetValue, { options_485601 }, 'getValue', {
+      id: 'getValue',
+      name: 'getValue',
+      type: 'getValue',
+      platform: 'undefined',
+    });
+  };
+
+  React.useImperativeHandle(customActionMapRef, () => ({
+    select_node,
+    onLoadSceneNode,
+  }));
+
+  useEffect(() => {
+    const eventDataifelse: any = [
+      {
+        type: 'ifelse',
+        condition: [
+          {
+            condId: '4921483',
+            options: {
+              useManual: true,
+              useObject: false,
+              context: '$urlParam.origin$',
+              operate: '==',
+              manualValue: '0',
+            },
+            conditionType: 'checkContextValue',
+            objType: 'system',
+            objId: 'sys',
+          },
+        ],
+        path: [166305314341954340],
+        dataId: 167145167099027330,
+        elseIfs: [],
+        line_number: 1,
+        callback1: [
+          {
+            type: 'setVisible',
+            dataId: 167145169088039000,
+            options: {
+              compId: 'Button_3119094',
+              compLib: 'comm',
+              pageJsonId: '866861',
+              compName: 'Button',
+              id: '924952',
+              visible: 'true',
+            },
+            path: [166305314341954340, 167145167099027330],
+            line_number: 2,
+          },
+        ],
+      },
+    ];
+    eventDataifelse.params = [] || [];
+    CMDGenerator(eventDataifelse, {}, 'ifelse', {
+      id: 'ifelse',
+      name: 'ifelse',
+      type: 'ifelse',
+      platform: 'undefined',
+    });
     const eventDatacallSelfFunc: any = [
       {
         type: 'callSelfFunc',
@@ -94,7 +1521,10 @@ const AuditStart$$Page: React.FC<PageProps> = ({
   useEffect(() => {});
 
   return (
-    <div style={style} className="__CustomClass_866861__">
+    <div
+      style={{ height: '100%', ...style }}
+      className="__CustomClass_866861__"
+    >
       <View
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -683,7 +2113,6 @@ const AuditStart$$Page: React.FC<PageProps> = ({
                   {...injectData}
                   uid="CollapsePanel_5495"
                 >
-                  12312
                   <GridView
                     name={'resultData'}
                     itemKey={'item'}
@@ -717,12 +2146,2186 @@ const AuditStart$$Page: React.FC<PageProps> = ({
                         MemoRenderer: {
                           renderer: null,
                           MemoLoopItem: (props: any) => {
-                            console.log(
-                              'MemoLoopItemMemoLoopItemMemoLoopItemMemoLoopItemMemoLoopItem',
+                            const item = props[props.itemKey] ?? props?.item;
+                            const i = props[props.indexKey] ?? props?.i;
+                            return (
+                              <>
+                                <HorizontalView
+                                  name={'左右布局'}
+                                  $$componentItem={{
+                                    id: 'HorizontalView_300975',
+                                    uid: 'HorizontalView_300975',
+                                    type: 'HorizontalView',
+                                    ...componentItem,
+                                  }}
+                                  disabled={false}
+                                  visible={true}
+                                  readOnly={false}
+                                  style={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    padding: '0px 0px 0px 0px',
+                                    width: '100%',
+                                    height: '100%',
+                                    overflowY: 'visible',
+                                  }}
+                                  ref={(r: any) =>
+                                    (refs['HorizontalView_300975'] = r)
+                                  }
+                                  {...injectData}
+                                >
+                                  <View
+                                    name={'布局容器'}
+                                    $$componentItem={{
+                                      id: 'View_575815',
+                                      uid: 'View_575815',
+                                      type: 'View',
+                                      ...componentItem,
+                                    }}
+                                    disabled={false}
+                                    visible={true}
+                                    readOnly={false}
+                                    style={{
+                                      display: 'flex',
+                                      flexDirection: 'column',
+                                      padding: '0px 0px 0px 0px',
+                                      width: '180px',
+                                      height: '100%',
+                                      overflowY: 'auto',
+                                      margin: '0px 16px 0px 0px',
+                                      'font-weight': 'bold',
+                                    }}
+                                    ref={(r: any) => (refs['View_575815'] = r)}
+                                    {...injectData}
+                                  >
+                                    <Text
+                                      name={'文本'}
+                                      content={item?.nodeValue}
+                                      textType={'span'}
+                                      version={'1.0'}
+                                      showHtml={false}
+                                      $$componentItem={{
+                                        id: 'Text_4120405',
+                                        uid: 'Text_4120405',
+                                        type: 'Text',
+                                        ...componentItem,
+                                      }}
+                                      disabled={false}
+                                      visible={true}
+                                      readOnly={false}
+                                      style={{
+                                        fontSize: '14px',
+                                        lineHeight: '24px',
+                                        color: '#1c242e',
+                                        'font-weight': 'bold',
+                                      }}
+                                      ref={(r: any) =>
+                                        (refs['Text_4120405'] = r)
+                                      }
+                                      {...injectData}
+                                    />
+                                  </View>
+                                  <View
+                                    name={'布局容器'}
+                                    $$componentItem={{
+                                      id: 'View_2657547',
+                                      uid: 'View_2657547',
+                                      type: 'View',
+                                      ...componentItem,
+                                    }}
+                                    disabled={false}
+                                    visible={true}
+                                    readOnly={false}
+                                    style={{
+                                      display: 'flex',
+                                      flexDirection: 'column',
+                                      padding: '0px 0px 0px 0px',
+                                      width: '100%',
+                                      height: '100%',
+                                      overflowY: 'visible',
+                                    }}
+                                    ref={(r: any) => (refs['View_2657547'] = r)}
+                                    {...injectData}
+                                  >
+                                    <GridView
+                                      name={'children'}
+                                      itemKey={'c'}
+                                      indexKey={'l'}
+                                      pieceData={[]}
+                                      defaultValue={[]}
+                                      isChecked={false}
+                                      isMultiple={true}
+                                      columnNum={1}
+                                      valueKey={'nodeKey'}
+                                      span={'6'}
+                                      vspace={16}
+                                      hspace={8}
+                                      isEditor={true}
+                                      fieldName={
+                                        'data.selectAlltreeNodeCode.resultData.children'
+                                      }
+                                      gridData={item?.children}
+                                      normalStyle={{
+                                        'border-radius': '2px',
+                                        padding: '6px 12px',
+                                        'background-color': '#f6f6f7',
+                                        color: '#575a66',
+                                      }}
+                                      selectStyle={{
+                                        'background-color': '#f0f6ff',
+                                        'background-image':
+                                          'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAAEEfUpiAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAC6klEQVRYCb1XTUgUURz/zay27brqboRE2CmWgiCQ7CLkobp6iYjKDlFgCRF9XEoDOxgUJX3iEhgodahLnYSE6JBESJ46FVmBGBFBypq22s5u83+7/9m3s2/cebr6Dvve/+P3MW9n5u0CS41dHb+zBjdQQGuR4ICL3nMJR8uOqlw3VWiU5SqikJVkpOkuHOyZEX7HH8ZESdO3TOdn7WmSwGzU2UyZkYuUK7oKSnCx/1yEwtzui5X9wcV4YwCfpyyRdhi4SNffe7KGMbrfn4PztyBV5VWWg7Nd6tMikIEs4otABay2781/6TIOVMD2/UEc3htEW1dSmFA6kIFjiSgmvls4cWMWbx/E7DmJD19z32HJHshAvkaaoxEDr/qiaD41LafFWjjwApZ0VzrRfHr6qnIP/AgROJvJ9iyLgMEkpE0gg7UJ3GAtAhXYN4EXmAicFwIFqqECh4KFziUJVOCAjRi9l3vrEo0ngQpMgLFEDK1nC7e0koDBTfH8eUJIe7y5G8XT1ynML+Ri+iwhYDAV168D6CW5bUsAQ5drRXzr2V8qOSPgrOyFDKb81K8MGmImuo/VoCFqouXMDDIZGQE4Ht1gbut9PI/d26sw/G5RvIE4z7O4lb3A3OQ9G1lj+WD7QTKNC9oPk7cbvQobX3MDLMx218yAW3jNDHgJr7qBcsKrZsCvcMUN6ApXzIBf4UjIwOClWnyctHDl0Rzr6x+qjPQrTP1d7WEcaA3ixegCrj2ZZwoxaz+GOsJ7dlajr7MGhq3SefsPxj/ZPwddw7cBlfDIzXrUhQ0MDKcw+DIFK39SbKyn7a7Dpg0mJn9aONqbRGrRpZwPyxpQCctUR/YFcfFQWKTSVhbffliIN+YOqaGRFO4/Lz7/ZCytPQ2UE5aJquxTNXE+gqZ4tUiTkePXZ8UNJ/ep1iUGdITdhFs3m+hoC6F7YA7pwk9wd1tR7BhYiXARo1ZgTKzoPNfScpoN+kP9xTDR/z4RvfMfZJBzTPeTIF8AAAAASUVORK5CYII=)',
+                                        'background-size': '20px',
+                                        'background-position': 'right bottom',
+                                        'background-repeat': 'no-repeat',
+                                        border: '1px solid rgba(51,102,238,1)',
+                                        'border-radius': '2px',
+                                      }}
+                                      value={data?.emptyArray?.array}
+                                      $$componentItem={{
+                                        id: 'GridView_959384',
+                                        uid: 'GridView_959384',
+                                        type: 'GridView',
+                                        ...componentItem,
+                                      }}
+                                      style={{ minHeight: 40 }}
+                                      onChange={(vals: any) => {
+                                        const eventDatacustomActionCode4: any =
+                                          [
+                                            {
+                                              type: 'customActionCode',
+                                              dataId: 166341200368161340,
+                                              options: {
+                                                compId: 'customActionCode',
+                                                compName: 'page',
+                                                id: '8421537',
+                                                pageJsonId: '866861',
+                                                originCode:
+                                                  "/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n\tconst nodeMap = data?.selectedNodes?.nodes || {};\n\tconst nodeKey = item.nodeKey;\n\tconst selectedChildren = item.children.filter(e => vals.includes(e.nodeKey));\n\tnodeMap[nodeKey] = selectedChildren;\n\tconsole.log('====选中值',nodeMap);\n\tsuccess(nodeMap);\n};",
+                                                code: 'function main(data,state,success,fail){var _data$selectedNodes;var nodeMap=(data===null||data===void 0?void 0:(_data$selectedNodes=data.selectedNodes)===null||_data$selectedNodes===void 0?void 0:_data$selectedNodes.nodes)||{};var nodeKey=item.nodeKey;var selectedChildren=item.children.filter(function(e){return vals.includes(e.nodeKey)});nodeMap[nodeKey]=selectedChildren;console.log("====\\u9009\\u4E2D\\u503C",nodeMap);success(nodeMap)};',
+                                              },
+                                              path: [166313507124663170],
+                                              line_number: 1,
+                                              callback1: [
+                                                {
+                                                  type: 'setDataSource',
+                                                  dataId: 166341200368103420,
+                                                  options: {
+                                                    compId: 'setDataSource',
+                                                    compName: 'page',
+                                                    id: '8998934',
+                                                    pageJsonId: '866861',
+                                                    dataSourceId: 166341035337970140,
+                                                    dataSourceName:
+                                                      'selectedNodes',
+                                                    dataSourceRelType: 'custom',
+                                                    dataSourceReloadFilter: [],
+                                                    dataSourceSetValue: [
+                                                      {
+                                                        attrId: '142214',
+                                                        code: 'nodes',
+                                                        name: '属性',
+                                                        type: 'object',
+                                                        initialData: {
+                                                          type: 'static',
+                                                        },
+                                                        value: {
+                                                          type: [
+                                                            'context',
+                                                            '$data_8421537$',
+                                                          ],
+                                                          code: '',
+                                                        },
+                                                      },
+                                                    ],
+                                                    operateType: 1,
+                                                    onlySetPatch: true,
+                                                    otherObjectArrayOptions: {},
+                                                  },
+                                                  path: [
+                                                    166313507124663170,
+                                                    166341200368161340,
+                                                    166341200368198100,
+                                                  ],
+                                                  line_number: 2,
+                                                  callback1: [
+                                                    {
+                                                      type: 'console',
+                                                      dataId: 166341200368168670,
+                                                      options: {
+                                                        compId: 'debug',
+                                                        compName: 'system',
+                                                        id: '9639415',
+                                                        pageJsonId: '866861',
+                                                        value: [
+                                                          '$data.selectedNodes$',
+                                                        ],
+                                                      },
+                                                      path: [
+                                                        166313507124663170,
+                                                        166341200368161340,
+                                                        166341200368198100,
+                                                        166341200368103420,
+                                                        16634120036817416,
+                                                      ],
+                                                      line_number: 3,
+                                                    },
+                                                  ],
+                                                  callback2: [],
+                                                },
+                                                {
+                                                  type: 'console',
+                                                  dataId: 168975548366755550,
+                                                  options: {
+                                                    compId: 'debug',
+                                                    compName: 'system',
+                                                    id: '7467836',
+                                                    pageJsonId: '866861',
+                                                    value: ['$data_8421537$'],
+                                                  },
+                                                  path: [
+                                                    166313507124663170,
+                                                    166341200368161340,
+                                                    166341200368198100,
+                                                  ],
+                                                  line_number: 4,
+                                                },
+                                              ],
+                                              callback2: [],
+                                            },
+                                          ];
+                                        eventDatacustomActionCode4.params =
+                                          [
+                                            {
+                                              title: '变化值',
+                                              value: '$vals$',
+                                              name: 'vals',
+                                            },
+                                          ] || [];
+                                        CMDGenerator(
+                                          eventDatacustomActionCode4,
+                                          { vals, item, i },
+                                          'customActionCode',
+                                          {
+                                            id: 'customActionCode',
+                                            name: 'customActionCode',
+                                            type: 'customActionCode',
+                                            platform: 'pc',
+                                          },
+                                        );
+                                      }}
+                                      ref={(r: any) =>
+                                        (refs['GridView_959384'] = r)
+                                      }
+                                      {...injectData}
+                                      getEngineApis={() => {
+                                        return {
+                                          ...injectData.getEngineApis(),
+                                          MemoRenderer: {
+                                            renderer: null,
+                                            MemoLoopItem: (props: any) => {
+                                              const item =
+                                                props[props.itemKey] ??
+                                                props?.item;
+                                              const i =
+                                                props[props.indexKey] ??
+                                                props?.i;
+                                              const c =
+                                                props[props.itemKey] ??
+                                                props?.item;
+                                              const l =
+                                                props[props.indexKey] ??
+                                                props?.i;
+                                              return (
+                                                <>
+                                                  <View
+                                                    name={'布局容器'}
+                                                    backgroundType={{
+                                                      type: 'cleanColor',
+                                                      color: undefined,
+                                                    }}
+                                                    $$componentItem={{
+                                                      id: 'View_9189376',
+                                                      uid: 'View_9189376',
+                                                      type: 'View',
+                                                      ...componentItem,
+                                                    }}
+                                                    disabled={false}
+                                                    visible={true}
+                                                    readOnly={false}
+                                                    style={{
+                                                      display: 'block',
+                                                      flexDirection: 'column',
+                                                      padding:
+                                                        '0px 0px 0px 0px',
+                                                      width: '100%',
+                                                    }}
+                                                    ref={(r: any) =>
+                                                      (refs['View_9189376'] = r)
+                                                    }
+                                                    {...injectData}
+                                                  >
+                                                    <Popover
+                                                      options={{
+                                                        tipType: '2',
+                                                        trigger: 'click',
+                                                        content:
+                                                          'OA已实现该场景',
+                                                      }}
+                                                      id={'Icon_724045'}
+                                                      {...injectData}
+                                                    >
+                                                      <Icon
+                                                        name={'图标'}
+                                                        rotate={0}
+                                                        icon={{
+                                                          type: 'info-circle',
+                                                          theme: 'outlined',
+                                                          fontAddress: '',
+                                                          isIconFont: false,
+                                                          iconFileInfo: {},
+                                                        }}
+                                                        $$componentItem={{
+                                                          id: 'Icon_724045',
+                                                          uid: 'Icon_724045',
+                                                          type: 'Icon',
+                                                          ...componentItem,
+                                                        }}
+                                                        disabled={false}
+                                                        visible={true}
+                                                        readOnly={false}
+                                                        style={{
+                                                          'margin-right':
+                                                            '10px',
+                                                          color: 'unset',
+                                                        }}
+                                                        ref={(r: any) =>
+                                                          (refs['Icon_724045'] =
+                                                            r)
+                                                        }
+                                                        {...injectData}
+                                                      />
+                                                    </Popover>
+                                                    <Text
+                                                      name={'文本'}
+                                                      content={item?.nodeValue}
+                                                      textType={'span'}
+                                                      version={'1.0'}
+                                                      showHtml={false}
+                                                      $$componentItem={{
+                                                        id: 'Text_968473',
+                                                        uid: 'Text_968473',
+                                                        type: 'Text',
+                                                        ...componentItem,
+                                                      }}
+                                                      style={{
+                                                        fontSize: '14px',
+                                                        lineHeight: '24px',
+                                                        color: 'unset',
+                                                        letterSpacing: '',
+                                                      }}
+                                                      ref={(r: any) =>
+                                                        (refs['Text_968473'] =
+                                                          r)
+                                                      }
+                                                      {...injectData}
+                                                    />
+                                                  </View>
+                                                </>
+                                              );
+                                            },
+                                          },
+                                        };
+                                      }}
+                                    />
+                                  </View>
+                                </HorizontalView>
+                              </>
                             );
-                            const item = props[props.itemKey] ?? props?.itemKey;
-                            const i = props[props.indexKey] ?? props?.indexKey;
-                            return <>1231232131</>;
+                          },
+                        },
+                      };
+                    }}
+                  />
+                </CollapsePanel>
+              </Collapse>
+            </View>
+            <View
+              name={'布局容器2'}
+              backgroundType={{ type: 'cleanColor', color: undefined }}
+              $$componentItem={{
+                id: 'View_239728_273135',
+                uid: 'View_239728_273135',
+                type: 'View',
+                ...componentItem,
+              }}
+              disabled={false}
+              visible={true}
+              readOnly={false}
+              style={{
+                display: 'block',
+                padding: '0px 0px 0px 0px',
+                width: '100%',
+                margin: '0px 0px 0px 0px',
+                height: '0A',
+                overflowY: 'hidden',
+                background: '#FFFFFF',
+                'box-shadow': '0px1px2px0pxrgba(0,0,0,0.04)',
+                'border-radius': '2px',
+                'margin-bottom': '2.5px',
+              }}
+              ref={(r: any) => (refs['View_239728_273135'] = r)}
+              {...injectData}
+            >
+              <Collapse
+                name={'折叠面板'}
+                defaultActiveKey={[]}
+                expandIconPosition={'right'}
+                collapseType={''}
+                size={'default'}
+                bordered={true}
+                hasIcon={true}
+                cardIconType={'auto'}
+                prefixIcon={{
+                  prefixIconTheme: 'outlined',
+                  prefixIconType: 'folder-open',
+                  prefixIconIsIconFont: false,
+                }}
+                extendProps={{}}
+                activeKey={data?.activeKeyJcList}
+                icon={{
+                  type: undefined,
+                  theme: 'outlined',
+                  fontAddress: '',
+                  isIconFont: false,
+                  iconFileInfo: {},
+                }}
+                $$componentItem={{
+                  id: 'Collapse_228917_4750854',
+                  uid: 'Collapse_228917_4750854',
+                  type: 'Collapse',
+                  ...componentItem,
+                }}
+                disabled={false}
+                visible={true}
+                readOnly={false}
+                style={{
+                  width: '100%',
+                  margin: '0 0 16px 0',
+                  padding: '20px 20px 20px 20px',
+                }}
+                onChange={(key: any) => {
+                  const eventDatacustomActionCode5: any = [
+                    {
+                      type: 'customActionCode',
+                      dataId: 167946833343801900,
+                      options: {
+                        compId: 'customActionCode',
+                        compName: 'page',
+                        id: '85599506',
+                        pageJsonId: '866861',
+                        originCode:
+                          '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n    var jc = [];\n\tif(data.activeKeyJcList != undefined && data.activeKeyJcList > 0) {\n        success(jc);\n    }\n    else {\n        jc.push(2462862);\n        success(jc);\n    }\n};',
+                        code: 'function main(data,state,success,fail){var jc=[];if(data.activeKeyJcList!=undefined&&data.activeKeyJcList>0){success(jc)}else{jc.push(2462862);success(jc)}};',
+                      },
+                      path: [167946833177170020],
+                      line_number: 1,
+                      callback1: [
+                        {
+                          type: 'setDataSource',
+                          dataId: 167946833343860200,
+                          options: {
+                            compId: 'setDataSource',
+                            compName: 'page',
+                            id: '443949',
+                            pageJsonId: '866861',
+                            dataSourceId: 167946809637676670,
+                            dataSourceName: 'activeKeyJcList',
+                            dataSourceRelType: 'custom',
+                            dataSourceReloadFilter: [],
+                            dataSourceSetValue: [
+                              {
+                                attrId: '200399',
+                                code: 'param',
+                                name: '属性',
+                                type: 'string',
+                                initialData: { type: 'static' },
+                              },
+                            ],
+                            newData: '$data_85599506$',
+                            operateType: 3,
+                            onlySetPatch: true,
+                            otherObjectArrayOptions: {},
+                          },
+                          path: [
+                            167946833177170020, 167946833343801900,
+                            167946833343881060,
+                          ],
+                          line_number: 2,
+                          callback1: [],
+                          callback2: [],
+                        },
+                      ],
+                      callback2: [],
+                    },
+                  ];
+                  eventDatacustomActionCode5.params =
+                    [{ title: '切换面板key', value: '$key$', name: 'key' }] ||
+                    [];
+                  CMDGenerator(
+                    eventDatacustomActionCode5,
+                    { key },
+                    'customActionCode',
+                    {
+                      id: 'customActionCode',
+                      name: 'customActionCode',
+                      type: 'customActionCode',
+                      platform: 'pc',
+                    },
+                  );
+                }}
+                ref={(r: any) => (refs['Collapse_228917_4750854'] = r)}
+                {...injectData}
+              >
+                <CollapsePanel
+                  name={'折叠子面板'}
+                  header={'基础类'}
+                  key={'2462862'}
+                  cardIconType={'auto'}
+                  prefixIconTheme={'outlined'}
+                  prefixIconType={'folder-open'}
+                  prefixIconIsIconFont={false}
+                  $$componentItem={{
+                    id: 'CollapsePanel_5495_629279',
+                    uid: 'CollapsePanel_5495_629279',
+                    type: 'CollapsePanel',
+                    ...componentItem,
+                  }}
+                  disabled={false}
+                  visible={true}
+                  readOnly={false}
+                  style={{ minHeight: 40 }}
+                  ref={(r: any) => (refs['CollapsePanel_5495_629279'] = r)}
+                  {...injectData}
+                  uid="CollapsePanel_5495_629279"
+                >
+                  <GridView
+                    name={'resultData'}
+                    itemKey={'item'}
+                    indexKey={'i'}
+                    pieceData={[]}
+                    defaultValue={[]}
+                    isChecked={false}
+                    isMultiple={true}
+                    columnNum={1}
+                    valueKey={'nodeKey'}
+                    span={24}
+                    vspace={16}
+                    hspace={8}
+                    isEditor={false}
+                    fieldName={'data.jichulei.resultData'}
+                    gridData={data?.jichulei?.resultData}
+                    selectStyle={{ border: 'unset' }}
+                    normalStyle={{ border: '0px solid' }}
+                    $$componentItem={{
+                      id: 'GridView_841399_5745795',
+                      uid: 'GridView_841399_5745795',
+                      type: 'GridView',
+                      ...componentItem,
+                    }}
+                    style={{ minHeight: 40 }}
+                    onChange={(vals: any) => {
+                      // console 166313571472478560
+                      console.log('父级数据', vals);
+                    }}
+                    ref={(r: any) => (refs['GridView_841399_5745795'] = r)}
+                    {...injectData}
+                    getEngineApis={() => {
+                      return {
+                        ...injectData.getEngineApis(),
+                        MemoRenderer: {
+                          renderer: null,
+                          MemoLoopItem: (props: any) => {
+                            const item = props[props.itemKey] ?? props?.item;
+                            const i = props[props.indexKey] ?? props?.i;
+                            return (
+                              <>
+                                <HorizontalView
+                                  name={'左右布局'}
+                                  $$componentItem={{
+                                    id: 'HorizontalView_300975_2315523',
+                                    uid: 'HorizontalView_300975_2315523',
+                                    type: 'HorizontalView',
+                                    ...componentItem,
+                                  }}
+                                  disabled={false}
+                                  visible={true}
+                                  readOnly={false}
+                                  style={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    padding: '0px 0px 0px 0px',
+                                    width: '100%',
+                                    height: '100%',
+                                    overflowY: 'visible',
+                                  }}
+                                  ref={(r: any) =>
+                                    (refs['HorizontalView_300975_2315523'] = r)
+                                  }
+                                  {...injectData}
+                                >
+                                  <View
+                                    name={'布局容器'}
+                                    $$componentItem={{
+                                      id: 'View_575815_624883',
+                                      uid: 'View_575815_624883',
+                                      type: 'View',
+                                      ...componentItem,
+                                    }}
+                                    disabled={false}
+                                    visible={true}
+                                    readOnly={false}
+                                    style={{
+                                      display: 'flex',
+                                      flexDirection: 'column',
+                                      padding: '0px 0px 0px 0px',
+                                      width: '180px',
+                                      height: '100%',
+                                      overflowY: 'auto',
+                                      margin: '0px 16px 0px 0px',
+                                    }}
+                                    ref={(r: any) =>
+                                      (refs['View_575815_624883'] = r)
+                                    }
+                                    {...injectData}
+                                  >
+                                    <Text
+                                      name={'文本'}
+                                      content={item?.nodeValue}
+                                      textType={'span'}
+                                      version={'1.0'}
+                                      showHtml={false}
+                                      $$componentItem={{
+                                        id: 'Text_4120405_631164',
+                                        uid: 'Text_4120405_631164',
+                                        type: 'Text',
+                                        ...componentItem,
+                                      }}
+                                      disabled={false}
+                                      visible={true}
+                                      readOnly={false}
+                                      style={{
+                                        fontSize: '14px',
+                                        lineHeight: '24px',
+                                        color: '#1c242e',
+                                        'font-weight': 'bold',
+                                      }}
+                                      ref={(r: any) =>
+                                        (refs['Text_4120405_631164'] = r)
+                                      }
+                                      {...injectData}
+                                    />
+                                  </View>
+                                  <View
+                                    name={'布局容器'}
+                                    $$componentItem={{
+                                      id: 'View_2657547_5801104',
+                                      uid: 'View_2657547_5801104',
+                                      type: 'View',
+                                      ...componentItem,
+                                    }}
+                                    disabled={false}
+                                    visible={true}
+                                    readOnly={false}
+                                    style={{
+                                      display: 'flex',
+                                      flexDirection: 'column',
+                                      padding: '0px 0px 0px 0px',
+                                      width: '100%',
+                                      height: '100%',
+                                      overflowY: 'visible',
+                                    }}
+                                    ref={(r: any) =>
+                                      (refs['View_2657547_5801104'] = r)
+                                    }
+                                    {...injectData}
+                                  >
+                                    <GridView
+                                      name={'children'}
+                                      itemKey={'c'}
+                                      indexKey={'l'}
+                                      pieceData={[]}
+                                      defaultValue={[]}
+                                      isChecked={false}
+                                      isMultiple={true}
+                                      columnNum={1}
+                                      valueKey={'nodeKey'}
+                                      span={'6'}
+                                      vspace={16}
+                                      hspace={8}
+                                      isEditor={true}
+                                      fieldName={
+                                        'data.selectAlltreeNodeCode.resultData.children'
+                                      }
+                                      gridData={item?.children}
+                                      normalStyle={{
+                                        'border-radius': '2px',
+                                        padding: '6px 12px',
+                                        'background-color': '#f6f6f7',
+                                      }}
+                                      selectStyle={{
+                                        'background-color': '#f0f6ff',
+                                        'background-image':
+                                          'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAAEEfUpiAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAC6klEQVRYCb1XTUgUURz/zay27brqboRE2CmWgiCQ7CLkobp6iYjKDlFgCRF9XEoDOxgUJX3iEhgodahLnYSE6JBESJ46FVmBGBFBypq22s5u83+7/9m3s2/cebr6Dvve/+P3MW9n5u0CS41dHb+zBjdQQGuR4ICL3nMJR8uOqlw3VWiU5SqikJVkpOkuHOyZEX7HH8ZESdO3TOdn7WmSwGzU2UyZkYuUK7oKSnCx/1yEwtzui5X9wcV4YwCfpyyRdhi4SNffe7KGMbrfn4PztyBV5VWWg7Nd6tMikIEs4otABay2781/6TIOVMD2/UEc3htEW1dSmFA6kIFjiSgmvls4cWMWbx/E7DmJD19z32HJHshAvkaaoxEDr/qiaD41LafFWjjwApZ0VzrRfHr6qnIP/AgROJvJ9iyLgMEkpE0gg7UJ3GAtAhXYN4EXmAicFwIFqqECh4KFziUJVOCAjRi9l3vrEo0ngQpMgLFEDK1nC7e0koDBTfH8eUJIe7y5G8XT1ynML+Ri+iwhYDAV168D6CW5bUsAQ5drRXzr2V8qOSPgrOyFDKb81K8MGmImuo/VoCFqouXMDDIZGQE4Ht1gbut9PI/d26sw/G5RvIE4z7O4lb3A3OQ9G1lj+WD7QTKNC9oPk7cbvQobX3MDLMx218yAW3jNDHgJr7qBcsKrZsCvcMUN6ApXzIBf4UjIwOClWnyctHDl0Rzr6x+qjPQrTP1d7WEcaA3ixegCrj2ZZwoxaz+GOsJ7dlajr7MGhq3SefsPxj/ZPwddw7cBlfDIzXrUhQ0MDKcw+DIFK39SbKyn7a7Dpg0mJn9aONqbRGrRpZwPyxpQCctUR/YFcfFQWKTSVhbffliIN+YOqaGRFO4/Lz7/ZCytPQ2UE5aJquxTNXE+gqZ4tUiTkePXZ8UNJ/ep1iUGdITdhFs3m+hoC6F7YA7pwk9wd1tR7BhYiXARo1ZgTKzoPNfScpoN+kP9xTDR/z4RvfMfZJBzTPeTIF8AAAAASUVORK5CYII=)',
+                                        'background-size': '20px',
+                                        'background-position': 'right bottom',
+                                        'background-repeat': 'no-repeat',
+                                        border: '1px solid rgba(51,102,238,1)',
+                                        'border-radius': '2px',
+                                      }}
+                                      value={data?.emptyArray?.array}
+                                      $$componentItem={{
+                                        id: 'GridView_959384_121004',
+                                        uid: 'GridView_959384_121004',
+                                        type: 'GridView',
+                                        ...componentItem,
+                                      }}
+                                      style={{ minHeight: 40 }}
+                                      onChange={(vals: any) => {
+                                        const eventDatacustomActionCode7: any =
+                                          [
+                                            {
+                                              type: 'customActionCode',
+                                              dataId: 166341201001430430,
+                                              options: {
+                                                compId: 'customActionCode',
+                                                compName: 'page',
+                                                id: '5583694',
+                                                pageJsonId: '866861',
+                                                originCode:
+                                                  '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n\tconst nodeMap = data?.selectedNodes?.nodes || {};\n\tconst nodeKey = item.nodeKey;\n\tconst selectedChildren = item.children.filter(e => vals.includes(e.nodeKey));\n\tnodeMap[nodeKey] = selectedChildren;\n\tsuccess(nodeMap);\n};',
+                                                code: 'function main(data,state,success,fail){var _data$selectedNodes;var nodeMap=(data===null||data===void 0?void 0:(_data$selectedNodes=data.selectedNodes)===null||_data$selectedNodes===void 0?void 0:_data$selectedNodes.nodes)||{};var nodeKey=item.nodeKey;var selectedChildren=item.children.filter(function(e){return vals.includes(e.nodeKey)});nodeMap[nodeKey]=selectedChildren;success(nodeMap)};',
+                                              },
+                                              path: [166313511613665920],
+                                              line_number: 1,
+                                              callback1: [
+                                                {
+                                                  type: 'setDataSource',
+                                                  dataId: 166341201001498300,
+                                                  options: {
+                                                    compId: 'setDataSource',
+                                                    compName: 'page',
+                                                    id: '181758',
+                                                    pageJsonId: '866861',
+                                                    dataSourceId: 166341035337970140,
+                                                    dataSourceName:
+                                                      'selectedNodes',
+                                                    dataSourceRelType: 'custom',
+                                                    dataSourceReloadFilter: [],
+                                                    dataSourceSetValue: [
+                                                      {
+                                                        attrId: '142214',
+                                                        code: 'nodes',
+                                                        name: '属性',
+                                                        type: 'object',
+                                                        initialData: {
+                                                          type: 'static',
+                                                        },
+                                                        value: {
+                                                          type: [
+                                                            'context',
+                                                            '$data_5583694$',
+                                                          ],
+                                                          code: '',
+                                                        },
+                                                      },
+                                                    ],
+                                                    operateType: 1,
+                                                    onlySetPatch: true,
+                                                    otherObjectArrayOptions: {},
+                                                  },
+                                                  path: [
+                                                    166313511613665920,
+                                                    166341201001430430,
+                                                    166341201001452100,
+                                                  ],
+                                                  line_number: 2,
+                                                  callback1: [
+                                                    {
+                                                      type: 'console',
+                                                      dataId: 166341201001469630,
+                                                      options: {
+                                                        compId: 'debug',
+                                                        compName: 'system',
+                                                        id: '702158',
+                                                        pageJsonId: '866861',
+                                                        value: [
+                                                          '$data.selectedNodes$',
+                                                        ],
+                                                      },
+                                                      path: [
+                                                        166313511613665920,
+                                                        166341201001430430,
+                                                        166341201001452100,
+                                                        166341201001498300,
+                                                        166341201001407100,
+                                                      ],
+                                                      line_number: 3,
+                                                    },
+                                                  ],
+                                                  callback2: [],
+                                                },
+                                              ],
+                                              callback2: [],
+                                            },
+                                          ];
+                                        eventDatacustomActionCode7.params =
+                                          [
+                                            {
+                                              title: '变化值',
+                                              value: '$vals$',
+                                              name: 'vals',
+                                            },
+                                          ] || [];
+                                        CMDGenerator(
+                                          eventDatacustomActionCode7,
+                                          { vals, item, i },
+                                          'customActionCode',
+                                          {
+                                            id: 'customActionCode',
+                                            name: 'customActionCode',
+                                            type: 'customActionCode',
+                                            platform: 'pc',
+                                          },
+                                        );
+                                      }}
+                                      ref={(r: any) =>
+                                        (refs['GridView_959384_121004'] = r)
+                                      }
+                                      {...injectData}
+                                      getEngineApis={() => {
+                                        return {
+                                          ...injectData.getEngineApis(),
+                                          MemoRenderer: {
+                                            renderer: null,
+                                            MemoLoopItem: (props: any) => {
+                                              const item =
+                                                props[props.itemKey] ??
+                                                props?.item;
+                                              const i =
+                                                props[props.indexKey] ??
+                                                props?.i;
+                                              const c =
+                                                props[props.itemKey] ??
+                                                props?.item;
+                                              const l =
+                                                props[props.indexKey] ??
+                                                props?.i;
+                                              return (
+                                                <>
+                                                  <View
+                                                    name={'布局容器'}
+                                                    backgroundType={{
+                                                      type: 'cleanColor',
+                                                      color: undefined,
+                                                    }}
+                                                    $$componentItem={{
+                                                      id: 'View_9189376_858298',
+                                                      uid: 'View_9189376_858298',
+                                                      type: 'View',
+                                                      ...componentItem,
+                                                    }}
+                                                    disabled={false}
+                                                    visible={true}
+                                                    readOnly={false}
+                                                    style={{
+                                                      display: 'block',
+                                                      flexDirection: 'column',
+                                                      padding:
+                                                        '0px 0px 0px 0px',
+                                                      width: '100%',
+                                                    }}
+                                                    ref={(r: any) =>
+                                                      (refs[
+                                                        'View_9189376_858298'
+                                                      ] = r)
+                                                    }
+                                                    {...injectData}
+                                                  >
+                                                    <Popover
+                                                      options={{
+                                                        tipType: '2',
+                                                        trigger: 'click',
+                                                        content:
+                                                          'OA已实现该场景',
+                                                      }}
+                                                      id={'Icon_724045_443752'}
+                                                      {...injectData}
+                                                    >
+                                                      <Icon
+                                                        name={'图标'}
+                                                        rotate={0}
+                                                        icon={{
+                                                          type: 'info-circle',
+                                                          theme: 'outlined',
+                                                          fontAddress: '',
+                                                          isIconFont: false,
+                                                          iconFileInfo: {},
+                                                        }}
+                                                        $$componentItem={{
+                                                          id: 'Icon_724045_443752',
+                                                          uid: 'Icon_724045_443752',
+                                                          type: 'Icon',
+                                                          ...componentItem,
+                                                        }}
+                                                        disabled={false}
+                                                        visible={true}
+                                                        readOnly={false}
+                                                        style={{
+                                                          'margin-right':
+                                                            '10px',
+                                                          color: 'unset',
+                                                        }}
+                                                        ref={(r: any) =>
+                                                          (refs[
+                                                            'Icon_724045_443752'
+                                                          ] = r)
+                                                        }
+                                                        {...injectData}
+                                                      />
+                                                    </Popover>
+                                                    <Text
+                                                      name={'文本'}
+                                                      content={item?.nodeValue}
+                                                      textType={'span'}
+                                                      version={'1.0'}
+                                                      showHtml={false}
+                                                      $$componentItem={{
+                                                        id: 'Text_968473_4695347',
+                                                        uid: 'Text_968473_4695347',
+                                                        type: 'Text',
+                                                        ...componentItem,
+                                                      }}
+                                                      disabled={false}
+                                                      visible={true}
+                                                      readOnly={false}
+                                                      style={{
+                                                        fontSize: '14px',
+                                                        lineHeight: '24px',
+                                                        color: 'unset',
+                                                      }}
+                                                      ref={(r: any) =>
+                                                        (refs[
+                                                          'Text_968473_4695347'
+                                                        ] = r)
+                                                      }
+                                                      {...injectData}
+                                                    />
+                                                  </View>
+                                                </>
+                                              );
+                                            },
+                                          },
+                                        };
+                                      }}
+                                    />
+                                  </View>
+                                </HorizontalView>
+                              </>
+                            );
+                          },
+                        },
+                      };
+                    }}
+                  />
+                </CollapsePanel>
+              </Collapse>
+            </View>
+            <View
+              name={'布局容器3'}
+              backgroundType={{ type: 'cleanColor', color: undefined }}
+              $$componentItem={{
+                id: 'View_239728_742059',
+                uid: 'View_239728_742059',
+                type: 'View',
+                ...componentItem,
+              }}
+              disabled={false}
+              visible={true}
+              readOnly={false}
+              style={{
+                display: 'block',
+                flexDirection: 'column',
+                padding: '0px 0px 0px 0px',
+                width: '100%',
+                margin: '0px 0px 0px 0px',
+                height: 'auto',
+                overflowY: 'hidden',
+                background: '#FFFFFF',
+                'box-shadow': '0px1px2px0pxrgba(0,0,0,0.04)',
+                'border-radius': '2px',
+                'margin-bottom': '2.5px',
+              }}
+              ref={(r: any) => (refs['View_239728_742059'] = r)}
+              {...injectData}
+            >
+              <Collapse
+                name={'折叠面板'}
+                defaultActiveKey={[]}
+                expandIconPosition={'right'}
+                collapseType={''}
+                size={'default'}
+                bordered={true}
+                hasIcon={true}
+                cardIconType={'auto'}
+                prefixIcon={{
+                  prefixIconTheme: 'outlined',
+                  prefixIconType: 'folder-open',
+                  prefixIconIsIconFont: false,
+                }}
+                extendProps={{}}
+                activeKey={data?.activeKeyCpList}
+                icon={{
+                  type: undefined,
+                  theme: 'outlined',
+                  fontAddress: '',
+                  isIconFont: false,
+                  iconFileInfo: {},
+                }}
+                $$componentItem={{
+                  id: 'Collapse_228917_779465',
+                  uid: 'Collapse_228917_779465',
+                  type: 'Collapse',
+                  ...componentItem,
+                }}
+                disabled={false}
+                visible={true}
+                readOnly={false}
+                style={{
+                  width: '100%',
+                  margin: '0 0 16px 0',
+                  padding: '20px 20px 20px 20px',
+                }}
+                onChange={(key: any) => {
+                  const eventDatacustomActionCode8: any = [
+                    {
+                      type: 'customActionCode',
+                      dataId: 167946833880781800,
+                      options: {
+                        compId: 'customActionCode',
+                        compName: 'page',
+                        id: '187553',
+                        pageJsonId: '866861',
+                        originCode:
+                          '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n    var cp = [];\n\tif(data.activeKeyCpList != undefined && data.activeKeyCpList > 0) {\n        success(cp);\n    }\n    else {\n        cp.push(2423448);\n        success(cp);\n    }\n};',
+                        code: 'function main(data,state,success,fail){var cp=[];if(data.activeKeyCpList!=undefined&&data.activeKeyCpList>0){success(cp)}else{cp.push(2423448);success(cp)}};',
+                      },
+                      path: [167946833698097380],
+                      line_number: 1,
+                      callback1: [
+                        {
+                          type: 'setDataSource',
+                          dataId: 167946833880732060,
+                          options: {
+                            compId: 'setDataSource',
+                            compName: 'page',
+                            id: '658145',
+                            pageJsonId: '866861',
+                            dataSourceId: 167946812174602900,
+                            dataSourceName: 'activeKeyCpList',
+                            dataSourceRelType: 'custom',
+                            dataSourceReloadFilter: [],
+                            dataSourceSetValue: [
+                              {
+                                attrId: '399925',
+                                code: 'param',
+                                name: '属性',
+                                type: 'string',
+                                initialData: { type: 'static' },
+                              },
+                            ],
+                            newData: '$data_187553$',
+                            operateType: 3,
+                            onlySetPatch: true,
+                            otherObjectArrayOptions: {},
+                          },
+                          path: [
+                            167946833698097380, 167946833880781800,
+                            167946833880742850,
+                          ],
+                          line_number: 2,
+                          callback1: [],
+                          callback2: [],
+                        },
+                      ],
+                      callback2: [],
+                    },
+                  ];
+                  eventDatacustomActionCode8.params =
+                    [{ title: '切换面板key', value: '$key$', name: 'key' }] ||
+                    [];
+                  CMDGenerator(
+                    eventDatacustomActionCode8,
+                    { key },
+                    'customActionCode',
+                    {
+                      id: 'customActionCode',
+                      name: 'customActionCode',
+                      type: 'customActionCode',
+                      platform: 'pc',
+                    },
+                  );
+                }}
+                ref={(r: any) => (refs['Collapse_228917_779465'] = r)}
+                {...injectData}
+              >
+                <CollapsePanel
+                  name={'折叠子面板'}
+                  header={'产品类'}
+                  key={'2423448'}
+                  cardIconType={'auto'}
+                  prefixIconTheme={'outlined'}
+                  prefixIconType={'folder-open'}
+                  prefixIconIsIconFont={false}
+                  $$componentItem={{
+                    id: 'CollapsePanel_5495_290662',
+                    uid: 'CollapsePanel_5495_290662',
+                    type: 'CollapsePanel',
+                    ...componentItem,
+                  }}
+                  disabled={false}
+                  visible={true}
+                  readOnly={false}
+                  style={{ minHeight: 40 }}
+                  ref={(r: any) => (refs['CollapsePanel_5495_290662'] = r)}
+                  {...injectData}
+                  uid="CollapsePanel_5495_290662"
+                >
+                  <GridView
+                    name={'resultData'}
+                    itemKey={'item'}
+                    indexKey={'i'}
+                    pieceData={[]}
+                    defaultValue={[]}
+                    isChecked={false}
+                    isMultiple={true}
+                    columnNum={1}
+                    valueKey={'nodeKey'}
+                    span={24}
+                    vspace={16}
+                    hspace={8}
+                    isEditor={false}
+                    fieldName={'data.chanpinlei.resultData'}
+                    gridData={data?.chanpinlei?.resultData}
+                    selectStyle={{ border: 'unset' }}
+                    normalStyle={{ border: '0px solid' }}
+                    $$componentItem={{
+                      id: 'GridView_841399_438343',
+                      uid: 'GridView_841399_438343',
+                      type: 'GridView',
+                      ...componentItem,
+                    }}
+                    style={{ minHeight: 40 }}
+                    ref={(r: any) => (refs['GridView_841399_438343'] = r)}
+                    {...injectData}
+                    getEngineApis={() => {
+                      return {
+                        ...injectData.getEngineApis(),
+                        MemoRenderer: {
+                          renderer: null,
+                          MemoLoopItem: (props: any) => {
+                            const item = props[props.itemKey] ?? props?.item;
+                            const i = props[props.indexKey] ?? props?.i;
+                            return (
+                              <>
+                                <HorizontalView
+                                  name={'左右布局'}
+                                  $$componentItem={{
+                                    id: 'HorizontalView_300975_754921',
+                                    uid: 'HorizontalView_300975_754921',
+                                    type: 'HorizontalView',
+                                    ...componentItem,
+                                  }}
+                                  disabled={false}
+                                  visible={true}
+                                  readOnly={false}
+                                  style={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    padding: '0px 0px 0px 0px',
+                                    width: '100%',
+                                    height: '100%',
+                                    overflowY: 'visible',
+                                  }}
+                                  ref={(r: any) =>
+                                    (refs['HorizontalView_300975_754921'] = r)
+                                  }
+                                  {...injectData}
+                                >
+                                  <View
+                                    name={'布局容器'}
+                                    $$componentItem={{
+                                      id: 'View_575815_869566',
+                                      uid: 'View_575815_869566',
+                                      type: 'View',
+                                      ...componentItem,
+                                    }}
+                                    disabled={false}
+                                    visible={true}
+                                    readOnly={false}
+                                    style={{
+                                      display: 'flex',
+                                      flexDirection: 'column',
+                                      padding: '0px 0px 0px 0px',
+                                      width: '180px',
+                                      height: '100%',
+                                      overflowY: 'auto',
+                                      margin: '0px 16px 0px 0px',
+                                    }}
+                                    ref={(r: any) =>
+                                      (refs['View_575815_869566'] = r)
+                                    }
+                                    {...injectData}
+                                  >
+                                    <Text
+                                      name={'文本'}
+                                      content={item?.nodeValue}
+                                      textType={'span'}
+                                      version={'1.0'}
+                                      showHtml={false}
+                                      $$componentItem={{
+                                        id: 'Text_4120405_295623',
+                                        uid: 'Text_4120405_295623',
+                                        type: 'Text',
+                                        ...componentItem,
+                                      }}
+                                      disabled={false}
+                                      visible={true}
+                                      readOnly={false}
+                                      style={{
+                                        fontSize: '14px',
+                                        lineHeight: '24px',
+                                        color: '#1c242e',
+                                        'font-weight': 'bold',
+                                      }}
+                                      ref={(r: any) =>
+                                        (refs['Text_4120405_295623'] = r)
+                                      }
+                                      {...injectData}
+                                    />
+                                  </View>
+                                  <View
+                                    name={'布局容器'}
+                                    $$componentItem={{
+                                      id: 'View_2657547_1613493',
+                                      uid: 'View_2657547_1613493',
+                                      type: 'View',
+                                      ...componentItem,
+                                    }}
+                                    disabled={false}
+                                    visible={true}
+                                    readOnly={false}
+                                    style={{
+                                      display: 'flex',
+                                      flexDirection: 'column',
+                                      padding: '0px 0px 0px 0px',
+                                      width: '100%',
+                                      height: '100%',
+                                      overflowY: 'visible',
+                                    }}
+                                    ref={(r: any) =>
+                                      (refs['View_2657547_1613493'] = r)
+                                    }
+                                    {...injectData}
+                                  >
+                                    <GridView
+                                      name={'children'}
+                                      itemKey={'c'}
+                                      indexKey={'l'}
+                                      pieceData={[]}
+                                      defaultValue={[]}
+                                      isChecked={false}
+                                      isMultiple={true}
+                                      columnNum={1}
+                                      valueKey={'nodeKey'}
+                                      span={'6'}
+                                      vspace={16}
+                                      hspace={8}
+                                      isEditor={true}
+                                      fieldName={
+                                        'data.selectAlltreeNodeCode.resultData.children'
+                                      }
+                                      gridData={item?.children}
+                                      normalStyle={{
+                                        'border-radius': '2px',
+                                        padding: '6px 12px',
+                                        'background-color': '#f6f6f7',
+                                      }}
+                                      selectStyle={{
+                                        'background-color': '#f0f6ff',
+                                        'background-image':
+                                          'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAAEEfUpiAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAC6klEQVRYCb1XTUgUURz/zay27brqboRE2CmWgiCQ7CLkobp6iYjKDlFgCRF9XEoDOxgUJX3iEhgodahLnYSE6JBESJ46FVmBGBFBypq22s5u83+7/9m3s2/cebr6Dvve/+P3MW9n5u0CS41dHb+zBjdQQGuR4ICL3nMJR8uOqlw3VWiU5SqikJVkpOkuHOyZEX7HH8ZESdO3TOdn7WmSwGzU2UyZkYuUK7oKSnCx/1yEwtzui5X9wcV4YwCfpyyRdhi4SNffe7KGMbrfn4PztyBV5VWWg7Nd6tMikIEs4otABay2781/6TIOVMD2/UEc3htEW1dSmFA6kIFjiSgmvls4cWMWbx/E7DmJD19z32HJHshAvkaaoxEDr/qiaD41LafFWjjwApZ0VzrRfHr6qnIP/AgROJvJ9iyLgMEkpE0gg7UJ3GAtAhXYN4EXmAicFwIFqqECh4KFziUJVOCAjRi9l3vrEo0ngQpMgLFEDK1nC7e0koDBTfH8eUJIe7y5G8XT1ynML+Ri+iwhYDAV168D6CW5bUsAQ5drRXzr2V8qOSPgrOyFDKb81K8MGmImuo/VoCFqouXMDDIZGQE4Ht1gbut9PI/d26sw/G5RvIE4z7O4lb3A3OQ9G1lj+WD7QTKNC9oPk7cbvQobX3MDLMx218yAW3jNDHgJr7qBcsKrZsCvcMUN6ApXzIBf4UjIwOClWnyctHDl0Rzr6x+qjPQrTP1d7WEcaA3ixegCrj2ZZwoxaz+GOsJ7dlajr7MGhq3SefsPxj/ZPwddw7cBlfDIzXrUhQ0MDKcw+DIFK39SbKyn7a7Dpg0mJn9aONqbRGrRpZwPyxpQCctUR/YFcfFQWKTSVhbffliIN+YOqaGRFO4/Lz7/ZCytPQ2UE5aJquxTNXE+gqZ4tUiTkePXZ8UNJ/ep1iUGdITdhFs3m+hoC6F7YA7pwk9wd1tR7BhYiXARo1ZgTKzoPNfScpoN+kP9xTDR/z4RvfMfZJBzTPeTIF8AAAAASUVORK5CYII=)',
+                                        'background-size': '20px',
+                                        'background-position': 'right bottom',
+                                        'background-repeat': 'no-repeat',
+                                        border: '1px solid rgba(51,102,238,1)',
+                                        'border-radius': '2px',
+                                      }}
+                                      value={data?.emptyArray?.array}
+                                      $$componentItem={{
+                                        id: 'GridView_959384_5210218',
+                                        uid: 'GridView_959384_5210218',
+                                        type: 'GridView',
+                                        ...componentItem,
+                                      }}
+                                      style={{ minHeight: 40 }}
+                                      onChange={(vals: any) => {
+                                        const eventDatacustomActionCode10: any =
+                                          [
+                                            {
+                                              type: 'customActionCode',
+                                              dataId: 166341201878355260,
+                                              options: {
+                                                compId: 'customActionCode',
+                                                compName: 'page',
+                                                id: '145555',
+                                                pageJsonId: '866861',
+                                                originCode:
+                                                  '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n\tconst nodeMap = JSON.parse(JSON.stringify(data?.selectedNodes?.nodes)) || {};\n\tconst nodeKey = item.nodeKey;\n\tconst selectedChildren = item.children.filter(e => vals.includes(e.nodeKey));\n\tnodeMap[nodeKey] = selectedChildren;\n\tsuccess(nodeMap);\n};',
+                                                code: 'function main(data,state,success,fail){var _data$selectedNodes;var nodeMap=JSON.parse(JSON.stringify(data===null||data===void 0?void 0:(_data$selectedNodes=data.selectedNodes)===null||_data$selectedNodes===void 0?void 0:_data$selectedNodes.nodes))||{};var nodeKey=item.nodeKey;var selectedChildren=item.children.filter(function(e){return vals.includes(e.nodeKey)});nodeMap[nodeKey]=selectedChildren;success(nodeMap)};',
+                                              },
+                                              path: [166341183843260200],
+                                              line_number: 1,
+                                              callback1: [
+                                                {
+                                                  type: 'setDataSource',
+                                                  dataId: 166341201878350820,
+                                                  options: {
+                                                    compId: 'setDataSource',
+                                                    compName: 'page',
+                                                    id: '8870564',
+                                                    pageJsonId: '866861',
+                                                    dataSourceId: 166341035337970140,
+                                                    dataSourceName:
+                                                      'selectedNodes',
+                                                    dataSourceRelType: 'custom',
+                                                    dataSourceReloadFilter: [],
+                                                    dataSourceSetValue: [
+                                                      {
+                                                        attrId: '142214',
+                                                        code: 'nodes',
+                                                        name: '属性',
+                                                        type: 'object',
+                                                        initialData: {
+                                                          type: 'static',
+                                                        },
+                                                        value: {
+                                                          type: [
+                                                            'context',
+                                                            '$data_145555$',
+                                                          ],
+                                                          code: '',
+                                                        },
+                                                      },
+                                                    ],
+                                                    operateType: 1,
+                                                    onlySetPatch: true,
+                                                    otherObjectArrayOptions: {},
+                                                  },
+                                                  path: [
+                                                    166341183843260200,
+                                                    166341201878355260,
+                                                    166341201878388100,
+                                                  ],
+                                                  line_number: 2,
+                                                  callback1: [
+                                                    {
+                                                      type: 'console',
+                                                      dataId: 166341201878396350,
+                                                      options: {
+                                                        compId: 'debug',
+                                                        compName: 'system',
+                                                        id: '662563',
+                                                        pageJsonId: '866861',
+                                                        value: [
+                                                          '$data.selectedNodes$',
+                                                        ],
+                                                      },
+                                                      path: [
+                                                        166341183843260200,
+                                                        166341201878355260,
+                                                        166341201878388100,
+                                                        166341201878350820,
+                                                        166341201878319900,
+                                                      ],
+                                                      line_number: 3,
+                                                    },
+                                                  ],
+                                                  callback2: [],
+                                                },
+                                              ],
+                                              callback2: [],
+                                            },
+                                          ];
+                                        eventDatacustomActionCode10.params =
+                                          [
+                                            {
+                                              title: '变化值',
+                                              value: '$vals$',
+                                              name: 'vals',
+                                            },
+                                          ] || [];
+                                        CMDGenerator(
+                                          eventDatacustomActionCode10,
+                                          { vals, item, i },
+                                          'customActionCode',
+                                          {
+                                            id: 'customActionCode',
+                                            name: 'customActionCode',
+                                            type: 'customActionCode',
+                                            platform: 'pc',
+                                          },
+                                        );
+                                      }}
+                                      ref={(r: any) =>
+                                        (refs['GridView_959384_5210218'] = r)
+                                      }
+                                      {...injectData}
+                                      getEngineApis={() => {
+                                        return {
+                                          ...injectData.getEngineApis(),
+                                          MemoRenderer: {
+                                            renderer: null,
+                                            MemoLoopItem: (props: any) => {
+                                              const item =
+                                                props[props.itemKey] ??
+                                                props?.item;
+                                              const i =
+                                                props[props.indexKey] ??
+                                                props?.i;
+                                              const c =
+                                                props[props.itemKey] ??
+                                                props?.item;
+                                              const l =
+                                                props[props.indexKey] ??
+                                                props?.i;
+                                              return (
+                                                <>
+                                                  <View
+                                                    name={'布局容器'}
+                                                    backgroundType={{
+                                                      type: 'cleanColor',
+                                                      color: undefined,
+                                                    }}
+                                                    $$componentItem={{
+                                                      id: 'View_9189376_823331',
+                                                      uid: 'View_9189376_823331',
+                                                      type: 'View',
+                                                      ...componentItem,
+                                                    }}
+                                                    disabled={false}
+                                                    visible={true}
+                                                    readOnly={false}
+                                                    style={{
+                                                      display: 'block',
+                                                      flexDirection: 'column',
+                                                      padding:
+                                                        '0px 0px 0px 0px',
+                                                      width: '100%',
+                                                    }}
+                                                    ref={(r: any) =>
+                                                      (refs[
+                                                        'View_9189376_823331'
+                                                      ] = r)
+                                                    }
+                                                    {...injectData}
+                                                  >
+                                                    <Popover
+                                                      options={{
+                                                        tipType: '2',
+                                                        trigger: 'click',
+                                                        content:
+                                                          'OA已实现该场景',
+                                                      }}
+                                                      id={'Icon_724045_889597'}
+                                                      {...injectData}
+                                                    >
+                                                      <Icon
+                                                        name={'图标'}
+                                                        rotate={0}
+                                                        icon={{
+                                                          type: 'info-circle',
+                                                          theme: 'outlined',
+                                                          fontAddress: '',
+                                                          isIconFont: false,
+                                                          iconFileInfo: {},
+                                                        }}
+                                                        $$componentItem={{
+                                                          id: 'Icon_724045_889597',
+                                                          uid: 'Icon_724045_889597',
+                                                          type: 'Icon',
+                                                          ...componentItem,
+                                                        }}
+                                                        disabled={false}
+                                                        visible={true}
+                                                        readOnly={false}
+                                                        style={{
+                                                          'margin-right':
+                                                            '10px',
+                                                          color: 'unset',
+                                                        }}
+                                                        ref={(r: any) =>
+                                                          (refs[
+                                                            'Icon_724045_889597'
+                                                          ] = r)
+                                                        }
+                                                        {...injectData}
+                                                      />
+                                                    </Popover>
+                                                    <Text
+                                                      name={'文本'}
+                                                      content={item?.nodeValue}
+                                                      textType={'span'}
+                                                      version={'1.0'}
+                                                      showHtml={false}
+                                                      $$componentItem={{
+                                                        id: 'Text_968473_0492097',
+                                                        uid: 'Text_968473_0492097',
+                                                        type: 'Text',
+                                                        ...componentItem,
+                                                      }}
+                                                      disabled={false}
+                                                      visible={true}
+                                                      readOnly={false}
+                                                      style={{
+                                                        fontSize: '14px',
+                                                        lineHeight: '24px',
+                                                        color: 'unset',
+                                                      }}
+                                                      ref={(r: any) =>
+                                                        (refs[
+                                                          'Text_968473_0492097'
+                                                        ] = r)
+                                                      }
+                                                      {...injectData}
+                                                    />
+                                                  </View>
+                                                </>
+                                              );
+                                            },
+                                          },
+                                        };
+                                      }}
+                                    />
+                                  </View>
+                                </HorizontalView>
+                              </>
+                            );
+                          },
+                        },
+                      };
+                    }}
+                  />
+                </CollapsePanel>
+              </Collapse>
+            </View>
+            <View
+              name={'布局容器4'}
+              backgroundType={{ type: 'cleanColor', color: undefined }}
+              $$componentItem={{
+                id: 'View_239728_9872634',
+                uid: 'View_239728_9872634',
+                type: 'View',
+                ...componentItem,
+              }}
+              disabled={false}
+              visible={true}
+              readOnly={false}
+              style={{
+                display: 'block',
+                flexDirection: 'column',
+                padding: '0px 0px 0px 0px',
+                width: '100%',
+                margin: '0px 0px 0px 0px',
+                height: 'auto',
+                overflowY: 'hidden',
+                background: '#FFFFFF',
+                'box-shadow': '0px1px2px0pxrgba(0,0,0,0.04)',
+                'border-radius': '2px',
+                'margin-bottom': '2.5px',
+              }}
+              ref={(r: any) => (refs['View_239728_9872634'] = r)}
+              {...injectData}
+            >
+              <Collapse
+                name={'折叠面板'}
+                defaultActiveKey={[]}
+                expandIconPosition={'right'}
+                collapseType={''}
+                size={'default'}
+                bordered={true}
+                hasIcon={true}
+                cardIconType={'auto'}
+                prefixIcon={{
+                  prefixIconTheme: 'outlined',
+                  prefixIconType: 'folder-open',
+                  prefixIconIsIconFont: false,
+                }}
+                extendProps={{}}
+                activeKey={data?.activeKeyYxaList}
+                icon={{
+                  type: undefined,
+                  theme: 'outlined',
+                  fontAddress: '',
+                  isIconFont: false,
+                  iconFileInfo: {},
+                }}
+                $$componentItem={{
+                  id: 'Collapse_228917_310864',
+                  uid: 'Collapse_228917_310864',
+                  type: 'Collapse',
+                  ...componentItem,
+                }}
+                disabled={false}
+                visible={true}
+                readOnly={false}
+                style={{
+                  width: '100%',
+                  margin: '0 0 16px 0',
+                  padding: '20px 20px 20px 20px',
+                }}
+                onChange={(key: any) => {
+                  const eventDatacustomActionCode11: any = [
+                    {
+                      type: 'customActionCode',
+                      dataId: 167946834292093760,
+                      options: {
+                        compId: 'customActionCode',
+                        compName: 'page',
+                        id: '046543',
+                        pageJsonId: '866861',
+                        originCode:
+                          '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n    var yxa = [];\n\tif(data.activeKeyYxaList != undefined && data.activeKeyYxaList > 0) {\n        success(yxa);\n    }\n    else {\n        yxa.push(626254);\n        success(yxa);\n    }\n};',
+                        code: 'function main(data,state,success,fail){var yxa=[];if(data.activeKeyYxaList!=undefined&&data.activeKeyYxaList>0){success(yxa)}else{yxa.push(626254);success(yxa)}};',
+                      },
+                      path: [167946834164979300],
+                      line_number: 1,
+                      callback1: [
+                        {
+                          type: 'setDataSource',
+                          dataId: 167946834292071970,
+                          options: {
+                            compId: 'setDataSource',
+                            compName: 'page',
+                            id: '453388',
+                            pageJsonId: '866861',
+                            dataSourceId: 167946815142258800,
+                            dataSourceName: 'activeKeyYxaList',
+                            dataSourceRelType: 'custom',
+                            dataSourceReloadFilter: [],
+                            dataSourceSetValue: [
+                              {
+                                attrId: '223114',
+                                code: 'param',
+                                name: '属性',
+                                type: 'string',
+                                initialData: { type: 'static' },
+                              },
+                            ],
+                            newData: '$data_046543$',
+                            operateType: 3,
+                            onlySetPatch: true,
+                            otherObjectArrayOptions: {},
+                          },
+                          path: [
+                            167946834164979300, 167946834292093760,
+                            167946834292017060,
+                          ],
+                          line_number: 2,
+                          callback1: [],
+                          callback2: [],
+                        },
+                      ],
+                      callback2: [],
+                    },
+                  ];
+                  eventDatacustomActionCode11.params =
+                    [{ title: '切换面板key', value: '$key$', name: 'key' }] ||
+                    [];
+                  CMDGenerator(
+                    eventDatacustomActionCode11,
+                    { key },
+                    'customActionCode',
+                    {
+                      id: 'customActionCode',
+                      name: 'customActionCode',
+                      type: 'customActionCode',
+                      platform: 'pc',
+                    },
+                  );
+                }}
+                ref={(r: any) => (refs['Collapse_228917_310864'] = r)}
+                {...injectData}
+              >
+                <CollapsePanel
+                  name={'折叠子面板'}
+                  header={'营销案类'}
+                  key={'626254'}
+                  cardIconType={'auto'}
+                  prefixIconTheme={'outlined'}
+                  prefixIconType={'folder-open'}
+                  prefixIconIsIconFont={false}
+                  $$componentItem={{
+                    id: 'CollapsePanel_5495_8462436',
+                    uid: 'CollapsePanel_5495_8462436',
+                    type: 'CollapsePanel',
+                    ...componentItem,
+                  }}
+                  disabled={false}
+                  visible={true}
+                  readOnly={false}
+                  style={{ minHeight: 40 }}
+                  ref={(r: any) => (refs['CollapsePanel_5495_8462436'] = r)}
+                  {...injectData}
+                  uid="CollapsePanel_5495_8462436"
+                >
+                  <GridView
+                    name={'resultData'}
+                    itemKey={'item'}
+                    indexKey={'i'}
+                    pieceData={[]}
+                    defaultValue={[]}
+                    isChecked={false}
+                    isMultiple={false}
+                    columnNum={1}
+                    valueKey={'nodeKey'}
+                    span={24}
+                    vspace={16}
+                    hspace={8}
+                    isEditor={false}
+                    fieldName={'data.yingxiaoanlei.resultData'}
+                    gridData={data?.yingxiaoanlei?.resultData}
+                    selectStyle={{ border: '0px solid' }}
+                    normalStyle={{ border: '0px solid' }}
+                    $$componentItem={{
+                      id: 'GridView_841399_31317',
+                      uid: 'GridView_841399_31317',
+                      type: 'GridView',
+                      ...componentItem,
+                    }}
+                    style={{ minHeight: 40 }}
+                    ref={(r: any) => (refs['GridView_841399_31317'] = r)}
+                    {...injectData}
+                    getEngineApis={() => {
+                      return {
+                        ...injectData.getEngineApis(),
+                        MemoRenderer: {
+                          renderer: null,
+                          MemoLoopItem: (props: any) => {
+                            const item = props[props.itemKey] ?? props?.item;
+                            const i = props[props.indexKey] ?? props?.i;
+                            return (
+                              <>
+                                <HorizontalView
+                                  name={'左右布局'}
+                                  $$componentItem={{
+                                    id: 'HorizontalView_300975_674423',
+                                    uid: 'HorizontalView_300975_674423',
+                                    type: 'HorizontalView',
+                                    ...componentItem,
+                                  }}
+                                  disabled={false}
+                                  visible={true}
+                                  readOnly={false}
+                                  style={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    padding: '0px 0px 0px 0px',
+                                    width: '100%',
+                                    height: '100%',
+                                    overflowY: 'visible',
+                                  }}
+                                  ref={(r: any) =>
+                                    (refs['HorizontalView_300975_674423'] = r)
+                                  }
+                                  {...injectData}
+                                >
+                                  <View
+                                    name={'布局容器'}
+                                    $$componentItem={{
+                                      id: 'View_575815_656931',
+                                      uid: 'View_575815_656931',
+                                      type: 'View',
+                                      ...componentItem,
+                                    }}
+                                    disabled={false}
+                                    visible={true}
+                                    readOnly={false}
+                                    style={{
+                                      display: 'flex',
+                                      flexDirection: 'column',
+                                      padding: '0px 0px 0px 0px',
+                                      width: '180px',
+                                      height: '100%',
+                                      overflowY: 'auto',
+                                      margin: '0px 16px 0px 0px',
+                                    }}
+                                    ref={(r: any) =>
+                                      (refs['View_575815_656931'] = r)
+                                    }
+                                    {...injectData}
+                                  >
+                                    <Text
+                                      name={'文本'}
+                                      content={item?.nodeValue}
+                                      textType={'span'}
+                                      version={'1.0'}
+                                      showHtml={false}
+                                      $$componentItem={{
+                                        id: 'Text_4120405_1898459',
+                                        uid: 'Text_4120405_1898459',
+                                        type: 'Text',
+                                        ...componentItem,
+                                      }}
+                                      disabled={false}
+                                      visible={true}
+                                      readOnly={false}
+                                      style={{
+                                        fontSize: '14px',
+                                        lineHeight: '24px',
+                                        color: '#1c242e',
+                                        'font-weight': 'bold',
+                                      }}
+                                      ref={(r: any) =>
+                                        (refs['Text_4120405_1898459'] = r)
+                                      }
+                                      {...injectData}
+                                    />
+                                  </View>
+                                  <View
+                                    name={'布局容器'}
+                                    $$componentItem={{
+                                      id: 'View_2657547_363083',
+                                      uid: 'View_2657547_363083',
+                                      type: 'View',
+                                      ...componentItem,
+                                    }}
+                                    disabled={false}
+                                    visible={true}
+                                    readOnly={false}
+                                    style={{
+                                      display: 'flex',
+                                      flexDirection: 'column',
+                                      padding: '0px 0px 0px 0px',
+                                      width: '100%',
+                                      height: '100%',
+                                      overflowY: 'visible',
+                                    }}
+                                    ref={(r: any) =>
+                                      (refs['View_2657547_363083'] = r)
+                                    }
+                                    {...injectData}
+                                  >
+                                    <GridView
+                                      name={'children'}
+                                      itemKey={'c'}
+                                      indexKey={'l'}
+                                      pieceData={[]}
+                                      defaultValue={[]}
+                                      isChecked={false}
+                                      isMultiple={true}
+                                      columnNum={1}
+                                      valueKey={'nodeKey'}
+                                      span={'6'}
+                                      vspace={16}
+                                      hspace={8}
+                                      isEditor={true}
+                                      fieldName={
+                                        'data.selectAlltreeNodeCode.resultData.children'
+                                      }
+                                      gridData={item?.children}
+                                      normalStyle={{
+                                        'border-radius': '2px',
+                                        padding: '6px 12px',
+                                        'background-color': '#f6f6f7',
+                                      }}
+                                      selectStyle={{
+                                        'background-color': '#f0f6ff',
+                                        'background-image':
+                                          'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAAEEfUpiAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAC6klEQVRYCb1XTUgUURz/zay27brqboRE2CmWgiCQ7CLkobp6iYjKDlFgCRF9XEoDOxgUJX3iEhgodahLnYSE6JBESJ46FVmBGBFBypq22s5u83+7/9m3s2/cebr6Dvve/+P3MW9n5u0CS41dHb+zBjdQQGuR4ICL3nMJR8uOqlw3VWiU5SqikJVkpOkuHOyZEX7HH8ZESdO3TOdn7WmSwGzU2UyZkYuUK7oKSnCx/1yEwtzui5X9wcV4YwCfpyyRdhi4SNffe7KGMbrfn4PztyBV5VWWg7Nd6tMikIEs4otABay2781/6TIOVMD2/UEc3htEW1dSmFA6kIFjiSgmvls4cWMWbx/E7DmJD19z32HJHshAvkaaoxEDr/qiaD41LafFWjjwApZ0VzrRfHr6qnIP/AgROJvJ9iyLgMEkpE0gg7UJ3GAtAhXYN4EXmAicFwIFqqECh4KFziUJVOCAjRi9l3vrEo0ngQpMgLFEDK1nC7e0koDBTfH8eUJIe7y5G8XT1ynML+Ri+iwhYDAV168D6CW5bUsAQ5drRXzr2V8qOSPgrOyFDKb81K8MGmImuo/VoCFqouXMDDIZGQE4Ht1gbut9PI/d26sw/G5RvIE4z7O4lb3A3OQ9G1lj+WD7QTKNC9oPk7cbvQobX3MDLMx218yAW3jNDHgJr7qBcsKrZsCvcMUN6ApXzIBf4UjIwOClWnyctHDl0Rzr6x+qjPQrTP1d7WEcaA3ixegCrj2ZZwoxaz+GOsJ7dlajr7MGhq3SefsPxj/ZPwddw7cBlfDIzXrUhQ0MDKcw+DIFK39SbKyn7a7Dpg0mJn9aONqbRGrRpZwPyxpQCctUR/YFcfFQWKTSVhbffliIN+YOqaGRFO4/Lz7/ZCytPQ2UE5aJquxTNXE+gqZ4tUiTkePXZ8UNJ/ep1iUGdITdhFs3m+hoC6F7YA7pwk9wd1tR7BhYiXARo1ZgTKzoPNfScpoN+kP9xTDR/z4RvfMfZJBzTPeTIF8AAAAASUVORK5CYII=)',
+                                        'background-size': '20px',
+                                        'background-position': 'right bottom',
+                                        'background-repeat': 'no-repeat',
+                                        border: '1px solid rgba(51,102,238,1)',
+                                        'border-radius': '2px',
+                                      }}
+                                      value={data?.emptyArray?.array}
+                                      $$componentItem={{
+                                        id: 'GridView_959384_69925',
+                                        uid: 'GridView_959384_69925',
+                                        type: 'GridView',
+                                        ...componentItem,
+                                      }}
+                                      style={{ minHeight: 40 }}
+                                      onChange={(vals: any) => {
+                                        const eventDatacustomActionCode13: any =
+                                          [
+                                            {
+                                              type: 'customActionCode',
+                                              dataId: 166341202560875000,
+                                              options: {
+                                                compId: 'customActionCode',
+                                                compName: 'page',
+                                                id: '6116046',
+                                                pageJsonId: '866861',
+                                                originCode:
+                                                  '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n\tconst nodeMap = data?.selectedNodes?.nodes || {};\n\tconst nodeKey = item.nodeKey;\n\tconst selectedChildren = item.children.filter(e => vals.includes(e.nodeKey));\n\tnodeMap[nodeKey] = selectedChildren;\n\tsuccess(nodeMap);\n};',
+                                                code: 'function main(data,state,success,fail){var _data$selectedNodes;var nodeMap=(data===null||data===void 0?void 0:(_data$selectedNodes=data.selectedNodes)===null||_data$selectedNodes===void 0?void 0:_data$selectedNodes.nodes)||{};var nodeKey=item.nodeKey;var selectedChildren=item.children.filter(function(e){return vals.includes(e.nodeKey)});nodeMap[nodeKey]=selectedChildren;success(nodeMap)};',
+                                              },
+                                              path: [166341184673772580],
+                                              line_number: 1,
+                                              callback1: [
+                                                {
+                                                  type: 'console',
+                                                  dataId: 168976180229368830,
+                                                  options: {
+                                                    compId: 'debug',
+                                                    compName: 'system',
+                                                    id: '766806',
+                                                    pageJsonId: '866861',
+                                                    value: ['$data_6116046$'],
+                                                  },
+                                                  path: [
+                                                    166341184673772580,
+                                                    166341202560875000,
+                                                    166341202560821250,
+                                                  ],
+                                                  line_number: 2,
+                                                },
+                                                {
+                                                  type: 'setDataSource',
+                                                  dataId: 166341202560819170,
+                                                  options: {
+                                                    compId: 'setDataSource',
+                                                    compName: 'page',
+                                                    id: '469779',
+                                                    pageJsonId: '866861',
+                                                    dataSourceId: 166341035337970140,
+                                                    dataSourceName:
+                                                      'selectedNodes',
+                                                    dataSourceRelType: 'custom',
+                                                    dataSourceReloadFilter: [],
+                                                    dataSourceSetValue: [
+                                                      {
+                                                        attrId: '142214',
+                                                        code: 'nodes',
+                                                        name: '属性',
+                                                        type: 'object',
+                                                        initialData: {
+                                                          type: 'static',
+                                                        },
+                                                        value: {
+                                                          type: [
+                                                            'context',
+                                                            '$data_6116046$',
+                                                          ],
+                                                          code: '',
+                                                        },
+                                                      },
+                                                    ],
+                                                    operateType: 1,
+                                                    onlySetPatch: true,
+                                                    otherObjectArrayOptions: {},
+                                                  },
+                                                  path: [
+                                                    166341184673772580,
+                                                    166341202560875000,
+                                                    166341202560821250,
+                                                  ],
+                                                  line_number: 3,
+                                                  callback1: [
+                                                    {
+                                                      type: 'console',
+                                                      dataId: 166341202560841860,
+                                                      options: {
+                                                        compId: 'debug',
+                                                        compName: 'system',
+                                                        id: '4987314',
+                                                        pageJsonId: '866861',
+                                                        value: [
+                                                          '$data.selectedNodes$',
+                                                        ],
+                                                      },
+                                                      path: [
+                                                        166341184673772580,
+                                                        166341202560875000,
+                                                        166341202560821250,
+                                                        166341202560819170,
+                                                        166341202560822820,
+                                                      ],
+                                                      line_number: 4,
+                                                    },
+                                                  ],
+                                                  callback2: [],
+                                                },
+                                              ],
+                                              callback2: [],
+                                            },
+                                          ];
+                                        eventDatacustomActionCode13.params =
+                                          [
+                                            {
+                                              title: '变化值',
+                                              value: '$vals$',
+                                              name: 'vals',
+                                            },
+                                          ] || [];
+                                        CMDGenerator(
+                                          eventDatacustomActionCode13,
+                                          { vals, item, i },
+                                          'customActionCode',
+                                          {
+                                            id: 'customActionCode',
+                                            name: 'customActionCode',
+                                            type: 'customActionCode',
+                                            platform: 'pc',
+                                          },
+                                        );
+                                      }}
+                                      ref={(r: any) =>
+                                        (refs['GridView_959384_69925'] = r)
+                                      }
+                                      {...injectData}
+                                      getEngineApis={() => {
+                                        return {
+                                          ...injectData.getEngineApis(),
+                                          MemoRenderer: {
+                                            renderer: null,
+                                            MemoLoopItem: (props: any) => {
+                                              const item =
+                                                props[props.itemKey] ??
+                                                props?.item;
+                                              const i =
+                                                props[props.indexKey] ??
+                                                props?.i;
+                                              const c =
+                                                props[props.itemKey] ??
+                                                props?.item;
+                                              const l =
+                                                props[props.indexKey] ??
+                                                props?.i;
+                                              return (
+                                                <>
+                                                  <View
+                                                    name={'布局容器'}
+                                                    backgroundType={{
+                                                      type: 'cleanColor',
+                                                      color: undefined,
+                                                    }}
+                                                    $$componentItem={{
+                                                      id: 'View_9189376_722286',
+                                                      uid: 'View_9189376_722286',
+                                                      type: 'View',
+                                                      ...componentItem,
+                                                    }}
+                                                    disabled={false}
+                                                    visible={true}
+                                                    readOnly={false}
+                                                    style={{
+                                                      display: 'block',
+                                                      flexDirection: 'column',
+                                                      padding:
+                                                        '0px 0px 0px 0px',
+                                                      width: '100%',
+                                                    }}
+                                                    ref={(r: any) =>
+                                                      (refs[
+                                                        'View_9189376_722286'
+                                                      ] = r)
+                                                    }
+                                                    {...injectData}
+                                                  >
+                                                    <Popover
+                                                      options={{
+                                                        tipType: '2',
+                                                        trigger: 'click',
+                                                        content:
+                                                          'OA已实现该场景',
+                                                      }}
+                                                      id={'Icon_724045_232884'}
+                                                      {...injectData}
+                                                    >
+                                                      <Icon
+                                                        name={'图标'}
+                                                        rotate={0}
+                                                        icon={{
+                                                          type: 'info-circle',
+                                                          theme: 'outlined',
+                                                          fontAddress: '',
+                                                          isIconFont: false,
+                                                          iconFileInfo: {},
+                                                        }}
+                                                        $$componentItem={{
+                                                          id: 'Icon_724045_232884',
+                                                          uid: 'Icon_724045_232884',
+                                                          type: 'Icon',
+                                                          ...componentItem,
+                                                        }}
+                                                        disabled={false}
+                                                        visible={true}
+                                                        readOnly={false}
+                                                        style={{
+                                                          'margin-right':
+                                                            '10px',
+                                                          color: 'unset',
+                                                        }}
+                                                        ref={(r: any) =>
+                                                          (refs[
+                                                            'Icon_724045_232884'
+                                                          ] = r)
+                                                        }
+                                                        {...injectData}
+                                                      />
+                                                    </Popover>
+                                                    <Text
+                                                      name={'文本'}
+                                                      content={item?.nodeValue}
+                                                      textType={'span'}
+                                                      version={'1.0'}
+                                                      showHtml={false}
+                                                      $$componentItem={{
+                                                        id: 'Text_968473_797346',
+                                                        uid: 'Text_968473_797346',
+                                                        type: 'Text',
+                                                        ...componentItem,
+                                                      }}
+                                                      disabled={false}
+                                                      visible={true}
+                                                      readOnly={false}
+                                                      style={{
+                                                        fontSize: '14px',
+                                                        lineHeight: '24px',
+                                                        color: 'unset',
+                                                      }}
+                                                      ref={(r: any) =>
+                                                        (refs[
+                                                          'Text_968473_797346'
+                                                        ] = r)
+                                                      }
+                                                      {...injectData}
+                                                    />
+                                                  </View>
+                                                </>
+                                              );
+                                            },
+                                          },
+                                        };
+                                      }}
+                                    />
+                                  </View>
+                                </HorizontalView>
+                              </>
+                            );
                           },
                         },
                       };
@@ -2106,1430 +5709,4 @@ export default withPageHOC(AuditStart$$Page, {
   hasLogin: false,
   dataSource,
   defaultState: {},
-  customActionMap: {
-    select_node: (CMDGenerator: any, options_485879: any) => {
-      const eventDatacustomActionCode: any = [
-        {
-          type: 'customActionCode',
-          dataId: 166341180903246180,
-          options: {
-            compId: 'customActionCode',
-            compName: 'page',
-            id: '437422',
-            pageJsonId: '866861',
-            originCode:
-              '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n\tconst nodeMap = data?.selectedNodes?.nodes || {};\n\tconst nodeKey = item.nodeKey;\n\tconst selectedChildren = item.children.filter(e => vals.includes(e.nodeKey));\n\tnodeMap[nodeKey] = selectedChildren;\n\tsuccess(nodeMap);\n};',
-            code: 'function main(data,state,success,fail){var _data$selectedNodes;var nodeMap=(data===null||data===void 0?void 0:(_data$selectedNodes=data.selectedNodes)===null||_data$selectedNodes===void 0?void 0:_data$selectedNodes.nodes)||{};var nodeKey=item.nodeKey;var selectedChildren=item.children.filter(function(e){return vals.includes(e.nodeKey)});nodeMap[nodeKey]=selectedChildren;success(nodeMap)};',
-          },
-          path: [166341180709877100],
-          line_number: 1,
-          callback1: [
-            {
-              type: 'setDataSource',
-              dataId: 166341180903389900,
-              options: {
-                compId: 'setDataSource',
-                compName: 'page',
-                id: '886778',
-                pageJsonId: '866861',
-                dataSourceId: 166341035337970140,
-                dataSourceName: 'selectedNodes',
-                dataSourceRelType: 'custom',
-                dataSourceReloadFilter: [],
-                dataSourceSetValue: [
-                  {
-                    attrId: '142214',
-                    code: 'nodes',
-                    name: '属性',
-                    type: 'object',
-                    initialData: { type: 'static' },
-                    value: { type: ['context', '$data_437422$'], code: '' },
-                  },
-                ],
-                operateType: 1,
-                onlySetPatch: true,
-                otherObjectArrayOptions: {},
-              },
-              path: [
-                166341180709877100, 166341180903246180, 166341180903304160,
-              ],
-              line_number: 2,
-              callback1: [
-                {
-                  type: 'console',
-                  dataId: 166341188639034050,
-                  options: {
-                    compId: 'debug',
-                    compName: 'system',
-                    id: '2731613',
-                    pageJsonId: '866861',
-                    value: ['$data.selectedNodes$'],
-                  },
-                  path: [
-                    166341180709877100, 166341180903246180, 166341180903304160,
-                    166341180903389900, 166341180903337600,
-                  ],
-                  line_number: 3,
-                },
-              ],
-              callback2: [],
-            },
-          ],
-          callback2: [],
-        },
-      ];
-      eventDatacustomActionCode.params =
-        [
-          {
-            title: '事件入参',
-            name: 'options_485879',
-            value: '$options_485879$',
-          },
-        ] || [];
-      CMDGenerator(
-        eventDatacustomActionCode,
-        { options_485879 },
-        'customActionCode',
-        {
-          id: 'customActionCode',
-          name: 'customActionCode',
-          type: 'customActionCode',
-          platform: 'undefined',
-        },
-      );
-    },
-    onLoadSceneNode: (CMDGenerator: any, options_485601: any) => {
-      const eventDatagetValue: any = [
-        {
-          type: 'getValue',
-          dataId: 166964690601845380,
-          options: {
-            compId: 'Input_5357175',
-            compLib: 'comm',
-            pageJsonId: '866861',
-            compName: 'Input',
-            id: '2211283',
-          },
-          path: [166964682728661540],
-          line_number: 1,
-          callback1: [
-            {
-              type: 'customActionCode',
-              dataId: 166971285997154140,
-              options: {
-                compId: 'customActionCode',
-                compName: 'page',
-                id: '847923',
-                pageJsonId: '866861',
-                actionTitle: '',
-                originCode:
-                  '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n\tsuccess({})\n};',
-                code: 'function main(data,state,success,fail){success({})};',
-              },
-              path: [
-                166964682728661540, 166964690601845380, 166964690601857570,
-              ],
-              line_number: 2,
-              callback1: [
-                {
-                  type: 'setDataSource',
-                  dataId: 166971285997174300,
-                  options: {
-                    compId: 'setDataSource',
-                    compName: 'page',
-                    id: '765493',
-                    pageJsonId: '866861',
-                    dataSourceId: 166341035337970140,
-                    dataSourceName: 'selectedNodes',
-                    dataSourceRelType: 'custom',
-                    dataSourceReloadFilter: [],
-                    dataSourceSetValue: [
-                      {
-                        attrId: '142214',
-                        code: 'nodes',
-                        name: '属性',
-                        type: 'object',
-                        initialData: { type: 'static' },
-                        value: { type: ['context', '$data_847923$'], code: '' },
-                      },
-                    ],
-                    operateType: 1,
-                    onlySetPatch: false,
-                    otherObjectArrayOptions: {},
-                  },
-                  path: [
-                    166964682728661540, 166964690601845380, 166964690601857570,
-                    166971285997154140, 166971285997151740,
-                  ],
-                  line_number: 3,
-                  callback1: [],
-                  callback2: [],
-                },
-              ],
-              callback2: [],
-            },
-            {
-              type: 'reloadDataSource',
-              dataId: 166964693509999100,
-              options: {
-                compId: 'reloadDataSource',
-                compName: 'page',
-                id: '495284',
-                pageJsonId: '866861',
-                dataSourceId: 166305304245640540,
-                dataSourceName: 'selectAlltreeNodeCode',
-                dataSourceRelType: 'service',
-                dataSourceReloadFilter: [
-                  {
-                    attrId: '222926',
-                    code: 'header',
-                    name: '请求头参数',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                  },
-                  {
-                    attrId: '7399277',
-                    code: 'path',
-                    name: '请求路径参数',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                  },
-                  {
-                    attrId: '858874',
-                    code: 'query',
-                    name: 'URL 参数',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                  },
-                  {
-                    attrId: '831632',
-                    code: 'body',
-                    name: '请求体',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                    children: [
-                      {
-                        attrId: '951212',
-                        code: 'nodeValue',
-                        name: '新增节点',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                        value: {
-                          type: ['context', '$value_2211283$'],
-                          code: '',
-                        },
-                      },
-                      {
-                        attrId: '3285892',
-                        code: 'nodeKey',
-                        name: 'nodeKey',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                        value: { type: ['customize'], code: 'CLS_TY' },
-                      },
-                      {
-                        attrId: '053',
-                        code: 'releaseChannel',
-                        name: '新增节点',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                        value: { type: ['customize'], code: '1001' },
-                      },
-                    ],
-                  },
-                ],
-                dataSourceSetValue: [
-                  {
-                    attrId: '937773463',
-                    code: 'resultMsgCode',
-                    name: 'resultMsgCode',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'string',
-                  },
-                  {
-                    attrId: '5201218',
-                    code: 'resultMsg',
-                    name: 'resultMsg',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'string',
-                  },
-                  {
-                    attrId: '37018',
-                    code: 'resultCode',
-                    name: 'resultCode',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'string',
-                  },
-                  {
-                    attrId: '17578',
-                    code: 'resultData',
-                    name: 'resultData',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'objectArray',
-                    children: [
-                      {
-                        attrId: '059641',
-                        code: 'nodeValue',
-                        name: 'nodeValue',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                      },
-                      {
-                        attrId: '486331',
-                        code: 'nodeKey',
-                        name: 'nodeKey',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                      },
-                      {
-                        attrId: '594082',
-                        code: 'parentCode',
-                        name: 'parentCode',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                      },
-                      {
-                        attrId: '43752',
-                        code: 'children',
-                        name: 'children',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'objectArray',
-                        children: [
-                          {
-                            attrId: '741171',
-                            code: 'nodeKey',
-                            name: 'nodeKey',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'string',
-                          },
-                          {
-                            attrId: '774947',
-                            code: 'children',
-                            name: 'children',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'fieldArray',
-                            children: [
-                              {
-                                attrId: '03089',
-                                code: 'listItem',
-                                name: '列表元素',
-                                sort: { isSort: true },
-                                initialData: { type: 'static' },
-                                type: 'object',
-                              },
-                            ],
-                          },
-                          {
-                            attrId: '4665593',
-                            code: 'parentCode',
-                            name: 'parentCode',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'string',
-                          },
-                          {
-                            attrId: '349837',
-                            code: 'nodeValue',
-                            name: 'nodeValue',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'string',
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                ],
-                otherObjectArrayOptions: {},
-              },
-              path: [
-                166964682728661540, 166964690601845380, 166964690601857570,
-              ],
-              line_number: 4,
-              callback1: [
-                {
-                  type: 'console',
-                  dataId: 167946903856097860,
-                  options: {
-                    compId: 'debug',
-                    compName: 'system',
-                    id: '11798239',
-                    pageJsonId: '866861',
-                    value: ['$refData.current.selectAlltreeNodeCode$', '这个'],
-                  },
-                  path: [
-                    166964682728661540, 166964690601845380, 166964690601857570,
-                    166964693509999100, 166964693509937660,
-                  ],
-                  line_number: 5,
-                },
-                {
-                  type: 'ifelse',
-                  condition: [
-                    {
-                      condId: '704605',
-                      options: {
-                        context:
-                          '$refData.current.selectAlltreeNodeCode.resultData.length$',
-                        operate: '>',
-                        useManual: true,
-                        manualValue: '0',
-                      },
-                      conditionType: 'checkContextValue',
-                      objType: 'system',
-                      objId: 'sys',
-                    },
-                    {
-                      options: {
-                        context: '$value_2211283$',
-                        operate: 'notEmpty',
-                      },
-                      condId: '283289',
-                      connector: '&&',
-                      conditionType: 'checkContextValue',
-                      objType: 'system',
-                      objId: 'sys',
-                    },
-                  ],
-                  path: [
-                    166964682728661540, 166964690601845380, 166964690601857570,
-                    166964693509999100, 166964693509937660,
-                  ],
-                  dataId: 167947020562368130,
-                  elseIfs: [],
-                  line_number: 6,
-                  callback1: [
-                    {
-                      type: 'customActionCode',
-                      dataId: 167947020562376450,
-                      options: {
-                        compId: 'customActionCode',
-                        compName: 'page',
-                        id: '608698',
-                        pageJsonId: '866861',
-                        originCode:
-                          '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n    var activeKeyList = [];\n    activeKeyList.push(1);\n    success(activeKeyList);\n};',
-                        code: 'function main(data,state,success,fail){var activeKeyList=[];activeKeyList.push(1);success(activeKeyList)};',
-                      },
-                      path: [
-                        166964682728661540, 166964690601845380,
-                        166964690601857570, 166964693509999100,
-                        166964693509937660, 167947020562368130,
-                      ],
-                      line_number: 7,
-                      callback1: [
-                        {
-                          type: 'setDataSource',
-                          dataId: 167947020562371000,
-                          options: {
-                            compId: 'setDataSource',
-                            compName: 'page',
-                            id: '6596858',
-                            pageJsonId: '866861',
-                            dataSourceId: 167945326037287900,
-                            dataSourceName: 'activeKeyTyList',
-                            dataSourceRelType: 'custom',
-                            dataSourceReloadFilter: [],
-                            dataSourceSetValue: [
-                              {
-                                attrId: '5011336',
-                                code: 'param',
-                                name: '属性',
-                                type: 'string',
-                                initialData: { type: 'static' },
-                              },
-                            ],
-                            newData: '$data_608698$',
-                            operateType: 3,
-                            onlySetPatch: true,
-                            otherObjectArrayOptions: {},
-                          },
-                          path: [
-                            166964682728661540, 166964690601845380,
-                            166964690601857570, 166964693509999100,
-                            166964693509937660, 167947020562368130,
-                            167947020562376450, 167947020562343040,
-                          ],
-                          line_number: 8,
-                          callback1: [],
-                          callback2: [],
-                        },
-                      ],
-                      callback2: [],
-                    },
-                    {
-                      type: 'console',
-                      dataId: 167947020562305630,
-                      options: {
-                        compId: 'debug',
-                        compName: 'system',
-                        id: '8884926',
-                        pageJsonId: '866861',
-                        value: ['进来1'],
-                      },
-                      path: [
-                        166964682728661540, 166964690601845380,
-                        166964690601857570, 166964693509999100,
-                        166964693509937660, 167947020562368130,
-                      ],
-                      line_number: 9,
-                    },
-                  ],
-                },
-              ],
-              callback2: [],
-            },
-            {
-              type: 'reloadDataSource',
-              dataId: 166964693612073860,
-              options: {
-                compId: 'reloadDataSource',
-                compName: 'page',
-                id: '144429',
-                pageJsonId: '866861',
-                dataSourceId: 166305762583687330,
-                dataSourceName: 'jichulei',
-                dataSourceRelType: 'service',
-                dataSourceReloadFilter: [
-                  {
-                    attrId: '93142236',
-                    code: 'header',
-                    name: '请求头参数',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                  },
-                  {
-                    attrId: '5541864',
-                    code: 'path',
-                    name: '请求路径参数',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                  },
-                  {
-                    attrId: '9000299',
-                    code: 'query',
-                    name: 'URL 参数',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                  },
-                  {
-                    attrId: '213779',
-                    code: 'body',
-                    name: '请求体',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                    children: [
-                      {
-                        attrId: '536329',
-                        code: 'nodeValue',
-                        name: '新增节点',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                        value: {
-                          type: ['context', '$value_2211283$'],
-                          code: '',
-                        },
-                      },
-                      {
-                        attrId: '792402',
-                        code: 'nodeKey',
-                        name: 'nodeKey',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                        value: { type: ['customize'], code: 'CLS_JC' },
-                      },
-                      {
-                        attrId: '017035',
-                        code: 'releaseChannel',
-                        name: '新增节点',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                        value: { type: ['customize'], code: '1001' },
-                      },
-                    ],
-                  },
-                ],
-                dataSourceSetValue: [
-                  {
-                    attrId: '1463085',
-                    code: 'resultMsgCode',
-                    name: 'resultMsgCode',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'string',
-                  },
-                  {
-                    attrId: '7638504',
-                    code: 'resultMsg',
-                    name: 'resultMsg',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'string',
-                  },
-                  {
-                    attrId: '513151',
-                    code: 'resultCode',
-                    name: 'resultCode',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'string',
-                  },
-                  {
-                    attrId: '118526',
-                    code: 'resultData',
-                    name: 'resultData',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'objectArray',
-                    children: [
-                      {
-                        attrId: '281217',
-                        code: 'nodeValue',
-                        name: 'nodeValue',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                      },
-                      {
-                        attrId: '379361',
-                        code: 'nodeKey',
-                        name: 'nodeKey',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                      },
-                      {
-                        attrId: '954346',
-                        code: 'parentCode',
-                        name: 'parentCode',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                      },
-                      {
-                        attrId: '90271',
-                        code: 'children',
-                        name: 'children',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'objectArray',
-                        children: [
-                          {
-                            attrId: '585501647',
-                            code: 'nodeKey',
-                            name: 'nodeKey',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'string',
-                          },
-                          {
-                            attrId: '562087',
-                            code: 'children',
-                            name: 'children',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'fieldArray',
-                            children: [
-                              {
-                                attrId: '888576',
-                                code: 'listItem',
-                                name: '列表元素',
-                                sort: { isSort: true },
-                                initialData: { type: 'static' },
-                                type: 'object',
-                              },
-                            ],
-                          },
-                          {
-                            attrId: '748312',
-                            code: 'parentCode',
-                            name: 'parentCode',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'string',
-                          },
-                          {
-                            attrId: '3696457',
-                            code: 'nodeValue',
-                            name: 'nodeValue',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'string',
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                ],
-                otherObjectArrayOptions: {},
-              },
-              path: [
-                166964682728661540, 166964690601845380, 166964690601857570,
-              ],
-              line_number: 10,
-              callback1: [
-                {
-                  type: 'ifelse',
-                  condition: [
-                    {
-                      condId: '704605',
-                      options: {
-                        context: '$refData.current.jichulei.resultData.length$',
-                        operate: '>',
-                        useManual: true,
-                        manualValue: '0',
-                      },
-                      conditionType: 'checkContextValue',
-                      objType: 'system',
-                      objId: 'sys',
-                    },
-                    {
-                      options: {
-                        context: '$value_2211283$',
-                        operate: 'notEmpty',
-                      },
-                      condId: '555457',
-                      connector: '&&',
-                      conditionType: 'checkContextValue',
-                      objType: 'system',
-                      objId: 'sys',
-                    },
-                  ],
-                  path: [
-                    166964682728661540, 166964690601845380, 166964690601857570,
-                    166964693612073860, 166964693612007400,
-                  ],
-                  dataId: 167946817472884220,
-                  elseIfs: [],
-                  line_number: 11,
-                  callback1: [
-                    {
-                      type: 'customActionCode',
-                      dataId: 167946817472850400,
-                      options: {
-                        compId: 'customActionCode',
-                        compName: 'page',
-                        id: '8254127',
-                        pageJsonId: '866861',
-                        originCode:
-                          '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n    var activeKeyList = [];\n    activeKeyList.push(2462862);\n    success(activeKeyList);\n};',
-                        code: 'function main(data,state,success,fail){var activeKeyList=[];activeKeyList.push(2462862);success(activeKeyList)};',
-                      },
-                      path: [
-                        166964682728661540, 166964690601845380,
-                        166964690601857570, 166964693612073860,
-                        166964693612007400, 167946817472884220,
-                      ],
-                      line_number: 12,
-                      callback1: [
-                        {
-                          type: 'setDataSource',
-                          dataId: 167946817472848580,
-                          options: {
-                            compId: 'setDataSource',
-                            compName: 'page',
-                            id: '753975',
-                            pageJsonId: '866861',
-                            dataSourceId: 167946809637676670,
-                            dataSourceName: 'activeKeyJcList',
-                            dataSourceRelType: 'custom',
-                            dataSourceReloadFilter: [],
-                            dataSourceSetValue: [
-                              {
-                                attrId: '200399',
-                                code: 'param',
-                                name: '属性',
-                                type: 'string',
-                                initialData: { type: 'static' },
-                              },
-                            ],
-                            newData: '$data_8254127$',
-                            operateType: 3,
-                            onlySetPatch: true,
-                            otherObjectArrayOptions: {},
-                          },
-                          path: [
-                            166964682728661540, 166964690601845380,
-                            166964690601857570, 166964693612073860,
-                            166964693612007400, 167946817472884220,
-                            167946817472850400, 167946817472805020,
-                          ],
-                          line_number: 13,
-                          callback1: [],
-                          callback2: [],
-                        },
-                      ],
-                      callback2: [],
-                    },
-                    {
-                      type: 'console',
-                      dataId: 167946930567288000,
-                      options: {
-                        compId: 'debug',
-                        compName: 'system',
-                        id: '7205906',
-                        pageJsonId: '866861',
-                        value: ['进来2'],
-                      },
-                      path: [
-                        166964682728661540, 166964690601845380,
-                        166964690601857570, 166964693612073860,
-                        166964693612007400, 167946817472884220,
-                      ],
-                      line_number: 14,
-                    },
-                  ],
-                },
-                {
-                  type: 'console',
-                  dataId: 167946905485731550,
-                  options: {
-                    compId: 'debug',
-                    compName: 'system',
-                    id: '9764163',
-                    pageJsonId: '866861',
-                    value: ['$refData.current.jichulei$', '这个'],
-                  },
-                  path: [
-                    166964682728661540, 166964690601845380, 166964690601857570,
-                    166964693612073860, 166964693612007400,
-                  ],
-                  line_number: 15,
-                },
-              ],
-              callback2: [],
-            },
-            {
-              type: 'reloadDataSource',
-              dataId: 166964693662488320,
-              options: {
-                compId: 'reloadDataSource',
-                compName: 'page',
-                id: '03461657',
-                pageJsonId: '866861',
-                dataSourceId: 166305773466855420,
-                dataSourceName: 'chanpinlei',
-                dataSourceRelType: 'service',
-                dataSourceReloadFilter: [
-                  {
-                    attrId: '674198',
-                    code: 'header',
-                    name: '请求头参数',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                  },
-                  {
-                    attrId: '266602',
-                    code: 'path',
-                    name: '请求路径参数',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                  },
-                  {
-                    attrId: '777506',
-                    code: 'query',
-                    name: 'URL 参数',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                  },
-                  {
-                    attrId: '1407874',
-                    code: 'body',
-                    name: '请求体',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                    children: [
-                      {
-                        attrId: '124619',
-                        code: 'nodeValue',
-                        name: '新增节点',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                        value: {
-                          type: ['context', '$value_2211283$'],
-                          code: '',
-                        },
-                      },
-                      {
-                        attrId: '517287',
-                        code: 'nodeKey',
-                        name: 'nodeKey',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                        value: { type: ['customize'], code: 'CLS_CP' },
-                      },
-                      {
-                        attrId: '999588',
-                        code: 'releaseChannel',
-                        name: '新增节点',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                        value: { type: ['customize'], code: '1001' },
-                      },
-                    ],
-                  },
-                ],
-                dataSourceSetValue: [
-                  {
-                    attrId: '359989',
-                    code: 'resultMsgCode',
-                    name: 'resultMsgCode',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'string',
-                  },
-                  {
-                    attrId: '41977',
-                    code: 'resultMsg',
-                    name: 'resultMsg',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'string',
-                  },
-                  {
-                    attrId: '784308',
-                    code: 'resultCode',
-                    name: 'resultCode',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'string',
-                  },
-                  {
-                    attrId: '14877',
-                    code: 'resultData',
-                    name: 'resultData',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'objectArray',
-                    children: [
-                      {
-                        attrId: '4341527',
-                        code: 'nodeValue',
-                        name: 'nodeValue',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                      },
-                      {
-                        attrId: '992013',
-                        code: 'nodeKey',
-                        name: 'nodeKey',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                      },
-                      {
-                        attrId: '374508',
-                        code: 'parentCode',
-                        name: 'parentCode',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                      },
-                      {
-                        attrId: '145747',
-                        code: 'children',
-                        name: 'children',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'objectArray',
-                        children: [
-                          {
-                            attrId: '746308',
-                            code: 'nodeKey',
-                            name: 'nodeKey',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'string',
-                          },
-                          {
-                            attrId: '008252',
-                            code: 'children',
-                            name: 'children',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'fieldArray',
-                            children: [
-                              {
-                                attrId: '6292188',
-                                code: 'listItem',
-                                name: '列表元素',
-                                sort: { isSort: true },
-                                initialData: { type: 'static' },
-                                type: 'object',
-                              },
-                            ],
-                          },
-                          {
-                            attrId: '324336',
-                            code: 'parentCode',
-                            name: 'parentCode',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'string',
-                          },
-                          {
-                            attrId: '1126966',
-                            code: 'nodeValue',
-                            name: 'nodeValue',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'string',
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                ],
-                otherObjectArrayOptions: {},
-              },
-              path: [
-                166964682728661540, 166964690601845380, 166964690601857570,
-              ],
-              line_number: 16,
-              callback1: [
-                {
-                  type: 'ifelse',
-                  condition: [
-                    {
-                      condId: '704605',
-                      options: {
-                        context:
-                          '$refData.current.chanpinlei.resultData.length$',
-                        operate: '>',
-                        useManual: true,
-                        manualValue: '0',
-                      },
-                      conditionType: 'checkContextValue',
-                      objType: 'system',
-                      objId: 'sys',
-                    },
-                    {
-                      options: {
-                        context: '$value_2211283$',
-                        operate: 'notEmpty',
-                      },
-                      condId: '971562',
-                      connector: '&&',
-                      conditionType: 'checkContextValue',
-                      objType: 'system',
-                      objId: 'sys',
-                    },
-                  ],
-                  path: [
-                    166964682728661540, 166964690601845380, 166964690601857570,
-                    166964693662488320, 166964693662462000,
-                  ],
-                  dataId: 167946817755054980,
-                  elseIfs: [],
-                  line_number: 17,
-                  callback1: [
-                    {
-                      type: 'customActionCode',
-                      dataId: 167946817755191520,
-                      options: {
-                        compId: 'customActionCode',
-                        compName: 'page',
-                        id: '5848713',
-                        pageJsonId: '866861',
-                        originCode:
-                          '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n    var activeKeyList = [];\n    activeKeyList.push(2423448);\n    success(activeKeyList);\n};',
-                        code: 'function main(data,state,success,fail){var activeKeyList=[];activeKeyList.push(2423448);success(activeKeyList)};',
-                      },
-                      path: [
-                        166964682728661540, 166964690601845380,
-                        166964690601857570, 166964693662488320,
-                        166964693662462000, 167946817755054980,
-                      ],
-                      line_number: 18,
-                      callback1: [
-                        {
-                          type: 'setDataSource',
-                          dataId: 167946817755140130,
-                          options: {
-                            compId: 'setDataSource',
-                            compName: 'page',
-                            id: '2937607',
-                            pageJsonId: '866861',
-                            dataSourceId: 167946812174602900,
-                            dataSourceName: 'activeKeyCpList',
-                            dataSourceRelType: 'custom',
-                            dataSourceReloadFilter: [],
-                            dataSourceSetValue: [
-                              {
-                                attrId: '399925',
-                                code: 'param',
-                                name: '属性',
-                                type: 'string',
-                                initialData: { type: 'static' },
-                              },
-                            ],
-                            newData: '$data_5848713$',
-                            operateType: 3,
-                            onlySetPatch: true,
-                            otherObjectArrayOptions: {},
-                          },
-                          path: [
-                            166964682728661540, 166964690601845380,
-                            166964690601857570, 166964693662488320,
-                            166964693662462000, 167946817755054980,
-                            167946817755191520, 167946817755110940,
-                          ],
-                          line_number: 19,
-                          callback1: [],
-                          callback2: [],
-                        },
-                      ],
-                      callback2: [],
-                    },
-                  ],
-                },
-              ],
-              callback2: [],
-            },
-            {
-              type: 'reloadDataSource',
-              dataId: 166964693701786240,
-              options: {
-                compId: 'reloadDataSource',
-                compName: 'page',
-                id: '5391253',
-                pageJsonId: '866861',
-                dataSourceId: 166305775855125120,
-                dataSourceName: 'yingxiaoanlei',
-                dataSourceRelType: 'service',
-                dataSourceReloadFilter: [
-                  {
-                    attrId: '6996998',
-                    code: 'header',
-                    name: '请求头参数',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                  },
-                  {
-                    attrId: '653788',
-                    code: 'path',
-                    name: '请求路径参数',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                  },
-                  {
-                    attrId: '201335',
-                    code: 'query',
-                    name: 'URL 参数',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                  },
-                  {
-                    attrId: '2270458',
-                    code: 'body',
-                    name: '请求体',
-                    sort: { isSort: true },
-                    initialData: { type: 'static', value: '' },
-                    type: 'object',
-                    children: [
-                      {
-                        attrId: '3671',
-                        code: 'nodeValue',
-                        name: '新增节点',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                        value: {
-                          type: ['context', '$value_2211283$'],
-                          code: '',
-                        },
-                      },
-                      {
-                        attrId: '336337',
-                        code: 'nodeKey',
-                        name: 'nodeKey',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                        value: { type: ['customize'], code: 'CLS_YX' },
-                      },
-                      {
-                        attrId: '394223',
-                        code: 'releaseChannel',
-                        name: '新增节点',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                        value: { type: ['customize'], code: '1001' },
-                      },
-                    ],
-                  },
-                ],
-                dataSourceSetValue: [
-                  {
-                    attrId: '673683',
-                    code: 'resultMsgCode',
-                    name: 'resultMsgCode',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'string',
-                  },
-                  {
-                    attrId: '2283536',
-                    code: 'resultMsg',
-                    name: 'resultMsg',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'string',
-                  },
-                  {
-                    attrId: '458075',
-                    code: 'resultCode',
-                    name: 'resultCode',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'string',
-                  },
-                  {
-                    attrId: '917443',
-                    code: 'resultData',
-                    name: 'resultData',
-                    sort: { isSort: true },
-                    initialData: { type: 'static' },
-                    type: 'objectArray',
-                    children: [
-                      {
-                        attrId: '204225',
-                        code: 'nodeValue',
-                        name: 'nodeValue',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                      },
-                      {
-                        attrId: '1199901',
-                        code: 'nodeKey',
-                        name: 'nodeKey',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                      },
-                      {
-                        attrId: '02113',
-                        code: 'parentCode',
-                        name: 'parentCode',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'string',
-                      },
-                      {
-                        attrId: '635566',
-                        code: 'children',
-                        name: 'children',
-                        sort: { isSort: true },
-                        initialData: { type: 'static' },
-                        type: 'objectArray',
-                        children: [
-                          {
-                            attrId: '05122336',
-                            code: 'nodeKey',
-                            name: 'nodeKey',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'string',
-                          },
-                          {
-                            attrId: '0229784',
-                            code: 'children',
-                            name: 'children',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'fieldArray',
-                            children: [
-                              {
-                                attrId: '7212235',
-                                code: 'listItem',
-                                name: '列表元素',
-                                sort: { isSort: true },
-                                initialData: { type: 'static' },
-                                type: 'object',
-                              },
-                            ],
-                          },
-                          {
-                            attrId: '519418',
-                            code: 'parentCode',
-                            name: 'parentCode',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'string',
-                          },
-                          {
-                            attrId: '202486',
-                            code: 'nodeValue',
-                            name: 'nodeValue',
-                            sort: { isSort: true },
-                            initialData: { type: 'static' },
-                            type: 'string',
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                ],
-                otherObjectArrayOptions: {},
-              },
-              path: [
-                166964682728661540, 166964690601845380, 166964690601857570,
-              ],
-              line_number: 20,
-              callback1: [
-                {
-                  type: 'ifelse',
-                  condition: [
-                    {
-                      condId: '704605',
-                      options: {
-                        context:
-                          '$refData.current.yingxiaoanlei.resultData.length$',
-                        operate: '>',
-                        useManual: true,
-                        manualValue: '0',
-                      },
-                      conditionType: 'checkContextValue',
-                      objType: 'system',
-                      objId: 'sys',
-                    },
-                    {
-                      options: {
-                        context: '$value_2211283$',
-                        operate: 'notEmpty',
-                      },
-                      condId: '397169',
-                      connector: '&&',
-                      conditionType: 'checkContextValue',
-                      objType: 'system',
-                      objId: 'sys',
-                    },
-                  ],
-                  path: [
-                    166964682728661540, 166964690601845380, 166964690601857570,
-                    166964693701786240, 166964693701785060,
-                  ],
-                  dataId: 167946818032779460,
-                  elseIfs: [],
-                  line_number: 21,
-                  callback1: [
-                    {
-                      type: 'customActionCode',
-                      dataId: 167946818032714050,
-                      options: {
-                        compId: 'customActionCode',
-                        compName: 'page',
-                        id: '717722',
-                        pageJsonId: '866861',
-                        originCode:
-                          '/** main函数为入口函数，代码仅支持写在该函数内部，请勿删除该函数\n * @param {data} 页面数据\n * @param {state} 组件状态\n * @param {success} 触发成功回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需成功后回调拿到xx值，只需要 success(xx)\n * @param {fail} 触发失败回调 仅支持返回参数，多个参数可以通过对象传递 如：在事件编排中需失败后回调拿到xx值，只需要 fail(xx)\n */\nfunction main(data, state, success, fail) {\n    var activeKeyList = [];\n    activeKeyList.push(626254);\n    success(activeKeyList);\n};',
-                        code: 'function main(data,state,success,fail){var activeKeyList=[];activeKeyList.push(626254);success(activeKeyList)};',
-                      },
-                      path: [
-                        166964682728661540, 166964690601845380,
-                        166964690601857570, 166964693701786240,
-                        166964693701785060, 167946818032779460,
-                      ],
-                      line_number: 22,
-                      callback1: [
-                        {
-                          type: 'setDataSource',
-                          dataId: 167946818032739360,
-                          options: {
-                            compId: 'setDataSource',
-                            compName: 'page',
-                            id: '699411',
-                            pageJsonId: '866861',
-                            dataSourceId: 167946815142258800,
-                            dataSourceName: 'activeKeyYxaList',
-                            dataSourceRelType: 'custom',
-                            dataSourceReloadFilter: [],
-                            dataSourceSetValue: [
-                              {
-                                attrId: '223114',
-                                code: 'param',
-                                name: '属性',
-                                type: 'string',
-                                initialData: { type: 'static' },
-                              },
-                            ],
-                            newData: '$data_717722$',
-                            operateType: 3,
-                            onlySetPatch: true,
-                            otherObjectArrayOptions: {},
-                          },
-                          path: [
-                            166964682728661540, 166964690601845380,
-                            166964690601857570, 166964693701786240,
-                            166964693701785060, 167946818032779460,
-                            167946818032714050, 167946818032780260,
-                          ],
-                          line_number: 23,
-                          callback1: [],
-                          callback2: [],
-                        },
-                      ],
-                      callback2: [],
-                    },
-                  ],
-                },
-              ],
-              callback2: [],
-            },
-          ],
-        },
-      ];
-      eventDatagetValue.params =
-        [
-          {
-            title: '事件入参',
-            name: 'options_485601',
-            value: '$options_485601$',
-          },
-        ] || [];
-      CMDGenerator(eventDatagetValue, { options_485601 }, 'getValue', {
-        id: 'getValue',
-        name: 'getValue',
-        type: 'getValue',
-        platform: 'undefined',
-      });
-    },
-  },
 });

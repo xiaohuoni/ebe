@@ -5,43 +5,32 @@ import React, { FC, useEffect, useMemo, useState } from 'react';
 import Pageview from '../Pageview';
 
 export interface DynamicPopoverProps {
-  popoverSetting: {
-    page?: {
-      pageId: string;
-      options?: any[];
-      placement: string;
-      trigger: string;
-      [key: string]: any;
-    };
-    options?: {
-      content: any;
-      maxWidth: number;
-      [key: string]: any;
-    };
-    state?: Record<string, any>;
+  page?: {
+    pageId: string;
+    options?: any[];
+    placement: string;
+    trigger: string;
+    [key: string]: any;
   };
-  childProps: any;
-  appId: string;
-  onAppPopoverClick?: any;
-  parseNodeBefore: any;
-  lcdpParentRenderId: string;
-  api: any;
-  uid: string;
+  options?: {
+    content: any;
+    maxWidth: number;
+    [key: string]: any;
+  };
+  state?: Record<string, any>;
+  id?: string;
   children?: any;
 }
 
 const DynamicPopover: FC<DynamicPopoverProps> = (props) => {
-  const {
-    children,
-    popoverSetting,
-    childProps,
-    appId,
-    parseNodeBefore,
-    uid,
-    lcdpParentRenderId,
-  } = props;
   const [update, forceUpdate] = useState({});
-  const { page, options: popoverOptions, state } = popoverSetting;
+  const {
+    page = {} as any,
+    options: popoverOptions,
+    state,
+    id,
+    children,
+  } = props;
   // 气泡卡片显隐受控，提供给关闭所有气泡卡片动作
   const [visible, setVisible] = useState<boolean>(false);
   const content = useMemo(() => {
@@ -52,7 +41,7 @@ const DynamicPopover: FC<DynamicPopoverProps> = (props) => {
       return popoverOptions.content;
     }
     return null;
-  }, [popoverSetting, update]);
+  }, [page, update]);
 
   const options = useMemo<any>(() => {
     if (page?.pageId) {
@@ -66,23 +55,23 @@ const DynamicPopover: FC<DynamicPopoverProps> = (props) => {
       const { maxWidth, ...resOptions } = popoverOptions;
       return {
         overlayClassName: maxWidth ? 'dynamicPage-popver' : '',
-        key: `${childProps?.$$componentItem?.id}_popover`,
+        key: `${id}_popover`,
         overlayStyle: { maxWidth: maxWidth || 'none', wordBreak: 'break-word' },
         ...resOptions,
       };
     }
     return {};
   }, [page, popoverOptions, update]);
-
+  console.log(options);
   useEffect(() => {
     const ref = {
       close: () => setVisible(false),
     };
-    lcdpApi?.refs?.PopoverManager?.setPopover?.(ref, lcdpParentRenderId);
+    lcdpApi?.refs?.PopoverManager?.setPopover?.(ref, 'lcdpParentRenderId');
     return () => {
-      lcdpApi?.refs?.PopoverManager?.removePopover?.(ref, lcdpParentRenderId);
+      lcdpApi?.refs?.PopoverManager?.removePopover?.(ref, 'lcdpParentRenderId');
     };
-  }, [lcdpParentRenderId]);
+  }, []);
 
   return (
     <Popover

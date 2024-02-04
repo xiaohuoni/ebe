@@ -163,7 +163,7 @@ const preprocessComponentSchema = (
       compLib: 'antd-mobile-5',
       type: 'Popover',
       events: {},
-      props: popoverSetting,
+      props: { ...popoverSetting, id: otherProps?.['data-compid'] },
       compName: 'Popover',
       platform: 'h5',
       components: [{ ...newSchema, props: otherProps }],

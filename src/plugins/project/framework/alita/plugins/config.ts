@@ -53,6 +53,12 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
       publicPath: process.env.PUBLIC_PATH || './',
       outputPath: 'build',
       keepalive: [],
+      // info 文件配置
+      scripts:[{src:"server/app/env/info.js"}],
+      // 获取主题文件
+      links:[{rel:"stylesheet",href:"server/app/appTheme/getThemeCss?appId=${
+        options?.appId
+      }&terminalType=${options?.platform}"}]
     });
     `;
 

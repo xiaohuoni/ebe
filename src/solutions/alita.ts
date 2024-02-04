@@ -12,6 +12,7 @@ import reactCommonDeps from '../plugins/react/reactCommonDeps';
 import reactContainer from '../plugins/react/container';
 import containerLifeCycle from '../plugins/react/containerLifeCycle';
 import reactJsx from '../plugins/react/jsx';
+import customActionMap from '../plugins/react/customActionMap';
 
 export type AlitaProjectBuilderOptions = IProjectBuilderOptions;
 
@@ -48,6 +49,7 @@ export default function createIceJsProjectBuilder(
         alita.plugins.mobileLayout(),
         alita.plugins.styleInject(),
         reactContainer(),
+        customActionMap(),
         containerLifeCycle(),
         reactJsx({
           nodePlugins: [alita.hooks.hackNodeAttr],

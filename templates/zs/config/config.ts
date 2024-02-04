@@ -19,4 +19,11 @@ export default defineConfig({
   publicPath: process.env.PUBLIC_PATH || './',
   outputPath: 'build',
   keepalive: [],
+  scripts: [{ src: 'server/app/env/info.js' }],
+  links: [
+    {
+      rel: 'stylesheet',
+      href: 'server/app/appTheme/getThemeCss?appId=871672424566726656&terminalType=pc',
+    },
+  ],
 });

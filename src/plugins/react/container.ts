@@ -4,7 +4,11 @@ import {
   CLASS_DEFINE_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
-import { REACT_CHUNK_NAME, MODAL_CHUNK_NAME } from './const';
+import {
+  REACT_CHUNK_NAME,
+  MODAL_CHUNK_NAME,
+  CUSTOM_ACTION_CHUNK_NAME,
+} from './const';
 
 import {
   BuilderComponentPlugin,
@@ -18,8 +22,7 @@ import {
 import { ensureValidClassName } from '../../core/utils/validate';
 import { getImportFrom } from '../../utils/depsHelper';
 import { PAGE_TYPES } from '../../constants';
-import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
-import { getEvents } from '../../utils/schema/parseDsl';
+
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
     const next: ICodeStruct = {
@@ -42,7 +45,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       name: CLASS_DEFINE_CHUNK_NAME.Start,
       content: `
         const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, 
-          attrDataMap={},
+          attrDataMap={},customActionMapRef,
           injectData, refs, state, functorsMap, getStaticDataSourceService, getValue, componentItem, style, urlParam, ${
             isModal ? 'forwardedRef,' : ''
           } }) => {`,
@@ -94,6 +97,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       content: '  useEffect(() => {',
       linkAfter: [
         ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
+        CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
         MODAL_CHUNK_NAME.ImperativeHandle,
       ],
     });
@@ -189,32 +193,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         hasLogin: ${!!!ir.ignoreLogin},${
         hasDataSource ? 'dataSource,' : ''
       }defaultState:${JSON.stringify(defaultState)},
-      customActionMap:{
-        ${(ir?.customFuctions || [])
-          .map((e) => {
-            const value = e.setEvents.map((event: any) => {
-              const { eName, eValue } = getEvents(event);
-              return {
-                id: `${eName}`,
-                value: eValue,
-              };
-            });
-            const item = value[0];
-            // const { eName, eValue } = events;
-            // schema.events[eName] = {
-            //   id: `${eName}`,
-            //   value: eValue,
-            // };
-            return `${item?.id}:${CMDGeneratorEvent(
-              item?.value,
-              next?.contextData,
-              {} as IScope,
-              { ir },
-              'CMDGenerator: any, ',
-            )}`;
-          })
-          .join(',')}
-      }
       });`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
