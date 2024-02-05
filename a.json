@@ -95,36 +95,16 @@
   ],
   "layout": "BaseLayout",
   "searchParams": [
-    {
-      "name": "业务主键",
-      "code": "bizId"
-    },
-    {
-      "name": "业务场景",
-      "code": "sceneCode"
-    },
-    {
-      "code": "code",
-      "name": "参数"
-    },
-    {
-      "code": "pageUrl",
-      "name": "路径"
-    },
-    {
-      "code": "instNbr",
-      "name": "实例编码"
-    },
-    {
-      "code": "origin",
-      "name": "页面入口"
-    }
+    { "name": "业务主键", "code": "bizId" },
+    { "name": "业务场景", "code": "sceneCode" },
+    { "code": "code", "name": "参数" },
+    { "code": "pageUrl", "name": "路径" },
+    { "code": "instNbr", "name": "实例编码" },
+    { "code": "origin", "name": "页面入口" }
   ],
   "pageDynamicFlag": true,
   "catalogItemId": "872656296314818560",
-  "extras": {
-    "multiForm": true
-  },
+  "extras": { "multiForm": true },
   "platformType": "LowCode",
   "imgInfoList": [],
   "appId": "871672424566726656",
@@ -146,41 +126,31 @@
           "code": "ty",
           "name": "通用类",
           "type": "array",
-          "initialData": {
-            "type": "static"
-          }
+          "initialData": { "type": "static" }
         },
         {
           "attrId": "1200638",
           "code": "jc",
           "name": "基础类",
           "type": "array",
-          "initialData": {
-            "type": "static"
-          }
+          "initialData": { "type": "static" }
         },
         {
           "attrId": "696705",
           "code": "cp",
           "name": "产品类",
           "type": "array",
-          "initialData": {
-            "type": "static"
-          }
+          "initialData": { "type": "static" }
         },
         {
           "attrId": "468471",
           "code": "yxa",
           "name": "营销案",
           "type": "array",
-          "initialData": {
-            "type": "static"
-          }
+          "initialData": { "type": "static" }
         }
       ],
-      "config": {
-        "hooks": []
-      }
+      "config": { "hooks": [] }
     },
     {
       "id": 166305304245640540,
@@ -194,88 +164,56 @@
           "attrId": "222926",
           "code": "header",
           "name": "请求头参数",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object"
         },
         {
           "attrId": "7399277",
           "code": "path",
           "name": "请求路径参数",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object"
         },
         {
           "attrId": "858874",
           "code": "query",
           "name": "URL 参数",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object"
         },
         {
           "attrId": "831632",
           "code": "body",
           "name": "请求体",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object",
           "children": [
             {
               "attrId": "951212",
               "code": "nodeValue",
               "name": "新增节点",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "3285892",
               "code": "nodeKey",
               "name": "nodeKey",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "053",
               "code": "releaseChannel",
               "name": "新增节点",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             }
           ]
@@ -286,132 +224,88 @@
           "attrId": "937773463",
           "code": "resultMsgCode",
           "name": "resultMsgCode",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "string"
         },
         {
           "attrId": "5201218",
           "code": "resultMsg",
           "name": "resultMsg",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "string"
         },
         {
           "attrId": "37018",
           "code": "resultCode",
           "name": "resultCode",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "string"
         },
         {
           "attrId": "17578",
           "code": "resultData",
           "name": "resultData",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "objectArray",
           "children": [
             {
               "attrId": "059641",
               "code": "nodeValue",
               "name": "nodeValue",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "486331",
               "code": "nodeKey",
               "name": "nodeKey",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "594082",
               "code": "parentCode",
               "name": "parentCode",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "43752",
               "code": "children",
               "name": "children",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "objectArray",
               "children": [
                 {
                   "attrId": "741171",
                   "code": "nodeKey",
                   "name": "nodeKey",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "string"
                 },
                 {
                   "attrId": "774947",
                   "code": "children",
                   "name": "children",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "fieldArray",
                   "children": [
                     {
                       "attrId": "03089",
                       "code": "listItem",
                       "name": "列表元素",
-                      "sort": {
-                        "isSort": true
-                      },
-                      "initialData": {
-                        "type": "static"
-                      },
+                      "sort": { "isSort": true },
+                      "initialData": { "type": "static" },
                       "type": "object"
                     }
                   ]
@@ -420,24 +314,16 @@
                   "attrId": "4665593",
                   "code": "parentCode",
                   "name": "parentCode",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "string"
                 },
                 {
                   "attrId": "349837",
                   "code": "nodeValue",
                   "name": "nodeValue",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "string"
                 }
               ]
@@ -470,11 +356,7 @@
                   "name": "请求路径参数",
                   "attrType": "object"
                 },
-                {
-                  "code": "query",
-                  "name": "URL 参数",
-                  "attrType": "object"
-                },
+                { "code": "query", "name": "URL 参数", "attrType": "object" },
                 {
                   "code": "body",
                   "name": "请求体",
@@ -619,88 +501,56 @@
           "attrId": "93142236",
           "code": "header",
           "name": "请求头参数",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object"
         },
         {
           "attrId": "5541864",
           "code": "path",
           "name": "请求路径参数",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object"
         },
         {
           "attrId": "9000299",
           "code": "query",
           "name": "URL 参数",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object"
         },
         {
           "attrId": "213779",
           "code": "body",
           "name": "请求体",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object",
           "children": [
             {
               "attrId": "536329",
               "code": "nodeValue",
               "name": "新增节点",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "792402",
               "code": "nodeKey",
               "name": "nodeKey",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "017035",
               "code": "releaseChannel",
               "name": "新增节点",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             }
           ]
@@ -711,132 +561,88 @@
           "attrId": "1463085",
           "code": "resultMsgCode",
           "name": "resultMsgCode",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "string"
         },
         {
           "attrId": "7638504",
           "code": "resultMsg",
           "name": "resultMsg",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "string"
         },
         {
           "attrId": "513151",
           "code": "resultCode",
           "name": "resultCode",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "string"
         },
         {
           "attrId": "118526",
           "code": "resultData",
           "name": "resultData",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "objectArray",
           "children": [
             {
               "attrId": "281217",
               "code": "nodeValue",
               "name": "nodeValue",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "379361",
               "code": "nodeKey",
               "name": "nodeKey",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "954346",
               "code": "parentCode",
               "name": "parentCode",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "90271",
               "code": "children",
               "name": "children",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "objectArray",
               "children": [
                 {
                   "attrId": "585501647",
                   "code": "nodeKey",
                   "name": "nodeKey",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "string"
                 },
                 {
                   "attrId": "562087",
                   "code": "children",
                   "name": "children",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "fieldArray",
                   "children": [
                     {
                       "attrId": "888576",
                       "code": "listItem",
                       "name": "列表元素",
-                      "sort": {
-                        "isSort": true
-                      },
-                      "initialData": {
-                        "type": "static"
-                      },
+                      "sort": { "isSort": true },
+                      "initialData": { "type": "static" },
                       "type": "object"
                     }
                   ]
@@ -845,24 +651,16 @@
                   "attrId": "748312",
                   "code": "parentCode",
                   "name": "parentCode",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "string"
                 },
                 {
                   "attrId": "3696457",
                   "code": "nodeValue",
                   "name": "nodeValue",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "string"
                 }
               ]
@@ -895,11 +693,7 @@
                   "name": "请求路径参数",
                   "attrType": "object"
                 },
-                {
-                  "code": "query",
-                  "name": "URL 参数",
-                  "attrType": "object"
-                },
+                { "code": "query", "name": "URL 参数", "attrType": "object" },
                 {
                   "code": "body",
                   "name": "请求体",
@@ -1044,88 +838,56 @@
           "attrId": "674198",
           "code": "header",
           "name": "请求头参数",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object"
         },
         {
           "attrId": "266602",
           "code": "path",
           "name": "请求路径参数",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object"
         },
         {
           "attrId": "777506",
           "code": "query",
           "name": "URL 参数",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object"
         },
         {
           "attrId": "1407874",
           "code": "body",
           "name": "请求体",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object",
           "children": [
             {
               "attrId": "124619",
               "code": "nodeValue",
               "name": "新增节点",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "517287",
               "code": "nodeKey",
               "name": "nodeKey",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "999588",
               "code": "releaseChannel",
               "name": "新增节点",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             }
           ]
@@ -1136,132 +898,88 @@
           "attrId": "359989",
           "code": "resultMsgCode",
           "name": "resultMsgCode",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "string"
         },
         {
           "attrId": "41977",
           "code": "resultMsg",
           "name": "resultMsg",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "string"
         },
         {
           "attrId": "784308",
           "code": "resultCode",
           "name": "resultCode",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "string"
         },
         {
           "attrId": "14877",
           "code": "resultData",
           "name": "resultData",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "objectArray",
           "children": [
             {
               "attrId": "4341527",
               "code": "nodeValue",
               "name": "nodeValue",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "992013",
               "code": "nodeKey",
               "name": "nodeKey",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "374508",
               "code": "parentCode",
               "name": "parentCode",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "145747",
               "code": "children",
               "name": "children",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "objectArray",
               "children": [
                 {
                   "attrId": "746308",
                   "code": "nodeKey",
                   "name": "nodeKey",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "string"
                 },
                 {
                   "attrId": "008252",
                   "code": "children",
                   "name": "children",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "fieldArray",
                   "children": [
                     {
                       "attrId": "6292188",
                       "code": "listItem",
                       "name": "列表元素",
-                      "sort": {
-                        "isSort": true
-                      },
-                      "initialData": {
-                        "type": "static"
-                      },
+                      "sort": { "isSort": true },
+                      "initialData": { "type": "static" },
                       "type": "object"
                     }
                   ]
@@ -1270,24 +988,16 @@
                   "attrId": "324336",
                   "code": "parentCode",
                   "name": "parentCode",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "string"
                 },
                 {
                   "attrId": "1126966",
                   "code": "nodeValue",
                   "name": "nodeValue",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "string"
                 }
               ]
@@ -1320,11 +1030,7 @@
                   "name": "请求路径参数",
                   "attrType": "object"
                 },
-                {
-                  "code": "query",
-                  "name": "URL 参数",
-                  "attrType": "object"
-                },
+                { "code": "query", "name": "URL 参数", "attrType": "object" },
                 {
                   "code": "body",
                   "name": "请求体",
@@ -1469,88 +1175,56 @@
           "attrId": "6996998",
           "code": "header",
           "name": "请求头参数",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object"
         },
         {
           "attrId": "653788",
           "code": "path",
           "name": "请求路径参数",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object"
         },
         {
           "attrId": "201335",
           "code": "query",
           "name": "URL 参数",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object"
         },
         {
           "attrId": "2270458",
           "code": "body",
           "name": "请求体",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static",
-            "value": ""
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static", "value": "" },
           "type": "object",
           "children": [
             {
               "attrId": "3671",
               "code": "nodeValue",
               "name": "新增节点",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "336337",
               "code": "nodeKey",
               "name": "nodeKey",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "394223",
               "code": "releaseChannel",
               "name": "新增节点",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             }
           ]
@@ -1561,132 +1235,88 @@
           "attrId": "673683",
           "code": "resultMsgCode",
           "name": "resultMsgCode",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "string"
         },
         {
           "attrId": "2283536",
           "code": "resultMsg",
           "name": "resultMsg",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "string"
         },
         {
           "attrId": "458075",
           "code": "resultCode",
           "name": "resultCode",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "string"
         },
         {
           "attrId": "917443",
           "code": "resultData",
           "name": "resultData",
-          "sort": {
-            "isSort": true
-          },
-          "initialData": {
-            "type": "static"
-          },
+          "sort": { "isSort": true },
+          "initialData": { "type": "static" },
           "type": "objectArray",
           "children": [
             {
               "attrId": "204225",
               "code": "nodeValue",
               "name": "nodeValue",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "1199901",
               "code": "nodeKey",
               "name": "nodeKey",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "02113",
               "code": "parentCode",
               "name": "parentCode",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "string"
             },
             {
               "attrId": "635566",
               "code": "children",
               "name": "children",
-              "sort": {
-                "isSort": true
-              },
-              "initialData": {
-                "type": "static"
-              },
+              "sort": { "isSort": true },
+              "initialData": { "type": "static" },
               "type": "objectArray",
               "children": [
                 {
                   "attrId": "05122336",
                   "code": "nodeKey",
                   "name": "nodeKey",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "string"
                 },
                 {
                   "attrId": "0229784",
                   "code": "children",
                   "name": "children",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "fieldArray",
                   "children": [
                     {
                       "attrId": "7212235",
                       "code": "listItem",
                       "name": "列表元素",
-                      "sort": {
-                        "isSort": true
-                      },
-                      "initialData": {
-                        "type": "static"
-                      },
+                      "sort": { "isSort": true },
+                      "initialData": { "type": "static" },
                       "type": "object"
                     }
                   ]
@@ -1695,24 +1325,16 @@
                   "attrId": "519418",
                   "code": "parentCode",
                   "name": "parentCode",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "string"
                 },
                 {
                   "attrId": "202486",
                   "code": "nodeValue",
                   "name": "nodeValue",
-                  "sort": {
-                    "isSort": true
-                  },
-                  "initialData": {
-                    "type": "static"
-                  },
+                  "sort": { "isSort": true },
+                  "initialData": { "type": "static" },
                   "type": "string"
                 }
               ]
@@ -1745,11 +1367,7 @@
                   "name": "请求路径参数",
                   "attrType": "object"
                 },
-                {
-                  "code": "query",
-                  "name": "URL 参数",
-                  "attrType": "object"
-                },
+                { "code": "query", "name": "URL 参数", "attrType": "object" },
                 {
                   "code": "body",
                   "name": "请求体",
@@ -1895,14 +1513,10 @@
           "code": "nodes",
           "name": "属性",
           "type": "object",
-          "initialData": {
-            "type": "static"
-          }
+          "initialData": { "type": "static" }
         }
       ],
-      "config": {
-        "hooks": []
-      }
+      "config": { "hooks": [] }
     },
     {
       "id": 166658150472845060,
@@ -1917,23 +1531,17 @@
           "code": "catalogCode",
           "name": "场景编码",
           "type": "string",
-          "initialData": {
-            "type": "static"
-          }
+          "initialData": { "type": "static" }
         },
         {
           "attrId": "64556",
           "code": "status",
           "name": "状态",
           "type": "string",
-          "initialData": {
-            "type": "static"
-          }
+          "initialData": { "type": "static" }
         }
       ],
-      "config": {
-        "hooks": []
-      }
+      "config": { "hooks": [] }
     },
     {
       "id": 166998306289677900,
@@ -1948,15 +1556,10 @@
           "code": "array",
           "name": "属性",
           "type": "array",
-          "initialData": {
-            "type": "static",
-            "value": "$[]$"
-          }
+          "initialData": { "type": "static", "value": "$[]$" }
         }
       ],
-      "config": {
-        "hooks": []
-      }
+      "config": { "hooks": [] }
     },
     {
       "id": 167945326037287900,
@@ -1971,14 +1574,10 @@
           "code": "param",
           "name": "属性",
           "type": "string",
-          "initialData": {
-            "type": "static"
-          }
+          "initialData": { "type": "static" }
         }
       ],
-      "config": {
-        "hooks": []
-      }
+      "config": { "hooks": [] }
     },
     {
       "id": 167946809637676670,
@@ -1993,14 +1592,10 @@
           "code": "param",
           "name": "属性",
           "type": "string",
-          "initialData": {
-            "type": "static"
-          }
+          "initialData": { "type": "static" }
         }
       ],
-      "config": {
-        "hooks": []
-      }
+      "config": { "hooks": [] }
     },
     {
       "id": 167946812174602900,
@@ -2015,14 +1610,10 @@
           "code": "param",
           "name": "属性",
           "type": "string",
-          "initialData": {
-            "type": "static"
-          }
+          "initialData": { "type": "static" }
         }
       ],
-      "config": {
-        "hooks": []
-      }
+      "config": { "hooks": [] }
     },
     {
       "id": 167946815142258800,
@@ -2037,14 +1628,10 @@
           "code": "param",
           "name": "属性",
           "type": "string",
-          "initialData": {
-            "type": "static"
-          }
+          "initialData": { "type": "static" }
         }
       ],
-      "config": {
-        "hooks": []
-      }
+      "config": { "hooks": [] }
     }
   ],
   "pageId": "887537833022541824",
@@ -2144,9 +1731,7 @@
                             "code": "nodes",
                             "name": "属性",
                             "type": "object",
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "initialData": { "type": "static" },
                             "value": {
                               "type": ["context", "$data_437422$"],
                               "code": ""
@@ -2290,9 +1875,7 @@
                                     "code": "nodes",
                                     "name": "属性",
                                     "type": "object",
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "initialData": { "type": "static" },
                                     "value": {
                                       "type": ["context", "$data_847923$"],
                                       "code": ""
@@ -2625,64 +2208,40 @@
                             "attrId": "222926",
                             "code": "header",
                             "name": "请求头参数",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object"
                           },
                           {
                             "attrId": "7399277",
                             "code": "path",
                             "name": "请求路径参数",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object"
                           },
                           {
                             "attrId": "858874",
                             "code": "query",
                             "name": "URL 参数",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object"
                           },
                           {
                             "attrId": "831632",
                             "code": "body",
                             "name": "请求体",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object",
                             "children": [
                               {
                                 "attrId": "951212",
                                 "code": "nodeValue",
                                 "name": "新增节点",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string",
                                 "value": {
                                   "type": ["context", "$value_2211283$"],
@@ -2693,12 +2252,8 @@
                                 "attrId": "3285892",
                                 "code": "nodeKey",
                                 "name": "nodeKey",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string",
                                 "value": {
                                   "type": ["customize"],
@@ -2709,12 +2264,8 @@
                                 "attrId": "053",
                                 "code": "releaseChannel",
                                 "name": "新增节点",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string",
                                 "value": {
                                   "type": ["customize"],
@@ -2729,132 +2280,88 @@
                             "attrId": "937773463",
                             "code": "resultMsgCode",
                             "name": "resultMsgCode",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "string"
                           },
                           {
                             "attrId": "5201218",
                             "code": "resultMsg",
                             "name": "resultMsg",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "string"
                           },
                           {
                             "attrId": "37018",
                             "code": "resultCode",
                             "name": "resultCode",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "string"
                           },
                           {
                             "attrId": "17578",
                             "code": "resultData",
                             "name": "resultData",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "objectArray",
                             "children": [
                               {
                                 "attrId": "059641",
                                 "code": "nodeValue",
                                 "name": "nodeValue",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string"
                               },
                               {
                                 "attrId": "486331",
                                 "code": "nodeKey",
                                 "name": "nodeKey",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string"
                               },
                               {
                                 "attrId": "594082",
                                 "code": "parentCode",
                                 "name": "parentCode",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string"
                               },
                               {
                                 "attrId": "43752",
                                 "code": "children",
                                 "name": "children",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "objectArray",
                                 "children": [
                                   {
                                     "attrId": "741171",
                                     "code": "nodeKey",
                                     "name": "nodeKey",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "string"
                                   },
                                   {
                                     "attrId": "774947",
                                     "code": "children",
                                     "name": "children",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "fieldArray",
                                     "children": [
                                       {
                                         "attrId": "03089",
                                         "code": "listItem",
                                         "name": "列表元素",
-                                        "sort": {
-                                          "isSort": true
-                                        },
-                                        "initialData": {
-                                          "type": "static"
-                                        },
+                                        "sort": { "isSort": true },
+                                        "initialData": { "type": "static" },
                                         "type": "object"
                                       }
                                     ]
@@ -2863,24 +2370,16 @@
                                     "attrId": "4665593",
                                     "code": "parentCode",
                                     "name": "parentCode",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "string"
                                   },
                                   {
                                     "attrId": "349837",
                                     "code": "nodeValue",
                                     "name": "nodeValue",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "string"
                                   }
                                 ]
@@ -3168,64 +2667,40 @@
                             "attrId": "93142236",
                             "code": "header",
                             "name": "请求头参数",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object"
                           },
                           {
                             "attrId": "5541864",
                             "code": "path",
                             "name": "请求路径参数",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object"
                           },
                           {
                             "attrId": "9000299",
                             "code": "query",
                             "name": "URL 参数",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object"
                           },
                           {
                             "attrId": "213779",
                             "code": "body",
                             "name": "请求体",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object",
                             "children": [
                               {
                                 "attrId": "536329",
                                 "code": "nodeValue",
                                 "name": "新增节点",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string",
                                 "value": {
                                   "type": ["context", "$value_2211283$"],
@@ -3236,12 +2711,8 @@
                                 "attrId": "792402",
                                 "code": "nodeKey",
                                 "name": "nodeKey",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string",
                                 "value": {
                                   "type": ["customize"],
@@ -3252,12 +2723,8 @@
                                 "attrId": "017035",
                                 "code": "releaseChannel",
                                 "name": "新增节点",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string",
                                 "value": {
                                   "type": ["customize"],
@@ -3272,132 +2739,88 @@
                             "attrId": "1463085",
                             "code": "resultMsgCode",
                             "name": "resultMsgCode",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "string"
                           },
                           {
                             "attrId": "7638504",
                             "code": "resultMsg",
                             "name": "resultMsg",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "string"
                           },
                           {
                             "attrId": "513151",
                             "code": "resultCode",
                             "name": "resultCode",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "string"
                           },
                           {
                             "attrId": "118526",
                             "code": "resultData",
                             "name": "resultData",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "objectArray",
                             "children": [
                               {
                                 "attrId": "281217",
                                 "code": "nodeValue",
                                 "name": "nodeValue",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string"
                               },
                               {
                                 "attrId": "379361",
                                 "code": "nodeKey",
                                 "name": "nodeKey",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string"
                               },
                               {
                                 "attrId": "954346",
                                 "code": "parentCode",
                                 "name": "parentCode",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string"
                               },
                               {
                                 "attrId": "90271",
                                 "code": "children",
                                 "name": "children",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "objectArray",
                                 "children": [
                                   {
                                     "attrId": "585501647",
                                     "code": "nodeKey",
                                     "name": "nodeKey",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "string"
                                   },
                                   {
                                     "attrId": "562087",
                                     "code": "children",
                                     "name": "children",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "fieldArray",
                                     "children": [
                                       {
                                         "attrId": "888576",
                                         "code": "listItem",
                                         "name": "列表元素",
-                                        "sort": {
-                                          "isSort": true
-                                        },
-                                        "initialData": {
-                                          "type": "static"
-                                        },
+                                        "sort": { "isSort": true },
+                                        "initialData": { "type": "static" },
                                         "type": "object"
                                       }
                                     ]
@@ -3406,24 +2829,16 @@
                                     "attrId": "748312",
                                     "code": "parentCode",
                                     "name": "parentCode",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "string"
                                   },
                                   {
                                     "attrId": "3696457",
                                     "code": "nodeValue",
                                     "name": "nodeValue",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "string"
                                   }
                                 ]
@@ -3667,64 +3082,40 @@
                             "attrId": "674198",
                             "code": "header",
                             "name": "请求头参数",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object"
                           },
                           {
                             "attrId": "266602",
                             "code": "path",
                             "name": "请求路径参数",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object"
                           },
                           {
                             "attrId": "777506",
                             "code": "query",
                             "name": "URL 参数",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object"
                           },
                           {
                             "attrId": "1407874",
                             "code": "body",
                             "name": "请求体",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object",
                             "children": [
                               {
                                 "attrId": "124619",
                                 "code": "nodeValue",
                                 "name": "新增节点",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string",
                                 "value": {
                                   "type": ["context", "$value_2211283$"],
@@ -3735,12 +3126,8 @@
                                 "attrId": "517287",
                                 "code": "nodeKey",
                                 "name": "nodeKey",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string",
                                 "value": {
                                   "type": ["customize"],
@@ -3751,12 +3138,8 @@
                                 "attrId": "999588",
                                 "code": "releaseChannel",
                                 "name": "新增节点",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string",
                                 "value": {
                                   "type": ["customize"],
@@ -3771,132 +3154,88 @@
                             "attrId": "359989",
                             "code": "resultMsgCode",
                             "name": "resultMsgCode",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "string"
                           },
                           {
                             "attrId": "41977",
                             "code": "resultMsg",
                             "name": "resultMsg",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "string"
                           },
                           {
                             "attrId": "784308",
                             "code": "resultCode",
                             "name": "resultCode",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "string"
                           },
                           {
                             "attrId": "14877",
                             "code": "resultData",
                             "name": "resultData",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "objectArray",
                             "children": [
                               {
                                 "attrId": "4341527",
                                 "code": "nodeValue",
                                 "name": "nodeValue",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string"
                               },
                               {
                                 "attrId": "992013",
                                 "code": "nodeKey",
                                 "name": "nodeKey",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string"
                               },
                               {
                                 "attrId": "374508",
                                 "code": "parentCode",
                                 "name": "parentCode",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string"
                               },
                               {
                                 "attrId": "145747",
                                 "code": "children",
                                 "name": "children",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "objectArray",
                                 "children": [
                                   {
                                     "attrId": "746308",
                                     "code": "nodeKey",
                                     "name": "nodeKey",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "string"
                                   },
                                   {
                                     "attrId": "008252",
                                     "code": "children",
                                     "name": "children",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "fieldArray",
                                     "children": [
                                       {
                                         "attrId": "6292188",
                                         "code": "listItem",
                                         "name": "列表元素",
-                                        "sort": {
-                                          "isSort": true
-                                        },
-                                        "initialData": {
-                                          "type": "static"
-                                        },
+                                        "sort": { "isSort": true },
+                                        "initialData": { "type": "static" },
                                         "type": "object"
                                       }
                                     ]
@@ -3905,24 +3244,16 @@
                                     "attrId": "324336",
                                     "code": "parentCode",
                                     "name": "parentCode",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "string"
                                   },
                                   {
                                     "attrId": "1126966",
                                     "code": "nodeValue",
                                     "name": "nodeValue",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "string"
                                   }
                                 ]
@@ -4166,64 +3497,40 @@
                             "attrId": "6996998",
                             "code": "header",
                             "name": "请求头参数",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object"
                           },
                           {
                             "attrId": "653788",
                             "code": "path",
                             "name": "请求路径参数",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object"
                           },
                           {
                             "attrId": "201335",
                             "code": "query",
                             "name": "URL 参数",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object"
                           },
                           {
                             "attrId": "2270458",
                             "code": "body",
                             "name": "请求体",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static",
-                              "value": ""
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static", "value": "" },
                             "type": "object",
                             "children": [
                               {
                                 "attrId": "3671",
                                 "code": "nodeValue",
                                 "name": "新增节点",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string",
                                 "value": {
                                   "type": ["context", "$value_2211283$"],
@@ -4234,12 +3541,8 @@
                                 "attrId": "336337",
                                 "code": "nodeKey",
                                 "name": "nodeKey",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string",
                                 "value": {
                                   "type": ["customize"],
@@ -4250,12 +3553,8 @@
                                 "attrId": "394223",
                                 "code": "releaseChannel",
                                 "name": "新增节点",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string",
                                 "value": {
                                   "type": ["customize"],
@@ -4270,132 +3569,88 @@
                             "attrId": "673683",
                             "code": "resultMsgCode",
                             "name": "resultMsgCode",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "string"
                           },
                           {
                             "attrId": "2283536",
                             "code": "resultMsg",
                             "name": "resultMsg",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "string"
                           },
                           {
                             "attrId": "458075",
                             "code": "resultCode",
                             "name": "resultCode",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "string"
                           },
                           {
                             "attrId": "917443",
                             "code": "resultData",
                             "name": "resultData",
-                            "sort": {
-                              "isSort": true
-                            },
-                            "initialData": {
-                              "type": "static"
-                            },
+                            "sort": { "isSort": true },
+                            "initialData": { "type": "static" },
                             "type": "objectArray",
                             "children": [
                               {
                                 "attrId": "204225",
                                 "code": "nodeValue",
                                 "name": "nodeValue",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string"
                               },
                               {
                                 "attrId": "1199901",
                                 "code": "nodeKey",
                                 "name": "nodeKey",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string"
                               },
                               {
                                 "attrId": "02113",
                                 "code": "parentCode",
                                 "name": "parentCode",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "string"
                               },
                               {
                                 "attrId": "635566",
                                 "code": "children",
                                 "name": "children",
-                                "sort": {
-                                  "isSort": true
-                                },
-                                "initialData": {
-                                  "type": "static"
-                                },
+                                "sort": { "isSort": true },
+                                "initialData": { "type": "static" },
                                 "type": "objectArray",
                                 "children": [
                                   {
                                     "attrId": "05122336",
                                     "code": "nodeKey",
                                     "name": "nodeKey",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "string"
                                   },
                                   {
                                     "attrId": "0229784",
                                     "code": "children",
                                     "name": "children",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "fieldArray",
                                     "children": [
                                       {
                                         "attrId": "7212235",
                                         "code": "listItem",
                                         "name": "列表元素",
-                                        "sort": {
-                                          "isSort": true
-                                        },
-                                        "initialData": {
-                                          "type": "static"
-                                        },
+                                        "sort": { "isSort": true },
+                                        "initialData": { "type": "static" },
                                         "type": "object"
                                       }
                                     ]
@@ -4404,24 +3659,16 @@
                                     "attrId": "519418",
                                     "code": "parentCode",
                                     "name": "parentCode",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "string"
                                   },
                                   {
                                     "attrId": "202486",
                                     "code": "nodeValue",
                                     "name": "nodeValue",
-                                    "sort": {
-                                      "isSort": true
-                                    },
-                                    "initialData": {
-                                      "type": "static"
-                                    },
+                                    "sort": { "isSort": true },
+                                    "initialData": { "type": "static" },
                                     "type": "string"
                                   }
                                 ]
@@ -4481,10 +3728,7 @@
       "compName": "View",
       "compType": 0,
       "compLib": "custom",
-      "props": {
-        "name": "页面",
-        "basicStatus": 1
-      },
+      "props": { "name": "页面", "basicStatus": 1 },
       "style": {
         "minHeight": "100%",
         "display": "block",
@@ -4515,10 +3759,7 @@
           "type": "View",
           "compType": 0,
           "compLib": "custom",
-          "props": {
-            "name": "布局容器",
-            "basicStatus": 1
-          },
+          "props": { "name": "布局容器", "basicStatus": 1 },
           "style": {
             "display": "flex",
             "flexDirection": "column",
@@ -4545,10 +3786,7 @@
               "type": "View",
               "compType": 0,
               "compLib": "custom",
-              "props": {
-                "name": "布局容器",
-                "basicStatus": 1
-              },
+              "props": { "name": "布局容器", "basicStatus": 1 },
               "style": {
                 "display": "flex",
                 "flexDirection": "row",
@@ -4580,10 +3818,7 @@
                   "type": "View",
                   "compType": 0,
                   "compLib": "custom",
-                  "props": {
-                    "name": "布局容器",
-                    "basicStatus": 1
-                  },
+                  "props": { "name": "布局容器", "basicStatus": 1 },
                   "style": {
                     "display": "flex",
                     "flexDirection": "row",
@@ -4853,11 +4088,7 @@
                           "path": [],
                           "value": "onClick",
                           "params": [
-                            {
-                              "title": "事件对象",
-                              "value": "$e$",
-                              "name": "e"
-                            }
+                            { "title": "事件对象", "value": "$e$", "name": "e" }
                           ]
                         }
                       ],
@@ -4973,11 +4204,7 @@
                           "path": [],
                           "value": "onClick",
                           "params": [
-                            {
-                              "title": "事件对象",
-                              "value": "$e$",
-                              "name": "e"
-                            }
+                            { "title": "事件对象", "value": "$e$", "name": "e" }
                           ],
                           "elseIfs": []
                         }
@@ -5007,10 +4234,7 @@
                   "type": "View",
                   "compType": 0,
                   "compLib": "custom",
-                  "props": {
-                    "name": "布局容器",
-                    "basicStatus": 1
-                  },
+                  "props": { "name": "布局容器", "basicStatus": 1 },
                   "style": {
                     "display": "block",
                     "flexDirection": "column",
@@ -5086,12 +4310,8 @@
                                 "type": "push",
                                 "pathname": "/approveOrderTodo",
                                 "selectedType": "page",
-                                "paramsObj": {
-                                  "isDraft": "1"
-                                },
-                                "paramsObjKeyValueMap": {
-                                  "isDraft": "1"
-                                }
+                                "paramsObj": { "isDraft": "1" },
+                                "paramsObjKeyValueMap": { "isDraft": "1" }
                               },
                               "actionObjId": "history",
                               "actionObjName": "system",
@@ -5101,11 +4321,7 @@
                           "path": [],
                           "value": "onClick",
                           "params": [
-                            {
-                              "title": "事件对象",
-                              "value": "$e$",
-                              "name": "e"
-                            }
+                            { "title": "事件对象", "value": "$e$", "name": "e" }
                           ]
                         }
                       ],
@@ -5137,10 +4353,7 @@
               "type": "View",
               "compType": 0,
               "compLib": "custom",
-              "props": {
-                "name": "布局容器",
-                "basicStatus": 1
-              },
+              "props": { "name": "布局容器", "basicStatus": 1 },
               "style": {
                 "display": "block",
                 "flexDirection": "column",
@@ -5162,9 +4375,7 @@
               "groupsName": "布局",
               "setEvents": [],
               "isLabelDropBoxChild": false,
-              "customStyle": {
-                "flex": "11auto"
-              },
+              "customStyle": { "flex": "11auto" },
               "components": [
                 {
                   "id": "View_239728",
@@ -5173,10 +4384,7 @@
                   "type": "View",
                   "compType": 0,
                   "compLib": "custom",
-                  "props": {
-                    "name": "布局容器1",
-                    "basicStatus": 1
-                  },
+                  "props": { "name": "布局容器1", "basicStatus": 1 },
                   "style": {
                     "display": "block",
                     "flexDirection": "column",
@@ -5235,9 +4443,7 @@
                               "header": "通用类22",
                               "key": "1"
                             },
-                            "style": {
-                              "minHeight": 40
-                            },
+                            "style": { "minHeight": 40 },
                             "isContainer": true,
                             "isBusiObjContainer": false,
                             "cmdgroup": ["basic"],
@@ -5276,16 +4482,10 @@
                                   "isEditor": true,
                                   "fieldName": "data.selectAlltreeNodeCode.resultData",
                                   "gridData": "$\"$data.selectAlltreeNodeCode.resultData$\"$",
-                                  "selectStyle": {
-                                    "border": "unset"
-                                  },
-                                  "normalStyle": {
-                                    "border": "0px solid"
-                                  }
+                                  "selectStyle": { "border": "unset" },
+                                  "normalStyle": { "border": "0px solid" }
                                 },
-                                "style": {
-                                  "minHeight": 40
-                                },
+                                "style": { "minHeight": 40 },
                                 "isContainer": true,
                                 "isBusiObjContainer": false,
                                 "cmdgroup": ["basic"],
@@ -5489,9 +4689,7 @@
                                                 "background-color": "rgba(112, 158, 250, 0.31)"
                                               }
                                             },
-                                            "style": {
-                                              "minHeight": 40
-                                            },
+                                            "style": { "minHeight": 40 },
                                             "isContainer": true,
                                             "isBusiObjContainer": false,
                                             "cmdgroup": ["basic"],
@@ -5760,9 +4958,7 @@
                                             "code": "param",
                                             "name": "属性",
                                             "type": "string",
-                                            "initialData": {
-                                              "type": "static"
-                                            }
+                                            "initialData": { "type": "static" }
                                           }
                                         ],
                                         "newData": "$data_024746$",
@@ -5842,9 +5038,7 @@
                             "prefixIconIsIconFont": false,
                             "basicStatus": 1
                           },
-                          "style": {
-                            "minHeight": 40
-                          },
+                          "style": { "minHeight": 40 },
                           "isContainer": true,
                           "isBusiObjContainer": false,
                           "cmdgroup": ["basic"],
@@ -5879,16 +5073,10 @@
                                 "isEditor": false,
                                 "fieldName": "data.selectAlltreeNodeCode.resultData",
                                 "gridData": "$\"$data.selectAlltreeNodeCode.resultData$\"$",
-                                "selectStyle": {
-                                  "border": "unset"
-                                },
-                                "normalStyle": {
-                                  "border": "0px solid"
-                                }
+                                "selectStyle": { "border": "unset" },
+                                "normalStyle": { "border": "0px solid" }
                               },
-                              "style": {
-                                "minHeight": 40
-                              },
+                              "style": { "minHeight": 40 },
                               "isContainer": true,
                               "isBusiObjContainer": false,
                               "cmdgroup": ["basic"],
@@ -5966,9 +5154,7 @@
                                       "groupsName": "布局",
                                       "setEvents": [],
                                       "isLabelDropBoxChild": false,
-                                      "customStyle": {
-                                        "font-weight": "bold"
-                                      },
+                                      "customStyle": { "font-weight": "bold" },
                                       "components": [
                                         {
                                           "id": "Text_4120405",
@@ -6107,9 +5293,7 @@
                                             },
                                             "value": "$\"$data.emptyArray.array$\"$"
                                           },
-                                          "style": {
-                                            "minHeight": 40
-                                          },
+                                          "style": { "minHeight": 40 },
                                           "isContainer": true,
                                           "isBusiObjContainer": false,
                                           "cmdgroup": ["basic"],
@@ -6578,10 +5762,7 @@
                   "type": "View",
                   "compType": 0,
                   "compLib": "custom",
-                  "props": {
-                    "name": "布局容器2",
-                    "basicStatus": 1
-                  },
+                  "props": { "name": "布局容器2", "basicStatus": 1 },
                   "style": {
                     "display": "block",
                     "padding": "0px 0px 0px 0px",
@@ -6639,9 +5820,7 @@
                               "header": "基础类",
                               "key": "2462862"
                             },
-                            "style": {
-                              "minHeight": 40
-                            },
+                            "style": { "minHeight": 40 },
                             "isContainer": true,
                             "isBusiObjContainer": false,
                             "cmdgroup": ["basic"],
@@ -6757,9 +5936,7 @@
                                             "code": "param",
                                             "name": "属性",
                                             "type": "string",
-                                            "initialData": {
-                                              "type": "static"
-                                            }
+                                            "initialData": { "type": "static" }
                                           }
                                         ],
                                         "newData": "$data_85599506$",
@@ -6839,9 +6016,7 @@
                             "prefixIconIsIconFont": false,
                             "basicStatus": 1
                           },
-                          "style": {
-                            "minHeight": 40
-                          },
+                          "style": { "minHeight": 40 },
                           "isContainer": true,
                           "isBusiObjContainer": false,
                           "cmdgroup": ["basic"],
@@ -6876,16 +6051,10 @@
                                 "isEditor": false,
                                 "fieldName": "data.jichulei.resultData",
                                 "gridData": "$\"$data.jichulei.resultData$\"$",
-                                "selectStyle": {
-                                  "border": "unset"
-                                },
-                                "normalStyle": {
-                                  "border": "0px solid"
-                                }
+                                "selectStyle": { "border": "unset" },
+                                "normalStyle": { "border": "0px solid" }
                               },
-                              "style": {
-                                "minHeight": 40
-                              },
+                              "style": { "minHeight": 40 },
                               "isContainer": true,
                               "isBusiObjContainer": false,
                               "cmdgroup": ["basic"],
@@ -7133,9 +6302,7 @@
                                             },
                                             "value": "$\"$data.emptyArray.array$\"$"
                                           },
-                                          "style": {
-                                            "minHeight": 40
-                                          },
+                                          "style": { "minHeight": 40 },
                                           "isContainer": true,
                                           "isBusiObjContainer": false,
                                           "cmdgroup": ["basic"],
@@ -7579,10 +6746,7 @@
                   "type": "View",
                   "compType": 0,
                   "compLib": "custom",
-                  "props": {
-                    "name": "布局容器3",
-                    "basicStatus": 1
-                  },
+                  "props": { "name": "布局容器3", "basicStatus": 1 },
                   "style": {
                     "display": "block",
                     "flexDirection": "column",
@@ -7641,9 +6805,7 @@
                               "header": "产品类",
                               "key": "2423448"
                             },
-                            "style": {
-                              "minHeight": 40
-                            },
+                            "style": { "minHeight": 40 },
                             "isContainer": true,
                             "isBusiObjContainer": false,
                             "cmdgroup": ["basic"],
@@ -7759,9 +6921,7 @@
                                             "code": "param",
                                             "name": "属性",
                                             "type": "string",
-                                            "initialData": {
-                                              "type": "static"
-                                            }
+                                            "initialData": { "type": "static" }
                                           }
                                         ],
                                         "newData": "$data_187553$",
@@ -7841,9 +7001,7 @@
                             "prefixIconIsIconFont": false,
                             "basicStatus": 1
                           },
-                          "style": {
-                            "minHeight": 40
-                          },
+                          "style": { "minHeight": 40 },
                           "isContainer": true,
                           "isBusiObjContainer": false,
                           "cmdgroup": ["basic"],
@@ -7878,16 +7036,10 @@
                                 "isEditor": false,
                                 "fieldName": "data.chanpinlei.resultData",
                                 "gridData": "$\"$data.chanpinlei.resultData$\"$",
-                                "selectStyle": {
-                                  "border": "unset"
-                                },
-                                "normalStyle": {
-                                  "border": "0px solid"
-                                }
+                                "selectStyle": { "border": "unset" },
+                                "normalStyle": { "border": "0px solid" }
                               },
-                              "style": {
-                                "minHeight": 40
-                              },
+                              "style": { "minHeight": 40 },
                               "isContainer": true,
                               "isBusiObjContainer": false,
                               "cmdgroup": ["basic"],
@@ -8102,9 +7254,7 @@
                                             },
                                             "value": "$\"$data.emptyArray.array$\"$"
                                           },
-                                          "style": {
-                                            "minHeight": 40
-                                          },
+                                          "style": { "minHeight": 40 },
                                           "isContainer": true,
                                           "isBusiObjContainer": false,
                                           "cmdgroup": ["basic"],
@@ -8548,10 +7698,7 @@
                   "type": "View",
                   "compType": 0,
                   "compLib": "custom",
-                  "props": {
-                    "name": "布局容器4",
-                    "basicStatus": 1
-                  },
+                  "props": { "name": "布局容器4", "basicStatus": 1 },
                   "style": {
                     "display": "block",
                     "flexDirection": "column",
@@ -8610,9 +7757,7 @@
                               "header": "营销案类",
                               "key": "626254"
                             },
-                            "style": {
-                              "minHeight": 40
-                            },
+                            "style": { "minHeight": 40 },
                             "isContainer": true,
                             "isBusiObjContainer": false,
                             "cmdgroup": ["basic"],
@@ -8728,9 +7873,7 @@
                                             "code": "param",
                                             "name": "属性",
                                             "type": "string",
-                                            "initialData": {
-                                              "type": "static"
-                                            }
+                                            "initialData": { "type": "static" }
                                           }
                                         ],
                                         "newData": "$data_046543$",
@@ -8810,9 +7953,7 @@
                             "prefixIconIsIconFont": false,
                             "basicStatus": 1
                           },
-                          "style": {
-                            "minHeight": 40
-                          },
+                          "style": { "minHeight": 40 },
                           "isContainer": true,
                           "isBusiObjContainer": false,
                           "cmdgroup": ["basic"],
@@ -8847,16 +7988,10 @@
                                 "isEditor": false,
                                 "fieldName": "data.yingxiaoanlei.resultData",
                                 "gridData": "$\"$data.yingxiaoanlei.resultData$\"$",
-                                "selectStyle": {
-                                  "border": "0px solid"
-                                },
-                                "normalStyle": {
-                                  "border": "0px solid"
-                                }
+                                "selectStyle": { "border": "0px solid" },
+                                "normalStyle": { "border": "0px solid" }
                               },
-                              "style": {
-                                "minHeight": 40
-                              },
+                              "style": { "minHeight": 40 },
                               "isContainer": true,
                               "isBusiObjContainer": false,
                               "cmdgroup": ["basic"],
@@ -9071,9 +8206,7 @@
                                             },
                                             "value": "$\"$data.emptyArray.array$\"$"
                                           },
-                                          "style": {
-                                            "minHeight": 40
-                                          },
+                                          "style": { "minHeight": 40 },
                                           "isContainer": true,
                                           "isBusiObjContainer": false,
                                           "cmdgroup": ["basic"],
@@ -9545,10 +8678,7 @@
               "type": "View",
               "compType": 0,
               "compLib": "custom",
-              "props": {
-                "name": "布局容器",
-                "basicStatus": 1
-              },
+              "props": { "name": "布局容器", "basicStatus": 1 },
               "style": {
                 "display": "flex",
                 "flexDirection": "column",
@@ -9576,10 +8706,7 @@
                   "type": "VerticalView",
                   "compType": 6,
                   "compLib": "custom",
-                  "props": {
-                    "name": "上下布局",
-                    "basicStatus": 1
-                  },
+                  "props": { "name": "上下布局", "basicStatus": 1 },
                   "style": {
                     "display": "flex",
                     "flexDirection": "column",
@@ -9606,10 +8733,7 @@
                       "type": "View",
                       "compType": 0,
                       "compLib": "custom",
-                      "props": {
-                        "name": "布局容器",
-                        "basicStatus": 1
-                      },
+                      "props": { "name": "布局容器", "basicStatus": 1 },
                       "style": {
                         "display": "flex",
                         "flexDirection": "row",
@@ -9687,10 +8811,7 @@
                           "type": "View",
                           "compType": 0,
                           "compLib": "custom",
-                          "props": {
-                            "name": "布局容器",
-                            "basicStatus": 1
-                          },
+                          "props": { "name": "布局容器", "basicStatus": 1 },
                           "style": {
                             "display": "flex",
                             "flexDirection": "row",
@@ -10037,9 +9158,7 @@
                                 "type": "primary",
                                 "basicStatus": 1
                               },
-                              "style": {
-                                "width": "fit-content"
-                              },
+                              "style": { "width": "fit-content" },
                               "isContainer": false,
                               "isBusiObjContainer": false,
                               "cmdgroup": ["basic"],

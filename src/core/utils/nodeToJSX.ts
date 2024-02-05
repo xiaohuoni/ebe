@@ -154,9 +154,6 @@ function generateAttrs(
       });
     }
   }
-  if (id === 'Card_886999') {
-    console.log('Card_886999');
-  }
   // 处理 style
   if (style && Object.keys(style).length > 0) {
     pieces = pieces.concat(generateAttr('style', style, scope, config));

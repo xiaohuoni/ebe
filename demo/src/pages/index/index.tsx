@@ -1,9 +1,4 @@
-import {
-  code,
-  findAppPolymerizationInfo,
-  findBusiCompById,
-  getPageVersionById,
-} from '@/services/api';
+import { code, findBusiCompById, getPageVersionById } from '@/services/api';
 import { Button, Form, Input, message, Switch } from 'antd';
 import { useEffect, useState } from 'react';
 // @ts-ignore
@@ -88,33 +83,34 @@ const Page = () => {
     setLoading(true);
 
     // 根据 appId 获取当前应用的全部页面
-    const { resultObject } = await findAppPolymerizationInfo({
-      appId: values.appId,
-      terminalType: values.platform ? 'APP' : 'PC',
-      // operationType: 'publish',
-    });
-    console.log(resultObject);
-    const pageIdMapping: any = {};
-    const appPageList = resultObject?.appPageList.map((i) => {
-      pageIdMapping[i.pagePath] = i.pageId;
-      return i;
-    });
-    const appConfig = resultObject?.appConfig ?? {};
-    console.log(appPageList);
-    console.log(appConfig);
+    // const { resultObject } = await findAppPolymerizationInfo({
+    //   appId: values.appId,
+    //   terminalType: values.platform ? 'APP' : 'PC',
+    //   // operationType: 'publish',
+    // });
+    // console.log(resultObject);
+    // const pageIdMapping: any = {};
+    // const appPageList = resultObject?.appPageList.map((i) => {
+    //   pageIdMapping[i.pagePath] = i.pageId;
+    //   return i;
+    // });
+    // const appConfig = resultObject?.appConfig ?? {};
+    // console.log(appPageList);
+    // console.log(appConfig);
     let lastPageId: any = '';
     // 根据 pageId 获得 dsl
     const data = await Promise.all(
-      appPageList.map((i) => {
-        lastPageId = i.pageId;
+      [1].map((i) => {
+        // lastPageId = i.pageId;
         return getPageVersionById({
           appId: values.appId,
-          pageId: i.pageId,
+          pageId: '887537833022541824',
           // actionType: 'publish',
         });
       }),
     );
     console.log(data);
+    return;
     const pages = getPageDsls(data);
     console.log(pages);
     // busiCompId 过滤重复

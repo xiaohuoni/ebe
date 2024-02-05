@@ -186,6 +186,7 @@ const preprocessComponentSchema = (
 // 解析schema数据
 export const parseSchema = (schema: IProjectSchema, isRoot: boolean) => {
   modifySchemaCompName(schema, isRoot);
+
   const target = preprocessComponentSchema(schema, isRoot) ?? schema;
   const { components } = target as any;
   target.components = components?.map((schem: any) => {

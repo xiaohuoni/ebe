@@ -166,7 +166,9 @@ const replaceFunctorValue = (comp: IPublicSchemaType = {}, isRoot = false) => {
     const val = compProps[key];
     // eslint-disable-next-line no-control-regex
     if (typeof val === 'string' && /^\$.+[^\x05]*\$.*/g.test(val)) {
-      if (functors[key]) {
+      // TODO: functors 临时手段，如果是模版字符串，直接转成源码就行，不用 functors
+      const hasTemplateStrings = /\`/.test(val);
+      if (functors[key] && !hasTemplateStrings) {
         compProps[key] = functors[key].value;
       }
     } else if (Object.prototype.toString.call(val) === '[object Object]') {
@@ -174,7 +176,8 @@ const replaceFunctorValue = (comp: IPublicSchemaType = {}, isRoot = false) => {
         const cVal = val[valKey];
         // eslint-disable-next-line no-control-regex
         if (typeof cVal === 'string' && /^\$.+[^\x05]*\$.*/g.test(cVal)) {
-          if (functors[key] && functors[key][valKey]) {
+          const hasTemplateStrings = /^\`/.test(cVal);
+          if (functors[key] && functors[key][valKey] && !hasTemplateStrings) {
             compProps[key][valKey] = functors[key][valKey].value;
           }
         }

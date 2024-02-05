@@ -37,6 +37,8 @@ const getVarStr = (str: string) => {
   }
   return `'${str}'`;
 };
+// 同名的事件增加后缀
+const count = {} as any;
 
 export function getResetCurrentForm({
   value,
@@ -52,7 +54,14 @@ export function getResetCurrentForm({
       'getFormByCompId',
     ),
   );
-  return `const forms = getFormByCompId('${options.compId}', refs);
+  let suffix = '';
+  if (count[value.type]) {
+    suffix = count[value.type];
+    count[value.type] += 1;
+  } else {
+    count[value.type] = 1;
+  }
+  return `const forms${suffix} = getFormByCompId('${options.compId}', refs);
   // 支持循环容器中的表单重置
-  (Array.isArray(forms) ? forms : [forms]).forEach(form => form?.resetFields());`;
+  (Array.isArray(forms${suffix}) ? forms${suffix} : [forms${suffix}]).forEach(form => form?.resetFields());`;
 }

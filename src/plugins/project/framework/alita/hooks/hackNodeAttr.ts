@@ -52,7 +52,6 @@ export default function hackEngineApis(
   }
   // 如果是 Form 给孩子打上标记 isFormRootChild
   if (nodeTags === 'Form') {
-    console.log('Form');
     // 先删掉孩子 再插入 isFormRootChild 再生成
     // 在 解析 dsl 那边处理或许会更好？
     pieces = pieces.filter((i) => i.type !== 'NodeCodePieceChildren');

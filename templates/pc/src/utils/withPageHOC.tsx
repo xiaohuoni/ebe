@@ -51,7 +51,6 @@ export interface PageProps extends SandBoxContext {
 }
 export interface PageHOCOptions {
   pageId: string;
-  dataSource: any[];
   defaultState: any;
   hasLogin?: boolean;
 }

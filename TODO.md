@@ -63,6 +63,8 @@
 - [x] customFuctions 自定义事件 options - 不可用，函数需要上下文
 - [x] customFuctions 自定义事件 组件内方案
 - [x] pc 端 Popover
+- [x] 检查语法错误，舍弃代码
+- [x] customFuctions 自定义事件,唯一 name 重复，改用 eventCode
 - [ ] 应用勾子？-- 内部发起都处理，若移除 createApp 则需要重新处理
 - [ ] 应用勾子 pageDidMount 这个应该在页面处理
 - [ ] 组件 pc 端 GridView 选中状态样式

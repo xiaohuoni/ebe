@@ -65,6 +65,10 @@ export const CMDGeneratorEvent = (
   prefix: string = '',
 ) => {
   const renderEvent = `(${prefix}${value.params
+    .filter((obj: { name: any }, index: any, arr: any[]) => {
+      // 删掉 name 重复的对象，如 Tree {title: '节点key(单选)',name: 'selectedKeys',value: '$selectedKeys[0]$',},{title: '节点keys(多选)',name: 'selectedKeys',value: '$selectedKeys$', },
+      return arr.findIndex((o) => o.name === obj.name) === index;
+    })
     .map((i: { name: any }) => i.name + ': any')
     .join(',')})=>{ ${CMDGeneratorFunction(
     value,

@@ -4,7 +4,7 @@ import alita from './src/solutions/alita';
 import { createDiskPublisher } from './src/core/publisher/disk';
 import { createZipPublisher } from './src/core/publisher/zip';
 (async () => {
-  const schemaFile = 'req1.json';
+  const schemaFile = './demo/node_modules/.cache/871672424566726656/req.json';
   // 读取 Schema
   const schema = await loadSchemaFile(schemaFile);
 

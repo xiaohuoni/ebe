@@ -54,13 +54,13 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
               };
             });
             const item = value[0];
-            customFuctionsIds.push(item?.id);
+            customFuctionsIds.push(e.eventCode);
             // const { eName, eValue } = events;
             // schema.events[eName] = {
             //   id: `${eName}`,
             //   value: eValue,
             // };
-            return `const ${item?.id} = ${CMDGeneratorEvent(
+            return `const ${e.eventCode} = ${CMDGeneratorEvent(
               item?.value,
               next?.contextData,
               {} as IScope,

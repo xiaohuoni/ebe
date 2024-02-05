@@ -5,7 +5,7 @@ import { createDiskPublisher } from './src/core/publisher/disk';
 import { createZipPublisher } from './src/core/publisher/zip';
 (async () => {
   const testPlatformIsH5 = false;
-  const schemaFile = testPlatformIsH5 ? 'lingxi-page-h5.json' : 'b.json';
+  const schemaFile = testPlatformIsH5 ? 'lingxi-page-h5.json' : 'a.json';
   // 读取 Schema
   const schema = await loadSchemaFile(schemaFile);
   // schema.pageId = testPlatformIsH5
@@ -68,6 +68,7 @@ import { createZipPublisher } from './src/core/publisher/zip';
     pageIdMapping: {
       '/asd5371': '1024143466269171712',
       '/ceshi1071': '1024143466269171712',
+      '/ceshi8260': '1024261720265998336',
       '/model28529': '1051421568049684480',
       '/buchong4160': '1051387196217495552',
       '/tanchuang1787': '1060380198735069184',
