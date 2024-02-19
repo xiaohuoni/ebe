@@ -1,0 +1,19 @@
+[
+  {
+    "name": "pageData",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "325501",
+        "code": "orgInfo",
+        "name": "属性",
+        "type": "object",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  }
+]

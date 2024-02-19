@@ -1,0 +1,1234 @@
+[
+  {
+    "name": "exceptionStatusList",
+    "source": "service",
+    "type": "object",
+    "requestType": "object",
+    "filterParams": [
+      {
+        "attrId": "539068",
+        "code": "header",
+        "name": "请求头参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "key": "header"
+      },
+      {
+        "attrId": "545984",
+        "code": "path",
+        "name": "请求路径参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "key": "path"
+      },
+      {
+        "attrId": "340251",
+        "code": "query",
+        "name": "URL 参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "key": "query"
+      },
+      {
+        "attrId": "0483436",
+        "code": "body",
+        "name": "请求体",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "children": [
+          {
+            "attrId": "854032",
+            "code": "attrCode",
+            "name": "attrCode",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "exceptionStatus"
+            },
+            "type": "string",
+            "key": "body.attrCode"
+          }
+        ],
+        "key": "body"
+      }
+    ],
+    "outParams": [
+      {
+        "attrId": "977702",
+        "code": "resultCode",
+        "name": "resultCode",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "585544",
+        "code": "resultMsg",
+        "name": "resultMsg",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "93528235",
+        "code": "resultMsgCode",
+        "name": "resultMsgCode",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "214645",
+        "code": "resultData",
+        "name": "resultData",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "objectArray",
+        "children": [
+          {
+            "attrId": "039631",
+            "code": "attrValueId",
+            "name": "attrValueId",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "long"
+          },
+          {
+            "attrId": "02641",
+            "code": "attrCode",
+            "name": "attrCode",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "3150163",
+            "code": "attrValueDesc",
+            "name": "attrValueDesc",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "0731876",
+            "code": "attrValueCode",
+            "name": "attrValueCode",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "4737094",
+            "code": "attrValueName",
+            "name": "attrValueName",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "674639",
+            "code": "attrValue",
+            "name": "attrValue",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "167783",
+            "code": "sort",
+            "name": "sort",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "config": {
+      "hooks": [],
+      "isInit": true,
+      "options": {
+        "service": {
+          "busiApiId": "876388007192457216",
+          "busiApiNbr": "qryEnumValueByCode",
+          "busiApiName": "根据编码查询枚举值信息-hdb",
+          "busiObjId": "876388007192457216",
+          "apiParam": null,
+          "request": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "header",
+                "name": "请求头参数",
+                "attrType": "object"
+              },
+              {
+                "code": "path",
+                "name": "请求路径参数",
+                "attrType": "object"
+              },
+              {
+                "code": "query",
+                "name": "URL 参数",
+                "attrType": "object"
+              },
+              {
+                "code": "body",
+                "name": "请求体",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "attrCode",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "resultCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsg",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsgCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultData",
+                "attrType": "objectArray",
+                "children": [
+                  {
+                    "code": "attrValueId",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "attrCode",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "attrValueDesc",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "attrValueCode",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "attrValueName",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "attrValue",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "sort",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          "productId": "200011265",
+          "api": "/app/rhin/gateway/callRhinEngine",
+          "_source": "rhin",
+          "_serviceId": "876388007192457216",
+          "_serviceTitle": "根据编码查询枚举值信息-hdb: qryEnumValueByCode",
+          "_capabilityCode": "qryEnumValueByCode",
+          "_apiCode": "qryEnumValueByCode",
+          "isServiceParam": true,
+          "requestType": "object",
+          "responseType": "object"
+        },
+        "headers": []
+      }
+    }
+  },
+  {
+    "name": "exceptionInstPage",
+    "source": "service",
+    "type": "object",
+    "requestType": "object",
+    "filterParams": [
+      {
+        "attrId": "596074",
+        "code": "header",
+        "name": "请求头参数",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "786397",
+        "code": "path",
+        "name": "请求路径参数",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "869621",
+        "code": "query",
+        "name": "URL 参数",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "858785",
+        "code": "body",
+        "name": "请求体",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "children": [
+          {
+            "attrId": "008703056",
+            "code": "methodCode",
+            "name": "methodCode",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "7419725",
+            "code": "busiObjNbr",
+            "name": "busiObjNbr",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "895312",
+            "code": "traceId",
+            "name": "新增节点",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "1491",
+            "code": "exceptionStatus",
+            "name": "exceptionStatus",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "00A"
+            }
+          },
+          {
+            "attrId": "29549",
+            "code": "pageSize",
+            "name": "pageSize",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "5"
+            }
+          },
+          {
+            "attrId": "293828",
+            "code": "exceptionContent",
+            "name": "异常内容",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "013747",
+            "code": "pageNum",
+            "name": "pageNum",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            }
+          }
+        ]
+      }
+    ],
+    "outParams": [
+      {
+        "attrId": "91992",
+        "code": "resultCode",
+        "name": "resultCode",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "058233",
+        "code": "resultMsgCode",
+        "name": "resultMsgCode",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "464118",
+        "code": "resultMsg",
+        "name": "resultMsg",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "921324",
+        "code": "resultData",
+        "name": "resultData",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "children": [
+          {
+            "attrId": "354317",
+            "code": "total",
+            "name": "total",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "2629274",
+            "code": "current",
+            "name": "current",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "725282",
+            "code": "hitCount",
+            "name": "hitCount",
+            "type": "boolean",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "867602",
+            "code": "size",
+            "name": "size",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "4524856",
+            "code": "optimizeCountSql",
+            "name": "optimizeCountSql",
+            "type": "boolean",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "5320845",
+            "code": "maxLimit",
+            "name": "maxLimit",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "5657515",
+            "code": "orders",
+            "name": "orders",
+            "type": "fieldArray",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "children": [
+              {
+                "attrId": "1530739",
+                "code": "listItem",
+                "name": "列表元素",
+                "type": "object",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              }
+            ]
+          },
+          {
+            "attrId": "58085938",
+            "code": "countId",
+            "name": "countId",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "3401214",
+            "code": "isSearchCount",
+            "name": "isSearchCount",
+            "type": "boolean",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "2719286",
+            "code": "records",
+            "name": "records",
+            "type": "objectArray",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "children": [
+              {
+                "attrId": "3174426",
+                "code": "requestUrl",
+                "name": "新增节点",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "622865",
+                "code": "requestBrowser",
+                "name": "新增节点",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "605792",
+                "code": "traceId",
+                "name": "新增节点",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "9546033",
+                "code": "logWhenSuccess",
+                "name": "新增节点",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "91554",
+                "code": "exceptionContent",
+                "name": "exceptionContent",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "860616",
+                "code": "updateStaff",
+                "name": "updateStaff",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "962926",
+                "code": "createDate",
+                "name": "createDate",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "831806",
+                "code": "updateDate",
+                "name": "updateDate",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "4180472",
+                "code": "remark",
+                "name": "remark",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "226876",
+                "code": "methodCode",
+                "name": "methodCode",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "32217",
+                "code": "statusCd",
+                "name": "statusCd",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "914114",
+                "code": "createStaff",
+                "name": "createStaff",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "373657",
+                "code": "exceptionStatus",
+                "name": "exceptionStatus",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "625371",
+                "code": "taskHandleId",
+                "name": "taskHandleId",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "302066",
+                "code": "exceptionStatusName",
+                "name": "exceptionStatusName",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "977839",
+                "code": "busiObjNbr",
+                "name": "busiObjNbr",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "948981",
+                "code": "exceptionInstId",
+                "name": "exceptionInstId",
+                "type": "long",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "492625",
+                "code": "objInstId",
+                "name": "objInstId",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "7464965",
+                "code": "createStaffName",
+                "name": "createStaffName",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "config": {
+      "hooks": [],
+      "isInit": true,
+      "options": {
+        "service": {
+          "busiApiId": "956386192889430016",
+          "busiApiNbr": "qryExceptionInstPage",
+          "busiApiName": "异常信息分页查询--tzp",
+          "busiObjId": "956386192889430016",
+          "apiParam": null,
+          "request": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "header",
+                "name": "请求头参数",
+                "attrType": "object"
+              },
+              {
+                "code": "path",
+                "name": "请求路径参数",
+                "attrType": "object"
+              },
+              {
+                "code": "query",
+                "name": "URL 参数",
+                "attrType": "object"
+              },
+              {
+                "code": "body",
+                "name": "请求体",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "methodCode",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "busiObjNbr",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "traceId",
+                    "name": "新增节点",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  },
+                  {
+                    "code": "exceptionStatus",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "pageSize",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "exceptionContent",
+                    "name": "异常内容",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  },
+                  {
+                    "code": "pageNum",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "resultCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsgCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsg",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultData",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "total",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "current",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "hitCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "size",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "optimizeCountSql",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "maxLimit",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "orders",
+                    "attrType": "fieldArray",
+                    "mustFlag": "F",
+                    "children": [
+                      {
+                        "code": "listItem",
+                        "name": "列表元素",
+                        "attrType": "field",
+                        "type": "1600"
+                      }
+                    ]
+                  },
+                  {
+                    "code": "countId",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "isSearchCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "records",
+                    "attrType": "objectArray",
+                    "children": [
+                      {
+                        "code": "requestUrl",
+                        "name": "新增节点",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F",
+                        "defaultValue": ""
+                      },
+                      {
+                        "code": "requestBrowser",
+                        "name": "新增节点",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F",
+                        "defaultValue": ""
+                      },
+                      {
+                        "code": "traceId",
+                        "name": "新增节点",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F",
+                        "defaultValue": ""
+                      },
+                      {
+                        "code": "logWhenSuccess",
+                        "name": "新增节点",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F",
+                        "defaultValue": ""
+                      },
+                      {
+                        "code": "exceptionContent",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "updateStaff",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "updateDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "remark",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "methodCode",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "statusCd",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createStaff",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "exceptionStatus",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "taskHandleId",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "exceptionStatusName",
+                        "name": "exceptionStatusName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F",
+                        "defaultValue": ""
+                      },
+                      {
+                        "code": "busiObjNbr",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "exceptionInstId",
+                        "attrType": "field",
+                        "type": "1400",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "objInstId",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createStaffName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "productId": "956387064379637760",
+          "api": "/app/rhin/gateway/callRhinEngine",
+          "_source": "rhin",
+          "_serviceId": "956386192889430016",
+          "_serviceTitle": "异常信息分页查询--tzp: qryExceptionInstPage",
+          "_capabilityCode": "qryExceptionInstPage",
+          "_apiCode": "qryExceptionInstPage",
+          "_sourceName": "异常信息分页查询--tzp",
+          "isServiceParam": true,
+          "requestType": "object",
+          "responseType": "object"
+        },
+        "headers": []
+      }
+    },
+    "sourceId": "956386192889430016"
+  }
+]

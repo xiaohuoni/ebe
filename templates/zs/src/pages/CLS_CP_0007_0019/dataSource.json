@@ -1,0 +1,730 @@
+[
+  {
+    "name": "sceneSubmit",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "154379",
+        "code": "catalogCode",
+        "name": "类目编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "4562264",
+        "code": "approveGrade",
+        "name": "审批等级",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "63768",
+        "code": "attrList",
+        "name": "要素",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "919265",
+        "code": "fileInfo",
+        "name": "附件",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        },
+        "children": []
+      },
+      {
+        "attrId": "360171",
+        "code": "catalogItemCode",
+        "name": "类目项编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "420623",
+        "code": "catalogItemSubType",
+        "name": "类目项子类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "375466",
+        "code": "childCatalogCode",
+        "name": "子类目项编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "9257773",
+        "code": "parentCatalogCode",
+        "name": "上级类目编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "5733013",
+        "code": "parentCatalogItemCode",
+        "name": "上级类目项编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "440627",
+        "code": "childCatalogDesc",
+        "name": "子类目项描述",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "177104",
+        "code": "approveGradeName",
+        "name": "审批等级名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "13154521",
+        "code": "custMemberList",
+        "name": "成员信息",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "5397914",
+        "code": "instList",
+        "name": "多实例",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "fileInfoList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "code": "fileName",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件名称",
+        "defaultValue": "",
+        "name": "附件名称",
+        "attrId": "458544",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "filePath",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件文件路径",
+        "defaultValue": "",
+        "name": "附件文件路径",
+        "attrId": "6354087",
+        "initialData": {
+          "type": "static",
+          "value": "附件文件路径"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileServerType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件文件服务器类型",
+        "defaultValue": "",
+        "name": "附件文件服务器类型",
+        "attrId": "184934",
+        "initialData": {
+          "type": "static",
+          "value": "附件文件服务器类型"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileSubType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件分类-细类",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "551676",
+        "initialData": {
+          "type": "static",
+          "value": "附件分类-细类"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件分类-大类",
+        "defaultValue": "",
+        "name": "附件分类-大类",
+        "attrId": "383524",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileUrl",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件url地址",
+        "defaultValue": "",
+        "name": "附件url地址",
+        "attrId": "726875",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "tacheCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "环节编码",
+        "defaultValue": "",
+        "name": "环节编码",
+        "attrId": "865444",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "attrId": "7419638",
+        "code": "fileCode",
+        "name": "文件编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "097484",
+        "code": "createTime",
+        "name": "创建时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "604675",
+        "code": "createStaff",
+        "name": "创建人",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "729925",
+        "code": "fileTypeName",
+        "name": "附件类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "feeInfo",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "code": "recoverNetCost",
+        "name": "可收回网络成本（月)",
+        "type": "string",
+        "attrId": "6646057",
+        "initialData": {
+          "type": "static",
+          "value": "可收回网络成本（月)"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "infoIncomeYear",
+        "name": "年信息化收入",
+        "type": "string",
+        "attrId": "739395",
+        "initialData": {
+          "type": "static",
+          "value": "年信息化收入"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "lineFuncFee",
+        "name": "专线功能费(元)",
+        "type": "string",
+        "attrId": "305445",
+        "initialData": {
+          "type": "static",
+          "value": "专线功能费(元)"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "maintenanceCost",
+        "name": "维护费(元/年)",
+        "type": "string",
+        "attrId": "653623",
+        "initialData": {
+          "type": "static",
+          "value": "维护费(元/年)"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "oneInput",
+        "name": "一次性投入(元)",
+        "type": "string",
+        "attrId": "7120776",
+        "initialData": {
+          "type": "static",
+          "value": "一次性投入(元)"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "revenueShare",
+        "name": "收入分成",
+        "type": "string",
+        "attrId": "446108",
+        "initialData": {
+          "type": "static",
+          "value": "收入分成"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "toShare",
+        "name": "Z端分成",
+        "type": "string",
+        "attrId": "134042",
+        "initialData": {
+          "type": "static",
+          "value": "Z端分成"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "fromShare",
+        "name": "A端分成",
+        "type": "string",
+        "attrId": "4575007",
+        "initialData": {
+          "type": "static",
+          "value": "A端分成"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "singedTime",
+        "name": "签约时间",
+        "type": "string",
+        "attrId": "407854",
+        "initialData": {
+          "type": "static",
+          "value": "签约时间"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "receiptsPriceSum",
+        "name": "总实收价",
+        "type": "string",
+        "attrId": "267265",
+        "initialData": {
+          "type": "static",
+          "value": "总实收价"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "officePrice",
+        "name": "总部管控价格",
+        "type": "string",
+        "attrId": "081542",
+        "initialData": {
+          "type": "static",
+          "value": "总部管控价格"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "lastDiscount",
+        "name": "最终折扣",
+        "type": "string",
+        "attrId": "524252",
+        "initialData": {
+          "type": "static",
+          "value": "最终折扣"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "receiptsPrice",
+        "name": "实收价",
+        "type": "string",
+        "attrId": "611889",
+        "initialData": {
+          "type": "static",
+          "value": "实收价"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "standardPrice",
+        "name": "省内标准价格",
+        "type": "string",
+        "attrId": "683125",
+        "initialData": {
+          "type": "static",
+          "value": "省内标准价格"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "toProvince",
+        "name": "Z端省份",
+        "type": "string",
+        "attrId": "882361",
+        "initialData": {
+          "type": "static",
+          "value": "Z端省份"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "toAddress",
+        "name": "Z端地址",
+        "type": "string",
+        "attrId": "425061",
+        "initialData": {
+          "type": "static",
+          "value": "Z端地址"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "toCityText",
+        "name": "Z端地市",
+        "type": "string",
+        "attrId": "368536",
+        "initialData": {
+          "type": "static",
+          "value": "Z端地市"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "fromCityText",
+        "name": "A端地市",
+        "type": "string",
+        "attrId": "4333943",
+        "initialData": {
+          "type": "static",
+          "value": "A端地市"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "fromCity",
+        "name": "A端地市",
+        "type": "string",
+        "attrId": "323454",
+        "initialData": {
+          "type": "static",
+          "value": "A端地市"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "fromProvince",
+        "name": "A端省份",
+        "type": "string",
+        "attrId": "859533",
+        "initialData": {
+          "type": "static",
+          "value": "A端省份"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "fromAddress",
+        "name": "A端地址",
+        "type": "string",
+        "attrId": "845936",
+        "initialData": {
+          "type": "static",
+          "value": "A端地址"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "toCity",
+        "name": "Z端地市",
+        "type": "string",
+        "attrId": "270855",
+        "initialData": {
+          "type": "static",
+          "value": "Z端地市"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "count",
+        "name": "条数",
+        "type": "string",
+        "attrId": "713846",
+        "initialData": {
+          "type": "static",
+          "value": "条数"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "bandwidth",
+        "name": "带宽",
+        "type": "string",
+        "attrId": "034647",
+        "initialData": {
+          "type": "static",
+          "value": "带宽"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "busiType",
+        "name": "业务类型",
+        "type": "string",
+        "attrId": "71564078",
+        "initialData": {
+          "type": "static",
+          "value": "业务类型"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "attrId": "88947924",
+        "code": "lineType",
+        "name": "专线类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "637333",
+        "code": "accessWay",
+        "name": "接入方式",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "079197",
+        "code": "busiTypeName",
+        "name": "业务类型名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "623697",
+        "code": "bandwidthName",
+        "name": "带宽名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "18153896",
+        "code": "fromProvinceName",
+        "name": "A端省份名字",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "678613",
+        "code": "toProvinceName",
+        "name": "Z端省份名字",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "3383503",
+        "code": "revenueShareName",
+        "name": "各收入分成",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "6124241",
+        "code": "mvTransEleOffer",
+        "name": "mv跨省电路管控价",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "781743",
+        "code": "mvTransElePrice",
+        "name": "mv跨省电路目录价",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "622147",
+        "code": "flag",
+        "name": "标识",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      }
+    ]
+  },
+  {
+    "name": "factorForm",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "371174",
+        "code": "reason",
+        "name": "申请原因",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  }
+]

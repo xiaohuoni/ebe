@@ -1,0 +1,722 @@
+[
+  {
+    "name": "local_vars",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "915267",
+        "code": "op",
+        "name": "动作",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "add"
+        }
+      }
+    ]
+  },
+  {
+    "name": "qrySysLogPage",
+    "source": "service",
+    "type": "object",
+    "requestType": "object",
+    "filterParams": [
+      {
+        "attrId": "670191",
+        "code": "header",
+        "name": "请求头参数",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "key": "header"
+      },
+      {
+        "attrId": "158392",
+        "code": "path",
+        "name": "请求路径参数",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "key": "path"
+      },
+      {
+        "attrId": "817316",
+        "code": "query",
+        "name": "URL 参数",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "key": "query"
+      },
+      {
+        "attrId": "5800733",
+        "code": "body",
+        "name": "请求体",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "children": [
+          {
+            "attrId": "654994",
+            "code": "logType",
+            "name": "logType",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "key": "body.logType"
+          },
+          {
+            "attrId": "902345",
+            "code": "logModule",
+            "name": "logModule",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "key": "body.logModule"
+          },
+          {
+            "attrId": "751409",
+            "code": "logContent",
+            "name": "logContent",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "key": "body.logContent"
+          },
+          {
+            "attrId": "533816",
+            "code": "createStaffName",
+            "name": "createStaffName",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "key": "body.createStaffName"
+          },
+          {
+            "attrId": "748983",
+            "code": "pageNum",
+            "name": "pageNum",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "key": "body.pageNum"
+          },
+          {
+            "attrId": "2212774",
+            "code": "pageSize",
+            "name": "pageSize",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "7"
+            },
+            "key": "body.pageSize"
+          }
+        ],
+        "key": "body"
+      }
+    ],
+    "outParams": [
+      {
+        "attrId": "303969",
+        "code": "resultCode",
+        "name": "resultCode",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "750526",
+        "code": "resultMsgCode",
+        "name": "resultMsgCode",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "1412377",
+        "code": "resultMsg",
+        "name": "resultMsg",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "59789",
+        "code": "resultData",
+        "name": "resultData",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "children": [
+          {
+            "attrId": "4690532",
+            "code": "total",
+            "name": "total",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "7517332",
+            "code": "current",
+            "name": "current",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "055816",
+            "code": "hitCount",
+            "name": "hitCount",
+            "type": "boolean",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "760936",
+            "code": "size",
+            "name": "size",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "3925413",
+            "code": "optimizeCountSql",
+            "name": "optimizeCountSql",
+            "type": "boolean",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "49065524",
+            "code": "maxLimit",
+            "name": "maxLimit",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "567653",
+            "code": "orders",
+            "name": "orders",
+            "type": "fieldArray",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "children": [
+              {
+                "attrId": "640932",
+                "code": "listItem",
+                "name": "列表元素",
+                "type": "object",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              }
+            ]
+          },
+          {
+            "attrId": "16335",
+            "code": "countId",
+            "name": "countId",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "800012",
+            "code": "isSearchCount",
+            "name": "isSearchCount",
+            "type": "boolean",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "143922",
+            "code": "records",
+            "name": "records",
+            "type": "objectArray",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "children": [
+              {
+                "attrId": "12590135",
+                "code": "logType",
+                "name": "logType",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "53028469",
+                "code": "createStaffName",
+                "name": "createStaffName",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "3781244",
+                "code": "updateDate",
+                "name": "updateDate",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "831955",
+                "code": "logModule",
+                "name": "logModule",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "075328",
+                "code": "logContent",
+                "name": "logContent",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "9106432",
+                "code": "remark",
+                "name": "remark",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "264656",
+                "code": "sysLogId",
+                "name": "sysLogId",
+                "type": "long",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "981809",
+                "code": "createDate",
+                "name": "createDate",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "4830004",
+                "code": "createStaff",
+                "name": "createStaff",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "15878235",
+                "code": "updateStaff",
+                "name": "updateStaff",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "config": {
+      "hooks": [],
+      "isInit": true,
+      "options": {
+        "service": {
+          "busiApiId": "984384241529425920",
+          "busiApiNbr": "qrySysLogPage",
+          "busiApiName": "根据查询条件分页查询系统日志-tsm",
+          "busiObjId": "984384241529425920",
+          "apiParam": null,
+          "request": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "header",
+                "name": "请求头参数",
+                "attrType": "object"
+              },
+              {
+                "code": "path",
+                "name": "请求路径参数",
+                "attrType": "object"
+              },
+              {
+                "code": "query",
+                "name": "URL 参数",
+                "attrType": "object"
+              },
+              {
+                "code": "body",
+                "name": "请求体",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "logType",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "logModule",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "logContent",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "createStaffName",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "pageNum",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "pageSize",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "resultCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsgCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsg",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultData",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "total",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "current",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "hitCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "size",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "optimizeCountSql",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "maxLimit",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "orders",
+                    "attrType": "fieldArray",
+                    "mustFlag": "F",
+                    "children": [
+                      {
+                        "code": "listItem",
+                        "name": "列表元素",
+                        "attrType": "field",
+                        "type": "1600"
+                      }
+                    ]
+                  },
+                  {
+                    "code": "countId",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "isSearchCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "records",
+                    "attrType": "objectArray",
+                    "children": [
+                      {
+                        "code": "logType",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createStaffName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "updateDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "logModule",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "logContent",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "remark",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "sysLogId",
+                        "attrType": "field",
+                        "type": "1400",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createStaff",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "updateStaff",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "productId": "984384279164915712",
+          "api": "/app/rhin/gateway/callRhinEngine",
+          "_source": "rhin",
+          "_serviceId": "984384241529425920",
+          "_serviceTitle": "根据查询条件分页查询系统日志-tsm: qrySysLogPage",
+          "_capabilityCode": "qrySysLogPage",
+          "_apiCode": "qrySysLogPage",
+          "_sourceName": "根据查询条件分页查询系统日志-tsm",
+          "isServiceParam": true,
+          "requestType": "object",
+          "responseType": "object"
+        },
+        "headers": []
+      }
+    },
+    "sourceId": "984384241529425920"
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "name": "dataform",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "code": "customerType",
+        "name": "客户类型",
+        "type": "string",
+        "attrId": "4145377",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "customerCode",
+        "name": "客户编码",
+        "type": "string",
+        "attrId": "329524",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "accountCode",
+        "name": "账户编码",
+        "type": "string",
+        "attrId": "3964065",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "preInvoiceAmount",
+        "name": "预开发票额度",
+        "type": "string",
+        "attrId": "529515",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "reason",
+        "name": "申请原因",
+        "type": "string",
+        "attrId": "71446273",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      }
+    ]
+  }
+]

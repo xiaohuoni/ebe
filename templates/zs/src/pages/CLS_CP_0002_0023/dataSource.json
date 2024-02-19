@@ -1,0 +1,450 @@
+[
+  {
+    "name": "dataform",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "code": "isSafetyControlCustomerScore",
+        "name": "是否具有独立的安全管控能力客户得分",
+        "type": "string",
+        "attrId": "67994",
+        "initialData": {
+          "type": "static",
+          "value": "是否具有独立的安全管控能力客户得分"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "ratingRulesTariffDiscounts",
+        "name": "资费折扣评分细则",
+        "type": "string",
+        "attrId": "28047938",
+        "initialData": {
+          "type": "static",
+          "value": "资费折扣评分细则"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "customerScorePackageTraffic",
+        "name": "套餐流量客户得分",
+        "type": "string",
+        "attrId": "5002203",
+        "initialData": {
+          "type": "static",
+          "value": "套餐流量客户得分"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "scoringRulesAgreementPeriod",
+        "name": "协议期内开卡数量评分细则",
+        "type": "string",
+        "attrId": "1559787",
+        "initialData": {
+          "type": "static",
+          "value": "协议期内开卡数量评分细则"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "usageFunctionRatingRules",
+        "name": "使用功能评分细则",
+        "type": "string",
+        "attrId": "915375",
+        "initialData": {
+          "type": "static",
+          "value": "使用功能评分细则"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "customerScoreUsageScenarios",
+        "name": "使用场景客户得分",
+        "type": "string",
+        "attrId": "106669",
+        "initialData": {
+          "type": "static",
+          "value": "使用场景客户得分"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "usageScopeScoringRules",
+        "name": "使用范围评分细则",
+        "type": "string",
+        "attrId": "689679",
+        "initialData": {
+          "type": "static",
+          "value": "使用范围评分细则"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "isSceneInspectionCustomerScoring",
+        "name": "是否进行现场考察评分细则",
+        "type": "string",
+        "attrId": "163202",
+        "initialData": {
+          "type": "static",
+          "value": "是否进行现场考察评分细则"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "detailedRulesRegisteredCapital",
+        "name": "注册资金评分细则",
+        "type": "string",
+        "attrId": "723342",
+        "initialData": {
+          "type": "static",
+          "value": "注册资金评分细则"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "totalCustomerScore",
+        "name": "客户总得分",
+        "type": "string",
+        "attrId": "025028",
+        "initialData": {
+          "type": "static",
+          "value": "客户总得分"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "isSafetyControlScoringRule",
+        "name": "是否具有独立的安全管控能力评分细则",
+        "type": "string",
+        "attrId": "011913",
+        "initialData": {
+          "type": "static",
+          "value": "是否具有独立的安全管控能力评分细则"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "customerScoreControlMeasuresUsed",
+        "name": "采用的管控措施客户得分",
+        "type": "string",
+        "attrId": "132926",
+        "initialData": {
+          "type": "static",
+          "value": "采用的管控措施客户得分"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "ratingRulesPackageTraffic",
+        "name": "套餐流量评分细则",
+        "type": "string",
+        "attrId": "139898",
+        "initialData": {
+          "type": "static",
+          "value": "套餐流量评分细则"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "scoringRulesControlMeasuresUsed",
+        "name": "采用的管控措施评分细则",
+        "type": "string",
+        "attrId": "988165",
+        "initialData": {
+          "type": "static",
+          "value": "采用的管控措施评分细则"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "customerScoreTariffDiscounts",
+        "name": "资费折扣客户得分",
+        "type": "string",
+        "attrId": "88413",
+        "initialData": {
+          "type": "static",
+          "value": "资费折扣客户得分"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "scoringRulesUsageScenarios",
+        "name": "使用场景评分细则",
+        "type": "string",
+        "attrId": "8677207",
+        "initialData": {
+          "type": "static",
+          "value": "使用场景评分细则"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "customerScoreAgreementPeriod",
+        "name": "协议期内开卡数量客户得分",
+        "type": "string",
+        "attrId": "722031",
+        "initialData": {
+          "type": "static",
+          "value": "协议期内开卡数量客户得分"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "isSceneInspectionScoringRules",
+        "name": "是否进行现场考察评分细则",
+        "type": "string",
+        "attrId": "1467954",
+        "initialData": {
+          "type": "static",
+          "value": "是否进行现场考察评分细则"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "usageScopeCustomerScore",
+        "name": "使用范围客户得分",
+        "type": "string",
+        "attrId": "79205",
+        "initialData": {
+          "type": "static",
+          "value": "使用范围客户得分"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "usageFunctionCustomerScore",
+        "name": "使用功能评分细则",
+        "type": "string",
+        "attrId": "2564837",
+        "initialData": {
+          "type": "static",
+          "value": "使用功能评分细则"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "customerScoreRegisteredCapital",
+        "name": "注册资金客户得分",
+        "type": "string",
+        "attrId": "34759",
+        "initialData": {
+          "type": "static",
+          "value": "注册资金客户得分"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "scoringRulesBusinessLicense",
+        "name": "营业执照注册时间评分细则",
+        "type": "string",
+        "attrId": "930865",
+        "initialData": {
+          "type": "static",
+          "value": "营业执照注册时间评分细则"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "HarassGovernToAuditFlowLifeCycle",
+        "name": "建设骚扰治理保障名单审批单环节到达送稽核",
+        "type": "string",
+        "attrId": "30123884",
+        "initialData": {
+          "type": "static",
+          "value": "建设骚扰治理保障名单审批单环节到达送稽核"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "customerScoreBusinessLicense",
+        "name": "营业执照注册时间客户得分",
+        "type": "string",
+        "attrId": "4739545",
+        "initialData": {
+          "type": "static",
+          "value": "营业执照注册时间客户得分"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "isScoringRuleCooperateHistory",
+        "name": "是否有合作历史评分细则",
+        "type": "string",
+        "attrId": "676048",
+        "initialData": {
+          "type": "static",
+          "value": "是否有合作历史评分细则"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "isCustomerScoreCooperateHistory",
+        "name": "是否有合作历史客户得分",
+        "type": "string",
+        "attrId": "406092",
+        "initialData": {
+          "type": "static",
+          "value": "是否有合作历史客户得分"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "customerScoreUnitType",
+        "name": "单位类型客户得分",
+        "type": "string",
+        "attrId": "1404595",
+        "initialData": {
+          "type": "static",
+          "value": "单位类型客户得分"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "scoringRulesUnitType",
+        "name": "单位类型评分细则",
+        "type": "string",
+        "attrId": "876812",
+        "initialData": {
+          "type": "static",
+          "value": "单位类型评分细则"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "attrId": "364015",
+        "code": "other",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "691173",
+        "code": "reason",
+        "name": "原因",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "projectList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "570936",
+        "code": "projectName",
+        "name": "核实项目",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "612932",
+        "code": "projectDetail",
+        "name": "核实细项",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "662014",
+        "code": "maxScore",
+        "name": "最高得分",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "1081956",
+        "code": "scoreRule",
+        "name": "评分细则",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "1134484",
+        "code": "customerScore",
+        "name": "客户得分",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      }
+    ]
+  }
+]

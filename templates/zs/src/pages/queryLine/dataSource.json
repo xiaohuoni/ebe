@@ -1,0 +1,428 @@
+[
+  {
+    "name": "lineData",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "code": "lineList",
+        "children": [
+          {
+            "code": "dispatchAddr",
+            "name": "属性",
+            "type": "string",
+            "attrId": "904953",
+            "initialData": {
+              "type": "static",
+              "value": "派单安装地址"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "portaContactPhone",
+            "name": "属性",
+            "type": "string",
+            "attrId": "57533",
+            "initialData": {
+              "type": "static",
+              "value": "18850114944"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "openRequireNo",
+            "name": "属性",
+            "type": "string",
+            "attrId": "022796",
+            "initialData": {
+              "type": "static",
+              "value": "FZ1012018062279564-000"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "bstarttime",
+            "name": "属性",
+            "type": "string",
+            "attrId": "0378826",
+            "initialData": {
+              "type": "static",
+              "value": "20180712"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "ipAddr",
+            "name": "属性",
+            "type": "string",
+            "attrId": "6508728",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "testReport",
+            "name": "属性",
+            "type": "string",
+            "attrId": "6910424",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "installAddr",
+            "name": "属性",
+            "type": "string",
+            "attrId": "154615",
+            "initialData": {
+              "type": "static",
+              "value": "福建省福州市鼓楼区鼓东街道马尾儒江西路"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "transferMode",
+            "name": "属性",
+            "type": "string",
+            "attrId": "703223",
+            "initialData": {
+              "type": "static",
+              "value": "3"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "cusAppservIpv6addNum",
+            "name": "属性",
+            "type": "string",
+            "attrId": "334526",
+            "initialData": {
+              "type": "static"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "portaContact",
+            "name": "属性",
+            "type": "string",
+            "attrId": "976424",
+            "initialData": {
+              "type": "static",
+              "value": "大白"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "isStrideCity",
+            "name": "属性",
+            "type": "string",
+            "attrId": "375787",
+            "initialData": {
+              "type": "static",
+              "value": "6"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "businessMode",
+            "name": "属性",
+            "type": "string",
+            "attrId": "675924",
+            "initialData": {
+              "type": "static",
+              "value": "3512"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "bandwidth",
+            "name": "属性",
+            "type": "string",
+            "attrId": "089947",
+            "initialData": {
+              "type": "static",
+              "value": "10"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "needBuild",
+            "name": "属性",
+            "type": "string",
+            "attrId": "080545",
+            "initialData": {
+              "type": "static",
+              "value": "0"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "specialAttrName",
+            "name": "属性",
+            "type": "string",
+            "attrId": "0982897",
+            "initialData": {
+              "type": "static",
+              "value": "不需要建设"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "lineCost",
+            "name": "属性",
+            "type": "number",
+            "attrId": "346566",
+            "initialData": {
+              "type": "static",
+              "value": "100"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "specialLine",
+            "name": "属性",
+            "type": "string",
+            "attrId": "482048",
+            "initialData": {
+              "type": "static",
+              "value": "591351220140813002932"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "circuitCode",
+            "name": "属性",
+            "type": "string",
+            "attrId": "36261101",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "transferModeName",
+            "name": "属性",
+            "type": "string",
+            "attrId": "976023",
+            "initialData": {
+              "type": "static",
+              "value": "PDH"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "cusAppservIpaddNum",
+            "name": "属性",
+            "type": "string",
+            "attrId": "921368",
+            "initialData": {
+              "type": "static",
+              "value": "100"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "transfBusiness",
+            "name": "属性",
+            "type": "string",
+            "attrId": "440679",
+            "initialData": {
+              "type": "static",
+              "value": "9"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "widthCode",
+            "name": "属性",
+            "type": "string",
+            "attrId": "368795",
+            "initialData": {
+              "type": "static",
+              "value": "5"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "areaa",
+            "name": "属性",
+            "type": "string",
+            "attrId": "7716191",
+            "initialData": {
+              "type": "static",
+              "value": "101"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "bizSecurityLvName",
+            "name": "属性",
+            "type": "string",
+            "attrId": "699188",
+            "initialData": {
+              "type": "static",
+              "value": "普通"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "isStrideCityName",
+            "name": "属性",
+            "type": "string",
+            "attrId": "087209",
+            "initialData": {
+              "type": "static",
+              "value": "本地区内"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "bizSecurityLv",
+            "name": "属性",
+            "type": "string",
+            "attrId": "849405",
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "installationPrice",
+            "name": "属性",
+            "type": "number",
+            "attrId": "748941",
+            "initialData": {
+              "type": "static",
+              "value": "11"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "specialAttr",
+            "name": "属性",
+            "type": "string",
+            "attrId": "7723642",
+            "initialData": {
+              "type": "static",
+              "value": "5"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          },
+          {
+            "code": "status",
+            "name": "属性",
+            "type": "string",
+            "attrId": "885973",
+            "initialData": {
+              "type": "static",
+              "value": "0"
+            },
+            "parentKey": "lineList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "lineList"
+          }
+        ],
+        "name": "",
+        "type": "objectArray",
+        "attrId": "054823",
+        "initialData": {
+          "type": "static"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      }
+    ]
+  }
+]

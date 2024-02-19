@@ -1,0 +1,618 @@
+[
+  {
+    "name": "singleGroup",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "code": "groupInfo",
+        "children": [
+          {
+            "code": "belongCityText",
+            "name": "归属地市",
+            "type": "string",
+            "attrId": "60919",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "belongAreaText",
+            "name": "归属区县",
+            "type": "string",
+            "attrId": "800267",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "customerCreditRate",
+            "name": "客户征信等级",
+            "type": "string",
+            "attrId": "86527",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "groupName",
+            "name": "集团名称",
+            "type": "string",
+            "attrId": "941007",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "groupId",
+            "name": "集团编码",
+            "type": "string",
+            "attrId": "480257",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "groupBelongRegion",
+            "name": "集团归属区域",
+            "type": "string",
+            "attrId": "2945015",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "custManagerName",
+            "name": "客户经理姓名",
+            "type": "string",
+            "attrId": "44074",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "custManagerPhone",
+            "name": "客户经理联系电话",
+            "type": "string",
+            "attrId": "515385",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "custManagerCreditRate",
+            "name": "客户经理征信等级",
+            "type": "string",
+            "attrId": "6674943",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "earliestOverdueYearMonth",
+            "name": "最早欠费年月",
+            "type": "string",
+            "attrId": "059889",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "totalArrearage",
+            "name": "累计欠费（元）",
+            "type": "string",
+            "attrId": "329214",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "maxOverdueMonth",
+            "name": "最大逾期月数 （月）",
+            "type": "string",
+            "attrId": "205348",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "cumulativeOverdueFee",
+            "name": "累计逾期欠费（元）",
+            "type": "string",
+            "attrId": "6283003",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "predictPaymentWithinThreeMonnth",
+            "name": "预计近3月回款（元）",
+            "type": "string",
+            "attrId": "7984449",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "predictPaymentWithinYear",
+            "name": "预计年内回款（元）",
+            "type": "string",
+            "attrId": "340627",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "lastCollectionRequireYear",
+            "name": "最近一次催缴要求",
+            "type": "string",
+            "attrId": "059397",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "lastCollectionTimeYear",
+            "name": "最近一次催缴时间（近一年）",
+            "type": "string",
+            "attrId": "5256316",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "lastCollectionActionYear",
+            "name": "最近一次催缴动作",
+            "type": "string",
+            "attrId": "279744",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": true
+          }
+        ],
+        "name": "",
+        "type": "object",
+        "attrId": "00112",
+        "initialData": {
+          "type": "static"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "associatedGroupArrearageList",
+        "children": [
+          {
+            "code": "idInfo",
+            "children": [
+              {
+                "code": "idType",
+                "name": "证件类型",
+                "type": "string",
+                "attrId": "2205445",
+                "initialData": {
+                  "type": "static",
+                  "value": ""
+                },
+                "parentKey": "idInfo",
+                "parentType": "object",
+                "showInput": true
+              },
+              {
+                "code": "idNum",
+                "name": "证件号码",
+                "type": "string",
+                "attrId": "611541",
+                "initialData": {
+                  "type": "static",
+                  "value": ""
+                },
+                "parentKey": "idInfo",
+                "parentType": "object",
+                "showInput": true
+              },
+              {
+                "code": "enterpriseName",
+                "name": "企业名称",
+                "type": "string",
+                "attrId": "955974",
+                "initialData": {
+                  "type": "static",
+                  "value": ""
+                },
+                "parentKey": "idInfo",
+                "parentType": "object",
+                "showInput": true
+              },
+              {
+                "code": "sameIdCumulativeArrearage",
+                "name": "同一证件号累计欠费（元）",
+                "type": "string",
+                "attrId": "416743",
+                "initialData": {
+                  "type": "static",
+                  "value": ""
+                },
+                "parentKey": "idInfo",
+                "parentType": "object",
+                "showInput": true
+              },
+              {
+                "code": "sameIdOverdueArrearage",
+                "name": "同一证件号累计逾期欠费（元）",
+                "type": "string",
+                "attrId": "047153",
+                "initialData": {
+                  "type": "static",
+                  "value": ""
+                },
+                "parentKey": "idInfo",
+                "parentType": "object",
+                "showInput": true
+              },
+              {
+                "code": "sameIdMaxOverdueMonth",
+                "name": "同一证件号最大逾期月数",
+                "type": "string",
+                "attrId": "352803168",
+                "initialData": {
+                  "type": "static",
+                  "value": ""
+                },
+                "parentKey": "idInfo",
+                "parentType": "object",
+                "showInput": true
+              },
+              {
+                "code": "sameIdProvinceArchiveGroupNum",
+                "name": "同一证件号省内建档集团数",
+                "type": "string",
+                "attrId": "985943",
+                "initialData": {
+                  "type": "static",
+                  "value": ""
+                },
+                "parentKey": "idInfo",
+                "parentType": "object",
+                "showInput": true
+              },
+              {
+                "code": "blacklistReason",
+                "name": "纳黑原因",
+                "type": "string",
+                "attrId": "883931",
+                "initialData": {
+                  "type": "static",
+                  "value": ""
+                },
+                "parentKey": "idInfo",
+                "parentType": "object",
+                "showInput": true
+              }
+            ],
+            "name": "",
+            "type": "object",
+            "attrId": "34197",
+            "initialData": {
+              "type": "static"
+            },
+            "parentKey": "associatedGroupArrearageList",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "associatedGroupList",
+            "children": [
+              {
+                "code": "groupName",
+                "name": "关联集团名称",
+                "type": "string",
+                "attrId": "917033",
+                "initialData": {
+                  "type": "static",
+                  "value": ""
+                },
+                "parentKey": "associatedGroupList",
+                "parentType": "objectArray",
+                "showInput": false,
+                "parentCode": "associatedGroupList"
+              },
+              {
+                "code": "groupId",
+                "name": "集团编码",
+                "type": "string",
+                "attrId": "9122",
+                "initialData": {
+                  "type": "static",
+                  "value": ""
+                },
+                "parentKey": "associatedGroupList",
+                "parentType": "objectArray",
+                "showInput": false,
+                "parentCode": "associatedGroupList"
+              },
+              {
+                "code": "earliestOverdueYearMonth",
+                "name": "最早欠费年月",
+                "type": "string",
+                "attrId": "00063984",
+                "initialData": {
+                  "type": "static",
+                  "value": ""
+                },
+                "parentKey": "associatedGroupList",
+                "parentType": "objectArray",
+                "showInput": false,
+                "parentCode": "associatedGroupList"
+              },
+              {
+                "code": "totalArrearage",
+                "name": "累计欠费（元）",
+                "type": "string",
+                "attrId": "78218",
+                "initialData": {
+                  "type": "static",
+                  "value": ""
+                },
+                "parentKey": "associatedGroupList",
+                "parentType": "objectArray",
+                "showInput": false,
+                "parentCode": "associatedGroupList"
+              },
+              {
+                "code": "maxOverdueMonth",
+                "name": "最大逾期月数（月）",
+                "type": "string",
+                "attrId": "877151",
+                "initialData": {
+                  "type": "static",
+                  "value": ""
+                },
+                "parentKey": "associatedGroupList",
+                "parentType": "objectArray",
+                "showInput": false,
+                "parentCode": "associatedGroupList"
+              },
+              {
+                "code": "cumulativeOverdueFee",
+                "name": "累计逾期欠费（元）",
+                "type": "string",
+                "attrId": "98553",
+                "initialData": {
+                  "type": "static",
+                  "value": ""
+                },
+                "parentKey": "associatedGroupList",
+                "parentType": "objectArray",
+                "showInput": false,
+                "parentCode": "associatedGroupList"
+              }
+            ],
+            "name": "",
+            "type": "objectArray",
+            "attrId": "164206",
+            "initialData": {
+              "type": "static"
+            },
+            "parentKey": "associatedGroupArrearageList",
+            "parentType": "object",
+            "showInput": true
+          }
+        ],
+        "name": "",
+        "type": "object",
+        "attrId": "695928",
+        "initialData": {
+          "type": "static"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "applyInfo",
+        "children": [
+          {
+            "code": "whitelistType",
+            "name": "白名单类型",
+            "type": "string",
+            "attrId": "3911987",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "applyInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "appliedWhiteListNumYear",
+            "name": "当年己申请白名单次数（次）",
+            "type": "string",
+            "attrId": "463255",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "applyInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "appliedWhiteListUpNumYear",
+            "name": "当年白名单申请上线次数（次）",
+            "type": "string",
+            "attrId": "5407294",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "applyInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "appliedWhiteListDay",
+            "name": "白名单申请天数",
+            "type": "string",
+            "attrId": "959256",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "applyInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "predictEffectiveTime",
+            "name": "预计白名单生效时间",
+            "type": "string",
+            "attrId": "394472",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "applyInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "predictDeadTime",
+            "name": "预计白名单失效时间",
+            "type": "string",
+            "attrId": "467011",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "applyInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "arrearsReason",
+            "name": "欠费原因",
+            "type": "string",
+            "attrId": "985624",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "applyInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "collectionCondition",
+            "name": "催缴情况",
+            "type": "string",
+            "attrId": "780916",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "applyInfo",
+            "parentType": "object",
+            "showInput": true
+          },
+          {
+            "code": "riskAssessment",
+            "name": "风险评估",
+            "type": "string",
+            "attrId": "4416545",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "applyInfo",
+            "parentType": "object",
+            "showInput": true
+          }
+        ],
+        "name": "",
+        "type": "object",
+        "attrId": "0769877",
+        "initialData": {
+          "type": "static"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,433 @@
+[
+  {
+    "name": "sceneSubmit",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "154379",
+        "code": "catalogCode",
+        "name": "类目编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "4562264",
+        "code": "approveGrade",
+        "name": "审批等级",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "63768",
+        "code": "attrList",
+        "name": "要素",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "919265",
+        "code": "fileInfo",
+        "name": "附件",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        },
+        "children": []
+      },
+      {
+        "attrId": "360171",
+        "code": "catalogItemCode",
+        "name": "类目项编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "420623",
+        "code": "catalogItemSubType",
+        "name": "类目项子类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "375466",
+        "code": "childCatalogCode",
+        "name": "子类目项编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "9257773",
+        "code": "parentCatalogCode",
+        "name": "上级类目编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "5733013",
+        "code": "parentCatalogItemCode",
+        "name": "上级类目项编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "440627",
+        "code": "childCatalogDesc",
+        "name": "子类目项描述",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "177104",
+        "code": "approveGradeName",
+        "name": "审批等级名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "fileInfoList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "code": "fileName",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件名称",
+        "defaultValue": "",
+        "name": "附件名称",
+        "attrId": "458544",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "filePath",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件文件路径",
+        "defaultValue": "",
+        "name": "附件文件路径",
+        "attrId": "6354087",
+        "initialData": {
+          "type": "static",
+          "value": "附件文件路径"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileServerType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件文件服务器类型",
+        "defaultValue": "",
+        "name": "附件文件服务器类型",
+        "attrId": "184934",
+        "initialData": {
+          "type": "static",
+          "value": "附件文件服务器类型"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileSubType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件分类-细类",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "551676",
+        "initialData": {
+          "type": "static",
+          "value": "附件分类-细类"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件分类-大类",
+        "defaultValue": "",
+        "name": "附件分类-大类",
+        "attrId": "383524",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileUrl",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件url地址",
+        "defaultValue": "",
+        "name": "附件url地址",
+        "attrId": "726875",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "tacheCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "环节编码",
+        "defaultValue": "",
+        "name": "环节编码",
+        "attrId": "865444",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "attrId": "7419638",
+        "code": "fileCode",
+        "name": "文件编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "097484",
+        "code": "createTime",
+        "name": "创建时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "604675",
+        "code": "createStaff",
+        "name": "创建人",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "729925",
+        "code": "fileTypeName",
+        "name": "附件类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "pageData",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "1999901",
+        "code": "isLongTerm",
+        "name": "是否长期",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "930958",
+        "code": "checkLable",
+        "name": "功能费校验标识",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "factorForm",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "08707745",
+        "code": "setMealPackage",
+        "name": "套餐",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "1007"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "7508345",
+        "code": "setMealPackageType",
+        "name": "套餐包类型",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "1013"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "998092",
+        "code": "reason",
+        "name": "申请原因",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "735607",
+        "code": "dirPrice",
+        "name": "功能目录价",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "0"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "445345",
+        "code": "firstReducePrice",
+        "name": "一次优惠后功能费",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "9541936",
+        "code": "firstReduceDiscount",
+        "name": "一次优惠折扣(折)",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "3324724",
+        "code": "secondReducedPrice",
+        "name": "二次优惠功能费",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "5323545",
+        "code": "sencondReduceDiscount",
+        "name": "二次优惠折扣(折)",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "748853",
+        "code": "probation",
+        "name": "试用期",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "22437699",
+        "code": "busyDeadlineBegin",
+        "name": "业务期限(起)",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "143695",
+        "code": "busyDeadlineEnd",
+        "name": "业务期限(止)",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "20499836",
+        "code": "busyDeadline",
+        "name": "业务期限",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "9654028",
+        "code": "marketName",
+        "name": "营销案名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "name": "local_vars",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "556327",
+        "code": "cacheTable",
+        "name": "属性",
+        "type": "object",
+        "initialData": {
+          "type": "static"
+        },
+        "children": [
+          {
+            "attrId": "042262",
+            "code": "cacheList",
+            "name": "属性",
+            "type": "objectArray",
+            "initialData": {
+              "type": "static"
+            },
+            "children": [
+              {
+                "attrId": "074105",
+                "code": "module",
+                "name": "模块",
+                "type": "string",
+                "initialData": {
+                  "type": "static"
+                },
+                "parentCode": "cacheList",
+                "parentKey": "cacheList"
+              },
+              {
+                "attrId": "52202",
+                "code": "desc",
+                "name": "描述",
+                "type": "string",
+                "initialData": {
+                  "type": "static"
+                },
+                "parentCode": "cacheList",
+                "parentKey": "cacheList"
+              },
+              {
+                "attrId": "152605",
+                "code": "key",
+                "name": "缓存key",
+                "type": "string",
+                "initialData": {
+                  "type": "static"
+                },
+                "parentCode": "cacheList",
+                "parentKey": "cacheList"
+              }
+            ],
+            "parentKey": "cacheTable"
+          }
+        ]
+      }
+    ]
+  }
+]

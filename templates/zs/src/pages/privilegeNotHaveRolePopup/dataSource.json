@@ -1,0 +1,617 @@
+[
+  {
+    "name": "roleNotHavePrivilegePage",
+    "source": "service",
+    "type": "object",
+    "requestType": "object",
+    "filterParams": [
+      {
+        "attrId": "759836",
+        "code": "header",
+        "name": "请求头参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "key": "header"
+      },
+      {
+        "attrId": "800066",
+        "code": "path",
+        "name": "请求路径参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "key": "path"
+      },
+      {
+        "attrId": "15245675",
+        "code": "query",
+        "name": "URL 参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "key": "query"
+      },
+      {
+        "attrId": "809832",
+        "code": "body",
+        "name": "请求体",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "children": [
+          {
+            "attrId": "1723355",
+            "code": "pageNum",
+            "name": "pageNum",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "type": "long",
+            "key": "body.pageNum"
+          },
+          {
+            "attrId": "861798",
+            "code": "pageSize",
+            "name": "pageSize",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "5"
+            },
+            "type": "long",
+            "key": "body.pageSize"
+          },
+          {
+            "attrId": "422657",
+            "code": "roleName",
+            "name": "roleName",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string",
+            "key": "body.roleName"
+          },
+          {
+            "attrId": "1762207",
+            "code": "roleCode",
+            "name": "roleCode",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string",
+            "key": "body.roleCode"
+          },
+          {
+            "attrId": "271664",
+            "code": "privilegeId",
+            "name": "privilegeId",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "$state.bizId$"
+            },
+            "type": "long",
+            "key": "body.privilegeId"
+          }
+        ],
+        "key": "body"
+      }
+    ],
+    "outParams": [
+      {
+        "attrId": "994962",
+        "code": "resultCode",
+        "name": "resultCode",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "446253",
+        "code": "resultMsgCode",
+        "name": "resultMsgCode",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "838418",
+        "code": "resultMsg",
+        "name": "resultMsg",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "2988973",
+        "code": "resultData",
+        "name": "resultData",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "object",
+        "children": [
+          {
+            "attrId": "85518",
+            "code": "total",
+            "name": "total",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "long"
+          },
+          {
+            "attrId": "063319",
+            "code": "current",
+            "name": "current",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "long"
+          },
+          {
+            "attrId": "6117673",
+            "code": "hitCount",
+            "name": "hitCount",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "boolean"
+          },
+          {
+            "attrId": "4029",
+            "code": "size",
+            "name": "size",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "long"
+          },
+          {
+            "attrId": "162125",
+            "code": "optimizeCountSql",
+            "name": "optimizeCountSql",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "boolean"
+          },
+          {
+            "attrId": "910741",
+            "code": "maxLimit",
+            "name": "maxLimit",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "739428",
+            "code": "orders",
+            "name": "orders",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "fieldArray",
+            "children": [
+              {
+                "attrId": "940584",
+                "code": "listItem",
+                "name": "列表元素",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "object"
+              }
+            ]
+          },
+          {
+            "attrId": "752746",
+            "code": "countId",
+            "name": "countId",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "048657",
+            "code": "isSearchCount",
+            "name": "isSearchCount",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "boolean"
+          },
+          {
+            "attrId": "314328",
+            "code": "records",
+            "name": "records",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "objectArray",
+            "children": [
+              {
+                "attrId": "787819",
+                "code": "createStaffName",
+                "name": "createStaffName",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "088395",
+                "code": "rolePrivilegeRelId",
+                "name": "rolePrivilegeRelId",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "long"
+              },
+              {
+                "attrId": "4497927",
+                "code": "roleId",
+                "name": "roleId",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "899391",
+                "code": "roleCode",
+                "name": "roleCode",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "748086",
+                "code": "roleName",
+                "name": "roleName",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "515382",
+                "code": "createDate",
+                "name": "createDate",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "config": {
+      "hooks": [],
+      "isInit": true,
+      "options": {
+        "service": {
+          "busiApiId": "952497035044474880",
+          "busiApiNbr": "qryRoleNotHavePrivilegePage",
+          "busiApiName": "根据权限查找不包含该权限的角色列表--tzp",
+          "busiObjId": "952497035044474880",
+          "apiParam": null,
+          "request": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "header",
+                "name": "请求头参数",
+                "attrType": "object"
+              },
+              {
+                "code": "path",
+                "name": "请求路径参数",
+                "attrType": "object"
+              },
+              {
+                "code": "query",
+                "name": "URL 参数",
+                "attrType": "object"
+              },
+              {
+                "code": "body",
+                "name": "请求体",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "pageNum",
+                    "name": "pageNum",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  },
+                  {
+                    "code": "pageSize",
+                    "name": "pageSize",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  },
+                  {
+                    "code": "roleName",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "roleCode",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "privilegeId",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "resultCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsgCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsg",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultData",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "total",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "current",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "hitCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "size",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "optimizeCountSql",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "maxLimit",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "orders",
+                    "attrType": "fieldArray",
+                    "mustFlag": "F",
+                    "children": [
+                      {
+                        "code": "listItem",
+                        "name": "列表元素",
+                        "attrType": "field",
+                        "type": "1600"
+                      }
+                    ]
+                  },
+                  {
+                    "code": "countId",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "isSearchCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "records",
+                    "attrType": "objectArray",
+                    "children": [
+                      {
+                        "code": "createStaffName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "rolePrivilegeRelId",
+                        "attrType": "field",
+                        "type": "1400",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "roleId",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "roleCode",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "roleName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "productId": "952498553281859584",
+          "api": "/app/rhin/gateway/callRhinEngine",
+          "_source": "rhin",
+          "_serviceId": "952497035044474880",
+          "_serviceTitle": "根据权限查找不包含该权限的角色列表--tzp: qryRoleNotHavePrivilegePage",
+          "_capabilityCode": "qryRoleNotHavePrivilegePage",
+          "_apiCode": "qryRoleNotHavePrivilegePage",
+          "isServiceParam": true,
+          "requestType": "object",
+          "responseType": "object"
+        },
+        "headers": []
+      }
+    }
+  }
+]

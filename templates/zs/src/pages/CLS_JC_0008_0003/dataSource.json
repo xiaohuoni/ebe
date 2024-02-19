@@ -1,0 +1,310 @@
+[
+  {
+    "name": "dataform",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "code": "valueCardBuyAmount",
+        "name": "有价卡购买金额",
+        "type": "string",
+        "attrId": "113211",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "whetherPartyArmyClient",
+        "name": "是否党政军客户",
+        "type": "string",
+        "attrId": "673323",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "operatorName",
+        "name": "经办人姓名",
+        "type": "string",
+        "attrId": "068131",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "operatorPhoneNumber",
+        "name": "经办人电话",
+        "type": "string",
+        "attrId": "94487",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "fundingSource",
+        "name": "资金来源",
+        "type": "string",
+        "attrId": "3171068",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "cumulativePurchaseAmountYear",
+        "name": "当年累计购买金额（元）",
+        "type": "string",
+        "attrId": "106662",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "cumulativePurchaseTimesYear",
+        "name": "当年累积购买次数",
+        "type": "string",
+        "attrId": "608147",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "cumulativePurchaseAmountMouth",
+        "name": "当月累计购买金额（元）",
+        "type": "string",
+        "attrId": "470019",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "cumulativePurchaseTimesMouth",
+        "name": "当月累积购买次数",
+        "type": "string",
+        "attrId": "167898",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "attrId": "972327",
+        "code": "buyAmountAddYearAmount",
+        "name": "有价卡购买金额加当年累计购买金额\t",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "861286",
+        "code": "year",
+        "name": "当年累计购买金额(万元)",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "006038",
+        "code": "mouth",
+        "name": "当月累计购买金额(万元)",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "745912",
+        "code": "promptInfo",
+        "name": "提示信息",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "223492",
+        "code": "reason",
+        "name": "申请原因",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "sceneSubmit",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "635103",
+        "code": "catalogCode",
+        "name": "类目编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "18586",
+        "code": "approveGrade",
+        "name": "审批等级",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "8950456",
+        "code": "attrList",
+        "name": "要素",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "3746525",
+        "code": "fileInfo",
+        "name": "附件",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "7201725",
+        "code": "catalogItemCode",
+        "name": "类目项编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "1709863",
+        "code": "catalogItemSubType",
+        "name": "类目项子类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "362883",
+        "code": "childCatalogCode",
+        "name": "子类目编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "222938",
+        "code": "parentCatalogCode",
+        "name": "上级类目编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "593244",
+        "code": "parentCatalogItemCode",
+        "name": "上级类目项编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "203746",
+        "code": "childCatalogDesc",
+        "name": "子类目项描述",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "993122",
+        "code": "approveGradeName",
+        "name": "审批等级名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "groupInfo",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "278599",
+        "code": "groupId",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  }
+]

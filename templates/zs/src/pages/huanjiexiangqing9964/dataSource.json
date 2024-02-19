@@ -1,0 +1,317 @@
+[
+  {
+    "name": "qryTacheListByFlowDefineId",
+    "source": "service",
+    "type": "object",
+    "requestType": "object",
+    "filterParams": [
+      {
+        "attrId": "237953",
+        "code": "header",
+        "name": "请求头参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "key": "header"
+      },
+      {
+        "attrId": "981179",
+        "code": "path",
+        "name": "请求路径参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "key": "path"
+      },
+      {
+        "attrId": "119508",
+        "code": "query",
+        "name": "URL 参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "key": "query"
+      },
+      {
+        "attrId": "7893989",
+        "code": "body",
+        "name": "请求体",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "children": [
+          {
+            "attrId": "541966",
+            "code": "flowDefineId",
+            "name": "流程ID，必须",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "$state.flowDefineId$"
+            },
+            "type": "string",
+            "key": "body.flowDefineId"
+          },
+          {
+            "attrId": "881967",
+            "code": "cfgId",
+            "name": "环节ID，非必须",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string",
+            "key": "body.cfgId"
+          }
+        ],
+        "key": "body"
+      }
+    ],
+    "outParams": [
+      {
+        "attrId": "688441",
+        "code": "resultCode",
+        "name": "resultCode",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "525994",
+        "code": "resultMsgCode",
+        "name": "resultMsgCode",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "629081",
+        "code": "resultMsg",
+        "name": "resultMsg",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "382941",
+        "code": "resultData",
+        "name": "resultData",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "objectArray",
+        "children": [
+          {
+            "attrId": "190061",
+            "code": "tacheCode",
+            "name": "tacheCode",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "43981",
+            "code": "tacheName",
+            "name": "tacheName",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "9454926",
+            "code": "approveGrade",
+            "name": "approveGrade",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "5327223",
+            "code": "cfgId",
+            "name": "cfgId",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "long"
+          }
+        ]
+      }
+    ],
+    "config": {
+      "hooks": [],
+      "isInit": true,
+      "options": {
+        "service": {
+          "busiApiId": "913319668891926528",
+          "busiApiNbr": "qryTacheListByFlowDefineId",
+          "busiApiName": "根据流程ID查询流程环节列表-tsm",
+          "busiObjId": "913319668891926528",
+          "apiParam": "[{\"apiId\":913319668891926528,\"apiParamId\":913319668950646784,\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"objId\":913319668891926528,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"1000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":913319668950646785,\"serviceObject\":[],\"serviceObjectCode\":\"root\",\"serviceObjectId\":913319668950646785,\"serviceObjectPath\":\"913319668950646785\",\"statusCd\":\"1000\",\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":913319668950646785,\"paramType\":\"1000\",\"statusCd\":\"1000\",\"statusDate\":1669358777708,\"tenantCode\":\"868768414651416576\"},{\"apiId\":913319668891926528,\"apiParamId\":913319668950646786,\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"objId\":913319668891926528,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"2000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":913319668950646787,\"serviceObject\":[],\"serviceObjectCode\":\"root\",\"serviceObjectId\":913319668950646787,\"serviceObjectPath\":\"913319668950646787\",\"statusCd\":\"1000\",\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":913319668950646787,\"paramType\":\"2000\",\"statusCd\":\"1000\",\"statusDate\":1669358777708,\"tenantCode\":\"868768414651416576\"},{\"apiId\":913319668891926528,\"apiParamId\":913319668950646788,\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"objId\":913319668891926528,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"3000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":913319668954841088,\"serviceObject\":[],\"serviceObjectCode\":\"root\",\"serviceObjectId\":913319668954841088,\"serviceObjectPath\":\"913319668954841088\",\"statusCd\":\"1000\",\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":913319668954841088,\"paramType\":\"3000\",\"statusCd\":\"1000\",\"statusDate\":1669358777708,\"tenantCode\":\"868768414651416576\"},{\"apiId\":913319668891926528,\"apiParamId\":913319668954841089,\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"objId\":913319668891926528,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"4000\",\"remark\":\"根节点\",\"rootServiceObjectId\":913319668954841090,\"serviceObject\":[],\"serviceObjectAttrs\":[{\"attrId\":899957582885261312,\"attrSpec\":{\"attrId\":899957582885261312,\"attrName\":\"flowDefineId\",\"attrNbr\":\"flowDefineId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"exampleValue\":\"10003\",\"mustFlag\":\"T\",\"remark\":\"流程ID，必须\",\"serviceObjAttrId\":913319669013561344,\"serviceObjectId\":913319668954841090,\"statusCd\":\"1000\",\"statusDate\":1669358777708,\"tenantCode\":\"868768414651416576\"},{\"attrId\":891872283655643137,\"attrSpec\":{\"attrId\":891872283655643137,\"attrName\":\"cfgId\",\"attrNbr\":\"cfgId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"exampleValue\":\"301\",\"mustFlag\":\"F\",\"remark\":\"环节ID，非必须\",\"serviceObjAttrId\":913319669013561345,\"serviceObjectId\":913319668954841090,\"statusCd\":\"1000\",\"statusDate\":1669358777708,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"root\",\"serviceObjectId\":913319668954841090,\"serviceObjectPath\":\"913319668954841090\",\"statusCd\":\"1000\",\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":913319668954841090,\"paramType\":\"4000\",\"statusCd\":\"1000\",\"statusDate\":1669358777708,\"tenantCode\":\"868768414651416576\"},{\"apiId\":913319668891926528,\"apiParamId\":913319668954841091,\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"objId\":913319668891926528,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"5000\",\"remark\":\"根节点\",\"rootServiceObjectId\":913319668954841092,\"serviceObject\":[{\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"isList\":\"T\",\"level\":2,\"parServiceObjectId\":913319668954841092,\"paramType\":\"5000\",\"rootServiceObjectId\":913319668954841092,\"serviceObject\":[],\"serviceObjectAttrs\":[{\"attrId\":881794710824910849,\"attrSpec\":{\"attrId\":881794710824910849,\"attrName\":\"tacheCode\",\"attrNbr\":\"tacheCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"exampleValue\":\"APPLY_CREATE\",\"mustFlag\":\"F\",\"serviceObjAttrId\":913319669047115776,\"serviceObjectId\":913319669026144256,\"statusCd\":\"1000\",\"statusDate\":1669358777708,\"tenantCode\":\"868768414651416576\"},{\"attrId\":5440,\"attrSpec\":{\"attrId\":5440,\"attrName\":\"tacheName\",\"attrNbr\":\"tacheName\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"exampleValue\":\"起草人\",\"mustFlag\":\"F\",\"serviceObjAttrId\":913319669051310080,\"serviceObjectId\":913319669026144256,\"statusCd\":\"1000\",\"statusDate\":1669358777708,\"tenantCode\":\"868768414651416576\"},{\"attrId\":882598361654579201,\"attrSpec\":{\"attrId\":882598361654579201,\"attrName\":\"approveGrade\",\"attrNbr\":\"approveGrade\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"mustFlag\":\"F\",\"serviceObjAttrId\":913319669051310081,\"serviceObjectId\":913319669026144256,\"statusCd\":\"1000\",\"statusDate\":1669358777708,\"tenantCode\":\"868768414651416576\"},{\"attrId\":882250373401784323,\"attrSpec\":{\"attrId\":882250373401784323,\"attrName\":\"cfgId\",\"attrNbr\":\"cfgId\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"exampleValue\":\"100\",\"mustFlag\":\"F\",\"serviceObjAttrId\":913319669051310082,\"serviceObjectId\":913319669026144256,\"statusCd\":\"1000\",\"statusDate\":1669358777708,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"resultData\",\"serviceObjectId\":913319669026144256,\"serviceObjectPath\":\"913319668954841092,913319669026144256\",\"statusCd\":\"1000\",\"tenantCode\":\"868768414651416576\"}],\"serviceObjectAttrs\":[{\"attrId\":846210035581616128,\"attrSpec\":{\"attrId\":846210035581616128,\"attrName\":\"resultCode\",\"attrNbr\":\"resultCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"exampleValue\":\"0\",\"mustFlag\":\"F\",\"serviceObjAttrId\":913319669063892992,\"serviceObjectId\":913319668954841092,\"statusCd\":\"1000\",\"statusDate\":1669358777708,\"tenantCode\":\"868768414651416576\"},{\"attrId\":882598363189694465,\"attrSpec\":{\"attrId\":882598363189694465,\"attrName\":\"resultMsgCode\",\"attrNbr\":\"resultMsgCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"mustFlag\":\"F\",\"serviceObjAttrId\":913319669063892993,\"serviceObjectId\":913319668954841092,\"statusCd\":\"1000\",\"statusDate\":1669358777708,\"tenantCode\":\"868768414651416576\"},{\"attrId\":844138524562358274,\"attrSpec\":{\"attrId\":844138524562358274,\"attrName\":\"resultMsg\",\"attrNbr\":\"resultMsg\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1669358777708,\"createStaff\":21826,\"exampleValue\":\"SUCCESS\",\"mustFlag\":\"F\",\"serviceObjAttrId\":913319669068087296,\"serviceObjectId\":913319668954841092,\"statusCd\":\"1000\",\"statusDate\":1669358777708,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"root\",\"serviceObjectId\":913319668954841092,\"serviceObjectPath\":\"913319668954841092\",\"statusCd\":\"1000\",\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":913319668954841092,\"paramType\":\"5000\",\"statusCd\":\"1000\",\"statusDate\":1669358777708,\"tenantCode\":\"868768414651416576\"}]",
+          "request": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "header",
+                "name": "请求头参数",
+                "attrType": "object"
+              },
+              {
+                "code": "path",
+                "name": "请求路径参数",
+                "attrType": "object"
+              },
+              {
+                "code": "query",
+                "name": "URL 参数",
+                "attrType": "object"
+              },
+              {
+                "code": "body",
+                "name": "请求体",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "flowDefineId",
+                    "name": "流程ID，必须",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "T"
+                  },
+                  {
+                    "code": "cfgId",
+                    "name": "环节ID，非必须",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "resultCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsgCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsg",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultData",
+                "attrType": "objectArray",
+                "children": [
+                  {
+                    "code": "tacheCode",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "tacheName",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "approveGrade",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "cfgId",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          "productId": "913319753184854016",
+          "api": "/app/rhin/gateway/callRhinEngine",
+          "_source": "rhin",
+          "_serviceId": "913319668891926528",
+          "_serviceTitle": "根据流程ID查询流程环节列表-tsm: qryTacheListByFlowDefineId",
+          "_capabilityCode": "qryTacheListByFlowDefineId",
+          "_apiCode": "qryTacheListByFlowDefineId",
+          "isServiceParam": true,
+          "requestType": "object",
+          "responseType": "object"
+        },
+        "headers": []
+      }
+    }
+  }
+]

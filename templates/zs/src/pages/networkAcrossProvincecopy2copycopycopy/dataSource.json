@@ -1,0 +1,286 @@
+[
+  {
+    "name": "feeInfo",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "code": "busiType",
+        "name": "属性",
+        "type": "string",
+        "attrId": "4838715",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "busiTypeName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "509373",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "productName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "745607",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "city",
+        "name": "属性",
+        "type": "string",
+        "attrId": "07786",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "county",
+        "name": "属性",
+        "type": "string",
+        "attrId": "63817",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "town",
+        "name": "属性",
+        "type": "string",
+        "attrId": "641853",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "street",
+        "name": "属性",
+        "type": "string",
+        "attrId": "503086",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "number",
+        "name": "属性",
+        "type": "string",
+        "attrId": "252152",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "building",
+        "name": "属性",
+        "type": "string",
+        "attrId": "1516637",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "unitNumber",
+        "name": "属性",
+        "type": "string",
+        "attrId": "313661",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "level",
+        "name": "属性",
+        "type": "string",
+        "attrId": "466016",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "room",
+        "name": "属性",
+        "type": "string",
+        "attrId": "749042",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "address",
+        "name": "属性",
+        "type": "string",
+        "attrId": "1230766",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "product",
+        "name": "属性",
+        "type": "string",
+        "attrId": "2197367",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "rowId",
+        "name": "属性",
+        "type": "string",
+        "attrId": "959566",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "count",
+        "name": "属性",
+        "type": "string",
+        "attrId": "686993",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "bandwidth",
+        "name": "属性",
+        "type": "string",
+        "attrId": "888786",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "serviceLevel",
+        "name": "属性",
+        "type": "string",
+        "attrId": "8392915",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "serviceLevelName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "289779",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "days",
+        "name": "属性",
+        "type": "string",
+        "attrId": "049508",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "pageData",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "897369",
+        "code": "countyInfo",
+        "name": "属性",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  }
+]

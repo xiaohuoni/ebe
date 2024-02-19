@@ -1,0 +1,54 @@
+[
+  {
+    "name": "fixedParam",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "291215",
+        "code": "tacheCode",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "456898",
+        "code": "endLevel",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "0096066",
+        "code": "workItemId",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "1726945",
+        "code": "busiObjNbr",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "747001",
+        "code": "workId",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  }
+]

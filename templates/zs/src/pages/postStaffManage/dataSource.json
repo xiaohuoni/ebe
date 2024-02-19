@@ -1,0 +1,2081 @@
+[
+  {
+    "name": "local_vars",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "591942",
+        "code": "row_post_code",
+        "name": "当前选中行postCode",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "991205",
+        "code": "row_post_name",
+        "name": "当前选中行postName",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "827615",
+        "code": "row_post_id",
+        "name": "当前选中行postId",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "qryDcPostInfoPage",
+    "source": "service",
+    "type": "object",
+    "requestType": "object",
+    "filterParams": [
+      {
+        "attrId": "8571343",
+        "code": "header",
+        "name": "请求头参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "key": "header"
+      },
+      {
+        "attrId": "623994",
+        "code": "path",
+        "name": "请求路径参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "key": "path"
+      },
+      {
+        "attrId": "7795932",
+        "code": "query",
+        "name": "URL 参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "key": "query"
+      },
+      {
+        "attrId": "366985",
+        "code": "body",
+        "name": "请求体",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "children": [
+          {
+            "attrId": "213186",
+            "code": "pageSize",
+            "name": "pageSize",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "type": "long",
+            "key": "body.pageSize"
+          },
+          {
+            "attrId": "6586755",
+            "code": "pageNum",
+            "name": "pageNum",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "type": "long",
+            "key": "body.pageNum"
+          },
+          {
+            "attrId": "283757",
+            "code": "postCode",
+            "name": "postCode",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string",
+            "key": "body.postCode"
+          },
+          {
+            "attrId": "3857728",
+            "code": "postName",
+            "name": "postName",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string",
+            "key": "body.postName"
+          }
+        ],
+        "key": "body"
+      }
+    ],
+    "outParams": [
+      {
+        "attrId": "734589",
+        "code": "resultCode",
+        "name": "resultCode",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "828707",
+        "code": "resultMsgCode",
+        "name": "resultMsgCode",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "014897",
+        "code": "resultMsg",
+        "name": "resultMsg",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "2990455",
+        "code": "resultData",
+        "name": "resultData",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "children": [
+          {
+            "attrId": "6220154",
+            "code": "size",
+            "name": "size",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "0095965",
+            "code": "optimizeCountSql",
+            "name": "optimizeCountSql",
+            "type": "boolean",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "2027618",
+            "code": "maxLimit",
+            "name": "maxLimit",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "674766",
+            "code": "orders",
+            "name": "orders",
+            "type": "fieldArray",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "children": [
+              {
+                "attrId": "440586",
+                "code": "listItem",
+                "name": "列表元素",
+                "type": "object",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              }
+            ]
+          },
+          {
+            "attrId": "632625",
+            "code": "total",
+            "name": "total",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "93959",
+            "code": "current",
+            "name": "current",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "0566406",
+            "code": "hitCount",
+            "name": "hitCount",
+            "type": "boolean",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "8432556",
+            "code": "countId",
+            "name": "countId",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "749863",
+            "code": "isSearchCount",
+            "name": "isSearchCount",
+            "type": "boolean",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "187045",
+            "code": "records",
+            "name": "records",
+            "type": "objectArray",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "children": [
+              {
+                "attrId": "26293",
+                "code": "statusDate",
+                "name": "statusDate",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "19955185",
+                "code": "statusCd",
+                "name": "statusCd",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "831405",
+                "code": "postDesc",
+                "name": "postDesc",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "039913",
+                "code": "updateDate",
+                "name": "updateDate",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "035981",
+                "code": "areaId",
+                "name": "areaId",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "070274",
+                "code": "postName",
+                "name": "postName",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "658018",
+                "code": "createStaff",
+                "name": "createStaff",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "74668",
+                "code": "createStaffName",
+                "name": "createStaffName",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "607855",
+                "code": "lanId",
+                "name": "lanId",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "353693",
+                "code": "provinceId",
+                "name": "provinceId",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "63762",
+                "code": "remark",
+                "name": "remark",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "4696009",
+                "code": "postId",
+                "name": "postId",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "8655605",
+                "code": "updateStaff",
+                "name": "updateStaff",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "0180453",
+                "code": "postCode",
+                "name": "postCode",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "4015535",
+                "code": "postFilterType",
+                "name": "岗位过滤类型",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "3478656",
+                "code": "createDate",
+                "name": "createDate",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "config": {
+      "hooks": [],
+      "isInit": true,
+      "options": {
+        "service": {
+          "busiApiId": "884628440631173120",
+          "busiApiNbr": "qryDcPostInfoPage",
+          "busiApiName": "查询岗位分页列表-zzz",
+          "busiObjId": "884628440631173120",
+          "apiParam": "[{\"apiId\":884628440631173120,\"apiParamId\":884628440681504768,\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"objId\":884628440631173120,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"1000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":884628440685699072,\"serviceObject\":[],\"serviceObjectCode\":\"root\",\"serviceObjectId\":884628440685699072,\"serviceObjectPath\":\"884628440685699072\",\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":884628440685699072,\"paramType\":\"1000\",\"statusCd\":\"1000\",\"statusDate\":1662518254767,\"tenantCode\":\"868768414651416576\"},{\"apiId\":884628440631173120,\"apiParamId\":884628440685699073,\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"objId\":884628440631173120,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"2000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":884628440685699074,\"serviceObject\":[],\"serviceObjectCode\":\"root\",\"serviceObjectId\":884628440685699074,\"serviceObjectPath\":\"884628440685699074\",\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":884628440685699074,\"paramType\":\"2000\",\"statusCd\":\"1000\",\"statusDate\":1662518254767,\"tenantCode\":\"868768414651416576\"},{\"apiId\":884628440631173120,\"apiParamId\":884628440685699075,\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"objId\":884628440631173120,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"3000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":884628440689893376,\"serviceObject\":[],\"serviceObjectCode\":\"root\",\"serviceObjectId\":884628440689893376,\"serviceObjectPath\":\"884628440689893376\",\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":884628440689893376,\"paramType\":\"3000\",\"statusCd\":\"1000\",\"statusDate\":1662518254767,\"tenantCode\":\"868768414651416576\"},{\"apiId\":884628440631173120,\"apiParamId\":884628440689893377,\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"objId\":884628440631173120,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"4000\",\"remark\":\"根节点\",\"rootServiceObjectId\":884628440689893378,\"serviceObject\":[],\"serviceObjectAttrs\":[{\"attrId\":2707,\"attrSpec\":{\"attrId\":2707,\"attrName\":\"pageSize\",\"attrNbr\":\"pageSize\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"5\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440773779456,\"serviceObjectId\":884628440689893378,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":2706,\"attrSpec\":{\"attrId\":2706,\"attrName\":\"pageNum\",\"attrNbr\":\"pageNum\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"1\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440773779457,\"serviceObjectId\":884628440689893378,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4317,\"attrSpec\":{\"attrId\":4317,\"attrName\":\"postCode\",\"attrNbr\":\"postCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"00240021005800040001\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440773779458,\"serviceObjectId\":884628440689893378,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4318,\"attrSpec\":{\"attrId\":4318,\"attrName\":\"postName\",\"attrNbr\":\"postName\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"福州\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440773779459,\"serviceObjectId\":884628440689893378,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"root\",\"serviceObjectId\":884628440689893378,\"serviceObjectPath\":\"884628440689893378\",\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":884628440689893378,\"paramType\":\"4000\",\"statusCd\":\"1000\",\"statusDate\":1662518254767,\"tenantCode\":\"868768414651416576\"},{\"apiId\":884628440631173120,\"apiParamId\":884628440689893379,\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"objId\":884628440631173120,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"5000\",\"remark\":\"根节点\",\"rootServiceObjectId\":884628440689893380,\"serviceObject\":[{\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"isList\":\"F\",\"level\":2,\"parServiceObjectId\":884628440689893380,\"paramType\":\"5000\",\"rootServiceObjectId\":884628440689893380,\"serviceObject\":[{\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"isList\":\"T\",\"level\":3,\"parServiceObjectId\":884628440786362368,\"paramType\":\"5000\",\"rootServiceObjectId\":884628440689893380,\"serviceObject\":[],\"serviceObjectAttrs\":[{\"attrId\":2742,\"attrSpec\":{\"attrId\":2742,\"attrName\":\"statusDate\",\"attrNbr\":\"statusDate\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440853471232,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":841224151557312526,\"attrSpec\":{\"attrId\":841224151557312526,\"attrName\":\"statusCd\",\"attrNbr\":\"statusCd\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"00A\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440857665538,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4324,\"attrSpec\":{\"attrId\":4324,\"attrName\":\"postDesc\",\"attrNbr\":\"postDesc\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"desc\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440857665537,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3152,\"attrSpec\":{\"attrId\":3152,\"attrName\":\"updateDate\",\"attrNbr\":\"updateDate\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440857665536,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3898,\"attrSpec\":{\"attrId\":3898,\"attrName\":\"areaId\",\"attrNbr\":\"areaId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"3\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440861859846,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4318,\"attrSpec\":{\"attrId\":4318,\"attrName\":\"postName\",\"attrNbr\":\"postName\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"name\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440861859847,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3961,\"attrSpec\":{\"attrId\":3961,\"attrName\":\"createStaff\",\"attrNbr\":\"createStaff\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440861859844,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4226,\"attrSpec\":{\"attrId\":4226,\"attrName\":\"createStaffName\",\"attrNbr\":\"createStaffName\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440861859845,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1539,\"attrSpec\":{\"attrId\":1539,\"attrName\":\"lanId\",\"attrNbr\":\"lanId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"2\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440861859842,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4314,\"attrSpec\":{\"attrId\":4314,\"attrName\":\"provinceId\",\"attrNbr\":\"provinceId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"1\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440861859843,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":841224151557312524,\"attrSpec\":{\"attrId\":841224151557312524,\"attrName\":\"remark\",\"attrNbr\":\"remark\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"物流园\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440861859840,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4326,\"attrSpec\":{\"attrId\":4326,\"attrName\":\"postId\",\"attrNbr\":\"postId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"1\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440861859841,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3819,\"attrSpec\":{\"attrId\":3819,\"attrName\":\"updateStaff\",\"attrNbr\":\"updateStaff\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440866054145,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4317,\"attrSpec\":{\"attrId\":4317,\"attrName\":\"postCode\",\"attrNbr\":\"postCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"code\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440861859848,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":913028194073722880,\"attrSpec\":{\"attrId\":913028194073722880,\"attrName\":\"postFilterType\",\"attrNbr\":\"postFilterType\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1669289974905,\"createStaff\":21826,\"defaultValue\":\"\",\"desensitizeRule\":\"1001\",\"desensitizeType\":\"1001\",\"exampleValue\":\"\",\"mustFlag\":\"F\",\"remark\":\"岗位过滤类型\",\"serviceObjAttrId\":913031090746138624,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":2744,\"attrSpec\":{\"attrId\":2744,\"attrName\":\"createDate\",\"attrNbr\":\"createDate\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440866054144,\"serviceObjectId\":884628440786362369,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"records\",\"serviceObjectId\":884628440786362369,\"serviceObjectPath\":\"884628440689893380,884628440786362368,884628440786362369\",\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectAttrs\":[{\"attrId\":3550,\"attrSpec\":{\"attrId\":3550,\"attrName\":\"size\",\"attrNbr\":\"size\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"5\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440895414275,\"serviceObjectId\":884628440786362368,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3944,\"attrSpec\":{\"attrId\":3944,\"attrName\":\"optimizeCountSql\",\"attrNbr\":\"optimizeCountSql\",\"attrValueDataType\":\"1500\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"true\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440895414276,\"serviceObjectId\":884628440786362368,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4276,\"attrSpec\":{\"attrId\":4276,\"attrName\":\"maxLimit\",\"attrNbr\":\"maxLimit\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440899608576,\"serviceObjectId\":884628440786362368,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3945,\"attrSpec\":{\"attrId\":3945,\"attrName\":\"orders\",\"attrNbr\":\"orders\",\"attrValueDataType\":\"1700\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"[]\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440899608577,\"serviceObjectId\":884628440786362368,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":2720,\"attrSpec\":{\"attrId\":2720,\"attrName\":\"total\",\"attrNbr\":\"total\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"1\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440895414272,\"serviceObjectId\":884628440786362368,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3942,\"attrSpec\":{\"attrId\":3942,\"attrName\":\"current\",\"attrNbr\":\"current\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"1\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440895414273,\"serviceObjectId\":884628440786362368,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3943,\"attrSpec\":{\"attrId\":3943,\"attrName\":\"hitCount\",\"attrNbr\":\"hitCount\",\"attrValueDataType\":\"1500\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"false\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440895414274,\"serviceObjectId\":884628440786362368,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4274,\"attrSpec\":{\"attrId\":4274,\"attrName\":\"countId\",\"attrNbr\":\"countId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440899608578,\"serviceObjectId\":884628440786362368,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3946,\"attrSpec\":{\"attrId\":3946,\"attrName\":\"isSearchCount\",\"attrNbr\":\"isSearchCount\",\"attrValueDataType\":\"1500\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"true\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440899608579,\"serviceObjectId\":884628440786362368,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"resultData\",\"serviceObjectId\":884628440786362368,\"serviceObjectPath\":\"884628440689893380,884628440786362368\",\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectAttrs\":[{\"attrId\":842306878819315712,\"attrSpec\":{\"attrId\":842306878819315712,\"attrName\":\"resultCode\",\"attrNbr\":\"resultCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"0\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440916385792,\"serviceObjectId\":884628440689893380,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":874132034551685121,\"attrSpec\":{\"attrId\":874132034551685121,\"attrName\":\"resultMsgCode\",\"attrNbr\":\"resultMsgCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440920580096,\"serviceObjectId\":884628440689893380,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},{\"attrId\":842306878819315714,\"attrSpec\":{\"attrId\":842306878819315714,\"attrName\":\"resultMsg\",\"attrNbr\":\"resultMsg\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662518254767,\"createStaff\":50233,\"exampleValue\":\"SUCCESS\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884628440920580097,\"serviceObjectId\":884628440689893380,\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"root\",\"serviceObjectId\":884628440689893380,\"serviceObjectPath\":\"884628440689893380\",\"statusCd\":\"1000\",\"statusDate\":1669289974905,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":884628440689893380,\"paramType\":\"5000\",\"statusCd\":\"1000\",\"statusDate\":1662518254767,\"tenantCode\":\"868768414651416576\"}]",
+          "request": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "header",
+                "name": "请求头参数",
+                "attrType": "object"
+              },
+              {
+                "code": "path",
+                "name": "请求路径参数",
+                "attrType": "object"
+              },
+              {
+                "code": "query",
+                "name": "URL 参数",
+                "attrType": "object"
+              },
+              {
+                "code": "body",
+                "name": "请求体",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "pageSize",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "pageNum",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "postCode",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "postName",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "resultCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsgCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsg",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultData",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "size",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "optimizeCountSql",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "maxLimit",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "orders",
+                    "attrType": "fieldArray",
+                    "mustFlag": "F",
+                    "children": [
+                      {
+                        "code": "listItem",
+                        "name": "列表元素",
+                        "attrType": "field",
+                        "type": "1600"
+                      }
+                    ]
+                  },
+                  {
+                    "code": "total",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "current",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "hitCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "countId",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "isSearchCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "records",
+                    "attrType": "objectArray",
+                    "children": [
+                      {
+                        "code": "statusDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "statusCd",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "postDesc",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "updateDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "areaId",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "postName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createStaff",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createStaffName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "lanId",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "provinceId",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "remark",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "postId",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "updateStaff",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "postCode",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "postFilterType",
+                        "name": "岗位过滤类型",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F",
+                        "defaultValue": ""
+                      },
+                      {
+                        "code": "createDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "productId": "200011195",
+          "api": "/app/rhin/gateway/callRhinEngine",
+          "_source": "rhin",
+          "_serviceId": "884628440631173120",
+          "_serviceTitle": "查询岗位分页列表-zzz: qryDcPostInfoPage",
+          "_capabilityCode": "qryDcPostInfoPage",
+          "_apiCode": "qryDcPostInfoPage",
+          "isServiceParam": true,
+          "requestType": "object",
+          "responseType": "object"
+        },
+        "headers": []
+      }
+    },
+    "sourceId": "884628440631173120"
+  },
+  {
+    "name": "qryOaUserByPostId",
+    "source": "service",
+    "type": "object",
+    "requestType": "object",
+    "filterParams": [
+      {
+        "attrId": "208931",
+        "code": "header",
+        "name": "请求头参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object"
+      },
+      {
+        "attrId": "351952",
+        "code": "path",
+        "name": "请求路径参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object"
+      },
+      {
+        "attrId": "694217",
+        "code": "query",
+        "name": "URL 参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object"
+      },
+      {
+        "attrId": "1969073",
+        "code": "body",
+        "name": "请求体",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "children": [
+          {
+            "attrId": "278392",
+            "code": "usrLogin",
+            "name": "usrLogin",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "932936",
+            "code": "usrLastName",
+            "name": "usrLastName",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "109123",
+            "code": "postId",
+            "name": "postId",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "361374",
+            "code": "pageSize",
+            "name": "pageSize",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "pageSize"
+            },
+            "type": "long"
+          },
+          {
+            "attrId": "0275977",
+            "code": "pageNum",
+            "name": "pageNum",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "pageNum"
+            },
+            "type": "long"
+          }
+        ]
+      }
+    ],
+    "outParams": [
+      {
+        "attrId": "402878",
+        "code": "resultCode",
+        "name": "resultCode",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "3140656",
+        "code": "resultMsgCode",
+        "name": "resultMsgCode",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "533039",
+        "code": "resultMsg",
+        "name": "resultMsg",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "044012",
+        "code": "resultData",
+        "name": "resultData",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "object",
+        "children": [
+          {
+            "attrId": "291807",
+            "code": "total",
+            "name": "total",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "long"
+          },
+          {
+            "attrId": "805812",
+            "code": "current",
+            "name": "current",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "long"
+          },
+          {
+            "attrId": "795535",
+            "code": "hitCount",
+            "name": "hitCount",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "boolean"
+          },
+          {
+            "attrId": "133079",
+            "code": "size",
+            "name": "size",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "long"
+          },
+          {
+            "attrId": "6580225",
+            "code": "optimizeCountSql",
+            "name": "optimizeCountSql",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "boolean"
+          },
+          {
+            "attrId": "915747",
+            "code": "maxLimit",
+            "name": "maxLimit",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "9184357",
+            "code": "orders",
+            "name": "orders",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "fieldArray",
+            "children": [
+              {
+                "attrId": "43268985",
+                "code": "listItem",
+                "name": "列表元素",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "object"
+              }
+            ]
+          },
+          {
+            "attrId": "037774",
+            "code": "countId",
+            "name": "countId",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "0322",
+            "code": "isSearchCount",
+            "name": "isSearchCount",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "boolean"
+          },
+          {
+            "attrId": "451743",
+            "code": "records",
+            "name": "records",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "objectArray",
+            "children": [
+              {
+                "attrId": "9878023",
+                "code": "usrUdfOrgOrder",
+                "name": "usrUdfOrgOrder",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "319029",
+                "code": "subUsrUdfOrgOrders",
+                "name": "subUsrUdfOrgOrders",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "983477",
+                "code": "usrUdfMgrErpOrg",
+                "name": "usrUdfMgrErpOrg",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "126933",
+                "code": "usrFirstName",
+                "name": "usrFirstName",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "025229",
+                "code": "usrUdfBelongComp",
+                "name": "usrUdfBelongComp",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "245683",
+                "code": "usrUdfJobLevel",
+                "name": "usrUdfJobLevel",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "4832433",
+                "code": "usrUdfOaNum",
+                "name": "usrUdfOaNum",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "528666",
+                "code": "usrUdfEmployeeId",
+                "name": "usrUdfEmployeeId",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "60294346",
+                "code": "usrUdfSex",
+                "name": "usrUdfSex",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "846687",
+                "code": "handleRegionId",
+                "name": "新增节点",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "153891",
+                "code": "handleRegionIdName",
+                "name": "新增节点",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "2451306",
+                "code": "actKey",
+                "name": "actKey",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "658939",
+                "code": "usrStatus",
+                "name": "usrStatus",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "292431",
+                "code": "usrUdfShortName",
+                "name": "usrUdfShortName",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "387436",
+                "code": "usrType",
+                "name": "usrType",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "654225",
+                "code": "usrCreated",
+                "name": "usrCreated",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "86230384",
+                "code": "usrUdfDepartment",
+                "name": "usrUdfDepartment",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "29206322",
+                "code": "usrPassword",
+                "name": "usrPassword",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "042233",
+                "code": "subUsrUdfJobLevels",
+                "name": "subUsrUdfJobLevels",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "6890788",
+                "code": "usrLocked",
+                "name": "usrLocked",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "009621",
+                "code": "usrUdfOaOrg",
+                "name": "usrUdfOaOrg",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "14533",
+                "code": "usrLoginAttemptsCtr",
+                "name": "usrLoginAttemptsCtr",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "902091",
+                "code": "subOrgNames",
+                "name": "subOrgNames",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "389082",
+                "code": "usrUpdate",
+                "name": "usrUpdate",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "9205846",
+                "code": "usrUdfMobile",
+                "name": "usrUdfMobile",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "333355",
+                "code": "usrUdfIdNum",
+                "name": "usrUdfIdNum",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "032101",
+                "code": "cardInfo",
+                "name": "cardInfo",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "913128",
+                "code": "usrEmail",
+                "name": "usrEmail",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "395653",
+                "code": "usrLogin",
+                "name": "usrLogin",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "367976",
+                "code": "subUsrUdfOaOrgs",
+                "name": "subUsrUdfOaOrgs",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "65453492",
+                "code": "postUserRelId",
+                "name": "postUserRelId",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "long"
+              },
+              {
+                "attrId": "15464166",
+                "code": "usrChangePwdAtNextLogon",
+                "name": "usrChangePwdAtNextLogon",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "5904337",
+                "code": "usrEmpType",
+                "name": "usrEmpType",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "898502",
+                "code": "usrKey",
+                "name": "usrKey",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "367332",
+                "code": "actUdfNum",
+                "name": "actUdfNum",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "3029115",
+                "code": "usrProvisionedDate",
+                "name": "usrProvisionedDate",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "3839975",
+                "code": "actName",
+                "name": "actName",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "9194203",
+                "code": "usrPwdResetAttemptsCtr",
+                "name": "usrPwdResetAttemptsCtr",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "1189845",
+                "code": "usrUdfSysMask",
+                "name": "usrUdfSysMask",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "437569",
+                "code": "usrCreate",
+                "name": "usrCreate",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "095348",
+                "code": "orgName",
+                "name": "orgName",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "21940825",
+                "code": "usrLastName",
+                "name": "usrLastName",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "4514297",
+                "code": "usrEndDate",
+                "name": "usrEndDate",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "config": {
+      "hooks": [],
+      "isInit": false,
+      "options": {
+        "service": {
+          "busiApiId": "884991652097949696",
+          "busiApiNbr": "qryOaUserByPostId",
+          "busiApiName": "根据岗位ID查询员工分页列表-zzz",
+          "busiObjId": "884991652097949696",
+          "apiParam": "[{\"apiId\":884991652097949696,\"apiParamId\":884991652165058560,\"compareFlag\":true,\"createDate\":1662604852120,\"createStaff\":50233,\"objId\":884991652097949696,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1662604852120,\"createStaff\":50233,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"1000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":884991652165058561,\"serviceObject\":[],\"serviceObjectCode\":\"root\",\"serviceObjectId\":884991652165058561,\"serviceObjectPath\":\"884991652165058561\",\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":884991652165058561,\"paramType\":\"1000\",\"statusCd\":\"1000\",\"statusDate\":1662604852120,\"tenantCode\":\"868768414651416576\"},{\"apiId\":884991652097949696,\"apiParamId\":884991652165058562,\"compareFlag\":true,\"createDate\":1662604852120,\"createStaff\":50233,\"objId\":884991652097949696,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1662604852120,\"createStaff\":50233,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"2000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":884991652165058563,\"serviceObject\":[],\"serviceObjectCode\":\"root\",\"serviceObjectId\":884991652165058563,\"serviceObjectPath\":\"884991652165058563\",\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":884991652165058563,\"paramType\":\"2000\",\"statusCd\":\"1000\",\"statusDate\":1662604852120,\"tenantCode\":\"868768414651416576\"},{\"apiId\":884991652097949696,\"apiParamId\":884991652165058564,\"compareFlag\":true,\"createDate\":1662604852120,\"createStaff\":50233,\"objId\":884991652097949696,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1662604852120,\"createStaff\":50233,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"3000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":884991652165058565,\"serviceObject\":[],\"serviceObjectCode\":\"root\",\"serviceObjectId\":884991652165058565,\"serviceObjectPath\":\"884991652165058565\",\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":884991652165058565,\"paramType\":\"3000\",\"statusCd\":\"1000\",\"statusDate\":1662604852120,\"tenantCode\":\"868768414651416576\"},{\"apiId\":884991652097949696,\"apiParamId\":884991652165058566,\"compareFlag\":true,\"createDate\":1662604852120,\"createStaff\":50233,\"objId\":884991652097949696,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1662604852120,\"createStaff\":50233,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"4000\",\"remark\":\"根节点\",\"rootServiceObjectId\":884991652165058567,\"serviceObject\":[],\"serviceObjectAttrs\":[{\"attrId\":884991652232167427,\"attrSpec\":{\"attrId\":884991652232167427,\"attrName\":\"usrLogin\",\"attrNbr\":\"usrLogin\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604852120,\"createStaff\":50233,\"exampleValue\":\"00240021005800040001\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991652232167426,\"serviceObjectId\":884991652165058567,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991652232167429,\"attrSpec\":{\"attrId\":884991652232167429,\"attrName\":\"usrLastName\",\"attrNbr\":\"usrLastName\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604852120,\"createStaff\":50233,\"exampleValue\":\"福州\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991652232167428,\"serviceObjectId\":884991652165058567,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4326,\"attrSpec\":{\"attrId\":4326,\"attrName\":\"postId\",\"attrNbr\":\"postId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604852120,\"createStaff\":50233,\"exampleValue\":\"1111\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991652232167430,\"serviceObjectId\":884991652165058567,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1238,\"attrSpec\":{\"attrId\":1238,\"attrName\":\"pageSize\",\"attrNbr\":\"pageSize\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604852120,\"createStaff\":50233,\"exampleValue\":\"5\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991652232167424,\"serviceObjectId\":884991652165058567,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1237,\"attrSpec\":{\"attrId\":1237,\"attrName\":\"pageNum\",\"attrNbr\":\"pageNum\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604852120,\"createStaff\":50233,\"exampleValue\":\"1\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991652232167425,\"serviceObjectId\":884991652165058567,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"root\",\"serviceObjectId\":884991652165058567,\"serviceObjectPath\":\"884991652165058567\",\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":884991652165058567,\"paramType\":\"4000\",\"statusCd\":\"1000\",\"statusDate\":1662604852120,\"tenantCode\":\"868768414651416576\"},{\"apiId\":884991652097949696,\"apiParamId\":884991652165058568,\"compareFlag\":true,\"createDate\":1662604852120,\"createStaff\":50233,\"objId\":884991652097949696,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1662604852120,\"createStaff\":50233,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"5000\",\"remark\":\"根节点\",\"rootServiceObjectId\":884991652165058569,\"serviceObject\":[{\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"isList\":\"F\",\"level\":2,\"parServiceObjectId\":884991652165058569,\"paramType\":\"5000\",\"rootServiceObjectId\":884991652165058569,\"serviceObject\":[{\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"isList\":\"T\",\"level\":3,\"parServiceObjectId\":884991767617470464,\"paramType\":\"5000\",\"rootServiceObjectId\":884991652165058569,\"serviceObject\":[],\"serviceObjectAttrs\":[{\"attrId\":884991767713939456,\"attrSpec\":{\"attrId\":884991767713939456,\"attrName\":\"usrUdfOrgOrder\",\"attrNbr\":\"usrUdfOrgOrder\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"3\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767709745170,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767713939474,\"attrSpec\":{\"attrId\":884991767713939474,\"attrName\":\"subUsrUdfOrgOrders\",\"attrNbr\":\"subUsrUdfOrgOrders\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\";;\\\"\\\";\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767713939473,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767713939472,\"attrSpec\":{\"attrId\":884991767713939472,\"attrName\":\"usrUdfMgrErpOrg\",\"attrNbr\":\"usrUdfMgrErpOrg\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767713939471,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767709745159,\"attrSpec\":{\"attrId\":884991767709745159,\"attrName\":\"usrFirstName\",\"attrNbr\":\"usrFirstName\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"李志毅\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767709745158,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767709745157,\"attrSpec\":{\"attrId\":884991767709745157,\"attrName\":\"usrUdfBelongComp\",\"attrNbr\":\"usrUdfBelongComp\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767709745156,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767709745155,\"attrSpec\":{\"attrId\":884991767709745155,\"attrName\":\"usrUdfJobLevel\",\"attrNbr\":\"usrUdfJobLevel\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"P\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767709745154,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767709745153,\"attrSpec\":{\"attrId\":884991767709745153,\"attrName\":\"usrUdfOaNum\",\"attrNbr\":\"usrUdfOaNum\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"中移账申[2017]3号\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767709745152,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767705550867,\"attrSpec\":{\"attrId\":884991767705550867,\"attrName\":\"usrUdfEmployeeId\",\"attrNbr\":\"usrUdfEmployeeId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"24021533\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767705550866,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767705550865,\"attrSpec\":{\"attrId\":884991767705550865,\"attrName\":\"usrUdfSex\",\"attrNbr\":\"usrUdfSex\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"M\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767705550864,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":913064320518037505,\"attrSpec\":{\"attrId\":913064320518037505,\"attrName\":\"handleRegionId\",\"attrNbr\":\"handleRegionId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1669297897579,\"createStaff\":21826,\"defaultValue\":\"\",\"desensitizeRule\":\"1001\",\"desensitizeType\":\"1001\",\"exampleValue\":\"\",\"mustFlag\":\"F\",\"remark\":\"新增节点\",\"serviceObjAttrId\":913064320518037504,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":913064320518037507,\"attrSpec\":{\"attrId\":913064320518037507,\"attrName\":\"handleRegionIdName\",\"attrNbr\":\"handleRegionIdName\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1669297897579,\"createStaff\":21826,\"defaultValue\":\"\",\"desensitizeRule\":\"1001\",\"desensitizeType\":\"1001\",\"exampleValue\":\"\",\"mustFlag\":\"F\",\"remark\":\"新增节点\",\"serviceObjAttrId\":913064320518037506,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884373763298435074,\"attrSpec\":{\"attrId\":884373763298435074,\"attrName\":\"actKey\",\"attrNbr\":\"actKey\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"110000017441706\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767701356548,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767701356547,\"attrSpec\":{\"attrId\":884991767701356547,\"attrName\":\"usrStatus\",\"attrNbr\":\"usrStatus\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"Active\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767701356546,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767701356545,\"attrSpec\":{\"attrId\":884991767701356545,\"attrName\":\"usrUdfShortName\",\"attrNbr\":\"usrUdfShortName\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"LIZHIYI1\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767701356544,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767705550849,\"attrSpec\":{\"attrId\":884991767705550849,\"attrName\":\"usrType\",\"attrNbr\":\"usrType\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"End-User\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767705550848,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767713939470,\"attrSpec\":{\"attrId\":884991767713939470,\"attrName\":\"usrCreated\",\"attrNbr\":\"usrCreated\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767713939469,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767705550863,\"attrSpec\":{\"attrId\":884991767705550863,\"attrName\":\"usrUdfDepartment\",\"attrNbr\":\"usrUdfDepartment\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"299024.职员\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767705550862,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767713939468,\"attrSpec\":{\"attrId\":884991767713939468,\"attrName\":\"usrPassword\",\"attrNbr\":\"usrPassword\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767713939467,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767701356550,\"attrSpec\":{\"attrId\":884991767701356550,\"attrName\":\"subUsrUdfJobLevels\",\"attrNbr\":\"subUsrUdfJobLevels\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\";;;\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767701356549,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767705550861,\"attrSpec\":{\"attrId\":884991767705550861,\"attrName\":\"usrLocked\",\"attrNbr\":\"usrLocked\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"0\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767705550860,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767713939466,\"attrSpec\":{\"attrId\":884991767713939466,\"attrName\":\"usrUdfOaOrg\",\"attrNbr\":\"usrUdfOaOrg\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"00240098000400000000\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767713939465,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767718133766,\"attrSpec\":{\"attrId\":884991767718133766,\"attrName\":\"usrLoginAttemptsCtr\",\"attrNbr\":\"usrLoginAttemptsCtr\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767718133765,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767709745163,\"attrSpec\":{\"attrId\":884991767709745163,\"attrName\":\"subOrgNames\",\"attrNbr\":\"subOrgNames\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"\\t;\\t;\\t;\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767709745162,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767713939464,\"attrSpec\":{\"attrId\":884991767713939464,\"attrName\":\"usrUpdate\",\"attrNbr\":\"usrUpdate\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767713939463,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767718133768,\"attrSpec\":{\"attrId\":884991767718133768,\"attrName\":\"usrUdfMobile\",\"attrNbr\":\"usrUdfMobile\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"13605951873\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767718133767,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767709745161,\"attrSpec\":{\"attrId\":884991767709745161,\"attrName\":\"usrUdfIdNum\",\"attrNbr\":\"usrUdfIdNum\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"350111197707060311\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767709745160,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767713939462,\"attrSpec\":{\"attrId\":884991767713939462,\"attrName\":\"cardInfo\",\"attrNbr\":\"cardInfo\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"3051544154\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767713939461,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767718133762,\"attrSpec\":{\"attrId\":884991767718133762,\"attrName\":\"usrEmail\",\"attrNbr\":\"usrEmail\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"lizhiyi1@fj.chinamobile.com\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767718133761,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991652232167427,\"attrSpec\":{\"attrId\":884991652232167427,\"attrName\":\"usrLogin\",\"attrNbr\":\"usrLogin\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"LIZHIYI1\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767718133760,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767718133764,\"attrSpec\":{\"attrId\":884991767718133764,\"attrName\":\"subUsrUdfOaOrgs\",\"attrNbr\":\"subUsrUdfOaOrgs\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"\\t;\\t;\\t;\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767718133763,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767701356552,\"attrSpec\":{\"attrId\":884991767701356552,\"attrName\":\"postUserRelId\",\"attrNbr\":\"postUserRelId\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"1\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767701356551,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767709745169,\"attrSpec\":{\"attrId\":884991767709745169,\"attrName\":\"usrChangePwdAtNextLogon\",\"attrNbr\":\"usrChangePwdAtNextLogon\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767709745168,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767709745167,\"attrSpec\":{\"attrId\":884991767709745167,\"attrName\":\"usrEmpType\",\"attrNbr\":\"usrEmpType\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"Full-Time\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767709745166,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767709745165,\"attrSpec\":{\"attrId\":884991767709745165,\"attrName\":\"usrKey\",\"attrNbr\":\"usrKey\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"19194\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767709745164,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884273375848529930,\"attrSpec\":{\"attrId\":884273375848529930,\"attrName\":\"actUdfNum\",\"attrNbr\":\"actUdfNum\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"00240090000000010000\\t\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767705550859,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767705550858,\"attrSpec\":{\"attrId\":884991767705550858,\"attrName\":\"usrProvisionedDate\",\"attrNbr\":\"usrProvisionedDate\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767705550857,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884368153924050948,\"attrSpec\":{\"attrId\":884368153924050948,\"attrName\":\"actName\",\"attrNbr\":\"actName\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"福建公司-直属中心-产品检测室\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767705550856,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767705550855,\"attrSpec\":{\"attrId\":884991767705550855,\"attrName\":\"usrPwdResetAttemptsCtr\",\"attrNbr\":\"usrPwdResetAttemptsCtr\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767705550854,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767713939460,\"attrSpec\":{\"attrId\":884991767713939460,\"attrName\":\"usrUdfSysMask\",\"attrNbr\":\"usrUdfSysMask\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767713939459,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767705550853,\"attrSpec\":{\"attrId\":884991767705550853,\"attrName\":\"usrCreate\",\"attrNbr\":\"usrCreate\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767705550852,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1512,\"attrSpec\":{\"attrId\":1512,\"attrName\":\"orgName\",\"attrNbr\":\"orgName\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"福建中移通信技术工程有限公司\\\\监理部\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767713939458,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991652232167429,\"attrSpec\":{\"attrId\":884991652232167429,\"attrName\":\"usrLastName\",\"attrNbr\":\"usrLastName\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"李志毅\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767713939457,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":884991767705550851,\"attrSpec\":{\"attrId\":884991767705550851,\"attrName\":\"usrEndDate\",\"attrNbr\":\"usrEndDate\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767705550850,\"serviceObjectId\":884991767617470465,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"records\",\"serviceObjectId\":884991767617470465,\"serviceObjectPath\":\"884991652165058569,884991767617470464,884991767617470465\",\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectAttrs\":[{\"attrId\":1277,\"attrSpec\":{\"attrId\":1277,\"attrName\":\"total\",\"attrNbr\":\"total\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"1\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767663607808,\"serviceObjectId\":884991767617470464,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3942,\"attrSpec\":{\"attrId\":3942,\"attrName\":\"current\",\"attrNbr\":\"current\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"1\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767663607809,\"serviceObjectId\":884991767617470464,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3943,\"attrSpec\":{\"attrId\":3943,\"attrName\":\"hitCount\",\"attrNbr\":\"hitCount\",\"attrValueDataType\":\"1500\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"false\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767663607810,\"serviceObjectId\":884991767617470464,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1275,\"attrSpec\":{\"attrId\":1275,\"attrName\":\"size\",\"attrNbr\":\"size\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"5\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767663607811,\"serviceObjectId\":884991767617470464,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3944,\"attrSpec\":{\"attrId\":3944,\"attrName\":\"optimizeCountSql\",\"attrNbr\":\"optimizeCountSql\",\"attrValueDataType\":\"1500\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"true\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767663607812,\"serviceObjectId\":884991767617470464,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4276,\"attrSpec\":{\"attrId\":4276,\"attrName\":\"maxLimit\",\"attrNbr\":\"maxLimit\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767663607813,\"serviceObjectId\":884991767617470464,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3945,\"attrSpec\":{\"attrId\":3945,\"attrName\":\"orders\",\"attrNbr\":\"orders\",\"attrValueDataType\":\"1700\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"[]\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767663607814,\"serviceObjectId\":884991767617470464,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4274,\"attrSpec\":{\"attrId\":4274,\"attrName\":\"countId\",\"attrNbr\":\"countId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767663607815,\"serviceObjectId\":884991767617470464,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3946,\"attrSpec\":{\"attrId\":3946,\"attrName\":\"isSearchCount\",\"attrNbr\":\"isSearchCount\",\"attrValueDataType\":\"1500\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"true\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767667802112,\"serviceObjectId\":884991767617470464,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"resultData\",\"serviceObjectId\":884991767617470464,\"serviceObjectPath\":\"884991652165058569,884991767617470464\",\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectAttrs\":[{\"attrId\":1226,\"attrSpec\":{\"attrId\":1226,\"attrName\":\"resultCode\",\"attrNbr\":\"resultCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"0\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767634247680,\"serviceObjectId\":884991652165058569,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":874132034551685121,\"attrSpec\":{\"attrId\":874132034551685121,\"attrName\":\"resultMsgCode\",\"attrNbr\":\"resultMsgCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767634247681,\"serviceObjectId\":884991652165058569,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1227,\"attrSpec\":{\"attrId\":1227,\"attrName\":\"resultMsg\",\"attrNbr\":\"resultMsg\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662604877455,\"createStaff\":50233,\"exampleValue\":\"SUCCESS\",\"mustFlag\":\"F\",\"serviceObjAttrId\":884991767634247682,\"serviceObjectId\":884991652165058569,\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"root\",\"serviceObjectId\":884991652165058569,\"serviceObjectPath\":\"884991652165058569\",\"statusCd\":\"1000\",\"statusDate\":1669297897579,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":884991652165058569,\"paramType\":\"5000\",\"statusCd\":\"1000\",\"statusDate\":1662604852120,\"tenantCode\":\"868768414651416576\"}]",
+          "request": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "header",
+                "name": "请求头参数",
+                "attrType": "object"
+              },
+              {
+                "code": "path",
+                "name": "请求路径参数",
+                "attrType": "object"
+              },
+              {
+                "code": "query",
+                "name": "URL 参数",
+                "attrType": "object"
+              },
+              {
+                "code": "body",
+                "name": "请求体",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "usrLogin",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "usrLastName",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "postId",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "pageSize",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "pageNum",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "resultCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsgCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsg",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultData",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "total",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "current",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "hitCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "size",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "optimizeCountSql",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "maxLimit",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "orders",
+                    "attrType": "fieldArray",
+                    "mustFlag": "F",
+                    "children": [
+                      {
+                        "code": "listItem",
+                        "name": "列表元素",
+                        "attrType": "field",
+                        "type": "1600"
+                      }
+                    ]
+                  },
+                  {
+                    "code": "countId",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "isSearchCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "records",
+                    "attrType": "objectArray",
+                    "children": [
+                      {
+                        "code": "usrUdfOrgOrder",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "subUsrUdfOrgOrders",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrUdfMgrErpOrg",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrFirstName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrUdfBelongComp",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrUdfJobLevel",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrUdfOaNum",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrUdfEmployeeId",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrUdfSex",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "handleRegionId",
+                        "name": "新增节点",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F",
+                        "defaultValue": ""
+                      },
+                      {
+                        "code": "handleRegionIdName",
+                        "name": "新增节点",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F",
+                        "defaultValue": ""
+                      },
+                      {
+                        "code": "actKey",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrStatus",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrUdfShortName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrType",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrCreated",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrUdfDepartment",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrPassword",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "subUsrUdfJobLevels",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrLocked",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrUdfOaOrg",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrLoginAttemptsCtr",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "subOrgNames",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrUpdate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrUdfMobile",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrUdfIdNum",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "cardInfo",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrEmail",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrLogin",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "subUsrUdfOaOrgs",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "postUserRelId",
+                        "attrType": "field",
+                        "type": "1400",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrChangePwdAtNextLogon",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrEmpType",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrKey",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "actUdfNum",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrProvisionedDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "actName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrPwdResetAttemptsCtr",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrUdfSysMask",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrCreate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "orgName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrLastName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "usrEndDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "productId": "200011189",
+          "api": "/app/rhin/gateway/callRhinEngine",
+          "_source": "rhin",
+          "_serviceId": "884991652097949696",
+          "_serviceTitle": "根据岗位ID查询员工分页列表-zzz: qryOaUserByPostId",
+          "_capabilityCode": "qryOaUserByPostId",
+          "_apiCode": "qryOaUserByPostId",
+          "isServiceParam": true,
+          "requestType": "object",
+          "responseType": "object"
+        },
+        "headers": []
+      }
+    }
+  }
+]

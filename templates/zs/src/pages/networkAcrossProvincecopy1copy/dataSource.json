@@ -1,0 +1,258 @@
+[
+  {
+    "name": "feeInfo",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "code": "setMealPackage",
+        "name": "属性",
+        "type": "string",
+        "attrId": "1272852",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "setMealPackageType",
+        "name": "属性",
+        "type": "string",
+        "attrId": "072416",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "dirPrice",
+        "name": "属性",
+        "type": "string",
+        "attrId": "6288557",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "firstReducedPrice",
+        "name": "属性",
+        "type": "string",
+        "attrId": "4849687",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "firstReducedDiscount",
+        "name": "属性",
+        "type": "string",
+        "attrId": "911992",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "lowPrice",
+        "name": "属性",
+        "type": "string",
+        "attrId": "845769",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "secondReducedPrice",
+        "name": "属性",
+        "type": "string",
+        "attrId": "5338915",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "secondReducedDiscount",
+        "name": "属性",
+        "type": "string",
+        "attrId": "1314893",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "marketName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "32276",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "attrId": "133968",
+        "code": "setMealPackageName",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "994543",
+        "code": "setMealPackageTypeName",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "608209",
+        "code": "unit",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "9945482",
+        "code": "serviceFee",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "2909565",
+        "code": "serviceFeeReducedFee",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "418077",
+        "code": "serviceFeeTakeNum",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "492163",
+        "code": "probation",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "453314",
+        "code": "servicePayment",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "525809",
+        "code": "contractExpiredHandle",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "pageParam",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "85042",
+        "code": "localPrice",
+        "name": "标准价格、本地市价格",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "176213",
+        "code": "privincePrice",
+        "name": "省内跨市价格",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "setMealInfoList",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "8623679",
+        "code": "totalInfo",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  }
+]

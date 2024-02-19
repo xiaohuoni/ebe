@@ -1,0 +1,166 @@
+[
+  {
+    "name": "governList",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "285151",
+        "code": "city",
+        "name": "地市",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "8031115",
+        "code": "area",
+        "name": "区县",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "1266423",
+        "code": "msisdn",
+        "name": "号码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "8746678",
+        "code": "groupId",
+        "name": "集团编号",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "3650594",
+        "code": "groupName",
+        "name": "集团名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "746123",
+        "code": "tradeclassTop",
+        "name": "行业类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "215997",
+        "code": "customerType",
+        "name": "客户类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "613671",
+        "code": "recommendEnsuredType",
+        "name": "建议保障类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "659825",
+        "code": "expiredTime",
+        "name": "到期时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "8531576",
+        "code": "cityName",
+        "name": "地市名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "5670035",
+        "code": "areaName",
+        "name": "区县名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "254537",
+        "code": "tradeclassTopName",
+        "name": "行业类型名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "456323",
+        "code": "customerTypeName",
+        "name": "客户类型名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "6858923",
+        "code": "recommendEnsuredTypeName",
+        "name": "建议保障类型名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "pageData",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "774225",
+        "code": "maxDate",
+        "name": "最大时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  }
+]

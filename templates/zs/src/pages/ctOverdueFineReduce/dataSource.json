@@ -1,0 +1,81 @@
+[
+  {
+    "name": "ctOverdueFineReduce",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "884727",
+        "code": "accountCode",
+        "name": "集团CT账户编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "083311",
+        "code": "accountName",
+        "name": "账户名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "487409",
+        "code": "principal",
+        "name": "本金（元）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "797517",
+        "code": "isCriterion",
+        "name": "以最终产生滞纳金为准",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "568045",
+        "code": "overdueFine",
+        "name": "滞纳金（元）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "504982",
+        "code": "reduceFine",
+        "name": "滞纳金减免金额（元）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "298388",
+        "code": "duration",
+        "name": "滞纳金产生时长（天）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "7481086",
+        "code": "rowId",
+        "name": "行id",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  }
+]

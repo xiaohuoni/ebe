@@ -1,0 +1,1162 @@
+[
+  {
+    "name": "feeInfo",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "code": "msisdn",
+        "name": "属性",
+        "type": "string",
+        "attrId": "7920964",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "groupId",
+        "name": "属性",
+        "type": "string",
+        "attrId": "685634",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "groupName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "261156",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "valueTypeName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "263324",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "valuableFlagName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "8685033",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "createTime",
+        "name": "属性",
+        "type": "string",
+        "attrId": "5624691",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "officialLevelName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "192954",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "memberTypeName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "3485473",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "duty",
+        "name": "属性",
+        "type": "string",
+        "attrId": "837962",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "keyTypeName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "852426",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "name",
+        "name": "属性",
+        "type": "string",
+        "attrId": "783899",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "bossName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "293281",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "staffTypeName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "815256",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "ageTypeName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "661524",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "saleId",
+        "name": "属性",
+        "type": "string",
+        "attrId": "012048",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "saleName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "590825398",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "acceptCity",
+        "name": "属性",
+        "type": "string",
+        "attrId": "490918",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "startTime",
+        "name": "属性",
+        "type": "string",
+        "attrId": "663852",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "endTime",
+        "name": "属性",
+        "type": "string",
+        "attrId": "499428",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "storedFeeAmount",
+        "name": "属性",
+        "type": "string",
+        "attrId": "172115",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "underTotalAmount",
+        "name": "属性",
+        "type": "string",
+        "attrId": "622645",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "giftFeeTotalAmount",
+        "name": "属性",
+        "type": "string",
+        "attrId": "843049",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "storedElementsMultiples",
+        "name": "属性",
+        "type": "string",
+        "attrId": "1164233",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "inureTypeName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "4824734",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "goodsType",
+        "name": "属性",
+        "type": "string",
+        "attrId": "573803",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "goodsName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "169278",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "description",
+        "name": "属性",
+        "type": "string",
+        "attrId": "7496425",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "bindingProductNames",
+        "name": "属性",
+        "type": "string",
+        "attrId": "119406",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "saleType",
+        "name": "属性",
+        "type": "string",
+        "attrId": "9888495",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "terminalCost",
+        "name": "属性",
+        "type": "string",
+        "attrId": "6435975",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "terminal",
+        "name": "属性",
+        "type": "string",
+        "attrId": "347536",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "otherCost",
+        "name": "属性",
+        "type": "string",
+        "attrId": "8026161",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "distributeIncome",
+        "name": "属性",
+        "type": "string",
+        "attrId": "305236",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "reward",
+        "name": "属性",
+        "type": "string",
+        "attrId": "530997",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "oldDistributeIncome",
+        "name": "属性",
+        "type": "string",
+        "attrId": "43587",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "doubleAllowance",
+        "name": "属性",
+        "type": "string",
+        "attrId": "5477967",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "contractPeriod",
+        "name": "属性",
+        "type": "string",
+        "attrId": "0742437",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "totalCost",
+        "name": "属性",
+        "type": "string",
+        "attrId": "9198543",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "periodValue",
+        "name": "属性",
+        "type": "string",
+        "attrId": "386273",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "benefitRatio",
+        "name": "属性",
+        "type": "string",
+        "attrId": "4992753",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "activityTotalAmount",
+        "name": "属性",
+        "type": "string",
+        "attrId": "098701",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "onceDiscount",
+        "name": "属性",
+        "type": "string",
+        "attrId": "4458256",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "arpu",
+        "name": "属性",
+        "type": "string",
+        "attrId": "188227",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "improveRevenue",
+        "name": "属性",
+        "type": "string",
+        "attrId": "370447",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "secondDiscount",
+        "name": "属性",
+        "type": "string",
+        "attrId": "985374",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "antiIncome",
+        "name": "属性",
+        "type": "string",
+        "attrId": "0470527",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "feedBackRate",
+        "name": "属性",
+        "type": "string",
+        "attrId": "840057",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "retainedIncome",
+        "name": "属性",
+        "type": "string",
+        "attrId": "8038904",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "totalRevenue",
+        "name": "属性",
+        "type": "string",
+        "attrId": "919577",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "memberHomeCityName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "887338",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "memberHomeCity",
+        "name": "属性",
+        "type": "string",
+        "attrId": "183894",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "attrId": "1058253",
+        "code": "rowId",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "marketList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "969052",
+        "code": "saleId",
+        "name": "营销案编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "395448",
+        "code": "saleName",
+        "name": "营销案名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "7610088",
+        "code": "saleDesc",
+        "name": "营销案描述",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "302396",
+        "code": "rowId",
+        "name": "行id",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "marketCaseInfo",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "852366",
+        "code": "code",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "795578",
+        "code": "name",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "690458",
+        "code": "desc",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "pageParam",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "85042",
+        "code": "localPrice",
+        "name": "标准价格、本地市价格",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "176213",
+        "code": "privincePrice",
+        "name": "省内跨市价格",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "groupLineRateData",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "code": "groupLineRateInfo",
+        "attrType": "objectArray",
+        "children": [
+          {
+            "code": "bandWidth",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "1",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "2277785",
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "configTime",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "20220417155847",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "9507814",
+            "initialData": {
+              "type": "static",
+              "value": "20220417155847"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "portPrice",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "9667206",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "productId",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "3367",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "826875",
+            "initialData": {
+              "type": "static",
+              "value": "3367"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "linePrice",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "200000",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "187683",
+            "initialData": {
+              "type": "static",
+              "value": "200000"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "ipAmount",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "1",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "931143",
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "ipPrice",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "10000",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "75759",
+            "initialData": {
+              "type": "static",
+              "value": "10000"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "lineTypeName",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "452798",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "lowDiscount",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "35",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "4721867",
+            "initialData": {
+              "type": "static",
+              "value": "35"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "configOperator",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "1010112",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "6707121",
+            "initialData": {
+              "type": "static",
+              "value": "1010112"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "transferModeName",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "SDH",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "2835261",
+            "initialData": {
+              "type": "static",
+              "value": "SDH"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "bandWidthName",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "2M",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "5988504",
+            "initialData": {
+              "type": "static",
+              "value": "2M"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "ipv6Price",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "1",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "65242",
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "ipv6Amount",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "1",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "0845926",
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "lineType",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "732054",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "transferMode",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "1",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "546357",
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "name",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "集团商务快线套餐",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "65596893",
+            "initialData": {
+              "type": "static",
+              "value": "集团商务快线套餐"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "statusName",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "生效",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "9581325",
+            "initialData": {
+              "type": "static",
+              "value": "生效"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "status",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "0",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "655548",
+            "initialData": {
+              "type": "static",
+              "value": "0"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "bandWidthDown",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "1",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "9724986",
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "bandWidthDownName",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "2M",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "0691144",
+            "initialData": {
+              "type": "static",
+              "value": "2M"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          }
+        ],
+        "name": "",
+        "type": "objectArray",
+        "attrId": "204327",
+        "initialData": {
+          "type": "static"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      }
+    ]
+  }
+]

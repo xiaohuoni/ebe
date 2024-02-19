@@ -1,0 +1,107 @@
+[
+  {
+    "name": "feeInfo",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "8418473",
+        "code": "orderType",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "271625",
+        "code": "orderTypeName",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "4385753",
+        "code": "bandWidthName",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "0880356",
+        "code": "bandWidth",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "209441",
+        "code": "busiTypeName",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "671113",
+        "code": "busiType",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "81275",
+        "code": "testMonth",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "692993",
+        "code": "testMonthName",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "pageData",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "0343469673",
+        "code": "fileCount",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "0"
+        }
+      },
+      {
+        "attrId": "26545",
+        "code": "sceneCount",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  }
+]

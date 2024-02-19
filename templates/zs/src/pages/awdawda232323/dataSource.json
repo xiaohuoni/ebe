@@ -1,0 +1,2008 @@
+[
+  {
+    "name": "sceneSubmit",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "code": "approveGrade",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "审批等级",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "12522",
+        "initialData": {
+          "type": "static",
+          "value": "审批等级"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "attrList",
+        "attrType": "objectArray",
+        "children": [],
+        "name": "",
+        "type": "objectArray",
+        "attrId": "256378",
+        "initialData": {
+          "type": "static"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "catalogCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "CLS_JC_0008",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "2361134",
+        "initialData": {
+          "type": "static",
+          "value": "CLS_JC_0008"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "childCatalogCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "CLS_JC_0008_0001",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "7957011",
+        "initialData": {
+          "type": "static",
+          "value": "CLS_JC_0008_0001"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "customObject",
+        "attrType": "object",
+        "mustFlag": "F",
+        "children": [
+          {
+            "code": "acceptBusi",
+            "attrType": "object",
+            "mustFlag": "F",
+            "children": [
+              {
+                "code": "acceptBusiContextList",
+                "attrType": "objectArray",
+                "children": [
+                  {
+                    "code": "amount",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "金额（元）",
+                    "defaultValue": "",
+                    "name": "金额（元）",
+                    "attrId": "574589",
+                    "initialData": {
+                      "type": "static",
+                      "value": "金额（元）"
+                    },
+                    "parentKey": "acceptBusiContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "acceptBusiContextList"
+                  },
+                  {
+                    "code": "busiDesc",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "业务名称(描述)",
+                    "defaultValue": "",
+                    "name": "业务名称(描述)",
+                    "attrId": "212807",
+                    "initialData": {
+                      "type": "static",
+                      "value": "业务名称(描述)"
+                    },
+                    "parentKey": "acceptBusiContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "acceptBusiContextList"
+                  },
+                  {
+                    "code": "busiName",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "业务名称",
+                    "defaultValue": "",
+                    "name": "业务名称",
+                    "attrId": "038162",
+                    "initialData": {
+                      "type": "static",
+                      "value": "业务名称"
+                    },
+                    "parentKey": "acceptBusiContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "acceptBusiContextList"
+                  },
+                  {
+                    "code": "custCode",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "集团编码",
+                    "defaultValue": "",
+                    "name": "集团编码",
+                    "attrId": "0058434",
+                    "initialData": {
+                      "type": "static",
+                      "value": "集团编码"
+                    },
+                    "parentKey": "acceptBusiContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "acceptBusiContextList"
+                  },
+                  {
+                    "code": "custName",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "集团名称",
+                    "defaultValue": "",
+                    "name": "集团名称",
+                    "attrId": "7757192",
+                    "initialData": {
+                      "type": "static",
+                      "value": "集团名称"
+                    },
+                    "parentKey": "acceptBusiContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "acceptBusiContextList"
+                  },
+                  {
+                    "code": "depositExplain",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "保证金说明",
+                    "defaultValue": "",
+                    "name": "保证金说明",
+                    "attrId": "515682",
+                    "initialData": {
+                      "type": "static",
+                      "value": "保证金说明"
+                    },
+                    "parentKey": "acceptBusiContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "acceptBusiContextList"
+                  },
+                  {
+                    "code": "depositType",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "保证金类型",
+                    "defaultValue": "",
+                    "name": "保证金类型",
+                    "attrId": "274334",
+                    "initialData": {
+                      "type": "static",
+                      "value": "保证金类型"
+                    },
+                    "parentKey": "acceptBusiContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "acceptBusiContextList"
+                  },
+                  {
+                    "code": "quantity",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "数量",
+                    "defaultValue": "",
+                    "name": "数量",
+                    "attrId": "055671",
+                    "initialData": {
+                      "type": "static",
+                      "value": "数量"
+                    },
+                    "parentKey": "acceptBusiContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "acceptBusiContextList"
+                  },
+                  {
+                    "code": "riskKint",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "风险提示",
+                    "defaultValue": "",
+                    "name": "风险提示",
+                    "attrId": "033346",
+                    "initialData": {
+                      "type": "static",
+                      "value": "风险提示"
+                    },
+                    "parentKey": "acceptBusiContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "acceptBusiContextList"
+                  },
+                  {
+                    "code": "serviceNumber",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "充值账号、密码接收号码",
+                    "defaultValue": "",
+                    "name": "充值账号、密码接收号码",
+                    "attrId": "10837",
+                    "initialData": {
+                      "type": "static",
+                      "value": "充值账号、密码接收号码"
+                    },
+                    "parentKey": "acceptBusiContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "acceptBusiContextList"
+                  },
+                  {
+                    "code": "subAcctCode",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "集团分账户编码",
+                    "defaultValue": "",
+                    "name": "集团分账户编码",
+                    "attrId": "117298",
+                    "initialData": {
+                      "type": "static",
+                      "value": "集团分账户编码"
+                    },
+                    "parentKey": "acceptBusiContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "acceptBusiContextList"
+                  },
+                  {
+                    "code": "subAcctName",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "集团分账户名称",
+                    "defaultValue": "",
+                    "name": "集团分账户名称",
+                    "attrId": "1033775",
+                    "initialData": {
+                      "type": "static",
+                      "value": "集团分账户名称"
+                    },
+                    "parentKey": "acceptBusiContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "acceptBusiContextList"
+                  },
+                  {
+                    "code": "totalAmount",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "合计金额（元）",
+                    "defaultValue": "",
+                    "name": "合计金额（元）",
+                    "attrId": "325721",
+                    "initialData": {
+                      "type": "static",
+                      "value": "合计金额（元）"
+                    },
+                    "parentKey": "acceptBusiContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "acceptBusiContextList"
+                  }
+                ],
+                "name": "",
+                "type": "objectArray",
+                "attrId": "7919295",
+                "initialData": {
+                  "type": "static"
+                },
+                "parentKey": "acceptBusi",
+                "parentType": "object"
+              },
+              {
+                "code": "bToaAmount",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "银企实收金额-认领需求金额（元）B-A",
+                "defaultValue": "",
+                "name": "银企实收金额-认领需求金额（元）B-A",
+                "attrId": "581875",
+                "initialData": {
+                  "type": "static",
+                  "value": "银企实收金额-认领需求金额（元）B-A"
+                },
+                "parentKey": "acceptBusi",
+                "parentType": "object"
+              },
+              {
+                "code": "claimAmount",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "认领需求金额（元）A",
+                "defaultValue": "",
+                "name": "认领需求金额（元）A",
+                "attrId": "7409087",
+                "initialData": {
+                  "type": "static",
+                  "value": "认领需求金额（元）A"
+                },
+                "parentKey": "acceptBusi",
+                "parentType": "object"
+              },
+              {
+                "code": "realAmount",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "银企实收金额（元）B",
+                "defaultValue": "",
+                "name": "银企实收金额（元）B",
+                "attrId": "184444",
+                "initialData": {
+                  "type": "static",
+                  "value": "银企实收金额（元）B"
+                },
+                "parentKey": "acceptBusi",
+                "parentType": "object"
+              }
+            ],
+            "name": "",
+            "type": "object",
+            "attrId": "646031",
+            "initialData": {
+              "type": "static"
+            },
+            "parentKey": "customObject",
+            "parentType": "object"
+          },
+          {
+            "code": "bankAccountList",
+            "attrType": "objectArray",
+            "children": [
+              {
+                "code": "isGovEnterprise",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "是否政企专户",
+                "defaultValue": "",
+                "name": "是否政企专户",
+                "attrId": "609703",
+                "initialData": {
+                  "type": "static",
+                  "value": "是否政企专户"
+                },
+                "parentKey": "bankAccountList",
+                "parentType": "objectArray",
+                "parentCode": "bankAccountList"
+              },
+              {
+                "code": "payeeAcctCode",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "收款方账号",
+                "defaultValue": "",
+                "name": "收款方账号",
+                "attrId": "5286043",
+                "initialData": {
+                  "type": "static",
+                  "value": "收款方账号"
+                },
+                "parentKey": "bankAccountList",
+                "parentType": "objectArray",
+                "parentCode": "bankAccountList"
+              },
+              {
+                "code": "payeeAcctName",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "收款方户名",
+                "defaultValue": "",
+                "name": "收款方户名",
+                "attrId": "384858",
+                "initialData": {
+                  "type": "static",
+                  "value": "收款方户名"
+                },
+                "parentKey": "bankAccountList",
+                "parentType": "objectArray",
+                "parentCode": "bankAccountList"
+              },
+              {
+                "code": "paymentAcctCode",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "账户方账号",
+                "defaultValue": "",
+                "name": "账户方账号",
+                "attrId": "1897006",
+                "initialData": {
+                  "type": "static",
+                  "value": "账户方账号"
+                },
+                "parentKey": "bankAccountList",
+                "parentType": "objectArray",
+                "parentCode": "bankAccountList"
+              },
+              {
+                "code": "paymentAcctName",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "转账方户名",
+                "defaultValue": "",
+                "name": "转账方户名",
+                "attrId": "512689",
+                "initialData": {
+                  "type": "static",
+                  "value": "转账方户名"
+                },
+                "parentKey": "bankAccountList",
+                "parentType": "objectArray",
+                "parentCode": "bankAccountList"
+              },
+              {
+                "code": "paymentBankName",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "转账方银行",
+                "defaultValue": "",
+                "name": "转账方银行",
+                "attrId": "218978",
+                "initialData": {
+                  "type": "static",
+                  "value": "转账方银行"
+                },
+                "parentKey": "bankAccountList",
+                "parentType": "objectArray",
+                "parentCode": "bankAccountList"
+              },
+              {
+                "code": "postscript",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "附言",
+                "defaultValue": "",
+                "name": "附言",
+                "attrId": "467401",
+                "initialData": {
+                  "type": "static",
+                  "value": "附言"
+                },
+                "parentKey": "bankAccountList",
+                "parentType": "objectArray",
+                "parentCode": "bankAccountList"
+              },
+              {
+                "code": "summary",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "摘要",
+                "defaultValue": "",
+                "name": "摘要",
+                "attrId": "511544",
+                "initialData": {
+                  "type": "static",
+                  "value": "摘要"
+                },
+                "parentKey": "bankAccountList",
+                "parentType": "objectArray",
+                "parentCode": "bankAccountList"
+              },
+              {
+                "code": "tradeAmount",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "交易金额（元）",
+                "defaultValue": "",
+                "name": "交易金额（元）",
+                "attrId": "683951",
+                "initialData": {
+                  "type": "static",
+                  "value": "交易金额（元）"
+                },
+                "parentKey": "bankAccountList",
+                "parentType": "objectArray",
+                "parentCode": "bankAccountList"
+              },
+              {
+                "code": "tradeTime",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "交易时间",
+                "defaultValue": "",
+                "name": "交易时间",
+                "attrId": "675922",
+                "initialData": {
+                  "type": "static",
+                  "value": "交易时间"
+                },
+                "parentKey": "bankAccountList",
+                "parentType": "objectArray",
+                "parentCode": "bankAccountList"
+              }
+            ],
+            "name": "",
+            "type": "objectArray",
+            "attrId": "688246",
+            "initialData": {
+              "type": "static"
+            },
+            "parentKey": "customObject",
+            "parentType": "object"
+          },
+          {
+            "code": "invoice",
+            "attrType": "object",
+            "mustFlag": "F",
+            "children": [
+              {
+                "code": "invoiceContextList",
+                "attrType": "objectArray",
+                "children": [
+                  {
+                    "code": "amountOutstanding",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "未平账金额（元）",
+                    "defaultValue": "",
+                    "name": "未平账金额（元）",
+                    "attrId": "909473",
+                    "initialData": {
+                      "type": "static",
+                      "value": "未平账金额（元）"
+                    },
+                    "parentKey": "invoiceContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "invoiceContextList"
+                  },
+                  {
+                    "code": "invoiceAmount",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "发票金额（元）",
+                    "defaultValue": "",
+                    "name": "发票金额（元）",
+                    "attrId": "646411",
+                    "initialData": {
+                      "type": "static",
+                      "value": "发票金额（元）"
+                    },
+                    "parentKey": "invoiceContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "invoiceContextList"
+                  },
+                  {
+                    "code": "invoiceClerk",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "开票员",
+                    "defaultValue": "",
+                    "name": "开票员",
+                    "attrId": "06778",
+                    "initialData": {
+                      "type": "static",
+                      "value": "开票员"
+                    },
+                    "parentKey": "invoiceContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "invoiceContextList"
+                  },
+                  {
+                    "code": "invoiceCode",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "发票编码",
+                    "defaultValue": "",
+                    "name": "发票编码",
+                    "attrId": "668342",
+                    "initialData": {
+                      "type": "static",
+                      "value": "发票编码"
+                    },
+                    "parentKey": "invoiceContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "invoiceContextList"
+                  },
+                  {
+                    "code": "invoiceDate",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "开票时间",
+                    "defaultValue": "",
+                    "name": "开票时间",
+                    "attrId": "580475",
+                    "initialData": {
+                      "type": "static",
+                      "value": "开票时间"
+                    },
+                    "parentKey": "invoiceContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "invoiceContextList"
+                  },
+                  {
+                    "code": "invoiceNumber",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "发票号码",
+                    "defaultValue": "",
+                    "name": "发票号码",
+                    "attrId": "774018",
+                    "initialData": {
+                      "type": "static",
+                      "value": "发票号码"
+                    },
+                    "parentKey": "invoiceContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "invoiceContextList"
+                  },
+                  {
+                    "code": "invoiceType",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "发票类型",
+                    "defaultValue": "",
+                    "name": "发票类型",
+                    "attrId": "853912",
+                    "initialData": {
+                      "type": "static",
+                      "value": "发票类型"
+                    },
+                    "parentKey": "invoiceContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "invoiceContextList"
+                  },
+                  {
+                    "code": "invoicedAmount",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "已开票金额（元）",
+                    "defaultValue": "",
+                    "name": "已开票金额（元）",
+                    "attrId": "784066",
+                    "initialData": {
+                      "type": "static",
+                      "value": "已开票金额（元）"
+                    },
+                    "parentKey": "invoiceContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "invoiceContextList"
+                  },
+                  {
+                    "code": "purchase",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "购买信息",
+                    "defaultValue": "",
+                    "name": "购买信息",
+                    "attrId": "38791",
+                    "initialData": {
+                      "type": "static",
+                      "value": "购买信息"
+                    },
+                    "parentKey": "invoiceContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "invoiceContextList"
+                  },
+                  {
+                    "code": "redAccountAmount",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "exampleValue": "本次平账金额（元）",
+                    "defaultValue": "",
+                    "name": "本次平账金额（元）",
+                    "attrId": "4749197",
+                    "initialData": {
+                      "type": "static",
+                      "value": "本次平账金额（元）"
+                    },
+                    "parentKey": "invoiceContextList",
+                    "parentType": "objectArray",
+                    "parentCode": "invoiceContextList"
+                  }
+                ],
+                "name": "",
+                "type": "objectArray",
+                "attrId": "494306",
+                "initialData": {
+                  "type": "static"
+                },
+                "parentKey": "invoice",
+                "parentType": "object"
+              },
+              {
+                "code": "totalAmount",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "本次合计平账金额（元）A",
+                "defaultValue": "",
+                "name": "本次合计平账金额（元）A",
+                "attrId": "396239",
+                "initialData": {
+                  "type": "static",
+                  "value": "本次合计平账金额（元）A"
+                },
+                "parentKey": "invoice",
+                "parentType": "object"
+              }
+            ],
+            "name": "",
+            "type": "object",
+            "attrId": "662578",
+            "initialData": {
+              "type": "static"
+            },
+            "parentKey": "customObject",
+            "parentType": "object"
+          },
+          {
+            "code": "reminder",
+            "attrType": "objectArray",
+            "children": [
+              {
+                "code": "contactPhone",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "联系电话",
+                "defaultValue": "",
+                "name": "联系电话",
+                "attrId": "7801675",
+                "initialData": {
+                  "type": "static",
+                  "value": "联系电话"
+                },
+                "parentKey": "reminder",
+                "parentType": "objectArray",
+                "parentCode": "reminder"
+              },
+              {
+                "code": "paymentAcctCode",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "转账方账号",
+                "defaultValue": "",
+                "name": "转账方账号",
+                "attrId": "752673",
+                "initialData": {
+                  "type": "static",
+                  "value": "转账方账号"
+                },
+                "parentKey": "reminder",
+                "parentType": "objectArray",
+                "parentCode": "reminder"
+              },
+              {
+                "code": "paymentAcctName",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "转账方户名",
+                "defaultValue": "",
+                "name": "转账方户名",
+                "attrId": "9751515",
+                "initialData": {
+                  "type": "static",
+                  "value": "转账方户名"
+                },
+                "parentKey": "reminder",
+                "parentType": "objectArray",
+                "parentCode": "reminder"
+              },
+              {
+                "code": "paymentBankName",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "转账方银行",
+                "defaultValue": "",
+                "name": "转账方银行",
+                "attrId": "6703021",
+                "initialData": {
+                  "type": "static",
+                  "value": "转账方银行"
+                },
+                "parentKey": "reminder",
+                "parentType": "objectArray",
+                "parentCode": "reminder"
+              },
+              {
+                "code": "remindObject",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "提醒方",
+                "defaultValue": "",
+                "name": "提醒方",
+                "attrId": "047058",
+                "initialData": {
+                  "type": "static",
+                  "value": "提醒方"
+                },
+                "parentKey": "reminder",
+                "parentType": "objectArray",
+                "parentCode": "reminder"
+              },
+              {
+                "code": "reminder",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "exampleValue": "资金变动提醒人",
+                "defaultValue": "",
+                "name": "资金变动提醒人",
+                "attrId": "350628",
+                "initialData": {
+                  "type": "static",
+                  "value": "资金变动提醒人"
+                },
+                "parentKey": "reminder",
+                "parentType": "objectArray",
+                "parentCode": "reminder"
+              }
+            ],
+            "name": "",
+            "type": "objectArray",
+            "attrId": "1428303",
+            "initialData": {
+              "type": "static"
+            },
+            "parentKey": "customObject",
+            "parentType": "object"
+          }
+        ],
+        "name": "",
+        "type": "object",
+        "attrId": "123276",
+        "initialData": {
+          "type": "static"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileInfo",
+        "attrType": "objectArray",
+        "children": [],
+        "name": "",
+        "type": "objectArray",
+        "attrId": "4685407",
+        "initialData": {
+          "type": "static"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "parentCatalogCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "CLS_JC",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "318402",
+        "initialData": {
+          "type": "static",
+          "value": "CLS_JC"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      }
+    ]
+  },
+  {
+    "name": "factorForm",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "08707745",
+        "code": "flowType",
+        "name": "流程类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "359926",
+        "code": "workOrderNbr",
+        "name": "已审批认领需求工单号",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "65306653",
+        "code": "validityDate",
+        "name": "审批有效期",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "183177",
+        "code": "sceneCode",
+        "name": "场景名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "981621",
+        "code": "sceneDesc",
+        "name": "场景说明",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "932317",
+        "code": "approvaItemDesc",
+        "name": "审批事项说明",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "2715976",
+        "code": "topUpAmount",
+        "name": "充值金额",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "fileInfoList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "code": "fileName",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件名称",
+        "defaultValue": "",
+        "name": "附件名称",
+        "attrId": "458544",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "filePath",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件文件路径",
+        "defaultValue": "",
+        "name": "附件文件路径",
+        "attrId": "6354087",
+        "initialData": {
+          "type": "static",
+          "value": "附件文件路径"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileServerType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件文件服务器类型",
+        "defaultValue": "",
+        "name": "附件文件服务器类型",
+        "attrId": "184934",
+        "initialData": {
+          "type": "static",
+          "value": "附件文件服务器类型"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileSubType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件分类-细类",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "551676",
+        "initialData": {
+          "type": "static",
+          "value": "附件分类-细类"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件分类-大类",
+        "defaultValue": "",
+        "name": "附件分类-大类",
+        "attrId": "383524",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileUrl",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件url地址",
+        "defaultValue": "",
+        "name": "附件url地址",
+        "attrId": "726875",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "tacheCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "环节编码",
+        "defaultValue": "",
+        "name": "环节编码",
+        "attrId": "865444",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "attrId": "7419638",
+        "code": "fileCode",
+        "name": "文件编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "097484",
+        "code": "createTime",
+        "name": "创建时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "604675",
+        "code": "createStaff",
+        "name": "创建人",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "729925",
+        "code": "fileTypeName",
+        "name": "附件类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "acceptBusiContextList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "code": "amount",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "0.20",
+        "defaultValue": "",
+        "name": "金额（元）",
+        "attrId": "2070192",
+        "initialData": {
+          "type": "static",
+          "value": "0.20"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "busiDesc",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "",
+        "defaultValue": "",
+        "name": "业务名称(描述)",
+        "attrId": "681856",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "busiName",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "保证金",
+        "defaultValue": "",
+        "name": "业务名称",
+        "attrId": "8921601",
+        "initialData": {
+          "type": "static",
+          "value": "保证金"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "custCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "5911402326",
+        "defaultValue": "",
+        "name": "集团编码",
+        "attrId": "731512",
+        "initialData": {
+          "type": "static",
+          "value": "5911402326"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "custName",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "福建中鹭置业有限公司",
+        "defaultValue": "",
+        "name": "集团编码",
+        "attrId": "296928",
+        "initialData": {
+          "type": "static",
+          "value": "福建中鹭置业有限公司"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "depositExplain",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "",
+        "defaultValue": "",
+        "name": "保证金说明",
+        "attrId": "48305",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "depositType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "1",
+        "defaultValue": "",
+        "name": "保证金类型",
+        "attrId": "513131",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "quantity",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "",
+        "defaultValue": "",
+        "name": "数量",
+        "attrId": "165654",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "riskKint",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "集团名称：0%;单位证件名称 ：0%;个人户名相似度 ：0%;",
+        "defaultValue": "",
+        "name": "风险提示",
+        "attrId": "364922",
+        "initialData": {
+          "type": "static",
+          "value": "集团名称：0%;单位证件名称 ：0%;个人户名相似度 ：0%;"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "serviceNumber",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "",
+        "defaultValue": "",
+        "name": "充值账号、密码接收号码 ",
+        "attrId": "212926",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "subAcctCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "",
+        "defaultValue": "",
+        "name": "充值账号、密码接收号码 ",
+        "attrId": "886854",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "subAcctName",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "",
+        "defaultValue": "",
+        "name": "集团分账户名称",
+        "attrId": "521565035",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "totalAmount",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "0.20",
+        "defaultValue": "",
+        "name": "合计金额（元",
+        "attrId": "915277",
+        "initialData": {
+          "type": "static",
+          "value": "0.20"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      }
+    ]
+  },
+  {
+    "name": "invoiceContextList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "code": "amountOutstanding",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "未平账金额（元）",
+        "defaultValue": "",
+        "name": "未平账金额（元）",
+        "attrId": "322326",
+        "initialData": {
+          "type": "static",
+          "value": "未平账金额（元）"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "invoiceAmount",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "发票金额（元）",
+        "defaultValue": "",
+        "name": "发票金额（元）",
+        "attrId": "785233",
+        "initialData": {
+          "type": "static",
+          "value": "发票金额（元）"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "invoiceClerk",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "开票员",
+        "defaultValue": "",
+        "name": "开票员",
+        "attrId": "9198094",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "invoiceCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "发票编码",
+        "defaultValue": "",
+        "name": "发票编码",
+        "attrId": "990238",
+        "initialData": {
+          "type": "static",
+          "value": "发票编码"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "invoiceDate",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "开票时间",
+        "defaultValue": "",
+        "name": "开票时间",
+        "attrId": "188049",
+        "initialData": {
+          "type": "static",
+          "value": "开票时间"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "invoiceNumber",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "发票号码",
+        "defaultValue": "",
+        "name": "发票号码",
+        "attrId": "701945",
+        "initialData": {
+          "type": "static",
+          "value": "发票号码"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "invoiceType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "发票类型",
+        "defaultValue": "",
+        "name": "发票类型",
+        "attrId": "581928",
+        "initialData": {
+          "type": "static",
+          "value": "发票类型"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "invoicedAmount",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "已开票金额（元）",
+        "defaultValue": "",
+        "name": "已开票金额（元）",
+        "attrId": "6564957",
+        "initialData": {
+          "type": "static",
+          "value": "已开票金额（元）"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "purchase",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "购买信息",
+        "defaultValue": "",
+        "name": "购买信息",
+        "attrId": "75598",
+        "initialData": {
+          "type": "static",
+          "value": "购买信息"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "redAccountAmount",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "本次平账金额（元）",
+        "defaultValue": "",
+        "name": "本次平账金额（元）",
+        "attrId": "859346",
+        "initialData": {
+          "type": "static",
+          "value": "本次平账金额（元）"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "attrId": "75242",
+        "code": "invoiceIsRelGroup",
+        "name": "是否关联集团开票",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "937526",
+        "code": "groupCodeRel",
+        "name": "关联集团编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "837405",
+        "code": "groupAccountRel",
+        "name": "关联集团账户",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "3663035",
+        "code": "returnAmountRel",
+        "name": "关联未回款金额",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      }
+    ]
+  },
+  {
+    "name": "reminder",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "code": "contactPhone",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "联系电话",
+        "defaultValue": "",
+        "name": "联系电话",
+        "attrId": "9646364",
+        "initialData": {
+          "type": "static",
+          "value": "联系电话"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "paymentAcctCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "转账方账号",
+        "defaultValue": "",
+        "name": "转账方账号",
+        "attrId": "832191",
+        "initialData": {
+          "type": "static",
+          "value": "转账方账号"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "paymentAcctName",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "转账方户名",
+        "defaultValue": "",
+        "name": "转账方户名",
+        "attrId": "210465",
+        "initialData": {
+          "type": "static",
+          "value": "转账方户名"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "paymentBankName",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "转账方银行",
+        "defaultValue": "",
+        "name": "转账方银行",
+        "attrId": "528637",
+        "initialData": {
+          "type": "static",
+          "value": "转账方银行"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "remindObject",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "提醒方",
+        "defaultValue": "",
+        "name": "提醒方",
+        "attrId": "526286",
+        "initialData": {
+          "type": "static",
+          "value": "提醒方"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "reminder",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "资金变动提醒人",
+        "defaultValue": "",
+        "name": "资金变动提醒人",
+        "attrId": "784928",
+        "initialData": {
+          "type": "static",
+          "value": "资金变动提醒人"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      }
+    ]
+  },
+  {
+    "name": "bankAccountList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "code": "isGovEnterprise",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "是否政企专户",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "523756",
+        "initialData": {
+          "type": "static",
+          "value": "是否政企专户"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "payeeAcctCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "收款方账号",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "09153434",
+        "initialData": {
+          "type": "static",
+          "value": "收款方账号"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "payeeAcctName",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "收款方户名",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "215613",
+        "initialData": {
+          "type": "static",
+          "value": "收款方户名"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "paymentAcctCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "账户方账号",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "645119",
+        "initialData": {
+          "type": "static",
+          "value": "账户方账号"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "paymentAcctName",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "转账方户名",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "9718804",
+        "initialData": {
+          "type": "static",
+          "value": "转账方户名"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "paymentBankName",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "转账方银行",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "057783",
+        "initialData": {
+          "type": "static",
+          "value": "转账方银行"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "postscript",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附言",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "094515",
+        "initialData": {
+          "type": "static",
+          "value": "附言"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "summary",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "摘要",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "88878",
+        "initialData": {
+          "type": "static",
+          "value": "摘要"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "tradeAmount",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "交易金额（元）",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "4089053",
+        "initialData": {
+          "type": "static",
+          "value": "交易金额（元）"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "tradeTime",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "交易时间",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "99743002",
+        "initialData": {
+          "type": "static",
+          "value": "交易时间"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      }
+    ]
+  },
+  {
+    "name": "paymentIdentifies",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "49563",
+        "code": "sceneDesc",
+        "name": "场景说明",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "584233",
+        "code": "groupAccountCode",
+        "name": "集团账户编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "850937",
+        "code": "payBankAccount",
+        "name": "付费银行账户",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "383236",
+        "code": "isEstablishedBindRelation",
+        "name": "是否已建立绑定关系",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "2470496",
+        "code": "bindRelationSource",
+        "name": "绑定关系来源",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "529911",
+        "code": "acceptNo",
+        "name": "受理流水号",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "9254276",
+        "code": "createDate",
+        "name": "创建时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "278444",
+        "code": "createStaff",
+        "name": "创建人",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "7968324",
+        "code": "validityDate",
+        "name": "付费有效期字段",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "2531253",
+        "code": "instCode",
+        "name": "序号",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "320705",
+        "code": "sceneCode",
+        "name": "缴费场景",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "179487",
+        "code": "validityStartDate",
+        "name": "付费有效期生效时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "263707",
+        "code": "validityEndDate",
+        "name": "付费有效期失效时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      }
+    ]
+  },
+  {
+    "name": "pageData",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "5436791",
+        "code": "supportedSuffix",
+        "name": "支持的文件后缀",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  }
+]

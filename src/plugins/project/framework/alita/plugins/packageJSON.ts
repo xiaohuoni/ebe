@@ -36,7 +36,7 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
         'lint-staged': 'lint-staged',
         'lint-staged:js': 'eslint --ext .ts,.tsx',
         plugin: 'alita plugin list',
-        start: 'alita dev',
+        start: 'NODE_OPTIONS=--max-old-space-size=8192 alita dev',
       },
       'lint-staged': {
         '**/*.less': 'stylelint --syntax less',

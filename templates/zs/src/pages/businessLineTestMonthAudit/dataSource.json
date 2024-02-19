@@ -1,0 +1,191 @@
+[
+  {
+    "name": "feeInfo",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "340834",
+        "code": "orderType",
+        "name": "类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "7104156",
+        "code": "orderTypeName",
+        "name": "类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "63463",
+        "code": "busiType",
+        "name": "业务类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "476451",
+        "code": "busiTypeName",
+        "name": "业务类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "232827",
+        "code": "bandWidthUp",
+        "name": "上行带宽",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "0368124",
+        "code": "bandWidthUpName",
+        "name": "上行带宽",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "314801",
+        "code": "testMonth",
+        "name": "测试月数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "076694",
+        "code": "testMonthName",
+        "name": "测试月数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "2326535",
+        "code": "bandWidthDown",
+        "name": "下行带宽",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "698397",
+        "code": "bandWidthDownName",
+        "name": "下行带宽",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "169678",
+        "code": "total",
+        "name": "条数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "groupLineRateData",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": []
+  },
+  {
+    "name": "bandWidthUpList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "3601735",
+        "code": "bandWidth",
+        "name": "上行带宽值",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "948743",
+        "code": "bandWidthName",
+        "name": "上行带宽名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "bandWidthDownList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "280991",
+        "code": "bandWidth",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "93804",
+        "code": "bandWidthName",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "689414",
+        "code": "lineRateInfo",
+        "name": "属性",
+        "type": "object",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "414",
+        "code": "bandWidthDown",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "9605921",
+        "code": "bandWidthDownName",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  }
+]

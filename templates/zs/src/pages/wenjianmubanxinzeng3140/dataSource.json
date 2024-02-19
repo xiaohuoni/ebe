@@ -1,0 +1,45 @@
+[
+  {
+    "name": "pageInfo",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "884219",
+        "code": "sceneId",
+        "name": "场景ID",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "186104",
+        "code": "filePath",
+        "name": "文件在低代码路径",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "509838",
+        "code": "fileId",
+        "name": "文件ID",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "708125",
+        "code": "fileTemplateName",
+        "name": "文件模板名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  }
+]

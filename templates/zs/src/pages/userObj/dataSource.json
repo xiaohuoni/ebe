@@ -1,0 +1,29 @@
+[
+  {
+    "name": "userObj",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "294009",
+        "code": "userName",
+        "name": "用户名",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "663495",
+        "code": "phone",
+        "name": "电话",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  }
+]

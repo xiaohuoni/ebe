@@ -1,0 +1,89 @@
+[
+  {
+    "name": "groupInfo",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "8503888",
+        "code": "groupId",
+        "name": "集团编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "95902",
+        "code": "groupName",
+        "name": "集团名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "275294",
+        "code": "basicAccessNumber",
+        "name": "基本接入号",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "991743",
+        "code": "busiAccessNumber",
+        "name": "业务接入号",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "387407",
+        "code": "agentName",
+        "name": "代理商名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "92785",
+        "code": "devChannel",
+        "name": "发展渠道",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "165085",
+        "code": "devChannelName",
+        "name": "发展渠道名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "826146",
+        "code": "rowId",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  }
+]

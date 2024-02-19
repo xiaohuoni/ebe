@@ -1,0 +1,550 @@
+[
+  {
+    "name": "sceneSubmit",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "code": "approveGrade",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "审批等级",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "12522",
+        "initialData": {
+          "type": "static",
+          "value": "审批等级"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "attrList",
+        "attrType": "objectArray",
+        "children": [],
+        "name": "",
+        "type": "objectArray",
+        "attrId": "256378",
+        "initialData": {
+          "type": "static"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "catalogCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "CLS_JC_0008",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "2361134",
+        "initialData": {
+          "type": "static",
+          "value": "CLS_JC_0008"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "childCatalogCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "CLS_JC_0008_0001",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "7957011",
+        "initialData": {
+          "type": "static",
+          "value": "CLS_JC_0008_0001"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "customObject",
+        "attrType": "object",
+        "mustFlag": "F",
+        "children": [
+          {
+            "attrId": "507709",
+            "code": "cashAccountLine",
+            "name": "属性",
+            "type": "objectArray",
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "385334",
+            "code": "dealRecord",
+            "name": "属性",
+            "type": "objectArray",
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "7087204",
+            "code": "outputAccountCode",
+            "name": "属性",
+            "type": "string",
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "607135",
+            "code": "outputAccountName",
+            "name": "属性",
+            "type": "string",
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "316402",
+            "code": "outputAccountStatus",
+            "name": "属性",
+            "type": "string",
+            "initialData": {
+              "type": "static"
+            }
+          }
+        ],
+        "name": "",
+        "type": "object",
+        "attrId": "123276",
+        "initialData": {
+          "type": "static"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileInfo",
+        "attrType": "objectArray",
+        "children": [],
+        "name": "",
+        "type": "objectArray",
+        "attrId": "4685407",
+        "initialData": {
+          "type": "static"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "parentCatalogCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "CLS_JC",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "318402",
+        "initialData": {
+          "type": "static",
+          "value": "CLS_JC"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      }
+    ]
+  },
+  {
+    "name": "factorForm",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "2715976",
+        "code": "userBelongType",
+        "name": "预警工单汇总信息",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "7714173",
+        "code": "argeReminderPhot",
+        "name": "业务数据图片欠费催缴情况",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "0905764",
+        "code": "argeReminder",
+        "name": "业务数据图片欠费催缴情况",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "709937",
+        "code": "creditControlPhot",
+        "name": "信控管理预警情况",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "753858",
+        "code": "creditControl",
+        "name": "信控管理预警情况",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "874818",
+        "code": "artificialAuditPhot",
+        "name": "人工审批影响客户集团欠费增长情况",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "472915",
+        "code": "artificialAudit",
+        "name": "人工审批影响客户集团欠费增长情况",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "528582",
+        "code": "workOrderDesc",
+        "name": "工单说明",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "fileInfoList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "code": "fileName",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件名称",
+        "defaultValue": "",
+        "name": "附件名称",
+        "attrId": "458544",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "filePath",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件文件路径",
+        "defaultValue": "",
+        "name": "附件文件路径",
+        "attrId": "6354087",
+        "initialData": {
+          "type": "static",
+          "value": "附件文件路径"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileServerType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件文件服务器类型",
+        "defaultValue": "",
+        "name": "附件文件服务器类型",
+        "attrId": "184934",
+        "initialData": {
+          "type": "static",
+          "value": "附件文件服务器类型"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileSubType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件分类-细类",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "551676",
+        "initialData": {
+          "type": "static",
+          "value": "附件分类-细类"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件分类-大类",
+        "defaultValue": "",
+        "name": "附件分类-大类",
+        "attrId": "383524",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileUrl",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件url地址",
+        "defaultValue": "",
+        "name": "附件url地址",
+        "attrId": "726875",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "tacheCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "环节编码",
+        "defaultValue": "",
+        "name": "环节编码",
+        "attrId": "865444",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "attrId": "7419638",
+        "code": "fileCode",
+        "name": "文件编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "097484",
+        "code": "createTime",
+        "name": "创建时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "604675",
+        "code": "createStaff",
+        "name": "创建人",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "729925",
+        "code": "fileTypeName",
+        "name": "附件类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "cashAccountLine",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "470131",
+        "code": "accountId",
+        "name": "账户标识",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "480806",
+        "code": "accountLineId",
+        "name": "账本标识",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "3892031",
+        "code": "accountLineItem",
+        "name": "账本科目",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "772615",
+        "code": "balance",
+        "name": "账本余额",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "4287366",
+        "code": "cycle",
+        "name": "账务周期",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "300216",
+        "code": "limitBalance",
+        "name": "账本余额（限额后）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "3565284",
+        "code": "limitType",
+        "name": "限额类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "3904335",
+        "code": "status",
+        "name": "状态",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "307854",
+        "code": "type",
+        "name": "账本类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "dealRecord",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "390896",
+        "code": "accountBook",
+        "name": "属性",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        },
+        "children": [
+          {
+            "attrId": "2753588",
+            "code": "accountLineId",
+            "name": "账本标识",
+            "type": "string",
+            "initialData": {
+              "type": "static"
+            },
+            "parentCode": "accountBook",
+            "parentKey": "accountBook"
+          },
+          {
+            "attrId": "957747",
+            "code": "accountLineName",
+            "name": "账本名称",
+            "type": "string",
+            "initialData": {
+              "type": "static"
+            },
+            "parentCode": "accountBook",
+            "parentKey": "accountBook"
+          },
+          {
+            "attrId": "710223",
+            "code": "transferAmount",
+            "name": "转移金额",
+            "type": "string",
+            "initialData": {
+              "type": "static"
+            },
+            "parentCode": "accountBook",
+            "parentKey": "accountBook"
+          }
+        ]
+      },
+      {
+        "attrId": "187187",
+        "code": "inputAccountCode",
+        "name": "转入账户",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "010543",
+        "code": "inputAccountName",
+        "name": "转入账户名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  }
+]

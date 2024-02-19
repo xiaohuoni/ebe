@@ -78,6 +78,7 @@
 - [ ] 命令 callParentCustomFunc 用于调用父级页面自定义方法
 - [ ] 数据源清理，只保留必须的字段
 - [ ] 表格数据导入
+- [ ] pc Form ref getTableSelected
 
 资产 DSL - 林喜 PC 端 实习生打卡 DICT 指令源码化？源数据 dataSource 清理？
 

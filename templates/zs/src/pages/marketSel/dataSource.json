@@ -1,0 +1,696 @@
+[
+  {
+    "name": "marketList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "5661486",
+        "code": "code",
+        "name": "营销案档次编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "7329346",
+        "code": "name",
+        "name": "营销案名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "10994",
+        "code": "area",
+        "name": "归属区域",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "439125",
+        "code": "marketStartTime",
+        "name": "营销案生效时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "4119828",
+        "code": "marketEndTime",
+        "name": "营销案失效时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "6490945",
+        "code": "preMoney",
+        "name": "预存金额",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "427355",
+        "code": "guarMoney",
+        "name": "保底金额",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "756048",
+        "code": "guarantee",
+        "name": "优惠金额",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "5603474",
+        "code": "acceptMul",
+        "name": "受理倍数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "006205",
+        "code": "effectType",
+        "name": "生效类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "53992615",
+        "code": "receiptsMoney",
+        "name": "二次优惠总实收金额",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "67702",
+        "code": "lastDiscount",
+        "name": "最终折扣",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "503283",
+        "code": "desc",
+        "name": "营销案描述",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "queryMarketCaseInfo",
+    "source": "service",
+    "type": "object",
+    "requestType": "object",
+    "filterParams": [
+      {
+        "attrId": "8829294",
+        "code": "header",
+        "name": "请求头参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object"
+      },
+      {
+        "attrId": "0805984",
+        "code": "path",
+        "name": "请求路径参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object"
+      },
+      {
+        "attrId": "617624",
+        "code": "query",
+        "name": "URL 参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object"
+      },
+      {
+        "attrId": "1044376",
+        "code": "body",
+        "name": "请求体",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "children": [
+          {
+            "attrId": "7333488",
+            "code": "saleId",
+            "name": "营销案编码",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "4385291",
+            "code": "saleName",
+            "name": "营销案名称",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "892457",
+            "code": "marketTypeLabel",
+            "name": "营销案类型",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "570374",
+            "code": "homeCity",
+            "name": "地市",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "outParams": [
+      {
+        "attrId": "0655817",
+        "code": "resultCode",
+        "name": "resultCode",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "89966086",
+        "code": "resultMsgCode",
+        "name": "resultMsgCode",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "2516822",
+        "code": "resultMsg",
+        "name": "resultMsg",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "407794",
+        "code": "resultData",
+        "name": "resultData",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "objectArray",
+        "children": [
+          {
+            "attrId": "5669",
+            "code": "area",
+            "name": "area",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "878562",
+            "code": "assumeAmount",
+            "name": "assumeAmount",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "033644",
+            "code": "prestoreMaxMultiple",
+            "name": "prestoreMaxMultiple",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "296816",
+            "code": "saleId",
+            "name": "saleId",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "5486203",
+            "code": "consumptionType",
+            "name": "consumptionType",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "79768",
+            "code": "saleDesc",
+            "name": "saleDesc",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "968902",
+            "code": "lastDiscount",
+            "name": "lastDiscount",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "2420083",
+            "code": "saleName",
+            "name": "saleName",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "424659",
+            "code": "expireTime",
+            "name": "expireTime",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "77818443",
+            "code": "inureType",
+            "name": "inureType",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "407493",
+            "code": "acceptMul",
+            "name": "acceptMul",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "41256",
+            "code": "inureTime",
+            "name": "inureTime",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "8870129",
+            "code": "prestoreInfo",
+            "name": "prestoreInfo",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "objectArray",
+            "children": [
+              {
+                "attrId": "2968595",
+                "code": "prestoreAmount",
+                "name": "prestoreAmount",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "952629",
+                "code": "billitemInfo",
+                "name": "billitemInfo",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "objectArray",
+                "children": [
+                  {
+                    "attrId": "992075",
+                    "code": "discountAmount",
+                    "name": "discountAmount",
+                    "sort": {
+                      "isSort": true
+                    },
+                    "initialData": {
+                      "type": "static"
+                    },
+                    "type": "string"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "config": {
+      "hooks": [],
+      "isInit": false,
+      "options": {
+        "service": {
+          "busiApiId": "896680797913452544",
+          "busiApiNbr": "queryMarketCaseInfo",
+          "busiApiName": "查询营销案信息-hdb",
+          "busiObjId": "896680797913452544",
+          "apiParam": "[{\"apiId\":896680797913452544,\"apiParamId\":896680797942812672,\"compareFlag\":true,\"createDate\":1665391761743,\"createStaff\":50169,\"objId\":896680797913452544,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1665391761743,\"createStaff\":50169,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"1000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":896680797942812673,\"serviceObject\":[],\"serviceObjectCode\":\"root\",\"serviceObjectId\":896680797942812673,\"serviceObjectPath\":\"896680797942812673\",\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":896680797942812673,\"paramType\":\"1000\",\"statusCd\":\"1000\",\"statusDate\":1665391761743,\"tenantCode\":\"868768414651416576\"},{\"apiId\":896680797913452544,\"apiParamId\":896680797947006976,\"compareFlag\":true,\"createDate\":1665391761743,\"createStaff\":50169,\"objId\":896680797913452544,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1665391761743,\"createStaff\":50169,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"2000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":896680797947006977,\"serviceObject\":[],\"serviceObjectCode\":\"root\",\"serviceObjectId\":896680797947006977,\"serviceObjectPath\":\"896680797947006977\",\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":896680797947006977,\"paramType\":\"2000\",\"statusCd\":\"1000\",\"statusDate\":1665391761743,\"tenantCode\":\"868768414651416576\"},{\"apiId\":896680797913452544,\"apiParamId\":896680797947006978,\"compareFlag\":true,\"createDate\":1665391761743,\"createStaff\":50169,\"objId\":896680797913452544,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1665391761743,\"createStaff\":50169,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"3000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":896680797947006979,\"serviceObject\":[],\"serviceObjectCode\":\"root\",\"serviceObjectId\":896680797947006979,\"serviceObjectPath\":\"896680797947006979\",\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":896680797947006979,\"paramType\":\"3000\",\"statusCd\":\"1000\",\"statusDate\":1665391761743,\"tenantCode\":\"868768414651416576\"},{\"apiId\":896680797913452544,\"apiParamId\":896680797947006980,\"compareFlag\":true,\"createDate\":1665391761743,\"createStaff\":50169,\"objId\":896680797913452544,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1665391761743,\"createStaff\":50169,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"4000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":896680797947006981,\"serviceObject\":[],\"serviceObjectAttrs\":[{\"attrId\":907469056321548288,\"attrSpec\":{\"attrId\":907469056321548288,\"attrName\":\"marketCode\",\"attrNbr\":\"saleId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667963882758,\"createStaff\":21827,\"defaultValue\":\"\",\"desensitizeRule\":\"1001\",\"desensitizeType\":\"1001\",\"exampleValue\":\"\",\"mustFlag\":\"F\",\"remark\":\"营销案编码\",\"serviceObjAttrId\":907469056317353984,\"serviceObjectId\":896680797947006981,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":907469056321548290,\"attrSpec\":{\"attrId\":907469056321548290,\"attrName\":\"saleName\",\"attrNbr\":\"saleName\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667963882758,\"createStaff\":21827,\"defaultValue\":\"\",\"desensitizeRule\":\"1001\",\"desensitizeType\":\"1001\",\"exampleValue\":\"\",\"mustFlag\":\"F\",\"remark\":\"营销案名称\",\"serviceObjAttrId\":907469056321548289,\"serviceObjectId\":896680797947006981,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":907469056321548292,\"attrSpec\":{\"attrId\":907469056321548292,\"attrName\":\"marketTypeLabel\",\"attrNbr\":\"marketTypeLabel\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667963882758,\"createStaff\":21827,\"defaultValue\":\"\",\"desensitizeRule\":\"1001\",\"desensitizeType\":\"1001\",\"exampleValue\":\"\",\"mustFlag\":\"F\",\"remark\":\"营销案类型\",\"serviceObjAttrId\":907469056321548291,\"serviceObjectId\":896680797947006981,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":847389233035591682,\"attrSpec\":{\"attrId\":847389233035591682,\"attrName\":\"homeCity\",\"attrNbr\":\"homeCity\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667963882758,\"createStaff\":21827,\"defaultValue\":\"\",\"desensitizeRule\":\"1001\",\"desensitizeType\":\"1001\",\"exampleValue\":\"\",\"mustFlag\":\"F\",\"remark\":\"地市\",\"serviceObjAttrId\":907469056321548293,\"serviceObjectId\":896680797947006981,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"root\",\"serviceObjectId\":896680797947006981,\"serviceObjectPath\":\"896680797947006981\",\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":896680797947006981,\"paramType\":\"4000\",\"statusCd\":\"1000\",\"statusDate\":1665391761743,\"tenantCode\":\"868768414651416576\"},{\"apiId\":896680797913452544,\"apiParamId\":896680797951201280,\"compareFlag\":true,\"createDate\":1665391761743,\"createStaff\":50169,\"objId\":896680797913452544,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1665391761743,\"createStaff\":50169,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"5000\",\"remark\":\"根节点\",\"rootServiceObjectId\":896680797951201281,\"serviceObject\":[{\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"isList\":\"T\",\"level\":2,\"parServiceObjectId\":896680797951201281,\"paramType\":\"5000\",\"rootServiceObjectId\":896680797951201281,\"serviceObject\":[{\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"isList\":\"T\",\"level\":3,\"parServiceObjectId\":907509970126860288,\"paramType\":\"5000\",\"rootServiceObjectId\":896680797951201281,\"serviceObject\":[{\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"isList\":\"T\",\"level\":4,\"parServiceObjectId\":907509970126860289,\"paramType\":\"5000\",\"rootServiceObjectId\":896680797951201281,\"serviceObject\":[],\"serviceObjectAttrs\":[{\"attrId\":869146701831634947,\"attrSpec\":{\"attrId\":869146701831634947,\"attrName\":\"discountAmount\",\"attrNbr\":\"discountAmount\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"exampleValue\":\"优惠金额\",\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970273660928,\"serviceObjectId\":907509970126860290,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"billitemInfo\",\"serviceObjectId\":907509970126860290,\"serviceObjectPath\":\"896680797951201281,907509970126860288,907509970126860289,907509970126860290\",\"statusCd\":\"1000\",\"tenantCode\":\"868768414651416576\"}],\"serviceObjectAttrs\":[{\"attrId\":907509970290438145,\"attrSpec\":{\"attrId\":907509970290438145,\"attrName\":\"prestoreAmount\",\"attrNbr\":\"prestoreAmount\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"exampleValue\":\"预存金额\",\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970290438144,\"serviceObjectId\":907509970126860289,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"prestoreInfo\",\"serviceObjectId\":907509970126860289,\"serviceObjectPath\":\"896680797951201281,907509970126860288,907509970126860289\",\"statusCd\":\"1000\",\"tenantCode\":\"868768414651416576\"}],\"serviceObjectAttrs\":[{\"attrId\":1554,\"attrSpec\":{\"attrId\":1554,\"attrName\":\"area\",\"attrNbr\":\"area\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970328186880,\"serviceObjectId\":907509970126860288,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":907509970328186882,\"attrSpec\":{\"attrId\":907509970328186882,\"attrName\":\"assumeAmount\",\"attrNbr\":\"assumeAmount\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"exampleValue\":\"保底金额\",\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970328186881,\"serviceObjectId\":907509970126860288,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":907509970328186884,\"attrSpec\":{\"attrId\":907509970328186884,\"attrName\":\"prestoreMaxMultiple\",\"attrNbr\":\"prestoreMaxMultiple\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"exampleValue\":\"最大预存金额倍数\",\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970328186883,\"serviceObjectId\":907509970126860288,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":907469056321548288,\"attrSpec\":{\"attrId\":907469056321548288,\"attrName\":\"marketCode\",\"attrNbr\":\"saleId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"exampleValue\":\"11111\",\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970332381184,\"serviceObjectId\":907509970126860288,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":907509970332381186,\"attrSpec\":{\"attrId\":907509970332381186,\"attrName\":\"consumptionType\",\"attrNbr\":\"consumptionType\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"exampleValue\":\"保底方式\",\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970332381185,\"serviceObjectId\":907509970126860288,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":907509970332381188,\"attrSpec\":{\"attrId\":907509970332381188,\"attrName\":\"saleDesc\",\"attrNbr\":\"saleDesc\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"exampleValue\":\"营销方案描述\",\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970332381187,\"serviceObjectId\":907509970126860288,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":907509970336575488,\"attrSpec\":{\"attrId\":907509970336575488,\"attrName\":\"lastDiscount\",\"attrNbr\":\"lastDiscount\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970332381189,\"serviceObjectId\":907509970126860288,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":907469056321548290,\"attrSpec\":{\"attrId\":907469056321548290,\"attrName\":\"saleName\",\"attrNbr\":\"saleName\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"exampleValue\":\"营销方案名称\",\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970336575489,\"serviceObjectId\":907509970126860288,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1656,\"attrSpec\":{\"attrId\":1656,\"attrName\":\"expireTime\",\"attrNbr\":\"expireTime\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"exampleValue\":\"业务失效时间\",\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970336575490,\"serviceObjectId\":907509970126860288,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":907509970336575492,\"attrSpec\":{\"attrId\":907509970336575492,\"attrName\":\"inureType\",\"attrNbr\":\"inureType\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970336575491,\"serviceObjectId\":907509970126860288,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":907509970340769793,\"attrSpec\":{\"attrId\":907509970340769793,\"attrName\":\"acceptMul\",\"attrNbr\":\"acceptMul\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970340769792,\"serviceObjectId\":907509970126860288,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":907509970340769795,\"attrSpec\":{\"attrId\":907509970340769795,\"attrName\":\"inureTime\",\"attrNbr\":\"inureTime\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"exampleValue\":\"业务生效时间\",\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970340769794,\"serviceObjectId\":907509970126860288,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"resultData\",\"serviceObjectId\":907509970126860288,\"serviceObjectPath\":\"896680797951201281,907509970126860288\",\"statusCd\":\"1000\",\"tenantCode\":\"868768414651416576\"}],\"serviceObjectAttrs\":[{\"attrId\":1226,\"attrSpec\":{\"attrId\":1226,\"attrName\":\"resultCode\",\"attrNbr\":\"resultCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"exampleValue\":\"0\",\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970470793216,\"serviceObjectId\":896680797951201281,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":874132034551685121,\"attrSpec\":{\"attrId\":874132034551685121,\"attrName\":\"resultMsgCode\",\"attrNbr\":\"resultMsgCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970474987520,\"serviceObjectId\":896680797951201281,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3306,\"attrSpec\":{\"attrId\":3306,\"attrName\":\"resultMsg\",\"attrNbr\":\"resultMsg\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1667973637292,\"createStaff\":21827,\"exampleValue\":\"SUCCESS\",\"mustFlag\":\"F\",\"serviceObjAttrId\":907509970474987521,\"serviceObjectId\":896680797951201281,\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"root\",\"serviceObjectId\":896680797951201281,\"serviceObjectPath\":\"896680797951201281\",\"statusCd\":\"1000\",\"statusDate\":1667973637292,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":896680797951201281,\"paramType\":\"5000\",\"statusCd\":\"1000\",\"statusDate\":1665391761743,\"tenantCode\":\"868768414651416576\"}]",
+          "request": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "header",
+                "name": "请求头参数",
+                "attrType": "object"
+              },
+              {
+                "code": "path",
+                "name": "请求路径参数",
+                "attrType": "object"
+              },
+              {
+                "code": "query",
+                "name": "URL 参数",
+                "attrType": "object"
+              },
+              {
+                "code": "body",
+                "name": "请求体",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "saleId",
+                    "name": "营销案编码",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  },
+                  {
+                    "code": "saleName",
+                    "name": "营销案名称",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  },
+                  {
+                    "code": "marketTypeLabel",
+                    "name": "营销案类型",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  },
+                  {
+                    "code": "homeCity",
+                    "name": "地市",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "resultCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsgCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsg",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultData",
+                "attrType": "objectArray",
+                "children": [
+                  {
+                    "code": "area",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "assumeAmount",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "prestoreMaxMultiple",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "saleId",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "consumptionType",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "saleDesc",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "lastDiscount",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "saleName",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "expireTime",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "inureType",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "acceptMul",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "inureTime",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "prestoreInfo",
+                    "attrType": "objectArray",
+                    "children": [
+                      {
+                        "code": "prestoreAmount",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "billitemInfo",
+                        "attrType": "objectArray",
+                        "children": [
+                          {
+                            "code": "discountAmount",
+                            "attrType": "field",
+                            "type": "1200",
+                            "mustFlag": "F"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "productId": "200011276",
+          "api": "/app/rhin/gateway/callRhinEngine",
+          "_source": "rhin",
+          "_serviceId": "896680797913452544",
+          "_serviceTitle": "查询营销案信息-hdb: queryMarketCaseInfo",
+          "_capabilityCode": "queryMarketCaseInfo",
+          "_apiCode": "queryMarketCaseInfo",
+          "isServiceParam": true,
+          "requestType": "object",
+          "responseType": "object"
+        },
+        "headers": []
+      }
+    }
+  }
+]

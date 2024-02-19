@@ -1,0 +1,1548 @@
+[
+  {
+    "name": "qryAttrValuePage",
+    "source": "service",
+    "type": "object",
+    "requestType": "object",
+    "filterParams": [
+      {
+        "attrId": "868384",
+        "code": "header",
+        "name": "请求头参数",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "key": "header"
+      },
+      {
+        "attrId": "902436",
+        "code": "path",
+        "name": "请求路径参数",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "key": "path"
+      },
+      {
+        "attrId": "813991",
+        "code": "query",
+        "name": "URL 参数",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "key": "query"
+      },
+      {
+        "attrId": "5793519",
+        "code": "body",
+        "name": "请求体",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "children": [
+          {
+            "attrId": "367734",
+            "code": "pageSize",
+            "name": "pageSize",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "5"
+            },
+            "key": "body.pageSize"
+          },
+          {
+            "attrId": "24383",
+            "code": "attrValue",
+            "name": "属性值编码",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "key": "body.attrValue"
+          },
+          {
+            "attrId": "9413",
+            "code": "attrId",
+            "name": "attrId",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "$state.bizData$"
+            },
+            "key": "body.attrId"
+          },
+          {
+            "attrId": "041078",
+            "code": "pageNum",
+            "name": "pageNum",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "key": "body.pageNum"
+          },
+          {
+            "attrId": "542971",
+            "code": "attrValueName",
+            "name": "属性值名称",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "key": "body.attrValueName"
+          }
+        ],
+        "key": "body"
+      }
+    ],
+    "outParams": [
+      {
+        "attrId": "3658155",
+        "code": "resultCode",
+        "name": "resultCode",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "10103",
+        "code": "resultMsgCode",
+        "name": "resultMsgCode",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "4554238",
+        "code": "resultMsg",
+        "name": "resultMsg",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "192076",
+        "code": "resultData",
+        "name": "resultData",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "children": [
+          {
+            "attrId": "043985",
+            "code": "total",
+            "name": "total",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "5506277",
+            "code": "current",
+            "name": "current",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "435581",
+            "code": "hitCount",
+            "name": "hitCount",
+            "type": "boolean",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "797095",
+            "code": "size",
+            "name": "size",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "233062",
+            "code": "optimizeCountSql",
+            "name": "optimizeCountSql",
+            "type": "boolean",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "167995",
+            "code": "maxLimit",
+            "name": "maxLimit",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "36032247",
+            "code": "orders",
+            "name": "orders",
+            "type": "fieldArray",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "children": [
+              {
+                "attrId": "598081",
+                "code": "listItem",
+                "name": "列表元素",
+                "type": "object",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              }
+            ]
+          },
+          {
+            "attrId": "7607086",
+            "code": "countId",
+            "name": "countId",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "1218185",
+            "code": "isSearchCount",
+            "name": "isSearchCount",
+            "type": "boolean",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "686487",
+            "code": "records",
+            "name": "records",
+            "type": "objectArray",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "children": [
+              {
+                "attrId": "7863844",
+                "code": "updateDate",
+                "name": "updateDate",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "851085",
+                "code": "createDate",
+                "name": "createDate",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "2753603",
+                "code": "attrValueId",
+                "name": "attrValueId",
+                "type": "long",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "79316",
+                "code": "statusCd",
+                "name": "statusCd",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "266302",
+                "code": "remark",
+                "name": "remark",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "9317533",
+                "code": "sort",
+                "name": "sort",
+                "type": "long",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "572582",
+                "code": "attrValueCode",
+                "name": "attrValueCode",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "178805",
+                "code": "attrValueName",
+                "name": "attrValueName",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "7425395",
+                "code": "createStaff",
+                "name": "createStaff",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "360177",
+                "code": "createStaffName",
+                "name": "createStaffName",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "101348",
+                "code": "attrValueDesc",
+                "name": "attrValueDesc",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "7308114",
+                "code": "attrId",
+                "name": "attrId",
+                "type": "long",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "736707",
+                "code": "attrValue",
+                "name": "attrValue",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "1491798",
+                "code": "updateStaff",
+                "name": "updateStaff",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "config": {
+      "hooks": [],
+      "isInit": true,
+      "options": {
+        "service": {
+          "busiApiId": "880376393569554432",
+          "busiApiNbr": "qryAttrValuePage",
+          "busiApiName": "根据规格属性ID分页查询规格属性值-tsm",
+          "busiObjId": "880376393569554432",
+          "apiParam": null,
+          "request": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "header",
+                "name": "请求头参数",
+                "attrType": "object"
+              },
+              {
+                "code": "path",
+                "name": "请求路径参数",
+                "attrType": "object"
+              },
+              {
+                "code": "query",
+                "name": "URL 参数",
+                "attrType": "object"
+              },
+              {
+                "code": "body",
+                "name": "请求体",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "pageSize",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "attrValue",
+                    "name": "属性值编码",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  },
+                  {
+                    "code": "attrId",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "pageNum",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "attrValueName",
+                    "name": "属性值名称",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "resultCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsgCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsg",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultData",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "total",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "current",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "hitCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "size",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "optimizeCountSql",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "maxLimit",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "orders",
+                    "attrType": "fieldArray",
+                    "mustFlag": "F",
+                    "children": [
+                      {
+                        "code": "listItem",
+                        "name": "列表元素",
+                        "attrType": "field",
+                        "type": "1600"
+                      }
+                    ]
+                  },
+                  {
+                    "code": "countId",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "isSearchCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "records",
+                    "attrType": "objectArray",
+                    "children": [
+                      {
+                        "code": "updateDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "attrValueId",
+                        "attrType": "field",
+                        "type": "1400",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "statusCd",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "remark",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "sort",
+                        "attrType": "field",
+                        "type": "1400",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "attrValueCode",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "attrValueName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createStaff",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createStaffName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "attrValueDesc",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "attrId",
+                        "attrType": "field",
+                        "type": "1400",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "attrValue",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "updateStaff",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "productId": "200011297",
+          "api": "/app/rhin/gateway/callRhinEngine",
+          "_source": "rhin",
+          "_serviceId": "880376393569554432",
+          "_serviceTitle": "根据规格属性ID分页查询规格属性值-tsm: qryAttrValuePage",
+          "_capabilityCode": "qryAttrValuePage",
+          "_apiCode": "qryAttrValuePage",
+          "_sourceName": "根据规格属性ID分页查询规格属性值-tsm",
+          "isServiceParam": true,
+          "requestType": "object",
+          "responseType": "object"
+        },
+        "headers": []
+      }
+    },
+    "sourceId": "880376393569554432"
+  },
+  {
+    "name": "qrySecondAttrValuePage",
+    "source": "service",
+    "type": "object",
+    "requestType": "object",
+    "filterParams": [
+      {
+        "attrId": "109506",
+        "code": "header",
+        "name": "请求头参数",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "key": "header"
+      },
+      {
+        "attrId": "993226",
+        "code": "path",
+        "name": "请求路径参数",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "key": "path"
+      },
+      {
+        "attrId": "82546",
+        "code": "query",
+        "name": "URL 参数",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "key": "query"
+      },
+      {
+        "attrId": "85364",
+        "code": "body",
+        "name": "请求体",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "children": [
+          {
+            "attrId": "681814",
+            "code": "attrId",
+            "name": "新增节点",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "$state.bizData$"
+            },
+            "key": "body.attrId"
+          },
+          {
+            "attrId": "158683",
+            "code": "attrValue",
+            "name": "新增节点",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "key": "body.attrValue"
+          },
+          {
+            "attrId": "4822626",
+            "code": "attrValueName",
+            "name": "新增节点",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "key": "body.attrValueName"
+          },
+          {
+            "attrId": "456111",
+            "code": "pageSize",
+            "name": "新增节点",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "5"
+            },
+            "key": "body.pageSize"
+          },
+          {
+            "attrId": "056587",
+            "code": "pageNum",
+            "name": "新增节点",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "key": "body.pageNum"
+          },
+          {
+            "attrId": "740735",
+            "code": "attrValueId",
+            "name": "新增节点",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "$state.sceneCode$"
+            },
+            "key": "body.attrValueId"
+          }
+        ],
+        "key": "body"
+      }
+    ],
+    "outParams": [
+      {
+        "attrId": "21352916",
+        "code": "resultCode",
+        "name": "resultCode",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "684493635",
+        "code": "resultMsgCode",
+        "name": "resultMsgCode",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "901222",
+        "code": "resultMsg",
+        "name": "resultMsg",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "22184",
+        "code": "resultData",
+        "name": "resultData",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "children": [
+          {
+            "attrId": "732994",
+            "code": "size",
+            "name": "size",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "099147",
+            "code": "optimizeCountSql",
+            "name": "optimizeCountSql",
+            "type": "boolean",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "077636",
+            "code": "maxLimit",
+            "name": "maxLimit",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "9727252",
+            "code": "orders",
+            "name": "orders",
+            "type": "fieldArray",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "children": [
+              {
+                "attrId": "104506",
+                "code": "listItem",
+                "name": "列表元素",
+                "type": "object",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              }
+            ]
+          },
+          {
+            "attrId": "475813",
+            "code": "countId",
+            "name": "countId",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "613945",
+            "code": "isSearchCount",
+            "name": "isSearchCount",
+            "type": "boolean",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "515588",
+            "code": "total",
+            "name": "total",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "802388",
+            "code": "current",
+            "name": "current",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "301643",
+            "code": "hitCount",
+            "name": "hitCount",
+            "type": "boolean",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "607704",
+            "code": "records",
+            "name": "records",
+            "type": "objectArray",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "children": [
+              {
+                "attrId": "123837",
+                "code": "updateDate",
+                "name": "updateDate",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "9104096",
+                "code": "attrValueId",
+                "name": "attrValueId",
+                "type": "long",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "8242373",
+                "code": "statusCd",
+                "name": "statusCd",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "336111",
+                "code": "remark",
+                "name": "remark",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "08063443",
+                "code": "sort",
+                "name": "sort",
+                "type": "long",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "24618",
+                "code": "attrValueCode",
+                "name": "attrValueCode",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "305779",
+                "code": "attrValueName",
+                "name": "attrValueName",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "215144",
+                "code": "createStaff",
+                "name": "createStaff",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "3503506",
+                "code": "createStaffName",
+                "name": "createStaffName",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "088273",
+                "code": "attrValueDesc",
+                "name": "attrValueDesc",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "775615",
+                "code": "attrId",
+                "name": "attrId",
+                "type": "long",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "49401",
+                "code": "attrValue",
+                "name": "attrValue",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "6927385",
+                "code": "createDate",
+                "name": "createDate",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              },
+              {
+                "attrId": "2167873",
+                "code": "updateStaff",
+                "name": "updateStaff",
+                "type": "string",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "config": {
+      "hooks": [],
+      "isInit": true,
+      "options": {
+        "service": {
+          "busiApiId": "1003550769692708864",
+          "busiApiNbr": "qrySecondAttrValuePage",
+          "busiApiName": "根据条件分页查询可联级的规格属性值-zrj",
+          "busiObjId": "1003550769692708864",
+          "apiParam": null,
+          "request": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "header",
+                "name": "请求头参数",
+                "attrType": "object"
+              },
+              {
+                "code": "path",
+                "name": "请求路径参数",
+                "attrType": "object"
+              },
+              {
+                "code": "query",
+                "name": "URL 参数",
+                "attrType": "object"
+              },
+              {
+                "code": "body",
+                "name": "请求体",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "attrId",
+                    "name": "新增节点",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  },
+                  {
+                    "code": "attrValue",
+                    "name": "新增节点",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  },
+                  {
+                    "code": "attrValueName",
+                    "name": "新增节点",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  },
+                  {
+                    "code": "pageSize",
+                    "name": "新增节点",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  },
+                  {
+                    "code": "pageNum",
+                    "name": "新增节点",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  },
+                  {
+                    "code": "attrValueId",
+                    "name": "新增节点",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F",
+                    "defaultValue": ""
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "resultCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsgCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsg",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultData",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "size",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "optimizeCountSql",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "maxLimit",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "orders",
+                    "attrType": "fieldArray",
+                    "mustFlag": "F",
+                    "children": [
+                      {
+                        "code": "listItem",
+                        "name": "列表元素",
+                        "attrType": "field",
+                        "type": "1600"
+                      }
+                    ]
+                  },
+                  {
+                    "code": "countId",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "isSearchCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "total",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "current",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "hitCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "records",
+                    "attrType": "objectArray",
+                    "children": [
+                      {
+                        "code": "updateDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "attrValueId",
+                        "attrType": "field",
+                        "type": "1400",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "statusCd",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "remark",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "sort",
+                        "attrType": "field",
+                        "type": "1400",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "attrValueCode",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "attrValueName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createStaff",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createStaffName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "attrValueDesc",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "attrId",
+                        "attrType": "field",
+                        "type": "1400",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "attrValue",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "updateStaff",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "productId": "1003551240817905664",
+          "api": "/app/rhin/gateway/callRhinEngine",
+          "_source": "rhin",
+          "_serviceId": "1003550769692708864",
+          "_serviceTitle": "根据条件分页查询可联级的规格属性值-zrj: qrySecondAttrValuePage",
+          "_capabilityCode": "qrySecondAttrValuePage",
+          "_apiCode": "qrySecondAttrValuePage",
+          "_sourceName": "根据条件分页查询可联级的规格属性值-zrj",
+          "isServiceParam": true,
+          "requestType": "object",
+          "responseType": "object"
+        },
+        "headers": []
+      }
+    },
+    "sourceId": "1003550769692708864"
+  }
+]

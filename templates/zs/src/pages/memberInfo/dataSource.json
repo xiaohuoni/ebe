@@ -1,0 +1,45 @@
+[
+  {
+    "name": "formData",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "968753",
+        "code": "officialLevelName",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "042825",
+        "code": "memberTypeName",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "648216",
+        "code": "keyTypeName",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "456755",
+        "code": "noDisturbScope",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  }
+]

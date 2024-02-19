@@ -1,0 +1,386 @@
+[
+  {
+    "name": "sceneSubmit",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "154379",
+        "code": "catalogCode",
+        "name": "类目编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "4562264",
+        "code": "approveGrade",
+        "name": "审批等级",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "63768",
+        "code": "attrList",
+        "name": "要素",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "919265",
+        "code": "fileInfo",
+        "name": "附件",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        },
+        "children": []
+      },
+      {
+        "attrId": "360171",
+        "code": "catalogItemCode",
+        "name": "类目项编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "420623",
+        "code": "catalogItemSubType",
+        "name": "类目项子类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "375466",
+        "code": "childCatalogCode",
+        "name": "子类目项编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "9257773",
+        "code": "parentCatalogCode",
+        "name": "上级类目编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "5733013",
+        "code": "parentCatalogItemCode",
+        "name": "上级类目项编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "440627",
+        "code": "childCatalogDesc",
+        "name": "子类目项描述",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "177104",
+        "code": "approveGradeName",
+        "name": "审批等级名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "13154521",
+        "code": "custMemberList",
+        "name": "成员信息",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "5397914",
+        "code": "instList",
+        "name": "多实例",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "fileInfoList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "code": "fileName",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件名称",
+        "defaultValue": "",
+        "name": "附件名称",
+        "attrId": "458544",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "filePath",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件文件路径",
+        "defaultValue": "",
+        "name": "附件文件路径",
+        "attrId": "6354087",
+        "initialData": {
+          "type": "static",
+          "value": "附件文件路径"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileServerType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件文件服务器类型",
+        "defaultValue": "",
+        "name": "附件文件服务器类型",
+        "attrId": "184934",
+        "initialData": {
+          "type": "static",
+          "value": "附件文件服务器类型"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileSubType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件分类-细类",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "551676",
+        "initialData": {
+          "type": "static",
+          "value": "附件分类-细类"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件分类-大类",
+        "defaultValue": "",
+        "name": "附件分类-大类",
+        "attrId": "383524",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileUrl",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件url地址",
+        "defaultValue": "",
+        "name": "附件url地址",
+        "attrId": "726875",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "tacheCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "环节编码",
+        "defaultValue": "",
+        "name": "环节编码",
+        "attrId": "865444",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "attrId": "7419638",
+        "code": "fileCode",
+        "name": "文件编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "097484",
+        "code": "createTime",
+        "name": "创建时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "604675",
+        "code": "createStaff",
+        "name": "创建人",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "729925",
+        "code": "fileTypeName",
+        "name": "附件类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "factorForm",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "371174",
+        "code": "reason",
+        "name": "申请原因",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "351233",
+        "code": "urgencyGrade",
+        "name": "紧急程度",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "2220604",
+        "code": "suggestFinishDate",
+        "name": "建议完成时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "450583",
+        "code": "bsType",
+        "name": "业务类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "infoList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "6566124",
+        "code": "groupId",
+        "name": "集团编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "60996",
+        "code": "groupName",
+        "name": "集团名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "906024",
+        "code": "agencyName",
+        "name": "代理商名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "0346427",
+        "code": "basicAccessNumber",
+        "name": "基本接入号",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "494685",
+        "code": "busiAccessNumber",
+        "name": "业务接入号",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      }
+    ]
+  }
+]

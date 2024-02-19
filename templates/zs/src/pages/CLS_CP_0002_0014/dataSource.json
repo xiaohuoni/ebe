@@ -1,0 +1,179 @@
+[
+  {
+    "name": "$dataform",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "861123",
+        "code": "ctGroupCode",
+        "name": "CT集团编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "546355",
+        "code": "ordSerialNum",
+        "name": "订单流水",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "fileInfoList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "code": "fileName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "485075",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "filePath",
+        "name": "属性",
+        "type": "string",
+        "attrId": "3526397",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "fileServerType",
+        "name": "属性",
+        "type": "string",
+        "attrId": "130964",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "fileSubType",
+        "name": "属性",
+        "type": "string",
+        "attrId": "583821",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "fileType",
+        "name": "属性",
+        "type": "string",
+        "attrId": "5682257",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "fileUrl",
+        "name": "属性",
+        "type": "string",
+        "attrId": "681718",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "tacheCode",
+        "name": "属性",
+        "type": "string",
+        "attrId": "875868",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "fileCode",
+        "name": "属性",
+        "type": "string",
+        "attrId": "734992",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "createTime",
+        "name": "属性",
+        "type": "string",
+        "attrId": "921278",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "createStaff",
+        "name": "属性",
+        "type": "string",
+        "attrId": "038782",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "fileTypeName",
+        "name": "属性",
+        "type": "string",
+        "attrId": "638304",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      }
+    ]
+  }
+]

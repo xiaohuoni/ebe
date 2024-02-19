@@ -1,0 +1,439 @@
+[
+  {
+    "name": "formData",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "3785393",
+        "code": "actionTypeName",
+        "name": "操作类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "1346276",
+        "code": "sceneTypeName",
+        "name": "场景类型",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "领导担保"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "257377",
+        "code": "objTypeName",
+        "name": "对象类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "864842",
+        "code": "officialLevelName",
+        "name": "行政类型",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "未知"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "2916909",
+        "code": "memberTypeName",
+        "name": "成员类型",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "办公人员"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "0839984",
+        "code": "keyTypeName",
+        "name": "经办标识",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "其他"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "596769",
+        "code": "genderName",
+        "name": "性别",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "55875",
+        "code": "msisdnHomeCityName",
+        "name": "成员号码归属地",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "063539",
+        "code": "homeCityName",
+        "name": "集团归属地",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "1197474",
+        "code": "tempName",
+        "name": "使用者姓名",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "833598",
+        "code": "tempMemberInfo",
+        "name": "临时集团用户信息",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "514236",
+        "code": "custodianType",
+        "name": "看管人类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "6677735",
+        "code": "custodianTypeName",
+        "name": "看管人类型名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "142102",
+        "code": "groupLevelName",
+        "name": "集团价值等级",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "323534",
+        "code": "actionType",
+        "name": "操作类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "600237",
+        "code": "objType",
+        "name": "对象类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "926549",
+        "code": "email",
+        "name": "邮箱",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "09950249",
+        "code": "keyType",
+        "name": "联系人标识",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "99"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "995553",
+        "code": "memberType",
+        "name": "成员类型",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "2353595",
+        "code": "officialLevel",
+        "name": "行政级别",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "0"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "38368",
+        "code": "department",
+        "name": "部门",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "759045",
+        "code": "duty",
+        "name": "职务",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "1459838",
+        "code": "gender",
+        "name": "性别",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "490590476",
+        "code": "record",
+        "name": "履历",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "3477385",
+        "code": "hobby",
+        "name": "兴趣爱好",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "35942583",
+        "code": "groupId",
+        "name": "集团编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "177009",
+        "code": "groupName",
+        "name": "集团名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "298722",
+        "code": "sceneType",
+        "name": "凭证类型",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "137448",
+        "code": "bossName",
+        "name": "姓名",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "430865",
+        "code": "msisdn",
+        "name": "手机号码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "445036",
+        "code": "name",
+        "name": "使用人姓名",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "2878373",
+        "code": "homeCity",
+        "name": "集团归属地市",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "384235",
+        "code": "whetherAgeExcept",
+        "name": "年龄是否异常",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "927782",
+        "code": "whetherEmpAndRe",
+        "name": "是否员工亲友",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "768078",
+        "code": "msisdnHomeCity",
+        "name": "成员号码归属地",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "869243",
+        "code": "oldGroupId",
+        "name": "旧集团编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "8594448",
+        "code": "oldGroupName",
+        "name": "旧集团名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "713112",
+        "code": "oldHomeCity",
+        "name": "旧集团归属地市",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "7327678",
+        "code": "oldHomeCityName",
+        "name": "旧集团归属地市",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "387621",
+        "code": "managementFlag",
+        "name": "是否纳管",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "715182",
+        "code": "managementFlagName",
+        "name": "是否纳管名称",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "通讯录+正式成员"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "4183",
+        "code": "tempBossName",
+        "name": "脱敏后的拥有者姓名",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  }
+]

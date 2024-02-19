@@ -78,6 +78,7 @@ import { createZipPublisher } from './src/core/publisher/zip';
       '/guanliyuanshouye0496': '1056843976424230912',
       '/auditStart': '887537833022541824',
       '/auditOrderPrepare': '884045146848604160',
+      '/CLS_CP_0007_0018': '922396081753948160',
     },
     baseUrl: 'http://10.10.193.65:9015/',
   };

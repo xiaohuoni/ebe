@@ -1,0 +1,58 @@
+[
+  {
+    "name": "itemList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": []
+  },
+  {
+    "name": "oaUserList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "088178",
+        "code": "oaUserId",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "711897",
+        "code": "userId",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "0009486",
+        "code": "userName",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "sceneCodeLists",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "486322",
+        "code": "sceneCode",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  }
+]

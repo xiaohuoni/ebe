@@ -1,0 +1,136 @@
+[
+  {
+    "name": "form",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "1421325",
+        "code": "ctGroupCode",
+        "name": "CT集团编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "549028",
+        "code": "ordSerialNum",
+        "name": "订单流水",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "512266",
+        "code": "contractCode",
+        "name": "合同编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "5101654",
+        "code": "contractTotalAmount",
+        "name": "合同总价",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "table",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "7089114",
+        "code": "sku",
+        "name": "SKU",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "695816",
+        "code": "prodName",
+        "name": "产品名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "274357",
+        "code": "number",
+        "name": "数量",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "129229",
+        "code": "category",
+        "name": "类别",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "666131",
+        "code": "standardTariff",
+        "name": "标准资费",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "32256",
+        "code": "saleFloorPrice",
+        "name": "销售底价",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "539023",
+        "code": "actualPrice",
+        "name": "实收价",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "8645125",
+        "code": "discount",
+        "name": "折扣",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      }
+    ]
+  }
+]

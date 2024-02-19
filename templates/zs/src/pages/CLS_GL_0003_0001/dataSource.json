@@ -1,0 +1,95 @@
+[
+  {
+    "name": "reviewerList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": []
+  },
+  {
+    "name": "factoryForm",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "300844",
+        "code": "modelName",
+        "name": "模型名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "9425446",
+        "code": "submitUserName",
+        "name": "提交人名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "255613",
+        "code": "submitUserId",
+        "name": "提交人工号",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "180619",
+        "code": "modelSubmitDate",
+        "name": "模型提交时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "170136",
+        "code": "onLineDesc",
+        "name": "上线说明",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "424732",
+        "code": "estimateShutDown",
+        "name": "预计关停量",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "019899",
+        "code": "modelType",
+        "name": "模型类别",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "6973386",
+        "code": "shutDownTime",
+        "name": "关停时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  }
+]

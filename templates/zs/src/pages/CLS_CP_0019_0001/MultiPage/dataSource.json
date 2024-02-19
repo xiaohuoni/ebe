@@ -1,0 +1,865 @@
+[
+  {
+    "name": "multiGroup",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "code": "groupInfo",
+        "children": [
+          {
+            "code": "groupId",
+            "name": "集团编码",
+            "type": "string",
+            "attrId": "576902",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "groupName",
+            "name": "集团名称",
+            "type": "string",
+            "attrId": "314655",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "groupLevelName",
+            "name": "价值等级",
+            "type": "string",
+            "attrId": "74411",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "paidNum",
+            "name": "付费号码",
+            "type": "string",
+            "attrId": "657779",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "belongCityText",
+            "name": "归属地市",
+            "type": "string",
+            "attrId": "733275",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "belongAreaText",
+            "name": "归属区县",
+            "type": "string",
+            "attrId": "1805876",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "isAgencyGroup",
+            "name": "是否代理商集团",
+            "type": "string",
+            "attrId": "563155",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "groupCreditRate",
+            "name": "集团征信等级",
+            "type": "string",
+            "attrId": "624671",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "institutionType",
+            "name": "机构类型",
+            "type": "string",
+            "attrId": "950089",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "industryCategory",
+            "name": "行业大类",
+            "type": "string",
+            "attrId": "751592",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "customerType",
+            "name": "客户类型",
+            "type": "string",
+            "attrId": "09915",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "custManager",
+            "name": "客户经理",
+            "type": "string",
+            "attrId": "31104",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "custManagerPhone",
+            "name": "客户经理联系电话",
+            "type": "string",
+            "attrId": "078445",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "custManagerCreditRate",
+            "name": "客户经理征信等级",
+            "type": "string",
+            "attrId": "544625",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "appliedRedListNum",
+            "name": "已申请红名单数（个）",
+            "type": "string",
+            "attrId": "835273",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "redControlNum",
+            "name": "红名管控上线数（个）",
+            "type": "string",
+            "attrId": "41742",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "appliedRedListNumYear",
+            "name": "当年红名单已申请次数（次）",
+            "type": "string",
+            "attrId": "630792",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "groupEarliestOverdueTime",
+            "name": "集团最早欠费时间",
+            "type": "string",
+            "attrId": "963363",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "groupTotalOverdueFee",
+            "name": "集团总欠费（元）",
+            "type": "string",
+            "attrId": "9916774",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "appliedWhiteListNum",
+            "name": "已申请白名单次数（次）",
+            "type": "string",
+            "attrId": "14355",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "maxOverdueMonth",
+            "name": "最大逾期月数 （月）",
+            "type": "string",
+            "attrId": "356716",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "groupCumulativeOverdueFee",
+            "name": "集团累计逾期（元）",
+            "type": "string",
+            "attrId": "846431",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "appliedWhiteListDay",
+            "name": "已申请白名单天数（天）",
+            "type": "string",
+            "attrId": "664493",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "lastCollectionRequireYear",
+            "name": "最近一次催缴要求（近一年）",
+            "type": "string",
+            "attrId": "9697585",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "lastCollectionTimeYear",
+            "name": "最近一次催缴时间（近一年）",
+            "type": "string",
+            "attrId": "0148044",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          },
+          {
+            "code": "lastCollectionActionYear",
+            "name": "最近一次催缴动作（近一年）",
+            "type": "string",
+            "attrId": "7138444",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupInfo",
+            "parentType": "object",
+            "showInput": false
+          }
+        ],
+        "name": "",
+        "type": "object",
+        "attrId": "395397",
+        "initialData": {
+          "type": "static"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "accountInfoList",
+        "children": [
+          {
+            "code": "accountNum",
+            "name": "账户编号",
+            "type": "string",
+            "attrId": "2209512",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "accountTitle",
+            "name": "账户名称",
+            "type": "string",
+            "attrId": "147863",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "isIctSubAccount",
+            "name": "是否ICT分账户",
+            "type": "string",
+            "attrId": "189687",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "earliestOverdueTime",
+            "name": "最早欠费时间",
+            "type": "string",
+            "attrId": "037202",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "arrearage",
+            "name": "欠费（元）",
+            "type": "string",
+            "attrId": "162528",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "overdueMonth",
+            "name": "逾期月数（月）",
+            "type": "string",
+            "attrId": "0146757",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "overdueFee",
+            "name": "逾期欠费（元）",
+            "type": "string",
+            "attrId": "532794",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "systemEvaluateCreditRate",
+            "name": "系统评估信用度等级",
+            "type": "string",
+            "attrId": "968119",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "appointedPayMonth",
+            "name": "原约定缴费月数（月）",
+            "type": "string",
+            "attrId": "7189793",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "adjustedCreditRate",
+            "name": "调整后信用等级",
+            "type": "string",
+            "attrId": "9674984",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "adjustCreditRateValidMonth",
+            "name": "调整信用等级有效月数（月）",
+            "type": "string",
+            "attrId": "297385",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "appliedRedListMonthYear",
+            "name": "当年已申请红名单月数（月）",
+            "type": "string",
+            "attrId": "877947",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "adjustedAppointedPayMonth",
+            "name": "调整后约定缴费月数（月）",
+            "type": "string",
+            "attrId": "45531",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "arrearsReason",
+            "name": "欠费原因",
+            "type": "string",
+            "attrId": "961755",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "collectionCondition",
+            "name": "催缴情况",
+            "type": "string",
+            "attrId": "494076",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "riskAssessment",
+            "name": "风险评估",
+            "type": "string",
+            "attrId": "8099677",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "isShouldButNotStopped",
+            "name": "是否应停未停",
+            "type": "string",
+            "attrId": "454404",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "code": "creditExpiredRemindNum",
+            "name": "信用度到期提醒号码",
+            "type": "string",
+            "attrId": "3358633",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "accountInfoList",
+            "parentType": "objectArray",
+            "showInput": false,
+            "parentCode": "accountInfoList"
+          },
+          {
+            "attrId": "902524",
+            "code": "accountApplication",
+            "name": "账户用途",
+            "type": "string",
+            "initialData": {
+              "type": "static"
+            },
+            "showInput": false
+          }
+        ],
+        "name": "",
+        "type": "objectArray",
+        "attrId": "772379",
+        "initialData": {
+          "type": "static"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      }
+    ]
+  },
+  {
+    "name": "showInfoList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "code": "groupName",
+        "name": "集团名称",
+        "type": "string",
+        "attrId": "224266",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "groupCreditRate",
+        "name": "集团征信等级",
+        "type": "string",
+        "attrId": "544459",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "custManagerCreditRate",
+        "name": "客户经理征信等级",
+        "type": "string",
+        "attrId": "67435043",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "accountNum",
+        "name": "账户编号",
+        "type": "string",
+        "attrId": "395082",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "accountTitle",
+        "name": "账户名称",
+        "type": "string",
+        "attrId": "4267096",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "isIctSubAccount",
+        "name": "是否ICT分账户",
+        "type": "string",
+        "attrId": "304574",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "earliestOverdueTime",
+        "name": "最早欠费时间",
+        "type": "string",
+        "attrId": "966642",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "arrearage",
+        "name": "欠费（元）",
+        "type": "string",
+        "attrId": "741377",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "overdueMonth",
+        "name": "逾期月数（月）",
+        "type": "string",
+        "attrId": "377582",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "overdueFee",
+        "name": "逾期欠费（元）",
+        "type": "string",
+        "attrId": "9769528",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "systemEvaluateCreditRate",
+        "name": "系统评估信用度等级",
+        "type": "string",
+        "attrId": "608006",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "appointedPayMonth",
+        "name": "原约定缴费月数（月）",
+        "type": "string",
+        "attrId": "92682",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "adjustedCreditRate",
+        "name": "申请信用度等级",
+        "type": "string",
+        "attrId": "693308953",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "adjustCreditRateValidMonth",
+        "name": "调整有效月数（月）",
+        "type": "string",
+        "attrId": "395655",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "appliedRedListMonthYear",
+        "name": "当年已申请红名单月数（月）",
+        "type": "string",
+        "attrId": "644626",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "adjustedAppointedPayMonth",
+        "name": "调整后约定缴费月数（月）",
+        "type": "string",
+        "attrId": "4086247",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      },
+      {
+        "code": "isShouldButNotStopped",
+        "name": "是否应停未停",
+        "type": "string",
+        "attrId": "189603",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": false
+      }
+    ]
+  }
+]

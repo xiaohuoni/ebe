@@ -1,0 +1,229 @@
+[
+  {
+    "name": "factorForm",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "899757",
+        "code": "city",
+        "name": "地市",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "830306",
+        "code": "area",
+        "name": "区县",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "700032",
+        "code": "country",
+        "name": "街道/乡/镇",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "2454878",
+        "code": "district",
+        "name": "片区",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "463294",
+        "code": "street",
+        "name": "街、路、行政村、居委会",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "8386007",
+        "code": "houseNum",
+        "name": "门牌号(含胡同)",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "966817",
+        "code": "doorplate",
+        "name": "写字楼、小区（组团）、单位大院、自然村等",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "947367",
+        "code": "floorName",
+        "name": "楼名、楼号(门面房前加\"门面\"标志)、村民组",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "40772",
+        "code": "element",
+        "name": "楼号或单元号",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "967287",
+        "code": "roomName",
+        "name": "房间号、户名",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "41154977",
+        "code": "installAddr",
+        "name": "安装地址",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "358273",
+        "code": "cityName",
+        "name": "地市名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "154543",
+        "code": "areaName",
+        "name": "区域名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "9947657",
+        "code": "countryName",
+        "name": "乡镇名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "801234",
+        "code": "busiType",
+        "name": "业务类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "017759",
+        "code": "busiTypeName",
+        "name": "业务类型名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "1829115",
+        "code": "currentTimeAcceptTotal",
+        "name": "本次受理条数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "4251308",
+        "code": "stockTotal",
+        "name": "存量条数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "824652",
+        "code": "total",
+        "name": "受理后总条数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "7539576",
+        "code": "currentTimeTotalBandwidthUp",
+        "name": "本次受理总上行带宽",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "9402411",
+        "code": "stockTotalBandwidthUp",
+        "name": "存量受理总上行带宽",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "1629825",
+        "code": "totalBandwidthUp",
+        "name": "受理后总上行带宽",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "name": "feeInfo",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "85906",
+        "code": "otherAdjust",
+        "name": "其它调整（元）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "618492",
+        "code": "deductionAmount",
+        "name": "扣罚/核减金额（元）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "538056",
+        "code": "cleanArrearsSupplyAgain",
+        "name": "清欠补发（元）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "481706",
+        "code": "reachSalary",
+        "name": "达量酬金（元）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "692916",
+        "code": "remark",
+        "name": "备注",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "866041",
+        "code": "countPieceSalary",
+        "name": "计件薪酬（元）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "652649",
+        "code": "quantifySalaryTotal",
+        "name": "量化薪酬合计（元）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "473791",
+        "code": "quantifyCoefficient",
+        "name": "量化系数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "078058",
+        "code": "post",
+        "name": "岗位",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "656036",
+        "code": "userCode",
+        "name": "员工编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "914651",
+        "code": "userName",
+        "name": "员工姓名\t",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "189134",
+        "code": "belongGroup",
+        "name": "所属组",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "070128",
+        "code": "areaName",
+        "name": "区县名字",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "227983",
+        "code": "belongAreaText",
+        "name": "归属区县文本",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "751694",
+        "code": "cityName",
+        "name": "地市名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "681173",
+        "code": "belongCityText",
+        "name": "归属地市文本",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "683361",
+        "code": "statisMonth",
+        "name": "统计月份",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "fileInfoList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "634755",
+        "code": "fileName",
+        "name": "附件名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "513464",
+        "code": "filePath",
+        "name": "附件文件路径",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "876905",
+        "code": "fileServerType",
+        "name": "附件文件服务器类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "740156",
+        "code": "fileSubType",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "261705",
+        "code": "fileType",
+        "name": "附件分类-大类",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "091394",
+        "code": "fileUrl",
+        "name": "附件URL地址",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "057793",
+        "code": "tacheCode",
+        "name": "环节编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "353952",
+        "code": "fileCode",
+        "name": "文件编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "678656",
+        "code": "createTime",
+        "name": "创建时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "993821",
+        "code": "createStaff",
+        "name": "创建人",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "592066",
+        "code": "fileTypeName",
+        "name": "附件类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "formData",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "718089",
+        "code": "statisMonth",
+        "name": "统计月份",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "750141",
+        "code": "belongCityText",
+        "name": "归属地市",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "044751",
+        "code": "belongAreaText",
+        "name": "归属区县",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  }
+]

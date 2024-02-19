@@ -1,0 +1,45 @@
+[
+  {
+    "name": "rejectOrderList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "30899",
+        "code": "surveyPreRequirementCode",
+        "name": "甩单编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "656782",
+        "code": "prodNames",
+        "name": "产品名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "990293",
+        "code": "statusCd",
+        "name": "甩单状态",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "1494212",
+        "code": "createDate",
+        "name": "创建时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  }
+]

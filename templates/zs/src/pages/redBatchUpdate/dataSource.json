@@ -1,0 +1,36 @@
+[
+  {
+    "name": "redObj",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "608373",
+        "code": "isDelay",
+        "name": "是否延期",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "5428216",
+        "code": "creditApplyValid",
+        "name": "本次信用度申请有效期",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "375551",
+        "code": "noDelayReason",
+        "name": "不延期原因",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  }
+]

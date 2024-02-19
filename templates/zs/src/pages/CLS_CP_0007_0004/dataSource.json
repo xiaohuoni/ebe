@@ -1,0 +1,909 @@
+[
+  {
+    "name": "sceneSubmit",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "154379",
+        "code": "catalogCode",
+        "name": "类目编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "4562264",
+        "code": "approveGrade",
+        "name": "审批等级",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "63768",
+        "code": "attrList",
+        "name": "要素",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "919265",
+        "code": "fileInfo",
+        "name": "附件",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        },
+        "children": []
+      },
+      {
+        "attrId": "360171",
+        "code": "catalogItemCode",
+        "name": "类目项编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "420623",
+        "code": "catalogItemSubType",
+        "name": "类目项子类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "375466",
+        "code": "childCatalogCode",
+        "name": "子类目项编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "9257773",
+        "code": "parentCatalogCode",
+        "name": "上级类目编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "5733013",
+        "code": "parentCatalogItemCode",
+        "name": "上级类目项编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "440627",
+        "code": "childCatalogDesc",
+        "name": "子类目项描述",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "177104",
+        "code": "approveGradeName",
+        "name": "审批等级名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "165167",
+        "code": "instList",
+        "name": "属性",
+        "type": "objectArray",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "9061844",
+        "code": "customObject",
+        "name": "属性",
+        "type": "object",
+        "initialData": {
+          "type": "static"
+        },
+        "children": [
+          {
+            "attrId": "659635",
+            "code": "band",
+            "name": "属性",
+            "type": "string",
+            "initialData": {
+              "type": "static"
+            },
+            "parentKey": "customObject"
+          },
+          {
+            "attrId": "220409",
+            "code": "tv",
+            "name": "属性",
+            "type": "string",
+            "initialData": {
+              "type": "static"
+            },
+            "parentKey": "customObject"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "fileInfoList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "code": "fileName",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件名称",
+        "defaultValue": "",
+        "name": "附件名称",
+        "attrId": "458544",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "filePath",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件文件路径",
+        "defaultValue": "",
+        "name": "附件文件路径",
+        "attrId": "6354087",
+        "initialData": {
+          "type": "static",
+          "value": "附件文件路径"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileServerType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件文件服务器类型",
+        "defaultValue": "",
+        "name": "附件文件服务器类型",
+        "attrId": "184934",
+        "initialData": {
+          "type": "static",
+          "value": "附件文件服务器类型"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileSubType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件分类-细类",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "551676",
+        "initialData": {
+          "type": "static",
+          "value": "附件分类-细类"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileType",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件分类-大类",
+        "defaultValue": "",
+        "name": "附件分类-大类",
+        "attrId": "383524",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "fileUrl",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "附件url地址",
+        "defaultValue": "",
+        "name": "附件url地址",
+        "attrId": "726875",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "code": "tacheCode",
+        "attrType": "field",
+        "type": "string",
+        "mustFlag": "F",
+        "exampleValue": "环节编码",
+        "defaultValue": "",
+        "name": "环节编码",
+        "attrId": "865444",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      },
+      {
+        "attrId": "7419638",
+        "code": "fileCode",
+        "name": "文件编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "097484",
+        "code": "createTime",
+        "name": "创建时间",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "604675",
+        "code": "createStaff",
+        "name": "创建人",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "729925",
+        "code": "fileTypeName",
+        "name": "附件类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "checkboxValue",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "3542089",
+        "code": "value",
+        "name": "值",
+        "type": "array",
+        "initialData": {
+          "type": "static",
+          "value": "[\"1\",\"2\"]"
+        }
+      }
+    ]
+  },
+  {
+    "name": "factorForm",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "981789",
+        "code": "reason",
+        "name": "申请原因",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "148281",
+        "code": "belongingCity",
+        "name": "归属地市",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "90974",
+        "code": "marketingEfficiencyRatio",
+        "name": "营销效益比",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "498022",
+        "code": "priceOfEnterpriseInstallationFee",
+        "name": "企宽安装费目录价",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "2937934",
+        "code": "priceOfEnterpriseDeposit",
+        "name": "企宽保证金目录价",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "3330296",
+        "code": "totalNumberOfEnterpriseBroadband",
+        "name": "企宽总条数",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "0"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "9534704",
+        "code": "internetTVInstallationFeePrice",
+        "name": "互联网电视安装费目录价",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "157223",
+        "code": "internetTVMarginPrice",
+        "name": "互联网电视保证金目录价",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "373452",
+        "code": "totalNumberOfInternetTV",
+        "name": "互联网电视总条数",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "0"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "240031",
+        "code": "tvBandDifference",
+        "name": "((互联网电视总条数-企宽总条数)*100) - 互联网电视总安装费",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "prodList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "149906",
+        "code": "productName",
+        "name": "产品",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "459557",
+        "code": "count",
+        "name": "条数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "7004187",
+        "code": "depositReceived",
+        "name": "安装费实收（元/条）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "121493",
+        "code": "actualPaymentOfInstallationFee",
+        "name": "保证金实收（元/条）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      },
+      {
+        "attrId": "456373",
+        "code": "contractPeriod",
+        "name": "合约期（月）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      }
+    ]
+  },
+  {
+    "name": "qryCatalogAttrValueList",
+    "source": "service",
+    "type": "object",
+    "requestType": "object",
+    "filterParams": [
+      {
+        "attrId": "3804749",
+        "code": "header",
+        "name": "请求头参数",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "key": "header"
+      },
+      {
+        "attrId": "975863",
+        "code": "path",
+        "name": "请求路径参数",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "key": "path"
+      },
+      {
+        "attrId": "61444",
+        "code": "query",
+        "name": "URL 参数",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "key": "query"
+      },
+      {
+        "attrId": "241954",
+        "code": "body",
+        "name": "请求体",
+        "type": "object",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "children": [
+          {
+            "attrId": "165596",
+            "code": "catalogCode",
+            "name": "catalogCode",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "CLS_CP_0007_0004"
+            },
+            "key": "body.catalogCode"
+          },
+          {
+            "attrId": "262371",
+            "code": "attrCode",
+            "name": "attrCode",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static",
+              "value": "productName"
+            },
+            "key": "body.attrCode"
+          }
+        ],
+        "key": "body"
+      }
+    ],
+    "outParams": [
+      {
+        "attrId": "6446918",
+        "code": "resultMsg",
+        "name": "resultMsg",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "3371927",
+        "code": "resultCode",
+        "name": "resultCode",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "1946653",
+        "code": "resultMsgCode",
+        "name": "resultMsgCode",
+        "type": "string",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "9179",
+        "code": "resultData",
+        "name": "resultData",
+        "type": "objectArray",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "children": [
+          {
+            "attrId": "75363",
+            "code": "attrCode",
+            "name": "attrCode",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "4545044",
+            "code": "attrValueDesc",
+            "name": "attrValueDesc",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "290153",
+            "code": "attrValueName",
+            "name": "attrValueName",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "594538",
+            "code": "attrValueId",
+            "name": "attrValueId",
+            "type": "long",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "595822",
+            "code": "attrValue",
+            "name": "attrValue",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "9656915",
+            "code": "sort",
+            "name": "sort",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          },
+          {
+            "attrId": "7375237",
+            "code": "attrValueCode",
+            "name": "attrValueCode",
+            "type": "string",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            }
+          }
+        ]
+      }
+    ],
+    "config": {
+      "hooks": [],
+      "isInit": false,
+      "options": {
+        "service": {
+          "busiApiId": "889391610000404480",
+          "busiApiNbr": "qryCatalogAttrValueList",
+          "busiApiName": "查询场景规格属性值列表-tsm",
+          "busiObjId": "889391610000404480",
+          "apiParam": null,
+          "request": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "header",
+                "name": "请求头参数",
+                "attrType": "object",
+                "_id": "header",
+                "compType": "Input",
+                "parents": [],
+                "key": "0"
+              },
+              {
+                "code": "path",
+                "name": "请求路径参数",
+                "attrType": "object",
+                "_id": "path",
+                "compType": "Input",
+                "parents": [],
+                "key": "1"
+              },
+              {
+                "code": "query",
+                "name": "URL 参数",
+                "attrType": "object",
+                "_id": "query",
+                "compType": "Input",
+                "parents": [],
+                "key": "2"
+              },
+              {
+                "code": "body",
+                "name": "请求体",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "catalogCode",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "_id": "body.catalogCode",
+                    "compType": "Input",
+                    "name": "catalogCode",
+                    "parents": ["body"],
+                    "parentType": "object",
+                    "parentKey": "3",
+                    "key": "3-0"
+                  },
+                  {
+                    "code": "attrCode",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "_id": "body.attrCode",
+                    "compType": "Input",
+                    "name": "attrCode",
+                    "parents": ["body"],
+                    "parentType": "object",
+                    "parentKey": "3",
+                    "key": "3-1"
+                  }
+                ],
+                "_id": "body",
+                "compType": "Input",
+                "parents": [],
+                "key": "3"
+              }
+            ]
+          },
+          "response": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "resultMsg",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "_id": "resultMsg",
+                "name": "resultMsg"
+              },
+              {
+                "code": "resultCode",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "_id": "resultCode",
+                "name": "resultCode"
+              },
+              {
+                "code": "resultMsgCode",
+                "attrType": "field",
+                "type": "string",
+                "mustFlag": "F",
+                "_id": "resultMsgCode",
+                "name": "resultMsgCode"
+              },
+              {
+                "code": "resultData",
+                "attrType": "objectArray",
+                "children": [
+                  {
+                    "code": "attrCode",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "_id": "resultData.attrCode",
+                    "name": "attrCode"
+                  },
+                  {
+                    "code": "attrValueDesc",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "_id": "resultData.attrValueDesc",
+                    "name": "attrValueDesc"
+                  },
+                  {
+                    "code": "attrValueName",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "_id": "resultData.attrValueName",
+                    "name": "attrValueName"
+                  },
+                  {
+                    "code": "attrValueId",
+                    "attrType": "field",
+                    "type": "long",
+                    "mustFlag": "F",
+                    "_id": "resultData.attrValueId",
+                    "name": "attrValueId"
+                  },
+                  {
+                    "code": "attrValue",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "_id": "resultData.attrValue",
+                    "name": "attrValue"
+                  },
+                  {
+                    "code": "sort",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "_id": "resultData.sort",
+                    "name": "sort"
+                  },
+                  {
+                    "code": "attrValueCode",
+                    "attrType": "field",
+                    "type": "string",
+                    "mustFlag": "F",
+                    "_id": "resultData.attrValueCode",
+                    "name": "attrValueCode"
+                  }
+                ],
+                "_id": "resultData",
+                "name": "resultData"
+              }
+            ]
+          },
+          "isServiceParam": true,
+          "productId": "2011256",
+          "api": "/app/rhin/gateway/callRhinEngine",
+          "_source": "rhin",
+          "_serviceId": "889391610000404480",
+          "_serviceTitle": "查询场景规格属性值列表-tsm: qryCatalogAttrValueList",
+          "_capabilityCode": "qryCatalogAttrValueList",
+          "_apiCode": "qryCatalogAttrValueList",
+          "_sourceName": "查询场景规格属性值列表-tsm",
+          "requestType": "object",
+          "responseType": "object"
+        },
+        "headers": []
+      }
+    },
+    "sourceId": "889391610000404480"
+  }
+]

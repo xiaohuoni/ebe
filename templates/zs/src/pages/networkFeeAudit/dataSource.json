@@ -1,0 +1,866 @@
+[
+  {
+    "name": "feeInfo",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "982351",
+        "code": "busiType",
+        "name": "业务类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "674311",
+        "code": "standardPrice",
+        "name": "标准价格",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "384707",
+        "code": "receiptsPrice",
+        "name": "实收价",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "7058047",
+        "code": "bandwidth",
+        "name": "带宽",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "323129",
+        "code": "ipv6GiveNum",
+        "name": "IPv6赠送数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "535103",
+        "code": "ipv4GiveNum",
+        "name": "IPv4赠送数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "547733",
+        "code": "ipv6DemandNum",
+        "name": "IPv6需求数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "8454034",
+        "code": "ipv4DemandNum",
+        "name": "IPv4需求数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "618242",
+        "code": "ipv6BeyondSel",
+        "name": "IPv6超出选择",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "167631",
+        "code": "ipv4BeyondNum",
+        "name": "IPv4超出个数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "1633704",
+        "code": "ipv6BeyondCost",
+        "name": "IPv6超出费用",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "841439",
+        "code": "ipv4BeyondCount",
+        "name": "IPv4元/月/个",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "755452",
+        "code": "unitPrice",
+        "name": "单价（元/G）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "546822",
+        "code": "lastDiscount",
+        "name": "最终折扣",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "359579",
+        "code": "market",
+        "name": "营销案",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "122027",
+        "code": "busiTypeName",
+        "name": "业务类型名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "500349",
+        "code": "crmAreaType",
+        "name": "区域类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "2669222",
+        "code": "crmJoinWay",
+        "name": "接入方式",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "8788325",
+        "code": "bandwidthUp",
+        "name": "上行宽带",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "155411",
+        "code": "bandwidthDown",
+        "name": "下行宽带",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "568368",
+        "code": "bandwidthPort",
+        "name": "SDWAN端口带宽",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "2474105",
+        "code": "singleUseFee",
+        "name": "一次性费用",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "937028",
+        "code": "portFee",
+        "name": "端口费",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "214875",
+        "code": "ipv6BeyondNum",
+        "name": "IPv6超出个数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "198626",
+        "code": "ipv6BeyondCount",
+        "name": "IPv6元/月/个",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "300842",
+        "code": "standardPriceSdWan",
+        "name": "SDWAN标准价格",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "39146",
+        "code": "receiptsPriceSdWan",
+        "name": "SDWAN实收价格",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "684821",
+        "code": "rowId",
+        "name": "行id",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "7134342",
+        "code": "crmAreaTypeName",
+        "name": "区域类型名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "1659093",
+        "code": "bandwidthName",
+        "name": "带宽名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "707421",
+        "code": "crmJoinWayName",
+        "name": "接入方式名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "007759",
+        "code": "marketList",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "628577",
+        "code": "row",
+        "name": "条数",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "865421",
+        "code": "receiptsPriceSum",
+        "name": "总实收价（元）",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "933879",
+        "code": "marketName",
+        "name": "营销案名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "336101",
+        "code": "specialLine",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "marketList",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "969052",
+        "code": "saleId",
+        "name": "营销案编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "395448",
+        "code": "saleName",
+        "name": "营销案名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "7610088",
+        "code": "saleDesc",
+        "name": "营销案描述",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "302396",
+        "code": "rowId",
+        "name": "行id",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "marketCaseInfo",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "852366",
+        "code": "code",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "795578",
+        "code": "name",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "690458",
+        "code": "desc",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "pageParam",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "85042",
+        "code": "localPrice",
+        "name": "标准价格、本地市价格",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "176213",
+        "code": "privincePrice",
+        "name": "省内跨市价格",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "groupLineRateData",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "code": "groupLineRateInfo",
+        "attrType": "objectArray",
+        "children": [
+          {
+            "code": "bandWidth",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "1",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "2277785",
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "configTime",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "20220417155847",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "9507814",
+            "initialData": {
+              "type": "static",
+              "value": "20220417155847"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "portPrice",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "9667206",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "productId",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "3367",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "826875",
+            "initialData": {
+              "type": "static",
+              "value": "3367"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "linePrice",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "200000",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "187683",
+            "initialData": {
+              "type": "static",
+              "value": "200000"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "ipAmount",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "1",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "931143",
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "ipPrice",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "10000",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "75759",
+            "initialData": {
+              "type": "static",
+              "value": "10000"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "lineTypeName",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "452798",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "lowDiscount",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "35",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "4721867",
+            "initialData": {
+              "type": "static",
+              "value": "35"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "configOperator",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "1010112",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "6707121",
+            "initialData": {
+              "type": "static",
+              "value": "1010112"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "transferModeName",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "SDH",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "2835261",
+            "initialData": {
+              "type": "static",
+              "value": "SDH"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "bandWidthName",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "2M",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "5988504",
+            "initialData": {
+              "type": "static",
+              "value": "2M"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "ipv6Price",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "1",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "65242",
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "ipv6Amount",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "1",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "0845926",
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "lineType",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "732054",
+            "initialData": {
+              "type": "static",
+              "value": ""
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "transferMode",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "1",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "546357",
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "name",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "集团商务快线套餐",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "65596893",
+            "initialData": {
+              "type": "static",
+              "value": "集团商务快线套餐"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "statusName",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "生效",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "9581325",
+            "initialData": {
+              "type": "static",
+              "value": "生效"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "status",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "0",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "655548",
+            "initialData": {
+              "type": "static",
+              "value": "0"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "bandWidthDown",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "1",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "9724986",
+            "initialData": {
+              "type": "static",
+              "value": "1"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          },
+          {
+            "code": "bandWidthDownName",
+            "attrType": "field",
+            "type": "string",
+            "mustFlag": "F",
+            "exampleValue": "2M",
+            "defaultValue": "",
+            "name": "属性",
+            "attrId": "0691144",
+            "initialData": {
+              "type": "static",
+              "value": "2M"
+            },
+            "parentKey": "groupLineRateInfo",
+            "parentType": "objectArray",
+            "parentCode": "groupLineRateInfo"
+          }
+        ],
+        "name": "",
+        "type": "objectArray",
+        "attrId": "204327",
+        "initialData": {
+          "type": "static"
+        },
+        "parentKey": "1",
+        "parentType": "object"
+      }
+    ]
+  },
+  {
+    "name": "pageData",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "173395",
+        "code": "groupId",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  }
+]

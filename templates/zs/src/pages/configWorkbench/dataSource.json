@@ -1,0 +1,207 @@
+[
+  {
+    "name": "rolePrivilege",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "code": "M_ORG_MANAGE",
+        "attrType": "field",
+        "type": "boolean",
+        "mustFlag": "F",
+        "exampleValue": "false",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "026078",
+        "initialData": {
+          "type": "static",
+          "value": "false"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "M_FLOW_CONFIG_MANAGE",
+        "attrType": "field",
+        "type": "boolean",
+        "mustFlag": "F",
+        "exampleValue": "false",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "64467",
+        "initialData": {
+          "type": "static",
+          "value": "false"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "M_USER_MANAGE",
+        "attrType": "field",
+        "type": "boolean",
+        "mustFlag": "F",
+        "exampleValue": "false",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "962147",
+        "initialData": {
+          "type": "static",
+          "value": "false"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "M_POST_MANAGE",
+        "attrType": "field",
+        "type": "boolean",
+        "mustFlag": "F",
+        "exampleValue": "false",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "105881",
+        "initialData": {
+          "type": "static",
+          "value": "false"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "M_SCENE_MANAGE",
+        "attrType": "field",
+        "type": "boolean",
+        "mustFlag": "F",
+        "exampleValue": "false",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "5777296",
+        "initialData": {
+          "type": "static",
+          "value": "false"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "M_PRIVILEGE_MANAGE",
+        "attrType": "field",
+        "type": "boolean",
+        "mustFlag": "F",
+        "exampleValue": "false",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "370576",
+        "initialData": {
+          "type": "static",
+          "value": "false"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "M_ROLE_MANAGE",
+        "attrType": "field",
+        "type": "boolean",
+        "mustFlag": "F",
+        "exampleValue": "false",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "99669",
+        "initialData": {
+          "type": "static",
+          "value": "false"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "M_SCENE_ATTR_MANAGE",
+        "attrType": "field",
+        "type": "boolean",
+        "mustFlag": "F",
+        "exampleValue": "false",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "88544",
+        "initialData": {
+          "type": "static",
+          "value": "false"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "M_MATRIX_CONFIG_MANAGE",
+        "attrType": "field",
+        "type": "boolean",
+        "mustFlag": "F",
+        "exampleValue": "true",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "081586",
+        "initialData": {
+          "type": "static",
+          "value": "false"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "M_MARKET_CASE_MANAGE",
+        "attrType": "field",
+        "type": "boolean",
+        "mustFlag": "F",
+        "exampleValue": "false",
+        "defaultValue": "",
+        "name": "属性",
+        "attrId": "152745",
+        "initialData": {
+          "type": "static",
+          "value": "false"
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "attrId": "092617",
+        "code": "M_AUTHORIZATION_APPROVAL_MANAGE",
+        "name": "属性",
+        "type": "boolean",
+        "initialData": {
+          "type": "static",
+          "value": "false"
+        },
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "activeKey",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "865788",
+        "code": "value",
+        "name": "属性",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "1"
+        }
+      }
+    ]
+  }
+]

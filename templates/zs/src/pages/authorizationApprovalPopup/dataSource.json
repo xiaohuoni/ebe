@@ -1,0 +1,109 @@
+[
+  {
+    "name": "pageData",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "792355",
+        "code": "catalogCode",
+        "name": "场景编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "49055",
+        "code": "catalogName",
+        "name": "场景名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "189267",
+        "code": "delegatedCode",
+        "name": "授权人编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "878829",
+        "code": "delegatedPowerCode",
+        "name": "被授权人编码",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "61061",
+        "code": "delegatedName",
+        "name": "授权人姓名",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "27578",
+        "code": "delegatedPowerName",
+        "name": "被授权人姓名",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "491819",
+        "code": "jobLevelName",
+        "name": "人员等级",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "039233",
+        "code": "orgName",
+        "name": "组织名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "903623",
+        "code": "catalogCodes",
+        "name": "场景编码数组",
+        "type": "array",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "538317",
+        "code": "impowerId",
+        "name": "授权审批主键id",
+        "type": "number",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  }
+]

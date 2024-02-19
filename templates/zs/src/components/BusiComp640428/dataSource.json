@@ -1,0 +1,46 @@
+[
+  {
+    "name": "triggerApproveInfo",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "021347",
+        "code": "calcResultDesc",
+        "name": "触发审批点",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "679209",
+        "code": "calcFlowNode",
+        "name": "触发审批角色",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "triggerRoles",
+    "source": "custom",
+    "type": "objectArray",
+    "outParams": [
+      {
+        "attrId": "5304807",
+        "code": "nodeName",
+        "name": "角色名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": false
+      }
+    ]
+  }
+]

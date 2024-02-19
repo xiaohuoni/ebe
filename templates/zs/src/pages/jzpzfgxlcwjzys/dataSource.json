@@ -1,0 +1,1038 @@
+[
+  {
+    "name": "local_vars",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "577955",
+        "code": "operType",
+        "name": "操作类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "180308",
+        "code": "isExclusiveFlow",
+        "name": "是否个性化流程",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "641477",
+        "code": "isContainsMatrixAttr",
+        "name": "是否包含矩阵要素",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  },
+  {
+    "name": "qryPageApproveMatrixByReq",
+    "source": "service",
+    "type": "object",
+    "requestType": "object",
+    "filterParams": [
+      {
+        "attrId": "1837883",
+        "code": "header",
+        "name": "请求头参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "key": "header"
+      },
+      {
+        "attrId": "3705077",
+        "code": "path",
+        "name": "请求路径参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "key": "path"
+      },
+      {
+        "attrId": "9802671",
+        "code": "query",
+        "name": "URL 参数",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "key": "query"
+      },
+      {
+        "attrId": "6808088",
+        "code": "body",
+        "name": "请求体",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "type": "object",
+        "children": [
+          {
+            "attrId": "424503",
+            "code": "pageSize",
+            "name": "pageSize",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "long",
+            "key": "body.pageSize"
+          },
+          {
+            "attrId": "176956",
+            "code": "pageNum",
+            "name": "pageNum",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "long",
+            "key": "body.pageNum"
+          },
+          {
+            "attrId": "0613168",
+            "code": "lanId",
+            "name": "lanId",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string",
+            "key": "body.lanId"
+          },
+          {
+            "attrId": "325559",
+            "code": "matrixTitle",
+            "name": "matrixTitle",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string",
+            "key": "body.matrixTitle"
+          },
+          {
+            "attrId": "125356",
+            "code": "sceneId",
+            "name": "sceneId",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "long",
+            "key": "body.sceneId"
+          }
+        ],
+        "key": "body"
+      }
+    ],
+    "outParams": [
+      {
+        "attrId": "126528",
+        "code": "resultCode",
+        "name": "resultCode",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "2792394",
+        "code": "resultMsgCode",
+        "name": "resultMsgCode",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "318142",
+        "code": "resultMsg",
+        "name": "resultMsg",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "string"
+      },
+      {
+        "attrId": "290629",
+        "code": "resultData",
+        "name": "resultData",
+        "sort": {
+          "isSort": true
+        },
+        "initialData": {
+          "type": "static"
+        },
+        "type": "object",
+        "children": [
+          {
+            "attrId": "99609",
+            "code": "total",
+            "name": "total",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "long"
+          },
+          {
+            "attrId": "050477",
+            "code": "current",
+            "name": "current",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "long"
+          },
+          {
+            "attrId": "366282",
+            "code": "hitCount",
+            "name": "hitCount",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "boolean"
+          },
+          {
+            "attrId": "401349",
+            "code": "size",
+            "name": "size",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "long"
+          },
+          {
+            "attrId": "4787188",
+            "code": "optimizeCountSql",
+            "name": "optimizeCountSql",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "boolean"
+          },
+          {
+            "attrId": "059292",
+            "code": "maxLimit",
+            "name": "maxLimit",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "4746306",
+            "code": "orders",
+            "name": "orders",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "fieldArray",
+            "children": [
+              {
+                "attrId": "3647863",
+                "code": "listItem",
+                "name": "列表元素",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "object"
+              }
+            ]
+          },
+          {
+            "attrId": "455956",
+            "code": "countId",
+            "name": "countId",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "string"
+          },
+          {
+            "attrId": "218053",
+            "code": "isSearchCount",
+            "name": "isSearchCount",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "boolean"
+          },
+          {
+            "attrId": "537915",
+            "code": "records",
+            "name": "records",
+            "sort": {
+              "isSort": true
+            },
+            "initialData": {
+              "type": "static"
+            },
+            "type": "objectArray",
+            "children": [
+              {
+                "attrId": "3464396",
+                "code": "specialLanFlowCode",
+                "name": "specialLanFlowCode",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "9060815",
+                "code": "updateDate",
+                "name": "updateDate",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "082086",
+                "code": "remark",
+                "name": "remark",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "25702",
+                "code": "importantApproveGradeDesc",
+                "name": "importantApproveGradeDesc",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "466429",
+                "code": "lanId",
+                "name": "lanId",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "159058",
+                "code": "createStaffName",
+                "name": "createStaffName",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "5280372",
+                "code": "matrixTitle",
+                "name": "matrixTitle",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "216058",
+                "code": "approveMatrixId",
+                "name": "approveMatrixId",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "long"
+              },
+              {
+                "attrId": "448918",
+                "code": "sceneId",
+                "name": "sceneId",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "long"
+              },
+              {
+                "attrId": "395631",
+                "code": "specialImportantFlowCode",
+                "name": "specialImportantFlowCode",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "570532",
+                "code": "createDate",
+                "name": "createDate",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "27371",
+                "code": "cfgVersion",
+                "name": "cfgVersion",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "574722",
+                "code": "lanApproveGrade",
+                "name": "lanApproveGrade",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "596533",
+                "code": "calcTranslate",
+                "name": "calcTranslate",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "289655",
+                "code": "areaApproveGrade",
+                "name": "areaApproveGrade",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "2443072",
+                "code": "areaApproveGradeDesc",
+                "name": "areaApproveGradeDesc",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "400373",
+                "code": "statusCd",
+                "name": "statusCd",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "615069",
+                "code": "calcView",
+                "name": "calcView",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "808502",
+                "code": "provinceId",
+                "name": "provinceId",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "80336",
+                "code": "createStaff",
+                "name": "createStaff",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "5043396",
+                "code": "calcExpress",
+                "name": "calcExpress",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "043748",
+                "code": "areaId",
+                "name": "areaId",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "840671",
+                "code": "importantApproveGrade",
+                "name": "importantApproveGrade",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "0445125",
+                "code": "specialAreaFlowCode",
+                "name": "specialAreaFlowCode",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "672303",
+                "code": "lanApproveGradeDesc",
+                "name": "lanApproveGradeDesc",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              },
+              {
+                "attrId": "85776",
+                "code": "updateStaff",
+                "name": "updateStaff",
+                "sort": {
+                  "isSort": true
+                },
+                "initialData": {
+                  "type": "static"
+                },
+                "type": "string"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "config": {
+      "hooks": [],
+      "isInit": false,
+      "options": {
+        "service": {
+          "busiApiId": "882560820721172480",
+          "busiApiNbr": "qryPageApproveMatrixByReq",
+          "busiApiName": "根据场景ID进行分页查询审批矩阵列表-tsm",
+          "busiObjId": "882560820721172480",
+          "apiParam": "[{\"apiId\":882560820721172480,\"apiParamId\":882560820972830720,\"compareFlag\":true,\"createDate\":1662025295695,\"createStaff\":50167,\"objId\":882560820721172480,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1662025295695,\"createStaff\":50167,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"1000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":882560820972830721,\"serviceObject\":[],\"serviceObjectCode\":\"root\",\"serviceObjectId\":882560820972830721,\"serviceObjectPath\":\"882560820972830721\",\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":882560820972830721,\"paramType\":\"1000\",\"statusCd\":\"1000\",\"statusDate\":1662025295695,\"tenantCode\":\"868768414651416576\"},{\"apiId\":882560820721172480,\"apiParamId\":882560820972830722,\"compareFlag\":true,\"createDate\":1662025295695,\"createStaff\":50167,\"objId\":882560820721172480,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1662025295695,\"createStaff\":50167,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"2000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":882560820972830723,\"serviceObject\":[],\"serviceObjectCode\":\"root\",\"serviceObjectId\":882560820972830723,\"serviceObjectPath\":\"882560820972830723\",\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":882560820972830723,\"paramType\":\"2000\",\"statusCd\":\"1000\",\"statusDate\":1662025295695,\"tenantCode\":\"868768414651416576\"},{\"apiId\":882560820721172480,\"apiParamId\":882560820972830724,\"compareFlag\":true,\"createDate\":1662025295695,\"createStaff\":50167,\"objId\":882560820721172480,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1662025295695,\"createStaff\":50167,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"3000\",\"remark\":\"根节点，这个节点不能删除\",\"rootServiceObjectId\":882560820972830725,\"serviceObject\":[],\"serviceObjectCode\":\"root\",\"serviceObjectId\":882560820972830725,\"serviceObjectPath\":\"882560820972830725\",\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":882560820972830725,\"paramType\":\"3000\",\"statusCd\":\"1000\",\"statusDate\":1662025295695,\"tenantCode\":\"868768414651416576\"},{\"apiId\":882560820721172480,\"apiParamId\":882560820972830726,\"compareFlag\":true,\"createDate\":1662025295695,\"createStaff\":50167,\"objId\":882560820721172480,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1662025295695,\"createStaff\":50167,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"4000\",\"remark\":\"根节点\",\"rootServiceObjectId\":882560820972830727,\"serviceObject\":[],\"serviceObjectAttrs\":[{\"attrId\":2707,\"attrSpec\":{\"attrId\":2707,\"attrName\":\"pageSize\",\"attrNbr\":\"pageSize\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662357070259,\"createStaff\":50167,\"exampleValue\":\"5\",\"mustFlag\":\"F\",\"serviceObjAttrId\":883952386811985924,\"serviceObjectId\":882560820972830727,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":2706,\"attrSpec\":{\"attrId\":2706,\"attrName\":\"pageNum\",\"attrNbr\":\"pageNum\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662357070259,\"createStaff\":50167,\"exampleValue\":\"1\",\"mustFlag\":\"F\",\"serviceObjAttrId\":883952386811985923,\"serviceObjectId\":882560820972830727,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1539,\"attrSpec\":{\"attrId\":1539,\"attrName\":\"lanId\",\"attrNbr\":\"lanId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662357070259,\"createStaff\":50167,\"exampleValue\":\"\",\"mustFlag\":\"F\",\"serviceObjAttrId\":883952386807791616,\"serviceObjectId\":882560820972830727,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":883952386811985920,\"attrSpec\":{\"attrId\":883952386811985920,\"attrName\":\"matrixTitle\",\"attrNbr\":\"matrixTitle\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1662357070259,\"createStaff\":50167,\"exampleValue\":\"\",\"mustFlag\":\"F\",\"serviceObjAttrId\":883952386807791617,\"serviceObjectId\":882560820972830727,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1486,\"attrSpec\":{\"attrId\":1486,\"attrName\":\"sceneId\",\"attrNbr\":\"sceneId\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569896800,\"createStaff\":50167,\"exampleValue\":\"\",\"mustFlag\":\"T\",\"serviceObjAttrId\":901622256241635328,\"serviceObjectId\":882560820972830727,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"root\",\"serviceObjectId\":882560820972830727,\"serviceObjectPath\":\"882560820972830727\",\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":882560820972830727,\"paramType\":\"4000\",\"statusCd\":\"1000\",\"statusDate\":1662025295695,\"tenantCode\":\"868768414651416576\"},{\"apiId\":882560820721172480,\"apiParamId\":882560820972830728,\"compareFlag\":true,\"createDate\":1662025295695,\"createStaff\":50167,\"objId\":882560820721172480,\"objType\":\"5000\",\"paramObject\":{\"compareFlag\":true,\"createDate\":1662025295695,\"createStaff\":50167,\"isList\":\"F\",\"level\":1,\"parServiceObjectId\":-1,\"paramType\":\"5000\",\"remark\":\"根节点\",\"rootServiceObjectId\":882560820972830729,\"serviceObject\":[{\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"isList\":\"F\",\"level\":2,\"parServiceObjectId\":882560820972830729,\"paramType\":\"5000\",\"rootServiceObjectId\":882560820972830729,\"serviceObject\":[{\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"isList\":\"T\",\"level\":3,\"parServiceObjectId\":901622675305889792,\"paramType\":\"5000\",\"rootServiceObjectId\":882560820972830729,\"serviceObject\":[],\"serviceObjectAttrs\":[{\"attrId\":901622676484489217,\"attrSpec\":{\"attrId\":901622676484489217,\"attrName\":\"specialLanFlowCode\",\"attrNbr\":\"specialLanFlowCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676484489216,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1769,\"attrSpec\":{\"attrId\":1769,\"attrName\":\"updateDate\",\"attrNbr\":\"updateDate\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"2022-10-2211:11:11\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676484489218,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1109,\"attrSpec\":{\"attrId\":1109,\"attrName\":\"remark\",\"attrNbr\":\"remark\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676484489219,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":901622676488683520,\"attrSpec\":{\"attrId\":901622676488683520,\"attrName\":\"importantApproveGradeDesc\",\"attrNbr\":\"importantApproveGradeDesc\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676484489220,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1539,\"attrSpec\":{\"attrId\":1539,\"attrName\":\"lanId\",\"attrNbr\":\"lanId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676488683521,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4226,\"attrSpec\":{\"attrId\":4226,\"attrName\":\"createStaffName\",\"attrNbr\":\"createStaffName\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"管理员\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676488683522,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":883952386811985920,\"attrSpec\":{\"attrId\":883952386811985920,\"attrName\":\"matrixTitle\",\"attrNbr\":\"matrixTitle\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676488683523,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":882560821631336462,\"attrSpec\":{\"attrId\":882560821631336462,\"attrName\":\"approveMatrixId\",\"attrNbr\":\"approveMatrixId\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"1001\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676488683524,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1486,\"attrSpec\":{\"attrId\":1486,\"attrName\":\"sceneId\",\"attrNbr\":\"sceneId\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"40101\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676488683525,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":901622676492877825,\"attrSpec\":{\"attrId\":901622676492877825,\"attrName\":\"specialImportantFlowCode\",\"attrNbr\":\"specialImportantFlowCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676492877824,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1726,\"attrSpec\":{\"attrId\":1726,\"attrName\":\"createDate\",\"attrNbr\":\"createDate\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"2022-10-2211:11:11\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676492877826,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":877859343080603648,\"attrSpec\":{\"attrId\":877859343080603648,\"attrName\":\"cfgVersion\",\"attrNbr\":\"cfgVersion\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676492877827,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":882560821627142147,\"attrSpec\":{\"attrId\":882560821627142147,\"attrName\":\"lanApproveGrade\",\"attrNbr\":\"lanApproveGrade\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"15\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676492877828,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":883952387638263812,\"attrSpec\":{\"attrId\":883952387638263812,\"attrName\":\"calcTranslate\",\"attrNbr\":\"calcTranslate\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676492877829,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":882560821627142150,\"attrSpec\":{\"attrId\":882560821627142150,\"attrName\":\"areaApproveGrade\",\"attrNbr\":\"areaApproveGrade\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"25\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676492877830,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":882560821627142152,\"attrSpec\":{\"attrId\":882560821627142152,\"attrName\":\"areaApproveGradeDesc\",\"attrNbr\":\"areaApproveGradeDesc\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676492877831,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1157,\"attrSpec\":{\"attrId\":1157,\"attrName\":\"statusCd\",\"attrNbr\":\"statusCd\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"00A\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676497072128,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":883952387642458115,\"attrSpec\":{\"attrId\":883952387642458115,\"attrName\":\"calcView\",\"attrNbr\":\"calcView\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676497072129,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4314,\"attrSpec\":{\"attrId\":4314,\"attrName\":\"provinceId\",\"attrNbr\":\"provinceId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"350000\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676497072130,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3961,\"attrSpec\":{\"attrId\":3961,\"attrName\":\"createStaff\",\"attrNbr\":\"createStaff\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"admin\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676497072131,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":882560821631336457,\"attrSpec\":{\"attrId\":882560821631336457,\"attrName\":\"calcExpress\",\"attrNbr\":\"calcExpress\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676497072132,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3898,\"attrSpec\":{\"attrId\":3898,\"attrName\":\"areaId\",\"attrNbr\":\"areaId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676497072133,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":901622676501266433,\"attrSpec\":{\"attrId\":901622676501266433,\"attrName\":\"importantApproveGrade\",\"attrNbr\":\"importantApproveGrade\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"10\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676501266432,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":901622676501266435,\"attrSpec\":{\"attrId\":901622676501266435,\"attrName\":\"specialAreaFlowCode\",\"attrNbr\":\"specialAreaFlowCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676501266434,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":882560821635530754,\"attrSpec\":{\"attrId\":882560821635530754,\"attrName\":\"lanApproveGradeDesc\",\"attrNbr\":\"lanApproveGradeDesc\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676501266436,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3819,\"attrSpec\":{\"attrId\":3819,\"attrName\":\"updateStaff\",\"attrNbr\":\"updateStaff\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"admin\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676501266437,\"serviceObjectId\":901622675305889793,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"records\",\"serviceObjectId\":901622675305889793,\"serviceObjectPath\":\"882560820972830729,901622675305889792,901622675305889793\",\"statusCd\":\"1000\",\"tenantCode\":\"868768414651416576\"}],\"serviceObjectAttrs\":[{\"attrId\":1277,\"attrSpec\":{\"attrId\":1277,\"attrName\":\"total\",\"attrNbr\":\"total\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"1\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676438351872,\"serviceObjectId\":901622675305889792,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3942,\"attrSpec\":{\"attrId\":3942,\"attrName\":\"current\",\"attrNbr\":\"current\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"1\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676442546176,\"serviceObjectId\":901622675305889792,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3943,\"attrSpec\":{\"attrId\":3943,\"attrName\":\"hitCount\",\"attrNbr\":\"hitCount\",\"attrValueDataType\":\"1500\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"false\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676442546177,\"serviceObjectId\":901622675305889792,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1275,\"attrSpec\":{\"attrId\":1275,\"attrName\":\"size\",\"attrNbr\":\"size\",\"attrValueDataType\":\"1400\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"5\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676442546178,\"serviceObjectId\":901622675305889792,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3944,\"attrSpec\":{\"attrId\":3944,\"attrName\":\"optimizeCountSql\",\"attrNbr\":\"optimizeCountSql\",\"attrValueDataType\":\"1500\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"true\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676442546179,\"serviceObjectId\":901622675305889792,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4276,\"attrSpec\":{\"attrId\":4276,\"attrName\":\"maxLimit\",\"attrNbr\":\"maxLimit\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676442546180,\"serviceObjectId\":901622675305889792,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3945,\"attrSpec\":{\"attrId\":3945,\"attrName\":\"orders\",\"attrNbr\":\"orders\",\"attrValueDataType\":\"1700\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"[]\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676442546181,\"serviceObjectId\":901622675305889792,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":4274,\"attrSpec\":{\"attrId\":4274,\"attrName\":\"countId\",\"attrNbr\":\"countId\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676442546182,\"serviceObjectId\":901622675305889792,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":3946,\"attrSpec\":{\"attrId\":3946,\"attrName\":\"isSearchCount\",\"attrNbr\":\"isSearchCount\",\"attrValueDataType\":\"1500\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"true\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622676446740480,\"serviceObjectId\":901622675305889792,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"resultData\",\"serviceObjectId\":901622675305889792,\"serviceObjectPath\":\"882560820972830729,901622675305889792\",\"statusCd\":\"1000\",\"tenantCode\":\"868768414651416576\"}],\"serviceObjectAttrs\":[{\"attrId\":1226,\"attrSpec\":{\"attrId\":1226,\"attrName\":\"resultCode\",\"attrNbr\":\"resultCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"0\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622675326861312,\"serviceObjectId\":882560820972830729,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":874132034551685121,\"attrSpec\":{\"attrId\":874132034551685121,\"attrName\":\"resultMsgCode\",\"attrNbr\":\"resultMsgCode\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"mustFlag\":\"F\",\"serviceObjAttrId\":901622675326861313,\"serviceObjectId\":882560820972830729,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},{\"attrId\":1227,\"attrSpec\":{\"attrId\":1227,\"attrName\":\"resultMsg\",\"attrNbr\":\"resultMsg\",\"attrValueDataType\":\"1200\",\"busiTypeId\":1,\"statusCd\":\"1000\"},\"compareFlag\":true,\"createDate\":1666569995614,\"createStaff\":50167,\"exampleValue\":\"SUCCESS\",\"mustFlag\":\"F\",\"serviceObjAttrId\":901622675331055616,\"serviceObjectId\":882560820972830729,\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"}],\"serviceObjectCode\":\"root\",\"serviceObjectId\":882560820972830729,\"serviceObjectPath\":\"882560820972830729\",\"statusCd\":\"1000\",\"statusDate\":1666569995614,\"tenantCode\":\"868768414651416576\"},\"paramObjectId\":882560820972830729,\"paramType\":\"5000\",\"statusCd\":\"1000\",\"statusDate\":1662025295695,\"tenantCode\":\"868768414651416576\"}]",
+          "request": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "header",
+                "name": "请求头参数",
+                "attrType": "object"
+              },
+              {
+                "code": "path",
+                "name": "请求路径参数",
+                "attrType": "object"
+              },
+              {
+                "code": "query",
+                "name": "URL 参数",
+                "attrType": "object"
+              },
+              {
+                "code": "body",
+                "name": "请求体",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "pageSize",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "pageNum",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "lanId",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "matrixTitle",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "sceneId",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "T"
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "code": "root",
+            "name": "根节点",
+            "attrType": "object",
+            "children": [
+              {
+                "code": "resultCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsgCode",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultMsg",
+                "attrType": "field",
+                "type": "1200",
+                "mustFlag": "F"
+              },
+              {
+                "code": "resultData",
+                "attrType": "object",
+                "children": [
+                  {
+                    "code": "total",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "current",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "hitCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "size",
+                    "attrType": "field",
+                    "type": "1400",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "optimizeCountSql",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "maxLimit",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "orders",
+                    "attrType": "fieldArray",
+                    "mustFlag": "F",
+                    "children": [
+                      {
+                        "code": "listItem",
+                        "name": "列表元素",
+                        "attrType": "field",
+                        "type": "1600"
+                      }
+                    ]
+                  },
+                  {
+                    "code": "countId",
+                    "attrType": "field",
+                    "type": "1200",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "isSearchCount",
+                    "attrType": "field",
+                    "type": "1500",
+                    "mustFlag": "F"
+                  },
+                  {
+                    "code": "records",
+                    "attrType": "objectArray",
+                    "children": [
+                      {
+                        "code": "specialLanFlowCode",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "updateDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "remark",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "importantApproveGradeDesc",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "lanId",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createStaffName",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "matrixTitle",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "approveMatrixId",
+                        "attrType": "field",
+                        "type": "1400",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "sceneId",
+                        "attrType": "field",
+                        "type": "1400",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "specialImportantFlowCode",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createDate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "cfgVersion",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "lanApproveGrade",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "calcTranslate",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "areaApproveGrade",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "areaApproveGradeDesc",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "statusCd",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "calcView",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "provinceId",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "createStaff",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "calcExpress",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "areaId",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "importantApproveGrade",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "specialAreaFlowCode",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "lanApproveGradeDesc",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      },
+                      {
+                        "code": "updateStaff",
+                        "attrType": "field",
+                        "type": "1200",
+                        "mustFlag": "F"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "productId": "11308",
+          "api": "/app/rhin/gateway/callRhinEngine",
+          "_source": "rhin",
+          "_serviceId": "882560820721172480",
+          "_serviceTitle": "根据场景ID进行分页查询审批矩阵列表-tsm: qryPageApproveMatrixByReq",
+          "_capabilityCode": "qryPageApproveMatrixByReq",
+          "_apiCode": "qryPageApproveMatrixByReq",
+          "isServiceParam": true,
+          "requestType": "object",
+          "responseType": "object"
+        },
+        "headers": []
+      }
+    }
+  },
+  {
+    "name": "privilege_vars",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "851689",
+        "code": "add",
+        "name": "属性",
+        "type": "boolean",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "864831",
+        "code": "modify",
+        "name": "属性",
+        "type": "boolean",
+        "initialData": {
+          "type": "static"
+        }
+      },
+      {
+        "attrId": "690707",
+        "code": "delete",
+        "name": "属性",
+        "type": "boolean",
+        "initialData": {
+          "type": "static"
+        }
+      }
+    ]
+  }
+]

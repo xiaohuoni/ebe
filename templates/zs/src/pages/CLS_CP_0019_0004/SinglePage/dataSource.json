@@ -1,0 +1,308 @@
+[
+  {
+    "name": "singleGroup",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "code": "groupId",
+        "name": "集团编码",
+        "type": "string",
+        "attrId": "2445105",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "groupName",
+        "name": "集团名称",
+        "type": "string",
+        "attrId": "593173",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "groupCreditRate",
+        "name": "集团征信等级",
+        "type": "string",
+        "attrId": "534104",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "belongCityText",
+        "name": "归属地市",
+        "type": "string",
+        "attrId": "895383",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "belongAreaText",
+        "name": "归属县市",
+        "type": "string",
+        "attrId": "3735469",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "customerType",
+        "name": "客户类型",
+        "type": "string",
+        "attrId": "244185",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "institutionType",
+        "name": "机构类型",
+        "type": "string",
+        "attrId": "436705",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "industryCategory",
+        "name": "行业大类",
+        "type": "string",
+        "attrId": "634195",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "industrySubCategory",
+        "name": "行业小类",
+        "type": "string",
+        "attrId": "135576",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "custManagerName",
+        "name": "客户经理姓名",
+        "type": "string",
+        "attrId": "6748496",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "custManagerPhone",
+        "name": "客户经理联系电话",
+        "type": "string",
+        "attrId": "04085",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "custManagerCreditRate",
+        "name": "客户经理征信等级",
+        "type": "string",
+        "attrId": "909426",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "earliestOverdueTime",
+        "name": "最早欠费时间",
+        "type": "string",
+        "attrId": "240959",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "totalArrearage",
+        "name": "累计欠费（元）",
+        "type": "string",
+        "attrId": "412087",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "appliedWhiteListNum",
+        "name": "已申请白名单次数（次）",
+        "type": "string",
+        "attrId": "756872",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "maxOverdueMonth",
+        "name": "最大逾期月数（月）",
+        "type": "string",
+        "attrId": "0858926",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "cumulativeOverdueFee",
+        "name": "累计逾期欠费（元）",
+        "type": "string",
+        "attrId": "572691",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "appliedWhiteListDay",
+        "name": "已申请白名单天数（天）",
+        "type": "string",
+        "attrId": "098185",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "maxArrearageBillItem",
+        "name": "最大欠费账目项",
+        "type": "string",
+        "attrId": "560622",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "maxArrearageBillItemFee",
+        "name": "最大欠费账目项欠费（元）",
+        "type": "string",
+        "attrId": "1606879",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "lastCollectionRequireYear",
+        "name": "最近一次催缴要求（近一年）",
+        "type": "string",
+        "attrId": "129466",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "lastCollectionTimeYear",
+        "name": "最近一次催缴时间（近一年）",
+        "type": "string",
+        "attrId": "519123",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      },
+      {
+        "code": "lastCollectionActionYear",
+        "name": "最近一次催缴动作（近一年）",
+        "type": "string",
+        "attrId": "052648",
+        "initialData": {
+          "type": "static",
+          "value": ""
+        },
+        "parentKey": "1",
+        "parentType": "object",
+        "showInput": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "name": "info",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "9378892",
+        "code": "serviceResourceTypeName",
+        "name": "服务资源类型名称",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      },
+      {
+        "attrId": "929552",
+        "code": "serviceResourceType",
+        "name": "服务资源类型",
+        "type": "string",
+        "initialData": {
+          "type": "static"
+        },
+        "showInput": true
+      }
+    ]
+  },
+  {
+    "name": "pageData",
+    "source": "custom",
+    "type": "object",
+    "outParams": [
+      {
+        "attrId": "97534",
+        "code": "isAllowConfirm",
+        "name": "是否能够允许点击确认(0不行1可以)",
+        "type": "string",
+        "initialData": {
+          "type": "static",
+          "value": "0"
+        },
+        "showInput": true
+      }
+    ]
+  }
+]
