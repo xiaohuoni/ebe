@@ -205,7 +205,7 @@ export class ProjectBuilder implements IProjectBuilder {
       buildResult = buildResult.concat(dataSourceBuildResult);
     }
 
-    // pageview
+    // app
     if (parseResult.app && builders.app) {
       const { files } = await builders.app.generateModule(parseResult.app);
 

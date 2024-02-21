@@ -43,12 +43,17 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: CLASS_DEFINE_CHUNK_NAME.Start,
-      content: `
+      content: `const pageId = '${
+        next?.contextData?.options?.pageIdMapping[ir.pagePath] ??
+        'pageId 未找到'
+      }';
         const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, 
           attrDataMap={},customActionMapRef,
           injectData, refs, state, functorsMap, getStaticDataSourceService, getValue, componentItem, style, urlParam, ${
             isModal ? 'forwardedRef,' : ''
-          } }) => {`,
+          } 
+          parentEngineId = pageId
+      }) => {`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
         COMMON_CHUNK_NAME.InternalDepsImport,
@@ -190,10 +195,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.FileExport,
       content: `export default withPageHOC(${type}, {
-        pageId:'${
-          next?.contextData?.options?.pageIdMapping[ir.pagePath] ??
-          'pageId 未找到'
-        }',
+        pageId,
         hasLogin: ${!!!ir.ignoreLogin},${
         hasDataSource ? 'dataSource,' : ''
       }defaultState:${JSON.stringify(defaultState)},

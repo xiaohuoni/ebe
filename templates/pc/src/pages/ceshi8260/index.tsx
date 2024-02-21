@@ -1,20 +1,24 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
+  Button,
   DatePicker,
   Form,
   RangePicker,
   TimePicker,
-  Tree,
   View,
 } from '@/components/factory';
+
+import Pageview from '@/components/Pageview';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '1024261720265998336';
 const Ceshi8260$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -29,7 +33,17 @@ const Ceshi8260$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
+  const callFunctionTest = (options_856815: any) => {
+    // console 170841413251678100
+    console.log('父级事件调用成功');
+  };
+
+  React.useImperativeHandle(customActionMapRef, () => ({
+    callFunctionTest,
+  }));
+
   useEffect(() => {
     return () => {};
   }, []);
@@ -188,208 +202,195 @@ const Ceshi8260$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
         </Form>
-        <Tree
-          name={'树形控件'}
-          defaultExpandAll={true}
-          showLine={true}
-          selectable={true}
-          isAsync={false}
-          treeData={[
-            {
-              key: '浙江省',
-              value: '浙江省',
-              title: '浙江省',
-              $$isParent: true,
-              children: [
-                {
-                  key: '浙江省-杭州市',
-                  value: '浙江省-杭州市',
-                  title: '杭州市',
-                  children: [
-                    {
-                      key: '浙江省-杭州市-西湖区',
-                      value: '浙江省-杭州市-西湖区',
-                      title: '西湖区',
-                    },
-                  ],
-                },
-              ],
-            },
-          ]}
-          showLineIcon={false}
+        <Pageview
+          name={'页面容器'}
+          pageViewCompState={{}}
+          pageSrc={'/cdd5883'}
+          pageId={'1028120483871506432'}
+          style={{ height: 'auto', width: '100%' }}
+          ref={(r: any) => (refs['Pageview_017745'] = r)}
+          {...injectData}
+          parentEngineId={parentEngineId}
+        />
+        <Popover
+          page={{
+            pagePath: '/qipao9952',
+            pageId: '1077467890419003392',
+            pageName: 'qipao',
+            options: [
+              { name: '业务主键', code: 'bizId' },
+              { name: '业务场景', code: 'sceneCode' },
+              { name: '业务数据', code: 'bizData' },
+            ],
+            tipType: '1',
+            trigger: 'hover',
+          }}
+          id={'Button_778372'}
+          {...injectData}
+          parentEngineId={parentEngineId}
+        >
+          <Button
+            name={'按钮'}
+            classification={'default'}
+            autoProcessFlow={false}
+            flowProcessResult={'common'}
+            iconPosition={'left'}
+            ghost={false}
+            block={false}
+            size={'default'}
+            type={'default'}
+            btnIcon={'none'}
+            hasIcon={false}
+            shape={'default'}
+            loading={false}
+            btnText={'气泡'}
+            $$componentItem={{
+              id: 'Button_778372',
+              uid: 'Button_778372',
+              type: 'Button',
+              ...componentItem,
+            }}
+            disabled={false}
+            visible={true}
+            readOnly={false}
+            style={{ textAlign: 'center' }}
+            ref={(r: any) => (refs['Button_778372'] = r)}
+            {...injectData}
+          />
+        </Popover>
+        <Button
+          name={'按钮'}
+          classification={'default'}
+          autoProcessFlow={false}
+          flowProcessResult={'common'}
+          iconPosition={'left'}
+          ghost={false}
+          block={false}
+          size={'default'}
+          type={'default'}
+          btnIcon={'none'}
+          hasIcon={false}
+          shape={'default'}
+          loading={false}
+          btnText={'调用自己'}
           $$componentItem={{
-            id: 'Tree_609988',
-            uid: 'Tree_609988',
-            type: 'Tree',
+            id: 'Button_106325',
+            uid: 'Button_106325',
+            type: 'Button',
             ...componentItem,
           }}
           disabled={false}
           visible={true}
           readOnly={false}
-          onSelect={(
-            selectedKeys: any,
-            { node }: any,
-            parentKey: any,
-            parentNodeData: any,
-          ) => {
-            const eventDataconsole: any = [
+          style={{ textAlign: 'center' }}
+          onClick={(e: any) => {
+            const eventDatacallSelfFunc: any = [
               {
-                type: 'console',
-                dataId: 170709690017586800,
+                type: 'callSelfFunc',
+                dataId: 170848424025387420,
                 options: {
-                  compId: 'console',
+                  compId: 'callSelfFunc',
                   compName: 'system',
-                  id: '926441',
+                  id: '7715386',
                   pageJsonId: '057343',
-                  value: ['$selectedKeys[0]$'],
+                  customFuncParams: 'object',
+                  customFuncName: 'callFunctionTest',
                 },
-                path: [170709689594196770],
                 line_number: 1,
+                callback1: [],
+                callback2: [],
               },
             ];
-            eventDataconsole.params =
-              [
-                {
-                  title: '节点key(单选)',
-                  name: 'selectedKeys',
-                  value: '$selectedKeys[0]$',
-                },
-                {
-                  title: '节点keys(多选)',
-                  name: 'selectedKeys',
-                  value: '$selectedKeys$',
-                },
-                {
-                  title: '节点数据',
-                  name: '{ node }',
-                  value: '$node.props.data$',
-                  attrType: 'object',
-                },
-                { title: '父节点key', name: 'parentKey', value: '$parentKey$' },
-                {
-                  title: '父节点数据',
-                  name: 'parentNodeData',
-                  value: '$parentNodeData$',
-                  attrType: 'object',
-                },
-              ] || [];
-            CMDGenerator(
-              eventDataconsole,
-              { selectedKeys, node, parentKey, parentNodeData },
-              'console',
-              {
-                id: 'console',
-                name: 'console',
-                type: 'console',
-                platform: 'pc',
-              },
-            );
-            const eventDataconsole2: any = [
-              {
-                type: 'console',
-                dataId: 170709695327640300,
-                options: {
-                  compId: 'console',
-                  compName: 'system',
-                  id: '1223107',
-                  pageJsonId: '057343',
-                  value: ['$selectedKeys$'],
-                },
-                path: [170709689594196770],
-                line_number: 2,
-              },
-            ];
-            eventDataconsole2.params =
-              [
-                {
-                  title: '节点key(单选)',
-                  name: 'selectedKeys',
-                  value: '$selectedKeys[0]$',
-                },
-                {
-                  title: '节点keys(多选)',
-                  name: 'selectedKeys',
-                  value: '$selectedKeys$',
-                },
-                {
-                  title: '节点数据',
-                  name: '{ node }',
-                  value: '$node.props.data$',
-                  attrType: 'object',
-                },
-                { title: '父节点key', name: 'parentKey', value: '$parentKey$' },
-                {
-                  title: '父节点数据',
-                  name: 'parentNodeData',
-                  value: '$parentNodeData$',
-                  attrType: 'object',
-                },
-              ] || [];
-            CMDGenerator(
-              eventDataconsole2,
-              { selectedKeys, node, parentKey, parentNodeData },
-              'console',
-              {
-                id: 'console',
-                name: 'console',
-                type: 'console',
-                platform: 'pc',
-              },
-            );
-            const eventDataconsole3: any = [
-              {
-                type: 'console',
-                dataId: 170709696046394180,
-                options: {
-                  compId: 'console',
-                  compName: 'system',
-                  id: '9501477',
-                  pageJsonId: '057343',
-                  value: ['$node.props.data$'],
-                },
-                path: [170709689594196770],
-                line_number: 3,
-              },
-            ];
-            eventDataconsole3.params =
-              [
-                {
-                  title: '节点key(单选)',
-                  name: 'selectedKeys',
-                  value: '$selectedKeys[0]$',
-                },
-                {
-                  title: '节点keys(多选)',
-                  name: 'selectedKeys',
-                  value: '$selectedKeys$',
-                },
-                {
-                  title: '节点数据',
-                  name: '{ node }',
-                  value: '$node.props.data$',
-                  attrType: 'object',
-                },
-                { title: '父节点key', name: 'parentKey', value: '$parentKey$' },
-                {
-                  title: '父节点数据',
-                  name: 'parentNodeData',
-                  value: '$parentNodeData$',
-                  attrType: 'object',
-                },
-              ] || [];
-            CMDGenerator(
-              eventDataconsole3,
-              { selectedKeys, node, parentKey, parentNodeData },
-              'console',
-              {
-                id: 'console',
-                name: 'console',
-                type: 'console',
-                platform: 'pc',
-              },
-            );
+            eventDatacallSelfFunc.params =
+              [{ title: '事件对象', value: '$e$', name: 'e' }] || [];
+            CMDGenerator(eventDatacallSelfFunc, { e }, 'callSelfFunc', {
+              id: 'callSelfFunc',
+              name: 'callSelfFunc',
+              type: 'callSelfFunc',
+              platform: 'pc',
+            });
           }}
-          ref={(r: any) => (refs['Tree_609988'] = r)}
+          ref={(r: any) => (refs['Button_106325'] = r)}
+          {...injectData}
+        />
+        <Button
+          name={'按钮'}
+          classification={'default'}
+          autoProcessFlow={false}
+          flowProcessResult={'common'}
+          iconPosition={'left'}
+          ghost={false}
+          block={false}
+          size={'default'}
+          type={'default'}
+          btnIcon={'none'}
+          hasIcon={false}
+          shape={'default'}
+          loading={false}
+          btnText={'打开弹窗'}
+          $$componentItem={{
+            id: 'Button_920658',
+            uid: 'Button_920658',
+            type: 'Button',
+            ...componentItem,
+          }}
+          disabled={false}
+          visible={true}
+          readOnly={false}
+          style={{ textAlign: 'center' }}
+          onClick={(e: any) => {
+            const eventDatashowCustomModal: any = [
+              {
+                type: 'showCustomModal',
+                dataId: 170848637018408540,
+                options: {
+                  compId: 'showCustomModal',
+                  compName: 'system',
+                  id: '23562',
+                  pageJsonId: '057343',
+                  modalname: '/modal0804',
+                  pageId: '1077431851017072640',
+                  modalPath: '/modal0804',
+                },
+                line_number: 1,
+                callback1: [
+                  {
+                    type: 'closeModal',
+                    dataId: 170848639918487040,
+                    options: {
+                      compId: 'closeModal',
+                      compName: 'system',
+                      id: '1691886',
+                      pageJsonId: '057343',
+                    },
+                    line_number: 2,
+                  },
+                ],
+                callback2: [
+                  {
+                    type: 'closeModal',
+                    dataId: 170848640494115650,
+                    options: {
+                      compId: 'closeModal',
+                      compName: 'system',
+                      id: '30948',
+                      pageJsonId: '057343',
+                    },
+                    line_number: 3,
+                  },
+                ],
+              },
+            ];
+            eventDatashowCustomModal.params =
+              [{ title: '事件对象', value: '$e$', name: 'e' }] || [];
+            CMDGenerator(eventDatashowCustomModal, { e }, 'showCustomModal', {
+              id: 'showCustomModal',
+              name: 'showCustomModal',
+              type: 'showCustomModal',
+              platform: 'pc',
+            });
+          }}
+          ref={(r: any) => (refs['Button_920658'] = r)}
           {...injectData}
         />
       </View>
@@ -398,7 +399,7 @@ const Ceshi8260$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Ceshi8260$$Page, {
-  pageId: '1024261720265998336',
+  pageId,
   hasLogin: true,
   defaultState: { bizId: '', sceneCode: '', bizData: '' },
 });

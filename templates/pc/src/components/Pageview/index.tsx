@@ -1,19 +1,60 @@
 import { parse } from 'qs';
 import React from 'react';
 
-export const RootProps: any = {};
+export const pageStaticData: any = {};
+export const RootProps: any = {
+  '1077431851017072640': {
+    path: '/modal0804',
+    fileName: '/modal0804',
+    type: '/modal0804',
+    pageId: '1077431851017072640',
+    width: 624,
+    closeOnClickOverlay: false,
+    pageName: 'modal',
+    customWidth: 624,
+    customHeight: 500,
+  },
+};
 const Pages: any = {
-  '/xinbankaoshishouye5627': React.lazy(
+  '/ceshi8260': React.lazy(
     () =>
       import(
-        /* webpackChunkName: "src__pages__/xinbankaoshishouye5627__index" */ '@/pages/xinbankaoshishouye5627'
+        /* webpackChunkName: "src__pages__/ceshi8260__index" */ '@/pages/ceshi8260'
       ),
   ),
-  undefined: React.lazy(
+  '1024261720265998336': React.lazy(
+    () =>
+      import(/* webpackChunkName: "1024261720265998336" */ '@/pages/ceshi8260'),
+  ),
+  '/qipao9952': React.lazy(
     () =>
       import(
-        /* webpackChunkName: "undefined" */ '@/pages/xinbankaoshishouye5627'
+        /* webpackChunkName: "src__pages__/qipao9952__index" */ '@/pages/qipao9952'
       ),
+  ),
+  '1077467890419003392': React.lazy(
+    () =>
+      import(/* webpackChunkName: "1077467890419003392" */ '@/pages/qipao9952'),
+  ),
+  '/modal0804': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/modal0804__index" */ '@/pages/modal0804'
+      ),
+  ),
+  '1077431851017072640': React.lazy(
+    () =>
+      import(/* webpackChunkName: "1077431851017072640" */ '@/pages/modal0804'),
+  ),
+  '/cdd5883': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/cdd5883__index" */ '@/pages/cdd5883'
+      ),
+  ),
+  '1028120483871506432': React.lazy(
+    () =>
+      import(/* webpackChunkName: "1028120483871506432" */ '@/pages/cdd5883'),
   ),
 };
 

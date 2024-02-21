@@ -1,3 +1,4 @@
+import { pageStaticData } from '@/components/Pageview';
 import { PLATFORM } from '@/constants';
 import assetHelper from '@lingxiteam/engine-assets';
 import {
@@ -10,13 +11,19 @@ import {
 import Meta from '@lingxiteam/engine-meta';
 import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';
 import locales from '@lingxiteam/engine-pc/es/utils/locales';
-import { createApp, getApis, user } from '@lingxiteam/engine-platform';
+import {
+  createApp,
+  getApis,
+  getRunningUtils,
+  user,
+} from '@lingxiteam/engine-platform';
 import monitt from '@lingxiteam/engine-plog';
 import AwaitHandleData from '@lingxiteam/engine-render-core/es/utils/AwaitHandleData';
 import EngineMapping from '@lingxiteam/engine-render/es/utils/EngineMapping';
 import Sandbox from '@lingxiteam/engine-sandbox';
 import {
   copyText,
+  getStateListener,
   i18n,
   LcdpTerminalType,
   processCustomParams,
@@ -27,9 +34,14 @@ import {
 import { $$compDefine, SandBoxContext } from '@lingxiteam/types';
 import { history, useLocation } from 'alita';
 import { message as messageApi, Modal } from 'antd';
+import { merge } from 'lodash';
 import { parse } from 'qs';
 import React, { useContext, useEffect, useState } from 'react';
 import { Context } from './Context/context';
+
+const awaitKeys: Set<string> = new Set();
+const cacheKeys: Set<string> = new Set();
+const cacheAttrDataMap: any = {};
 const getStaticDataSourceService = (
   ds: any[],
   labelKey: string,
@@ -51,6 +63,7 @@ export interface PageProps extends SandBoxContext {
 }
 export interface PageHOCOptions {
   pageId: string;
+  dataSource?: any[];
   defaultState: any;
   hasLogin?: boolean;
 }
@@ -63,6 +76,7 @@ export const withPageHOC = (
     const urlParam = parse((location?.search ?? '?')?.split('?')[1]);
     const { ModalManagerRef, refs, appId } = useContext(Context);
     const ExpBusiObjModalRef = React.useRef<any>();
+    const customActionMapRef = React.useRef<any>();
     const { getLocaleLanguage, getLocale, getLocaleEnv, locale, language } =
       i18n.useLocale(
         {
@@ -92,9 +106,96 @@ export const withPageHOC = (
         isMock: false,
         dataCollect: false,
         isOpenTheme: false,
-        beforeCreateApp: () => options?.hasLogin && user.init(),
+        // TODO: 页面开启免登录，页面里面又绑定了用户信息，怎么处理？
+        beforeCreateApp: () => user.init(),
+        // beforeCreateApp: () => options?.hasLogin && user.init(),
       });
+
+      const getStaticAttrByKeys = async (attrNbrKeys: string[]) => {
+        const reqNbrKeys = attrNbrKeys.filter((key) => !cacheKeys.has(key));
+        if (reqNbrKeys.length) {
+          const params = {
+            attrCodes: reqNbrKeys,
+            appId,
+            pageId,
+          };
+          let res: any = {};
+          if (process.env.LCDP_VERSION === '1.0.9') {
+            res = await api.batchGetAppStaticAttr109(params);
+          } else {
+            res = await api.batchGetAppStaticAttr(params);
+          }
+          reqNbrKeys.forEach((key) => {
+            const list = res[key];
+            if (list?.length > 0) {
+              cacheAttrDataMap[key] = (list || []).map((item: any) => {
+                // 记录子级静态数据与编码关系
+                const zattrNbrValueMap: Record<any, any[]> = {};
+                if (
+                  Array.isArray(item.relatedAttrSpecList) &&
+                  item.relatedAttrSpecList.length
+                ) {
+                  const children = item.relatedAttrSpecList
+                    .map((aItem: any) => {
+                      if (aItem.zrelatedAttrValueList) {
+                        // 记录子级编码
+                        const zattrValues = new Set();
+                        // 这级只做展示不做选择
+                        const zChildren = aItem.zrelatedAttrValueList.map(
+                          (zItem: any) => {
+                            zattrValues.add(zItem.zattrValue);
+                            return {
+                              label: zItem.zattrValueName,
+                              title: zItem.zattrValueName,
+                              value: zItem.zattrValue,
+                              isLeaf: false,
+                            };
+                          },
+                        );
+                        zattrNbrValueMap[aItem.zattrNbr] = [...zattrValues];
+                        return zChildren;
+                      }
+                      return undefined;
+                    })
+                    .filter(Boolean)
+                    .flat();
+                  if (children.length) {
+                    return {
+                      ...item,
+                      label: item.attrValueName,
+                      title: item.attrValueName,
+                      value: item.attrValue,
+                      relatedAttrSpecList: item.relatedAttrSpecList,
+                      children,
+                      zattrNbrValueMap,
+                    };
+                  }
+                }
+                return {
+                  ...item,
+                  label: item.attrValueName,
+                  title: item.attrValueName,
+                  value: item.attrValue,
+                  relatedAttrSpecList: item.relatedAttrSpecList,
+                };
+              });
+              cacheKeys.add(key);
+              awaitKeys.delete(key);
+            }
+          });
+        }
+        return Promise.resolve(cacheAttrDataMap);
+      };
+
+      const attrDataMap = await getStaticAttrByKeys(
+        pageStaticData[pageId] ?? [],
+      );
       const awaitHandleData = new AwaitHandleData();
+      const platformUtils = getRunningUtils({
+        appId: appId,
+        pageId: pageId,
+        language,
+      });
       const injectData = {
         getEngineApis: () => {
           return {
@@ -112,6 +213,11 @@ export const withPageHOC = (
                 appId,
                 ...data,
               }),
+            getVisible: (compId: string) => {
+              // @ts-ignore
+              return refs[compId]?.visible;
+            },
+            stateListener: getStateListener(pageId),
             sandBoxRun,
             sandBoxSafeRun: (
               code: string,
@@ -130,10 +236,23 @@ export const withPageHOC = (
         },
       };
       const engineApis = injectData.getEngineApis();
+      const getValue = (id: string, stateName?: string) => {
+        if (stateName) {
+          // @ts-ignore
+          return refs?.[id]?.[stateName];
+        }
+        // @ts-ignore
+        return refs?.[id]?.value;
+      };
       const defaultContext = {
+        getValue,
         urlParam,
         appId,
         pageId,
+        // 如果是子组件，直接存父组件对象？
+        routerId: props?.parentEngineId ?? pageId,
+        renderId: props?.parentEngineId ?? pageId,
+        parentEngineId: props?.parentEngineId ?? pageId,
         engineRelation: EngineMapping.publicMethod,
         lcdpApi: appInst.lcdpApi,
         transformValueDefined,
@@ -161,7 +280,7 @@ export const withPageHOC = (
         closeModal: (modalId: string) => {
           ModalManagerRef.current?.closeModal(modalId, pageId);
         },
-        utils: engineApis,
+        utils: merge(platformUtils, engineApis),
       };
       meta = new Meta({
         SandBox: Sandbox,
@@ -246,6 +365,7 @@ export const withPageHOC = (
             ) => {
               return CONDrun(arg0, arg1, arg2, arg3, engineApis);
             },
+            customActionMap: customActionMapRef.current,
             monitt,
             EventName,
             $$compDefine,
@@ -267,34 +387,33 @@ export const withPageHOC = (
           },
         );
       };
-      const getValue = (id: string, stateName?: string) => {
-        if (stateName) {
-          // @ts-ignore
-          return refs?.[id]?.[stateName];
-        }
-        // @ts-ignore
-        return refs?.[id]?.value;
-      };
       setData({
         ...context,
         CMDGenerator,
         injectData,
         refs,
         functorsMap: assetHelper.function.functorsMap,
-        getValue,
         componentItem,
+        attrDataMap,
       });
-      console.log(context);
+      if (!props?.parentEngineId) {
+        setTimeout(() => {
+          // 太早设置，ref 还未渲染！
+          EngineMapping.add(pageId, pageId, {
+            ...context,
+            customActionMap: customActionMapRef.current,
+          });
+        }, 100);
+      }
       meta.dataDidUpdate = () => {
-        console.log(context);
         setData({
           ...context,
           CMDGenerator,
           injectData,
           refs,
           functorsMap: assetHelper.function.functorsMap,
-          getValue,
           componentItem,
+          attrDataMap,
         });
       };
     };
@@ -302,8 +421,9 @@ export const withPageHOC = (
       init();
     }, []);
 
+    // 可以在这里加 loading
     if (!data || Object.keys(data).length === 0) {
-      return <div>loading</div>;
+      return <div></div>;
     }
     return (
       <>
@@ -313,11 +433,12 @@ export const withPageHOC = (
           {...props}
           urlParam={urlParam}
           forwardedRef={ref}
+          customActionMapRef={customActionMapRef}
         />
         <ExpBusiObjModal
           ref={ExpBusiObjModalRef}
           key={`ExpBusiObjModal-${pageId}`}
-          api={data.api}
+          api={data.utils}
           pageId={pageId}
           appId={appId}
           utils={data.utils}

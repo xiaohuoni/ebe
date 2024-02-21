@@ -54,6 +54,7 @@ const DynamicPopover: FC<DynamicPopoverProps> = (props) => {
     api,
     page,
     options: popoverOptions,
+    parentEngineId,
   } = props;
   const [visible, setVisible] = useState(false);
   const [popVisible, setPopVisible] = useState(false);
@@ -88,7 +89,8 @@ const DynamicPopover: FC<DynamicPopoverProps> = (props) => {
       <Popover
         {...popVisibleProps}
         className={\`dynamic_popover_\${pageId || ''}\`}
-        content={<Pageview pageSrc={pageId} />}
+   
+    content={<Pageview pageSrc={pageId} parentEngineId={parentEngineId}/>}
         placement={placement}
         trigger={trigger}
       >
@@ -187,6 +189,7 @@ export default DynamicPopover;
         };
         state?: Record<string, any>;
         id?: string;
+        parentEngineId?: string;
         children?: any;
       }
       
@@ -198,12 +201,13 @@ export default DynamicPopover;
           state,
           id,
           children,
+          parentEngineId,
         } = props;
         // 气泡卡片显隐受控，提供给关闭所有气泡卡片动作
         const [visible, setVisible] = useState<boolean>(false);
         const content = useMemo(() => {
           if (page?.pageId) {
-            return <Pageview pageSrc={page?.pageId} />;
+            return <Pageview pageSrc={page?.pageId} parentEngineId={parentEngineId}/>;
           }
           if (popoverOptions?.content) {
             return popoverOptions.content;

@@ -87,7 +87,12 @@ const DM = forwardRef((props: any) => {
                 : { overflowX: 'auto' }
             }
           >
-            <Pageview pageSrc={pageId} state={params} ref={mRef} />
+            <Pageview
+              pageSrc={pageId}
+              state={params}
+              ref={mRef}
+              parentEngineId={lcdpParentRenderId}
+            />
           </div>
         </Spin>
       </Modal>

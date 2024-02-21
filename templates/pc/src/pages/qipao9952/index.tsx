@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, View } from '@/components/factory';
+import { Button, Text, View } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
-const pageId = '1028120483871506432';
-const Cdd5883$$Page: React.FC<PageProps> = ({
+const pageId = '1077467890419003392';
+const Qipao9952$$Popover: React.FC<PageProps> = ({
   data,
   CMDGenerator,
   attrDataMap = {},
@@ -25,6 +26,15 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
   urlParam,
   parentEngineId = pageId,
 }) => {
+  const callFunctionTest1 = (options_4273553: any) => {
+    // console 170849534925880060
+    console.log('12321');
+  };
+
+  React.useImperativeHandle(customActionMapRef, () => ({
+    callFunctionTest1,
+  }));
+
   useEffect(() => {
     return () => {};
   }, []);
@@ -32,16 +42,13 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
   useEffect(() => {});
 
   return (
-    <div
-      style={{ height: '100%', ...style }}
-      className="__CustomClass_09010154__"
-    >
+    <Popover {...injectData} parentEngineId={parentEngineId}>
       <View
-        name={'普通容器1'}
-        backgroundType={{ type: 'cleanColor' }}
+        name={'页面'}
+        backgroundType={{ type: 'cleanColor', color: 'rgba(255, 255, 255, 1)' }}
         $$componentItem={{
-          id: 'View_884363',
-          uid: 'View_884363',
+          id: 'View_268601_1',
+          uid: 'View_268601_1',
           type: 'View',
           ...componentItem,
         }}
@@ -49,14 +56,41 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
         visible={true}
         readOnly={false}
         style={{
-          display: 'block',
+          minHeight: '100%',
+          display: 'flex',
+          padding: '20px 20px 20px 20px',
           flexDirection: 'column',
-          padding: '0px 0px 0px 0px',
-          width: '100%',
+          overflowY: 'auto',
+          width: 'auto',
+          height: 'auto',
         }}
-        ref={(r: any) => (refs['View_884363'] = r)}
+        ref={(r: any) => (refs['View_268601_1'] = r)}
         {...injectData}
       >
+        <Text
+          name={'文本'}
+          content={'气泡调用父级方法'}
+          textType={'span'}
+          showHtml={false}
+          $$componentItem={{
+            id: 'Text_840687',
+            uid: 'Text_840687',
+            type: 'Text',
+            ...componentItem,
+          }}
+          disabled={false}
+          visible={true}
+          readOnly={false}
+          style={{
+            textAlign: 'left',
+            fontSize: '14px',
+            lineHeight: '24px',
+            color: '#1c242e',
+            backgroundColor: 'rgba(255, 255, 255,0)',
+          }}
+          ref={(r: any) => (refs['Text_840687'] = r)}
+          {...injectData}
+        />
         <Button
           name={'按钮'}
           classification={'default'}
@@ -66,6 +100,7 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
           ghost={false}
           block={false}
           size={'default'}
+          disabled={false}
           type={'default'}
           btnIcon={'none'}
           hasIcon={false}
@@ -73,40 +108,40 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
           loading={false}
           btnText={'按钮'}
           $$componentItem={{
-            id: 'Button_576841',
-            uid: 'Button_576841',
+            id: 'Button_489167',
+            uid: 'Button_489167',
             type: 'Button',
             ...componentItem,
           }}
-          disabled={false}
           visible={true}
           readOnly={false}
           style={{ textAlign: 'center' }}
           onClick={(e: any) => {
-            const eventDatacallParentCustomFunc1: any = [
+            const eventDatacallParentCustomFunc: any = [
               {
                 type: 'callParentCustomFunc',
-                dataId: 170841416628564540,
+                dataId: 170849478747151550,
                 options: {
                   compId: 'callParentCustomFunc',
                   compName: 'system',
-                  id: '931862',
-                  pageJsonId: '09010154',
+                  id: '759558',
+                  pageJsonId: '268601',
                   customFuncParams: 'object',
                   pathname: '/ceshi8260',
                   pageId: '1024261720265998336',
                   modalPath: '/ceshi8260',
                   customFuncName: 'callFunctionTest',
                 },
+                path: [170849478367183400],
                 line_number: 1,
                 callback1: [],
                 callback2: [],
               },
             ];
-            eventDatacallParentCustomFunc1.params =
+            eventDatacallParentCustomFunc.params =
               [{ title: '事件对象', value: '$e$', name: 'e' }] || [];
             CMDGenerator(
-              eventDatacallParentCustomFunc1,
+              eventDatacallParentCustomFunc,
               { e },
               'callParentCustomFunc',
               {
@@ -117,15 +152,15 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
               },
             );
           }}
-          ref={(r: any) => (refs['Button_576841'] = r)}
+          ref={(r: any) => (refs['Button_489167'] = r)}
           {...injectData}
         />
       </View>
-    </div>
+    </Popover>
   );
 };
 
-export default withPageHOC(Cdd5883$$Page, {
+export default withPageHOC(Qipao9952$$Popover, {
   pageId,
   hasLogin: true,
   defaultState: { bizId: '', sceneCode: '', bizData: '' },

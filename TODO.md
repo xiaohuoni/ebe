@@ -65,6 +65,8 @@
 - [x] pc 端 Popover
 - [x] 检查语法错误，舍弃代码
 - [x] customFuctions 自定义事件,唯一 name 重复，改用 eventCode
+- [x] 命令 callParentCustomFunc 用于调用父级页面自定义方法 engineRelation
+- [ ] visible 需要兼容动态指令显隐 和 basicStatus(已实现)
 - [ ] 应用勾子？-- 内部发起都处理，若移除 createApp 则需要重新处理
 - [ ] 应用勾子 pageDidMount 这个应该在页面处理
 - [ ] 组件 pc 端 GridView 选中状态样式
@@ -75,7 +77,6 @@
 - [ ] findAppPolymerizationInfo createApp 加个配置不请求
 - [ ] 移动端 text 组件的 compLib 为 'antd-mobile',
 - [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67 调试服务器 http://172.21.72.205:8088/
-- [ ] 命令 callParentCustomFunc 用于调用父级页面自定义方法
 - [ ] 数据源清理，只保留必须的字段
 - [ ] 表格数据导入
 - [ ] pc Form ref getTableSelected
@@ -97,3 +98,5 @@ DSL 插入？
 DSL 理解？ DSL 规范要求，规范检测。运营分析埋点 - 生成插件插入规则。
 
 4.0 版本？年底
+
+http://172.21.72.205:8088/

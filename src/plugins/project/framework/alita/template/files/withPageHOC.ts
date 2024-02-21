@@ -268,6 +268,10 @@ export const withPageHOC = (
         urlParam,
         appId,
         pageId,
+        // 如果是子组件，直接存父组件对象？
+        routerId: props?.parentEngineId ?? pageId,
+        renderId: props?.parentEngineId ?? pageId,
+        parentEngineId: props?.parentEngineId ?? pageId,
         engineRelation: EngineMapping.publicMethod,
         lcdpApi: appInst.lcdpApi,
         transformValueDefined,
@@ -403,6 +407,15 @@ export const withPageHOC = (
         componentItem,
         attrDataMap,
       });
+      if (!props?.parentEngineId) {
+        setTimeout(() => {
+          // 太早设置，ref 还未渲染！
+          EngineMapping.add(pageId, pageId, {
+            ...context,
+            customActionMap: customActionMapRef.current,
+          });
+        }, 100);
+      }
       meta.dataDidUpdate = () => {
         setData({
           ...context,

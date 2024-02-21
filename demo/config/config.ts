@@ -1,6 +1,6 @@
 import { defineConfig } from 'alita';
-// const BASE_URL = 'http://172.21.72.205:10000/'; // 开发环境
-const BASE_URL = 'http://10.10.193.65:9015/'; // HJF环境
+const BASE_URL = 'http://172.21.72.205:10000/'; // 开发环境
+// const BASE_URL = 'http://10.10.193.65:9015/'; // HJF环境
 // const BASE_URL = 'http://172.16.84.236:18896/QXYZ-TEST/'; // QXYZ-TEST
 // http://10.10.179.140:8896/HJE
 const DEV_URL = `${BASE_URL}lcdp-app/server/`;
