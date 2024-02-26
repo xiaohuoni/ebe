@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Card,
   Form,
   Input,
   Select,
+  Button,
   Table,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -20,6 +21,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '993433830689329152';
 const UserSelectList$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -35,6 +37,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const refreshUserTable = (options_399369: any) => {
     const eventDatasetLoading28: any = [
@@ -379,7 +382,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_084715_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_084715_1')}
         {...injectData}
       >
         <Card
@@ -829,7 +832,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
               },
             );
           }}
-          ref={(r: any) => (refs['Card_065792'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_065792')}
           {...injectData}
         >
           <Form
@@ -854,7 +857,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_012094'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_012094')}
             {...injectData}
           >
             <Input
@@ -930,7 +933,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_776408'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_776408')}
               {...injectData}
             />
             <Input
@@ -1006,7 +1009,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_913217'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_913217')}
               {...injectData}
             />
             <View
@@ -1036,7 +1039,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_98842'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_98842')}
               {...injectData}
             />
             <Input
@@ -1113,7 +1116,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_801338'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_801338')}
               {...injectData}
             />
             <Select
@@ -1146,7 +1149,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Select_142601'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_142601')}
               {...injectData}
             />
             <View
@@ -1178,7 +1181,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_540917'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_540917')}
               {...injectData}
             >
               <Button
@@ -1237,7 +1240,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_3922038'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_3922038')}
                 {...injectData}
               />
               <Button
@@ -1271,7 +1274,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
                     (form) => form?.resetFields(),
                   );
                 }}
-                ref={(r: any) => (refs['Button_620306'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_620306')}
                 {...injectData}
               />
             </View>
@@ -4173,7 +4176,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_219745'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_219745')}
             {...injectData}
           />
         </Card>
@@ -4183,7 +4186,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(UserSelectList$$Modal, {
-  pageId: '993433830689329152',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', bizData: '' },

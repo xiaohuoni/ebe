@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, Select, TextArea, View } from '@/components/factory';
+import { View, Form, Input, Select, TextArea } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '884729641678057472';
 const EditPostInfo$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const EditPostInfo$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatavalidateCurrentForm65: any = [
@@ -1446,7 +1449,7 @@ const EditPostInfo$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_31_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_31_1')}
         {...injectData}
       >
         <View
@@ -1459,7 +1462,7 @@ const EditPostInfo$$Modal: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_31_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_31_11')}
           {...injectData}
         >
           <View
@@ -1480,7 +1483,7 @@ const EditPostInfo$$Modal: React.FC<PageProps> = ({
               margin: '0px 0px 0px 0px',
               borderRadius: '2px 2px 2px 2px',
             }}
-            ref={(r: any) => (refs['View_31_112'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_31_112')}
             {...injectData}
           >
             <Form
@@ -1687,7 +1690,7 @@ const EditPostInfo$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Form_31_1121'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_31_1121')}
               {...injectData}
             >
               <Input
@@ -1747,7 +1750,9 @@ const EditPostInfo$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_postCode_401732'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_postCode_401732')
+                }
                 {...injectData}
               />
               <Input
@@ -1797,7 +1802,9 @@ const EditPostInfo$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_postName_587397'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_postName_587397')
+                }
                 {...injectData}
               />
               <Select
@@ -2089,7 +2096,9 @@ const EditPostInfo$$Modal: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Input_provinceId_388796'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_provinceId_388796')
+                }
                 {...injectData}
               />
               <Select
@@ -2119,7 +2128,7 @@ const EditPostInfo$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Select_82425973'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Select_82425973')}
                 {...injectData}
               />
               <Select
@@ -2395,7 +2404,7 @@ const EditPostInfo$$Modal: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Input_lanId_5166484'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_lanId_5166484')}
                 {...injectData}
               />
               <Select
@@ -2425,7 +2434,9 @@ const EditPostInfo$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_statusCd_968499'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_statusCd_968499')
+                }
                 {...injectData}
               />
               <Select
@@ -2455,7 +2466,7 @@ const EditPostInfo$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_areaId_105236'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_areaId_105236')}
                 {...injectData}
               />
               <TextArea
@@ -2481,7 +2492,9 @@ const EditPostInfo$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_postDesc_4542983'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_postDesc_4542983')
+                }
                 {...injectData}
               />
               <TextArea
@@ -2507,7 +2520,9 @@ const EditPostInfo$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_remark_0706266'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_remark_0706266')
+                }
                 {...injectData}
               />
             </Form>
@@ -2519,7 +2534,7 @@ const EditPostInfo$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(EditPostInfo$$Modal, {
-  pageId: '884729641678057472',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', dcPostInfo: '' },

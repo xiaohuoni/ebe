@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { DatePicker, Form, Input, TextArea, View } from '@/components/factory';
+import { View, Form, Input, DatePicker, TextArea } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '1039444395193061376';
 const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copycopy$$Modal: React.FC<
   PageProps
 > = ({
@@ -25,6 +27,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copycopy$$Modal: React
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatavalidateCurrentForm37: any = [
@@ -153,7 +156,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copycopy$$Modal: React
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_558169_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_558169_1')}
         {...injectData}
       >
         <View
@@ -175,7 +178,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copycopy$$Modal: React
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_480919'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_480919')}
           {...injectData}
         >
           <Form
@@ -200,7 +203,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copycopy$$Modal: React
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_775282'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_775282')}
             {...injectData}
           >
             <Input
@@ -244,7 +247,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copycopy$$Modal: React
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_786694'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_786694')}
               {...injectData}
             />
             <DatePicker
@@ -278,7 +281,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copycopy$$Modal: React
               readOnly={false}
               defaultValue={undefined}
               isFormRootChild={true}
-              ref={(r: any) => (refs['DatePicker_502621'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'DatePicker_502621')}
               {...injectData}
             />
             <Input
@@ -332,7 +335,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copycopy$$Modal: React
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_356793'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_356793')}
               {...injectData}
             />
             <Input
@@ -387,7 +390,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copycopy$$Modal: React
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_675725'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_675725')}
               {...injectData}
             />
             <TextArea
@@ -414,7 +417,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copycopy$$Modal: React
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_806731'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TextArea_806731')}
               {...injectData}
             />
           </Form>
@@ -427,7 +430,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copycopy$$Modal: React
 export default withPageHOC(
   Jituanduancaixindailishangtuichubaobeidanxinzeng4730copycopy$$Modal,
   {
-    pageId: '1039444395193061376',
+    pageId,
     hasLogin: false,
     defaultState: {
       bizId: '',

@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  VerticalView,
   Card,
   Form,
   Input,
+  Button,
   Table,
-  VerticalView,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -18,6 +19,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '884615633470709760';
 const PostStaffManage$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -32,6 +34,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const refreshPostTable = (options_635272: any) => {
     const eventDatasetLoading15: any = [
@@ -1960,7 +1963,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_4868135_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_4868135_1')}
         {...injectData}
       >
         <VerticalView
@@ -1982,7 +1985,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
             height: '100%',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['VerticalView_9463015'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_9463015')}
           {...injectData}
         >
           <View
@@ -2003,7 +2006,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
               height: '30%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_179182'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_179182')}
             {...injectData}
           >
             <Card
@@ -2165,7 +2168,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Card_839649'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_839649')}
               {...injectData}
             >
               <Form
@@ -2190,7 +2193,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ padding: '0px 0px 0px 0px' }}
-                ref={(r: any) => (refs['Form_148709'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_148709')}
                 {...injectData}
               >
                 <Input
@@ -2271,7 +2274,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_3889064'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_3889064')}
                   {...injectData}
                 />
                 <Input
@@ -2352,7 +2355,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_33684855'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_33684855')}
                   {...injectData}
                 />
                 <View
@@ -2384,7 +2387,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_841498'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_841498')}
                   {...injectData}
                 >
                   <Button
@@ -2442,7 +2445,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_224226'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_224226')}
                     {...injectData}
                   />
                   <Button
@@ -2515,7 +2518,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                         platform: 'pc',
                       });
                     }}
-                    ref={(r: any) => (refs['Button_499055'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_499055')}
                     {...injectData}
                   />
                 </View>
@@ -5044,7 +5047,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_311334'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_311334')}
                 {...injectData}
               />
             </Card>
@@ -5067,7 +5070,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
               height: '100%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_869717'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_869717')}
             {...injectData}
           >
             <Card
@@ -5604,7 +5607,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Card_96776'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_96776')}
               {...injectData}
             >
               <Form
@@ -5629,7 +5632,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ padding: '0px 0px 0px 0px' }}
-                ref={(r: any) => (refs['Form_148709_504968'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_148709_504968')}
                 {...injectData}
               >
                 <Input
@@ -5710,7 +5713,9 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_3889064_9290923'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Input_3889064_9290923')
+                  }
                   {...injectData}
                 />
                 <Input
@@ -5791,7 +5796,9 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_33684855_42499777'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Input_33684855_42499777')
+                  }
                   {...injectData}
                 />
                 <View
@@ -5823,7 +5830,9 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_841498_1719896'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'View_841498_1719896')
+                  }
                   {...injectData}
                 >
                   <Button
@@ -5908,7 +5917,9 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_224226_2154932'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'Button_224226_2154932')
+                    }
                     {...injectData}
                   />
                   <Button
@@ -5991,7 +6002,9 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_499055_798351'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'Button_499055_798351')
+                    }
                     {...injectData}
                   />
                 </View>
@@ -6481,7 +6494,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_8475669'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_8475669')}
                 {...injectData}
               />
             </Card>
@@ -6493,7 +6506,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(PostStaffManage$$Page, {
-  pageId: '884615633470709760',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

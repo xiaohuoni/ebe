@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Input, Select, View } from '@/components/factory';
+import { View, Form, Input, Button, Select } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '1036170946836533248';
 const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatavalidateCurrentForm49: any = [
@@ -1057,7 +1060,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_884882_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_884882_1')}
         {...injectData}
       >
         <View
@@ -1079,7 +1082,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_632961'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_632961')}
           {...injectData}
         >
           <Form
@@ -1272,7 +1275,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Form_398551'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_398551')}
             {...injectData}
           >
             <View
@@ -1305,7 +1308,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_561734'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_561734')}
               {...injectData}
             />
             <Input
@@ -1350,7 +1353,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={true}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_289893'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_289893')}
               {...injectData}
             />
             <View
@@ -1383,7 +1386,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_225653'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_225653')}
               {...injectData}
             >
               <Button
@@ -1589,7 +1592,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_602282'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_602282')}
                 {...injectData}
               />
             </View>
@@ -1623,7 +1626,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_352131'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_352131')}
               {...injectData}
             />
             <Input
@@ -1668,7 +1671,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={true}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_2130556'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_2130556')}
               {...injectData}
             />
             <View
@@ -1701,7 +1704,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_694778'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_694778')}
               {...injectData}
             />
             <View
@@ -1734,7 +1737,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_937846'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_937846')}
               {...injectData}
             />
             <Select
@@ -1902,7 +1905,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_529354'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_529354')}
               {...injectData}
             />
             <View
@@ -1935,7 +1938,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_5191'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_5191')}
               {...injectData}
             />
             <View
@@ -1968,7 +1971,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_5373545'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_5373545')}
               {...injectData}
             />
             <Input
@@ -2013,7 +2016,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_4887428'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_4887428')}
               {...injectData}
             />
             <View
@@ -2046,7 +2049,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_90806'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_90806')}
               {...injectData}
             />
             <View
@@ -2079,7 +2082,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_89121'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_89121')}
               {...injectData}
             />
             <Input
@@ -2124,7 +2127,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_375185'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_375185')}
               {...injectData}
             />
             <View
@@ -2157,7 +2160,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_580862'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_580862')}
               {...injectData}
             />
             <View
@@ -2190,7 +2193,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_593768'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_593768')}
               {...injectData}
             />
             <Input
@@ -2235,7 +2238,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_200922'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_200922')}
               {...injectData}
             />
           </Form>
@@ -2246,7 +2249,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(IndustryPortReopen$$Modal, {
-  pageId: '1036170946836533248',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

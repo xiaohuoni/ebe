@@ -25,6 +25,15 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
   urlParam,
   parentEngineId = pageId,
 }) => {
+  const callFunctionTest2 = (options_4286645: any) => {
+    // console 170849603171594430
+    console.log('677687687877');
+  };
+
+  React.useImperativeHandle(customActionMapRef, () => ({
+    callFunctionTest2,
+  }));
+
   useEffect(() => {
     return () => {};
   }, []);
@@ -54,7 +63,7 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
           padding: '0px 0px 0px 0px',
           width: '100%',
         }}
-        ref={(r: any) => (refs['View_884363'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_884363')}
         {...injectData}
       >
         <Button
@@ -83,7 +92,7 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
           readOnly={false}
           style={{ textAlign: 'center' }}
           onClick={(e: any) => {
-            const eventDatacallParentCustomFunc1: any = [
+            const eventDatacallParentCustomFunc: any = [
               {
                 type: 'callParentCustomFunc',
                 dataId: 170841416628564540,
@@ -93,20 +102,20 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
                   id: '931862',
                   pageJsonId: '09010154',
                   customFuncParams: 'object',
-                  pathname: '/ceshi8260',
-                  pageId: '1024261720265998336',
-                  modalPath: '/ceshi8260',
-                  customFuncName: 'callFunctionTest',
+                  pathname: '/qipao9952',
+                  pageId: '1077467890419003392',
+                  modalPath: '/qipao9952',
+                  customFuncName: 'callFunctionTest1',
                 },
                 line_number: 1,
                 callback1: [],
                 callback2: [],
               },
             ];
-            eventDatacallParentCustomFunc1.params =
+            eventDatacallParentCustomFunc.params =
               [{ title: '事件对象', value: '$e$', name: 'e' }] || [];
             CMDGenerator(
-              eventDatacallParentCustomFunc1,
+              eventDatacallParentCustomFunc,
               { e },
               'callParentCustomFunc',
               {
@@ -117,7 +126,7 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
               },
             );
           }}
-          ref={(r: any) => (refs['Button_576841'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Button_576841')}
           {...injectData}
         />
       </View>

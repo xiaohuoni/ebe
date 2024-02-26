@@ -1,6 +1,7 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import { Form, Input, Select, View } from '@/components/factory';
 
@@ -8,6 +9,7 @@ import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = 'pageId 未找到';
 const BusiComp4158382$$BusiComp: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -22,6 +24,7 @@ const BusiComp4158382$$BusiComp: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -218,7 +221,7 @@ const BusiComp4158382$$BusiComp: React.FC<PageProps> = ({
           ...componentItem,
         }}
         style={{ padding: '0px 0px 0px 0px' }}
-        ref={(r: any) => (refs['Form_1965796'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'Form_1965796')}
         {...injectData}
       >
         <Input
@@ -257,7 +260,7 @@ const BusiComp4158382$$BusiComp: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           isFormRootChild={true}
-          ref={(r: any) => (refs['Input_387846'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Input_387846')}
           {...injectData}
         />
         <Select
@@ -343,7 +346,7 @@ const BusiComp4158382$$BusiComp: React.FC<PageProps> = ({
               platform: 'pc',
             });
           }}
-          ref={(r: any) => (refs['Select_042379'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Select_042379')}
           {...injectData}
         />
         <Input
@@ -415,7 +418,7 @@ const BusiComp4158382$$BusiComp: React.FC<PageProps> = ({
               platform: 'pc',
             });
           }}
-          ref={(r: any) => (refs['Input_5707894'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Input_5707894')}
           {...injectData}
         />
         <View
@@ -439,7 +442,7 @@ const BusiComp4158382$$BusiComp: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_7084194'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_7084194')}
           {...injectData}
         />
         <Input
@@ -484,7 +487,7 @@ const BusiComp4158382$$BusiComp: React.FC<PageProps> = ({
             ...componentItem,
           }}
           isFormRootChild={true}
-          ref={(r: any) => (refs['Input_8013597'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Input_8013597')}
           {...injectData}
         />
         <Input
@@ -529,7 +532,7 @@ const BusiComp4158382$$BusiComp: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           isFormRootChild={true}
-          ref={(r: any) => (refs['Input_584501'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Input_584501')}
           {...injectData}
         />
         <Input
@@ -574,7 +577,7 @@ const BusiComp4158382$$BusiComp: React.FC<PageProps> = ({
             ...componentItem,
           }}
           isFormRootChild={true}
-          ref={(r: any) => (refs['Input_192829'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Input_192829')}
           {...injectData}
         />
       </Form>
@@ -583,7 +586,7 @@ const BusiComp4158382$$BusiComp: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(BusiComp4158382$$BusiComp, {
-  pageId: 'pageId 未找到',
+  pageId,
   hasLogin: true,
   defaultState: { item: '', catalogCode: '', sceneCode: '' },
 });

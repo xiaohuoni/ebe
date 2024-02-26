@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, StdUpload, View } from '@/components/factory';
+import { View, Form, StdUpload } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '923100355260731392';
 const Chengpinpiliangdaoru7257$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -23,6 +25,7 @@ const Chengpinpiliangdaoru7257$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {};
 
@@ -78,7 +81,7 @@ const Chengpinpiliangdaoru7257$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_609171_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_609171_1')}
         {...injectData}
       >
         <Form
@@ -103,7 +106,7 @@ const Chengpinpiliangdaoru7257$$Modal: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ padding: '0px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Form_0855528'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_0855528')}
           {...injectData}
         >
           <StdUpload
@@ -261,7 +264,7 @@ const Chengpinpiliangdaoru7257$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['StdUpload_7119871'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'StdUpload_7119871')}
             {...injectData}
           />
         </Form>
@@ -271,7 +274,7 @@ const Chengpinpiliangdaoru7257$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Chengpinpiliangdaoru7257$$Modal, {
-  pageId: '923100355260731392',
+  pageId,
   hasLogin: false,
   defaultState: { bizId: '', sceneCode: '' },
 });

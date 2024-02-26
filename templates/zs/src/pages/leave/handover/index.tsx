@@ -1,17 +1,18 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  VerticalView,
   Card,
   Form,
-  Input,
   RangePicker,
+  Input,
   Switch,
+  Button,
   Table,
-  VerticalView,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -20,6 +21,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '900624745539543040';
 const LeaveHandover$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -34,6 +36,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDatareloadDataSource61: any = [
@@ -406,7 +409,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_2540494_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_2540494_1')}
         {...injectData}
       >
         <VerticalView
@@ -426,7 +429,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
             height: '100%',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['VerticalView_7691962'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_7691962')}
           {...injectData}
         >
           <View
@@ -445,7 +448,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
               height: '100%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_115754'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_115754')}
             {...injectData}
           >
             <Card
@@ -484,7 +487,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
                 overflowY: 'visible',
                 margin: '0 0 16px 0',
               }}
-              ref={(r: any) => (refs['Card_685316'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_685316')}
               {...injectData}
             >
               <Form
@@ -507,7 +510,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 style={{ padding: '0px 0px 0px 0px' }}
-                ref={(r: any) => (refs['Form_984095'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_984095')}
                 {...injectData}
               >
                 <RangePicker
@@ -536,7 +539,9 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
                     ...componentItem,
                   }}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['RangePicker_0811484_1228247'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'RangePicker_0811484_1228247')
+                  }
                   {...injectData}
                 />
                 <Input
@@ -639,7 +644,9 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_836023_5814323'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Input_836023_5814323')
+                  }
                   {...injectData}
                 />
                 <Input
@@ -683,7 +690,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
                     ...componentItem,
                   }}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_479682'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_479682')}
                   {...injectData}
                 />
                 <Switch
@@ -713,7 +720,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
                     ...componentItem,
                   }}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Switch_2316286'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Switch_2316286')}
                   {...injectData}
                 />
               </Form>
@@ -735,7 +742,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
                   margin: '20px 0px 0px 0px',
                   textAlign: 'center',
                 }}
-                ref={(r: any) => (refs['View_994054'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_994054')}
                 {...injectData}
               >
                 <Button
@@ -1543,7 +1550,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_641249'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_641249')}
                   {...injectData}
                 />
               </View>
@@ -1565,7 +1572,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
               height: '30%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_434019'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_434019')}
             {...injectData}
           >
             <Card
@@ -1605,7 +1612,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
                 overflowY: 'visible',
                 margin: '0 0 16px 0',
               }}
-              ref={(r: any) => (refs['Card_564259'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_564259')}
               {...injectData}
             >
               <Table
@@ -2779,7 +2786,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_870854'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_870854')}
                 {...injectData}
               />
             </Card>
@@ -2791,7 +2798,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(LeaveHandover$$Page, {
-  pageId: '900624745539543040',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

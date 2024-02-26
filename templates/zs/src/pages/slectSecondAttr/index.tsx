@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Card, Form, Input, Table, View } from '@/components/factory';
+import { View, Card, Form, Input, Button, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -12,6 +13,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '1003212115501813760';
 const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -27,6 +29,7 @@ const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const refleshAttr = (options_832907: any) => {
     const eventDatareloadDataSource27: any = [
@@ -408,7 +411,7 @@ const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_203067_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_203067_1')}
         {...injectData}
       >
         <View
@@ -429,7 +432,7 @@ const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
             height: '30%',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_840584'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_840584')}
           {...injectData}
         >
           <Card
@@ -469,7 +472,7 @@ const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
               overflowY: 'visible',
               margin: '0 0 16px 0',
             }}
-            ref={(r: any) => (refs['Card_5377033'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_5377033')}
             {...injectData}
           >
             <Form
@@ -494,7 +497,7 @@ const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ padding: '0px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_9560711'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_9560711')}
               {...injectData}
             >
               <Input
@@ -575,7 +578,7 @@ const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_814637'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_814637')}
                 {...injectData}
               />
               <Input
@@ -656,7 +659,7 @@ const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_35766145'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_35766145')}
                 {...injectData}
               />
               <View
@@ -688,7 +691,7 @@ const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   width: '100%',
                 }}
-                ref={(r: any) => (refs['View_467733'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_467733')}
                 {...injectData}
               >
                 <Button
@@ -746,7 +749,7 @@ const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_523439'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_523439')}
                   {...injectData}
                 />
                 <Button
@@ -780,7 +783,7 @@ const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
                       (form) => form?.resetFields(),
                     );
                   }}
-                  ref={(r: any) => (refs['Button_938407'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_938407')}
                   {...injectData}
                 />
               </View>
@@ -1226,7 +1229,7 @@ const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Table_646217'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Table_646217')}
               {...injectData}
             />
           </Card>
@@ -1237,7 +1240,7 @@ const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(SlectSecondAttr$$Modal, {
-  pageId: '1003212115501813760',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', bizData: '' },

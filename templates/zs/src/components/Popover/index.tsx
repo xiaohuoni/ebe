@@ -19,6 +19,7 @@ export interface DynamicPopoverProps {
   };
   state?: Record<string, any>;
   id?: string;
+  parentEngineId?: string;
   children?: any;
 }
 
@@ -30,12 +31,15 @@ const DynamicPopover: FC<DynamicPopoverProps> = (props) => {
     state,
     id,
     children,
+    parentEngineId,
   } = props;
   // 气泡卡片显隐受控，提供给关闭所有气泡卡片动作
   const [visible, setVisible] = useState<boolean>(false);
   const content = useMemo(() => {
     if (page?.pageId) {
-      return <Pageview pageSrc={page?.pageId} />;
+      return (
+        <Pageview pageSrc={page?.pageId} parentEngineId={parentEngineId} />
+      );
     }
     if (popoverOptions?.content) {
       return popoverOptions.content;

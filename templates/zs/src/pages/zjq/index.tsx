@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Collapse,
   CollapsePanel,
-  Form,
   GridView,
+  Button,
+  Form,
   StdUpload,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -18,6 +19,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '906774449121083392';
 const Zjq$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -32,6 +34,7 @@ const Zjq$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -63,7 +66,7 @@ const Zjq$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_256646_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_256646_1')}
         {...injectData}
       >
         <Collapse
@@ -103,7 +106,7 @@ const Zjq$$Page: React.FC<PageProps> = ({
             margin: '0 0 16px 0',
             padding: '20px 20px 20px 20px',
           }}
-          ref={(r: any) => (refs['Collapse_453541'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Collapse_453541')}
           {...injectData}
         >
           <CollapsePanel
@@ -120,7 +123,7 @@ const Zjq$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['CollapsePanel_3424776'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'CollapsePanel_3424776')}
             {...injectData}
             uid="CollapsePanel_3424776"
           >
@@ -147,7 +150,7 @@ const Zjq$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['GridView_5062227'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'GridView_5062227')}
               {...injectData}
               getEngineApis={() => {
                 return {
@@ -181,7 +184,9 @@ const Zjq$$Page: React.FC<PageProps> = ({
                             visible={true}
                             readOnly={false}
                             style={{ width: 'fit-content' }}
-                            ref={(r: any) => (refs['Button_996717'] = r)}
+                            ref={(r: any) =>
+                              refs.setComponentRef(r, 'Button_996717')
+                            }
                             {...injectData}
                           />
                         </>
@@ -206,7 +211,7 @@ const Zjq$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['CollapsePanel_4751657'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'CollapsePanel_4751657')}
             {...injectData}
             uid="CollapsePanel_4751657"
           />
@@ -233,7 +238,7 @@ const Zjq$$Page: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ padding: '0px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Form_7982014'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_7982014')}
           {...injectData}
         >
           <StdUpload
@@ -293,7 +298,7 @@ const Zjq$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['StdUpload_8280368'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'StdUpload_8280368')}
             {...injectData}
           />
         </Form>
@@ -303,7 +308,7 @@ const Zjq$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Zjq$$Page, {
-  pageId: '906774449121083392',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

@@ -1,6 +1,7 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import { Form, Select } from '@/components/factory';
 
@@ -8,6 +9,7 @@ import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = 'pageId 未找到';
 const BusiComp2086$$BusiComp: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -22,6 +24,7 @@ const BusiComp2086$$BusiComp: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDataapiRequest3: any = [
@@ -170,7 +173,7 @@ const BusiComp2086$$BusiComp: React.FC<PageProps> = ({
           ...componentItem,
         }}
         style={{ padding: '0px 0px 0px 0px' }}
-        ref={(r: any) => (refs['Form_797705'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'Form_797705')}
         {...injectData}
       >
         <Select
@@ -407,7 +410,7 @@ const BusiComp2086$$BusiComp: React.FC<PageProps> = ({
               platform: 'pc',
             });
           }}
-          ref={(r: any) => (refs['Select_620033'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Select_620033')}
           {...injectData}
         />
         <Select
@@ -437,7 +440,7 @@ const BusiComp2086$$BusiComp: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           isFormRootChild={true}
-          ref={(r: any) => (refs['Select_758857'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Select_758857')}
           {...injectData}
         />
       </Form>
@@ -446,7 +449,7 @@ const BusiComp2086$$BusiComp: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(BusiComp2086$$BusiComp, {
-  pageId: 'pageId 未找到',
+  pageId,
   hasLogin: true,
   defaultState: {},
 });

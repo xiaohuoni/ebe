@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Card, TabPane, Tabs, View } from '@/components/factory';
+import { View, Card, Tabs, TabPane } from '@/components/factory';
 
 import Pageview from '@/components/Pageview';
 
@@ -12,6 +13,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '953465319297417216';
 const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -26,6 +28,7 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const refreshTable = (options_335881: any) => {
     const eventDataifelse49: any = [
@@ -589,7 +592,7 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_212281_1_3280208'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_212281_1_3280208')}
         {...injectData}
       >
         <Card
@@ -631,7 +634,7 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_7670245_054865'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_7670245_054865')}
           {...injectData}
         >
           <Tabs
@@ -657,7 +660,7 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
               margin: '0 0 16px 0',
               padding: '20px 20px 20px 20px',
             }}
-            ref={(r: any) => (refs['Tabs_03082616_5713342'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Tabs_03082616_5713342')}
             {...injectData}
           >
             <TabPane
@@ -680,7 +683,9 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 `${functorsMap?.IF(data?.rolePrivilege?.OTHER, 1, 2)}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['TabPane_9343164_5815044_900283'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'TabPane_9343164_5815044_900283')
+              }
               {...injectData}
             >
               <Pageview
@@ -689,8 +694,11 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/marketDeptAuditStart'}
                 pageId={'948760695173189632'}
                 style={{ height: 'auto', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_993868_247639_56943'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Pageview_993868_247639_56943')
+                }
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
             <TabPane
@@ -713,7 +721,9 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 `${functorsMap?.IF(data?.rolePrivilege?.OTHER, 1, 2)}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['TabPane_9343164_5815044'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'TabPane_9343164_5815044')
+              }
               {...injectData}
             >
               <Pageview
@@ -726,8 +736,11 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/myOrderTodo_202212191506'}
                 pageId={'922008623740616704'}
                 style={{ height: 'auto', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_993868_247639'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Pageview_993868_247639')
+                }
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
             <TabPane
@@ -750,7 +763,7 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 `${functorsMap?.IF(data?.rolePrivilege?.OTHER, 1, 2)}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['TabPane_07071_206211'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TabPane_07071_206211')}
               {...injectData}
             >
               <Pageview
@@ -762,8 +775,11 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/myOrderDone_202212191506copy'}
                 pageId={'922038101271379968'}
                 style={{ height: 'auto', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_208346_42296'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Pageview_208346_42296')
+                }
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
             <TabPane
@@ -786,7 +802,7 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 `${functorsMap?.IF(data?.rolePrivilege?.OTHER, 1, 2)}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['263706_89067'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, '263706_89067')}
               {...injectData}
             >
               <Pageview
@@ -798,8 +814,11 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/myOrderInitiatedApplication_202212191621'}
                 pageId={'922040879843135488'}
                 style={{ height: 'auto', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_081265_1134114'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Pageview_081265_1134114')
+                }
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
             <TabPane
@@ -822,7 +841,7 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 `${functorsMap?.IF(data?.rolePrivilege?.OTHER, 1, 2)}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['671983_419819'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, '671983_419819')}
               {...injectData}
             >
               <Pageview
@@ -831,8 +850,11 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/myOrderRead_202212191629'}
                 pageId={'922042996011565056'}
                 style={{ height: 'auto', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_7458638_3338165'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Pageview_7458638_3338165')
+                }
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
             <TabPane
@@ -855,7 +877,7 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 `${functorsMap?.IF(data?.rolePrivilege?.OTHER, 1, 2)}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['5910484_00153'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, '5910484_00153')}
               {...injectData}
             >
               <Pageview
@@ -864,8 +886,11 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/myDraft_202212191639'}
                 pageId={'922045372277719040'}
                 style={{ height: 'auto', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_6965484_202397'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Pageview_6965484_202397')
+                }
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
             <TabPane
@@ -900,7 +925,7 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 )}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['250009_297603'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, '250009_297603')}
               {...injectData}
             >
               <Pageview
@@ -909,8 +934,11 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/approveOrderQuery'}
                 pageId={'922050100039012352'}
                 style={{ height: 'auto', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_801102_348115'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Pageview_801102_348115')
+                }
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
             <TabPane
@@ -945,7 +973,7 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 )}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['5036094_47228'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, '5036094_47228')}
               {...injectData}
             >
               <Pageview
@@ -954,8 +982,11 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/exportDownLoad'}
                 pageId={'940142497926754304'}
                 style={{ height: 'auto', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_801102_4765882_910638'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Pageview_801102_4765882_910638')
+                }
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
           </Tabs>
@@ -966,7 +997,7 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(MarketDeptApproveWorkbench$$Page, {
-  pageId: '953465319297417216',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

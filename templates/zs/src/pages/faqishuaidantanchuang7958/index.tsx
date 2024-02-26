@@ -4,13 +4,13 @@ import React from 'react';
 import Popover from '@/components/Popover';
 
 import {
-  Button,
-  Card,
-  GridView,
-  HorizontalView,
-  Select,
-  Text,
   View,
+  Card,
+  HorizontalView,
+  Text,
+  Select,
+  GridView,
+  Button,
 } from '@/components/factory';
 
 import Pageview from '@/components/Pageview';
@@ -21,6 +21,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '908274270111293440';
 const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -36,6 +37,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const pushSceneCodeList = (options_257387: any) => {
     const eventDatasetDataSource9: any = [
@@ -854,7 +856,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_621037_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_621037_1')}
         {...injectData}
       >
         <Card
@@ -896,7 +898,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_88942'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_88942')}
           {...injectData}
         >
           <View
@@ -917,7 +919,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_1213064'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_1213064')}
             {...injectData}
           >
             <HorizontalView
@@ -939,7 +941,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                 height: '100%',
                 overflowY: 'auto',
               }}
-              ref={(r: any) => (refs['HorizontalView_268746'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'HorizontalView_268746')}
               {...injectData}
             >
               <View
@@ -961,7 +963,9 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                   height: '100%',
                   overflowY: 'auto',
                 }}
-                ref={(r: any) => (refs['View_3880396_016015_4849573'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'View_3880396_016015_4849573')
+                }
                 {...injectData}
               >
                 <Text
@@ -985,7 +989,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                     color: '#1c242e',
                     textAlign: 'right',
                   }}
-                  ref={(r: any) => (refs['Text_42328'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Text_42328')}
                   {...injectData}
                 />
               </View>
@@ -1008,7 +1012,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                   height: '100%',
                   overflowY: 'auto',
                 }}
-                ref={(r: any) => (refs['View_3880396_016015'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_3880396_016015')}
                 {...injectData}
               >
                 <Text
@@ -1031,7 +1035,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                     lineHeight: '24px',
                     color: '#1c242e',
                   }}
-                  ref={(r: any) => (refs['Text_9147926'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Text_9147926')}
                   {...injectData}
                 />
               </View>
@@ -1056,7 +1060,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                   flexWrap: 'nowrap',
                   textAlign: 'right',
                 }}
-                ref={(r: any) => (refs['View_3880396'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_3880396')}
                 {...injectData}
               >
                 <Text
@@ -1078,7 +1082,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                     lineHeight: '24px',
                     color: '#1c242e',
                   }}
-                  ref={(r: any) => (refs['Text_455302'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Text_455302')}
                   {...injectData}
                 />
               </View>
@@ -1102,7 +1106,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                   overflowY: 'auto',
                   flexWrap: 'nowrap',
                 }}
-                ref={(r: any) => (refs['View_3880396_602922'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_3880396_602922')}
                 {...injectData}
               >
                 <Text
@@ -1126,7 +1130,9 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                     lineHeight: '24px',
                     color: '#1c242e',
                   }}
-                  ref={(r: any) => (refs['Text_455302_547734'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_455302_547734')
+                  }
                   {...injectData}
                 />
               </View>
@@ -1150,7 +1156,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                   overflowY: 'auto',
                   textAlign: 'left',
                 }}
-                ref={(r: any) => (refs['View_73037_688675'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_73037_688675')}
                 {...injectData}
               >
                 <Text
@@ -1174,7 +1180,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                     color: '#1c242e',
                     textAlign: 'right',
                   }}
-                  ref={(r: any) => (refs['Text_911957'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Text_911957')}
                   {...injectData}
                 />
               </View>
@@ -1198,7 +1204,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                   overflowY: 'auto',
                   textAlign: 'left',
                 }}
-                ref={(r: any) => (refs['View_73037'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_73037')}
                 {...injectData}
               >
                 <Select
@@ -1225,7 +1231,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                   disabled={false}
                   visible={true}
                   readOnly={false}
-                  ref={(r: any) => (refs['Select_486213'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_486213')}
                   {...injectData}
                 />
               </View>
@@ -1249,7 +1255,9 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                   overflowY: 'auto',
                   textAlign: 'left',
                 }}
-                ref={(r: any) => (refs['View_73037_688675_255858'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'View_73037_688675_255858')
+                }
                 {...injectData}
               />
               <View
@@ -1272,7 +1280,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                   overflowY: 'auto',
                   textAlign: 'left',
                 }}
-                ref={(r: any) => (refs['View_73037_366036'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_73037_366036')}
                 {...injectData}
               />
             </HorizontalView>
@@ -1296,7 +1304,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_44557453'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_44557453')}
           {...injectData}
         >
           <Card
@@ -1338,7 +1346,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
               overflowY: 'visible',
               margin: '0 0 16px 0',
             }}
-            ref={(r: any) => (refs['Card_825915'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_825915')}
             {...injectData}
           >
             <GridView
@@ -1365,7 +1373,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['GridView_52578'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'GridView_52578')}
               {...injectData}
               getEngineApis={() => {
                 return {
@@ -1392,8 +1400,11 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                               '/test',
                             )}
                             style={{ height: 'auto', width: '100%' }}
-                            ref={(r: any) => (refs['Pageview_5476228'] = r)}
+                            ref={(r: any) =>
+                              refs.setComponentRef(r, 'Pageview_5476228')
+                            }
                             {...injectData}
+                            parentEngineId={parentEngineId}
                           />
                         </>
                       );
@@ -1423,7 +1434,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
             width: '100%',
             textAlign: 'center',
           }}
-          ref={(r: any) => (refs['View_398657'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_398657')}
           {...injectData}
         >
           <Popover
@@ -1436,6 +1447,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
             }}
             id={'Button_458798_873596'}
             {...injectData}
+            parentEngineId={parentEngineId}
           >
             <Button
               name={'确认'}
@@ -2498,7 +2510,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_458798_873596'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_458798_873596')}
               {...injectData}
             />
           </Popover>
@@ -2546,7 +2558,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_0125392'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_0125392')}
             {...injectData}
           />
         </View>
@@ -2556,7 +2568,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Faqishuaidantanchuang7958$$Modal, {
-  pageId: '908274270111293440',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

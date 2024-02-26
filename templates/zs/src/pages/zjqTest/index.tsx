@@ -4,16 +4,16 @@ import React from 'react';
 import Popover from '@/components/Popover';
 
 import {
+  View,
+  Input,
   Button,
   Collapse,
   CollapsePanel,
   GridView,
   HorizontalView,
-  Icon,
-  Input,
   Text,
+  Icon,
   VerticalView,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -22,6 +22,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '919558457385832448';
 const ZjqTest$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -36,6 +37,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const select_node = (options_485879: any) => {
     const eventDatacustomActionCode26: any = [
@@ -992,7 +994,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
           fontSize: '',
           flex: '',
         }}
-        ref={(r: any) => (refs['View_866861_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_866861_1')}
         {...injectData}
       >
         <View
@@ -1014,7 +1016,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
             width: '100%',
             height: '100%',
           }}
-          ref={(r: any) => (refs['View_129586'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_129586')}
           {...injectData}
         >
           <View
@@ -1039,7 +1041,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
               background: '#FFFFFF',
               'box-shadow': '0px2px8px0pxrgba(0,0,0,0.08)',
             }}
-            ref={(r: any) => (refs['View_510588'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_510588')}
             {...injectData}
           >
             <View
@@ -1063,7 +1065,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                 height: '100%',
                 textAlign: 'left',
               }}
-              ref={(r: any) => (refs['View_782558'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_782558')}
               {...injectData}
             >
               <Input
@@ -1141,7 +1143,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_5357175'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_5357175')}
                 {...injectData}
               />
               <Button
@@ -1197,7 +1199,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_2259782'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_2259782')}
                 {...injectData}
               />
               <Button
@@ -1275,7 +1277,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_126807'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_126807')}
                 {...injectData}
               />
             </View>
@@ -1298,7 +1300,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                 width: '100%',
                 textAlign: 'right',
               }}
-              ref={(r: any) => (refs['View_2174641'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_2174641')}
               {...injectData}
             >
               <Button
@@ -1351,7 +1353,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Button_817728'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_817728')}
                 {...injectData}
               />
             </View>
@@ -1379,7 +1381,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
               fontSize: '',
               flex: '11auto',
             }}
-            ref={(r: any) => (refs['View_190796'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_190796')}
             {...injectData}
           >
             <View
@@ -1407,7 +1409,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                 'border-radius': '2px',
                 'margin-bottom': '2.5px',
               }}
-              ref={(r: any) => (refs['View_239728'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_239728')}
               {...injectData}
             >
               <Collapse
@@ -1445,7 +1447,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                   margin: '0 0 16px 0',
                   padding: '20px 20px 20px 20px',
                 }}
-                ref={(r: any) => (refs['Collapse_228917'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Collapse_228917')}
                 {...injectData}
               >
                 <CollapsePanel
@@ -1466,7 +1468,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   style={{ minHeight: 40 }}
-                  ref={(r: any) => (refs['CollapsePanel_5495'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'CollapsePanel_5495')
+                  }
                   {...injectData}
                   uid="CollapsePanel_5495"
                 >
@@ -1495,7 +1499,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                       ...componentItem,
                     }}
                     style={{ minHeight: 40 }}
-                    ref={(r: any) => (refs['GridView_841399'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'GridView_841399')}
                     {...injectData}
                     getEngineApis={() => {
                       return {
@@ -1527,7 +1531,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                     overflowY: 'visible',
                                   }}
                                   ref={(r: any) =>
-                                    (refs['HorizontalView_300975'] = r)
+                                    refs.setComponentRef(
+                                      r,
+                                      'HorizontalView_300975',
+                                    )
                                   }
                                   {...injectData}
                                 >
@@ -1552,7 +1559,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                       margin: '0px 16px 0px 0px',
                                       'font-weight': 'bold',
                                     }}
-                                    ref={(r: any) => (refs['View_575815'] = r)}
+                                    ref={(r: any) =>
+                                      refs.setComponentRef(r, 'View_575815')
+                                    }
                                     {...injectData}
                                   >
                                     <Text
@@ -1577,7 +1586,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                         'font-weight': 'bold',
                                       }}
                                       ref={(r: any) =>
-                                        (refs['Text_4120405'] = r)
+                                        refs.setComponentRef(r, 'Text_4120405')
                                       }
                                       {...injectData}
                                     />
@@ -1601,7 +1610,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                       height: '100%',
                                       overflowY: 'visible',
                                     }}
-                                    ref={(r: any) => (refs['View_2657547'] = r)}
+                                    ref={(r: any) =>
+                                      refs.setComponentRef(r, 'View_2657547')
+                                    }
                                     {...injectData}
                                   >
                                     <GridView
@@ -1740,7 +1751,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                         );
                                       }}
                                       ref={(r: any) =>
-                                        (refs['GridView_959384'] = r)
+                                        refs.setComponentRef(
+                                          r,
+                                          'GridView_959384',
+                                        )
                                       }
                                       {...injectData}
                                       getEngineApis={() => {
@@ -1786,7 +1800,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                       width: '100%',
                                                     }}
                                                     ref={(r: any) =>
-                                                      (refs['View_9189376'] = r)
+                                                      refs.setComponentRef(
+                                                        r,
+                                                        'View_9189376',
+                                                      )
                                                     }
                                                     {...injectData}
                                                   >
@@ -1799,6 +1816,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                       }}
                                                       id={'Icon_724045'}
                                                       {...injectData}
+                                                      parentEngineId={
+                                                        parentEngineId
+                                                      }
                                                     >
                                                       <Icon
                                                         name={'图标'}
@@ -1825,8 +1845,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                           color: 'unset',
                                                         }}
                                                         ref={(r: any) =>
-                                                          (refs['Icon_724045'] =
-                                                            r)
+                                                          refs.setComponentRef(
+                                                            r,
+                                                            'Icon_724045',
+                                                          )
                                                         }
                                                         {...injectData}
                                                       />
@@ -1850,8 +1872,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                         letterSpacing: '',
                                                       }}
                                                       ref={(r: any) =>
-                                                        (refs['Text_968473'] =
-                                                          r)
+                                                        refs.setComponentRef(
+                                                          r,
+                                                          'Text_968473',
+                                                        )
                                                       }
                                                       {...injectData}
                                                     />
@@ -1899,7 +1923,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                 'border-radius': '2px',
                 'margin-bottom': '2.5px',
               }}
-              ref={(r: any) => (refs['View_239728_273135'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_239728_273135')}
               {...injectData}
             >
               <Collapse
@@ -1937,7 +1961,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                   margin: '0 0 16px 0',
                   padding: '20px 20px 20px 20px',
                 }}
-                ref={(r: any) => (refs['Collapse_228917_4750854'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Collapse_228917_4750854')
+                }
                 {...injectData}
               >
                 <CollapsePanel
@@ -1958,7 +1984,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   style={{ minHeight: 40 }}
-                  ref={(r: any) => (refs['CollapsePanel_5495_629279'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'CollapsePanel_5495_629279')
+                  }
                   {...injectData}
                   uid="CollapsePanel_5495_629279"
                 >
@@ -1991,7 +2019,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                       // console 166313571472478560
                       console.log('父级数据', vals);
                     }}
-                    ref={(r: any) => (refs['GridView_841399_5745795'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'GridView_841399_5745795')
+                    }
                     {...injectData}
                     getEngineApis={() => {
                       return {
@@ -2023,7 +2053,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                     overflowY: 'visible',
                                   }}
                                   ref={(r: any) =>
-                                    (refs['HorizontalView_300975_2315523'] = r)
+                                    refs.setComponentRef(
+                                      r,
+                                      'HorizontalView_300975_2315523',
+                                    )
                                   }
                                   {...injectData}
                                 >
@@ -2048,7 +2081,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                       margin: '0px 16px 0px 0px',
                                     }}
                                     ref={(r: any) =>
-                                      (refs['View_575815_624883'] = r)
+                                      refs.setComponentRef(
+                                        r,
+                                        'View_575815_624883',
+                                      )
                                     }
                                     {...injectData}
                                   >
@@ -2074,7 +2110,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                         'font-weight': 'bold',
                                       }}
                                       ref={(r: any) =>
-                                        (refs['Text_4120405_631164'] = r)
+                                        refs.setComponentRef(
+                                          r,
+                                          'Text_4120405_631164',
+                                        )
                                       }
                                       {...injectData}
                                     />
@@ -2099,7 +2138,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                       overflowY: 'visible',
                                     }}
                                     ref={(r: any) =>
-                                      (refs['View_2657547_5801104'] = r)
+                                      refs.setComponentRef(
+                                        r,
+                                        'View_2657547_5801104',
+                                      )
                                     }
                                     {...injectData}
                                   >
@@ -2238,7 +2280,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                         );
                                       }}
                                       ref={(r: any) =>
-                                        (refs['GridView_959384_121004'] = r)
+                                        refs.setComponentRef(
+                                          r,
+                                          'GridView_959384_121004',
+                                        )
                                       }
                                       {...injectData}
                                       getEngineApis={() => {
@@ -2284,9 +2329,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                       width: '100%',
                                                     }}
                                                     ref={(r: any) =>
-                                                      (refs[
-                                                        'View_9189376_858298'
-                                                      ] = r)
+                                                      refs.setComponentRef(
+                                                        r,
+                                                        'View_9189376_858298',
+                                                      )
                                                     }
                                                     {...injectData}
                                                   >
@@ -2299,6 +2345,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                       }}
                                                       id={'Icon_724045_443752'}
                                                       {...injectData}
+                                                      parentEngineId={
+                                                        parentEngineId
+                                                      }
                                                     >
                                                       <Icon
                                                         name={'图标'}
@@ -2325,9 +2374,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                           color: 'unset',
                                                         }}
                                                         ref={(r: any) =>
-                                                          (refs[
-                                                            'Icon_724045_443752'
-                                                          ] = r)
+                                                          refs.setComponentRef(
+                                                            r,
+                                                            'Icon_724045_443752',
+                                                          )
                                                         }
                                                         {...injectData}
                                                       />
@@ -2353,9 +2403,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                         color: 'unset',
                                                       }}
                                                       ref={(r: any) =>
-                                                        (refs[
-                                                          'Text_968473_4695347'
-                                                        ] = r)
+                                                        refs.setComponentRef(
+                                                          r,
+                                                          'Text_968473_4695347',
+                                                        )
                                                       }
                                                       {...injectData}
                                                     />
@@ -2404,7 +2455,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                 'border-radius': '2px',
                 'margin-bottom': '2.5px',
               }}
-              ref={(r: any) => (refs['View_239728_742059'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_239728_742059')}
               {...injectData}
             >
               <Collapse
@@ -2442,7 +2493,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                   margin: '0 0 16px 0',
                   padding: '20px 20px 20px 20px',
                 }}
-                ref={(r: any) => (refs['Collapse_228917_779465'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Collapse_228917_779465')
+                }
                 {...injectData}
               >
                 <CollapsePanel
@@ -2463,7 +2516,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   style={{ minHeight: 40 }}
-                  ref={(r: any) => (refs['CollapsePanel_5495_290662'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'CollapsePanel_5495_290662')
+                  }
                   {...injectData}
                   uid="CollapsePanel_5495_290662"
                 >
@@ -2492,7 +2547,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                       ...componentItem,
                     }}
                     style={{ minHeight: 40 }}
-                    ref={(r: any) => (refs['GridView_841399_438343'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'GridView_841399_438343')
+                    }
                     {...injectData}
                     getEngineApis={() => {
                       return {
@@ -2524,7 +2581,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                     overflowY: 'visible',
                                   }}
                                   ref={(r: any) =>
-                                    (refs['HorizontalView_300975_754921'] = r)
+                                    refs.setComponentRef(
+                                      r,
+                                      'HorizontalView_300975_754921',
+                                    )
                                   }
                                   {...injectData}
                                 >
@@ -2549,7 +2609,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                       margin: '0px 16px 0px 0px',
                                     }}
                                     ref={(r: any) =>
-                                      (refs['View_575815_869566'] = r)
+                                      refs.setComponentRef(
+                                        r,
+                                        'View_575815_869566',
+                                      )
                                     }
                                     {...injectData}
                                   >
@@ -2575,7 +2638,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                         'font-weight': 'bold',
                                       }}
                                       ref={(r: any) =>
-                                        (refs['Text_4120405_295623'] = r)
+                                        refs.setComponentRef(
+                                          r,
+                                          'Text_4120405_295623',
+                                        )
                                       }
                                       {...injectData}
                                     />
@@ -2600,7 +2666,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                       overflowY: 'visible',
                                     }}
                                     ref={(r: any) =>
-                                      (refs['View_2657547_1613493'] = r)
+                                      refs.setComponentRef(
+                                        r,
+                                        'View_2657547_1613493',
+                                      )
                                     }
                                     {...injectData}
                                   >
@@ -2739,7 +2808,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                         );
                                       }}
                                       ref={(r: any) =>
-                                        (refs['GridView_959384_5210218'] = r)
+                                        refs.setComponentRef(
+                                          r,
+                                          'GridView_959384_5210218',
+                                        )
                                       }
                                       {...injectData}
                                       getEngineApis={() => {
@@ -2785,9 +2857,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                       width: '100%',
                                                     }}
                                                     ref={(r: any) =>
-                                                      (refs[
-                                                        'View_9189376_823331'
-                                                      ] = r)
+                                                      refs.setComponentRef(
+                                                        r,
+                                                        'View_9189376_823331',
+                                                      )
                                                     }
                                                     {...injectData}
                                                   >
@@ -2800,6 +2873,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                       }}
                                                       id={'Icon_724045_889597'}
                                                       {...injectData}
+                                                      parentEngineId={
+                                                        parentEngineId
+                                                      }
                                                     >
                                                       <Icon
                                                         name={'图标'}
@@ -2826,9 +2902,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                           color: 'unset',
                                                         }}
                                                         ref={(r: any) =>
-                                                          (refs[
-                                                            'Icon_724045_889597'
-                                                          ] = r)
+                                                          refs.setComponentRef(
+                                                            r,
+                                                            'Icon_724045_889597',
+                                                          )
                                                         }
                                                         {...injectData}
                                                       />
@@ -2854,9 +2931,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                         color: 'unset',
                                                       }}
                                                       ref={(r: any) =>
-                                                        (refs[
-                                                          'Text_968473_0492097'
-                                                        ] = r)
+                                                        refs.setComponentRef(
+                                                          r,
+                                                          'Text_968473_0492097',
+                                                        )
                                                       }
                                                       {...injectData}
                                                     />
@@ -2905,7 +2983,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                 'border-radius': '2px',
                 'margin-bottom': '2.5px',
               }}
-              ref={(r: any) => (refs['View_239728_9872634'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_239728_9872634')}
               {...injectData}
             >
               <Collapse
@@ -2943,7 +3021,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                   margin: '0 0 16px 0',
                   padding: '20px 20px 20px 20px',
                 }}
-                ref={(r: any) => (refs['Collapse_228917_310864'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Collapse_228917_310864')
+                }
                 {...injectData}
               >
                 <CollapsePanel
@@ -2964,7 +3044,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   style={{ minHeight: 40 }}
-                  ref={(r: any) => (refs['CollapsePanel_5495_8462436'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'CollapsePanel_5495_8462436')
+                  }
                   {...injectData}
                   uid="CollapsePanel_5495_8462436"
                 >
@@ -2993,7 +3075,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                       ...componentItem,
                     }}
                     style={{ minHeight: 40 }}
-                    ref={(r: any) => (refs['GridView_841399_31317'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'GridView_841399_31317')
+                    }
                     {...injectData}
                     getEngineApis={() => {
                       return {
@@ -3025,7 +3109,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                     overflowY: 'visible',
                                   }}
                                   ref={(r: any) =>
-                                    (refs['HorizontalView_300975_674423'] = r)
+                                    refs.setComponentRef(
+                                      r,
+                                      'HorizontalView_300975_674423',
+                                    )
                                   }
                                   {...injectData}
                                 >
@@ -3050,7 +3137,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                       margin: '0px 16px 0px 0px',
                                     }}
                                     ref={(r: any) =>
-                                      (refs['View_575815_656931'] = r)
+                                      refs.setComponentRef(
+                                        r,
+                                        'View_575815_656931',
+                                      )
                                     }
                                     {...injectData}
                                   >
@@ -3076,7 +3166,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                         'font-weight': 'bold',
                                       }}
                                       ref={(r: any) =>
-                                        (refs['Text_4120405_1898459'] = r)
+                                        refs.setComponentRef(
+                                          r,
+                                          'Text_4120405_1898459',
+                                        )
                                       }
                                       {...injectData}
                                     />
@@ -3101,7 +3194,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                       overflowY: 'visible',
                                     }}
                                     ref={(r: any) =>
-                                      (refs['View_2657547_363083'] = r)
+                                      refs.setComponentRef(
+                                        r,
+                                        'View_2657547_363083',
+                                      )
                                     }
                                     {...injectData}
                                   >
@@ -3240,7 +3336,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                         );
                                       }}
                                       ref={(r: any) =>
-                                        (refs['GridView_959384_69925'] = r)
+                                        refs.setComponentRef(
+                                          r,
+                                          'GridView_959384_69925',
+                                        )
                                       }
                                       {...injectData}
                                       getEngineApis={() => {
@@ -3286,9 +3385,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                       width: '100%',
                                                     }}
                                                     ref={(r: any) =>
-                                                      (refs[
-                                                        'View_9189376_722286'
-                                                      ] = r)
+                                                      refs.setComponentRef(
+                                                        r,
+                                                        'View_9189376_722286',
+                                                      )
                                                     }
                                                     {...injectData}
                                                   >
@@ -3301,6 +3401,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                       }}
                                                       id={'Icon_724045_232884'}
                                                       {...injectData}
+                                                      parentEngineId={
+                                                        parentEngineId
+                                                      }
                                                     >
                                                       <Icon
                                                         name={'图标'}
@@ -3327,9 +3430,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                           color: 'unset',
                                                         }}
                                                         ref={(r: any) =>
-                                                          (refs[
-                                                            'Icon_724045_232884'
-                                                          ] = r)
+                                                          refs.setComponentRef(
+                                                            r,
+                                                            'Icon_724045_232884',
+                                                          )
                                                         }
                                                         {...injectData}
                                                       />
@@ -3355,9 +3459,10 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                                                         color: 'unset',
                                                       }}
                                                       ref={(r: any) =>
-                                                        (refs[
-                                                          'Text_968473_797346'
-                                                        ] = r)
+                                                        refs.setComponentRef(
+                                                          r,
+                                                          'Text_968473_797346',
+                                                        )
                                                       }
                                                       {...injectData}
                                                     />
@@ -3402,7 +3507,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
               height: '52px',
               justifyContent: 'center',
             }}
-            ref={(r: any) => (refs['View_21611'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_21611')}
             {...injectData}
           >
             <VerticalView
@@ -3424,7 +3529,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                 height: 'auto',
                 overflowY: 'auto',
               }}
-              ref={(r: any) => (refs['VerticalView_2049022'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'VerticalView_2049022')}
               {...injectData}
             >
               <View
@@ -3447,7 +3552,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                   justifyContent: 'space-between',
                   alignItems: 'center',
                 }}
-                ref={(r: any) => (refs['View_971858'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_971858')}
                 {...injectData}
               >
                 <Text
@@ -3481,7 +3586,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                     color: '#3a3d4b',
                     textAlign: 'left',
                   }}
-                  ref={(r: any) => (refs['Text_8788706_543971'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_8788706_543971')
+                  }
                   {...injectData}
                 />
                 <View
@@ -3503,7 +3610,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                     width: 'auto',
                     textAlign: 'right',
                   }}
-                  ref={(r: any) => (refs['View_772576'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_772576')}
                   {...injectData}
                 >
                   <Text
@@ -3526,7 +3633,9 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                       lineHeight: '24px',
                       color: 'rgba(208, 2, 27, 1)',
                     }}
-                    ref={(r: any) => (refs['Text_8788706_2538147_5100973'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'Text_8788706_2538147_5100973')
+                    }
                     {...injectData}
                   />
                   <Button
@@ -3653,7 +3762,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_355871'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_355871')}
                     {...injectData}
                   />
                   <Button
@@ -4350,7 +4459,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_665529'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_665529')}
                     {...injectData}
                   />
                 </View>
@@ -4364,7 +4473,7 @@ const ZjqTest$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ZjqTest$$Page, {
-  pageId: '919558457385832448',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

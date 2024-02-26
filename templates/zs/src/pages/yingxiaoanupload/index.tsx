@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, StdUpload, View } from '@/components/factory';
+import { View, Form, Input, StdUpload } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '914506771948519424';
 const Yingxiaoanupload$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -23,6 +25,7 @@ const Yingxiaoanupload$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDataifelse326: any = [
@@ -1122,7 +1125,7 @@ const Yingxiaoanupload$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_30_1_60178'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_30_1_60178')}
         {...injectData}
       >
         <View
@@ -1135,7 +1138,7 @@ const Yingxiaoanupload$$Modal: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_30_11_020045'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_30_11_020045')}
           {...injectData}
         >
           <Form
@@ -1164,7 +1167,7 @@ const Yingxiaoanupload$$Modal: React.FC<PageProps> = ({
               width: '100%',
               padding: '20px 20px 20px 20px',
             }}
-            ref={(r: any) => (refs['Form_30_1121_0479746'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_30_1121_0479746')}
             {...injectData}
           >
             <Input
@@ -1208,7 +1211,7 @@ const Yingxiaoanupload$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_0845739'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_0845739')}
               {...injectData}
             />
             <StdUpload
@@ -1439,7 +1442,7 @@ const Yingxiaoanupload$$Modal: React.FC<PageProps> = ({
                 ); // console 166971830670681500
                 console.log(file);
               }}
-              ref={(r: any) => (refs['StdUpload_7846717'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'StdUpload_7846717')}
               {...injectData}
             />
           </Form>
@@ -1450,7 +1453,7 @@ const Yingxiaoanupload$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Yingxiaoanupload$$Modal, {
-  pageId: '914506771948519424',
+  pageId,
   hasLogin: false,
   defaultState: {
     saleCfgId: '',

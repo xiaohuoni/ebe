@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, TextArea, View } from '@/components/factory';
+import { View, Form, Input, TextArea } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '889334293367492608';
 const FlowTemplateMessage$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -23,6 +25,7 @@ const FlowTemplateMessage$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatacloseModal120: any = [
@@ -95,7 +98,7 @@ const FlowTemplateMessage$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_31_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_31_1')}
         {...injectData}
       >
         <View
@@ -108,7 +111,7 @@ const FlowTemplateMessage$$Modal: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_31_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_31_11')}
           {...injectData}
         >
           <View
@@ -129,7 +132,7 @@ const FlowTemplateMessage$$Modal: React.FC<PageProps> = ({
               margin: '0px 0px 0px 0px',
               borderRadius: '2px 2px 2px 2px',
             }}
-            ref={(r: any) => (refs['View_31_112'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_31_112')}
             {...injectData}
           >
             <Form
@@ -177,7 +180,7 @@ const FlowTemplateMessage$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Form_31_1121'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_31_1121')}
               {...injectData}
             >
               <Input
@@ -225,7 +228,9 @@ const FlowTemplateMessage$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUdfNum_542427_7590317'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUdfNum_542427_7590317')
+                }
                 {...injectData}
               />
               <Input
@@ -273,7 +278,9 @@ const FlowTemplateMessage$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUdfNum_542427'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUdfNum_542427')
+                }
                 {...injectData}
               />
               <TextArea
@@ -303,7 +310,9 @@ const FlowTemplateMessage$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actRemark_103843'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actRemark_103843')
+                }
                 {...injectData}
               />
             </Form>
@@ -315,7 +324,7 @@ const FlowTemplateMessage$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(FlowTemplateMessage$$Modal, {
-  pageId: '889334293367492608',
+  pageId,
   hasLogin: false,
   defaultState: {
     bizId: '',

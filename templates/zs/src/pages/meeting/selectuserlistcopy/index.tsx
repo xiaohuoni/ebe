@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
+  View,
   Card,
   Form,
+  Tree,
+  Text,
   Input,
   Table,
-  Text,
-  Tree,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -18,6 +19,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '928476935495102464';
 const MeetingSelectuserlistcopy$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -33,6 +35,7 @@ const MeetingSelectuserlistcopy$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatagetCurrentFormValues17: any = [
@@ -628,7 +631,7 @@ const MeetingSelectuserlistcopy$$Modal: React.FC<PageProps> = ({
           flexDirection: 'row',
           padding: 0,
         }}
-        ref={(r: any) => (refs['View_2310769_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_2310769_1')}
         {...injectData}
       >
         <Card
@@ -665,7 +668,7 @@ const MeetingSelectuserlistcopy$$Modal: React.FC<PageProps> = ({
             padding: '12px 12px 12px 12px',
             height: '100%',
           }}
-          ref={(r: any) => (refs['Card_2310769_12'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_2310769_12')}
           {...injectData}
         >
           <Form
@@ -687,7 +690,7 @@ const MeetingSelectuserlistcopy$$Modal: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '16px 16px 16px 16px' }}
-            ref={(r: any) => (refs['Form_2310769_121'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_2310769_121')}
             {...injectData}
           >
             <Tree
@@ -1282,7 +1285,7 @@ const MeetingSelectuserlistcopy$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Tree_443137'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Tree_443137')}
               {...injectData}
             />
           </Form>
@@ -1304,7 +1307,7 @@ const MeetingSelectuserlistcopy$$Modal: React.FC<PageProps> = ({
             padding: '12px 12px 12px 12px',
             width: '600px',
           }}
-          ref={(r: any) => (refs['View_2310769_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_2310769_11')}
           {...injectData}
         >
           <Text
@@ -1328,7 +1331,7 @@ const MeetingSelectuserlistcopy$$Modal: React.FC<PageProps> = ({
               color: 'rgba(208, 2, 27, 1)',
               fontWeight: '',
             }}
-            ref={(r: any) => (refs['Text_895823'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_895823')}
             {...injectData}
           />
           <Input
@@ -2064,7 +2067,7 @@ const MeetingSelectuserlistcopy$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Input_262276'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_262276')}
             {...injectData}
           />
           <Table
@@ -2725,7 +2728,7 @@ const MeetingSelectuserlistcopy$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_2310769_112'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_2310769_112')}
             {...injectData}
           />
           <Form
@@ -2748,7 +2751,7 @@ const MeetingSelectuserlistcopy$$Modal: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_486003'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_486003')}
             {...injectData}
           >
             <Input
@@ -2858,7 +2861,7 @@ const MeetingSelectuserlistcopy$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_1845436'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_1845436')}
               {...injectData}
             />
             <Input
@@ -2902,7 +2905,7 @@ const MeetingSelectuserlistcopy$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_3184618'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_3184618')}
               {...injectData}
             />
           </Form>
@@ -2913,7 +2916,7 @@ const MeetingSelectuserlistcopy$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(MeetingSelectuserlistcopy$$Modal, {
-  pageId: '928476935495102464',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '' },

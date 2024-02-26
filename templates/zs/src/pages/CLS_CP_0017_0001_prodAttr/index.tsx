@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, Select, TextArea, View } from '@/components/factory';
+import { View, Form, Input, Select, TextArea } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '990878646190923776';
 const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -23,6 +25,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {};
 
@@ -119,7 +122,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_273424_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_273424_1')}
         {...injectData}
       >
         <Form
@@ -144,7 +147,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ padding: '0px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Form_3497275'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_3497275')}
           {...injectData}
         >
           <Input
@@ -188,7 +191,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_5509217'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_5509217')}
             {...injectData}
           />
           <Input
@@ -232,7 +235,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_1052787'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_1052787')}
             {...injectData}
           />
           <Input
@@ -276,7 +279,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_410463'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_410463')}
             {...injectData}
           />
           <Select
@@ -305,7 +308,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Select_509303'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Select_509303')}
             {...injectData}
           />
           <Select
@@ -334,7 +337,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Select_5436685'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Select_5436685')}
             {...injectData}
           />
           <Input
@@ -378,7 +381,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_575931'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_575931')}
             {...injectData}
           />
           <Select
@@ -407,7 +410,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Select_635682'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Select_635682')}
             {...injectData}
           />
           <Select
@@ -436,7 +439,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Select_178816'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Select_178816')}
             {...injectData}
           />
           <Input
@@ -480,7 +483,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_8455874'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_8455874')}
             {...injectData}
           />
           <Input
@@ -524,7 +527,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_0889693'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_0889693')}
             {...injectData}
           />
           <Input
@@ -568,7 +571,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_67744'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_67744')}
             {...injectData}
           />
           <TextArea
@@ -593,7 +596,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['TextArea_669705'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'TextArea_669705')}
             {...injectData}
           />
           <TextArea
@@ -618,7 +621,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['TextArea_1979027'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'TextArea_1979027')}
             {...injectData}
           />
           <TextArea
@@ -643,7 +646,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['TextArea_032018'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'TextArea_032018')}
             {...injectData}
           />
         </Form>
@@ -653,7 +656,7 @@ const ClsCp_0017_0001ProdAttr$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ClsCp_0017_0001ProdAttr$$Modal, {
-  pageId: '990878646190923776',
+  pageId,
   hasLogin: false,
   defaultState: { bizId: '', sceneCode: '', bizData: '', formData: '' },
 });

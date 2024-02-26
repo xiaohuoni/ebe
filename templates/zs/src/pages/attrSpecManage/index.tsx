@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  VerticalView,
   Card,
   Form,
   Input,
+  Button,
   Table,
-  VerticalView,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -20,6 +21,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '878163234709311488';
 const AttrSpecManage$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -34,6 +36,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const refreshAttrTable = (options_635272: any) => {
     const eventDatasetLoading24: any = [
@@ -1399,7 +1402,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_4868135_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_4868135_1')}
         {...injectData}
       >
         <VerticalView
@@ -1421,7 +1424,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
             height: '100%',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['VerticalView_9463015'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_9463015')}
           {...injectData}
         >
           <View
@@ -1442,7 +1445,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
               height: '30%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_179182'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_179182')}
             {...injectData}
           >
             <Card
@@ -1611,7 +1614,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Card_839649'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_839649')}
               {...injectData}
             >
               <Form
@@ -1636,7 +1639,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ padding: '0px 0px 0px 0px' }}
-                ref={(r: any) => (refs['Form_148709'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_148709')}
                 {...injectData}
               >
                 <Input
@@ -1717,7 +1720,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_3889064'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_3889064')}
                   {...injectData}
                 />
                 <Input
@@ -1798,7 +1801,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_33684855'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_33684855')}
                   {...injectData}
                 />
                 <View
@@ -1830,7 +1833,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_841498'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_841498')}
                   {...injectData}
                 >
                   <Button
@@ -1888,7 +1891,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_224226'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_224226')}
                     {...injectData}
                   />
                   <Button
@@ -1922,7 +1925,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                         (form) => form?.resetFields(),
                       );
                     }}
-                    ref={(r: any) => (refs['Button_499055'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_499055')}
                     {...injectData}
                   />
                 </View>
@@ -2840,7 +2843,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_311334'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_311334')}
                 {...injectData}
               />
             </Card>
@@ -2863,7 +2866,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
               height: '100%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_869717'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_869717')}
             {...injectData}
           >
             <Card
@@ -3230,7 +3233,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Card_96776'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_96776')}
               {...injectData}
             >
               <Form
@@ -3255,7 +3258,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ padding: '0px 0px 10px 0px' }}
-                ref={(r: any) => (refs['Form_918102'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_918102')}
                 {...injectData}
               >
                 <Input
@@ -3336,7 +3339,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_1833661'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_1833661')}
                   {...injectData}
                 />
                 <Input
@@ -3417,7 +3420,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_284272'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_284272')}
                   {...injectData}
                 />
                 <View
@@ -3449,7 +3452,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_905928'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_905928')}
                   {...injectData}
                 >
                   <Button
@@ -3507,7 +3510,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_178963'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_178963')}
                     {...injectData}
                   />
                   <Button
@@ -3660,7 +3663,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_465845'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_465845')}
                     {...injectData}
                   />
                 </View>
@@ -4852,7 +4855,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_8475669'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_8475669')}
                 {...injectData}
               />
             </Card>
@@ -4864,7 +4867,7 @@ const AttrSpecManage$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AttrSpecManage$$Page, {
-  pageId: '878163234709311488',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

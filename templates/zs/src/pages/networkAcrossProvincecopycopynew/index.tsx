@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, Select, View } from '@/components/factory';
+import { View, Form, Select, Input } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '1046978235419439104';
 const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const jointAddr = (options_869017: any) => {
     const eventDatacustomActionCode106: any = [
@@ -2852,7 +2855,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_8430824_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_8430824_1')}
         {...injectData}
       >
         <View
@@ -2873,7 +2876,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_917911'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_917911')}
           {...injectData}
         >
           <Form
@@ -3285,7 +3288,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Form_179341'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_179341')}
             {...injectData}
           >
             <Select
@@ -3811,7 +3814,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_7562196'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_7562196')}
               {...injectData}
             />
             <Select
@@ -4322,7 +4325,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_358075'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_358075')}
               {...injectData}
             />
             <Select
@@ -4650,7 +4653,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_930273226'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_930273226')}
               {...injectData}
             />
             <Input
@@ -4989,7 +4992,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_0528603'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_0528603')}
               {...injectData}
             />
             <Input
@@ -5328,7 +5331,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_8814393'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_8814393')}
               {...injectData}
             />
             <Input
@@ -5667,7 +5670,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_022358'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_022358')}
               {...injectData}
             />
             <Input
@@ -6007,7 +6010,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_90738384'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_90738384')}
               {...injectData}
             />
             <Input
@@ -6346,7 +6349,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_657605'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_657605')}
               {...injectData}
             />
             <Input
@@ -6685,7 +6688,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_0123868'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_0123868')}
               {...injectData}
             />
             <Input
@@ -7008,7 +7011,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_724364'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_724364')}
               {...injectData}
             />
           </Form>
@@ -7361,7 +7364,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px', margin: '10px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_3566728'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_3566728')}
             {...injectData}
           >
             <Select
@@ -7673,7 +7676,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_5170835'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_5170835')}
               {...injectData}
             />
             <Input
@@ -8010,7 +8013,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_355445'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_355445')}
               {...injectData}
             />
             <Input
@@ -8347,7 +8350,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_730419'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_730419')}
               {...injectData}
             />
             <Input
@@ -8636,7 +8639,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_332958'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_332958')}
               {...injectData}
             />
             <Input
@@ -8929,7 +8932,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_3344488'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_3344488')}
               {...injectData}
             />
             <Input
@@ -9222,7 +9225,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_570422'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_570422')}
               {...injectData}
             />
             <Input
@@ -9501,7 +9504,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_156775'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_156775')}
               {...injectData}
             />
           </Form>
@@ -9512,7 +9515,7 @@ const NetworkAcrossProvincecopycopynew$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(NetworkAcrossProvincecopycopynew$$Modal, {
-  pageId: '1046978235419439104',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

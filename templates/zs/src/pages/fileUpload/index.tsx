@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, StdUpload, View } from '@/components/factory';
+import { View, Form, Input, StdUpload } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '937251303701123072';
 const FileUpload$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -22,6 +24,7 @@ const FileUpload$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -51,7 +54,7 @@ const FileUpload$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_361215_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_361215_1')}
         {...injectData}
       >
         <View
@@ -72,7 +75,7 @@ const FileUpload$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_120203'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_120203')}
           {...injectData}
         >
           <Form
@@ -97,7 +100,7 @@ const FileUpload$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_9264'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_9264')}
             {...injectData}
           >
             <Input
@@ -142,7 +145,7 @@ const FileUpload$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_2897093'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_2897093')}
               {...injectData}
             />
             <Input
@@ -186,7 +189,7 @@ const FileUpload$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_8581093'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_8581093')}
               {...injectData}
             />
             <View
@@ -218,7 +221,7 @@ const FileUpload$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 10px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_154979'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_154979')}
               {...injectData}
             >
               <StdUpload
@@ -531,7 +534,7 @@ const FileUpload$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['StdUpload_5451514'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'StdUpload_5451514')}
                 {...injectData}
               />
             </View>
@@ -543,7 +546,7 @@ const FileUpload$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(FileUpload$$Page, {
-  pageId: '937251303701123072',
+  pageId,
   hasLogin: false,
   defaultState: {},
 });

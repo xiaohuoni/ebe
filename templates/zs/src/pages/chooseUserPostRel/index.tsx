@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Input, Table, View } from '@/components/factory';
+import { View, Form, Input, Button, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '885065462365028352';
 const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const refreshOaUser = (options_966448: any) => {
     const eventDatasetLoading18: any = [
@@ -1681,7 +1684,7 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
         visible={true}
         readOnly={false}
         style={{ minHeight: '100%' }}
-        ref={(r: any) => (refs['View_7975706_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_7975706_1')}
         {...injectData}
       >
         <View
@@ -1701,7 +1704,7 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
             flex: '1 1 auto',
             padding: '20px 20px 16px 20px',
           }}
-          ref={(r: any) => (refs['View_7975706_12'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_7975706_12')}
           {...injectData}
         >
           <Form
@@ -1726,7 +1729,9 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px', margin: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_148709_997679_5118644_1310676'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Form_148709_997679_5118644_1310676')
+            }
             {...injectData}
           >
             <Input
@@ -1772,7 +1777,7 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
               readOnly={false}
               isFormRootChild={true}
               ref={(r: any) =>
-                (refs['Input_3889064_769378_089515_27277304'] = r)
+                refs.setComponentRef(r, 'Input_3889064_769378_089515_27277304')
               }
               {...injectData}
             />
@@ -1819,7 +1824,7 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
               readOnly={false}
               isFormRootChild={true}
               ref={(r: any) =>
-                (refs['Input_33684855_8070024_3641753_139214'] = r)
+                refs.setComponentRef(r, 'Input_33684855_8070024_3641753_139214')
               }
               {...injectData}
             />
@@ -1866,7 +1871,10 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
               readOnly={false}
               isFormRootChild={true}
               ref={(r: any) =>
-                (refs['Input_33684855_8070024_3641753_139214_098087'] = r)
+                refs.setComponentRef(
+                  r,
+                  'Input_33684855_8070024_3641753_139214_098087',
+                )
               }
               {...injectData}
             />
@@ -1893,7 +1901,9 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '12px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_148709_997679_5118644'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Form_148709_997679_5118644')
+            }
             {...injectData}
           >
             <Input
@@ -1969,7 +1979,9 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_3889064_769378_089515'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_3889064_769378_089515')
+              }
               {...injectData}
             />
             <Input
@@ -2045,7 +2057,9 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_33684855_8070024_3641753'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_33684855_8070024_3641753')
+              }
               {...injectData}
             />
             <View
@@ -2078,7 +2092,9 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
                 width: '100%',
                 textAlign: 'center',
               }}
-              ref={(r: any) => (refs['View_841498_323645_360219'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'View_841498_323645_360219')
+              }
               {...injectData}
             >
               <Button
@@ -2136,7 +2152,9 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_224226_335492_451924'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_224226_335492_451924')
+                }
                 {...injectData}
               />
               <Button
@@ -2209,7 +2227,9 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Button_499055_286527_9962765'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_499055_286527_9962765')
+                }
                 {...injectData}
               />
             </View>
@@ -3339,7 +3359,7 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_7975706_122'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_7975706_122')}
             {...injectData}
           />
         </View>
@@ -3349,7 +3369,7 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ChooseUserPostRel$$Modal, {
-  pageId: '885065462365028352',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

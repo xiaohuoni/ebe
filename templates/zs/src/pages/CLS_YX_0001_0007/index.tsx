@@ -1,20 +1,21 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
-  Checkbox,
-  Form,
+  View,
   HorizontalView,
+  Form,
+  Checkbox,
   Input,
-  Radio,
-  Row,
+  TextArea,
   Select,
+  Row,
+  Button,
   StdUpload,
   Table,
-  TextArea,
-  View,
+  Radio,
 } from '@/components/factory';
 
 import BusiComp0521965 from '@/components/BusiComp0521965';
@@ -25,6 +26,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '1054577851351785472';
 const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -39,6 +41,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const fileUpload = (options_1964167: any) => {
     const eventDatacustomActionCode20: any = [
@@ -4099,7 +4102,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
           overflowY: 'visible',
           width: '98%',
         }}
-        ref={(r: any) => (refs['View_537892_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_537892_1')}
         {...injectData}
       >
         <View
@@ -4120,7 +4123,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_6806553'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_6806553')}
           {...injectData}
         >
           <HorizontalView
@@ -4144,7 +4147,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               overflowY: 'auto',
               margin: '0px 0px 12px 0px',
             }}
-            ref={(r: any) => (refs['HorizontalView_004602'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'HorizontalView_004602')}
             {...injectData}
           >
             <View
@@ -4167,7 +4170,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                 overflowY: 'auto',
                 margin: '15px 0px 5px 0px',
               }}
-              ref={(r: any) => (refs['View_339406'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_339406')}
               {...injectData}
             >
               <Form
@@ -4194,9 +4197,10 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                 readOnly={false}
                 style={{ padding: '0px 0px 0px 0px' }}
                 ref={(r: any) =>
-                  (refs[
-                    'Form_4311097_9385662_8411515_9167293_4337769_708507_903502_3391966_7284254'
-                  ] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Form_4311097_9385662_8411515_9167293_4337769_708507_903502_3391966_7284254',
+                  )
                 }
                 {...injectData}
               >
@@ -4229,9 +4233,10 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   readOnly={false}
                   isFormRootChild={true}
                   ref={(r: any) =>
-                    (refs[
-                      'Checkbox_882584_5289015_934499_355644_646764_5265724_8221694_7217427_269901_855402'
-                    ] = r)
+                    refs.setComponentRef(
+                      r,
+                      'Checkbox_882584_5289015_934499_355644_646764_5265724_8221694_7217427_269901_855402',
+                    )
                   }
                   {...injectData}
                 />
@@ -4263,7 +4268,10 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                     width: '100%',
                   }}
                   ref={(r: any) =>
-                    (refs['View_6319234_3569864_15467365_781748_241037'] = r)
+                    refs.setComponentRef(
+                      r,
+                      'View_6319234_3569864_15467365_781748_241037',
+                    )
                   }
                   {...injectData}
                 />
@@ -4310,9 +4318,10 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   readOnly={false}
                   isFormRootChild={true}
                   ref={(r: any) =>
-                    (refs[
-                      'Input_361479_887285_2150708_936504_923334_755169_97903_059209_7061384_3906775'
-                    ] = r)
+                    refs.setComponentRef(
+                      r,
+                      'Input_361479_887285_2150708_936504_923334_755169_97903_059209_7061384_3906775',
+                    )
                   }
                   {...injectData}
                 />
@@ -5211,7 +5220,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Form_614752'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_614752')}
             {...injectData}
           >
             <Input
@@ -5464,7 +5473,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_9537581'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_9537581')}
               {...injectData}
             />
             <Input
@@ -5512,7 +5521,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_174134'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_174134')}
               {...injectData}
             />
             <Input
@@ -5560,7 +5569,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_96479'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_96479')}
               {...injectData}
             />
             <Input
@@ -5608,7 +5617,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_747202'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_747202')}
               {...injectData}
             />
             <Input
@@ -5656,7 +5665,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_2723824'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_2723824')}
               {...injectData}
             />
             <Input
@@ -5703,7 +5712,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_504189'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_504189')}
               {...injectData}
             />
             <Input
@@ -5751,7 +5760,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_518492'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_518492')}
               {...injectData}
             />
             <Input
@@ -5799,7 +5808,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_055813'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_055813')}
               {...injectData}
             />
             <Input
@@ -5847,7 +5856,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_225655'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_225655')}
               {...injectData}
             />
             <Input
@@ -5895,7 +5904,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_061821'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_061821')}
               {...injectData}
             />
             <Input
@@ -5943,7 +5952,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_433451'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_433451')}
               {...injectData}
             />
             <Input
@@ -5991,7 +6000,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_6179374'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_6179374')}
               {...injectData}
             />
             <TextArea
@@ -6021,7 +6030,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_4281904'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TextArea_4281904')}
               {...injectData}
             />
             <TextArea
@@ -6051,7 +6060,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_354038'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TextArea_354038')}
               {...injectData}
             />
             <Select
@@ -6108,7 +6117,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                 }); // console 170326308546992600
                 console.log('变化了');
               }}
-              ref={(r: any) => (refs['Select_4894006'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_4894006')}
               {...injectData}
             />
             <Select
@@ -6163,7 +6172,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Select_807857'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_807857')}
               {...injectData}
             />
             <View
@@ -6196,7 +6205,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_252762'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_252762')}
               {...injectData}
             />
             <Input
@@ -6320,7 +6329,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_718727'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_718727')}
               {...injectData}
             />
             <Input
@@ -6411,7 +6420,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_4258307'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_4258307')}
               {...injectData}
             />
             <Input
@@ -6563,7 +6572,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_994862'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_994862')}
               {...injectData}
             />
             <Input
@@ -6654,7 +6663,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_703911'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_703911')}
               {...injectData}
             />
             <Input
@@ -6746,7 +6755,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_128271'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_128271')}
               {...injectData}
             />
             <Input
@@ -6838,7 +6847,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_97723'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_97723')}
               {...injectData}
             />
             <Input
@@ -6989,7 +6998,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_5266165'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_5266165')}
               {...injectData}
             />
             <Input
@@ -7070,7 +7079,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_105544'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_105544')}
               {...injectData}
             />
             <Input
@@ -7119,7 +7128,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_315647'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_315647')}
               {...injectData}
             />
             <Input
@@ -7167,7 +7176,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_4486176'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_4486176')}
               {...injectData}
             />
             <Input
@@ -7226,7 +7235,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_002411'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_002411')}
               {...injectData}
             />
             <Input
@@ -7285,7 +7294,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_561195'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_561195')}
               {...injectData}
             />
             <Input
@@ -7376,7 +7385,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_303886'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_303886')}
               {...injectData}
             />
             <Input
@@ -7467,7 +7476,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_062467'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_062467')}
               {...injectData}
             />
             <Input
@@ -7526,7 +7535,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_3647743'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_3647743')}
               {...injectData}
             />
             <Input
@@ -7617,7 +7626,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_183322'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_183322')}
               {...injectData}
             />
             <Input
@@ -7665,7 +7674,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_208766'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_208766')}
               {...injectData}
             />
             <Input
@@ -7756,7 +7765,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_9520176'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_9520176')}
               {...injectData}
             />
             <Input
@@ -7804,7 +7813,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_826056'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_826056')}
               {...injectData}
             />
           </Form>
@@ -8905,9 +8914,10 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               );
             }}
             ref={(r: any) =>
-              (refs[
-                'Form_449441_1900385_965292_804694_0429677_280477_612369_3241812'
-              ] = r)
+              refs.setComponentRef(
+                r,
+                'Form_449441_1900385_965292_804694_0429677_280477_612369_3241812',
+              )
             }
             {...injectData}
           >
@@ -8942,7 +8952,9 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_7242206_974846_973427'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_7242206_974846_973427')
+              }
               {...injectData}
             />
           </Form>
@@ -8962,7 +8974,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ margin: '10px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Row_851'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Row_851')}
             {...injectData}
           >
             <View
@@ -8984,7 +8996,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                 width: '100%',
                 justifyContent: 'flex-end',
               }}
-              ref={(r: any) => (refs['View_859813'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_859813')}
               {...injectData}
             >
               <Button
@@ -9708,7 +9720,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_683498'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_683498')}
                 {...injectData}
               />
               <Button
@@ -11137,7 +11149,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_026256'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_026256')}
                 {...injectData}
               />
               <Button
@@ -12026,7 +12038,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Button_5473437'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_5473437')}
                 {...injectData}
               />
               <StdUpload
@@ -12408,8 +12420,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                             compName:
                                                                                               'View',
                                                                                             id: '574623',
-                                                                                            loading:
-                                                                                              false,
+                                                                                            loading: false,
                                                                                           },
                                                                                         actionObjId:
                                                                                           'View_537892_1',
@@ -12477,8 +12488,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'homeCityName',
@@ -12496,8 +12506,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'homeCountyName',
@@ -12515,8 +12524,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'groupName',
@@ -12534,8 +12542,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'statusName',
@@ -12553,8 +12560,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'createTime',
@@ -12572,8 +12578,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'tradeclassTopName',
@@ -12591,8 +12596,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'tradeclassName',
@@ -12610,8 +12614,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'orgTypeName',
@@ -12629,8 +12632,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'gridName',
@@ -12648,8 +12650,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'gridId',
@@ -12667,8 +12668,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'brokerId',
@@ -12686,8 +12686,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'brokerTel',
@@ -12705,8 +12704,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'brokerName',
@@ -12724,8 +12722,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'valueLevelName',
@@ -12743,8 +12740,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'planValueLevelName',
@@ -12762,8 +12758,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'enterpriseKindName',
@@ -12781,8 +12776,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'totalUser',
@@ -12800,8 +12794,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                     {
                                                                                       code: 'otherReason',
@@ -12819,13 +12812,11 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                                         '1',
                                                                                       parentType:
                                                                                         'object',
-                                                                                      showInput:
-                                                                                        false,
+                                                                                      showInput: false,
                                                                                     },
                                                                                   ],
                                                                                 operateType: 1,
-                                                                                onlySetPatch:
-                                                                                  true,
+                                                                                onlySetPatch: true,
                                                                                 otherObjectArrayOptions:
                                                                                   {},
                                                                                 targetDataSourcePaths:
@@ -13368,8 +13359,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                                                                     newData:
                                                                       '$data_644937$',
                                                                     operateType: 3,
-                                                                    onlySetPatch:
-                                                                      true,
+                                                                    onlySetPatch: true,
                                                                     otherObjectArrayOptions:
                                                                       {},
                                                                     targetDataSourcePaths:
@@ -14845,7 +14835,9 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['StdUpload_304342_6986628_433547'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'StdUpload_304342_6986628_433547')
+                }
                 {...injectData}
               />
               <Button
@@ -15036,7 +15028,9 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Button_061196_858258'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_061196_858258')
+                }
                 {...injectData}
               />
               <Button
@@ -15472,7 +15466,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   );
                 }}
                 ref={(r: any) =>
-                  (refs['Button_050256_034475_700844_765858'] = r)
+                  refs.setComponentRef(r, 'Button_050256_034475_700844_765858')
                 }
                 {...injectData}
               />
@@ -16323,7 +16317,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_8700198'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_8700198')}
             {...injectData}
           />
           <Table
@@ -17877,7 +17871,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_8700198_3717786'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_8700198_3717786')}
             {...injectData}
           />
           <Form
@@ -18968,7 +18962,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Form_9703076'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_9703076')}
             {...injectData}
           >
             <Radio
@@ -20449,7 +20443,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Radio_90258'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Radio_90258')}
               {...injectData}
             />
             <TextArea
@@ -20482,7 +20476,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_518887'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TextArea_518887')}
               {...injectData}
             />
           </Form>
@@ -20501,7 +20495,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
             disabled={false}
             visible={false}
             readOnly={false}
-            ref={(r: any) => (refs['Row_851124'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Row_851124')}
             {...injectData}
           >
             <Form
@@ -20527,9 +20521,10 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
               readOnly={false}
               style={{ padding: '0px 0px 0px 0px', margin: '10px 0px 0px 0px' }}
               ref={(r: any) =>
-                (refs[
-                  'Form_395851_1727917_9692158_9612234_1000722_434628_511208_810317_526148'
-                ] = r)
+                refs.setComponentRef(
+                  r,
+                  'Form_395851_1727917_9692158_9612234_1000722_434628_511208_810317_526148',
+                )
               }
               {...injectData}
             >
@@ -20560,9 +20555,10 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                 readOnly={false}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs[
-                    'Input_690228_5400337_280051_232429_7501497_288005_8195412_48663836_335482'
-                  ] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_690228_5400337_280051_232429_7501497_288005_8195412_48663836_335482',
+                  )
                 }
                 {...injectData}
               />
@@ -20596,9 +20592,10 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                   width: '100%',
                 }}
                 ref={(r: any) =>
-                  (refs[
-                    'View_22346374_875512_926873_4359147_729981_339083_0134945_145611_42193717'
-                  ] = r)
+                  refs.setComponentRef(
+                    r,
+                    'View_22346374_875512_926873_4359147_729981_339083_0134945_145611_42193717',
+                  )
                 }
                 {...injectData}
               >
@@ -21137,9 +21134,10 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                     );
                   }}
                   ref={(r: any) =>
-                    (refs[
-                      'StdUpload_6230546_867413_538179_36057857_3505279_0434_242878_424019_1466135'
-                    ] = r)
+                    refs.setComponentRef(
+                      r,
+                      'StdUpload_6230546_867413_538179_36057857_3505279_0434_242878_424019_1466135',
+                    )
                   }
                   {...injectData}
                 />
@@ -21165,7 +21163,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_4949093'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_4949093')}
           {...injectData}
         >
           <Table
@@ -21590,7 +21588,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_5369494'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_5369494')}
             {...injectData}
           />
         </View>
@@ -21603,7 +21601,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
             fileList: state?.itemList?.fileInfo,
           }}
           style={{ margin: '0 0 12px 0' }}
-          ref={(r: any) => (refs['BOFramer_613401'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'BOFramer_613401')}
           {...injectData}
         />
       </View>
@@ -21612,7 +21610,7 @@ const ClsYx_0001_0007$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ClsYx_0001_0007$$Page, {
-  pageId: '1054577851351785472',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

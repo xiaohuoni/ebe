@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Checkbox, Form, Input, View } from '@/components/factory';
+import { View, Form, Input, Checkbox } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '896996729089400832';
 const CtOverdueFineReduce$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const CtOverdueFineReduce$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDataifelse263: any = [
@@ -442,7 +445,7 @@ const CtOverdueFineReduce$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_308615_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_308615_1')}
         {...injectData}
       >
         <View
@@ -463,7 +466,7 @@ const CtOverdueFineReduce$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_2909057'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_2909057')}
           {...injectData}
         >
           <Form
@@ -488,7 +491,7 @@ const CtOverdueFineReduce$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_174067'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_174067')}
             {...injectData}
           >
             <Input
@@ -533,7 +536,7 @@ const CtOverdueFineReduce$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_799131'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_799131')}
               {...injectData}
             />
             <Input
@@ -578,7 +581,7 @@ const CtOverdueFineReduce$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_925934'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_925934')}
               {...injectData}
             />
             <Checkbox
@@ -611,7 +614,7 @@ const CtOverdueFineReduce$$Modal: React.FC<PageProps> = ({
               readOnly={false}
               isFormRootChild={true}
               style={{ margin: '16px 0px 0px 60px' }}
-              ref={(r: any) => (refs['Checkbox_755565'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Checkbox_755565')}
               {...injectData}
             />
             <View
@@ -641,7 +644,7 @@ const CtOverdueFineReduce$$Modal: React.FC<PageProps> = ({
                 width: '100%',
                 height: '1px',
               }}
-              ref={(r: any) => (refs['View_0050885'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_0050885')}
               {...injectData}
             />
             <Input
@@ -696,7 +699,7 @@ const CtOverdueFineReduce$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_559022'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_559022')}
               {...injectData}
             />
             <Input
@@ -751,7 +754,7 @@ const CtOverdueFineReduce$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_479531'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_479531')}
               {...injectData}
             />
             <Input
@@ -806,7 +809,7 @@ const CtOverdueFineReduce$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_04993'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_04993')}
               {...injectData}
             />
             <Input
@@ -861,7 +864,7 @@ const CtOverdueFineReduce$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_52206127'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_52206127')}
               {...injectData}
             />
           </Form>
@@ -872,7 +875,7 @@ const CtOverdueFineReduce$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(CtOverdueFineReduce$$Modal, {
-  pageId: '896996729089400832',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', ctOverdueFineReduce: '' },

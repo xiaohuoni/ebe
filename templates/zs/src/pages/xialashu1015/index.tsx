@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, TreeSelect, View } from '@/components/factory';
+import { View, Form, TreeSelect, Button } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '913631557305999360';
 const Xialashu1015$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -22,6 +24,7 @@ const Xialashu1015$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDataapiRequest631: any = [
@@ -182,7 +185,7 @@ const Xialashu1015$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_6358386_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_6358386_1')}
         {...injectData}
       >
         <View
@@ -203,7 +206,7 @@ const Xialashu1015$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_025491'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_025491')}
           {...injectData}
         >
           <Form
@@ -228,7 +231,7 @@ const Xialashu1015$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_436149'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_436149')}
             {...injectData}
           >
             <TreeSelect
@@ -437,7 +440,7 @@ const Xialashu1015$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['TreeSelect_991359'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TreeSelect_991359')}
               {...injectData}
             />
           </Form>
@@ -463,7 +466,7 @@ const Xialashu1015$$Page: React.FC<PageProps> = ({
             textAlign: 'center',
             margin: '100px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['View_901974'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_901974')}
           {...injectData}
         >
           <Button
@@ -512,7 +515,7 @@ const Xialashu1015$$Page: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_148649'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_148649')}
             {...injectData}
           />
           <Button
@@ -620,7 +623,7 @@ const Xialashu1015$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Button_708968'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_708968')}
             {...injectData}
           />
         </View>
@@ -646,7 +649,7 @@ const Xialashu1015$$Page: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ padding: '0px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Form_706081'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_706081')}
           {...injectData}
         />
         <Button
@@ -734,7 +737,7 @@ const Xialashu1015$$Page: React.FC<PageProps> = ({
               platform: 'pc',
             });
           }}
-          ref={(r: any) => (refs['Button_590878'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Button_590878')}
           {...injectData}
         />
       </View>
@@ -743,7 +746,7 @@ const Xialashu1015$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Xialashu1015$$Page, {
-  pageId: '913631557305999360',
+  pageId,
   hasLogin: false,
   defaultState: {},
 });

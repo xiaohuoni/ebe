@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Row, TextArea, View } from '@/components/factory';
+import { View, Row, Form, TextArea, Button } from '@/components/factory';
 
 import Pageview from '@/components/Pageview';
 
@@ -12,6 +13,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '912677238674382848';
 const GiveupCommonPopup$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -27,6 +29,7 @@ const GiveupCommonPopup$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const fillTacheRemark = (options_141226: any) => {
     const eventDatasetValue7: any = [
@@ -168,7 +171,7 @@ const GiveupCommonPopup$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_30_1_229696'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_30_1_229696')}
         {...injectData}
       >
         <Row
@@ -186,7 +189,7 @@ const GiveupCommonPopup$$Modal: React.FC<PageProps> = ({
           disabled={false}
           visible={true}
           readOnly={false}
-          ref={(r: any) => (refs['Row_628506_2746863'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_628506_2746863')}
           {...injectData}
         >
           <Form
@@ -211,7 +214,9 @@ const GiveupCommonPopup$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_0063102_5441816_834516'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Form_0063102_5441816_834516')
+            }
             {...injectData}
           >
             <TextArea
@@ -238,7 +243,9 @@ const GiveupCommonPopup$$Modal: React.FC<PageProps> = ({
               readOnly={false}
               isFormRootChild={true}
               style={{ height: '300px' }}
-              ref={(r: any) => (refs['TextArea_4776246_432797_396424'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'TextArea_4776246_432797_396424')
+              }
               {...injectData}
             />
           </Form>
@@ -248,8 +255,9 @@ const GiveupCommonPopup$$Modal: React.FC<PageProps> = ({
             pageSrc={'/common/comment/listpage'}
             pageId={'907443177794400256'}
             style={{ height: '340px', width: '100%' }}
-            ref={(r: any) => (refs['Pageview_098802_42779'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Pageview_098802_42779')}
             {...injectData}
+            parentEngineId={parentEngineId}
           />
         </Row>
         <View
@@ -273,7 +281,9 @@ const GiveupCommonPopup$$Modal: React.FC<PageProps> = ({
             backgroundColor: '#ffffff',
             boxShadow: '0px 1px 0px 0px #e7e8ea inset',
           }}
-          ref={(r: any) => (refs['View_30_1122_56129022_411221_5151687'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'View_30_1122_56129022_411221_5151687')
+          }
           {...injectData}
         >
           <Button
@@ -320,7 +330,9 @@ const GiveupCommonPopup$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_30_122_408084_070965_1557667'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Button_30_122_408084_070965_1557667')
+            }
             {...injectData}
           />
           <Button
@@ -962,7 +974,9 @@ const GiveupCommonPopup$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Button_30_121_490898_246542_8622692'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Button_30_121_490898_246542_8622692')
+            }
             {...injectData}
           />
         </View>
@@ -972,7 +986,7 @@ const GiveupCommonPopup$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(GiveupCommonPopup$$Modal, {
-  pageId: '912677238674382848',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

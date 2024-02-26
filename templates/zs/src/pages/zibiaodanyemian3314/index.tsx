@@ -1,21 +1,23 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
+  View,
+  Form,
+  Input,
   Card,
   Collapse,
   CollapsePanel,
-  Form,
-  Input,
   StdUpload,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '912940693587320832';
 const Zibiaodanyemian3314$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -30,6 +32,7 @@ const Zibiaodanyemian3314$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const validate = (options_913741: any) => {
     const eventDatavalidateCurrentForm7: any = [
@@ -130,7 +133,7 @@ const Zibiaodanyemian3314$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_866916_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_866916_1')}
         {...injectData}
       >
         <View
@@ -151,7 +154,7 @@ const Zibiaodanyemian3314$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_542154'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_542154')}
           {...injectData}
         >
           <Form
@@ -176,7 +179,7 @@ const Zibiaodanyemian3314$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_0121155'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_0121155')}
             {...injectData}
           >
             <Input
@@ -220,7 +223,7 @@ const Zibiaodanyemian3314$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_0570272'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_0570272')}
               {...injectData}
             />
             <Input
@@ -264,7 +267,7 @@ const Zibiaodanyemian3314$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_22845'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_22845')}
               {...injectData}
             />
             <Input
@@ -308,7 +311,7 @@ const Zibiaodanyemian3314$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_289382'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_289382')}
               {...injectData}
             />
             <Input
@@ -352,7 +355,7 @@ const Zibiaodanyemian3314$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_071095'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_071095')}
               {...injectData}
             />
           </Form>
@@ -396,7 +399,7 @@ const Zibiaodanyemian3314$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_490794'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_490794')}
           {...injectData}
         />
         <Collapse
@@ -436,7 +439,7 @@ const Zibiaodanyemian3314$$Page: React.FC<PageProps> = ({
             margin: '0 0 16px 0',
             padding: '20px 20px 20px 20px',
           }}
-          ref={(r: any) => (refs['Collapse_346658'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Collapse_346658')}
           {...injectData}
         >
           <CollapsePanel
@@ -453,7 +456,7 @@ const Zibiaodanyemian3314$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['CollapsePanel_761428'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'CollapsePanel_761428')}
             {...injectData}
             uid="CollapsePanel_761428"
           />
@@ -471,7 +474,7 @@ const Zibiaodanyemian3314$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['CollapsePanel_103824'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'CollapsePanel_103824')}
             {...injectData}
             uid="CollapsePanel_103824"
           />
@@ -531,7 +534,7 @@ const Zibiaodanyemian3314$$Page: React.FC<PageProps> = ({
           disabled={false}
           visible={true}
           readOnly={false}
-          ref={(r: any) => (refs['StdUpload_9609207'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'StdUpload_9609207')}
           {...injectData}
         />
       </View>
@@ -540,7 +543,7 @@ const Zibiaodanyemian3314$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Zibiaodanyemian3314$$Page, {
-  pageId: '912940693587320832',
+  pageId,
   hasLogin: false,
   defaultState: {},
 });

@@ -4,14 +4,14 @@ import React from 'react';
 import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Card,
   Form,
   Input,
+  Button,
+  Text,
   Switch,
   Table,
-  Text,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -22,6 +22,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '889327002878611456';
 const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -36,6 +37,7 @@ const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const refreshFlowTemplate = (options_618734: any) => {
     const eventDatasetLoading42: any = [
@@ -375,7 +377,7 @@ const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_4868135_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_4868135_1')}
         {...injectData}
       >
         <Card
@@ -557,7 +559,7 @@ const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
               platform: 'pc',
             });
           }}
-          ref={(r: any) => (refs['Card_839649_655036'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_839649_655036')}
           {...injectData}
         >
           <Form
@@ -580,7 +582,7 @@ const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_148709_2103377'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_148709_2103377')}
             {...injectData}
           >
             <Input
@@ -656,7 +658,7 @@ const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_3889064_9887114'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_3889064_9887114')}
               {...injectData}
             />
             <Input
@@ -732,7 +734,9 @@ const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_33684855_0267973'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_33684855_0267973')
+              }
               {...injectData}
             />
             <View
@@ -762,7 +766,7 @@ const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_841498_8261476'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_841498_8261476')}
               {...injectData}
             >
               <Button
@@ -819,7 +823,9 @@ const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_224226_9699964'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_224226_9699964')
+                }
                 {...injectData}
               />
               <Button
@@ -852,7 +858,9 @@ const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
                     (form) => form?.resetFields(),
                   );
                 }}
-                ref={(r: any) => (refs['Button_499055_253437'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_499055_253437')
+                }
                 {...injectData}
               />
               <Text
@@ -873,7 +881,7 @@ const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
                   lineHeight: '24px',
                   color: '#1c242e',
                 }}
-                ref={(r: any) => (refs['Text_975282'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Text_975282')}
                 {...injectData}
               />
               <Popover
@@ -884,6 +892,7 @@ const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
                 }}
                 id={'Switch_2205034'}
                 {...injectData}
+                parentEngineId={parentEngineId}
               >
                 <Switch
                   name={'开关'}
@@ -2289,7 +2298,7 @@ const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
                       platform: 'pc',
                     });
                   }}
-                  ref={(r: any) => (refs['Switch_2205034'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Switch_2205034')}
                   {...injectData}
                 />
               </Popover>
@@ -2309,7 +2318,7 @@ const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
                   lineHeight: '24px',
                   color: '#1c242e',
                 }}
-                ref={(r: any) => (refs['Text_17574'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Text_17574')}
                 {...injectData}
               />
             </View>
@@ -2756,7 +2765,7 @@ const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_311334_1784965'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_311334_1784965')}
             {...injectData}
           />
         </Card>
@@ -2766,7 +2775,7 @@ const QryFlowTemplateCache$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(QryFlowTemplateCache$$Page, {
-  pageId: '889327002878611456',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

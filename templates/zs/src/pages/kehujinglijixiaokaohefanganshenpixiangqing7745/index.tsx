@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, Table, TextArea, View } from '@/components/factory';
+import { View, Form, Input, TextArea, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '958700622213050368';
 const Kehujinglijixiaokaohefanganshenpixiangqing7745$$Modal: React.FC<
   PageProps
 > = ({
@@ -27,6 +29,7 @@ const Kehujinglijixiaokaohefanganshenpixiangqing7745$$Modal: React.FC<
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {};
 
@@ -201,7 +204,7 @@ const Kehujinglijixiaokaohefanganshenpixiangqing7745$$Modal: React.FC<
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_687791_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_687791_1')}
         {...injectData}
       >
         <View
@@ -223,7 +226,7 @@ const Kehujinglijixiaokaohefanganshenpixiangqing7745$$Modal: React.FC<
             width: '100%',
             margin: '0px 0px 12px 0px',
           }}
-          ref={(r: any) => (refs['View_9453773'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_9453773')}
           {...injectData}
         >
           <Form
@@ -251,7 +254,7 @@ const Kehujinglijixiaokaohefanganshenpixiangqing7745$$Modal: React.FC<
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px', margin: '0px 0px 8px 0px' }}
-            ref={(r: any) => (refs['Form_506804'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_506804')}
             {...injectData}
           >
             <Input
@@ -296,7 +299,7 @@ const Kehujinglijixiaokaohefanganshenpixiangqing7745$$Modal: React.FC<
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_968695'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_968695')}
               {...injectData}
             />
             <Input
@@ -340,7 +343,7 @@ const Kehujinglijixiaokaohefanganshenpixiangqing7745$$Modal: React.FC<
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_38268'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_38268')}
               {...injectData}
             />
             <Input
@@ -385,7 +388,7 @@ const Kehujinglijixiaokaohefanganshenpixiangqing7745$$Modal: React.FC<
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_968695_010072'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_968695_010072')}
               {...injectData}
             />
             <Input
@@ -430,7 +433,7 @@ const Kehujinglijixiaokaohefanganshenpixiangqing7745$$Modal: React.FC<
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_968695_235303'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_968695_235303')}
               {...injectData}
             />
           </Form>
@@ -458,7 +461,7 @@ const Kehujinglijixiaokaohefanganshenpixiangqing7745$$Modal: React.FC<
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_506804_052913'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_506804_052913')}
             {...injectData}
           >
             <TextArea
@@ -484,7 +487,7 @@ const Kehujinglijixiaokaohefanganshenpixiangqing7745$$Modal: React.FC<
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_35215'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TextArea_35215')}
               {...injectData}
             />
           </Form>
@@ -618,7 +621,7 @@ const Kehujinglijixiaokaohefanganshenpixiangqing7745$$Modal: React.FC<
           disabled={false}
           visible={true}
           readOnly={false}
-          ref={(r: any) => (refs['Table_32729'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_32729')}
           {...injectData}
         />
       </View>
@@ -629,7 +632,7 @@ const Kehujinglijixiaokaohefanganshenpixiangqing7745$$Modal: React.FC<
 export default withPageHOC(
   Kehujinglijixiaokaohefanganshenpixiangqing7745$$Modal,
   {
-    pageId: '958700622213050368',
+    pageId,
     hasLogin: false,
     dataSource,
     defaultState: { bizId: '', sceneCode: '', feeInfo: '' },

@@ -1,14 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
-  Table,
-  TabPane,
-  Tabs,
   VerticalView,
   View,
+  Button,
+  Table,
+  Tabs,
+  TabPane,
 } from '@/components/factory';
 
 import Pageview from '@/components/Pageview';
@@ -19,6 +20,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '963715818821746688';
 const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -33,6 +35,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const refresh = (options_616527: any) => {
     const eventDatareload: any = [
@@ -125,7 +128,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
           height: '100%',
           overflowY: 'auto',
         }}
-        ref={(r: any) => (refs['VerticalView_3218365'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'VerticalView_3218365')}
         {...injectData}
       >
         <VerticalView
@@ -148,7 +151,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
             height: '100%',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['VerticalView_102927'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_102927')}
           {...injectData}
         >
           <View
@@ -169,7 +172,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
               height: '100%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_780133'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_780133')}
             {...injectData}
           >
             <View
@@ -191,7 +194,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_184115'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_184115')}
               {...injectData}
             >
               <Button
@@ -257,7 +260,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_308972'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_308972')}
                 {...injectData}
               />
               <Button
@@ -282,7 +285,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ width: 'fit-content' }}
-                ref={(r: any) => (refs['Button_629668'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_629668')}
                 {...injectData}
               />
             </View>
@@ -462,7 +465,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
               disabled={false}
               visible={true}
               readOnly={false}
-              ref={(r: any) => (refs['Table_046849'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Table_046849')}
               {...injectData}
             />
             <Tabs
@@ -488,7 +491,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
                 margin: '0 0 16px 0',
                 padding: '20px 20px 20px 20px',
               }}
-              ref={(r: any) => (refs['Tabs_208715'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Tabs_208715')}
               {...injectData}
             >
               <TabPane
@@ -505,7 +508,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ minHeight: 40 }}
-                ref={(r: any) => (refs['TabPane_3305025'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'TabPane_3305025')}
                 {...injectData}
               />
               <TabPane
@@ -522,7 +525,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ minHeight: 40 }}
-                ref={(r: any) => (refs['TabPane_182843'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'TabPane_182843')}
                 {...injectData}
               >
                 <Button
@@ -582,7 +585,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
                       platform: 'pc',
                     });
                   }}
-                  ref={(r: any) => (refs['Button_70251'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_70251')}
                   {...injectData}
                 />
               </TabPane>
@@ -607,7 +610,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_475158'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_475158')}
             {...injectData}
           >
             <Pageview
@@ -616,8 +619,9 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
               pageSrc={'/myDraft'}
               pageId={'879998060900732928'}
               style={{ height: 'auto', width: '100%' }}
-              ref={(r: any) => (refs['Pageview_735567'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Pageview_735567')}
               {...injectData}
+              parentEngineId={parentEngineId}
             />
           </View>
         </VerticalView>
@@ -627,7 +631,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(DiyigePCyemian5870$$Page, {
-  pageId: '963715818821746688',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

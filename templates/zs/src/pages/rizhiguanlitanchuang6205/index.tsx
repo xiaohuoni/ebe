@@ -1,20 +1,22 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Form,
-  Input,
-  Select,
-  TextArea,
-  TimePicker,
   View,
+  Form,
+  Select,
+  Input,
+  TimePicker,
+  TextArea,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '984385291984474112';
 const Rizhiguanlitanchuang6205$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -30,6 +32,7 @@ const Rizhiguanlitanchuang6205$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatacloseModal76: any = [
@@ -106,7 +109,7 @@ const Rizhiguanlitanchuang6205$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_027296_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_027296_1')}
         {...injectData}
       >
         <Form
@@ -131,7 +134,7 @@ const Rizhiguanlitanchuang6205$$Modal: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ padding: '0px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Form_0178664'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_0178664')}
           {...injectData}
         >
           <Select
@@ -164,7 +167,7 @@ const Rizhiguanlitanchuang6205$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={true}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Select_130641'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Select_130641')}
             {...injectData}
           />
           <Input
@@ -208,7 +211,7 @@ const Rizhiguanlitanchuang6205$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={true}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_66284127'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_66284127')}
             {...injectData}
           />
           <Input
@@ -252,7 +255,7 @@ const Rizhiguanlitanchuang6205$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={true}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_258391'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_258391')}
             {...injectData}
           />
           <Input
@@ -296,7 +299,7 @@ const Rizhiguanlitanchuang6205$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={true}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_3518966'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_3518966')}
             {...injectData}
           />
           <TimePicker
@@ -330,7 +333,7 @@ const Rizhiguanlitanchuang6205$$Modal: React.FC<PageProps> = ({
             readOnly={true}
             defaultValue={{}}
             isFormRootChild={true}
-            ref={(r: any) => (refs['TimePicker_312603'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'TimePicker_312603')}
             {...injectData}
           />
           <Input
@@ -373,7 +376,7 @@ const Rizhiguanlitanchuang6205$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={true}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_930943'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_930943')}
             {...injectData}
           />
           <TextArea
@@ -399,7 +402,7 @@ const Rizhiguanlitanchuang6205$$Modal: React.FC<PageProps> = ({
             readOnly={true}
             isFormRootChild={true}
             style={{ minHeight: '250px' }}
-            ref={(r: any) => (refs['TextArea_9083564'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'TextArea_9083564')}
             {...injectData}
           />
         </Form>
@@ -409,7 +412,7 @@ const Rizhiguanlitanchuang6205$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Rizhiguanlitanchuang6205$$Modal, {
-  pageId: '984385291984474112',
+  pageId,
   hasLogin: false,
   defaultState: { bizId: '', sceneCode: '', bizData: '', logInfo: '' },
 });

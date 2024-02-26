@@ -1,21 +1,23 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Form,
   Select,
   StdUpload,
-  Switch,
   Upload,
-  View,
+  Switch,
+  Button,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '882147180001918976';
 const Wenjian0784$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -30,6 +32,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -59,7 +62,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_941967_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_941967_1')}
         {...injectData}
       >
         <Form
@@ -82,7 +85,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ padding: '0px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Form_689643'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_689643')}
           {...injectData}
         >
           <Select
@@ -114,7 +117,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Select_675243'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Select_675243')}
             {...injectData}
           />
           <StdUpload
@@ -235,7 +238,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
               // console 166201219096736830
               console.log('111');
             }}
-            ref={(r: any) => (refs['StdUpload_0165916'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'StdUpload_0165916')}
             {...injectData}
           />
           <StdUpload
@@ -296,7 +299,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
               // console 166201229930664860
               console.log('333');
             }}
-            ref={(r: any) => (refs['StdUpload_272321'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'StdUpload_272321')}
             {...injectData}
           />
           <Upload
@@ -323,7 +326,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
               ...componentItem,
             }}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Upload_474449'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Upload_474449')}
             {...injectData}
           />
           <Switch
@@ -347,7 +350,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
               ...componentItem,
             }}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Switch_7211713'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Switch_7211713')}
             {...injectData}
           />
         </Form>
@@ -398,7 +401,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
               platform: 'pc',
             });
           }}
-          ref={(r: any) => (refs['Button_820555'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Button_820555')}
           {...injectData}
         />
         <Button
@@ -3348,7 +3351,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
               platform: 'pc',
             });
           }}
-          ref={(r: any) => (refs['Button_68127'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Button_68127')}
           {...injectData}
         />
         <Button
@@ -3433,7 +3436,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
               platform: 'pc',
             });
           }}
-          ref={(r: any) => (refs['Button_2697034'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Button_2697034')}
           {...injectData}
         />
         <Button
@@ -3505,7 +3508,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
               platform: 'pc',
             });
           }}
-          ref={(r: any) => (refs['Button_730926'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Button_730926')}
           {...injectData}
         />
         <Form
@@ -3530,7 +3533,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ padding: '0px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Form_667217'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_667217')}
           {...injectData}
         >
           <Select
@@ -3562,7 +3565,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Select_769041'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Select_769041')}
             {...injectData}
           />
           <StdUpload
@@ -3792,7 +3795,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['StdUpload_0512846'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'StdUpload_0512846')}
             {...injectData}
           />
           <View
@@ -3824,7 +3827,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_0571046'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_0571046')}
             {...injectData}
           >
             <StdUpload
@@ -3930,7 +3933,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['StdUpload_398497'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'StdUpload_398497')}
               {...injectData}
             />
           </View>
@@ -3941,7 +3944,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Wenjian0784$$Page, {
-  pageId: '882147180001918976',
+  pageId,
   hasLogin: false,
   defaultState: {},
 });

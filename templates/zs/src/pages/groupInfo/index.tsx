@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Description, View } from '@/components/factory';
+import { View, Description } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '876805547747155968';
 const GroupInfo$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const GroupInfo$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatacustomActionCode312: any = [
@@ -481,7 +484,7 @@ const GroupInfo$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_33_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_33_1')}
         {...injectData}
       >
         <View
@@ -500,7 +503,7 @@ const GroupInfo$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_422725'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_422725')}
           {...injectData}
         >
           <View
@@ -513,7 +516,7 @@ const GroupInfo$$Modal: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ width: '100%', overflowY: 'auto' }}
-            ref={(r: any) => (refs['VerticalView_33_11'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'VerticalView_33_11')}
             {...injectData}
           >
             <View
@@ -534,7 +537,7 @@ const GroupInfo$$Modal: React.FC<PageProps> = ({
                 margin: '0px 0px 0px 0px',
                 borderRadius: '2px 2px 2px 2px',
               }}
-              ref={(r: any) => (refs['View_33_112'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_33_112')}
               {...injectData}
             >
               <View
@@ -553,7 +556,7 @@ const GroupInfo$$Modal: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   width: '100%',
                 }}
-                ref={(r: any) => (refs['View_536562'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_536562')}
                 {...injectData}
               >
                 <Description
@@ -966,7 +969,9 @@ const GroupInfo$$Modal: React.FC<PageProps> = ({
                     type: 'Description',
                     ...componentItem,
                   }}
-                  ref={(r: any) => (refs['Description_12412697'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Description_12412697')
+                  }
                   {...injectData}
                 />
               </View>
@@ -979,7 +984,7 @@ const GroupInfo$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(GroupInfo$$Modal, {
-  pageId: '876805547747155968',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', groupId: '', coding: '' },

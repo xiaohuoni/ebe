@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { TabPane, Tabs, View } from '@/components/factory';
+import { View, Tabs, TabPane } from '@/components/factory';
 
 import Pageview from '@/components/Pageview';
 
@@ -12,6 +13,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '953262679608012800';
 const ConfigWorkbench$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -26,6 +28,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDatasetLoading45: any = [
@@ -1377,7 +1380,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_177297_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_177297_1')}
         {...injectData}
       >
         <Tabs
@@ -1405,7 +1408,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
             margin: '0 0 16px 0',
             padding: '20px 20px 20px 20px',
           }}
-          ref={(r: any) => (refs['Tabs_818152'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Tabs_818152')}
           {...injectData}
         >
           <TabPane
@@ -1440,7 +1443,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               )}` === '4'
             }
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['TabPane_628101'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'TabPane_628101')}
             {...injectData}
           >
             <Pageview
@@ -1449,8 +1452,9 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               pageSrc={'/sceneManage'}
               pageId={'871695112643387392'}
               style={{ height: 'auto', width: '100%' }}
-              ref={(r: any) => (refs['Pageview_454167'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Pageview_454167')}
               {...injectData}
+              parentEngineId={parentEngineId}
             />
           </TabPane>
           <TabPane
@@ -1485,7 +1489,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               )}` === '4'
             }
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['TabPane_461269'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'TabPane_461269')}
             {...injectData}
           >
             <Pageview
@@ -1494,8 +1498,9 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               pageSrc={'/sceneAttrManage'}
               pageId={'900661977310531584'}
               style={{ height: 'auto', width: '100%' }}
-              ref={(r: any) => (refs['Pageview_2618866'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Pageview_2618866')}
               {...injectData}
+              parentEngineId={parentEngineId}
             />
           </TabPane>
           <TabPane
@@ -1530,7 +1535,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               )}` === '4'
             }
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['3431177'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, '3431177')}
             {...injectData}
           >
             <Pageview
@@ -1539,8 +1544,9 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               pageSrc={'/sceneMatrixManage'}
               pageId={'882184557321994240'}
               style={{ height: 'auto', width: '100%' }}
-              ref={(r: any) => (refs['Pageview_423277'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Pageview_423277')}
               {...injectData}
+              parentEngineId={parentEngineId}
             />
           </TabPane>
           <TabPane
@@ -1575,7 +1581,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               )}` === '4'
             }
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['0550217'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, '0550217')}
             {...injectData}
           >
             <Pageview
@@ -1584,8 +1590,9 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               pageSrc={'/flowConfigManage'}
               pageId={'899899936245522432'}
               style={{ height: 'auto', width: '100%' }}
-              ref={(r: any) => (refs['Pageview_480473'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Pageview_480473')}
               {...injectData}
+              parentEngineId={parentEngineId}
             />
           </TabPane>
           <TabPane
@@ -1620,7 +1627,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               )}` === '4'
             }
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['799507'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, '799507')}
             {...injectData}
           >
             <Pageview
@@ -1629,8 +1636,9 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               pageSrc={'/saleConfigManage'}
               pageId={'912611949612380160'}
               style={{ height: 'auto', width: '100%' }}
-              ref={(r: any) => (refs['Pageview_000894'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Pageview_000894')}
               {...injectData}
+              parentEngineId={parentEngineId}
             />
           </TabPane>
           <TabPane
@@ -1656,7 +1664,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               '4'
             }
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['479481'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, '479481')}
             {...injectData}
           >
             <Pageview
@@ -1665,8 +1673,9 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               pageSrc={'/oaOrganizationManagement'}
               pageId={'884248856254066688'}
               style={{ height: 'auto', width: '100%' }}
-              ref={(r: any) => (refs['Pageview_245544'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Pageview_245544')}
               {...injectData}
+              parentEngineId={parentEngineId}
             />
           </TabPane>
           <TabPane
@@ -1692,7 +1701,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               '4'
             }
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['78046'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, '78046')}
             {...injectData}
           >
             <Pageview
@@ -1701,8 +1710,9 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               pageSrc={'/oaUserManage'}
               pageId={'885366956034052096'}
               style={{ height: 'auto', width: '100%' }}
-              ref={(r: any) => (refs['Pageview_468694'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Pageview_468694')}
               {...injectData}
+              parentEngineId={parentEngineId}
             />
           </TabPane>
           <TabPane
@@ -1728,7 +1738,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               '4'
             }
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['288511'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, '288511')}
             {...injectData}
           >
             <Pageview
@@ -1737,8 +1747,9 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               pageSrc={'/oaRoleManage'}
               pageId={'953182638975242240'}
               style={{ height: 'auto', width: '100%' }}
-              ref={(r: any) => (refs['Pageview_34524'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Pageview_34524')}
               {...injectData}
+              parentEngineId={parentEngineId}
             />
           </TabPane>
           <TabPane
@@ -1773,7 +1784,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               )}` === '4'
             }
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['9328823'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, '9328823')}
             {...injectData}
           >
             <Pageview
@@ -1782,8 +1793,9 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               pageSrc={'/oaPrivilegeManage'}
               pageId={'952389338433073152'}
               style={{ height: 'auto', width: '100%' }}
-              ref={(r: any) => (refs['Pageview_6773'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Pageview_6773')}
               {...injectData}
+              parentEngineId={parentEngineId}
             />
           </TabPane>
           <TabPane
@@ -1809,7 +1821,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               '4'
             }
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['4566142'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, '4566142')}
             {...injectData}
           >
             <Pageview
@@ -1818,8 +1830,9 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               pageSrc={'/postStaffManage'}
               pageId={'884615633470709760'}
               style={{ height: 'auto', width: '100%' }}
-              ref={(r: any) => (refs['Pageview_0201706'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Pageview_0201706')}
               {...injectData}
+              parentEngineId={parentEngineId}
             />
           </TabPane>
           <TabPane
@@ -1854,7 +1867,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               )}` === '4'
             }
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['TabPane_908704'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'TabPane_908704')}
             {...injectData}
           >
             <Pageview
@@ -1863,8 +1876,9 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
               pageSrc={'/authorizationApproval'}
               pageId={'993406268634288128'}
               style={{ height: 'auto', width: '100%' }}
-              ref={(r: any) => (refs['Pageview_9165806'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Pageview_9165806')}
               {...injectData}
+              parentEngineId={parentEngineId}
             />
           </TabPane>
         </Tabs>
@@ -1874,7 +1888,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ConfigWorkbench$$Page, {
-  pageId: '953262679608012800',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

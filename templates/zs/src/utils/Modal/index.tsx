@@ -1,14 +1,14 @@
+import React, { useState, useRef, useMemo, useImperativeHandle } from 'react';
 import { message } from '@lingxiteam/engine-pc/es/components/EnhanceAntdComp';
-import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';
 import Modal from './Modal';
 // import { Drawer } from './DynamicDrawer';
-import { lcdpApi } from '@lingxiteam/engine-platform';
 import {
   LocaleFunction,
   ModalManagerHooks,
   OpenDrawerProps,
   OpenModalProps,
 } from '@lingxiteam/types';
+import { lcdpApi } from '@lingxiteam/engine-platform';
 
 interface ModalManagerProps {
   relPageId?: string;

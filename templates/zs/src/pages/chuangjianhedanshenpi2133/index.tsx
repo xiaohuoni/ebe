@@ -1,19 +1,20 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  Text,
   Card,
+  Row,
   Form,
   Input,
-  Radio,
-  Row,
-  Select,
   Table,
-  Text,
+  Radio,
+  Select,
   TextArea,
-  View,
+  Button,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -24,6 +25,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '907167547460595712';
 const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -38,6 +40,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const nextStaffChange = (options_9533806: any) => {
     const eventDataclearValue12: any = [
@@ -3120,7 +3123,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: '0A',
         }}
-        ref={(r: any) => (refs['View_763609_1_8284215'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_763609_1_8284215')}
         {...injectData}
       >
         <View
@@ -3144,7 +3147,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
             height: '42px',
             margin: 'px px px px',
           }}
-          ref={(r: any) => (refs['View_905871_961943'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_905871_961943')}
           {...injectData}
         >
           <Text
@@ -3169,7 +3172,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
               textAlign: 'center',
               letterSpacing: '',
             }}
-            ref={(r: any) => (refs['Text_236544_458361'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_236544_458361')}
             {...injectData}
           />
         </View>
@@ -3209,7 +3212,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_733452_608588'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_733452_608588')}
           {...injectData}
         >
           <Row
@@ -3227,7 +3230,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
             disabled={false}
             visible={true}
             readOnly={false}
-            ref={(r: any) => (refs['Row_510227_934708'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Row_510227_934708')}
             {...injectData}
           >
             <Form
@@ -3252,7 +3255,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ padding: 'px px px px', margin: '0px 0px 8px 0px' }}
-              ref={(r: any) => (refs['Form_8512707_5353887'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_8512707_5353887')}
               {...injectData}
             >
               <Input
@@ -3296,7 +3299,9 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_765315_4158096'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_765315_4158096')
+                }
                 {...injectData}
               />
               <Input
@@ -3340,7 +3345,9 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_3386787_698768'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_3386787_698768')
+                }
                 {...injectData}
               />
               <Input
@@ -3384,7 +3391,9 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_941937_0593855'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_941937_0593855')
+                }
                 {...injectData}
               />
             </Form>
@@ -3408,7 +3417,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
               lineHeight: '24px',
               color: 'rgba(220, 41, 63, 1)',
             }}
-            ref={(r: any) => (refs['Text_6986125_739866'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_6986125_739866')}
             {...injectData}
           />
           <View
@@ -3430,7 +3439,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
               width: '100%',
               margin: '8px 0px 8px 0px',
             }}
-            ref={(r: any) => (refs['View_5773624_9763604'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_5773624_9763604')}
             {...injectData}
           >
             <Text
@@ -3453,7 +3462,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(241, 80, 100, 1)',
               }}
-              ref={(r: any) => (refs['Text_4031863_541239'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_4031863_541239')}
               {...injectData}
             />
             <Text
@@ -3472,7 +3481,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ fontSize: '14px', lineHeight: '24px', color: '#1c242e' }}
-              ref={(r: any) => (refs['Text_929211_226478'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_929211_226478')}
               {...injectData}
             />
           </View>
@@ -3849,7 +3858,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_4346074'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_4346074')}
             {...injectData}
           />
           <View
@@ -3871,7 +3880,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
               width: '100%',
               margin: '8px 0px 0px 0px',
             }}
-            ref={(r: any) => (refs['View_028577_482375'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_028577_482375')}
             {...injectData}
           >
             <Text
@@ -3895,7 +3904,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
                 color: '#1c242e',
                 fontWeight: 600,
               }}
-              ref={(r: any) => (refs['Text_228554_771548'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_228554_771548')}
               {...injectData}
             />
             <Text
@@ -3916,7 +3925,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ fontSize: '14px', lineHeight: '24px', color: '#999' }}
-              ref={(r: any) => (refs['Text_0227405_491373'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_0227405_491373')}
               {...injectData}
             />
           </View>
@@ -3959,7 +3968,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_5223316_930808'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_5223316_930808')}
           {...injectData}
         >
           <Form
@@ -4987,7 +4996,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_495566_5382465'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_495566_5382465')}
             {...injectData}
           >
             <Radio
@@ -5134,7 +5143,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Radio_8525737_018091'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Radio_8525737_018091')}
               {...injectData}
             />
             <Select
@@ -5190,7 +5199,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Select_599981_437465'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_599981_437465')}
               {...injectData}
             />
             <Input
@@ -5584,7 +5593,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_668689_2052015'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_668689_2052015')}
               {...injectData}
             />
             <Input
@@ -5628,7 +5637,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_9206452_698968'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_9206452_698968')}
               {...injectData}
             />
             <TextArea
@@ -5653,7 +5662,9 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_2382214_3272195'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'TextArea_2382214_3272195')
+              }
               {...injectData}
             />
             <Button
@@ -5747,7 +5758,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Button_8864054_286047'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_8864054_286047')}
               {...injectData}
             />
           </Form>
@@ -5770,7 +5781,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
               width: '100%',
               textAlign: 'center',
             }}
-            ref={(r: any) => (refs['View_582992_8451582'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_582992_8451582')}
             {...injectData}
           >
             <Button
@@ -6164,7 +6175,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Button_614168_6154713'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_614168_6154713')}
               {...injectData}
             />
             <Button
@@ -6221,7 +6232,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_3398434_019155'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_3398434_019155')}
               {...injectData}
             />
           </View>
@@ -6246,7 +6257,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
             textAlign: 'center',
             margin: '0px 0px 8px 0px',
           }}
-          ref={(r: any) => (refs['View_672632_9537307'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_672632_9537307')}
           {...injectData}
         >
           <Button
@@ -7043,7 +7054,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
               ); // console 166945092826272030
               console.log('创建合单点击提交');
             }}
-            ref={(r: any) => (refs['Button_219692_3851914'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_219692_3851914')}
             {...injectData}
           />
           <Button
@@ -7091,7 +7102,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_713182_647206'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_713182_647206')}
             {...injectData}
           />
         </View>
@@ -7101,7 +7112,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Chuangjianhedanshenpi2133$$Page, {
-  pageId: '907167547460595712',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

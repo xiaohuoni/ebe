@@ -1,16 +1,17 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
-  Card,
-  Form,
-  HorizontalView,
-  Input,
-  Table,
-  VerticalView,
   View,
+  HorizontalView,
+  Card,
+  VerticalView,
+  Form,
+  Input,
+  Button,
+  Table,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -19,6 +20,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '1001785141604552704';
 const AttrValueRel$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -34,6 +36,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const refreshAttrValue = (options_804669: any) => {
     const eventDatareloadDataSource24: any = [
@@ -1451,7 +1454,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
           textAlign: 'center',
           margin: '8px 8px 8px 8px',
         }}
-        ref={(r: any) => (refs['View_69315_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_69315_1')}
         {...injectData}
       >
         <HorizontalView
@@ -1474,7 +1477,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
             height: 'auto',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['HorizontalView_098081'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'HorizontalView_098081')}
           {...injectData}
         >
           <View
@@ -1503,7 +1506,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
               textAlign: 'left',
               flex: 1,
             }}
-            ref={(r: any) => (refs['View_456427'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_456427')}
             {...injectData}
           >
             <Card
@@ -1773,7 +1776,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Card_73954'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_73954')}
               {...injectData}
             >
               <VerticalView
@@ -1795,7 +1798,9 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                   height: 'auto',
                   overflowY: 'hidden',
                 }}
-                ref={(r: any) => (refs['VerticalView_8383574'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'VerticalView_8383574')
+                }
                 {...injectData}
               >
                 <View
@@ -1816,7 +1821,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                     width: 'auto',
                     overflowY: 'hidden',
                   }}
-                  ref={(r: any) => (refs['View_512562'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_512562')}
                   {...injectData}
                 >
                   <Form
@@ -1841,7 +1846,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                     visible={true}
                     readOnly={false}
                     style={{ padding: '0px 0px 0px 0px', overflow: 'hidden' }}
-                    ref={(r: any) => (refs['Form_735357'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Form_735357')}
                     {...injectData}
                   >
                     <Input
@@ -1884,7 +1889,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={true}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['Input_739776'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Input_739776')}
                       {...injectData}
                     />
                     <Input
@@ -1965,7 +1970,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                           },
                         );
                       }}
-                      ref={(r: any) => (refs['Input_611748'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Input_611748')}
                       {...injectData}
                     />
                     <Input
@@ -2046,7 +2051,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                           },
                         );
                       }}
-                      ref={(r: any) => (refs['Input_470784'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Input_470784')}
                       {...injectData}
                     />
                     <View
@@ -2079,7 +2084,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                         textAlign: 'center',
                         justifyContent: 'flex-end',
                       }}
-                      ref={(r: any) => (refs['View_533838'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'View_533838')}
                       {...injectData}
                     >
                       <Button
@@ -2136,7 +2141,9 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                             },
                           );
                         }}
-                        ref={(r: any) => (refs['Button_042416'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Button_042416')
+                        }
                         {...injectData}
                       />
                       <Button
@@ -2222,7 +2229,9 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                             },
                           );
                         }}
-                        ref={(r: any) => (refs['Button_7312534'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Button_7312534')
+                        }
                         {...injectData}
                       />
                     </View>
@@ -2246,7 +2255,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                     width: 'auto',
                     overflowY: 'hidden',
                   }}
-                  ref={(r: any) => (refs['View_204431'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_204431')}
                   {...injectData}
                 >
                   <Table
@@ -3456,7 +3465,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Table_061387'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Table_061387')}
                     {...injectData}
                   />
                 </View>
@@ -3490,7 +3499,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
               margin: '0px 0px 0px 8px',
               flex: 1,
             }}
-            ref={(r: any) => (refs['View_739623'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_739623')}
             {...injectData}
           >
             <Card
@@ -4163,7 +4172,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Card_9188683'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_9188683')}
               {...injectData}
             >
               <VerticalView
@@ -4185,7 +4194,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                   height: 'auto',
                   overflowY: 'hidden',
                 }}
-                ref={(r: any) => (refs['VerticalView_696196'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'VerticalView_696196')}
                 {...injectData}
               >
                 <View
@@ -4206,7 +4215,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                     width: 'auto',
                     overflowY: 'hidden',
                   }}
-                  ref={(r: any) => (refs['View_841967'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_841967')}
                   {...injectData}
                 >
                   <Form
@@ -4231,7 +4240,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                     visible={true}
                     readOnly={false}
                     style={{ padding: '0px 0px 0px 0px', overflow: 'hidden' }}
-                    ref={(r: any) => (refs['Form_602592'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Form_602592')}
                     {...injectData}
                   >
                     <Input
@@ -4275,7 +4284,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={true}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['Input_4955187'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Input_4955187')}
                       {...injectData}
                     />
                     <Input
@@ -4356,7 +4365,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                           },
                         );
                       }}
-                      ref={(r: any) => (refs['Input_873801'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Input_873801')}
                       {...injectData}
                     />
                     <Input
@@ -4437,7 +4446,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                           },
                         );
                       }}
-                      ref={(r: any) => (refs['Input_658476'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Input_658476')}
                       {...injectData}
                     />
                     <View
@@ -4470,7 +4479,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                         justifyContent: 'flex-end',
                         height: 'auto',
                       }}
-                      ref={(r: any) => (refs['View_5690884'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'View_5690884')}
                       {...injectData}
                     >
                       <Button
@@ -4527,7 +4536,9 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                             },
                           );
                         }}
-                        ref={(r: any) => (refs['Button_549846'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Button_549846')
+                        }
                         {...injectData}
                       />
                       <Button
@@ -4613,7 +4624,9 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                             },
                           );
                         }}
-                        ref={(r: any) => (refs['Button_421424'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Button_421424')
+                        }
                         {...injectData}
                       />
                     </View>
@@ -4637,7 +4650,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                     width: 'auto',
                     overflowY: 'hidden',
                   }}
-                  ref={(r: any) => (refs['View_5014642'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_5014642')}
                   {...injectData}
                 >
                   <Table
@@ -5263,7 +5276,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Table_156404'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Table_156404')}
                     {...injectData}
                   />
                 </View>
@@ -5277,7 +5290,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AttrValueRel$$Modal, {
-  pageId: '1001785141604552704',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', bizData: '' },

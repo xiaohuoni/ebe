@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Input, Table, View } from '@/components/factory';
+import { View, Form, Input, Button, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -12,6 +13,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '953478278846369792';
 const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -27,6 +29,7 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const refreshTable = (options_572314: any) => {
     const eventDatasetLoading34: any = [
@@ -653,7 +656,7 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_482782_1_2245467'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_482782_1_2245467')}
         {...injectData}
       >
         <View
@@ -674,7 +677,7 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_947999_9714262'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_947999_9714262')}
           {...injectData}
         >
           <Form
@@ -697,7 +700,9 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '0px 0px 12px 0px' }}
-            ref={(r: any) => (refs['Form_148709_2103377_216161_486727'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Form_148709_2103377_216161_486727')
+            }
             {...injectData}
           >
             <Input
@@ -773,7 +778,9 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_3889064_9887114_660871_69896'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_3889064_9887114_660871_69896')
+              }
               {...injectData}
             />
             <Input
@@ -850,7 +857,7 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
                 });
               }}
               ref={(r: any) =>
-                (refs['Input_33684855_0267973_1469488_875336'] = r)
+                refs.setComponentRef(r, 'Input_33684855_0267973_1469488_875336')
               }
               {...injectData}
             />
@@ -883,7 +890,9 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
                 textAlign: 'center',
                 justifyContent: 'flex-start',
               }}
-              ref={(r: any) => (refs['View_841498_8261476_979664_9421495'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'View_841498_8261476_979664_9421495')
+              }
               {...injectData}
             >
               <View
@@ -905,7 +914,9 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
                   width: '100%',
                   textAlign: 'left',
                 }}
-                ref={(r: any) => (refs['View_110211_6102645_905926'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'View_110211_6102645_905926')
+                }
                 {...injectData}
               >
                 <Button
@@ -963,7 +974,10 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
                     );
                   }}
                   ref={(r: any) =>
-                    (refs['Button_224226_9699964_7583217_144538'] = r)
+                    refs.setComponentRef(
+                      r,
+                      'Button_224226_9699964_7583217_144538',
+                    )
                   }
                   {...injectData}
                 />
@@ -1030,7 +1044,7 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
                     );
                   }}
                   ref={(r: any) =>
-                    (refs['Button_499055_253437_90213_884171'] = r)
+                    refs.setComponentRef(r, 'Button_499055_253437_90213_884171')
                   }
                   {...injectData}
                 />
@@ -1056,7 +1070,7 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_740935_509061'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_740935_509061')}
           {...injectData}
         >
           <Table
@@ -1571,7 +1585,7 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_5176025_615394'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_5176025_615394')}
             {...injectData}
           />
         </View>
@@ -1581,7 +1595,7 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Xuanzerenyuanguanlianzuzhi3072copy$$Modal, {
-  pageId: '953478278846369792',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', usrKey: '' },

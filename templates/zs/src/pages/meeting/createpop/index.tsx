@@ -1,20 +1,22 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
-  Form,
-  Input,
-  Select,
-  TextArea,
   View,
+  Form,
+  Select,
+  Input,
+  TextArea,
+  Button,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '876645169117937664';
 const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -30,6 +32,7 @@ const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatavalidateCurrentForm45: any = [
@@ -894,7 +897,7 @@ const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_30_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_30_1')}
         {...injectData}
       >
         <View
@@ -909,7 +912,7 @@ const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_30_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_30_11')}
           {...injectData}
         >
           <View
@@ -933,7 +936,7 @@ const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
               width: '100%',
               borderRadius: '2px 2px 2px 2px',
             }}
-            ref={(r: any) => (refs['View_30_112'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_30_112')}
             {...injectData}
           >
             <Form
@@ -961,7 +964,7 @@ const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
                 width: '50%',
                 padding: '20px 20px 20px 20px',
               }}
-              ref={(r: any) => (refs['Form_30_1121'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_30_1121')}
               {...injectData}
             >
               <Select
@@ -994,7 +997,7 @@ const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
                 visible={false}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Select_525823'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Select_525823')}
                 {...injectData}
               />
               <Input
@@ -1115,7 +1118,7 @@ const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_30_11218'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_30_11218')}
                 {...injectData}
               />
               <Input
@@ -1159,7 +1162,7 @@ const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
                 visible={false}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_662082'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_662082')}
                 {...injectData}
               />
               <Input
@@ -1203,7 +1206,7 @@ const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
                 visible={false}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_8675667'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_8675667')}
                 {...injectData}
               />
               <Input
@@ -1247,7 +1250,7 @@ const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
                 visible={false}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_650024'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_650024')}
                 {...injectData}
               />
               <TextArea
@@ -1267,7 +1270,7 @@ const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TextArea_30_11219'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'TextArea_30_11219')}
                 {...injectData}
               />
             </Form>
@@ -1293,7 +1296,7 @@ const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
               backgroundColor: '#ffffff',
               boxShadow: '0px 1px 0px 0px #e7e8ea inset',
             }}
-            ref={(r: any) => (refs['View_30_1122_56129022'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_30_1122_56129022')}
             {...injectData}
           >
             <Button
@@ -1340,7 +1343,7 @@ const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_30_122_408084'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_30_122_408084')}
               {...injectData}
             />
             <Button
@@ -2161,7 +2164,7 @@ const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Button_30_121_490898'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_30_121_490898')}
               {...injectData}
             />
           </View>
@@ -2172,7 +2175,7 @@ const MeetingCreatepop$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(MeetingCreatepop$$Modal, {
-  pageId: '876645169117937664',
+  pageId,
   hasLogin: false,
   defaultState: {
     meetingType: '',

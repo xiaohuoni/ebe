@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, View } from '@/components/factory';
+import { View, Button } from '@/components/factory';
 
 import BusiComp335152 from '@/components/BusiComp335152';
 
@@ -12,6 +13,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '1064813919203217408';
 const Duojituanbaimingdanxinxi4961$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -27,6 +29,7 @@ const Duojituanbaimingdanxinxi4961$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {};
 
@@ -606,7 +609,7 @@ const Duojituanbaimingdanxinxi4961$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_653507_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_653507_1')}
         {...injectData}
       >
         <BusiComp335152
@@ -615,7 +618,7 @@ const Duojituanbaimingdanxinxi4961$$Modal: React.FC<PageProps> = ({
           fieldName={'singleGroup'}
           busiCompStates={{ whitelistApplyInfo: data?.singleGroup }}
           style={{ margin: '0 0 12px 0' }}
-          ref={(r: any) => (refs['BOFramer_655437'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'BOFramer_655437')}
           {...injectData}
         />
         <View
@@ -639,7 +642,7 @@ const Duojituanbaimingdanxinxi4961$$Modal: React.FC<PageProps> = ({
             justifyContent: 'flex-end',
             margin: '24px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['View_281404'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_281404')}
           {...injectData}
         >
           <View
@@ -661,7 +664,7 @@ const Duojituanbaimingdanxinxi4961$$Modal: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_8956481'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_8956481')}
             {...injectData}
           >
             <Button
@@ -708,7 +711,7 @@ const Duojituanbaimingdanxinxi4961$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_0790154'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_0790154')}
               {...injectData}
             />
           </View>
@@ -719,7 +722,7 @@ const Duojituanbaimingdanxinxi4961$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Duojituanbaimingdanxinxi4961$$Modal, {
-  pageId: '1064813919203217408',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', bizData: '', singleGroup: '' },

@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Card, Form, Input, Table, View } from '@/components/factory';
+import { View, Card, Form, Input, Button, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -12,6 +13,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '884359982098653184';
 const HrOrganizationManagement$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -26,6 +28,7 @@ const HrOrganizationManagement$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const refreshHrOrg = (options_618734: any) => {
     const eventDatasetLoading36: any = [
@@ -585,7 +588,7 @@ const HrOrganizationManagement$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_4868135_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_4868135_1')}
         {...injectData}
       >
         <Card
@@ -738,7 +741,7 @@ const HrOrganizationManagement$$Page: React.FC<PageProps> = ({
               platform: 'pc',
             });
           }}
-          ref={(r: any) => (refs['Card_839649_655036'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_839649_655036')}
           {...injectData}
         >
           <Form
@@ -761,7 +764,7 @@ const HrOrganizationManagement$$Page: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_148709_2103377'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_148709_2103377')}
             {...injectData}
           >
             <Input
@@ -837,7 +840,7 @@ const HrOrganizationManagement$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_3889064_9887114'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_3889064_9887114')}
               {...injectData}
             />
             <Input
@@ -913,7 +916,9 @@ const HrOrganizationManagement$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_33684855_0267973'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_33684855_0267973')
+              }
               {...injectData}
             />
             <View
@@ -943,7 +948,7 @@ const HrOrganizationManagement$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_841498_8261476'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_841498_8261476')}
               {...injectData}
             >
               <Button
@@ -1000,7 +1005,9 @@ const HrOrganizationManagement$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_224226_9699964'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_224226_9699964')
+                }
                 {...injectData}
               />
               <Button
@@ -1033,7 +1040,9 @@ const HrOrganizationManagement$$Page: React.FC<PageProps> = ({
                     (form) => form?.resetFields(),
                   );
                 }}
-                ref={(r: any) => (refs['Button_499055_253437'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_499055_253437')
+                }
                 {...injectData}
               />
             </View>
@@ -1945,7 +1954,7 @@ const HrOrganizationManagement$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_311334_1784965'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_311334_1784965')}
             {...injectData}
           />
         </Card>
@@ -1955,7 +1964,7 @@ const HrOrganizationManagement$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(HrOrganizationManagement$$Page, {
-  pageId: '884359982098653184',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

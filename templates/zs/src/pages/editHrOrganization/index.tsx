@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Form,
-  Input,
-  InputNumber,
-  Select,
-  TextArea,
-  TimePicker,
   View,
+  Form,
+  InputNumber,
+  Input,
+  Select,
+  TimePicker,
+  TextArea,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -18,6 +19,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '884409061105180672';
 const EditHrOrganization$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -33,6 +35,7 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatavalidateCurrentForm64: any = [
@@ -1051,7 +1054,7 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_31_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_31_1')}
         {...injectData}
       >
         <View
@@ -1064,7 +1067,7 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_31_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_31_11')}
           {...injectData}
         >
           <View
@@ -1085,7 +1088,7 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
               margin: '0px 0px 0px 0px',
               borderRadius: '2px 2px 2px 2px',
             }}
-            ref={(r: any) => (refs['View_31_112'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_31_112')}
             {...injectData}
           >
             <Form
@@ -1416,7 +1419,7 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Form_31_1121'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_31_1121')}
               {...injectData}
             >
               <InputNumber
@@ -1449,7 +1452,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['InputNumber_actKey_714923'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'InputNumber_actKey_714923')
+                }
                 {...injectData}
               />
               <Input
@@ -1498,7 +1503,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUdfNum_542427'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUdfNum_542427')
+                }
                 {...injectData}
               />
               <Input
@@ -1547,7 +1554,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_parentActUdfNum_952822'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_parentActUdfNum_952822')
+                }
                 {...injectData}
               />
               <Input
@@ -1596,7 +1605,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUdfErpid_777429'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUdfErpid_777429')
+                }
                 {...injectData}
               />
               <Input
@@ -1641,7 +1652,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['SuperSelect_actName_5260985'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'SuperSelect_actName_5260985')
+                }
                 {...injectData}
               />
               <Input
@@ -1690,7 +1703,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUdfDspname_180864'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUdfDspname_180864')
+                }
                 {...injectData}
               />
               <Input
@@ -1735,7 +1750,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TimePicker_actCustType_3463196'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TimePicker_actCustType_3463196')
+                }
                 {...injectData}
               />
               <Input
@@ -1784,7 +1801,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUdfFunc_8037213'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUdfFunc_8037213')
+                }
                 {...injectData}
               />
               <Input
@@ -1833,7 +1852,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUdfMgr_192139'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUdfMgr_192139')
+                }
                 {...injectData}
               />
               <Input
@@ -1882,7 +1903,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUdfSupvsr_412322'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUdfSupvsr_412322')
+                }
                 {...injectData}
               />
               <Input
@@ -1931,7 +1954,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUdfTel_6582803'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUdfTel_6582803')
+                }
                 {...injectData}
               />
               <Input
@@ -1980,7 +2005,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUdfFax_2286089'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUdfFax_2286089')
+                }
                 {...injectData}
               />
               <Input
@@ -2029,7 +2056,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUdfAddr_224402'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUdfAddr_224402')
+                }
                 {...injectData}
               />
               <Input
@@ -2078,7 +2107,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUdfZip_883759'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUdfZip_883759')
+                }
                 {...injectData}
               />
               <Input
@@ -2127,7 +2158,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUdfLoc_995008'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUdfLoc_995008')
+                }
                 {...injectData}
               />
               <Input
@@ -2176,7 +2209,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUdfComcode_698804'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUdfComcode_698804')
+                }
                 {...injectData}
               />
               <Input
@@ -2221,7 +2256,7 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_7438488'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_7438488')}
                 {...injectData}
               />
               <Input
@@ -2266,7 +2301,7 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_06053'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_06053')}
                 {...injectData}
               />
               <Select
@@ -2296,7 +2331,7 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_isGe_625353'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_isGe_625353')}
                 {...injectData}
               />
               <Input
@@ -2341,7 +2376,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['SuperSelect_actStatus_265293'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'SuperSelect_actStatus_265293')
+                }
                 {...injectData}
               />
               <Input
@@ -2390,7 +2427,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actCreateby_3965916'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actCreateby_3965916')
+                }
                 {...injectData}
               />
               <TimePicker
@@ -2429,7 +2468,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TimePicker_actCreate_5668258'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TimePicker_actCreate_5668258')
+                }
                 {...injectData}
               />
               <Input
@@ -2478,7 +2519,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUpdateby_552979'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUpdateby_552979')
+                }
                 {...injectData}
               />
               <Input
@@ -2527,7 +2570,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUpdate_8836595'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUpdate_8836595')
+                }
                 {...injectData}
               />
               <TextArea
@@ -2552,7 +2597,9 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actRemark_103843'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actRemark_103843')
+                }
                 {...injectData}
               />
             </Form>
@@ -2564,7 +2611,7 @@ const EditHrOrganization$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(EditHrOrganization$$Modal, {
-  pageId: '884409061105180672',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', dcHrAct: '' },

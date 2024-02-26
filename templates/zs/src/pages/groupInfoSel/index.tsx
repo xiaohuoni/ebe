@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Input, Select, Table, View } from '@/components/factory';
+import { View, Form, Select, Input, Button, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -12,6 +13,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '899848269504155648';
 const GroupInfoSel$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -27,10 +29,9 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
-    console.log(123121233131232133123);
-    console.log(refs);
     const eventDatagetTableSelected4: any = [
       {
         type: 'getTableSelected',
@@ -2244,7 +2245,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
           width: 'auto',
           height: 'auto',
         }}
-        ref={(r: any) => (refs['View_6584614_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_6584614_1')}
         {...injectData}
       >
         <View
@@ -2265,7 +2266,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_921869'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_921869')}
           {...injectData}
         >
           <Form
@@ -2290,7 +2291,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_0032615'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_0032615')}
             {...injectData}
           >
             <Select
@@ -2363,7 +2364,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Select_441932'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_441932')}
               {...injectData}
             />
             <Input
@@ -2407,7 +2408,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_054313'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_054313')}
               {...injectData}
             />
             <Input
@@ -2451,7 +2452,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_3720854'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_3720854')}
               {...injectData}
             />
             <View
@@ -2484,7 +2485,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                 width: '100%',
                 textAlign: 'left',
               }}
-              ref={(r: any) => (refs['View_394487_610869'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_394487_610869')}
               {...injectData}
             >
               <Button
@@ -2651,8 +2652,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                     '1',
                                                                   parentType:
                                                                     'object',
-                                                                  showInput:
-                                                                    true,
+                                                                  showInput: true,
                                                                   _codePath: [
                                                                     'total',
                                                                   ],
@@ -2674,8 +2674,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                     '1',
                                                                   parentType:
                                                                     'object',
-                                                                  showInput:
-                                                                    true,
+                                                                  showInput: true,
                                                                   _codePath: [
                                                                     'current',
                                                                   ],
@@ -2697,8 +2696,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                     '1',
                                                                   parentType:
                                                                     'object',
-                                                                  showInput:
-                                                                    true,
+                                                                  showInput: true,
                                                                   _codePath: [
                                                                     'size',
                                                                   ],
@@ -2725,8 +2723,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -2751,8 +2748,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -2779,8 +2775,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -2805,8 +2800,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -2833,8 +2827,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -2861,8 +2854,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -2889,8 +2881,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -2915,8 +2906,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -2943,8 +2933,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -2971,8 +2960,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -2999,8 +2987,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3027,8 +3014,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3055,8 +3041,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3083,8 +3068,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3111,8 +3095,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3139,8 +3122,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3165,8 +3147,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3193,8 +3174,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3221,8 +3201,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3249,8 +3228,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3275,8 +3253,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3303,8 +3280,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3329,8 +3305,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3357,8 +3332,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3383,8 +3357,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3411,8 +3384,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                         'records',
                                                                       parentType:
                                                                         'object',
-                                                                      showInput:
-                                                                        false,
+                                                                      showInput: false,
                                                                       _codePath:
                                                                         [
                                                                           'records',
@@ -3435,8 +3407,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                                                                     '1',
                                                                   parentType:
                                                                     'object',
-                                                                  showInput:
-                                                                    true,
+                                                                  showInput: true,
                                                                   _codePath: [
                                                                     'records',
                                                                   ],
@@ -11027,7 +10998,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_67568_744242'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_67568_744242')}
                 {...injectData}
               />
               <Button
@@ -11059,7 +11030,9 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
                     (form) => form?.resetFields(),
                   );
                 }}
-                ref={(r: any) => (refs['Button_151377_2341566'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_151377_2341566')
+                }
                 {...injectData}
               />
             </View>
@@ -12470,13 +12443,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
               },
             );
           }}
-          ref={(r: any) => {
-            console.log(
-              'Table_08098Table_08098Table_08098Table_08098Table_08098Table_08098Table_08098Table_08098',
-            );
-            console.log(r);
-            refs['Table_08098'] = r;
-          }}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_08098')}
           {...injectData}
         />
       </View>
@@ -12485,7 +12452,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(GroupInfoSel$$Modal, {
-  pageId: '899848269504155648',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

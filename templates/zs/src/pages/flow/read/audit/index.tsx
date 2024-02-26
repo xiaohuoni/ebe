@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, View } from '@/components/factory';
+import { View, Button } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '898391867027853312';
 const FlowReadAudit$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -22,6 +24,7 @@ const FlowReadAudit$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDatacustomActionCode310: any = [
@@ -72,7 +75,7 @@ const FlowReadAudit$$Page: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_30_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_30_1')}
         {...injectData}
       >
         <View
@@ -85,7 +88,7 @@ const FlowReadAudit$$Page: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_30_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_30_11')}
           {...injectData}
         >
           <View
@@ -111,7 +114,7 @@ const FlowReadAudit$$Page: React.FC<PageProps> = ({
               'background-color': '#f0f0f0',
               'z-index': '3',
             }}
-            ref={(r: any) => (refs['View_30_1122'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_30_1122')}
             {...injectData}
           >
             <Button
@@ -157,7 +160,7 @@ const FlowReadAudit$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_30_122'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_30_122')}
               {...injectData}
             />
             <Button
@@ -445,7 +448,7 @@ const FlowReadAudit$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_30_121'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_30_121')}
               {...injectData}
             />
           </View>
@@ -456,7 +459,7 @@ const FlowReadAudit$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(FlowReadAudit$$Page, {
-  pageId: '898391867027853312',
+  pageId,
   hasLogin: false,
   defaultState: {},
 });

@@ -1,13 +1,14 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Card,
   HorizontalView,
+  Button,
   Table,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -16,6 +17,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '922045372277719040';
 const MyDraft_202212191639$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -30,6 +32,7 @@ const MyDraft_202212191639$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const refreshTable = (options_717548: any) => {
     const eventDatasetLoading22: any = [
@@ -555,7 +558,7 @@ const MyDraft_202212191639$$Page: React.FC<PageProps> = ({
           overflowY: 'hidden',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_852562_1_890036_927504'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_852562_1_890036_927504')}
         {...injectData}
       >
         <Card
@@ -595,7 +598,7 @@ const MyDraft_202212191639$$Page: React.FC<PageProps> = ({
             margin: '0 0 16px 0',
             height: 'auto',
           }}
-          ref={(r: any) => (refs['Card_3514477_35607414'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_3514477_35607414')}
           {...injectData}
         >
           <HorizontalView
@@ -618,7 +621,9 @@ const MyDraft_202212191639$$Page: React.FC<PageProps> = ({
               overflowY: 'auto',
               justifyContent: 'space-between',
             }}
-            ref={(r: any) => (refs['HorizontalView_6241587_4818627'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'HorizontalView_6241587_4818627')
+            }
             {...injectData}
           >
             <Button
@@ -1091,7 +1096,7 @@ const MyDraft_202212191639$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Button_844662_4472234'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_844662_4472234')}
               {...injectData}
             />
             <Button
@@ -1151,7 +1156,7 @@ const MyDraft_202212191639$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_240556'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_240556')}
               {...injectData}
             />
             <Button
@@ -1202,7 +1207,7 @@ const MyDraft_202212191639$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_7872035_800399'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_7872035_800399')}
               {...injectData}
             />
           </HorizontalView>
@@ -2599,7 +2604,7 @@ const MyDraft_202212191639$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_642395_344859'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_642395_344859')}
             {...injectData}
           />
         </Card>
@@ -2609,7 +2614,7 @@ const MyDraft_202212191639$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(MyDraft_202212191639$$Page, {
-  pageId: '922045372277719040',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { origin: '', originTab: '' },

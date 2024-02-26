@@ -26,6 +26,16 @@ const Pages: any = {
     () =>
       import(/* webpackChunkName: "1024261720265998336" */ '@/pages/ceshi8260'),
   ),
+  '/cdd5883': React.lazy(
+    () =>
+      import(
+        /* webpackChunkName: "src__pages__/cdd5883__index" */ '@/pages/cdd5883'
+      ),
+  ),
+  '1028120483871506432': React.lazy(
+    () =>
+      import(/* webpackChunkName: "1028120483871506432" */ '@/pages/cdd5883'),
+  ),
   '/qipao9952': React.lazy(
     () =>
       import(
@@ -45,16 +55,6 @@ const Pages: any = {
   '1077431851017072640': React.lazy(
     () =>
       import(/* webpackChunkName: "1077431851017072640" */ '@/pages/modal0804'),
-  ),
-  '/cdd5883': React.lazy(
-    () =>
-      import(
-        /* webpackChunkName: "src__pages__/cdd5883__index" */ '@/pages/cdd5883'
-      ),
-  ),
-  '1028120483871506432': React.lazy(
-    () =>
-      import(/* webpackChunkName: "1028120483871506432" */ '@/pages/cdd5883'),
   ),
 };
 

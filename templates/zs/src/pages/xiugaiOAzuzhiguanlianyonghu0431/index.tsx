@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, Select, View } from '@/components/factory';
+import { View, Form, Input, Select } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '952860583750815744';
 const XiugaiOAzuzhiguanlianyonghu0431$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -23,6 +25,7 @@ const XiugaiOAzuzhiguanlianyonghu0431$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatavalidateCurrentForm62: any = [
@@ -374,7 +377,7 @@ const XiugaiOAzuzhiguanlianyonghu0431$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_044253_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_044253_1')}
         {...injectData}
       >
         <Form
@@ -399,7 +402,7 @@ const XiugaiOAzuzhiguanlianyonghu0431$$Modal: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ padding: '0px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Form_5258874'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_5258874')}
           {...injectData}
         >
           <Input
@@ -443,7 +446,7 @@ const XiugaiOAzuzhiguanlianyonghu0431$$Modal: React.FC<PageProps> = ({
               ...componentItem,
             }}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_3411417'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_3411417')}
             {...injectData}
           />
           <Input
@@ -487,7 +490,7 @@ const XiugaiOAzuzhiguanlianyonghu0431$$Modal: React.FC<PageProps> = ({
               ...componentItem,
             }}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_6520955'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_6520955')}
             {...injectData}
           />
           <Input
@@ -531,7 +534,7 @@ const XiugaiOAzuzhiguanlianyonghu0431$$Modal: React.FC<PageProps> = ({
               ...componentItem,
             }}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_6731392'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_6731392')}
             {...injectData}
           />
           <Select
@@ -560,7 +563,7 @@ const XiugaiOAzuzhiguanlianyonghu0431$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Select_7779775'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Select_7779775')}
             {...injectData}
           />
           <Select
@@ -589,7 +592,7 @@ const XiugaiOAzuzhiguanlianyonghu0431$$Modal: React.FC<PageProps> = ({
               ...componentItem,
             }}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Select_892876'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Select_892876')}
             {...injectData}
           />
         </Form>
@@ -599,7 +602,7 @@ const XiugaiOAzuzhiguanlianyonghu0431$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(XiugaiOAzuzhiguanlianyonghu0431$$Modal, {
-  pageId: '952860583750815744',
+  pageId,
   hasLogin: false,
   defaultState: { bizId: '', sceneCode: '', info: '' },
 });

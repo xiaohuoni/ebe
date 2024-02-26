@@ -39,10 +39,9 @@ export default function getFile(
   
   import {${Object.keys(formHash)
     .map((i) => i + ' as _' + i)
-    .join(',')}} from '@lingxiteam/${factory}/es/index.component';
-  export {${otherHash.join(
-    ',',
-  )}} from '@lingxiteam/${factory}/es/index.component';
+    .join(',')},${otherHash
+      .map((i) => i + ' as _' + i)
+      .join(',')}} from '@lingxiteam/${factory}/es/index.component';
 
   export const syncInputValue = (
     e: unknown,
@@ -133,6 +132,7 @@ export default function getFile(
         `  export const ${i} = Hoc(_${i}, ${JSON.stringify(formHash[i])});`,
     )
     .join('\n')}
+    ${otherHash.map((i) => `  export const ${i} = Hoc(_${i});`).join('\n')}
   `,
   );
 

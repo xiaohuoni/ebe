@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Input, Table, View } from '@/components/factory';
+import { View, Form, Input, Button, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '913309000971296768';
 const ChooseTacheWithPost$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const ChooseTacheWithPost$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const refreshPostInfo = (options_966448: any) => {
     const eventDatasetLoading41: any = [
@@ -866,7 +869,7 @@ const ChooseTacheWithPost$$Modal: React.FC<PageProps> = ({
           ...componentItem,
         }}
         style={{ minHeight: '100%' }}
-        ref={(r: any) => (refs['View_7975706_1_471796'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_7975706_1_471796')}
         {...injectData}
       >
         <View
@@ -884,7 +887,7 @@ const ChooseTacheWithPost$$Modal: React.FC<PageProps> = ({
             flex: '1 1 auto',
             padding: '20px 20px 16px 20px',
           }}
-          ref={(r: any) => (refs['View_7975706_12_015174'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_7975706_12_015174')}
           {...injectData}
         >
           <Form
@@ -907,7 +910,9 @@ const ChooseTacheWithPost$$Modal: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '12px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_148709_997679_5118644_7004214'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Form_148709_997679_5118644_7004214')
+            }
             {...injectData}
           >
             <Input
@@ -983,7 +988,9 @@ const ChooseTacheWithPost$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_3889064_769378_089515_00669'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_3889064_769378_089515_00669')
+              }
               {...injectData}
             />
             <Input
@@ -1060,7 +1067,7 @@ const ChooseTacheWithPost$$Modal: React.FC<PageProps> = ({
                 });
               }}
               ref={(r: any) =>
-                (refs['Input_33684855_8070024_3641753_533031'] = r)
+                refs.setComponentRef(r, 'Input_33684855_8070024_3641753_533031')
               }
               {...injectData}
             />
@@ -1092,7 +1099,9 @@ const ChooseTacheWithPost$$Modal: React.FC<PageProps> = ({
                 width: '100%',
                 textAlign: 'center',
               }}
-              ref={(r: any) => (refs['View_841498_323645_360219_62442'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'View_841498_323645_360219_62442')
+              }
               {...injectData}
             >
               <Button
@@ -1150,7 +1159,7 @@ const ChooseTacheWithPost$$Modal: React.FC<PageProps> = ({
                   );
                 }}
                 ref={(r: any) =>
-                  (refs['Button_224226_335492_451924_7664347'] = r)
+                  refs.setComponentRef(r, 'Button_224226_335492_451924_7664347')
                 }
                 {...injectData}
               />
@@ -1224,7 +1233,10 @@ const ChooseTacheWithPost$$Modal: React.FC<PageProps> = ({
                   });
                 }}
                 ref={(r: any) =>
-                  (refs['Button_499055_286527_9962765_9619479'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Button_499055_286527_9962765_9619479',
+                  )
                 }
                 {...injectData}
               />
@@ -1960,7 +1972,9 @@ const ChooseTacheWithPost$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_7975706_122_2419171'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Table_7975706_122_2419171')
+            }
             {...injectData}
           />
         </View>
@@ -1970,7 +1984,7 @@ const ChooseTacheWithPost$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ChooseTacheWithPost$$Modal, {
-  pageId: '913309000971296768',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

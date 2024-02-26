@@ -1,17 +1,18 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
-  Card,
+  View,
+  Text,
   Form,
   Input,
   Select,
+  Button,
   Table,
-  Text,
+  Card,
   TextArea,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -22,6 +23,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '956370582359519232';
 const ExceptionList$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -36,6 +38,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const 刷新分页 = (options_2822727: any) => {
     const eventDatasetLoading4: any = [
@@ -333,7 +336,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
         visible={true}
         readOnly={false}
         style={{ minHeight: '100%' }}
-        ref={(r: any) => (refs['View_5254274_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_5254274_1')}
         {...injectData}
       >
         <View
@@ -353,7 +356,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
             lineHeight: '24px',
             boxShadow: '0 -1px 0 0 #E5E5E5 inset',
           }}
-          ref={(r: any) => (refs['View_5254274_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_5254274_11')}
           {...injectData}
         >
           <Text
@@ -377,7 +380,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
               color: '#1c242e',
               lineHeight: '24px',
             }}
-            ref={(r: any) => (refs['Text_5254274_111'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_5254274_111')}
             {...injectData}
           />
         </View>
@@ -398,7 +401,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
             flex: '1 1 auto',
             padding: '20px 20px 16px 20px',
           }}
-          ref={(r: any) => (refs['View_5254274_12'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_5254274_12')}
           {...injectData}
         >
           <View
@@ -417,7 +420,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
               border: '1px solid transparent',
               flexDirection: 'column',
             }}
-            ref={(r: any) => (refs['View_5254274_121'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_5254274_121')}
             {...injectData}
           >
             <Form
@@ -442,7 +445,9 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ padding: '0px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_7756987_259648_251493'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Form_7756987_259648_251493')
+              }
               {...injectData}
             >
               <Input
@@ -523,7 +528,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_8704715'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_8704715')}
                 {...injectData}
               />
               <Select
@@ -557,7 +562,9 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Select_953604_715414'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Select_953604_715414')
+                }
                 {...injectData}
               />
               <Input
@@ -638,7 +645,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_1680794'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_1680794')}
                 {...injectData}
               />
               <Input
@@ -719,7 +726,9 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_650422_201996_997685'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_650422_201996_997685')
+                }
                 {...injectData}
               />
               <Input
@@ -800,7 +809,9 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_984985_229345_21446956'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_984985_229345_21446956')
+                }
                 {...injectData}
               />
               <View
@@ -831,7 +842,9 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                   width: '100%',
                   textAlign: 'center',
                 }}
-                ref={(r: any) => (refs['View_756929_0062074_3365063'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'View_756929_0062074_3365063')
+                }
                 {...injectData}
               >
                 <Button
@@ -892,7 +905,9 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_508625_7684763_529381'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Button_508625_7684763_529381')
+                  }
                   {...injectData}
                 />
                 <Button
@@ -927,7 +942,9 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                       (form) => form?.resetFields(),
                     );
                   }}
-                  ref={(r: any) => (refs['Button_228714_24039_42666'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Button_228714_24039_42666')
+                  }
                   {...injectData}
                 />
               </View>
@@ -2314,7 +2331,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_5254274_122'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_5254274_122')}
             {...injectData}
           />
         </View>
@@ -2330,7 +2347,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ width: '100%' }}
-          ref={(r: any) => (refs['View_49_21119_559187'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_49_21119_559187')}
           {...injectData}
         >
           <Card
@@ -2372,7 +2389,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
               overflowY: 'visible',
               margin: '0 0 16px 0',
             }}
-            ref={(r: any) => (refs['Card_49_21114_047747'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_49_21114_047747')}
             {...injectData}
           >
             <Form
@@ -2397,7 +2414,9 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ padding: '0px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_7756987_259648_631751_665634'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Form_7756987_259648_631751_665634')
+              }
               {...injectData}
             >
               <Input
@@ -2442,7 +2461,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 readOnly={false}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_650422_201996_788381_487096'] = r)
+                  refs.setComponentRef(r, 'Input_650422_201996_788381_487096')
                 }
                 {...injectData}
               />
@@ -2488,7 +2507,10 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 readOnly={false}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_650422_201996_788381_6178676_740382_745151'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_650422_201996_788381_6178676_740382_745151',
+                  )
                 }
                 {...injectData}
               />
@@ -2534,7 +2556,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 readOnly={false}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_984985_229345_5159784_7451863'] = r)
+                  refs.setComponentRef(r, 'Input_984985_229345_5159784_7451863')
                 }
                 {...injectData}
               />
@@ -2580,7 +2602,10 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 readOnly={false}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_650422_201996_788381_6178676_740382_460571'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_650422_201996_788381_6178676_740382_460571',
+                  )
                 }
                 {...injectData}
               />
@@ -2626,7 +2651,10 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 readOnly={false}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_650422_201996_788381_6178676_740382'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_650422_201996_788381_6178676_740382',
+                  )
                 }
                 {...injectData}
               />
@@ -2660,7 +2688,9 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Select_953604_583598_738995'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Select_953604_583598_738995')
+                }
                 {...injectData}
               />
               <TextArea
@@ -2685,7 +2715,9 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TextArea_7406107_9765545'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TextArea_7406107_9765545')
+                }
                 {...injectData}
               />
               <Input
@@ -2729,7 +2761,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_580008'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_580008')}
                 {...injectData}
               />
               <Input
@@ -2773,7 +2805,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_410694'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_410694')}
                 {...injectData}
               />
               <TextArea
@@ -2799,7 +2831,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 readOnly={false}
                 isFormRootChild={true}
                 style={{ minHeight: '100px' }}
-                ref={(r: any) => (refs['TextArea_3030646'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'TextArea_3030646')}
                 {...injectData}
               />
               <TextArea
@@ -2825,7 +2857,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 readOnly={false}
                 isFormRootChild={true}
                 style={{ minHeight: '100px' }}
-                ref={(r: any) => (refs['TextArea_302016'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'TextArea_302016')}
                 {...injectData}
               />
               <Input
@@ -2869,7 +2901,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_406219_578572'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_406219_578572')}
                 {...injectData}
               />
               <Input
@@ -2913,7 +2945,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_104648_785464'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_104648_785464')}
                 {...injectData}
               />
               <Input
@@ -2957,7 +2989,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_768435_595437'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_768435_595437')}
                 {...injectData}
               />
               <Input
@@ -3001,7 +3033,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_825004_149151'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_825004_149151')}
                 {...injectData}
               />
               <TextArea
@@ -3026,7 +3058,9 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TextArea_7406107_9765545_399073'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TextArea_7406107_9765545_399073')
+                }
                 {...injectData}
               />
               <Input
@@ -3070,7 +3104,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 visible={false}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_533442'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_533442')}
                 {...injectData}
               />
             </Form>
@@ -3082,7 +3116,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ExceptionList$$Page, {
-  pageId: '956370582359519232',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

@@ -1,14 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
+  View,
+  VerticalView,
   Card,
   Form,
-  Table,
   Text,
-  VerticalView,
-  View,
+  Table,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -19,6 +20,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '1062290793887260672';
 const SelectNet$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -33,6 +35,7 @@ const SelectNet$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDataapiRequest212: any = [
@@ -229,7 +232,7 @@ const SelectNet$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_2540494_1_1337952'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_2540494_1_1337952')}
         {...injectData}
       >
         <VerticalView
@@ -251,7 +254,9 @@ const SelectNet$$Page: React.FC<PageProps> = ({
             height: '100%',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['VerticalView_7691962_283384'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'VerticalView_7691962_283384')
+          }
           {...injectData}
         >
           <View
@@ -272,7 +277,7 @@ const SelectNet$$Page: React.FC<PageProps> = ({
               height: '100%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_434019_744563'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_434019_744563')}
             {...injectData}
           >
             <Card
@@ -1063,7 +1068,7 @@ const SelectNet$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Card_564259_233507'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_564259_233507')}
               {...injectData}
             >
               <Form
@@ -1088,7 +1093,7 @@ const SelectNet$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ padding: '0px 0px 0px 0px' }}
-                ref={(r: any) => (refs['Form_21734'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_21734')}
                 {...injectData}
               >
                 <Text
@@ -1124,7 +1129,7 @@ const SelectNet$$Page: React.FC<PageProps> = ({
                     letterSpacing: '',
                     paddingLeft: '20px',
                   }}
-                  ref={(r: any) => (refs['Text_4484635'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Text_4484635')}
                   {...injectData}
                 />
               </Form>
@@ -1525,7 +1530,7 @@ const SelectNet$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_870854_118555'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_870854_118555')}
                 {...injectData}
               />
             </Card>
@@ -1537,7 +1542,7 @@ const SelectNet$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(SelectNet$$Page, {
-  pageId: '1062290793887260672',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

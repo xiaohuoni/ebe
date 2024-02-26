@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Input, Select, Table, View } from '@/components/factory';
+import { View, Form, Select, Input, Button, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -12,6 +13,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '985122890244067328';
 const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -27,12 +29,9 @@ const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
-    console.log(
-      "refs['Table_08098']refs['Table_08098']refs['Table_08098']refs['Table_08098']refs['Table_08098']",
-    );
-    console.log(refs['Table_08098']);
     const eventDatagetTableCurrentPageSelected: any = [
       {
         type: 'getTableCurrentPageSelected',
@@ -2301,7 +2300,7 @@ const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_6584614_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_6584614_1')}
         {...injectData}
       >
         <View
@@ -2322,7 +2321,7 @@ const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_921869'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_921869')}
           {...injectData}
         >
           <Form
@@ -2347,7 +2346,7 @@ const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_0032615'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_0032615')}
             {...injectData}
           >
             <Select
@@ -2377,7 +2376,7 @@ const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Select_441932'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_441932')}
               {...injectData}
             />
             <Input
@@ -2421,7 +2420,7 @@ const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_054313'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_054313')}
               {...injectData}
             />
             <Input
@@ -2465,7 +2464,7 @@ const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_3720854'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_3720854')}
               {...injectData}
             />
           </Form>
@@ -2491,7 +2490,7 @@ const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px', margin: '10px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_0032615_49366'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_0032615_49366')}
             {...injectData}
           >
             <View
@@ -2521,7 +2520,7 @@ const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_0227365'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_0227365')}
               {...injectData}
             />
             <View
@@ -2551,7 +2550,7 @@ const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_715632'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_715632')}
               {...injectData}
             />
             <View
@@ -2584,7 +2583,7 @@ const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
                 width: '100%',
                 textAlign: 'right',
               }}
-              ref={(r: any) => (refs['View_394487_610869'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_394487_610869')}
               {...injectData}
             >
               <Button
@@ -9148,7 +9147,7 @@ const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_67568_744242'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_67568_744242')}
                 {...injectData}
               />
               <Button
@@ -9180,7 +9179,9 @@ const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
                     (form) => form?.resetFields(),
                   );
                 }}
-                ref={(r: any) => (refs['Button_151377_2341566'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_151377_2341566')
+                }
                 {...injectData}
               />
             </View>
@@ -9568,7 +9569,7 @@ const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
             // console 167023475218958340
             console.log(row);
           }}
-          ref={(r: any) => (refs['Table_08098'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_08098')}
           {...injectData}
         />
       </View>
@@ -9577,7 +9578,7 @@ const GroupInfoSelcopy$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(GroupInfoSelcopy$$Modal, {
-  pageId: '985122890244067328',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

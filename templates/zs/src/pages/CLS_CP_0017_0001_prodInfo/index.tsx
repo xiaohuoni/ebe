@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Card, Form, Input, Table, TextArea, View } from '@/components/factory';
+import { View, Card, Form, Input, TextArea, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '990550518931316736';
 const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDataifelse162: any = [
@@ -974,7 +977,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_2331069_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_2331069_1')}
         {...injectData}
       >
         <Card
@@ -1016,7 +1019,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_6886166'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_6886166')}
           {...injectData}
         >
           <Form
@@ -1041,7 +1044,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_87556'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_87556')}
             {...injectData}
           >
             <Input
@@ -1086,7 +1089,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_263835'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_263835')}
               {...injectData}
             />
             <Input
@@ -1130,7 +1133,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_712516'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_712516')}
               {...injectData}
             />
             <Input
@@ -1175,7 +1178,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_529662'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_529662')}
               {...injectData}
             />
             <Input
@@ -1219,7 +1222,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_943502'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_943502')}
               {...injectData}
             />
             <Input
@@ -1264,7 +1267,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_586597'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_586597')}
               {...injectData}
             />
             <Input
@@ -1308,7 +1311,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_90814'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_90814')}
               {...injectData}
             />
             <Input
@@ -1352,7 +1355,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_3087559'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_3087559')}
               {...injectData}
             />
           </Form>
@@ -1396,7 +1399,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_915262'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_915262')}
           {...injectData}
         >
           <Form
@@ -1421,7 +1424,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_7058647'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_7058647')}
             {...injectData}
           >
             <Input
@@ -1465,7 +1468,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_94665'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_94665')}
               {...injectData}
             />
             <Input
@@ -1509,7 +1512,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_7320262'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_7320262')}
               {...injectData}
             />
             <Input
@@ -1553,7 +1556,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_6616407'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_6616407')}
               {...injectData}
             />
             <TextArea
@@ -1578,7 +1581,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_272829'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TextArea_272829')}
               {...injectData}
             />
             <Input
@@ -1622,7 +1625,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_418493'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_418493')}
               {...injectData}
             />
             <Input
@@ -1666,7 +1669,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_93513411'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_93513411')}
               {...injectData}
             />
             <Input
@@ -1710,7 +1713,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_4614138'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_4614138')}
               {...injectData}
             />
             <Input
@@ -1754,7 +1757,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_081636'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_081636')}
               {...injectData}
             />
             <Input
@@ -1798,7 +1801,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_896678'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_896678')}
               {...injectData}
             />
             <Input
@@ -1842,7 +1845,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_591078'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_591078')}
               {...injectData}
             />
             <Input
@@ -1886,7 +1889,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_568869'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_568869')}
               {...injectData}
             />
           </Form>
@@ -1930,7 +1933,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_8795367'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_8795367')}
           {...injectData}
         >
           <Table
@@ -2355,7 +2358,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_929924'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_929924')}
             {...injectData}
           />
         </Card>
@@ -2398,7 +2401,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_1271674'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_1271674')}
           {...injectData}
         >
           <Table
@@ -2724,7 +2727,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_1947564'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_1947564')}
             {...injectData}
           />
         </Card>
@@ -2767,7 +2770,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_425227'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_425227')}
           {...injectData}
         >
           <Table
@@ -2954,7 +2957,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_093858'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_093858')}
             {...injectData}
           />
         </Card>
@@ -2996,7 +2999,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_597682'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_597682')}
           {...injectData}
         >
           <Card
@@ -3038,7 +3041,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               overflowY: 'visible',
               margin: '0 0 16px 0',
             }}
-            ref={(r: any) => (refs['Card_016051'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_016051')}
             {...injectData}
           >
             <Table
@@ -3244,7 +3247,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Table_775273'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Table_775273')}
               {...injectData}
             />
           </Card>
@@ -3287,7 +3290,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               overflowY: 'visible',
               margin: '0 0 16px 0',
             }}
-            ref={(r: any) => (refs['Card_41996754'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_41996754')}
             {...injectData}
           >
             <Form
@@ -3312,7 +3315,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ padding: '0px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_168921'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_168921')}
               {...injectData}
             >
               <Input
@@ -3357,7 +3360,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_26406'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_26406')}
                 {...injectData}
               />
             </Form>
@@ -3537,7 +3540,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Table_57481'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Table_57481')}
               {...injectData}
             />
           </Card>
@@ -3580,7 +3583,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
               overflowY: 'visible',
               margin: '0 0 16px 0',
             }}
-            ref={(r: any) => (refs['Card_073149'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_073149')}
             {...injectData}
           >
             <Card
@@ -3622,7 +3625,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                 overflowY: 'visible',
                 margin: '0 0 16px 0',
               }}
-              ref={(r: any) => (refs['Card_7507446'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_7507446')}
               {...injectData}
             >
               <Table
@@ -3801,7 +3804,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_864312'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_864312')}
                 {...injectData}
               />
             </Card>
@@ -3844,7 +3847,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                 overflowY: 'visible',
                 margin: '0 0 16px 0',
               }}
-              ref={(r: any) => (refs['Card_703003'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_703003')}
               {...injectData}
             >
               <Table
@@ -4023,7 +4026,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_64808'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_64808')}
                 {...injectData}
               />
             </Card>
@@ -4066,7 +4069,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                 overflowY: 'visible',
                 margin: '0 0 16px 0',
               }}
-              ref={(r: any) => (refs['Card_2802727'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_2802727')}
               {...injectData}
             >
               <Table
@@ -4300,7 +4303,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_891887'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_891887')}
                 {...injectData}
               />
             </Card>
@@ -4343,7 +4346,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                 overflowY: 'visible',
                 margin: '0 0 16px 0',
               }}
-              ref={(r: any) => (refs['Card_5813844'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_5813844')}
               {...injectData}
             >
               <Table
@@ -4577,7 +4580,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_942352'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_942352')}
                 {...injectData}
               />
             </Card>
@@ -4620,7 +4623,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                 overflowY: 'visible',
                 margin: '0 0 16px 0',
               }}
-              ref={(r: any) => (refs['Card_085349'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_085349')}
               {...injectData}
             >
               <Table
@@ -4854,7 +4857,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_958712'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_958712')}
                 {...injectData}
               />
             </Card>
@@ -4866,7 +4869,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ClsCp_0017_0001ProdInfo$$Modal, {
-  pageId: '990550518931316736',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

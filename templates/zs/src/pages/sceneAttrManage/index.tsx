@@ -1,19 +1,20 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  HorizontalView,
   Card,
+  Tree,
   Description,
   Form,
-  HorizontalView,
   Input,
-  Select,
+  Button,
   Table,
+  Select,
   TextArea,
-  Tree,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -24,6 +25,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '907996928354811904';
 const SceneAttrManage$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -38,6 +40,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const reloadSceneAttrTable = (options_9406952: any) => {
     const eventDatareloadDataSource26: any = [
@@ -1148,7 +1151,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_615837_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_615837_1')}
         {...injectData}
       >
         <HorizontalView
@@ -1170,7 +1173,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
             height: '100%',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['HorizontalView_446863'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'HorizontalView_446863')}
           {...injectData}
         >
           <View
@@ -1192,7 +1195,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
               height: '100%',
               overflowY: 'auto',
             }}
-            ref={(r: any) => (refs['View_778994'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_778994')}
             {...injectData}
           >
             <Card
@@ -1232,7 +1235,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                 margin: '0px 8px 16px 0px',
                 height: '100%',
               }}
-              ref={(r: any) => (refs['Card_80508'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_80508')}
               {...injectData}
             >
               <Tree
@@ -2719,7 +2722,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Tree_762542'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Tree_762542')}
                 {...injectData}
               />
             </Card>
@@ -2743,7 +2746,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
               height: '100%',
               overflowY: 'auto',
             }}
-            ref={(r: any) => (refs['View_733267'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_733267')}
             {...injectData}
           >
             <Card
@@ -2782,7 +2785,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                 overflowY: 'visible',
                 margin: '0 0 16px 0',
               }}
-              ref={(r: any) => (refs['Card_329487'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_329487')}
               {...injectData}
             >
               <Description
@@ -3044,7 +3047,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 readOnly={false}
-                ref={(r: any) => (refs['Description_503174'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Description_503174')}
                 {...injectData}
               />
             </Card>
@@ -3269,7 +3272,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Card_70762'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_70762')}
               {...injectData}
             >
               <View
@@ -3290,7 +3293,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   width: '100%',
                 }}
-                ref={(r: any) => (refs['View_126841'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_126841')}
                 {...injectData}
               >
                 <Form
@@ -3318,7 +3321,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     margin: '0px 0px 12px 0px',
                   }}
-                  ref={(r: any) => (refs['Form_581788'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Form_581788')}
                   {...injectData}
                 >
                   <Input
@@ -3399,7 +3402,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Input_950437'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Input_950437')}
                     {...injectData}
                   />
                   <Input
@@ -3480,7 +3483,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Input_108908'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Input_108908')}
                     {...injectData}
                   />
                   <View
@@ -3512,7 +3515,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                       padding: '0px 0px 0px 0px',
                       width: '100%',
                     }}
-                    ref={(r: any) => (refs['View_948154'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'View_948154')}
                     {...injectData}
                   >
                     <Button
@@ -3667,7 +3670,9 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                           },
                         );
                       }}
-                      ref={(r: any) => (refs['Button_3440476'] = r)}
+                      ref={(r: any) =>
+                        refs.setComponentRef(r, 'Button_3440476')
+                      }
                       {...injectData}
                     />
                     <Button
@@ -3700,7 +3705,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                           : [forms124]
                         ).forEach((form) => form?.resetFields());
                       }}
-                      ref={(r: any) => (refs['Button_555132'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Button_555132')}
                       {...injectData}
                     />
                   </View>
@@ -3724,7 +3729,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   width: '100%',
                 }}
-                ref={(r: any) => (refs['View_1373491'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_1373491')}
                 {...injectData}
               >
                 <Table
@@ -4872,7 +4877,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Table_22551098'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Table_22551098')}
                   {...injectData}
                 />
               </View>
@@ -4913,7 +4918,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                 overflowY: 'visible',
                 margin: '0 0 16px 0',
               }}
-              ref={(r: any) => (refs['Card_5896703'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_5896703')}
               {...injectData}
             >
               <Form
@@ -4938,7 +4943,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ padding: '0px 0px 0px 0px' }}
-                ref={(r: any) => (refs['Form_216578'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_216578')}
                 {...injectData}
               >
                 <Select
@@ -4968,7 +4973,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_491898'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_491898')}
                   {...injectData}
                 />
                 <Select
@@ -4997,7 +5002,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_0336964'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_0336964')}
                   {...injectData}
                 />
                 <Input
@@ -5041,7 +5046,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={true}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_96601'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_96601')}
                   {...injectData}
                 />
                 <Input
@@ -5085,7 +5090,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={true}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_504732'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_504732')}
                   {...injectData}
                 />
                 <Select
@@ -5115,7 +5120,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_119104'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_119104')}
                   {...injectData}
                 />
                 <Select
@@ -5306,7 +5311,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                       platform: 'pc',
                     });
                   }}
-                  ref={(r: any) => (refs['Select_031271'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_031271')}
                   {...injectData}
                 />
                 <Input
@@ -5350,7 +5355,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_871951'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_871951')}
                   {...injectData}
                 />
                 <TextArea
@@ -5375,7 +5380,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['TextArea_729335'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'TextArea_729335')}
                   {...injectData}
                 />
                 <Input
@@ -5419,7 +5424,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                   visible={false}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_563747'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_563747')}
                   {...injectData}
                 />
                 <Input
@@ -5463,7 +5468,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                   visible={false}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_661498'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_661498')}
                   {...injectData}
                 />
               </Form>
@@ -5487,7 +5492,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                   textAlign: 'center',
                   margin: '20px 0px 0px 0px',
                 }}
-                ref={(r: any) => (refs['View_345884'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_345884')}
                 {...injectData}
               >
                 <Button
@@ -5933,7 +5938,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                       platform: 'pc',
                     });
                   }}
-                  ref={(r: any) => (refs['Button_3133285'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_3133285')}
                   {...injectData}
                 />
                 <Button
@@ -6034,7 +6039,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                       platform: 'pc',
                     });
                   }}
-                  ref={(r: any) => (refs['Button_550582'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_550582')}
                   {...injectData}
                 />
               </View>
@@ -6047,7 +6052,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(SceneAttrManage$$Page, {
-  pageId: '907996928354811904',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

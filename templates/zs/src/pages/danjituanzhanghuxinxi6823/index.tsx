@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Text, View } from '@/components/factory';
+import { View, Text, Button } from '@/components/factory';
 
 import BusiComp922954 from '@/components/BusiComp922954';
 
@@ -12,6 +13,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '1062264568267497472';
 const Danjituanzhanghuxinxi6823$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -27,6 +29,7 @@ const Danjituanzhanghuxinxi6823$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {};
 
@@ -357,7 +360,7 @@ const Danjituanzhanghuxinxi6823$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_3261445_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_3261445_1')}
         {...injectData}
       >
         <View
@@ -380,7 +383,7 @@ const Danjituanzhanghuxinxi6823$$Modal: React.FC<PageProps> = ({
             width: '100%',
             margin: '0px 0px 12px 0px',
           }}
-          ref={(r: any) => (refs['View_7764849'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_7764849')}
           {...injectData}
         >
           <Text
@@ -407,7 +410,7 @@ const Danjituanzhanghuxinxi6823$$Modal: React.FC<PageProps> = ({
               letterSpacing: '',
               margin: '0px 0px 0px 0px',
             }}
-            ref={(r: any) => (refs['Text_348574'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_348574')}
             {...injectData}
           />
         </View>
@@ -417,7 +420,7 @@ const Danjituanzhanghuxinxi6823$$Modal: React.FC<PageProps> = ({
           fieldName={'accountInfo'}
           busiCompStates={{ accountInfo: data?.accountInfo }}
           style={{ margin: '0 0 12px 0' }}
-          ref={(r: any) => (refs['BOFramer_579665'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'BOFramer_579665')}
           {...injectData}
         />
         <View
@@ -440,7 +443,7 @@ const Danjituanzhanghuxinxi6823$$Modal: React.FC<PageProps> = ({
             width: 'fit-content',
             margin: '12px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['View_124958'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_124958')}
           {...injectData}
         >
           <Text
@@ -468,7 +471,7 @@ const Danjituanzhanghuxinxi6823$$Modal: React.FC<PageProps> = ({
               backgroundColor: '#ffff80',
               letterSpacing: '',
             }}
-            ref={(r: any) => (refs['Text_433279'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_433279')}
             {...injectData}
           />
         </View>
@@ -493,7 +496,7 @@ const Danjituanzhanghuxinxi6823$$Modal: React.FC<PageProps> = ({
             justifyContent: 'flex-end',
             margin: '24px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['View_808623'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_808623')}
           {...injectData}
         >
           <View
@@ -515,7 +518,7 @@ const Danjituanzhanghuxinxi6823$$Modal: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_820281'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_820281')}
             {...injectData}
           >
             <Button
@@ -562,7 +565,7 @@ const Danjituanzhanghuxinxi6823$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_2848012'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_2848012')}
               {...injectData}
             />
           </View>
@@ -573,7 +576,7 @@ const Danjituanzhanghuxinxi6823$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Danjituanzhanghuxinxi6823$$Modal, {
-  pageId: '1062264568267497472',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

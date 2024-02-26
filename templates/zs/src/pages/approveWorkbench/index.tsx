@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Card, TabPane, Tabs, View, Webview } from '@/components/factory';
+import { View, Card, Tabs, TabPane, Webview } from '@/components/factory';
 
 import Pageview from '@/components/Pageview';
 
@@ -12,6 +13,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '922008281896452096';
 const ApproveWorkbench$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -26,6 +28,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const refreshTable = (options_040131: any) => {
     const eventDataifelse43: any = [
@@ -1255,7 +1258,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_212281_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_212281_1')}
         {...injectData}
       >
         <Card
@@ -1297,7 +1300,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_7670245'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_7670245')}
           {...injectData}
         >
           <Tabs
@@ -1324,7 +1327,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
               margin: '0 0 16px 0',
               padding: '20px 20px 20px 20px',
             }}
-            ref={(r: any) => (refs['Tabs_03082616'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Tabs_03082616')}
             {...injectData}
           >
             <TabPane
@@ -1341,7 +1344,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['486332'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, '486332')}
               {...injectData}
             >
               <Pageview
@@ -1350,8 +1353,11 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/auditStart'}
                 pageId={'887537833022541824'}
                 style={{ height: '650px', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_801102_4765882_371096'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Pageview_801102_4765882_371096')
+                }
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
             <TabPane
@@ -1374,7 +1380,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 `${functorsMap?.IF(data?.rolePrivilege?.OTHER, 1, 2)}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['TabPane_9343164'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TabPane_9343164')}
               {...injectData}
             >
               <Pageview
@@ -1387,8 +1393,9 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/myOrderTodo_202212191506'}
                 pageId={'922008623740616704'}
                 style={{ height: 'auto', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_993868'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Pageview_993868')}
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
             <TabPane
@@ -1411,7 +1418,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 `${functorsMap?.IF(data?.rolePrivilege?.OTHER, 1, 2)}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['TabPane_07071'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TabPane_07071')}
               {...injectData}
             >
               <Pageview
@@ -1423,8 +1430,9 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/myOrderDone_202212191506copy'}
                 pageId={'922038101271379968'}
                 style={{ height: 'auto', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_208346'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Pageview_208346')}
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
             <TabPane
@@ -1447,7 +1455,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 `${functorsMap?.IF(data?.rolePrivilege?.OTHER, 1, 2)}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['263706'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, '263706')}
               {...injectData}
             >
               <Pageview
@@ -1459,8 +1467,9 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/myOrderInitiatedApplication_202212191621'}
                 pageId={'922040879843135488'}
                 style={{ height: 'auto', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_081265'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Pageview_081265')}
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
             <TabPane
@@ -1483,7 +1492,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 `${functorsMap?.IF(data?.rolePrivilege?.OTHER, 1, 2)}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['671983'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, '671983')}
               {...injectData}
             >
               <Pageview
@@ -1492,8 +1501,9 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/myOrderRead_202212191629'}
                 pageId={'922042996011565056'}
                 style={{ height: 'auto', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_7458638'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Pageview_7458638')}
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
             <TabPane
@@ -1516,7 +1526,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 `${functorsMap?.IF(data?.rolePrivilege?.OTHER, 1, 2)}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['5910484'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, '5910484')}
               {...injectData}
             >
               <Pageview
@@ -1525,8 +1535,9 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/myDraft_202212191639'}
                 pageId={'922045372277719040'}
                 style={{ height: 'auto', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_6965484'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Pageview_6965484')}
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
             <TabPane
@@ -1561,7 +1572,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 )}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['250009'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, '250009')}
               {...injectData}
             >
               <Pageview
@@ -1573,8 +1584,9 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/approveOrderQuery'}
                 pageId={'922050100039012352'}
                 style={{ height: 'auto', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_801102'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Pageview_801102')}
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
             <TabPane
@@ -1609,7 +1621,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 )}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['5036094'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, '5036094')}
               {...injectData}
             >
               <Pageview
@@ -1618,8 +1630,11 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 pageSrc={'/exportDownLoad'}
                 pageId={'940142497926754304'}
                 style={{ height: 'auto', width: '100%' }}
-                ref={(r: any) => (refs['Pageview_801102_4765882'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Pageview_801102_4765882')
+                }
                 {...injectData}
+                parentEngineId={parentEngineId}
               />
             </TabPane>
             <TabPane
@@ -1636,7 +1651,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['TabPane_978363'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TabPane_978363')}
               {...injectData}
             >
               <Webview
@@ -1649,7 +1664,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
                 }}
                 style={{ height: '653px', width: '100%', border: 'none' }}
                 onMessage={(data: any) => {}}
-                ref={(r: any) => (refs['Webview_020503'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Webview_020503')}
                 {...injectData}
               />
             </TabPane>
@@ -1661,7 +1676,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ApproveWorkbench$$Page, {
-  pageId: '922008281896452096',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

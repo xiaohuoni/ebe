@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
-  Form,
-  Input,
-  Select,
-  Table,
-  Text,
   View,
+  Form,
+  Select,
+  Text,
+  Input,
+  Button,
+  Table,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -18,6 +19,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '899130537225986048';
 const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -33,6 +35,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const calculV4Num = (options_8722644: any) => {
     const eventDatagetValue39: any = [
@@ -4936,7 +4939,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_8430824_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_8430824_1')}
         {...injectData}
       >
         <View
@@ -4957,7 +4960,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_917911'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_917911')}
           {...injectData}
         >
           <Form
@@ -5449,7 +5452,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Form_981467'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_981467')}
             {...injectData}
           >
             <Select
@@ -5901,7 +5904,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Input_busiType_956176'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_busiType_956176')}
               {...injectData}
             />
             <View
@@ -5932,7 +5935,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_937235'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_937235')}
               {...injectData}
             >
               <View
@@ -5956,7 +5959,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   width: '100%',
                 }}
-                ref={(r: any) => (refs['View_001221'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_001221')}
                 {...injectData}
               >
                 <View
@@ -5979,7 +5982,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_536092'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_536092')}
                   {...injectData}
                 >
                   <Text
@@ -6006,7 +6009,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                       flex: 1.9,
                       padding: '0px 4px 0px 0px',
                     }}
-                    ref={(r: any) => (refs['Text_062895'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Text_062895')}
                     {...injectData}
                   />
                   <Text
@@ -6032,7 +6035,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                       backgroundColor: 'rgba(255, 255, 255,0)',
                       width: '60px',
                     }}
-                    ref={(r: any) => (refs['Text_6076956'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Text_6076956')}
                     {...injectData}
                   />
                   <View
@@ -6057,7 +6060,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                       alignItems: 'center',
                       flex: 6.5,
                     }}
-                    ref={(r: any) => (refs['View_550961'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'View_550961')}
                     {...injectData}
                   >
                     <View
@@ -6080,7 +6083,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                         width: '100%',
                         flex: 4,
                       }}
-                      ref={(r: any) => (refs['View_110599'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'View_110599')}
                       {...injectData}
                     >
                       <Input
@@ -6123,7 +6126,9 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                         disabled={true}
                         visible={true}
                         readOnly={false}
-                        ref={(r: any) => (refs['Input_821244'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Input_821244')
+                        }
                         {...injectData}
                       />
                     </View>
@@ -6146,7 +6151,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                         width: '100px',
                         flex: 1,
                       }}
-                      ref={(r: any) => (refs['View_344628'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'View_344628')}
                       {...injectData}
                     >
                       <Button
@@ -7043,8 +7048,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                               condId: '8945507',
                                                               options: {
                                                                 useManual: true,
-                                                                useObject:
-                                                                  false,
+                                                                useObject: false,
                                                                 operate: '==',
                                                                 manualValue:
                                                                   '2',
@@ -7081,8 +7085,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                 {
                                                                   type: 'sysSetVisible',
                                                                   dataId: 168913099458973380,
-                                                                  shielding:
-                                                                    true,
+                                                                  shielding: true,
                                                                   options: {
                                                                     compId: [
                                                                       'Card_08175294',
@@ -7103,8 +7106,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                 {
                                                                   type: 'sysSetRequired',
                                                                   dataId: 168913099458917220,
-                                                                  shielding:
-                                                                    true,
+                                                                  shielding: true,
                                                                   options: {
                                                                     compId: [
                                                                       'Select_3511824',
@@ -7133,8 +7135,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                 {
                                                                   type: 'setDataSource',
                                                                   dataId: 168913099458923140,
-                                                                  shielding:
-                                                                    true,
+                                                                  shielding: true,
                                                                   options: {
                                                                     compId:
                                                                       'setDataSource',
@@ -7160,8 +7161,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'busiType',
@@ -7181,8 +7181,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'standardPrice',
@@ -7202,8 +7201,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'receiptsPrice',
@@ -7223,8 +7221,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'bandwidth',
@@ -7244,8 +7241,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv6GiveNum',
@@ -7265,8 +7261,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv4GiveNum',
@@ -7286,8 +7281,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv6DemandNum',
@@ -7307,8 +7301,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv4DemandNum',
@@ -7328,8 +7321,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv6BeyondSel',
@@ -7349,8 +7341,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv4BeyondNum',
@@ -7370,8 +7361,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv6BeyondCost',
@@ -7391,8 +7381,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv4BeyondCount',
@@ -7412,8 +7401,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'unitPrice',
@@ -7433,8 +7421,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'lastDiscount',
@@ -7454,8 +7441,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'market',
@@ -7475,8 +7461,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'busiTypeName',
@@ -7496,8 +7481,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'areaType',
@@ -7517,8 +7501,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'joinWay',
@@ -7538,8 +7521,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'bandwidthUp',
@@ -7559,8 +7541,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'bandwidthDown',
@@ -7580,8 +7561,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'bandwidthPort',
@@ -7601,8 +7581,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'singleUseFee',
@@ -7622,8 +7601,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'portFee',
@@ -7643,8 +7621,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv6BeyondNum',
@@ -7664,8 +7641,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv6BeyondCount',
@@ -7685,8 +7661,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'standardPriceSdWan',
@@ -7706,8 +7681,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'receiptsPriceSdWan',
@@ -7727,8 +7701,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'rowId',
@@ -7748,8 +7721,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'bandwidthUpName',
@@ -7769,8 +7741,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'bandwidthName',
@@ -7790,8 +7761,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _idpath:
                                                                             [
                                                                               '477975',
@@ -7811,8 +7781,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                               value:
                                                                                 'false',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           value:
                                                                             {
                                                                               type: [
@@ -7828,8 +7797,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             [
                                                                               '70285',
                                                                             ],
-                                                                          _deletable:
-                                                                            true,
+                                                                          _deletable: true,
                                                                         },
                                                                         {
                                                                           attrId:
@@ -7841,8 +7809,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _idpath:
                                                                             [
                                                                               '6604794',
@@ -7858,8 +7825,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'bandwidthDownName',
@@ -7879,8 +7845,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'busiLastDiscount',
@@ -7900,8 +7865,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'joinLineType',
@@ -7921,8 +7885,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv4BeyondCost',
@@ -7934,8 +7897,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                         },
                                                                       ],
                                                                     operateType: 1,
-                                                                    onlySetPatch:
-                                                                      true,
+                                                                    onlySetPatch: true,
                                                                     otherObjectArrayOptions:
                                                                       {},
                                                                     targetDataSourcePaths:
@@ -7948,8 +7910,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                 {
                                                                   type: 'setDataSource',
                                                                   dataId: 168915465295429660,
-                                                                  shielding:
-                                                                    true,
+                                                                  shielding: true,
                                                                   options: {
                                                                     compId:
                                                                       'setDataSource',
@@ -7975,8 +7936,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           value:
                                                                             {
                                                                               type: [
@@ -7995,13 +7955,11 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                         },
                                                                       ],
                                                                     operateType: 1,
-                                                                    onlySetPatch:
-                                                                      true,
+                                                                    onlySetPatch: true,
                                                                     otherObjectArrayOptions:
                                                                       {},
                                                                     targetDataSourcePaths:
@@ -8016,8 +7974,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                 {
                                                                   type: 'sysSetVisible',
                                                                   dataId: 168913099458942460,
-                                                                  shielding:
-                                                                    true,
+                                                                  shielding: true,
                                                                   options: {
                                                                     compId: [
                                                                       'Card_08175294',
@@ -8037,8 +7994,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                 {
                                                                   type: 'sysSetRequired',
                                                                   dataId: 168913099458937920,
-                                                                  shielding:
-                                                                    true,
+                                                                  shielding: true,
                                                                   options: {
                                                                     compId: [
                                                                       'Select_3511824',
@@ -8067,8 +8023,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                 {
                                                                   type: 'setDataSource',
                                                                   dataId: 168913099458993700,
-                                                                  shielding:
-                                                                    true,
+                                                                  shielding: true,
                                                                   options: {
                                                                     compId:
                                                                       'setDataSource',
@@ -8094,8 +8049,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'busiType',
@@ -8115,8 +8069,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'standardPrice',
@@ -8136,8 +8089,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'receiptsPrice',
@@ -8157,8 +8109,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'bandwidth',
@@ -8178,8 +8129,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv6GiveNum',
@@ -8199,8 +8149,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv4GiveNum',
@@ -8220,8 +8169,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv6DemandNum',
@@ -8241,8 +8189,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv4DemandNum',
@@ -8262,8 +8209,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv6BeyondSel',
@@ -8283,8 +8229,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv4BeyondNum',
@@ -8304,8 +8249,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv6BeyondCost',
@@ -8325,8 +8269,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv4BeyondCount',
@@ -8346,8 +8289,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'unitPrice',
@@ -8367,8 +8309,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'lastDiscount',
@@ -8388,8 +8329,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'market',
@@ -8409,8 +8349,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'busiTypeName',
@@ -8430,8 +8369,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'areaType',
@@ -8451,8 +8389,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'joinWay',
@@ -8472,8 +8409,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'bandwidthUp',
@@ -8493,8 +8429,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'bandwidthDown',
@@ -8514,8 +8449,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'bandwidthPort',
@@ -8535,8 +8469,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'singleUseFee',
@@ -8556,8 +8489,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'portFee',
@@ -8577,8 +8509,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv6BeyondNum',
@@ -8598,8 +8529,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv6BeyondCount',
@@ -8619,8 +8549,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'standardPriceSdWan',
@@ -8640,8 +8569,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'receiptsPriceSdWan',
@@ -8661,8 +8589,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'rowId',
@@ -8682,8 +8609,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'bandwidthUpName',
@@ -8703,8 +8629,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'bandwidthName',
@@ -8724,8 +8649,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _idpath:
                                                                             [
                                                                               '477975',
@@ -8745,8 +8669,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                               value:
                                                                                 'false',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           value:
                                                                             {
                                                                               type: [
@@ -8762,8 +8685,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             [
                                                                               '70285',
                                                                             ],
-                                                                          _deletable:
-                                                                            true,
+                                                                          _deletable: true,
                                                                         },
                                                                         {
                                                                           attrId:
@@ -8775,8 +8697,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _idpath:
                                                                             [
                                                                               '6604794',
@@ -8792,8 +8713,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'bandwidthDownName',
@@ -8813,8 +8733,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'busiLastDiscount',
@@ -8834,8 +8753,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'joinLineType',
@@ -8855,8 +8773,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           _codePath:
                                                                             [
                                                                               'ipv4BeyondCost',
@@ -8868,8 +8785,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                         },
                                                                       ],
                                                                     operateType: 1,
-                                                                    onlySetPatch:
-                                                                      true,
+                                                                    onlySetPatch: true,
                                                                     otherObjectArrayOptions:
                                                                       {},
                                                                     targetDataSourcePaths:
@@ -8882,8 +8798,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                 {
                                                                   type: 'setDataSource',
                                                                   dataId: 168915466480135360,
-                                                                  shielding:
-                                                                    true,
+                                                                  shielding: true,
                                                                   options: {
                                                                     compId:
                                                                       'setDataSource',
@@ -8909,8 +8824,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                           value:
                                                                             {
                                                                               type: [
@@ -8929,13 +8843,11 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                                                                             {
                                                                               type: 'static',
                                                                             },
-                                                                          showInput:
-                                                                            true,
+                                                                          showInput: true,
                                                                         },
                                                                       ],
                                                                     operateType: 1,
-                                                                    onlySetPatch:
-                                                                      true,
+                                                                    onlySetPatch: true,
                                                                     otherObjectArrayOptions:
                                                                       {},
                                                                     targetDataSourcePaths:
@@ -9000,7 +8912,9 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                             },
                           );
                         }}
-                        ref={(r: any) => (refs['Button_0317846'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Button_0317846')
+                        }
                         {...injectData}
                       />
                     </View>
@@ -9203,7 +9117,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_823017'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_823017')}
               {...injectData}
             />
             <Select
@@ -10010,7 +9924,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Input_4083588'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_4083588')}
               {...injectData}
             />
             <Input
@@ -10055,7 +9969,9 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_standardPrice_89896'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_standardPrice_89896')
+              }
               {...injectData}
             />
             <Select
@@ -10879,7 +10795,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Input_306376'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_306376')}
               {...injectData}
             />
             <Input
@@ -10967,7 +10883,9 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_receiptsPrice_488443'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_receiptsPrice_488443')
+              }
               {...injectData}
             />
             <Input
@@ -11012,7 +10930,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_303496'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_303496')}
               {...injectData}
             />
             <Input
@@ -11057,7 +10975,9 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_ipv6GiveNum_389494'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_ipv6GiveNum_389494')
+              }
               {...injectData}
             />
             <Input
@@ -11134,7 +11054,9 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_ipv4GiveNum_383367'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_ipv4GiveNum_383367')
+              }
               {...injectData}
             />
             <Input
@@ -11521,7 +11443,9 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_ipv6DemandNum_94541'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_ipv6DemandNum_94541')
+              }
               {...injectData}
             />
             <Input
@@ -11608,7 +11532,9 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_ipv4DemandNum_1451523902'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_ipv4DemandNum_1451523902')
+              }
               {...injectData}
             />
             <Select
@@ -12080,7 +12006,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Input_713501'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_713501')}
               {...injectData}
             />
             <Input
@@ -12125,7 +12051,9 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_ipv4BeyondNum_198033'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_ipv4BeyondNum_198033')
+              }
               {...injectData}
             />
             <Input
@@ -12180,7 +12108,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_1045175'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_1045175')}
               {...injectData}
             />
             <Input
@@ -12235,7 +12163,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_9380693'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_9380693')}
               {...injectData}
             />
             <Select
@@ -12834,7 +12762,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Input_4206103'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_4206103')}
               {...injectData}
             />
             <Input
@@ -12922,7 +12850,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_901541'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_901541')}
               {...injectData}
             />
             <Input
@@ -12998,7 +12926,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_593321'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_593321')}
               {...injectData}
             />
             <Input
@@ -13043,7 +12971,9 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_lastDiscount_72621'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_lastDiscount_72621')
+              }
               {...injectData}
             />
           </Form>
@@ -13070,7 +13000,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
           visible={false}
           readOnly={false}
           style={{ padding: '0px 0px 0px 0px', margin: '10px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Form_719112'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_719112')}
           {...injectData}
         >
           <Input
@@ -13264,7 +13194,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Input_672199'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_672199')}
             {...injectData}
           />
           <View
@@ -13296,7 +13226,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_015288'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_015288')}
             {...injectData}
           >
             <Button
@@ -13459,7 +13389,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Button_096039'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_096039')}
               {...injectData}
             />
           </View>
@@ -13488,7 +13418,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
             margin: '10px 0px 0px 0px',
           }}
           ref={(r: any) =>
-            (refs['View_015288_239109_6528729_3449095_643503'] = r)
+            refs.setComponentRef(r, 'View_015288_239109_6528729_3449095_643503')
           }
           {...injectData}
         >
@@ -13674,7 +13604,10 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
               );
             }}
             ref={(r: any) =>
-              (refs['Button_898304_051444_817773_2709943_217698'] = r)
+              refs.setComponentRef(
+                r,
+                'Button_898304_051444_817773_2709943_217698',
+              )
             }
             {...injectData}
           />
@@ -13839,7 +13772,10 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
               );
             }}
             ref={(r: any) =>
-              (refs['Button_096039_453083_336442_869852_4170704'] = r)
+              refs.setComponentRef(
+                r,
+                'Button_096039_453083_336442_869852_4170704',
+              )
             }
             {...injectData}
           />
@@ -13967,7 +13903,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
           visible={false}
           readOnly={false}
           style={{ margin: '10px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Table_6112271'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_6112271')}
           {...injectData}
         />
       </View>
@@ -13976,7 +13912,7 @@ const SdWanFeeAudit$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(SdWanFeeAudit$$Modal, {
-  pageId: '899130537225986048',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

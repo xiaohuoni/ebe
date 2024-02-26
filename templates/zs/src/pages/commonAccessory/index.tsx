@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
+  View,
+  Row,
   Form,
   Input,
-  Row,
   Select,
   StdUpload,
   Table,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -18,6 +19,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '917361051253690368';
 const CommonAccessory$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -32,6 +34,7 @@ const CommonAccessory$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDataapiRequest615: any = [
@@ -322,7 +325,7 @@ const CommonAccessory$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_303862_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_303862_1')}
         {...injectData}
       >
         <Row
@@ -338,7 +341,7 @@ const CommonAccessory$$Page: React.FC<PageProps> = ({
             type: 'Row',
             ...componentItem,
           }}
-          ref={(r: any) => (refs['Row_851124_1499437'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_851124_1499437')}
           {...injectData}
         >
           <Form
@@ -363,7 +366,7 @@ const CommonAccessory$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_810694'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_810694')}
             {...injectData}
           >
             <Input
@@ -407,7 +410,7 @@ const CommonAccessory$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_896718'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_896718')}
               {...injectData}
             />
           </Form>
@@ -431,7 +434,7 @@ const CommonAccessory$$Page: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '0px 0px 0px 0px', margin: '10px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_395851_1975566'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_395851_1975566')}
             {...injectData}
           >
             <Select
@@ -460,7 +463,7 @@ const CommonAccessory$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_690228_78512'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_690228_78512')}
               {...injectData}
             />
             <View
@@ -490,7 +493,7 @@ const CommonAccessory$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_22346374_224745'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_22346374_224745')}
               {...injectData}
             >
               <StdUpload
@@ -922,7 +925,9 @@ const CommonAccessory$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['StdUpload_6230546_626431'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'StdUpload_6230546_626431')
+                }
                 {...injectData}
               />
             </View>
@@ -944,7 +949,7 @@ const CommonAccessory$$Page: React.FC<PageProps> = ({
             width: '0A',
             height: 'auto',
           }}
-          ref={(r: any) => (refs['View_4949093_4607945'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_4949093_4607945')}
           {...injectData}
         >
           <Table
@@ -1366,7 +1371,7 @@ const CommonAccessory$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_5369494_0841236'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_5369494_0841236')}
             {...injectData}
           />
         </View>
@@ -1376,7 +1381,7 @@ const CommonAccessory$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(CommonAccessory$$Page, {
-  pageId: '917361051253690368',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

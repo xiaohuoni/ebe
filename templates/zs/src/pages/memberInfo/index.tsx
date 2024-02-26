@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
-  CheckboxGroup,
-  DatePicker,
+  View,
   Form,
   Input,
+  DatePicker,
   Select,
-  View,
+  CheckboxGroup,
+  Button,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -18,6 +19,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '886851191046930432';
 const MemberInfo$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -33,6 +35,7 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const loadSelectOptions = (options_9633757: any) => {
     const eventDatareloadSelectData10: any = [
@@ -786,7 +789,7 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_31_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_31_1')}
         {...injectData}
       >
         <View
@@ -801,7 +804,7 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_31_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_31_11')}
           {...injectData}
         >
           <View
@@ -824,7 +827,7 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
               margin: '0px 0px 0px 0px',
               borderRadius: '2px 2px 2px 2px',
             }}
-            ref={(r: any) => (refs['View_31_112'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_31_112')}
             {...injectData}
           >
             <Form
@@ -1094,7 +1097,7 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Form_31_1121'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_31_1121')}
               {...injectData}
             >
               <Input
@@ -1426,7 +1429,9 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Input_msisdn_9598107_208738'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_msisdn_9598107_208738')
+                }
                 {...injectData}
               />
               <DatePicker
@@ -1460,7 +1465,9 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
                 readOnly={false}
                 defaultValue={{}}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TimePicker_memberJoinDate_302123'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TimePicker_memberJoinDate_302123')
+                }
                 {...injectData}
               />
               <Input
@@ -1599,7 +1606,9 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_groupId_123125'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_groupId_123125')
+                }
                 {...injectData}
               />
               <Input
@@ -1647,7 +1656,9 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_groupName_099808'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_groupName_099808')
+                }
                 {...injectData}
               />
               <Input
@@ -1694,7 +1705,9 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_supervise_741551'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_supervise_741551')
+                }
                 {...injectData}
               />
               <Input
@@ -1742,7 +1755,9 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_groupLevelName_9386347'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_groupLevelName_9386347')
+                }
                 {...injectData}
               />
               <Input
@@ -1789,7 +1804,9 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_statusName_53895'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_statusName_53895')
+                }
                 {...injectData}
               />
               <Select
@@ -1904,7 +1921,7 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Select_8379702'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Select_8379702')}
                 {...injectData}
               />
               <Select
@@ -2012,7 +2029,7 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Select_309312'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Select_309312')}
                 {...injectData}
               />
               <Select
@@ -2120,7 +2137,7 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Select_609468'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Select_609468')}
                 {...injectData}
               />
               <Input
@@ -2168,7 +2185,7 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_duty_316705'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_duty_316705')}
                 {...injectData}
               />
               <DatePicker
@@ -2202,7 +2219,9 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
                 readOnly={false}
                 defaultValue={{}}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TimePicker_cutOffTime_8279925'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TimePicker_cutOffTime_8279925')
+                }
                 {...injectData}
               />
               <CheckboxGroup
@@ -2267,7 +2286,7 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_23389'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_23389')}
                 {...injectData}
               />
               <Button
@@ -2431,7 +2450,7 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Button_555894'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_555894')}
                 {...injectData}
               />
             </Form>
@@ -2802,7 +2821,7 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ padding: '0px 0px 0px 0px', margin: '0px 0px 10px 102px' }}
-          ref={(r: any) => (refs['Form_7791756'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_7791756')}
           {...injectData}
         />
       </View>
@@ -2811,7 +2830,7 @@ const MemberInfo$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(MemberInfo$$Modal, {
-  pageId: '886851191046930432',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, View } from '@/components/factory';
+import { View, Button } from '@/components/factory';
 
 import Pageview from '@/components/Pageview';
 
@@ -10,6 +11,7 @@ import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '961199011142324224';
 const Kaifaceshiyemian7391$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -24,6 +26,7 @@ const Kaifaceshiyemian7391$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -55,7 +58,7 @@ const Kaifaceshiyemian7391$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_5102934_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_5102934_1')}
         {...injectData}
       >
         <Pageview
@@ -64,8 +67,9 @@ const Kaifaceshiyemian7391$$Page: React.FC<PageProps> = ({
           pageSrc={'/zibiaodanyemian3314'}
           pageId={'912940693587320832'}
           style={{ height: 'auto', width: '100%' }}
-          ref={(r: any) => (refs['Pageview_970186'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Pageview_970186')}
           {...injectData}
+          parentEngineId={parentEngineId}
         />
         <Button
           name={'按钮'}
@@ -130,7 +134,7 @@ const Kaifaceshiyemian7391$$Page: React.FC<PageProps> = ({
               },
             );
           }}
-          ref={(r: any) => (refs['Button_8255664'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Button_8255664')}
           {...injectData}
         />
       </View>
@@ -139,7 +143,7 @@ const Kaifaceshiyemian7391$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Kaifaceshiyemian7391$$Page, {
-  pageId: '961199011142324224',
+  pageId,
   hasLogin: false,
   defaultState: {},
 });

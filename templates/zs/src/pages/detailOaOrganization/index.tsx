@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, Select, TimePicker, View } from '@/components/factory';
+import { View, Form, Input, Select, TimePicker } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '884353864870141952';
 const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatacloseModal101: any = [
@@ -684,7 +687,7 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_31_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_31_1')}
         {...injectData}
       >
         <View
@@ -697,7 +700,7 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_31_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_31_11')}
           {...injectData}
         >
           <View
@@ -718,7 +721,7 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
               margin: '0px 0px 0px 0px',
               borderRadius: '2px 2px 2px 2px',
             }}
-            ref={(r: any) => (refs['View_31_112'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_31_112')}
             {...injectData}
           >
             <Form
@@ -989,7 +992,7 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Form_31_1121'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_31_1121')}
               {...injectData}
             >
               <Input
@@ -1038,7 +1041,9 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_orgKey_8701255'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_orgKey_8701255')
+                }
                 {...injectData}
               />
               <Input
@@ -1087,7 +1092,9 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_parentOrgKey_4237584'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_parentOrgKey_4237584')
+                }
                 {...injectData}
               />
               <Input
@@ -1135,7 +1142,9 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_orgCode_026975'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_orgCode_026975')
+                }
                 {...injectData}
               />
               <Input
@@ -1184,7 +1193,9 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_orgName_075202'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_orgName_075202')
+                }
                 {...injectData}
               />
               <Input
@@ -1233,7 +1244,9 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_orgKeyPath_446408'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_orgKeyPath_446408')
+                }
                 {...injectData}
               />
               <Select
@@ -1267,7 +1280,9 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_orgDisabled_642199'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_orgDisabled_642199')
+                }
                 {...injectData}
               />
               <Input
@@ -1316,7 +1331,9 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_actUdfNum_160727'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_actUdfNum_160727')
+                }
                 {...injectData}
               />
               <Input
@@ -1365,7 +1382,9 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_orgOrder_031215'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_orgOrder_031215')
+                }
                 {...injectData}
               />
               <Select
@@ -1399,7 +1418,7 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_isGe_6127975'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_isGe_6127975')}
                 {...injectData}
               />
               <Select
@@ -1430,7 +1449,7 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_291446'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_291446')}
                 {...injectData}
               />
               <Select
@@ -1461,7 +1480,7 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Select_824307'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Select_824307')}
                 {...injectData}
               />
               <Select
@@ -1491,7 +1510,7 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Select_4187933'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Select_4187933')}
                 {...injectData}
               />
               <Select
@@ -1781,7 +1800,7 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Input_130433'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_130433')}
                 {...injectData}
               />
               <Select
@@ -1945,7 +1964,7 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Input_6604193'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_6604193')}
                 {...injectData}
               />
               <Select
@@ -1976,7 +1995,7 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_698224'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_698224')}
                 {...injectData}
               />
               <Input
@@ -2025,7 +2044,9 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_orgCreateby_2921535'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_orgCreateby_2921535')
+                }
                 {...injectData}
               />
               <TimePicker
@@ -2064,7 +2085,9 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TimePicker_orgCreate_5214955'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TimePicker_orgCreate_5214955')
+                }
                 {...injectData}
               />
               <Input
@@ -2113,7 +2136,9 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_orgUpdateby_499116'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_orgUpdateby_499116')
+                }
                 {...injectData}
               />
               <TimePicker
@@ -2152,7 +2177,9 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TimePicker_orgUpdate_337173'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TimePicker_orgUpdate_337173')
+                }
                 {...injectData}
               />
             </Form>
@@ -2164,7 +2191,7 @@ const DetailOaOrganization$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(DetailOaOrganization$$Modal, {
-  pageId: '884353864870141952',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', dcOaOrg: '' },

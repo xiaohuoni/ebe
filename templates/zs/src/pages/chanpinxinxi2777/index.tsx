@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, Select, View } from '@/components/factory';
+import { View, Form, Select, Input } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '981367920350507008';
 const Chanpinxinxi2777$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -23,6 +25,7 @@ const Chanpinxinxi2777$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatavalidateCurrentForm38: any = [
@@ -377,7 +380,7 @@ const Chanpinxinxi2777$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_155171_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_155171_1')}
         {...injectData}
       >
         <Form
@@ -402,7 +405,7 @@ const Chanpinxinxi2777$$Modal: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ padding: '0px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Form_3914687'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_3914687')}
           {...injectData}
         >
           <Select
@@ -431,7 +434,7 @@ const Chanpinxinxi2777$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Select_0358282'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Select_0358282')}
             {...injectData}
           />
           <Input
@@ -485,7 +488,7 @@ const Chanpinxinxi2777$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_771387'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_771387')}
             {...injectData}
           />
           <Input
@@ -539,7 +542,7 @@ const Chanpinxinxi2777$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_909161'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_909161')}
             {...injectData}
           />
           <Input
@@ -593,7 +596,7 @@ const Chanpinxinxi2777$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_113386'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_113386')}
             {...injectData}
           />
           <Input
@@ -647,7 +650,7 @@ const Chanpinxinxi2777$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_5806962'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_5806962')}
             {...injectData}
           />
         </Form>
@@ -657,7 +660,7 @@ const Chanpinxinxi2777$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Chanpinxinxi2777$$Modal, {
-  pageId: '981367920350507008',
+  pageId,
   hasLogin: false,
   defaultState: {
     bizId: '',

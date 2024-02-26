@@ -1,18 +1,19 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  VerticalView,
   Card,
   Form,
   Input,
+  Button,
   Table,
-  TabPane,
   Tabs,
+  TabPane,
   TextArea,
-  VerticalView,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -23,6 +24,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '953182638975242240';
 const OaRoleManage$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -37,6 +39,7 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const reloadRolePage = (options_4923572: any) => {
     const eventDataclearTableSelected2: any = [
@@ -2556,7 +2559,7 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
           display: 'block',
           padding: '20px 20px 20px 20px',
         }}
-        ref={(r: any) => (refs['View_49_1_67055'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_49_1_67055')}
         {...injectData}
       >
         <VerticalView
@@ -2579,7 +2582,7 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
             height: '100%',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['VerticalView_849982'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_849982')}
           {...injectData}
         >
           <View
@@ -2600,7 +2603,7 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
               height: '30%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_98383'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_98383')}
             {...injectData}
           >
             <Card
@@ -2874,7 +2877,7 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Card_148054'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_148054')}
               {...injectData}
             >
               <Form
@@ -2899,7 +2902,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ padding: '0px 0px 0px 0px' }}
-                ref={(r: any) => (refs['Form_7756987_259648_20402'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Form_7756987_259648_20402')
+                }
                 {...injectData}
               >
                 <Input
@@ -2980,7 +2985,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_650422_201996_367102'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Input_650422_201996_367102')
+                  }
                   {...injectData}
                 />
                 <Input
@@ -3061,7 +3068,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_984985_229345_946567'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Input_984985_229345_946567')
+                  }
                   {...injectData}
                 />
                 <View
@@ -3091,7 +3100,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_756929_0062074_149525'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'View_756929_0062074_149525')
+                  }
                   {...injectData}
                 >
                   <Button
@@ -3236,7 +3247,7 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                       );
                     }}
                     ref={(r: any) =>
-                      (refs['Button_508625_7684763_2284761'] = r)
+                      refs.setComponentRef(r, 'Button_508625_7684763_2284761')
                     }
                     {...injectData}
                   />
@@ -3272,7 +3283,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                         (form) => form?.resetFields(),
                       );
                     }}
-                    ref={(r: any) => (refs['Button_228714_24039_290211'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'Button_228714_24039_290211')
+                    }
                     {...injectData}
                   />
                 </View>
@@ -4986,7 +4999,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_49_112_5440223'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Table_49_112_5440223')
+                }
                 {...injectData}
               />
             </Card>
@@ -5009,7 +5024,7 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
               height: '100%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_8862728'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_8862728')}
             {...injectData}
           >
             <Tabs
@@ -5035,7 +5050,7 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                 margin: '0 0 16px 0',
                 padding: '20px 20px 20px 20px',
               }}
-              ref={(r: any) => (refs['Tabs_289434_553153'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Tabs_289434_553153')}
               {...injectData}
             >
               <TabPane
@@ -5052,7 +5067,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ minHeight: 40 }}
-                ref={(r: any) => (refs['TabPane_61107_459245'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TabPane_61107_459245')
+                }
                 {...injectData}
               >
                 <View
@@ -5067,7 +5084,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   style={{ width: '100%' }}
-                  ref={(r: any) => (refs['View_49_21119_565356'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'View_49_21119_565356')
+                  }
                   {...injectData}
                 >
                   <Card
@@ -5109,7 +5128,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                       overflowY: 'visible',
                       margin: '0 0 16px 0',
                     }}
-                    ref={(r: any) => (refs['Card_49_21114_192888'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'Card_49_21114_192888')
+                    }
                     {...injectData}
                   >
                     <Form
@@ -5135,7 +5156,10 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                       readOnly={false}
                       style={{ padding: '0px 0px 0px 0px' }}
                       ref={(r: any) =>
-                        (refs['Form_7756987_259648_631751_7847953'] = r)
+                        refs.setComponentRef(
+                          r,
+                          'Form_7756987_259648_631751_7847953',
+                        )
                       }
                       {...injectData}
                     >
@@ -5181,8 +5205,10 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                         readOnly={false}
                         isFormRootChild={true}
                         ref={(r: any) =>
-                          (refs['Input_650422_201996_788381_6178676_7567953'] =
-                            r)
+                          refs.setComponentRef(
+                            r,
+                            'Input_650422_201996_788381_6178676_7567953',
+                          )
                         }
                         {...injectData}
                       />
@@ -5228,7 +5254,10 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                         readOnly={false}
                         isFormRootChild={true}
                         ref={(r: any) =>
-                          (refs['Input_984985_229345_5159784_98625'] = r)
+                          refs.setComponentRef(
+                            r,
+                            'Input_984985_229345_5159784_98625',
+                          )
                         }
                         {...injectData}
                       />
@@ -5273,7 +5302,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                         visible={true}
                         readOnly={false}
                         isFormRootChild={true}
-                        ref={(r: any) => (refs['Input_406219_191123'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Input_406219_191123')
+                        }
                         {...injectData}
                       />
                       <Input
@@ -5317,7 +5348,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                         visible={true}
                         readOnly={false}
                         isFormRootChild={true}
-                        ref={(r: any) => (refs['Input_104648_778286'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Input_104648_778286')
+                        }
                         {...injectData}
                       />
                       <Input
@@ -5361,7 +5394,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                         visible={true}
                         readOnly={false}
                         isFormRootChild={true}
-                        ref={(r: any) => (refs['Input_001443'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Input_001443')
+                        }
                         {...injectData}
                       />
                       <Input
@@ -5405,7 +5440,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                         visible={true}
                         readOnly={false}
                         isFormRootChild={true}
-                        ref={(r: any) => (refs['Input_84498515'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Input_84498515')
+                        }
                         {...injectData}
                       />
                       <Input
@@ -5487,7 +5524,10 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                           );
                         }}
                         ref={(r: any) =>
-                          (refs['Input_650422_201996_788381_597941'] = r)
+                          refs.setComponentRef(
+                            r,
+                            'Input_650422_201996_788381_597941',
+                          )
                         }
                         {...injectData}
                       />
@@ -5513,7 +5553,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                         visible={true}
                         readOnly={false}
                         isFormRootChild={true}
-                        ref={(r: any) => (refs['TextArea_7406107_193398'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'TextArea_7406107_193398')
+                        }
                         {...injectData}
                       />
                     </Form>
@@ -5540,7 +5582,10 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                       boxShadow: '0px 1px 0px 0px #e7e8ea inset',
                     }}
                     ref={(r: any) =>
-                      (refs['View_30_1122_56129022_411221_7870947_044507'] = r)
+                      refs.setComponentRef(
+                        r,
+                        'View_30_1122_56129022_411221_7870947_044507',
+                      )
                     }
                     {...injectData}
                   >
@@ -5598,7 +5643,10 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                         );
                       }}
                       ref={(r: any) =>
-                        (refs['Button_30_121_490898_246542_8903187_156753'] = r)
+                        refs.setComponentRef(
+                          r,
+                          'Button_30_121_490898_246542_8903187_156753',
+                        )
                       }
                       {...injectData}
                     />
@@ -5659,7 +5707,7 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                           },
                         );
                       }}
-                      ref={(r: any) => (refs['Button_262564'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Button_262564')}
                       {...injectData}
                     />
                   </View>
@@ -5679,7 +5727,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ minHeight: 40 }}
-                ref={(r: any) => (refs['TabPane_27172808_1786752'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TabPane_27172808_1786752')
+                }
                 {...injectData}
               >
                 <VerticalView
@@ -5701,7 +5751,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                     height: '100%',
                     overflowY: 'auto',
                   }}
-                  ref={(r: any) => (refs['VerticalView_53096_900784'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'VerticalView_53096_900784')
+                  }
                   {...injectData}
                 >
                   <View
@@ -5722,7 +5774,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                       height: '0%',
                       width: '100%',
                     }}
-                    ref={(r: any) => (refs['View_3326182_3268316'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'View_3326182_3268316')
+                    }
                     {...injectData}
                   >
                     <Form
@@ -5747,7 +5801,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={false}
                       style={{ padding: '0px 0px 0px 0px' }}
-                      ref={(r: any) => (refs['Form_5336927_4844899'] = r)}
+                      ref={(r: any) =>
+                        refs.setComponentRef(r, 'Form_5336927_4844899')
+                      }
                       {...injectData}
                     >
                       <Input
@@ -5828,7 +5884,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                             },
                           );
                         }}
-                        ref={(r: any) => (refs['Input_510699_6740813'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Input_510699_6740813')
+                        }
                         {...injectData}
                       />
                       <Input
@@ -5909,7 +5967,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                             },
                           );
                         }}
-                        ref={(r: any) => (refs['Input_0129142_410003'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Input_0129142_410003')
+                        }
                         {...injectData}
                       />
                       <View
@@ -5943,7 +6003,10 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                           width: '100%',
                         }}
                         ref={(r: any) =>
-                          (refs['View_756929_0062074_7390883_702261'] = r)
+                          refs.setComponentRef(
+                            r,
+                            'View_756929_0062074_7390883_702261',
+                          )
                         }
                         {...injectData}
                       >
@@ -6008,7 +6071,10 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                             );
                           }}
                           ref={(r: any) =>
-                            (refs['Button_508625_7684763_98176_917748'] = r)
+                            refs.setComponentRef(
+                              r,
+                              'Button_508625_7684763_98176_917748',
+                            )
                           }
                           {...injectData}
                         />
@@ -6049,7 +6115,10 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                             ).forEach((form) => form?.resetFields());
                           }}
                           ref={(r: any) =>
-                            (refs['Button_228714_24039_080445_176283'] = r)
+                            refs.setComponentRef(
+                              r,
+                              'Button_228714_24039_080445_176283',
+                            )
                           }
                           {...injectData}
                         />
@@ -6136,8 +6205,10 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                             );
                           }}
                           ref={(r: any) =>
-                            (refs['Button_508625_7684763_98176_283668_501388'] =
-                              r)
+                            refs.setComponentRef(
+                              r,
+                              'Button_508625_7684763_98176_283668_501388',
+                            )
                           }
                           {...injectData}
                         />
@@ -6162,7 +6233,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                       height: '100%',
                       width: '100%',
                     }}
-                    ref={(r: any) => (refs['View_184463_000997'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'View_184463_000997')
+                    }
                     {...injectData}
                   >
                     <Table
@@ -6614,7 +6687,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                           },
                         );
                       }}
-                      ref={(r: any) => (refs['Table_554268_7374246'] = r)}
+                      ref={(r: any) =>
+                        refs.setComponentRef(r, 'Table_554268_7374246')
+                      }
                       {...injectData}
                     />
                   </View>
@@ -6634,7 +6709,7 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ minHeight: 40 }}
-                ref={(r: any) => (refs['558741'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, '558741')}
                 {...injectData}
               >
                 <VerticalView
@@ -6657,7 +6732,7 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                     overflowY: 'auto',
                   }}
                   ref={(r: any) =>
-                    (refs['VerticalView_53096_900784_705332'] = r)
+                    refs.setComponentRef(r, 'VerticalView_53096_900784_705332')
                   }
                   {...injectData}
                 >
@@ -6679,7 +6754,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                       height: '0%',
                       width: '100%',
                     }}
-                    ref={(r: any) => (refs['View_3326182_3268316_5894046'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'View_3326182_3268316_5894046')
+                    }
                     {...injectData}
                   >
                     <Form
@@ -6705,7 +6782,7 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                       readOnly={false}
                       style={{ padding: '0px 0px 0px 0px' }}
                       ref={(r: any) =>
-                        (refs['Form_5336927_4844899_195662'] = r)
+                        refs.setComponentRef(r, 'Form_5336927_4844899_195662')
                       }
                       {...injectData}
                     >
@@ -6788,7 +6865,7 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                           );
                         }}
                         ref={(r: any) =>
-                          (refs['Input_510699_6740813_802217'] = r)
+                          refs.setComponentRef(r, 'Input_510699_6740813_802217')
                         }
                         {...injectData}
                       />
@@ -6871,7 +6948,7 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                           );
                         }}
                         ref={(r: any) =>
-                          (refs['Input_0129142_410003_742934'] = r)
+                          refs.setComponentRef(r, 'Input_0129142_410003_742934')
                         }
                         {...injectData}
                       />
@@ -6906,8 +6983,10 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                           width: '100%',
                         }}
                         ref={(r: any) =>
-                          (refs['View_756929_0062074_7390883_702261_9817202'] =
-                            r)
+                          refs.setComponentRef(
+                            r,
+                            'View_756929_0062074_7390883_702261_9817202',
+                          )
                         }
                         {...injectData}
                       >
@@ -6975,9 +7054,10 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                             );
                           }}
                           ref={(r: any) =>
-                            (refs[
-                              'Button_508625_7684763_98176_917748_8923665'
-                            ] = r)
+                            refs.setComponentRef(
+                              r,
+                              'Button_508625_7684763_98176_917748_8923665',
+                            )
                           }
                           {...injectData}
                         />
@@ -7018,8 +7098,10 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                             ).forEach((form) => form?.resetFields());
                           }}
                           ref={(r: any) =>
-                            (refs['Button_228714_24039_080445_176283_7724355'] =
-                              r)
+                            refs.setComponentRef(
+                              r,
+                              'Button_228714_24039_080445_176283_7724355',
+                            )
                           }
                           {...injectData}
                         />
@@ -7109,9 +7191,10 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                             );
                           }}
                           ref={(r: any) =>
-                            (refs[
-                              'Button_508625_7684763_98176_283668_501388_7531295'
-                            ] = r)
+                            refs.setComponentRef(
+                              r,
+                              'Button_508625_7684763_98176_283668_501388_7531295',
+                            )
                           }
                           {...injectData}
                         />
@@ -7136,7 +7219,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                       height: '100%',
                       width: '100%',
                     }}
-                    ref={(r: any) => (refs['View_184463_000997_356501'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'View_184463_000997_356501')
+                    }
                     {...injectData}
                   >
                     <Table
@@ -7657,7 +7742,9 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
                           },
                         );
                       }}
-                      ref={(r: any) => (refs['Table_554268_7374246_75782'] = r)}
+                      ref={(r: any) =>
+                        refs.setComponentRef(r, 'Table_554268_7374246_75782')
+                      }
                       {...injectData}
                     />
                   </View>
@@ -7672,7 +7759,7 @@ const OaRoleManage$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(OaRoleManage$$Page, {
-  pageId: '953182638975242240',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

@@ -1,20 +1,22 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  Text,
   Form,
   Input,
-  Text,
   TextArea,
-  View,
+  Button,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '954925669228429312';
 const PostRequestPage$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -29,6 +31,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -58,7 +61,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_889267_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_889267_1')}
         {...injectData}
       >
         <View
@@ -71,7 +74,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_30_11_068364'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_30_11_068364')}
           {...injectData}
         >
           <View
@@ -92,7 +95,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
               margin: '0px 0px 20px 0px',
               borderRadius: '2px 2px 2px 2px',
             }}
-            ref={(r: any) => (refs['View_30_111_163518'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_30_111_163518')}
             {...injectData}
           >
             <Text
@@ -115,7 +118,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
                 color: '#1c242e',
                 margin: '0px 0px 4px 0px',
               }}
-              ref={(r: any) => (refs['Text_30_1111_509002'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_30_1111_509002')}
               {...injectData}
             />
             <Text
@@ -136,7 +139,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
                 lineHeight: '20px',
                 color: 'rgba(28,36,46,0.45)',
               }}
-              ref={(r: any) => (refs['Text_30_1112_137778'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_30_1112_137778')}
               {...injectData}
             />
           </View>
@@ -162,7 +165,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
               overflowY: 'visible',
               borderRadius: '2px 2px 2px 2px',
             }}
-            ref={(r: any) => (refs['View_30_112_907789'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_30_112_907789')}
             {...injectData}
           >
             <Form
@@ -288,7 +291,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
                 width: '90%',
                 padding: '20px 20px 20px 20px',
               }}
-              ref={(r: any) => (refs['Form_30_1121_209901'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_30_1121_209901')}
               {...injectData}
             >
               <Input
@@ -332,7 +335,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_782097'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_782097')}
                 {...injectData}
               />
               <TextArea
@@ -352,7 +355,9 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
                 }}
                 isFormRootChild={true}
                 style={{ height: '300px' }}
-                ref={(r: any) => (refs['TextArea_30_11219_3222443_341507'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TextArea_30_11219_3222443_341507')
+                }
                 {...injectData}
               />
             </Form>
@@ -375,7 +380,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
                 backgroundColor: '#ffffff',
                 boxShadow: '0px 1px 0px 0px #e7e8ea inset',
               }}
-              ref={(r: any) => (refs['View_30_1122_8942146'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_30_1122_8942146')}
               {...injectData}
             >
               <Button
@@ -574,7 +579,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_30_121_12703'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_30_121_12703')}
                 {...injectData}
               />
             </View>
@@ -586,7 +591,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(PostRequestPage$$Page, {
-  pageId: '954925669228429312',
+  pageId,
   hasLogin: false,
   defaultState: {},
 });

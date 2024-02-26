@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Card,
   Form,
   Input,
+  Button,
   Table,
   TextArea,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -20,6 +21,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '892712309456867328';
 const DcAbilityService$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -34,6 +36,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const refresh_table = (options_763614: any) => {
     const eventDatasetLoading35: any = [
@@ -701,7 +704,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_302536_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_302536_1')}
         {...injectData}
       >
         <Card
@@ -927,7 +930,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
               platform: 'pc',
             });
           }}
-          ref={(r: any) => (refs['Card_11411'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_11411')}
           {...injectData}
         >
           <Form
@@ -950,7 +953,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_2804244'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_2804244')}
             {...injectData}
           >
             <Input
@@ -1027,7 +1030,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_881668'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_881668')}
               {...injectData}
             />
             <Input
@@ -1103,7 +1106,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_5254568'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_5254568')}
               {...injectData}
             />
             <View
@@ -1131,7 +1134,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_131191'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_131191')}
               {...injectData}
             >
               <Button
@@ -1189,7 +1192,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_7271396'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_7271396')}
                 {...injectData}
               />
               <Button
@@ -1221,7 +1224,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                     (form) => form?.resetFields(),
                   );
                 }}
-                ref={(r: any) => (refs['Button_5706071'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_5706071')}
                 {...injectData}
               />
             </View>
@@ -2275,7 +2278,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_833694'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_833694')}
             {...injectData}
           />
         </Card>
@@ -2295,7 +2298,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_6254694'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_6254694')}
           {...injectData}
         >
           <Card
@@ -2335,7 +2338,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
               overflowY: 'visible',
               margin: '0px 0px 16px 0px',
             }}
-            ref={(r: any) => (refs['Card_465316'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_465316')}
             {...injectData}
           >
             <Form
@@ -2358,7 +2361,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ padding: '0px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_7532583'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_7532583')}
               {...injectData}
             >
               <Input
@@ -2402,7 +2405,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_918079'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_918079')}
                 {...injectData}
               />
               <Input
@@ -2446,7 +2449,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_416654'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_416654')}
                 {...injectData}
               />
               <Input
@@ -2490,7 +2493,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_274184'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_274184')}
                 {...injectData}
               />
               <Input
@@ -2534,7 +2537,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_389712'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_389712')}
                 {...injectData}
               />
               <Input
@@ -2578,7 +2581,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_4072777'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_4072777')}
                 {...injectData}
               />
               <Input
@@ -2622,7 +2625,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_951019'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_951019')}
                 {...injectData}
               />
               <Input
@@ -2666,7 +2669,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_891081'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_891081')}
                 {...injectData}
               />
               <Input
@@ -2710,7 +2713,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_891081_084949'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_891081_084949')}
                 {...injectData}
               />
               <Input
@@ -2754,7 +2757,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_476962'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_476962')}
                 {...injectData}
               />
               <TextArea
@@ -2777,7 +2780,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_887794'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_887794')}
                 {...injectData}
               />
               <Input
@@ -2821,7 +2824,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_1236207'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_1236207')}
                 {...injectData}
               />
             </Form>
@@ -2845,7 +2848,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                 margin: '16px 0px 0px 0px',
                 gap: '12px',
               }}
-              ref={(r: any) => (refs['View_567932'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_567932')}
               {...injectData}
             >
               <Button
@@ -3278,7 +3281,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_260692'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_260692')}
                 {...injectData}
               />
               <Button
@@ -3333,7 +3336,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_4650005'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_4650005')}
                 {...injectData}
               />
             </View>
@@ -3345,7 +3348,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(DcAbilityService$$Page, {
-  pageId: '892712309456867328',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

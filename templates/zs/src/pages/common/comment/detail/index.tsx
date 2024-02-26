@@ -1,20 +1,22 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  VerticalView,
   Card,
   Form,
   Input,
-  VerticalView,
-  View,
+  Button,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '895869924060143616';
 const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -30,6 +32,7 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDatasetCurrentFormValues7: any = [
@@ -362,7 +365,7 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_2540494_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_2540494_1')}
         {...injectData}
       >
         <VerticalView
@@ -382,7 +385,7 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
             height: '100%',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['VerticalView_7691962'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_7691962')}
           {...injectData}
         >
           <View
@@ -401,7 +404,7 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
               height: '100%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_115754'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_115754')}
             {...injectData}
           >
             <Card
@@ -440,7 +443,7 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
                 overflowY: 'visible',
                 margin: '0 0 16px 0',
               }}
-              ref={(r: any) => (refs['Card_685316'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_685316')}
               {...injectData}
             >
               <Form
@@ -463,7 +466,7 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 style={{ padding: '0px 0px 0px 0px' }}
-                ref={(r: any) => (refs['Form_984095'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_984095')}
                 {...injectData}
               >
                 <Input
@@ -507,7 +510,7 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
                     ...componentItem,
                   }}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_525853'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_525853')}
                   {...injectData}
                 />
                 <Input
@@ -551,7 +554,7 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_856528'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_856528')}
                   {...injectData}
                 />
                 <Input
@@ -596,7 +599,7 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
                     ...componentItem,
                   }}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_9043253'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_9043253')}
                   {...injectData}
                 />
                 <Input
@@ -640,7 +643,7 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
                     ...componentItem,
                   }}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_585455'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_585455')}
                   {...injectData}
                 />
               </Form>
@@ -663,7 +666,7 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
                 margin: '20px 0px 0px 0px',
                 textAlign: 'center',
               }}
-              ref={(r: any) => (refs['View_994054_940879'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_994054_940879')}
               {...injectData}
             >
               <Button
@@ -1523,7 +1526,9 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Button_641249_834079'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_641249_834079')
+                }
                 {...injectData}
               />
               <Button
@@ -1570,7 +1575,9 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Button_9864742_546572'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_9864742_546572')
+                }
                 {...injectData}
               />
             </View>
@@ -1582,7 +1589,7 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(CommonCommentDetail$$Modal, {
-  pageId: '895869924060143616',
+  pageId,
   hasLogin: false,
   defaultState: { sceneCode: '', itemData: '' },
 });

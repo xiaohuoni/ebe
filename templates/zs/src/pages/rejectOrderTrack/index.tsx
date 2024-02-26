@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Card, Table, View } from '@/components/factory';
+import { View, Card, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '912540533005234176';
 const RejectOrderTrack$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -24,6 +26,7 @@ const RejectOrderTrack$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDataapiRequest601: any = [
@@ -198,7 +201,7 @@ const RejectOrderTrack$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_915749_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_915749_1')}
         {...injectData}
       >
         <View
@@ -219,7 +222,7 @@ const RejectOrderTrack$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_137881_333325'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_137881_333325')}
           {...injectData}
         >
           <Card
@@ -261,7 +264,7 @@ const RejectOrderTrack$$Page: React.FC<PageProps> = ({
               overflowY: 'visible',
               margin: '0px 0px 0px 0px',
             }}
-            ref={(r: any) => (refs['Card_278795_70218'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_278795_70218')}
             {...injectData}
           >
             <Table
@@ -504,7 +507,7 @@ const RejectOrderTrack$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Table_2774954_0326707'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Table_2774954_0326707')}
               {...injectData}
             />
           </Card>
@@ -515,7 +518,7 @@ const RejectOrderTrack$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(RejectOrderTrack$$Page, {
-  pageId: '912540533005234176',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { gaapOrderNbr: '' },

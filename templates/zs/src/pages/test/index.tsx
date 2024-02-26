@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Checkbox, Divider, HorizontalView, View } from '@/components/factory';
+import { View, Divider, HorizontalView, Checkbox } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '932525247900168192';
 const Test$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -22,6 +24,7 @@ const Test$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     // console 167393811627362180
@@ -53,7 +56,9 @@ const Test$$Page: React.FC<PageProps> = ({
           overflowY: 'visible',
           width: '98%',
         }}
-        ref={(r: any) => (refs['View_537892_1_2061057_500084'] = r)}
+        ref={(r: any) =>
+          refs.setComponentRef(r, 'View_537892_1_2061057_500084')
+        }
         {...injectData}
       >
         <Divider
@@ -70,7 +75,9 @@ const Test$$Page: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ margin: '12px 0 12px 0', height: 'auto' }}
-          ref={(r: any) => (refs['Divider_52558_0392997_302136'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'Divider_52558_0392997_302136')
+          }
           {...injectData}
         />
         <View
@@ -89,7 +96,9 @@ const Test$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_6806553_449831_263933'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'View_6806553_449831_263933')
+          }
           {...injectData}
         >
           <HorizontalView
@@ -111,7 +120,9 @@ const Test$$Page: React.FC<PageProps> = ({
               overflowY: 'auto',
               margin: '0px 0px 0px 0px',
             }}
-            ref={(r: any) => (refs['HorizontalView_004602_63707_414276'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'HorizontalView_004602_63707_414276')
+            }
             {...injectData}
           >
             <View
@@ -132,7 +143,9 @@ const Test$$Page: React.FC<PageProps> = ({
                 overflowY: 'auto',
                 margin: '15px 0px 5px 0px',
               }}
-              ref={(r: any) => (refs['View_339406_281032_85457'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'View_339406_281032_85457')
+              }
               {...injectData}
             >
               <HorizontalView
@@ -155,7 +168,9 @@ const Test$$Page: React.FC<PageProps> = ({
                   overflowY: 'auto',
                   margin: '0px 0px 0px 0px',
                 }}
-                ref={(r: any) => (refs['HorizontalView_806975_0096748'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'HorizontalView_806975_0096748')
+                }
                 {...injectData}
               >
                 <View
@@ -177,7 +192,9 @@ const Test$$Page: React.FC<PageProps> = ({
                     height: '100%',
                     overflowY: 'auto',
                   }}
-                  ref={(r: any) => (refs['View_9690203_08144'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'View_9690203_08144')
+                  }
                   {...injectData}
                 >
                   <Checkbox
@@ -334,9 +351,10 @@ const Test$$Page: React.FC<PageProps> = ({
                       });
                     }}
                     ref={(r: any) =>
-                      (refs[
-                        'Checkbox_882584_5289015_934499_355644_646764_5265724_8221694_7217427_269901_5135105_6012577'
-                      ] = r)
+                      refs.setComponentRef(
+                        r,
+                        'Checkbox_882584_5289015_934499_355644_646764_5265724_8221694_7217427_269901_5135105_6012577',
+                      )
                     }
                     {...injectData}
                   />
@@ -360,7 +378,9 @@ const Test$$Page: React.FC<PageProps> = ({
                     width: '100%',
                     textAlign: 'right',
                   }}
-                  ref={(r: any) => (refs['View_200544_113112'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'View_200544_113112')
+                  }
                   {...injectData}
                 />
                 <View
@@ -381,7 +401,9 @@ const Test$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_200544_764009_37918'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'View_200544_764009_37918')
+                  }
                   {...injectData}
                 />
                 <View
@@ -404,7 +426,9 @@ const Test$$Page: React.FC<PageProps> = ({
                     overflowY: 'auto',
                     textAlign: 'right',
                   }}
-                  ref={(r: any) => (refs['View_741146_4429651_115949'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'View_741146_4429651_115949')
+                  }
                   {...injectData}
                 />
                 <View
@@ -427,7 +451,7 @@ const Test$$Page: React.FC<PageProps> = ({
                     overflowY: 'auto',
                   }}
                   ref={(r: any) =>
-                    (refs['View_741146_4429651_673978_643572'] = r)
+                    refs.setComponentRef(r, 'View_741146_4429651_673978_643572')
                   }
                   {...injectData}
                 />
@@ -441,7 +465,7 @@ const Test$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Test$$Page, {
-  pageId: '932525247900168192',
+  pageId,
   hasLogin: false,
   defaultState: {
     sceneCode: '',

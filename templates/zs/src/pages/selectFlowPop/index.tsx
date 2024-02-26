@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Input, Table, View } from '@/components/factory';
+import { View, Form, Input, Button, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -12,6 +13,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '942679179824185344';
 const SelectFlowPop$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -27,6 +29,7 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatagetTableSelectedKey6: any = [
@@ -822,7 +825,7 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_3917512_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_3917512_1')}
         {...injectData}
       >
         <View
@@ -842,7 +845,7 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
             width: '100%',
             margin: '0px 0px 20px 0px',
           }}
-          ref={(r: any) => (refs['View_502387_150344'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_502387_150344')}
           {...injectData}
         >
           <Form
@@ -865,7 +868,7 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_7756987_483119'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_7756987_483119')}
             {...injectData}
           >
             <Input
@@ -941,7 +944,7 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_650422_142377'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_650422_142377')}
               {...injectData}
             />
             <Input
@@ -1017,7 +1020,7 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_984985_381438'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_984985_381438')}
               {...injectData}
             />
             <View
@@ -1045,7 +1048,7 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_756929_604978'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_756929_604978')}
               {...injectData}
             >
               <Button
@@ -1439,7 +1442,9 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_508625_1378867'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_508625_1378867')
+                }
                 {...injectData}
               />
               <Button
@@ -1470,7 +1475,9 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
                     (form) => form?.resetFields(),
                   );
                 }}
-                ref={(r: any) => (refs['Button_228714_659326'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_228714_659326')
+                }
                 {...injectData}
               />
             </View>
@@ -1492,7 +1499,7 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_41543_33842'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_41543_33842')}
           {...injectData}
         >
           <Table
@@ -2067,7 +2074,7 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_197744_552153'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_197744_552153')}
             {...injectData}
           />
         </View>
@@ -2077,7 +2084,7 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(SelectFlowPop$$Modal, {
-  pageId: '942679179824185344',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', tacheCfgId: '' },

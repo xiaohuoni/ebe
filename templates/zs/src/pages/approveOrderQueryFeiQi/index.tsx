@@ -1,17 +1,18 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Card,
-  CheckboxGroup,
   Form,
   Input,
+  Button,
   RangePicker,
   Select,
+  CheckboxGroup,
   Table,
-  View,
 } from '@/components/factory';
 
 import BusiComp2086 from '@/components/BusiComp2086';
@@ -22,6 +23,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '877382707076423680';
 const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -36,6 +38,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -65,7 +68,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_541575_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_541575_1')}
         {...injectData}
       >
         <Card
@@ -104,7 +107,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_012576'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_012576')}
           {...injectData}
         >
           <Form
@@ -127,7 +130,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_126816'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_126816')}
             {...injectData}
           >
             <Input
@@ -171,7 +174,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_8789281'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_8789281')}
               {...injectData}
             />
             <Input
@@ -215,7 +218,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_421306'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_421306')}
               {...injectData}
             />
             <View
@@ -247,7 +250,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
                 justifyContent: 'flex-end',
                 alignItems: 'center',
               }}
-              ref={(r: any) => (refs['View_445165'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_445165')}
               {...injectData}
             >
               <Button
@@ -309,7 +312,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Button_616697'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_616697')}
                 {...injectData}
               />
               <Button
@@ -333,7 +336,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 style={{ width: 'fit-content', margin: '0px 8px 0px 8px' }}
-                ref={(r: any) => (refs['Button_505213'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_505213')}
                 {...injectData}
               />
               <Button
@@ -428,7 +431,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Button_5899747'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_5899747')}
                 {...injectData}
               />
               <Button
@@ -523,7 +526,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Button_582318'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_582318')}
                 {...injectData}
               />
             </View>
@@ -544,7 +547,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_158841'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_158841')}
             {...injectData}
           >
             <Form
@@ -567,7 +570,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ padding: '0px 0px 0px 0px', margin: '12px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_9423813'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_9423813')}
               {...injectData}
             >
               <Input
@@ -611,7 +614,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_85608'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_85608')}
                 {...injectData}
               />
             </Form>
@@ -635,7 +638,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ padding: '0px 0px 0px 0px', margin: '12px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_071412'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_071412')}
               {...injectData}
             >
               <RangePicker
@@ -663,7 +666,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['RangePicker_0811484'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'RangePicker_0811484')}
                 {...injectData}
               />
             </Form>
@@ -687,7 +690,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ padding: '0px 0px 0px 0px', margin: '12px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_433981'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_433981')}
               {...injectData}
             >
               <Select
@@ -716,7 +719,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_836023'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_836023')}
                 {...injectData}
               />
               <Select
@@ -745,7 +748,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_831005'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_831005')}
                 {...injectData}
               />
             </Form>
@@ -754,7 +757,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
               visible={true}
               busiCompId={'878114493837852672'}
               style={{ margin: '12px 0px 12px 0px' }}
-              ref={(r: any) => (refs['BOFramer_6134255'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'BOFramer_6134255')}
               {...injectData}
             />
             <Form
@@ -777,7 +780,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ padding: '0px 0px 0px 0px', margin: '12px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_513266'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_513266')}
               {...injectData}
             >
               <CheckboxGroup
@@ -810,7 +813,9 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['CheckboxGroup_1187331'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'CheckboxGroup_1187331')
+                }
                 {...injectData}
               />
             </Form>
@@ -1112,7 +1117,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_37209506'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_37209506')}
             {...injectData}
           />
         </Card>
@@ -1122,7 +1127,7 @@ const ApproveOrderQueryFeiQi$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ApproveOrderQueryFeiQi$$Page, {
-  pageId: '877382707076423680',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

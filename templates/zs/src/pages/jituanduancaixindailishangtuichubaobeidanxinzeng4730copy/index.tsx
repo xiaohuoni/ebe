@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, TextArea, View } from '@/components/factory';
+import { View, Form, Input, TextArea } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '1039155978488041472';
 const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copy$$Modal: React.FC<
   PageProps
 > = ({
@@ -25,6 +27,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copy$$Modal: React.FC<
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatavalidateCurrentForm44: any = [
@@ -153,7 +156,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copy$$Modal: React.FC<
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_558169_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_558169_1')}
         {...injectData}
       >
         <View
@@ -175,7 +178,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copy$$Modal: React.FC<
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_480919'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_480919')}
           {...injectData}
         >
           <Form
@@ -200,7 +203,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copy$$Modal: React.FC<
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_775282'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_775282')}
             {...injectData}
           >
             <Input
@@ -244,7 +247,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copy$$Modal: React.FC<
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_786694'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_786694')}
               {...injectData}
             />
             <Input
@@ -298,7 +301,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copy$$Modal: React.FC<
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_356793'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_356793')}
               {...injectData}
             />
             <Input
@@ -353,7 +356,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copy$$Modal: React.FC<
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_675725'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_675725')}
               {...injectData}
             />
             <TextArea
@@ -380,7 +383,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copy$$Modal: React.FC<
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_806731'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TextArea_806731')}
               {...injectData}
             />
           </Form>
@@ -393,7 +396,7 @@ const Jituanduancaixindailishangtuichubaobeidanxinzeng4730copy$$Modal: React.FC<
 export default withPageHOC(
   Jituanduancaixindailishangtuichubaobeidanxinzeng4730copy$$Modal,
   {
-    pageId: '1039155978488041472',
+    pageId,
     hasLogin: false,
     defaultState: { bizId: '', sceneCode: '', bizData: '', backAgencyList: '' },
   },

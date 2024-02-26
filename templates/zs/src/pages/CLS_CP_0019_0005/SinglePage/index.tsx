@@ -1,6 +1,7 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import { View } from '@/components/factory';
 
@@ -12,6 +13,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '1064466295838302208';
 const ClsCp_0019_0005SinglePage$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -26,6 +28,7 @@ const ClsCp_0019_0005SinglePage$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDatacustomActionCode237: any = [
@@ -580,7 +583,7 @@ const ClsCp_0019_0005SinglePage$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_4868583_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_4868583_1')}
         {...injectData}
       >
         <BusiComp335152
@@ -589,7 +592,7 @@ const ClsCp_0019_0005SinglePage$$Page: React.FC<PageProps> = ({
           fieldName={'singleGroup'}
           busiCompStates={{ whitelistApplyInfo: data?.singleGroup }}
           style={{ margin: '0 0 12px 0' }}
-          ref={(r: any) => (refs['BOFramer_5281475'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'BOFramer_5281475')}
           {...injectData}
         />
       </View>
@@ -598,7 +601,7 @@ const ClsCp_0019_0005SinglePage$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ClsCp_0019_0005SinglePage$$Page, {
-  pageId: '1064466295838302208',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', bizData: '', customObject: '' },

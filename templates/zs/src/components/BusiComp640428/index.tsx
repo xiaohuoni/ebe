@@ -1,21 +1,23 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Form,
-  HorizontalView,
-  Img,
-  LoopList,
-  QuillEditor,
-  Text,
   View,
+  Form,
+  QuillEditor,
+  HorizontalView,
+  Text,
+  LoopList,
+  Img,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = 'pageId 未找到';
 const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -30,6 +32,7 @@ const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -438,7 +441,7 @@ const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
           padding: '0px 0px 0px 0px',
           width: '100%',
         }}
-        ref={(r: any) => (refs['View_624683'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_624683')}
         {...injectData}
       >
         <Form
@@ -470,7 +473,7 @@ const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
           visible={false}
           readOnly={false}
           style={{ padding: '0px 0px 0px 0px', margin: '12px 0px 12px 0px' }}
-          ref={(r: any) => (refs['Form_270073'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_270073')}
           {...injectData}
         >
           <QuillEditor
@@ -498,7 +501,7 @@ const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['QuillEditor_025724'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'QuillEditor_025724')}
             {...injectData}
           />
         </Form>
@@ -522,7 +525,7 @@ const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
             height: 'auto',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['HorizontalView_4825763'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'HorizontalView_4825763')}
           {...injectData}
         >
           <View
@@ -544,7 +547,7 @@ const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
               height: '100%',
               overflowY: 'auto',
             }}
-            ref={(r: any) => (refs['View_634821'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_634821')}
             {...injectData}
           >
             <Text
@@ -569,7 +572,7 @@ const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
                 backgroundColor: 'rgba(255, 255, 255,0)',
                 padding: '4px 0px 4px 0px',
               }}
-              ref={(r: any) => (refs['Text_2245854'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_2245854')}
               {...injectData}
             />
           </View>
@@ -593,7 +596,7 @@ const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
               height: 'auto',
               overflowY: 'hidden',
             }}
-            ref={(r: any) => (refs['View_29'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_29')}
             {...injectData}
           >
             <LoopList
@@ -621,7 +624,7 @@ const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ minHeight: 40, width: 'auto' }}
-              ref={(r: any) => (refs['LoopList_323676'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'LoopList_323676')}
               {...injectData}
               getEngineApis={() => {
                 return {
@@ -656,7 +659,9 @@ const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
                               whiteSpace: 'nowrap',
                               backgroundColor: 'transparent',
                             }}
-                            ref={(r: any) => (refs['View_085735'] = r)}
+                            ref={(r: any) =>
+                              refs.setComponentRef(r, 'View_085735')
+                            }
                             {...injectData}
                           >
                             <Text
@@ -685,7 +690,9 @@ const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
                                 display: 'inline-block',
                                 whiteSpace: 'nowrap',
                               }}
-                              ref={(r: any) => (refs['Text_0919693'] = r)}
+                              ref={(r: any) =>
+                                refs.setComponentRef(r, 'Text_0919693')
+                              }
                               {...injectData}
                             />
                             <Img
@@ -702,7 +709,9 @@ const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
                               visible={true}
                               readOnly={false}
                               style={{ margin: '0px 8px 0px 8px' }}
-                              ref={(r: any) => (refs['Img_702579'] = r)}
+                              ref={(r: any) =>
+                                refs.setComponentRef(r, 'Img_702579')
+                              }
                               {...injectData}
                             />
                           </View>
@@ -721,7 +730,7 @@ const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(BusiComp640428$$BusiComp, {
-  pageId: 'pageId 未找到',
+  pageId,
   hasLogin: true,
   defaultState: { instNbr: '' },
 });

@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, Select, View } from '@/components/factory';
+import { View, Form, Select, Input } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '945499173205458944';
 const LineTestMonthAudit$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const LineTestMonthAudit$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatavalidateCurrentForm54: any = [
@@ -1247,7 +1250,7 @@ const LineTestMonthAudit$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_331315_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_331315_1')}
         {...injectData}
       >
         <View
@@ -1268,7 +1271,7 @@ const LineTestMonthAudit$$Modal: React.FC<PageProps> = ({
             padding: '12px 12px 12px 12px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_917911_4397725'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_917911_4397725')}
           {...injectData}
         >
           <Form
@@ -1384,7 +1387,7 @@ const LineTestMonthAudit$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Form_981467_101628'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_981467_101628')}
             {...injectData}
           >
             <Select
@@ -1416,7 +1419,9 @@ const LineTestMonthAudit$$Modal: React.FC<PageProps> = ({
               isFormRootChild={true}
               style={{ flex: 0 }}
               onChange={(e: any) => {}}
-              ref={(r: any) => (refs['Input_busiType_956176_60737'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_busiType_956176_60737')
+              }
               {...injectData}
             />
             <Select
@@ -1446,7 +1451,7 @@ const LineTestMonthAudit$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Select_678262'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_678262')}
               {...injectData}
             />
             <Select
@@ -1477,7 +1482,9 @@ const LineTestMonthAudit$$Modal: React.FC<PageProps> = ({
               readOnly={false}
               isFormRootChild={true}
               onChange={(e: any) => {}}
-              ref={(r: any) => (refs['Input_busiType_956176_744788'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_busiType_956176_744788')
+              }
               {...injectData}
             />
             <Select
@@ -1507,7 +1514,7 @@ const LineTestMonthAudit$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Select_185407'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_185407')}
               {...injectData}
             />
             <Input
@@ -1562,7 +1569,7 @@ const LineTestMonthAudit$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_253028'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_253028')}
               {...injectData}
             />
           </Form>
@@ -1573,7 +1580,7 @@ const LineTestMonthAudit$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(LineTestMonthAudit$$Modal, {
-  pageId: '945499173205458944',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

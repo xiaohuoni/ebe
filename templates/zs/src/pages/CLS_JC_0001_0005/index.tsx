@@ -1,23 +1,24 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
-  Card,
-  Checkbox,
-  DatePicker,
+  View,
   Divider,
-  Form,
   HorizontalView,
+  Form,
+  Checkbox,
   Input,
-  Row,
+  DatePicker,
+  TextArea,
   Select,
+  Card,
+  Row,
+  Button,
   StdUpload,
   Table,
   Text,
-  TextArea,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -34,6 +35,7 @@ styleInject(
   '537892',
 );
 
+const pageId = '1067720299773939712';
 const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -48,6 +50,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const MyFileUpload = (options_1964167: any) => {
     const eventDatacustomActionCode28: any = [
@@ -4517,7 +4520,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
           overflowY: 'visible',
           width: '98%',
         }}
-        ref={(r: any) => (refs['View_537892_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_537892_1')}
         {...injectData}
       >
         <Divider
@@ -4537,7 +4540,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ margin: '12px 0 12px 0', height: 'auto' }}
-          ref={(r: any) => (refs['Divider_52558'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Divider_52558')}
           {...injectData}
         />
         <View
@@ -4558,7 +4561,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_6806553'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_6806553')}
           {...injectData}
         >
           <HorizontalView
@@ -4582,7 +4585,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               overflowY: 'auto',
               margin: '0px 0px 12px 0px',
             }}
-            ref={(r: any) => (refs['HorizontalView_004602'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'HorizontalView_004602')}
             {...injectData}
           >
             <View
@@ -4605,7 +4608,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                 overflowY: 'hidden',
                 margin: '15px 0px 5px 0px',
               }}
-              ref={(r: any) => (refs['View_339406'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_339406')}
               {...injectData}
             >
               <Form
@@ -4632,9 +4635,10 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                 readOnly={false}
                 style={{ padding: '0px 0px 0px 0px' }}
                 ref={(r: any) =>
-                  (refs[
-                    'Form_4311097_9385662_8411515_9167293_4337769_708507_903502_3391966_7284254'
-                  ] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Form_4311097_9385662_8411515_9167293_4337769_708507_903502_3391966_7284254',
+                  )
                 }
                 {...injectData}
               >
@@ -4667,9 +4671,10 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   readOnly={false}
                   isFormRootChild={true}
                   ref={(r: any) =>
-                    (refs[
-                      'Checkbox_882584_5289015_934499_355644_646764_5265724_8221694_7217427_269901_855402'
-                    ] = r)
+                    refs.setComponentRef(
+                      r,
+                      'Checkbox_882584_5289015_934499_355644_646764_5265724_8221694_7217427_269901_855402',
+                    )
                   }
                   {...injectData}
                 />
@@ -4701,7 +4706,10 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                     width: '100%',
                   }}
                   ref={(r: any) =>
-                    (refs['View_6319234_3569864_15467365_781748_241037'] = r)
+                    refs.setComponentRef(
+                      r,
+                      'View_6319234_3569864_15467365_781748_241037',
+                    )
                   }
                   {...injectData}
                 />
@@ -4748,9 +4756,10 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   readOnly={false}
                   isFormRootChild={true}
                   ref={(r: any) =>
-                    (refs[
-                      'Input_361479_887285_2150708_936504_923334_755169_97903_059209_7061384_3906775'
-                    ] = r)
+                    refs.setComponentRef(
+                      r,
+                      'Input_361479_887285_2150708_936504_923334_755169_97903_059209_7061384_3906775',
+                    )
                   }
                   {...injectData}
                 />
@@ -5423,9 +5432,10 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               );
             }}
             ref={(r: any) =>
-              (refs[
-                'Form_449441_1900385_965292_804694_0429677_280477_612369_3241812'
-              ] = r)
+              refs.setComponentRef(
+                r,
+                'Form_449441_1900385_965292_804694_0429677_280477_612369_3241812',
+              )
             }
             {...injectData}
           >
@@ -5471,7 +5481,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Select_1514685'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_1514685')}
               {...injectData}
             />
             <DatePicker
@@ -5506,7 +5516,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               readOnly={false}
               defaultValue={undefined}
               isFormRootChild={true}
-              ref={(r: any) => (refs['DatePicker_6606197'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'DatePicker_6606197')}
               {...injectData}
             />
             <Input
@@ -5551,7 +5561,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_562398'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_562398')}
               {...injectData}
             />
             <TextArea
@@ -5582,7 +5592,9 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_7242206_974846_973427'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_7242206_974846_973427')
+              }
               {...injectData}
             />
             <Input
@@ -5637,7 +5649,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_1883864'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_1883864')}
               {...injectData}
             />
             <TextArea
@@ -5668,7 +5680,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_423258'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TextArea_423258')}
               {...injectData}
             />
             <Select
@@ -6254,7 +6266,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_66622'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_66622')}
               {...injectData}
             />
             <View
@@ -6287,7 +6299,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_935668'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_935668')}
               {...injectData}
             />
             <Input
@@ -6332,7 +6344,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_727832'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_727832')}
               {...injectData}
             />
             <Input
@@ -6377,7 +6389,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_406599'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_406599')}
               {...injectData}
             />
           </Form>
@@ -6418,7 +6430,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               margin: '12px 0px 12px 0px',
               'margin-bottom': '2.5px',
             }}
-            ref={(r: any) => (refs['Card_5646597'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_5646597')}
             {...injectData}
           >
             <Row
@@ -6437,7 +6449,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ margin: '10px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Row_8605619'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Row_8605619')}
               {...injectData}
             >
               <View
@@ -6462,7 +6474,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   height: '100%',
                   justifyContent: 'flex-end',
                 }}
-                ref={(r: any) => (refs['View_5355296'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_5355296')}
                 {...injectData}
               />
               <View
@@ -6484,7 +6496,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   width: '100%',
                   justifyContent: 'flex-end',
                 }}
-                ref={(r: any) => (refs['View_8856092'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_8856092')}
                 {...injectData}
               >
                 <Button
@@ -6648,7 +6660,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_735838'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_735838')}
                   {...injectData}
                 />
                 <Button
@@ -7115,7 +7127,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_767792'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_767792')}
                   {...injectData}
                 />
                 <Button
@@ -7557,7 +7569,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                       platform: 'pc',
                     });
                   }}
-                  ref={(r: any) => (refs['Button_702391'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_702391')}
                   {...injectData}
                 />
                 <StdUpload
@@ -7975,8 +7987,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      false,
+                                                                    showInput: false,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -7988,8 +7999,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      false,
+                                                                    showInput: false,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -8001,8 +8011,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      false,
+                                                                    showInput: false,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -8014,13 +8023,11 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      false,
+                                                                    showInput: false,
                                                                   },
                                                                 ],
                                                               operateType: 3,
-                                                              onlySetPatch:
-                                                                true,
+                                                              onlySetPatch: true,
                                                               otherObjectArrayOptions:
                                                                 {},
                                                               targetDataSourcePaths:
@@ -8185,8 +8192,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -8198,8 +8204,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -8211,8 +8216,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [],
                                                                       code: '',
@@ -8230,8 +8234,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       },
                                                                     children:
                                                                       [],
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -8243,8 +8246,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -8256,8 +8258,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -8269,8 +8270,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -8282,8 +8282,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -8295,8 +8294,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -8308,8 +8306,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -8321,8 +8318,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -8334,8 +8330,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -8347,8 +8342,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [],
                                                                       code: '',
@@ -8356,8 +8350,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                   },
                                                                 ],
                                                               operateType: 1,
-                                                              onlySetPatch:
-                                                                true,
+                                                              onlySetPatch: true,
                                                               otherObjectArrayOptions:
                                                                 {},
                                                               targetDataSourcePaths:
@@ -9110,7 +9103,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['StdUpload_698289'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'StdUpload_698289')}
                   {...injectData}
                 />
                 <Button
@@ -9352,7 +9345,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                       platform: 'pc',
                     });
                   }}
-                  ref={(r: any) => (refs['Button_94366'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_94366')}
                   {...injectData}
                 />
                 <Button
@@ -9621,7 +9614,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_355862'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_355862')}
                   {...injectData}
                 />
               </View>
@@ -10060,7 +10053,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Table_780108'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Table_780108')}
               {...injectData}
             />
           </Card>
@@ -10101,7 +10094,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               margin: '0px 0px 12px 0px',
               'margin-bottom': '2.5px',
             }}
-            ref={(r: any) => (refs['Card_2954614'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_2954614')}
             {...injectData}
           >
             <Form
@@ -10428,7 +10421,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Form_055897'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_055897')}
               {...injectData}
             >
               <Input
@@ -10985,7 +10978,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Input_484992'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_484992')}
                 {...injectData}
               />
               <Input
@@ -11030,7 +11023,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_705122'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_705122')}
                 {...injectData}
               />
               <Input
@@ -11076,7 +11069,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_129471'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_129471')}
                 {...injectData}
               />
               <Input
@@ -11121,7 +11114,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_6529254'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_6529254')}
                 {...injectData}
               />
               <Select
@@ -11281,7 +11274,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Select_914187'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Select_914187')}
                 {...injectData}
               />
               <Input
@@ -11326,7 +11319,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                 visible={false}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_385456'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_385456')}
                 {...injectData}
               />
               <Input
@@ -11381,7 +11374,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_198624'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_198624')}
                 {...injectData}
               />
             </Form>
@@ -11402,7 +11395,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ margin: '10px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Row_553909'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Row_553909')}
               {...injectData}
             >
               <View
@@ -11427,7 +11420,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   height: '100%',
                   justifyContent: 'flex-end',
                 }}
-                ref={(r: any) => (refs['View_716685'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_716685')}
                 {...injectData}
               />
               <View
@@ -11449,7 +11442,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   width: '100%',
                   justifyContent: 'flex-end',
                 }}
-                ref={(r: any) => (refs['View_334894'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_334894')}
                 {...injectData}
               >
                 <Button
@@ -12021,7 +12014,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_412633'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_412633')}
                   {...injectData}
                 />
                 <Button
@@ -12909,7 +12902,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_182635'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_182635')}
                   {...injectData}
                 />
                 <Button
@@ -13483,7 +13476,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                       platform: 'pc',
                     });
                   }}
-                  ref={(r: any) => (refs['Button_685946'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_685946')}
                   {...injectData}
                 />
                 <StdUpload
@@ -13901,8 +13894,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      false,
+                                                                    showInput: false,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -13914,8 +13906,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      false,
+                                                                    showInput: false,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -13927,8 +13918,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      false,
+                                                                    showInput: false,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -13940,8 +13930,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      false,
+                                                                    showInput: false,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -13953,8 +13942,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      false,
+                                                                    showInput: false,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -13966,8 +13954,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      false,
+                                                                    showInput: false,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -13979,8 +13966,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      false,
+                                                                    showInput: false,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -13992,8 +13978,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      false,
+                                                                    showInput: false,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -14005,8 +13990,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      false,
+                                                                    showInput: false,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -14018,8 +14002,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      false,
+                                                                    showInput: false,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -14031,13 +14014,11 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      false,
+                                                                    showInput: false,
                                                                   },
                                                                 ],
                                                               operateType: 3,
-                                                              onlySetPatch:
-                                                                true,
+                                                              onlySetPatch: true,
                                                               otherObjectArrayOptions:
                                                                 {},
                                                               targetDataSourcePaths:
@@ -14257,8 +14238,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -14270,8 +14250,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -14283,8 +14262,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -14305,8 +14283,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       },
                                                                     children:
                                                                       [],
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -14318,8 +14295,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -14331,8 +14307,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -14344,8 +14319,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -14357,8 +14331,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -14370,8 +14343,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -14383,8 +14355,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -14396,8 +14367,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -14409,8 +14379,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -14422,8 +14391,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -14434,8 +14402,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                                                                   },
                                                                 ],
                                                               operateType: 1,
-                                                              onlySetPatch:
-                                                                true,
+                                                              onlySetPatch: true,
                                                               otherObjectArrayOptions:
                                                                 {},
                                                               targetDataSourcePaths:
@@ -15283,7 +15250,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['StdUpload_09428'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'StdUpload_09428')}
                   {...injectData}
                 />
                 <Button
@@ -15525,7 +15492,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                       platform: 'pc',
                     });
                   }}
-                  ref={(r: any) => (refs['Button_466158'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_466158')}
                   {...injectData}
                 />
                 <Button
@@ -15794,7 +15761,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_926805'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_926805')}
                   {...injectData}
                 />
               </View>
@@ -16424,7 +16391,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Table_8123724'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Table_8123724')}
               {...injectData}
             />
             <Form
@@ -16726,7 +16693,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Form_916123'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_916123')}
               {...injectData}
             >
               <TextArea
@@ -16757,7 +16724,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TextArea_47077783'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'TextArea_47077783')}
                 {...injectData}
               />
             </Form>
@@ -16780,7 +16747,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_889749'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_889749')}
               {...injectData}
             >
               <Form
@@ -16809,7 +16776,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   margin: '10px 0px 0px 0px',
                 }}
-                ref={(r: any) => (refs['Form_546201'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_546201')}
                 {...injectData}
               >
                 <Select
@@ -16838,7 +16805,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_4964056'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_4964056')}
                   {...injectData}
                 />
                 <View
@@ -16870,7 +16837,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_697142'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_697142')}
                   {...injectData}
                 >
                   <StdUpload
@@ -17979,7 +17946,9 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['StdUpload_689535'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'StdUpload_689535')
+                    }
                     {...injectData}
                   />
                   <Text
@@ -18004,7 +17973,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                       lineHeight: '24px',
                       color: 'rgba(251, 18, 5, 1)',
                     }}
-                    ref={(r: any) => (refs['Text_089028'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Text_089028')}
                     {...injectData}
                   />
                 </View>
@@ -18036,7 +18005,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                     width: '100%',
                     textAlign: 'right',
                   }}
-                  ref={(r: any) => (refs['View_067872'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_067872')}
                   {...injectData}
                 >
                   <Button
@@ -18187,7 +18156,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_404486'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_404486')}
                     {...injectData}
                   />
                 </View>
@@ -18643,7 +18612,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   // console 170010354733287400
                   console.log(data?.pageParam);
                 }}
-                ref={(r: any) => (refs['Table_111435'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_111435')}
                 {...injectData}
               />
             </View>
@@ -18685,7 +18654,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               margin: '0px 0px 12px 0px',
               'margin-bottom': '2.5px',
             }}
-            ref={(r: any) => (refs['Card_814947'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_814947')}
             {...injectData}
           >
             <Form
@@ -19004,7 +18973,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Form_179661'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_179661')}
               {...injectData}
             >
               <Input
@@ -19059,7 +19028,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_369288'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_369288')}
                 {...injectData}
               />
             </Form>
@@ -19082,7 +19051,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_423677'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_423677')}
               {...injectData}
             >
               <Form
@@ -19111,7 +19080,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   margin: '10px 0px 0px 0px',
                 }}
-                ref={(r: any) => (refs['Form_857178'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_857178')}
                 {...injectData}
               >
                 <Select
@@ -19140,7 +19109,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_12751'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_12751')}
                   {...injectData}
                 />
                 <View
@@ -19172,7 +19141,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_059305'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_059305')}
                   {...injectData}
                 >
                   <StdUpload
@@ -19853,7 +19822,9 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['StdUpload_5358747'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'StdUpload_5358747')
+                    }
                     {...injectData}
                   />
                   <Text
@@ -19878,7 +19849,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                       lineHeight: '24px',
                       color: 'rgba(251, 18, 5, 1)',
                     }}
-                    ref={(r: any) => (refs['Text_969422'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Text_969422')}
                     {...injectData}
                   />
                 </View>
@@ -19910,7 +19881,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                     width: '100%',
                     textAlign: 'right',
                   }}
-                  ref={(r: any) => (refs['View_954018'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_954018')}
                   {...injectData}
                 >
                   <Button
@@ -20061,7 +20032,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_423852'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_423852')}
                     {...injectData}
                   />
                 </View>
@@ -20537,7 +20508,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   // console 170010354733287400
                   console.log(data?.pageParam);
                 }}
-                ref={(r: any) => (refs['Table_193162'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_193162')}
                 {...injectData}
               />
             </View>
@@ -20579,7 +20550,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
               margin: '0px 0px 12px 0px',
               'margin-bottom': '2.5px',
             }}
-            ref={(r: any) => (refs['Card_614414'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_614414')}
             {...injectData}
           >
             <View
@@ -20601,7 +20572,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_665519'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_665519')}
               {...injectData}
             >
               <Form
@@ -20630,7 +20601,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   margin: '10px 0px 0px 0px',
                 }}
-                ref={(r: any) => (refs['Form_572983'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_572983')}
                 {...injectData}
               >
                 <Select
@@ -20659,7 +20630,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_08571'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_08571')}
                   {...injectData}
                 />
                 <View
@@ -20691,7 +20662,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_4316576'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_4316576')}
                   {...injectData}
                 >
                   <StdUpload
@@ -21376,7 +21347,9 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['StdUpload_151314'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'StdUpload_151314')
+                    }
                     {...injectData}
                   />
                   <Text
@@ -21399,7 +21372,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                       lineHeight: '24px',
                       color: 'rgba(251, 18, 5, 1)',
                     }}
-                    ref={(r: any) => (refs['Text_0747472'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Text_0747472')}
                     {...injectData}
                   />
                 </View>
@@ -21431,7 +21404,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                     width: '100%',
                     textAlign: 'right',
                   }}
-                  ref={(r: any) => (refs['View_582257'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_582257')}
                   {...injectData}
                 >
                   <Button
@@ -21582,7 +21555,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_397636'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_397636')}
                     {...injectData}
                   />
                 </View>
@@ -22057,7 +22030,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
                   // console 170010354733287400
                   console.log(data?.pageParam);
                 }}
-                ref={(r: any) => (refs['Table_806561'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_806561')}
                 {...injectData}
               />
             </View>
@@ -22069,7 +22042,7 @@ const ClsJc_0001_0005$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ClsJc_0001_0005$$Page, {
-  pageId: '1067720299773939712',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

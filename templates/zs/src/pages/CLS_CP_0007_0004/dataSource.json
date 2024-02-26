@@ -768,7 +768,9 @@
                     "_id": "body.catalogCode",
                     "compType": "Input",
                     "name": "catalogCode",
-                    "parents": ["body"],
+                    "parents": [
+                      "body"
+                    ],
                     "parentType": "object",
                     "parentKey": "3",
                     "key": "3-0"
@@ -781,7 +783,9 @@
                     "_id": "body.attrCode",
                     "compType": "Input",
                     "name": "attrCode",
-                    "parents": ["body"],
+                    "parents": [
+                      "body"
+                    ],
                     "parentType": "object",
                     "parentKey": "3",
                     "key": "3-1"

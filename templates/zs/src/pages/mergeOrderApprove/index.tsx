@@ -1,20 +1,21 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  Text,
   Card,
-  Form,
-  Input,
-  Radio,
   RemoteComponent,
   Row,
-  Select,
+  Form,
+  Input,
   Table,
-  Text,
+  Radio,
+  Select,
   TextArea,
-  View,
+  Button,
 } from '@/components/factory';
 
 import BusiComp0496635 from '@/components/BusiComp0496635';
@@ -27,6 +28,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '908280951234510848';
 const MergeOrderApprove$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -41,6 +43,7 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const nextTacheChange = (options_085079: any) => {
     const eventDataclearValue16: any = [
@@ -2837,7 +2840,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: '0A',
         }}
-        ref={(r: any) => (refs['View_763609_1_8284215_751155'] = r)}
+        ref={(r: any) =>
+          refs.setComponentRef(r, 'View_763609_1_8284215_751155')
+        }
         {...injectData}
       >
         <View
@@ -2861,7 +2866,7 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
             height: '42px',
             margin: 'px px px px',
           }}
-          ref={(r: any) => (refs['View_905871_961943_677577'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_905871_961943_677577')}
           {...injectData}
         >
           <Text
@@ -2886,7 +2891,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
               textAlign: 'center',
               letterSpacing: '',
             }}
-            ref={(r: any) => (refs['Text_236544_458361_1502133'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Text_236544_458361_1502133')
+            }
             {...injectData}
           />
         </View>
@@ -2926,7 +2933,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_2363325_028033_8706923'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'Card_2363325_028033_8706923')
+          }
           {...injectData}
         >
           <RemoteComponent
@@ -2941,7 +2950,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
             appId={undefined}
             lcdpParentRenderId={undefined}
             onMessage={(msg: any) => {}}
-            ref={(r: any) => (refs['RemoteComponent_73826_358577_6797494'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'RemoteComponent_73826_358577_6797494')
+            }
             {...injectData}
           />
         </Card>
@@ -2981,7 +2992,7 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_733452_608588_997676'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_733452_608588_997676')}
           {...injectData}
         >
           <Row
@@ -2999,7 +3010,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
             disabled={false}
             visible={true}
             readOnly={false}
-            ref={(r: any) => (refs['Row_510227_934708_620667'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Row_510227_934708_620667')
+            }
             {...injectData}
           >
             <Form
@@ -3108,7 +3121,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ padding: 'px px px px', margin: '0px 0px 8px 0px' }}
-              ref={(r: any) => (refs['Form_8512707_5353887_082748'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Form_8512707_5353887_082748')
+              }
               {...injectData}
             >
               <Input
@@ -3152,7 +3167,7 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_190541'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_190541')}
                 {...injectData}
               />
               <Input
@@ -3196,7 +3211,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_765315_4158096_136893'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_765315_4158096_136893')
+                }
                 {...injectData}
               />
             </Form>
@@ -3216,7 +3233,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
             disabled={false}
             visible={true}
             readOnly={false}
-            ref={(r: any) => (refs['Row_833374_404443_504813'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Row_833374_404443_504813')
+            }
             {...injectData}
           >
             <Form
@@ -3241,7 +3260,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ padding: '0px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_267917_734842_8657022'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Form_267917_734842_8657022')
+              }
               {...injectData}
             >
               <Input
@@ -3285,7 +3306,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_3386787_698768_759285'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_3386787_698768_759285')
+                }
                 {...injectData}
               />
               <Input
@@ -3329,7 +3352,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_941937_0593855_0024877'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_941937_0593855_0024877')
+                }
                 {...injectData}
               />
             </Form>
@@ -3353,7 +3378,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
               lineHeight: '24px',
               color: 'rgba(220, 41, 63, 1)',
             }}
-            ref={(r: any) => (refs['Text_6986125_739866_50631'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Text_6986125_739866_50631')
+            }
             {...injectData}
           />
           <View
@@ -3375,7 +3402,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
               width: '100%',
               margin: '8px 0px 8px 0px',
             }}
-            ref={(r: any) => (refs['View_5773624_9763604_45619156'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'View_5773624_9763604_45619156')
+            }
             {...injectData}
           >
             <Text
@@ -3398,7 +3427,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(241, 80, 100, 1)',
               }}
-              ref={(r: any) => (refs['Text_4031863_541239_797905'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Text_4031863_541239_797905')
+              }
               {...injectData}
             />
             <Text
@@ -3417,7 +3448,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ fontSize: '14px', lineHeight: '24px', color: '#1c242e' }}
-              ref={(r: any) => (refs['Text_929211_226478_2574557'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Text_929211_226478_2574557')
+              }
               {...injectData}
             />
           </View>
@@ -3737,7 +3770,7 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_2737373'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_2737373')}
             {...injectData}
           />
           <View
@@ -3759,7 +3792,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
               width: '100%',
               margin: '8px 0px 0px 0px',
             }}
-            ref={(r: any) => (refs['View_028577_482375_5168184'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'View_028577_482375_5168184')
+            }
             {...injectData}
           >
             <Text
@@ -3783,7 +3818,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                 color: '#1c242e',
                 fontWeight: 600,
               }}
-              ref={(r: any) => (refs['Text_228554_771548_389914'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Text_228554_771548_389914')
+              }
               {...injectData}
             />
             <Text
@@ -3804,7 +3841,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ fontSize: '14px', lineHeight: '24px', color: '#999' }}
-              ref={(r: any) => (refs['Text_0227405_491373_9209739'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Text_0227405_491373_9209739')
+              }
               {...injectData}
             />
           </View>
@@ -3847,7 +3886,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_5223316_930808_326126'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'Card_5223316_930808_326126')
+          }
           {...injectData}
         >
           <Form
@@ -4875,7 +4916,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_495566_5382465_894809'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Form_495566_5382465_894809')
+            }
             {...injectData}
           >
             <Radio
@@ -4939,7 +4982,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Radio_8525737_018091_602067'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Radio_8525737_018091_602067')
+              }
               {...injectData}
             />
             <Select
@@ -4999,7 +5044,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Select_599981_437465_642991'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Select_599981_437465_642991')
+              }
               {...injectData}
             />
             <Input
@@ -5379,7 +5426,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_668689_2052015_8235997'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_668689_2052015_8235997')
+              }
               {...injectData}
             />
             <Input
@@ -5423,7 +5472,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_9206452_698968_5646934'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_9206452_698968_5646934')
+              }
               {...injectData}
             />
             <TextArea
@@ -5448,7 +5499,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_2382214_3272195_63763795'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'TextArea_2382214_3272195_63763795')
+              }
               {...injectData}
             />
             <Button
@@ -5547,7 +5600,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Button_8864054_286047_922143'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Button_8864054_286047_922143')
+              }
               {...injectData}
             />
           </Form>
@@ -5570,7 +5625,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
               width: '100%',
               textAlign: 'center',
             }}
-            ref={(r: any) => (refs['View_582992_8451582_75132'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'View_582992_8451582_75132')
+            }
             {...injectData}
           >
             <Button
@@ -6759,7 +6816,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Button_614168_6154713_384267'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Button_614168_6154713_384267')
+              }
               {...injectData}
             />
             <Button
@@ -6819,7 +6878,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_3398434_019155_3896586'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Button_3398434_019155_3896586')
+              }
               {...injectData}
             />
           </View>
@@ -6844,7 +6905,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
             textAlign: 'center',
             margin: '0px 0px 8px 0px',
           }}
-          ref={(r: any) => (refs['View_672632_9537307_170568'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'View_672632_9537307_170568')
+          }
           {...injectData}
         >
           <Button
@@ -7770,7 +7833,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Button_219692_3851914_6006513'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Button_219692_3851914_6006513')
+            }
             {...injectData}
           />
           <Button
@@ -7885,7 +7950,7 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Button_534781'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_534781')}
             {...injectData}
           />
           <Button
@@ -8034,7 +8099,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_713182_647206_4599004'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Button_713182_647206_4599004')
+            }
             {...injectData}
           />
         </View>
@@ -8044,7 +8111,9 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
           basicStatus={1}
           busiCompStates={{ workId: urlParam?.workId }}
           style={{ margin: '0 0 12px 0' }}
-          ref={(r: any) => (refs['BOFramer_6337954_86039_2412755'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'BOFramer_6337954_86039_2412755')
+          }
           {...injectData}
         />
       </View>
@@ -8053,7 +8122,7 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(MergeOrderApprove$$Page, {
-  pageId: '908280951234510848',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

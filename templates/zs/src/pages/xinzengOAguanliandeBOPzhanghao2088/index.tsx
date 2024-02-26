@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, View } from '@/components/factory';
+import { View, Form, Input } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '990908752946978816';
 const XinzengOAguanliandeBoPzhanghao2088$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -23,6 +25,7 @@ const XinzengOAguanliandeBoPzhanghao2088$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatavalidateCurrentForm27: any = [
@@ -323,7 +326,7 @@ const XinzengOAguanliandeBoPzhanghao2088$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_177712_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_177712_1')}
         {...injectData}
       >
         <View
@@ -345,7 +348,7 @@ const XinzengOAguanliandeBoPzhanghao2088$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_195147'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_195147')}
           {...injectData}
         >
           <Form
@@ -370,7 +373,7 @@ const XinzengOAguanliandeBoPzhanghao2088$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_6302602'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_6302602')}
             {...injectData}
           >
             <Input
@@ -424,7 +427,7 @@ const XinzengOAguanliandeBoPzhanghao2088$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_836881'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_836881')}
               {...injectData}
             />
           </Form>
@@ -435,7 +438,7 @@ const XinzengOAguanliandeBoPzhanghao2088$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(XinzengOAguanliandeBoPzhanghao2088$$Modal, {
-  pageId: '990908752946978816',
+  pageId,
   hasLogin: false,
   defaultState: { bizId: '', sceneCode: '', bizData: '', oaUserId: '' },
 });

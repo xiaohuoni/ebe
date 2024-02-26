@@ -1,13 +1,14 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Form,
+  View,
   HorizontalView,
   Text,
+  Form,
   TextArea,
-  View,
 } from '@/components/factory';
 
 import BusiComp640428 from '@/components/BusiComp640428';
@@ -20,6 +21,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '977752295815442432';
 const $7011copy$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -34,6 +36,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const sceneValidate1 = (options_4882157: any) => {
     const eventDatavalidateCurrentForm9: any = [
@@ -1488,7 +1491,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
           margin: '0px 0px 0px 0px',
           overflow: 'hidden',
         }}
-        ref={(r: any) => (refs['View_537892_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_537892_1')}
         {...injectData}
       >
         <HorizontalView
@@ -1512,7 +1515,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
             overflowY: 'auto',
             margin: '0px 0px 12px 0px',
           }}
-          ref={(r: any) => (refs['HorizontalView_095145'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'HorizontalView_095145')}
           {...injectData}
         >
           <View
@@ -1537,7 +1540,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
               position: 'relative',
               height: '22px',
             }}
-            ref={(r: any) => (refs['View_01124'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_01124')}
             {...injectData}
           >
             <Text
@@ -1571,7 +1574,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
                 borderRadius: '8px',
                 minHeight: '6px',
               }}
-              ref={(r: any) => (refs['Text_312191'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_312191')}
               {...injectData}
             />
             <Text
@@ -1600,7 +1603,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
                 display: 'block',
                 height: '22px',
               }}
-              ref={(r: any) => (refs['Text_041905'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_041905')}
               {...injectData}
             />
           </View>
@@ -1623,7 +1626,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
               overflowY: 'auto',
               textAlign: 'right',
             }}
-            ref={(r: any) => (refs['View_464629'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_464629')}
             {...injectData}
           >
             <Text
@@ -1648,7 +1651,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
                 color: '#1c242e',
                 backgroundColor: 'rgba(255, 255, 255,0)',
               }}
-              ref={(r: any) => (refs['Text_7477844'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_7477844')}
               {...injectData}
             />
           </View>
@@ -1671,7 +1674,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_6806553'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_6806553')}
           {...injectData}
         >
           <Form
@@ -2174,7 +2177,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Form_449441_9243547'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_449441_9243547')}
             {...injectData}
           >
             <TextArea
@@ -2200,7 +2203,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_4140516'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TextArea_4140516')}
               {...injectData}
             />
             <TextArea
@@ -2236,7 +2239,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
               readOnly={false}
               isFormRootChild={true}
               ref={(r: any) =>
-                (refs['Input_derateReason_332471271_9259764'] = r)
+                refs.setComponentRef(r, 'Input_derateReason_332471271_9259764')
               }
               {...injectData}
             />
@@ -2246,7 +2249,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
             name={'场景触发信息'}
             busiCompStates={{ instNbr: state?.props?.instNbr }}
             style={{ margin: '0 0 12px 0' }}
-            ref={(r: any) => (refs['BOFramer_6931614'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'BOFramer_6931614')}
             {...injectData}
           />
           <BusiComp186748
@@ -2258,7 +2261,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
               fileList: state?.props?.itemList?.fileInfo,
             }}
             style={{ margin: '0 0 12px 0' }}
-            ref={(r: any) => (refs['BOFramer_061516'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'BOFramer_061516')}
             {...injectData}
           />
         </View>
@@ -2268,7 +2271,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC($7011copy$$Page, {
-  pageId: '977752295815442432',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { props: '' },

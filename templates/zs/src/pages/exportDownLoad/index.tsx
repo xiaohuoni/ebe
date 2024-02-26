@@ -1,14 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Form,
   Input,
   RangePicker,
+  Button,
   Table,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -17,6 +18,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '940142497926754304';
 const ExportDownLoad$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -31,6 +33,7 @@ const ExportDownLoad$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDataapiRequest555: any = [
@@ -233,7 +236,7 @@ const ExportDownLoad$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_2739003_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_2739003_1')}
         {...injectData}
       >
         <Form
@@ -258,7 +261,7 @@ const ExportDownLoad$$Page: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ padding: '0px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Form_5796458'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_5796458')}
           {...injectData}
         >
           <Input
@@ -302,7 +305,7 @@ const ExportDownLoad$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_274116'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_274116')}
             {...injectData}
           />
           <RangePicker
@@ -331,7 +334,7 @@ const ExportDownLoad$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['RangePicker_6598555'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'RangePicker_6598555')}
             {...injectData}
           />
           <View
@@ -361,7 +364,7 @@ const ExportDownLoad$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 20px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_2699974'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_2699974')}
             {...injectData}
           >
             <Button
@@ -1041,7 +1044,7 @@ const ExportDownLoad$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Button_997357'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_997357')}
               {...injectData}
             />
           </View>
@@ -1963,7 +1966,7 @@ const ExportDownLoad$$Page: React.FC<PageProps> = ({
               },
             );
           }}
-          ref={(r: any) => (refs['Table_25286373'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_25286373')}
           {...injectData}
         />
       </View>
@@ -1972,7 +1975,7 @@ const ExportDownLoad$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ExportDownLoad$$Page, {
-  pageId: '940142497926754304',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

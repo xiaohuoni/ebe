@@ -1,18 +1,19 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  Text,
   Card,
   Description,
-  Form,
-  GridView,
-  Input,
-  QuillEditor,
   Table,
-  Text,
-  View,
+  Form,
+  Input,
+  GridView,
+  QuillEditor,
+  Button,
 } from '@/components/factory';
 
 import Pageview from '@/components/Pageview';
@@ -33,6 +34,7 @@ styleInject(
   '9704152',
 );
 
+const pageId = '884057477263503360';
 const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -47,6 +49,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const getFactor = (options_357128: any) => {
     // console 166255097358009000
@@ -1926,7 +1929,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_9704152_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_9704152_1')}
         {...injectData}
       >
         <View
@@ -1950,7 +1953,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
             margin: '0px 0px 0px 0px',
             position: 'relative',
           }}
-          ref={(r: any) => (refs['View_183103'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_183103')}
           {...injectData}
         >
           <View
@@ -1977,7 +1980,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
               right: '4px',
               top: '12px',
             }}
-            ref={(r: any) => (refs['View_2218655'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_2218655')}
             {...injectData}
           >
             <Text
@@ -2002,7 +2005,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
                 color: 'rgba(50, 137, 249, 1)',
                 textAlign: 'right',
               }}
-              ref={(r: any) => (refs['Text_331457'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_331457')}
               {...injectData}
             />
             <Text
@@ -2021,7 +2024,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ fontSize: 18, lineHeight: '24px', color: '#3289f9' }}
-              ref={(r: any) => (refs['Text_331457_850218'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_331457_850218')}
               {...injectData}
             />
           </View>
@@ -2048,7 +2051,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
               fontWeight: '',
               letterSpacing: '',
             }}
-            ref={(r: any) => (refs['Text_728821'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_728821')}
             {...injectData}
           />
         </View>
@@ -2089,7 +2092,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
             margin: '0px 0px 0px 0px',
             'margin-bottom': '2.5px',
           }}
-          ref={(r: any) => (refs['Card_886999'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_886999')}
           {...injectData}
         >
           <Description
@@ -2301,7 +2304,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
             disabled={false}
             visible={true}
             readOnly={false}
-            ref={(r: any) => (refs['Description_61586'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Description_61586')}
             {...injectData}
           />
         </Card>
@@ -2342,7 +2345,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
             margin: '0px 0px 0px 0px',
             'margin-bottom': '2.5px',
           }}
-          ref={(r: any) => (refs['Card_5914895'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_5914895')}
           {...injectData}
         >
           <Table
@@ -2750,7 +2753,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
             readOnly={false}
             rowSelection={undefined}
             style={{ margin: '10px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Table_994258'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_994258')}
             {...injectData}
           />
           <Description
@@ -3146,7 +3149,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
             visible={false}
             readOnly={false}
             style={{ margin: '10px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Description_055584'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Description_055584')}
             {...injectData}
           />
         </Card>
@@ -3188,7 +3191,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
             margin: '0px 0px 12px 0px',
             'margin-bottom': '2.5px',
           }}
-          ref={(r: any) => (refs['Card_6571733'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_6571733')}
           {...injectData}
         >
           <Form
@@ -3217,7 +3220,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px', margin: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_702034'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_702034')}
             {...injectData}
           >
             <Input
@@ -3261,7 +3264,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_32550878'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_32550878')}
               {...injectData}
             />
           </Form>
@@ -3289,7 +3292,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['GridView_295504'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'GridView_295504')}
             {...injectData}
             getEngineApis={() => {
               return {
@@ -3314,8 +3317,11 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
                           }}
                           pageSrc={'/' + item?.url}
                           style={{ height: 'auto', width: '100%' }}
-                          ref={(r: any) => (refs['Pageview_8687683'] = r)}
+                          ref={(r: any) =>
+                            refs.setComponentRef(r, 'Pageview_8687683')
+                          }
                           {...injectData}
+                          parentEngineId={parentEngineId}
                         />
                       </>
                     );
@@ -3346,7 +3352,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px', margin: '10px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_476484'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_476484')}
             {...injectData}
           >
             <Input
@@ -3388,7 +3394,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_014189'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_014189')}
               {...injectData}
             />
             <Text
@@ -3445,7 +3451,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
                 color: 'rgba(233, 21, 48, 1)',
                 backgroundColor: 'rgba(255, 255, 255,0)',
               }}
-              ref={(r: any) => (refs['Text_680937'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_680937')}
               {...injectData}
             />
           </Form>
@@ -3472,7 +3478,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px', margin: '8px 0px 8px 0px' }}
-            ref={(r: any) => (refs['Form_541805'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_541805')}
             {...injectData}
           >
             <QuillEditor
@@ -3501,7 +3507,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['QuillEditor_637236'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'QuillEditor_637236')}
               {...injectData}
             />
           </Form>
@@ -3953,7 +3959,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_035381'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_035381')}
             {...injectData}
           />
         </Card>
@@ -4029,7 +4035,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
               },
             );
           }}
-          ref={(r: any) => (refs['BOFramer_823276'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'BOFramer_823276')}
           {...injectData}
         />
         <View
@@ -4057,7 +4063,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
             backgroundColor: '#f0f0f0',
             zIndex: '3',
           }}
-          ref={(r: any) => (refs['View_938709'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_938709')}
           {...injectData}
         >
           <Button
@@ -4135,7 +4141,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_0567358'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_0567358')}
             {...injectData}
           />
           <Button
@@ -5191,7 +5197,9 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_2061707_637045_014961_038089'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Button_2061707_637045_014961_038089')
+            }
             {...injectData}
           />
           <Button
@@ -7336,7 +7344,9 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_2061707_637045_014961'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Button_2061707_637045_014961')
+            }
             {...injectData}
           />
           <Button
@@ -7764,7 +7774,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_8796906_85186'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_8796906_85186')}
             {...injectData}
           />
         </View>
@@ -7774,7 +7784,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AuditOrderSubmit$$Page, {
-  pageId: '884057477263503360',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { ordersSubmit: '' },

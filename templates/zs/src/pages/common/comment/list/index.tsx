@@ -1,14 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
+  View,
+  VerticalView,
   Card,
   Form,
   Input,
   Table,
-  VerticalView,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -19,6 +20,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '895869212089622528';
 const CommonCommentList$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -34,6 +36,7 @@ const CommonCommentList$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatagetTableSelected14: any = [
@@ -608,7 +611,7 @@ const CommonCommentList$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_2540494_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_2540494_1')}
         {...injectData}
       >
         <VerticalView
@@ -628,7 +631,7 @@ const CommonCommentList$$Modal: React.FC<PageProps> = ({
             height: '100%',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['VerticalView_7691962'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_7691962')}
           {...injectData}
         >
           <View
@@ -647,7 +650,7 @@ const CommonCommentList$$Modal: React.FC<PageProps> = ({
               height: '30%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_434019'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_434019')}
             {...injectData}
           >
             <Card
@@ -1450,7 +1453,7 @@ const CommonCommentList$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Card_564259'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_564259')}
               {...injectData}
             >
               <Form
@@ -1473,7 +1476,7 @@ const CommonCommentList$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 style={{ padding: '0px 0px 0px 0px' }}
-                ref={(r: any) => (refs['Form_3007486'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_3007486')}
                 {...injectData}
               >
                 <Input
@@ -1517,7 +1520,7 @@ const CommonCommentList$$Modal: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_2264195'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_2264195')}
                   {...injectData}
                 />
                 <Input
@@ -1561,7 +1564,7 @@ const CommonCommentList$$Modal: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_773189'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_773189')}
                   {...injectData}
                 />
               </Form>
@@ -3175,7 +3178,7 @@ const CommonCommentList$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_870854'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_870854')}
                 {...injectData}
               />
             </Card>
@@ -3187,7 +3190,7 @@ const CommonCommentList$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(CommonCommentList$$Modal, {
-  pageId: '895869212089622528',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

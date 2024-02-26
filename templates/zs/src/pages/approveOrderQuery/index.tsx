@@ -1,17 +1,18 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Card,
   Form,
   Input,
+  TreeSelect,
   MultipleSelect,
   RangePicker,
+  Button,
   Table,
-  TreeSelect,
-  View,
 } from '@/components/factory';
 
 import BusiComp416634 from '@/components/BusiComp416634';
@@ -24,6 +25,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '922050100039012352';
 const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -38,6 +40,7 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const query = (options_84995934: any) => {
     const eventDatagetFormValue1: any = [
@@ -3112,7 +3115,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
           width: 'auto',
         }}
         ref={(r: any) =>
-          (refs['View_541575_1_200529_475974_265917_515541_776758'] = r)
+          refs.setComponentRef(
+            r,
+            'View_541575_1_200529_475974_265917_515541_776758',
+          )
         }
         {...injectData}
       >
@@ -3167,7 +3173,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
             margin: '0px 0px 0px 0px',
           }}
           ref={(r: any) =>
-            (refs['View_065343_473472_05015_3702278_362488_208726'] = r)
+            refs.setComponentRef(
+              r,
+              'View_065343_473472_05015_3702278_362488_208726',
+            )
           }
           {...injectData}
         >
@@ -3209,7 +3218,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
               margin: '0px 0px 0px 0px',
             }}
             ref={(r: any) =>
-              (refs['Card_012576_415337_8750113_6572666_89382_805898'] = r)
+              refs.setComponentRef(
+                r,
+                'Card_012576_415337_8750113_6572666_89382_805898',
+              )
             }
             {...injectData}
           >
@@ -3236,7 +3248,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
               readOnly={false}
               style={{ padding: '0px 0px 0px 0px' }}
               ref={(r: any) =>
-                (refs['Form_126816_34484_8490105_282851_768365_026917'] = r)
+                refs.setComponentRef(
+                  r,
+                  'Form_126816_34484_8490105_282851_768365_026917',
+                )
               }
               {...injectData}
             >
@@ -3323,8 +3338,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                   );
                 }}
                 ref={(r: any) =>
-                  (refs['Input_8789281_279559_7694383_316381_877823_066734'] =
-                    r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_8789281_279559_7694383_316381_877823_066734',
+                  )
                 }
                 {...injectData}
               />
@@ -3427,7 +3444,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                   );
                 }}
                 ref={(r: any) =>
-                  (refs['Input_836023_877021_478428_405339_157414_186206'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_836023_877021_478428_405339_157414_186206',
+                  )
                 }
                 {...injectData}
               />
@@ -3804,9 +3824,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                   );
                 }}
                 ref={(r: any) =>
-                  (refs[
-                    'TreeSelect_07743_807969_276729_0954643_904744_2077655'
-                  ] = r)
+                  refs.setComponentRef(
+                    r,
+                    'TreeSelect_07743_807969_276729_0954643_904744_2077655',
+                  )
                 }
                 {...injectData}
               />
@@ -3852,7 +3873,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                 readOnly={false}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_85608_061495_715949_84455_302445_784239'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_85608_061495_715949_84455_302445_784239',
+                  )
                 }
                 {...injectData}
               />
@@ -3883,8 +3907,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                 readOnly={false}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['MultipleSelect_6896146_382474_219448_748634_681999'] =
-                    r)
+                  refs.setComponentRef(
+                    r,
+                    'MultipleSelect_6896146_382474_219448_748634_681999',
+                  )
                 }
                 {...injectData}
               />
@@ -3908,7 +3934,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                 width: '100%',
               }}
               ref={(r: any) =>
-                (refs['View_158841_0371773_652933_2275427_708486_46303'] = r)
+                refs.setComponentRef(
+                  r,
+                  'View_158841_0371773_652933_2275427_708486_46303',
+                )
               }
               {...injectData}
             >
@@ -3916,7 +3945,7 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                 busiCompId={'955762952733732864'}
                 name={'用户区域二级联动'}
                 style={{ margin: '12px 0px 12px 0px' }}
-                ref={(r: any) => (refs['BOFramer_838105'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'BOFramer_838105')}
                 {...injectData}
               />
               <Form
@@ -3945,7 +3974,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                   margin: '12px 0px 0px 0px',
                 }}
                 ref={(r: any) =>
-                  (refs['Form_071412_23739_6003683_675321_569004_572759'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Form_071412_23739_6003683_675321_569004_572759',
+                  )
                 }
                 {...injectData}
               >
@@ -4032,8 +4064,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                     );
                   }}
                   ref={(r: any) =>
-                    (refs['Input_421306_059794_015079_6574069_175269_2559798'] =
-                      r)
+                    refs.setComponentRef(
+                      r,
+                      'Input_421306_059794_015079_6574069_175269_2559798',
+                    )
                   }
                   {...injectData}
                 />
@@ -4065,9 +4099,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                   readOnly={false}
                   isFormRootChild={true}
                   ref={(r: any) =>
-                    (refs[
-                      'RangePicker_0811484_02404_122143_4701901_011063_1405673'
-                    ] = r)
+                    refs.setComponentRef(
+                      r,
+                      'RangePicker_0811484_02404_122143_4701901_011063_1405673',
+                    )
                   }
                   {...injectData}
                 />
@@ -4098,7 +4133,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                   margin: '12px 0px 0px 0px',
                 }}
                 ref={(r: any) =>
-                  (refs['Form_9423813_486326_231002_133159_154259_527665'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Form_9423813_486326_231002_133159_154259_527665',
+                  )
                 }
                 {...injectData}
               >
@@ -4144,8 +4182,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                   readOnly={false}
                   isFormRootChild={true}
                   ref={(r: any) =>
-                    (refs['Input_295293_055905_56795_141712_648377_1884803'] =
-                      r)
+                    refs.setComponentRef(
+                      r,
+                      'Input_295293_055905_56795_141712_648377_1884803',
+                    )
                   }
                   {...injectData}
                 />
@@ -4191,8 +4231,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                   readOnly={false}
                   isFormRootChild={true}
                   ref={(r: any) =>
-                    (refs['Input_116573_26982_403393_072968_751494_1233534'] =
-                      r)
+                    refs.setComponentRef(
+                      r,
+                      'Input_116573_26982_403393_072968_751494_1233534',
+                    )
                   }
                   {...injectData}
                 />
@@ -4219,9 +4261,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                 fontSize: '',
               }}
               ref={(r: any) =>
-                (refs[
-                  'View_445165_7123897_657787_86374398_163868_526544_405938'
-                ] = r)
+                refs.setComponentRef(
+                  r,
+                  'View_445165_7123897_657787_86374398_163868_526544_405938',
+                )
               }
               {...injectData}
             >
@@ -4282,9 +4325,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                   );
                 }}
                 ref={(r: any) =>
-                  (refs[
-                    'Button_616697_531957_2353575_491687_570996345_136483_32587'
-                  ] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Button_616697_531957_2353575_491687_570996345_136483_32587',
+                  )
                 }
                 {...injectData}
               />
@@ -4442,9 +4486,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                   );
                 }}
                 ref={(r: any) =>
-                  (refs[
-                    'Button_505213_248117_519902_7821423_005463_132764_639604'
-                  ] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Button_505213_248117_519902_7821423_005463_132764_639604',
+                  )
                 }
                 {...injectData}
               />
@@ -4467,7 +4512,7 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                   width: '100%',
                   textAlign: 'right',
                 }}
-                ref={(r: any) => (refs['View_1400643'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_1400643')}
                 {...injectData}
               >
                 <Button
@@ -4542,7 +4587,9 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_912732_333384'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Button_912732_333384')
+                  }
                   {...injectData}
                 />
                 <Button
@@ -5268,7 +5315,9 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_7469188_87179'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Button_7469188_87179')
+                  }
                   {...injectData}
                 />
               </View>
@@ -6320,8 +6369,10 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                 );
               }}
               ref={(r: any) =>
-                (refs['Table_37209506_850459_606135_0368544_489904_4374773'] =
-                  r)
+                refs.setComponentRef(
+                  r,
+                  'Table_37209506_850459_606135_0368544_489904_4374773',
+                )
               }
               {...injectData}
             />
@@ -6333,7 +6384,7 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ApproveOrderQuery$$Page, {
-  pageId: '922050100039012352',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { origin: '', openFrom: '' },

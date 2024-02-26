@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Input, Table, View } from '@/components/factory';
+import { View, Form, Input, Button, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -12,6 +13,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '899632499889246208';
 const MarketSel$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -27,12 +29,9 @@ const MarketSel$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
-    console.log(
-      "refs['Table_08098']refs['Table_08098']refs['Table_08098']refs['Table_08098']refs['Table_08098']",
-    );
-    console.log(refs['Table_08098']);
     const eventDatagetTableSelected13: any = [
       {
         type: 'getTableSelected',
@@ -457,7 +456,7 @@ const MarketSel$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_6584614_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_6584614_1')}
         {...injectData}
       >
         <View
@@ -478,7 +477,7 @@ const MarketSel$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_415392'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_415392')}
           {...injectData}
         >
           <Form
@@ -503,7 +502,7 @@ const MarketSel$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_490502'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_490502')}
             {...injectData}
           >
             <Input
@@ -547,7 +546,7 @@ const MarketSel$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_1569666'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_1569666')}
               {...injectData}
             />
             <Input
@@ -591,7 +590,7 @@ const MarketSel$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_322461'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_322461')}
               {...injectData}
             />
             <View
@@ -623,7 +622,7 @@ const MarketSel$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_989063'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_989063')}
               {...injectData}
             >
               <Button
@@ -950,7 +949,7 @@ const MarketSel$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_9758254'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_9758254')}
                 {...injectData}
               />
               <Button
@@ -982,7 +981,7 @@ const MarketSel$$Modal: React.FC<PageProps> = ({
                     (form) => form?.resetFields(),
                   );
                 }}
-                ref={(r: any) => (refs['Button_9067789'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_9067789')}
                 {...injectData}
               />
             </View>
@@ -1239,7 +1238,7 @@ const MarketSel$$Modal: React.FC<PageProps> = ({
               },
             );
           }}
-          ref={(r: any) => (refs['Table_08098'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_08098')}
           {...injectData}
         />
       </View>
@@ -1248,7 +1247,7 @@ const MarketSel$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(MarketSel$$Modal, {
-  pageId: '899632499889246208',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', multiple: '' },

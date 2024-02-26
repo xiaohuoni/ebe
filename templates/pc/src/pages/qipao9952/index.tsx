@@ -5,6 +5,8 @@ import Popover from '@/components/Popover';
 
 import { Button, Text, View } from '@/components/factory';
 
+import Pageview from '@/components/Pageview';
+
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
@@ -64,7 +66,7 @@ const Qipao9952$$Popover: React.FC<PageProps> = ({
           width: 'auto',
           height: 'auto',
         }}
-        ref={(r: any) => (refs['View_268601_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_268601_1')}
         {...injectData}
       >
         <Text
@@ -88,8 +90,18 @@ const Qipao9952$$Popover: React.FC<PageProps> = ({
             color: '#1c242e',
             backgroundColor: 'rgba(255, 255, 255,0)',
           }}
-          ref={(r: any) => (refs['Text_840687'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Text_840687')}
           {...injectData}
+        />
+        <Pageview
+          name={'页面容器'}
+          pageViewCompState={{}}
+          pageSrc={'/cdd5883'}
+          pageId={'1028120483871506432'}
+          style={{ height: 'auto', width: '100%' }}
+          ref={(r: any) => refs.setComponentRef(r, 'Pageview_1001525')}
+          {...injectData}
+          parentEngineId={parentEngineId}
         />
         <Button
           name={'按钮'}
@@ -117,7 +129,7 @@ const Qipao9952$$Popover: React.FC<PageProps> = ({
           readOnly={false}
           style={{ textAlign: 'center' }}
           onClick={(e: any) => {
-            const eventDatacallParentCustomFunc: any = [
+            const eventDatacallParentCustomFunc1: any = [
               {
                 type: 'callParentCustomFunc',
                 dataId: 170849478747151550,
@@ -132,16 +144,15 @@ const Qipao9952$$Popover: React.FC<PageProps> = ({
                   modalPath: '/ceshi8260',
                   customFuncName: 'callFunctionTest',
                 },
-                path: [170849478367183400],
                 line_number: 1,
                 callback1: [],
                 callback2: [],
               },
             ];
-            eventDatacallParentCustomFunc.params =
+            eventDatacallParentCustomFunc1.params =
               [{ title: '事件对象', value: '$e$', name: 'e' }] || [];
             CMDGenerator(
-              eventDatacallParentCustomFunc,
+              eventDatacallParentCustomFunc1,
               { e },
               'callParentCustomFunc',
               {
@@ -152,7 +163,7 @@ const Qipao9952$$Popover: React.FC<PageProps> = ({
               },
             );
           }}
-          ref={(r: any) => (refs['Button_489167'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Button_489167')}
           {...injectData}
         />
       </View>

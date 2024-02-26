@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, View } from '@/components/factory';
+import { View, Button } from '@/components/factory';
 
 import BusiComp978237 from '@/components/BusiComp978237';
 
@@ -10,6 +11,7 @@ import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '875195010387558400';
 const FlowMeetingAudit$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -24,6 +26,7 @@ const FlowMeetingAudit$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDatacustomActionCode311: any = [
@@ -257,7 +260,7 @@ const FlowMeetingAudit$$Page: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_30_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_30_1')}
         {...injectData}
       >
         <View
@@ -270,7 +273,7 @@ const FlowMeetingAudit$$Page: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_30_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_30_11')}
           {...injectData}
         >
           <BusiComp978237
@@ -278,7 +281,7 @@ const FlowMeetingAudit$$Page: React.FC<PageProps> = ({
             visible={true}
             busiCompId={'875193427660898304'}
             style={{ margin: '0 0 12px 0' }}
-            ref={(r: any) => (refs['BOFramer_52852726'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'BOFramer_52852726')}
             {...injectData}
           />
           <View
@@ -304,7 +307,7 @@ const FlowMeetingAudit$$Page: React.FC<PageProps> = ({
               'background-color': '#f0f0f0',
               'z-index': '3',
             }}
-            ref={(r: any) => (refs['View_30_1122'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_30_1122')}
             {...injectData}
           >
             <Button
@@ -350,7 +353,7 @@ const FlowMeetingAudit$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_30_122'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_30_122')}
               {...injectData}
             />
             <Button
@@ -840,7 +843,7 @@ const FlowMeetingAudit$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_30_121'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_30_121')}
               {...injectData}
             />
             <Button
@@ -926,7 +929,7 @@ const FlowMeetingAudit$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_661945'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_661945')}
               {...injectData}
             />
           </View>
@@ -937,7 +940,7 @@ const FlowMeetingAudit$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(FlowMeetingAudit$$Page, {
-  pageId: '875195010387558400',
+  pageId,
   hasLogin: false,
   defaultState: {},
 });

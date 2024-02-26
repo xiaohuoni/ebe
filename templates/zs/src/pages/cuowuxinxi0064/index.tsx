@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Divider, LoopList, Row, Text, View } from '@/components/factory';
+import { View, LoopList, Row, Text, Divider } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '1037555797777207296';
 const Cuowuxinxi0064$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -23,6 +25,7 @@ const Cuowuxinxi0064$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatacloseModal53: any = [
@@ -95,7 +98,7 @@ const Cuowuxinxi0064$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_76617386_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_76617386_1')}
         {...injectData}
       >
         <View
@@ -119,7 +122,7 @@ const Cuowuxinxi0064$$Modal: React.FC<PageProps> = ({
             overflowY: 'auto',
             flex: '',
           }}
-          ref={(r: any) => (refs['View_1215363'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_1215363')}
           {...injectData}
         >
           <LoopList
@@ -148,7 +151,7 @@ const Cuowuxinxi0064$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ minHeight: 40, margin: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['LoopList_7136955'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'LoopList_7136955')}
             {...injectData}
             getEngineApis={() => {
               return {
@@ -180,7 +183,9 @@ const Cuowuxinxi0064$$Modal: React.FC<PageProps> = ({
                           visible={true}
                           readOnly={false}
                           style={{ margin: '0px 0px 0px 0px' }}
-                          ref={(r: any) => (refs['Row_753137'] = r)}
+                          ref={(r: any) =>
+                            refs.setComponentRef(r, 'Row_753137')
+                          }
                           {...injectData}
                         >
                           <View
@@ -208,7 +213,9 @@ const Cuowuxinxi0064$$Modal: React.FC<PageProps> = ({
                               justifyContent: 'flex-start',
                               alignItems: 'center',
                             }}
-                            ref={(r: any) => (refs['View_834655'] = r)}
+                            ref={(r: any) =>
+                              refs.setComponentRef(r, 'View_834655')
+                            }
                             {...injectData}
                           >
                             <Text
@@ -233,7 +240,9 @@ const Cuowuxinxi0064$$Modal: React.FC<PageProps> = ({
                                 color: '#44A4F5',
                                 backgroundColor: 'rgba(255, 255, 255,0)',
                               }}
-                              ref={(r: any) => (refs['Text_6177576'] = r)}
+                              ref={(r: any) =>
+                                refs.setComponentRef(r, 'Text_6177576')
+                              }
                               {...injectData}
                             />
                             <Text
@@ -259,7 +268,9 @@ const Cuowuxinxi0064$$Modal: React.FC<PageProps> = ({
                                 backgroundColor: 'rgba(255, 255, 255,0)',
                                 margin: '0px 0px 0px 0px',
                               }}
-                              ref={(r: any) => (refs['Text_604362'] = r)}
+                              ref={(r: any) =>
+                                refs.setComponentRef(r, 'Text_604362')
+                              }
                               {...injectData}
                             />
                           </View>
@@ -291,7 +302,9 @@ const Cuowuxinxi0064$$Modal: React.FC<PageProps> = ({
                               margin: '0px 0px 0px 0px',
                               height: 'auto',
                             }}
-                            ref={(r: any) => (refs['Divider_427594'] = r)}
+                            ref={(r: any) =>
+                              refs.setComponentRef(r, 'Divider_427594')
+                            }
                             {...injectData}
                           />
                         </Row>
@@ -309,7 +322,7 @@ const Cuowuxinxi0064$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Cuowuxinxi0064$$Modal, {
-  pageId: '1037555797777207296',
+  pageId,
   hasLogin: false,
   defaultState: { bizId: '', sceneCode: '', bizData: '', errorList: '' },
 });

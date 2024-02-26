@@ -1,19 +1,20 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Checkbox,
-  Divider,
-  Form,
-  GridView,
-  HorizontalView,
-  Input,
-  Row,
-  Table,
-  Text,
-  TextArea,
   View,
+  Divider,
+  HorizontalView,
+  Form,
+  Checkbox,
+  Input,
+  TextArea,
+  Table,
+  Row,
+  Text,
+  GridView,
 } from '@/components/factory';
 
 import BusiComp371631 from '@/components/BusiComp371631';
@@ -24,6 +25,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '887883146584788992';
 const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -38,6 +40,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDataapiRequest124: any = [
@@ -1502,7 +1505,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
           width: '100.',
           overflow: 'hidden',
         }}
-        ref={(r: any) => (refs['View_537892_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_537892_1')}
         {...injectData}
       >
         <Divider
@@ -1522,7 +1525,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ margin: '12px 0 12px 0', height: 'auto' }}
-          ref={(r: any) => (refs['Divider_719552'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Divider_719552')}
           {...injectData}
         />
         <View
@@ -1543,7 +1546,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_6806553'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_6806553')}
           {...injectData}
         >
           <HorizontalView
@@ -1567,7 +1570,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
               overflowY: 'auto',
               margin: '0px 0px 12px 0px',
             }}
-            ref={(r: any) => (refs['HorizontalView_004602'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'HorizontalView_004602')}
             {...injectData}
           >
             <View
@@ -1590,7 +1593,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
                 overflowY: 'auto',
                 margin: '15px 0px 5px 0px',
               }}
-              ref={(r: any) => (refs['View_339406'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_339406')}
               {...injectData}
             >
               <Form
@@ -1617,7 +1620,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
                 readOnly={false}
                 style={{ padding: '0px 0px 0px 0px' }}
                 ref={(r: any) =>
-                  (refs['Form_4311097_9385662_1929847_738917'] = r)
+                  refs.setComponentRef(r, 'Form_4311097_9385662_1929847_738917')
                 }
                 {...injectData}
               >
@@ -1650,7 +1653,10 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
                   readOnly={false}
                   isFormRootChild={true}
                   ref={(r: any) =>
-                    (refs['Checkbox_882584_5289015_934499_57326296_002468'] = r)
+                    refs.setComponentRef(
+                      r,
+                      'Checkbox_882584_5289015_934499_57326296_002468',
+                    )
                   }
                   {...injectData}
                 />
@@ -1681,7 +1687,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_0477386'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_0477386')}
                   {...injectData}
                 />
                 <Input
@@ -1727,7 +1733,10 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
                   readOnly={false}
                   isFormRootChild={true}
                   ref={(r: any) =>
-                    (refs['Input_361479_887285_2150708_0235518_772568'] = r)
+                    refs.setComponentRef(
+                      r,
+                      'Input_361479_887285_2150708_0235518_772568',
+                    )
                   }
                   {...injectData}
                 />
@@ -1853,7 +1862,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
               platform: 'pc',
             });
           }}
-          ref={(r: any) => (refs['Form_412511'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_412511')}
           {...injectData}
         >
           <Input
@@ -1898,7 +1907,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_flowType_257926'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_flowType_257926')}
             {...injectData}
           />
           <Input
@@ -1943,7 +1952,9 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_workOrderNbr_177299'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Input_workOrderNbr_177299')
+            }
             {...injectData}
           />
           <TextArea
@@ -1969,7 +1980,9 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_approvaItemDesc_867514'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Input_approvaItemDesc_867514')
+            }
             {...injectData}
           />
         </Form>
@@ -1992,7 +2005,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_4949093'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_4949093')}
           {...injectData}
         >
           <Table
@@ -2459,7 +2472,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_5369494'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_5369494')}
             {...injectData}
           />
         </View>
@@ -2478,7 +2491,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
           disabled={false}
           visible={true}
           readOnly={false}
-          ref={(r: any) => (refs['Row_066705'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_066705')}
           {...injectData}
         >
           <Text
@@ -2504,7 +2517,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
               backgroundColor: 'rgba(255, 255, 255,0)',
               fontWeight: 700,
             }}
-            ref={(r: any) => (refs['Text_335109'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_335109')}
             {...injectData}
           />
         </Row>
@@ -2881,7 +2894,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
           disabled={false}
           visible={true}
           readOnly={false}
-          ref={(r: any) => (refs['Table_76657'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_76657')}
           {...injectData}
         />
         <Row
@@ -2905,7 +2918,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
             'font-weight': 'bold',
             display: 'flex',
           }}
-          ref={(r: any) => (refs['Row_2802134_078966_035446'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_2802134_078966_035446')}
           {...injectData}
         >
           <Text
@@ -2924,7 +2937,9 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ fontSize: 15, lineHeight: '24px', color: '#1c242e' }}
-            ref={(r: any) => (refs['Text_467514_235314_557867'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Text_467514_235314_557867')
+            }
             {...injectData}
           />
         </Row>
@@ -2952,7 +2967,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ minHeight: 40 }}
-          ref={(r: any) => (refs['GridView_45004'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'GridView_45004')}
           {...injectData}
           getEngineApis={() => {
             return {
@@ -2969,7 +2984,9 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
                         name={'银行到账信息'}
                         busiCompStates={{ bankAccount: item }}
                         style={{ margin: '0 0 12px 0' }}
-                        ref={(r: any) => (refs['BOFramer_299744'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'BOFramer_299744')
+                        }
                         {...injectData}
                       />
                     </>
@@ -3000,7 +3017,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
             'font-weight': 'bold',
             display: 'flex',
           }}
-          ref={(r: any) => (refs['Row_2802134_078966'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_2802134_078966')}
           {...injectData}
         >
           <Text
@@ -3019,7 +3036,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ fontSize: 15, lineHeight: '24px', color: '#1c242e' }}
-            ref={(r: any) => (refs['Text_467514_235314'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_467514_235314')}
             {...injectData}
           />
         </Row>
@@ -3464,7 +3481,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
           disabled={false}
           visible={true}
           readOnly={false}
-          ref={(r: any) => (refs['Table_088834'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_088834')}
           {...injectData}
         />
         <Row
@@ -3483,7 +3500,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ 'line-height': '32ox' }}
-          ref={(r: any) => (refs['Row_9301746_9484946'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_9301746_9484946')}
           {...injectData}
         >
           <View
@@ -3504,7 +3521,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_58611_6287033'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_58611_6287033')}
             {...injectData}
           >
             <Text
@@ -3523,7 +3540,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ fontSize: '14px', lineHeight: '24px', color: '#fc021f' }}
-              ref={(r: any) => (refs['Text_9945374_550461'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_9945374_550461')}
               {...injectData}
             />
             <Text
@@ -3545,7 +3562,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(252, 2, 31, 1)',
               }}
-              ref={(r: any) => (refs['Text_2451_168378'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_2451_168378')}
               {...injectData}
             />
           </View>
@@ -3567,7 +3584,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_58611'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_58611')}
             {...injectData}
           >
             <Text
@@ -3590,7 +3607,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(252, 2, 31, 1)',
               }}
-              ref={(r: any) => (refs['Text_9945374'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_9945374')}
               {...injectData}
             />
             <Text
@@ -3612,7 +3629,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(252, 2, 31, 1)',
               }}
-              ref={(r: any) => (refs['Text_2451'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_2451')}
               {...injectData}
             />
           </View>
@@ -3634,7 +3651,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_58611_717376'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_58611_717376')}
             {...injectData}
           >
             <Text
@@ -3657,7 +3674,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(252, 2, 31, 1)',
               }}
-              ref={(r: any) => (refs['Text_9945374_8459843'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_9945374_8459843')}
               {...injectData}
             />
             <Text
@@ -3679,7 +3696,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(252, 2, 31, 1)',
               }}
-              ref={(r: any) => (refs['Text_2451_4726555'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_2451_4726555')}
               {...injectData}
             />
           </View>
@@ -3705,7 +3722,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
             'font-weight': 'bold',
             display: 'flex',
           }}
-          ref={(r: any) => (refs['Row_2802134'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_2802134')}
           {...injectData}
         >
           <Text
@@ -3724,7 +3741,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ fontSize: 15, lineHeight: '24px', color: '#1c242e' }}
-            ref={(r: any) => (refs['Text_467514'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_467514')}
             {...injectData}
           />
         </Row>
@@ -4177,7 +4194,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
           disabled={false}
           visible={true}
           readOnly={false}
-          ref={(r: any) => (refs['Table_9211005'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_9211005')}
           {...injectData}
         />
         <Row
@@ -4196,7 +4213,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ 'line-height': '32ox' }}
-          ref={(r: any) => (refs['Row_9301746'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_9301746')}
           {...injectData}
         >
           <View
@@ -4217,7 +4234,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_58611_99175'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_58611_99175')}
             {...injectData}
           >
             <Text
@@ -4236,7 +4253,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ fontSize: '14px', lineHeight: '24px', color: '#1c242e' }}
-              ref={(r: any) => (refs['Text_9945374_739862'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_9945374_739862')}
               {...injectData}
             />
             <Text
@@ -4254,7 +4271,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ fontSize: '14px', lineHeight: '24px', color: '#1c242e' }}
-              ref={(r: any) => (refs['Text_2451_3083706'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_2451_3083706')}
               {...injectData}
             />
           </View>
@@ -4280,7 +4297,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
             'font-weight': 'bold',
             display: 'flex',
           }}
-          ref={(r: any) => (refs['Row_2802134_5819016'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_2802134_5819016')}
           {...injectData}
         >
           <Text
@@ -4299,7 +4316,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ fontSize: 15, lineHeight: '24px', color: '#1c242e' }}
-            ref={(r: any) => (refs['Text_467514_503441'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_467514_503441')}
             {...injectData}
           />
         </Row>
@@ -4536,7 +4553,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
           disabled={false}
           visible={true}
           readOnly={false}
-          ref={(r: any) => (refs['Table_9211005_1611749'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_9211005_1611749')}
           {...injectData}
         />
       </View>
@@ -4545,7 +4562,7 @@ const AwaDAwdaw2323$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AwaDAwdaw2323$$Page, {
-  pageId: '887883146584788992',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, HorizontalView, Text, View } from '@/components/factory';
+import { View, HorizontalView, Text, Button } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '891650785732694016';
 const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -23,6 +25,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     // console 167894587110662180
@@ -55,7 +58,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_958791_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_958791_1')}
         {...injectData}
       >
         <HorizontalView
@@ -76,7 +79,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
             overflowY: 'auto',
             margin: '0px 0px 8px 0px',
           }}
-          ref={(r: any) => (refs['HorizontalView_549178'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'HorizontalView_549178')}
           {...injectData}
         >
           <View
@@ -96,7 +99,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
               height: '100%',
               overflowY: 'auto',
             }}
-            ref={(r: any) => (refs['View_398957'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_398957')}
             {...injectData}
           >
             <Text
@@ -121,7 +124,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
                 letterSpacing: '',
                 textAlign: 'right',
               }}
-              ref={(r: any) => (refs['Text_481171'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_481171')}
               {...injectData}
             />
           </View>
@@ -142,7 +145,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
               height: '100%',
               overflowY: 'auto',
             }}
-            ref={(r: any) => (refs['View_251956'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_251956')}
             {...injectData}
           >
             <Text
@@ -166,7 +169,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
                 color: '#999',
                 letterSpacing: '',
               }}
-              ref={(r: any) => (refs['Text_770672'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_770672')}
               {...injectData}
             />
           </View>
@@ -189,7 +192,9 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
             overflowY: 'auto',
             margin: '0px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['HorizontalView_549178_3085413'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'HorizontalView_549178_3085413')
+          }
           {...injectData}
         >
           <View
@@ -209,7 +214,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
               height: '100%',
               overflowY: 'auto',
             }}
-            ref={(r: any) => (refs['View_398957_6809206'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_398957_6809206')}
             {...injectData}
           >
             <Text
@@ -232,7 +237,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
                 letterSpacing: '',
                 textAlign: 'right',
               }}
-              ref={(r: any) => (refs['Text_481171_187786'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_481171_187786')}
               {...injectData}
             />
           </View>
@@ -254,7 +259,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
               overflowY: 'auto',
               color: '#ddd',
             }}
-            ref={(r: any) => (refs['View_251956_174864'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_251956_174864')}
             {...injectData}
           >
             <Text
@@ -271,7 +276,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ fontSize: 16, lineHeight: '24px', color: '#1677ff' }}
-              ref={(r: any) => (refs['Text_770672_295256'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_770672_295256')}
               {...injectData}
             />
           </View>
@@ -294,7 +299,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
             textAlign: 'center',
             margin: '24px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['View_969983'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_969983')}
           {...injectData}
         >
           <Button
@@ -362,7 +367,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_162085'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_162085')}
             {...injectData}
           />
         </View>
@@ -372,7 +377,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AuditSubmitPop$$Modal, {
-  pageId: '891650785732694016',
+  pageId,
   hasLogin: false,
   defaultState: { bizId: '', sceneCode: '', instNbr: '', nextStaffName: '' },
 });

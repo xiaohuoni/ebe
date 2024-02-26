@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, LoopList, Text, View } from '@/components/factory';
+import { View, Text, LoopList, Button } from '@/components/factory';
 
 import BusiComp963983 from '@/components/BusiComp963983';
 
@@ -14,6 +15,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '1062544418106597376';
 const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -29,6 +31,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {};
 
@@ -726,7 +729,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_930217_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_930217_1')}
         {...injectData}
       >
         <View
@@ -751,7 +754,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
             alignItems: 'center',
             margin: '0px 0px 4px 0px',
           }}
-          ref={(r: any) => (refs['View_132664'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_132664')}
           {...injectData}
         >
           <View
@@ -776,7 +779,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
               alignItems: 'center',
               flex: 1,
             }}
-            ref={(r: any) => (refs['View_26181'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_26181')}
             {...injectData}
           >
             <View
@@ -800,7 +803,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
                 height: '22px',
                 borderRadius: '10px 10px 10px 10px',
               }}
-              ref={(r: any) => (refs['View_1190825'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_1190825')}
               {...injectData}
             />
             <Text
@@ -826,7 +829,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
                 backgroundColor: 'rgba(255, 255, 255,0)',
                 margin: '0px 0px 0px 8px',
               }}
-              ref={(r: any) => (refs['Text_348678'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_348678')}
               {...injectData}
             />
           </View>
@@ -850,7 +853,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
               width: '100%',
               flex: 14,
             }}
-            ref={(r: any) => (refs['View_210225'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_210225')}
             {...injectData}
           >
             <Text
@@ -876,7 +879,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
                 backgroundColor: '#FFFF80',
                 letterSpacing: '',
               }}
-              ref={(r: any) => (refs['Text_457042'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_457042')}
               {...injectData}
             />
           </View>
@@ -887,7 +890,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
           fieldName={'groupInfo'}
           busiCompStates={{ groupInfo: data?.singleGroup?.groupInfo }}
           style={{ margin: '0 0 12px 0' }}
-          ref={(r: any) => (refs['BOFramer_985898'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'BOFramer_985898')}
           {...injectData}
         />
         <LoopList
@@ -919,7 +922,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ minHeight: 40 }}
-          ref={(r: any) => (refs['LoopList_973951'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'LoopList_973951')}
           {...injectData}
           getEngineApis={() => {
             return {
@@ -957,7 +960,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
                           alignItems: 'center',
                           margin: '0px 0px 4px 0px',
                         }}
-                        ref={(r: any) => (refs['View_673689'] = r)}
+                        ref={(r: any) => refs.setComponentRef(r, 'View_673689')}
                         {...injectData}
                       >
                         <View
@@ -985,7 +988,9 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
                             alignItems: 'center',
                             flex: 1,
                           }}
-                          ref={(r: any) => (refs['View_15513'] = r)}
+                          ref={(r: any) =>
+                            refs.setComponentRef(r, 'View_15513')
+                          }
                           {...injectData}
                         >
                           <View
@@ -1012,7 +1017,9 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
                               height: '22px',
                               borderRadius: '10px 10px 10px 10px',
                             }}
-                            ref={(r: any) => (refs['View_339803'] = r)}
+                            ref={(r: any) =>
+                              refs.setComponentRef(r, 'View_339803')
+                            }
                             {...injectData}
                           />
                           <Text
@@ -1038,7 +1045,9 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
                               backgroundColor: 'rgba(255, 255, 255,0)',
                               margin: '0px 0px 0px 8px',
                             }}
-                            ref={(r: any) => (refs['Text_751515'] = r)}
+                            ref={(r: any) =>
+                              refs.setComponentRef(r, 'Text_751515')
+                            }
                             {...injectData}
                           />
                         </View>
@@ -1065,7 +1074,9 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
                             width: '100%',
                             flex: 14,
                           }}
-                          ref={(r: any) => (refs['View_283784'] = r)}
+                          ref={(r: any) =>
+                            refs.setComponentRef(r, 'View_283784')
+                          }
                           {...injectData}
                         >
                           <Text
@@ -1092,7 +1103,9 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
                               backgroundColor: '#FFFF80',
                               letterSpacing: '',
                             }}
-                            ref={(r: any) => (refs['Text_159487'] = r)}
+                            ref={(r: any) =>
+                              refs.setComponentRef(r, 'Text_159487')
+                            }
                             {...injectData}
                           />
                         </View>
@@ -1102,7 +1115,9 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
                         name={'集团账户信息'}
                         busiCompStates={{ accountInfo: item }}
                         style={{ margin: '0 0 12px 0' }}
-                        ref={(r: any) => (refs['BOFramer_0891423'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'BOFramer_0891423')
+                        }
                         {...injectData}
                       />
                     </>
@@ -1132,7 +1147,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
             width: 'fit-content',
             margin: '0px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['View_3119128'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_3119128')}
           {...injectData}
         >
           <Text
@@ -1160,7 +1175,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
               backgroundColor: '#ffff80',
               letterSpacing: '',
             }}
-            ref={(r: any) => (refs['Text_3630851'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_3630851')}
             {...injectData}
           />
         </View>
@@ -1185,7 +1200,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
             justifyContent: 'flex-end',
             margin: '24px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['View_331395'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_331395')}
           {...injectData}
         >
           <View
@@ -1207,7 +1222,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_675717'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_675717')}
             {...injectData}
           >
             <Button
@@ -1250,7 +1265,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_912338'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_912338')}
               {...injectData}
             />
           </View>
@@ -1261,7 +1276,7 @@ const Duojituanzhanghuxinxi6332$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Duojituanzhanghuxinxi6332$$Modal, {
-  pageId: '1062544418106597376',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', bizData: '', singleGroup: '' },

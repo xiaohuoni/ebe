@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Card, Form, Input, Table, View } from '@/components/factory';
+import { View, Card, Form, Input, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '991181819535351808';
 const QueryLine$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const QueryLine$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDataifelse100: any = [
@@ -1556,7 +1559,7 @@ const QueryLine$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_784293_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_784293_1')}
         {...injectData}
       >
         <View
@@ -1578,7 +1581,7 @@ const QueryLine$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_2188005'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_2188005')}
           {...injectData}
         >
           <Card
@@ -1620,7 +1623,7 @@ const QueryLine$$Modal: React.FC<PageProps> = ({
               overflowY: 'visible',
               margin: '0 0 16px 0',
             }}
-            ref={(r: any) => (refs['Card_254938'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_254938')}
             {...injectData}
           >
             <Form
@@ -1645,7 +1648,7 @@ const QueryLine$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ padding: '0px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_946046'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_946046')}
               {...injectData}
             >
               <Input
@@ -1690,7 +1693,7 @@ const QueryLine$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_4573226'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_4573226')}
                 {...injectData}
               />
             </Form>
@@ -1935,7 +1938,7 @@ const QueryLine$$Modal: React.FC<PageProps> = ({
               disabled={false}
               visible={false}
               readOnly={false}
-              ref={(r: any) => (refs['Table_1286184'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Table_1286184')}
               {...injectData}
             />
             <Table
@@ -2179,7 +2182,7 @@ const QueryLine$$Modal: React.FC<PageProps> = ({
               disabled={false}
               visible={false}
               readOnly={false}
-              ref={(r: any) => (refs['Table_8107356'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Table_8107356')}
               {...injectData}
             />
             <Table
@@ -2423,7 +2426,7 @@ const QueryLine$$Modal: React.FC<PageProps> = ({
               disabled={false}
               visible={false}
               readOnly={false}
-              ref={(r: any) => (refs['Table_505147'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Table_505147')}
               {...injectData}
             />
             <Table
@@ -2667,7 +2670,7 @@ const QueryLine$$Modal: React.FC<PageProps> = ({
               disabled={false}
               visible={false}
               readOnly={false}
-              ref={(r: any) => (refs['Table_9147857'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Table_9147857')}
               {...injectData}
             />
             <Table
@@ -2911,7 +2914,7 @@ const QueryLine$$Modal: React.FC<PageProps> = ({
               disabled={false}
               visible={false}
               readOnly={false}
-              ref={(r: any) => (refs['Table_721063'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Table_721063')}
               {...injectData}
             />
           </Card>
@@ -2922,7 +2925,7 @@ const QueryLine$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(QueryLine$$Modal, {
-  pageId: '991181819535351808',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

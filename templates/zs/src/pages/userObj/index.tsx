@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Input, View } from '@/components/factory';
+import { View, Form, Input, Button } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -12,6 +13,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '1001682144719441920';
 const UserObj$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -27,6 +29,7 @@ const UserObj$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const initInput = (options_140988: any) => {
     const eventDataapiRequest60: any = [
@@ -1464,7 +1467,7 @@ const UserObj$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_31_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_31_1')}
         {...injectData}
       >
         <View
@@ -1479,7 +1482,7 @@ const UserObj$$Modal: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_31_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_31_11')}
           {...injectData}
         >
           <View
@@ -1502,7 +1505,7 @@ const UserObj$$Modal: React.FC<PageProps> = ({
               margin: '0px 0px 0px 0px',
               borderRadius: '2px 2px 2px 2px',
             }}
-            ref={(r: any) => (refs['View_31_112'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_31_112')}
             {...injectData}
           >
             <Form
@@ -1597,7 +1600,7 @@ const UserObj$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Form_31_1121'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_31_1121')}
               {...injectData}
             >
               <Input
@@ -1642,7 +1645,9 @@ const UserObj$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_userName_075895'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_userName_075895')
+                }
                 {...injectData}
               />
               <Input
@@ -1687,7 +1692,7 @@ const UserObj$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_phone_937483'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_phone_937483')}
                 {...injectData}
               />
             </Form>
@@ -1712,7 +1717,7 @@ const UserObj$$Modal: React.FC<PageProps> = ({
             width: '100%',
             textAlign: 'center',
           }}
-          ref={(r: any) => (refs['View_904128'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_904128')}
           {...injectData}
         >
           <Button
@@ -1807,7 +1812,7 @@ const UserObj$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Button_450028'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_450028')}
             {...injectData}
           />
           <Button
@@ -1855,7 +1860,7 @@ const UserObj$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_833933'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_833933')}
             {...injectData}
           />
         </View>
@@ -1865,7 +1870,7 @@ const UserObj$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(UserObj$$Modal, {
-  pageId: '1001682144719441920',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', catalogCode: '', redObj: '' },

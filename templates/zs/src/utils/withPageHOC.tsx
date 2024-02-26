@@ -1,5 +1,5 @@
-import { pageStaticData } from '@/components/Pageview';
 import { PLATFORM } from '@/constants';
+import { message as messageApi, Modal } from 'antd';
 import assetHelper from '@lingxiteam/engine-assets';
 import {
   checkIfCMDHasReturn,
@@ -9,7 +9,6 @@ import {
   CONDrun,
 } from '@lingxiteam/engine-command';
 import Meta from '@lingxiteam/engine-meta';
-import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';
 import locales from '@lingxiteam/engine-pc/es/utils/locales';
 import {
   createApp,
@@ -19,7 +18,6 @@ import {
 } from '@lingxiteam/engine-platform';
 import monitt from '@lingxiteam/engine-plog';
 import AwaitHandleData from '@lingxiteam/engine-render-core/es/utils/AwaitHandleData';
-import EngineMapping from '@lingxiteam/engine-render/es/utils/EngineMapping';
 import Sandbox from '@lingxiteam/engine-sandbox';
 import {
   copyText,
@@ -33,11 +31,13 @@ import {
 } from '@lingxiteam/engine-utils';
 import { $$compDefine, SandBoxContext } from '@lingxiteam/types';
 import { history, useLocation } from 'alita';
-import { message as messageApi, Modal } from 'antd';
-import { merge } from 'lodash';
-import { parse } from 'qs';
 import React, { useContext, useEffect, useState } from 'react';
+import EngineMapping from '@lingxiteam/engine-render/es/utils/EngineMapping';
+import { parse } from 'qs';
 import { Context } from './Context/context';
+import { merge } from 'lodash';
+import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';
+import { pageStaticData } from '@/components/Pageview';
 
 const awaitKeys: Set<string> = new Set();
 const cacheKeys: Set<string> = new Set();
@@ -215,7 +215,7 @@ export const withPageHOC = (
               }),
             getVisible: (compId: string) => {
               // @ts-ignore
-              return refs[compId]?.visible;
+              return refs.value[compId]?.visible;
             },
             stateListener: getStateListener(pageId),
             sandBoxRun,
@@ -239,16 +239,20 @@ export const withPageHOC = (
       const getValue = (id: string, stateName?: string) => {
         if (stateName) {
           // @ts-ignore
-          return refs?.[id]?.[stateName];
+          return refs.value?.[id]?.[stateName];
         }
         // @ts-ignore
-        return refs?.[id]?.value;
+        return refs.value?.[id]?.value;
       };
       const defaultContext = {
         getValue,
         urlParam,
         appId,
         pageId,
+        // 如果是子组件，直接存父组件对象？
+        routerId: props?.parentEngineId ?? pageId,
+        renderId: props?.parentEngineId ?? pageId,
+        parentEngineId: props?.parentEngineId ?? pageId,
         engineRelation: EngineMapping.publicMethod,
         lcdpApi: appInst.lcdpApi,
         transformValueDefined,
@@ -367,7 +371,7 @@ export const withPageHOC = (
             $$compDefine,
             Modal,
             messageApi,
-            refs,
+            refs: refs.value,
             utils: engineApis,
             history,
             sandBoxRun: (
@@ -392,6 +396,15 @@ export const withPageHOC = (
         componentItem,
         attrDataMap,
       });
+      if (!props?.parentEngineId) {
+        setTimeout(() => {
+          // 太早设置，ref 还未渲染！
+          EngineMapping.add(pageId, pageId, {
+            ...context,
+            customActionMap: customActionMapRef.current,
+          });
+        }, 100);
+      }
       meta.dataDidUpdate = () => {
         setData({
           ...context,

@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, HorizontalView, Text, View } from '@/components/factory';
+import { View, HorizontalView, Text, Button } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '917353379070562304';
 const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -23,6 +25,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onCancel = () => {
     const eventDatacloseModal92: any = [
@@ -197,7 +200,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_958791_1_1768424'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_958791_1_1768424')}
         {...injectData}
       >
         <HorizontalView
@@ -220,7 +223,9 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
             overflowY: 'auto',
             margin: '0px 0px 8px 0px',
           }}
-          ref={(r: any) => (refs['HorizontalView_549178_800114'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'HorizontalView_549178_800114')
+          }
           {...injectData}
         >
           <View
@@ -240,7 +245,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
               height: '100%',
               overflowY: 'auto',
             }}
-            ref={(r: any) => (refs['View_398957_82413'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_398957_82413')}
             {...injectData}
           >
             <Text
@@ -263,7 +268,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
                 letterSpacing: '',
                 textAlign: 'right',
               }}
-              ref={(r: any) => (refs['Text_481171_606426'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_481171_606426')}
               {...injectData}
             />
           </View>
@@ -284,7 +289,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
               height: '100%',
               overflowY: 'auto',
             }}
-            ref={(r: any) => (refs['View_251956_128608'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_251956_128608')}
             {...injectData}
           >
             <Text
@@ -306,7 +311,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
                 color: '#999',
                 letterSpacing: '',
               }}
-              ref={(r: any) => (refs['Text_770672_00828'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_770672_00828')}
               {...injectData}
             />
           </View>
@@ -332,7 +337,10 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
             margin: '0px 0px 0px 0px',
           }}
           ref={(r: any) =>
-            (refs['HorizontalView_549178_3085413_528218_7337728'] = r)
+            refs.setComponentRef(
+              r,
+              'HorizontalView_549178_3085413_528218_7337728',
+            )
           }
           {...injectData}
         >
@@ -353,7 +361,9 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
               height: '100%',
               overflowY: 'auto',
             }}
-            ref={(r: any) => (refs['View_398957_6809206_665471_878381'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'View_398957_6809206_665471_878381')
+            }
             {...injectData}
           >
             <Text
@@ -376,7 +386,9 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
                 letterSpacing: '',
                 textAlign: 'right',
               }}
-              ref={(r: any) => (refs['Text_481171_187786_537629_073717'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Text_481171_187786_537629_073717')
+              }
               {...injectData}
             />
           </View>
@@ -398,7 +410,9 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
               overflowY: 'auto',
               color: '#ddd',
             }}
-            ref={(r: any) => (refs['View_251956_174864_13805_9114867'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'View_251956_174864_13805_9114867')
+            }
             {...injectData}
           >
             <Text
@@ -415,7 +429,9 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ fontSize: '14px', lineHeight: '24px', color: '#999' }}
-              ref={(r: any) => (refs['Text_770672_295256_8373623_008353'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Text_770672_295256_8373623_008353')
+              }
               {...injectData}
             />
           </View>
@@ -440,7 +456,9 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
             overflowY: 'auto',
             margin: '0px 0px 8px 0px',
           }}
-          ref={(r: any) => (refs['HorizontalView_549178_3085413_528218'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'HorizontalView_549178_3085413_528218')
+          }
           {...injectData}
         >
           <View
@@ -460,7 +478,9 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
               height: '100%',
               overflowY: 'auto',
             }}
-            ref={(r: any) => (refs['View_398957_6809206_665471'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'View_398957_6809206_665471')
+            }
             {...injectData}
           >
             <Text
@@ -483,7 +503,9 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
                 letterSpacing: '',
                 textAlign: 'right',
               }}
-              ref={(r: any) => (refs['Text_481171_187786_537629'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Text_481171_187786_537629')
+              }
               {...injectData}
             />
           </View>
@@ -505,7 +527,9 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
               overflowY: 'auto',
               color: '#ddd',
             }}
-            ref={(r: any) => (refs['View_251956_174864_13805'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'View_251956_174864_13805')
+            }
             {...injectData}
           >
             <Text
@@ -527,7 +551,9 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
                 color: '#1677ff',
                 letterSpacing: '',
               }}
-              ref={(r: any) => (refs['Text_770672_295256_8373623'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Text_770672_295256_8373623')
+              }
               {...injectData}
             />
           </View>
@@ -551,7 +577,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
             width: '100%',
             textAlign: 'center',
           }}
-          ref={(r: any) => (refs['View_218669'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_218669')}
           {...injectData}
         >
           <Text
@@ -576,7 +602,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
               textAlign: 'center',
               letterSpacing: '',
             }}
-            ref={(r: any) => (refs['Text_7922464'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_7922464')}
             {...injectData}
           />
         </View>
@@ -598,7 +624,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
             textAlign: 'center',
             margin: '24px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['View_969983_1581134'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_969983_1581134')}
           {...injectData}
         >
           <Button
@@ -666,7 +692,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_162085_0330527'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_162085_0330527')}
             {...injectData}
           />
         </View>
@@ -676,7 +702,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AuditConfirmPopup$$Modal, {
-  pageId: '917353379070562304',
+  pageId,
   hasLogin: false,
   defaultState: {
     bizId: '',

@@ -1,14 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
+  View,
   Form,
   Input,
   Select,
   TextArea,
   TimePicker,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -17,6 +18,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '886805014632988672';
 const DetailPostInfo$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -32,6 +34,7 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatacloseModal98: any = [
@@ -803,7 +806,7 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_31_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_31_1')}
         {...injectData}
       >
         <View
@@ -816,7 +819,7 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_31_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_31_11')}
           {...injectData}
         >
           <View
@@ -837,7 +840,7 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
               margin: '0px 0px 0px 0px',
               borderRadius: '2px 2px 2px 2px',
             }}
-            ref={(r: any) => (refs['View_31_112'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_31_112')}
             {...injectData}
           >
             <Form
@@ -1064,7 +1067,7 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Form_31_1121'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_31_1121')}
               {...injectData}
             >
               <Input
@@ -1124,7 +1127,9 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_postCode_401732'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_postCode_401732')
+                }
                 {...injectData}
               />
               <Input
@@ -1174,7 +1179,9 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_postName_587397'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_postName_587397')
+                }
                 {...injectData}
               />
               <Select
@@ -1465,7 +1472,9 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Input_provinceId_388796'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_provinceId_388796')
+                }
                 {...injectData}
               />
               <Select
@@ -1705,7 +1714,7 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Input_lanId_5166484'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_lanId_5166484')}
                 {...injectData}
               />
               <Select
@@ -1735,7 +1744,7 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_areaId_105236'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_areaId_105236')}
                 {...injectData}
               />
               <Select
@@ -1765,7 +1774,9 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_statusCd_968499'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_statusCd_968499')
+                }
                 {...injectData}
               />
               <TextArea
@@ -1791,7 +1802,9 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_postDesc_4542983'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_postDesc_4542983')
+                }
                 {...injectData}
               />
               <TextArea
@@ -1817,7 +1830,9 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_remark_0706266'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_remark_0706266')
+                }
                 {...injectData}
               />
               <Input
@@ -1866,7 +1881,9 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_createStaffName_730721'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_createStaffName_730721')
+                }
                 {...injectData}
               />
               <TimePicker
@@ -1904,7 +1921,9 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TimePicker_createDate_74093'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TimePicker_createDate_74093')
+                }
                 {...injectData}
               />
               <Input
@@ -1953,7 +1972,9 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_updateStaff_179178'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_updateStaff_179178')
+                }
                 {...injectData}
               />
               <TimePicker
@@ -1991,7 +2012,9 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TimePicker_updateDate_944627'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TimePicker_updateDate_944627')
+                }
                 {...injectData}
               />
               <TimePicker
@@ -2029,7 +2052,9 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TimePicker_statusDate_097699'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TimePicker_statusDate_097699')
+                }
                 {...injectData}
               />
             </Form>
@@ -2041,7 +2066,7 @@ const DetailPostInfo$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(DetailPostInfo$$Modal, {
-  pageId: '886805014632988672',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', dcPostInfo: '' },

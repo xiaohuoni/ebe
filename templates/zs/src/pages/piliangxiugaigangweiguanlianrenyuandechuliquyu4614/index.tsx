@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, MultipleSelect, View } from '@/components/factory';
+import { View, Form, MultipleSelect } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '913086065513832448';
 const Piliangxiugaigangweiguanlianrenyuandechuliquyu4614$$Modal: React.FC<
   PageProps
 > = ({
@@ -25,6 +27,7 @@ const Piliangxiugaigangweiguanlianrenyuandechuliquyu4614$$Modal: React.FC<
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDataapiRequest632: any = [
@@ -345,7 +348,7 @@ const Piliangxiugaigangweiguanlianrenyuandechuliquyu4614$$Modal: React.FC<
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_557436_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_557436_1')}
         {...injectData}
       >
         <View
@@ -366,7 +369,7 @@ const Piliangxiugaigangweiguanlianrenyuandechuliquyu4614$$Modal: React.FC<
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_798911'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_798911')}
           {...injectData}
         >
           <Form
@@ -391,7 +394,7 @@ const Piliangxiugaigangweiguanlianrenyuandechuliquyu4614$$Modal: React.FC<
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_3301032'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_3301032')}
             {...injectData}
           >
             <MultipleSelect
@@ -420,7 +423,7 @@ const Piliangxiugaigangweiguanlianrenyuandechuliquyu4614$$Modal: React.FC<
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['MultipleSelect_080606'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'MultipleSelect_080606')}
               {...injectData}
             />
           </Form>
@@ -433,7 +436,7 @@ const Piliangxiugaigangweiguanlianrenyuandechuliquyu4614$$Modal: React.FC<
 export default withPageHOC(
   Piliangxiugaigangweiguanlianrenyuandechuliquyu4614$$Modal,
   {
-    pageId: '913086065513832448',
+    pageId,
     hasLogin: false,
     defaultState: { bizId: '', sceneCode: '', postUserRelIds: '' },
   },

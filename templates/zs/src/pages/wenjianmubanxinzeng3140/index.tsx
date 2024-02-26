@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Radio, StdUpload, TreeSelect, View } from '@/components/factory';
+import { View, Form, Radio, TreeSelect, StdUpload } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '928103651163254784';
 const Wenjianmubanxinzeng3140$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const Wenjianmubanxinzeng3140$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatavalidateCurrentForm50: any = [
@@ -1103,7 +1106,7 @@ const Wenjianmubanxinzeng3140$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_8851423_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_8851423_1')}
         {...injectData}
       >
         <View
@@ -1124,7 +1127,7 @@ const Wenjianmubanxinzeng3140$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_134'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_134')}
           {...injectData}
         >
           <Form
@@ -1149,7 +1152,7 @@ const Wenjianmubanxinzeng3140$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_2998662'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_2998662')}
             {...injectData}
           >
             <Radio
@@ -1186,7 +1189,7 @@ const Wenjianmubanxinzeng3140$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Radio_5240295'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Radio_5240295')}
               {...injectData}
             />
             <TreeSelect
@@ -1316,7 +1319,7 @@ const Wenjianmubanxinzeng3140$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['TreeSelect_838942'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TreeSelect_838942')}
               {...injectData}
             />
             <StdUpload
@@ -1552,7 +1555,7 @@ const Wenjianmubanxinzeng3140$$Modal: React.FC<PageProps> = ({
                 ); // console 167288620849034370
                 console.log(fileList);
               }}
-              ref={(r: any) => (refs['StdUpload_0332275'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'StdUpload_0332275')}
               {...injectData}
             />
           </Form>
@@ -1563,7 +1566,7 @@ const Wenjianmubanxinzeng3140$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Wenjianmubanxinzeng3140$$Modal, {
-  pageId: '928103651163254784',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', isCover: '', sceneId: '' },

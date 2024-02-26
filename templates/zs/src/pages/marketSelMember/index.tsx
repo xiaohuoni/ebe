@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, TimePicker, View } from '@/components/factory';
+import { View, Form, Input, TimePicker } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '909364195753476096';
 const MarketSelMember$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatacustomActionCode309: any = [
@@ -666,7 +669,7 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_31_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_31_1')}
         {...injectData}
       >
         <View
@@ -679,7 +682,7 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_31_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_31_11')}
           {...injectData}
         >
           <View
@@ -700,7 +703,7 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
               margin: '0px 0px 0px 0px',
               borderRadius: '2px 2px 2px 2px',
             }}
-            ref={(r: any) => (refs['View_31_112'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_31_112')}
             {...injectData}
           >
             <Form
@@ -1190,7 +1193,7 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Form_31_1121'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_31_1121')}
               {...injectData}
             >
               <Input
@@ -1693,7 +1696,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Input_msisdn_9598107'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_msisdn_9598107')
+                }
                 {...injectData}
               />
               <TimePicker
@@ -1732,7 +1737,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TimePicker_memberJoinDate_056056'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TimePicker_memberJoinDate_056056')
+                }
                 {...injectData}
               />
               <Input
@@ -1781,7 +1788,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_custCode_9151754'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_custCode_9151754')
+                }
                 {...injectData}
               />
               <Input
@@ -1830,7 +1839,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_custName_775747'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_custName_775747')
+                }
                 {...injectData}
               />
               <Input
@@ -1879,7 +1890,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_groupLevelName_399168'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_groupLevelName_399168')
+                }
                 {...injectData}
               />
               <Input
@@ -1928,7 +1941,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_clientSign_0396687'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_clientSign_0396687')
+                }
                 {...injectData}
               />
               <Input
@@ -1977,7 +1992,7 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_duty_62565166'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_duty_62565166')}
                 {...injectData}
               />
               <Input
@@ -2026,7 +2041,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_officialLevelName_532142'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_officialLevelName_532142')
+                }
                 {...injectData}
               />
               <Input
@@ -2075,7 +2092,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_memberTypeName_8862884'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_memberTypeName_8862884')
+                }
                 {...injectData}
               />
               <Input
@@ -2124,7 +2143,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_keyTypeName_3849944'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_keyTypeName_3849944')
+                }
                 {...injectData}
               />
               <Input
@@ -2173,7 +2194,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_netInTime_82131'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_netInTime_82131')
+                }
                 {...injectData}
               />
               <Input
@@ -2222,7 +2245,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_contractNum_6623936'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_contractNum_6623936')
+                }
                 {...injectData}
               />
               <Input
@@ -2271,7 +2296,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_mainMeal_280575'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_mainMeal_280575')
+                }
                 {...injectData}
               />
               <Input
@@ -2320,7 +2347,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_onceDisc_813353'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_onceDisc_813353')
+                }
                 {...injectData}
               />
               <Input
@@ -2369,7 +2398,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_termType_74849'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_termType_74849')
+                }
                 {...injectData}
               />
               <Input
@@ -2418,7 +2449,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_termModel_482702'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_termModel_482702')
+                }
                 {...injectData}
               />
               <Input
@@ -2467,7 +2500,9 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_arpuValue_7855403'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_arpuValue_7855403')
+                }
                 {...injectData}
               />
             </Form>
@@ -2479,7 +2514,7 @@ const MarketSelMember$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(MarketSelMember$$Modal, {
-  pageId: '909364195753476096',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

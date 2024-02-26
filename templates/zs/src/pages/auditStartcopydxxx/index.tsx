@@ -4,16 +4,16 @@ import React from 'react';
 import Popover from '@/components/Popover';
 
 import {
+  View,
+  Input,
   Button,
+  GridView,
   Collapse,
   CollapsePanel,
-  GridView,
   HorizontalView,
-  Icon,
-  Input,
   Text,
+  Icon,
   VerticalView,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -22,6 +22,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '958264556868681728';
 const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -36,6 +37,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const select_node = (options_485879: any) => {
     const eventDatacustomActionCode27: any = [
@@ -1499,7 +1501,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
           fontSize: '',
           flex: '',
         }}
-        ref={(r: any) => (refs['View_866861_1_499427'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_866861_1_499427')}
         {...injectData}
       >
         <View
@@ -1521,7 +1523,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
             width: '100%',
             height: '100%',
           }}
-          ref={(r: any) => (refs['View_129586_716682'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_129586_716682')}
           {...injectData}
         >
           <View
@@ -1546,7 +1548,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
               background: '#FFFFFF',
               'box-shadow': '0px2px8px0pxrgba(0,0,0,0.08)',
             }}
-            ref={(r: any) => (refs['View_510588_174718'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_510588_174718')}
             {...injectData}
           >
             <View
@@ -1570,7 +1572,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                 height: '100%',
                 textAlign: 'left',
               }}
-              ref={(r: any) => (refs['View_782558_761403'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_782558_761403')}
               {...injectData}
             >
               <Input
@@ -1648,7 +1650,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_5357175_016995'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_5357175_016995')
+                }
                 {...injectData}
               />
               <Button
@@ -1704,7 +1708,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_2259782_372491'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_2259782_372491')
+                }
                 {...injectData}
               />
               <Button
@@ -1782,7 +1788,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_126807_042095'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_126807_042095')
+                }
                 {...injectData}
               />
             </View>
@@ -1805,7 +1813,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                 width: '100%',
                 textAlign: 'right',
               }}
-              ref={(r: any) => (refs['View_2174641_570011'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_2174641_570011')}
               {...injectData}
             >
               <Button
@@ -1858,7 +1866,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Button_817728_949843'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Button_817728_949843')
+                }
                 {...injectData}
               />
             </View>
@@ -1886,7 +1896,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
               fontSize: '',
               flex: '11auto',
             }}
-            ref={(r: any) => (refs['View_190796_154592'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_190796_154592')}
             {...injectData}
           >
             <GridView
@@ -1912,7 +1922,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['GridView_537727'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'GridView_537727')}
               {...injectData}
               getEngineApis={() => {
                 return {
@@ -1953,7 +1963,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                               'margin-bottom': '2.5px',
                             }}
                             ref={(r: any) =>
-                              (refs['View_239728_318504_11187854'] = r)
+                              refs.setComponentRef(
+                                r,
+                                'View_239728_318504_11187854',
+                              )
                             }
                             {...injectData}
                           >
@@ -2063,7 +2076,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                 );
                               }}
                               ref={(r: any) =>
-                                (refs['Collapse_228917_630092_78374862'] = r)
+                                refs.setComponentRef(
+                                  r,
+                                  'Collapse_228917_630092_78374862',
+                                )
                               }
                               {...injectData}
                             >
@@ -2086,7 +2102,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                 readOnly={false}
                                 style={{ minHeight: 40 }}
                                 ref={(r: any) =>
-                                  (refs['CollapsePanel_5495_822432_193681'] = r)
+                                  refs.setComponentRef(
+                                    r,
+                                    'CollapsePanel_5495_822432_193681',
+                                  )
                                 }
                                 {...injectData}
                                 uid="CollapsePanel_5495_822432_193681"
@@ -2121,7 +2140,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                   }}
                                   style={{ minHeight: 40 }}
                                   ref={(r: any) =>
-                                    (refs['GridView_841399_783335_4311996'] = r)
+                                    refs.setComponentRef(
+                                      r,
+                                      'GridView_841399_783335_4311996',
+                                    )
                                   }
                                   {...injectData}
                                   getEngineApis={() => {
@@ -2156,9 +2178,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                   overflowY: 'visible',
                                                 }}
                                                 ref={(r: any) =>
-                                                  (refs[
-                                                    'HorizontalView_300975_666132_026239'
-                                                  ] = r)
+                                                  refs.setComponentRef(
+                                                    r,
+                                                    'HorizontalView_300975_666132_026239',
+                                                  )
                                                 }
                                                 {...injectData}
                                               >
@@ -2184,9 +2207,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                     'font-weight': 'bold',
                                                   }}
                                                   ref={(r: any) =>
-                                                    (refs[
-                                                      'View_575815_83448_6103674'
-                                                    ] = r)
+                                                    refs.setComponentRef(
+                                                      r,
+                                                      'View_575815_83448_6103674',
+                                                    )
                                                   }
                                                   {...injectData}
                                                 >
@@ -2212,9 +2236,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                       'font-weight': 'bold',
                                                     }}
                                                     ref={(r: any) =>
-                                                      (refs[
-                                                        'Text_4120405_742913_9018896'
-                                                      ] = r)
+                                                      refs.setComponentRef(
+                                                        r,
+                                                        'Text_4120405_742913_9018896',
+                                                      )
                                                     }
                                                     {...injectData}
                                                   />
@@ -2239,9 +2264,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                     overflowY: 'visible',
                                                   }}
                                                   ref={(r: any) =>
-                                                    (refs[
-                                                      'View_2657547_432902_594449'
-                                                    ] = r)
+                                                    refs.setComponentRef(
+                                                      r,
+                                                      'View_2657547_432902_594449',
+                                                    )
                                                   }
                                                   {...injectData}
                                                 >
@@ -2351,8 +2377,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                                       },
                                                                     ],
                                                                   operateType: 1,
-                                                                  onlySetPatch:
-                                                                    true,
+                                                                  onlySetPatch: true,
                                                                   otherObjectArrayOptions:
                                                                     {},
                                                                 },
@@ -2403,9 +2428,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                       );
                                                     }}
                                                     ref={(r: any) =>
-                                                      (refs[
-                                                        'GridView_959384_123956_5913966'
-                                                      ] = r)
+                                                      refs.setComponentRef(
+                                                        r,
+                                                        'GridView_959384_123956_5913966',
+                                                      )
                                                     }
                                                     {...injectData}
                                                     getEngineApis={() => {
@@ -2469,9 +2495,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                                   ref={(
                                                                     r: any,
                                                                   ) =>
-                                                                    (refs[
-                                                                      'View_9189376_873597_364986'
-                                                                    ] = r)
+                                                                    refs.setComponentRef(
+                                                                      r,
+                                                                      'View_9189376_873597_364986',
+                                                                    )
                                                                   }
                                                                   {...injectData}
                                                                 >
@@ -2488,6 +2515,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                                       'Icon_724045_989345_4819206'
                                                                     }
                                                                     {...injectData}
+                                                                    parentEngineId={
+                                                                      parentEngineId
+                                                                    }
                                                                   >
                                                                     <Icon
                                                                       name={
@@ -2500,8 +2530,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                                           'outlined',
                                                                         fontAddress:
                                                                           '',
-                                                                        isIconFont:
-                                                                          false,
+                                                                        isIconFont: false,
                                                                         iconFileInfo:
                                                                           {},
                                                                       }}
@@ -2529,9 +2558,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                                       ref={(
                                                                         r: any,
                                                                       ) =>
-                                                                        (refs[
-                                                                          'Icon_724045_989345_4819206'
-                                                                        ] = r)
+                                                                        refs.setComponentRef(
+                                                                          r,
+                                                                          'Icon_724045_989345_4819206',
+                                                                        )
                                                                       }
                                                                       {...injectData}
                                                                     />
@@ -2571,9 +2601,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                                     ref={(
                                                                       r: any,
                                                                     ) =>
-                                                                      (refs[
-                                                                        'Text_968473_9399427_065682'
-                                                                      ] = r)
+                                                                      refs.setComponentRef(
+                                                                        r,
+                                                                        'Text_968473_9399427_065682',
+                                                                      )
                                                                     }
                                                                     {...injectData}
                                                                   />
@@ -2629,7 +2660,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                 'border-radius': '2px',
                 'margin-bottom': '2.5px',
               }}
-              ref={(r: any) => (refs['View_239728_318504'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_239728_318504')}
               {...injectData}
             >
               <Collapse
@@ -2732,7 +2763,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Collapse_228917_630092'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Collapse_228917_630092')
+                }
                 {...injectData}
               >
                 <CollapsePanel
@@ -2753,7 +2786,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   style={{ minHeight: 40 }}
-                  ref={(r: any) => (refs['CollapsePanel_5495_822432'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'CollapsePanel_5495_822432')
+                  }
                   {...injectData}
                   uid="CollapsePanel_5495_822432"
                 >
@@ -2782,7 +2817,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                       ...componentItem,
                     }}
                     style={{ minHeight: 40 }}
-                    ref={(r: any) => (refs['GridView_841399_783335'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'GridView_841399_783335')
+                    }
                     {...injectData}
                     getEngineApis={() => {
                       return {
@@ -2814,7 +2851,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                     overflowY: 'visible',
                                   }}
                                   ref={(r: any) =>
-                                    (refs['HorizontalView_300975_666132'] = r)
+                                    refs.setComponentRef(
+                                      r,
+                                      'HorizontalView_300975_666132',
+                                    )
                                   }
                                   {...injectData}
                                 >
@@ -2840,7 +2880,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                       'font-weight': 'bold',
                                     }}
                                     ref={(r: any) =>
-                                      (refs['View_575815_83448'] = r)
+                                      refs.setComponentRef(
+                                        r,
+                                        'View_575815_83448',
+                                      )
                                     }
                                     {...injectData}
                                   >
@@ -2866,7 +2909,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                         'font-weight': 'bold',
                                       }}
                                       ref={(r: any) =>
-                                        (refs['Text_4120405_742913'] = r)
+                                        refs.setComponentRef(
+                                          r,
+                                          'Text_4120405_742913',
+                                        )
                                       }
                                       {...injectData}
                                     />
@@ -2891,7 +2937,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                       overflowY: 'visible',
                                     }}
                                     ref={(r: any) =>
-                                      (refs['View_2657547_432902'] = r)
+                                      refs.setComponentRef(
+                                        r,
+                                        'View_2657547_432902',
+                                      )
                                     }
                                     {...injectData}
                                   >
@@ -3031,7 +3080,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                         );
                                       }}
                                       ref={(r: any) =>
-                                        (refs['GridView_959384_123956'] = r)
+                                        refs.setComponentRef(
+                                          r,
+                                          'GridView_959384_123956',
+                                        )
                                       }
                                       {...injectData}
                                       getEngineApis={() => {
@@ -3077,9 +3129,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                       width: '100%',
                                                     }}
                                                     ref={(r: any) =>
-                                                      (refs[
-                                                        'View_9189376_873597'
-                                                      ] = r)
+                                                      refs.setComponentRef(
+                                                        r,
+                                                        'View_9189376_873597',
+                                                      )
                                                     }
                                                     {...injectData}
                                                   >
@@ -3092,6 +3145,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                       }}
                                                       id={'Icon_724045_989345'}
                                                       {...injectData}
+                                                      parentEngineId={
+                                                        parentEngineId
+                                                      }
                                                     >
                                                       <Icon
                                                         name={'图标'}
@@ -3118,9 +3174,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                           color: 'unset',
                                                         }}
                                                         ref={(r: any) =>
-                                                          (refs[
-                                                            'Icon_724045_989345'
-                                                          ] = r)
+                                                          refs.setComponentRef(
+                                                            r,
+                                                            'Icon_724045_989345',
+                                                          )
                                                         }
                                                         {...injectData}
                                                       />
@@ -3144,9 +3201,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                         letterSpacing: '',
                                                       }}
                                                       ref={(r: any) =>
-                                                        (refs[
-                                                          'Text_968473_9399427'
-                                                        ] = r)
+                                                        refs.setComponentRef(
+                                                          r,
+                                                          'Text_968473_9399427',
+                                                        )
                                                       }
                                                       {...injectData}
                                                     />
@@ -3194,7 +3252,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                 'border-radius': '2px',
                 'margin-bottom': '2.5px',
               }}
-              ref={(r: any) => (refs['View_239728_273135_979571'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'View_239728_273135_979571')
+              }
               {...injectData}
             >
               <Collapse
@@ -3297,7 +3357,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Collapse_228917_4750854_261815'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Collapse_228917_4750854_261815')
+                }
                 {...injectData}
               >
                 <CollapsePanel
@@ -3319,7 +3381,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                   readOnly={false}
                   style={{ minHeight: 40 }}
                   ref={(r: any) =>
-                    (refs['CollapsePanel_5495_629279_427171'] = r)
+                    refs.setComponentRef(r, 'CollapsePanel_5495_629279_427171')
                   }
                   {...injectData}
                   uid="CollapsePanel_5495_629279_427171"
@@ -3354,7 +3416,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                       console.log('父级数据', vals);
                     }}
                     ref={(r: any) =>
-                      (refs['GridView_841399_5745795_485286'] = r)
+                      refs.setComponentRef(r, 'GridView_841399_5745795_485286')
                     }
                     {...injectData}
                     getEngineApis={() => {
@@ -3387,9 +3449,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                     overflowY: 'visible',
                                   }}
                                   ref={(r: any) =>
-                                    (refs[
-                                      'HorizontalView_300975_2315523_007297'
-                                    ] = r)
+                                    refs.setComponentRef(
+                                      r,
+                                      'HorizontalView_300975_2315523_007297',
+                                    )
                                   }
                                   {...injectData}
                                 >
@@ -3414,7 +3477,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                       margin: '0px 16px 0px 0px',
                                     }}
                                     ref={(r: any) =>
-                                      (refs['View_575815_624883_8128544'] = r)
+                                      refs.setComponentRef(
+                                        r,
+                                        'View_575815_624883_8128544',
+                                      )
                                     }
                                     {...injectData}
                                   >
@@ -3440,7 +3506,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                         'font-weight': 'bold',
                                       }}
                                       ref={(r: any) =>
-                                        (refs['Text_4120405_631164_223622'] = r)
+                                        refs.setComponentRef(
+                                          r,
+                                          'Text_4120405_631164_223622',
+                                        )
                                       }
                                       {...injectData}
                                     />
@@ -3465,7 +3534,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                       overflowY: 'visible',
                                     }}
                                     ref={(r: any) =>
-                                      (refs['View_2657547_5801104_78533'] = r)
+                                      refs.setComponentRef(
+                                        r,
+                                        'View_2657547_5801104_78533',
+                                      )
                                     }
                                     {...injectData}
                                   >
@@ -3604,8 +3676,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                         );
                                       }}
                                       ref={(r: any) =>
-                                        (refs['GridView_959384_121004_035285'] =
-                                          r)
+                                        refs.setComponentRef(
+                                          r,
+                                          'GridView_959384_121004_035285',
+                                        )
                                       }
                                       {...injectData}
                                       getEngineApis={() => {
@@ -3651,9 +3725,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                       width: '100%',
                                                     }}
                                                     ref={(r: any) =>
-                                                      (refs[
-                                                        'View_9189376_858298_271293'
-                                                      ] = r)
+                                                      refs.setComponentRef(
+                                                        r,
+                                                        'View_9189376_858298_271293',
+                                                      )
                                                     }
                                                     {...injectData}
                                                   >
@@ -3668,6 +3743,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                         'Icon_724045_443752_921304'
                                                       }
                                                       {...injectData}
+                                                      parentEngineId={
+                                                        parentEngineId
+                                                      }
                                                     >
                                                       <Icon
                                                         name={'图标'}
@@ -3694,9 +3772,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                           color: 'unset',
                                                         }}
                                                         ref={(r: any) =>
-                                                          (refs[
-                                                            'Icon_724045_443752_921304'
-                                                          ] = r)
+                                                          refs.setComponentRef(
+                                                            r,
+                                                            'Icon_724045_443752_921304',
+                                                          )
                                                         }
                                                         {...injectData}
                                                       />
@@ -3722,9 +3801,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                         color: 'unset',
                                                       }}
                                                       ref={(r: any) =>
-                                                        (refs[
-                                                          'Text_968473_4695347_789088'
-                                                        ] = r)
+                                                        refs.setComponentRef(
+                                                          r,
+                                                          'Text_968473_4695347_789088',
+                                                        )
                                                       }
                                                       {...injectData}
                                                     />
@@ -3773,7 +3853,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                 'border-radius': '2px',
                 'margin-bottom': '2.5px',
               }}
-              ref={(r: any) => (refs['View_239728_742059_908574'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'View_239728_742059_908574')
+              }
               {...injectData}
             >
               <Collapse
@@ -3876,7 +3958,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Collapse_228917_779465_218275'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Collapse_228917_779465_218275')
+                }
                 {...injectData}
               >
                 <CollapsePanel
@@ -3898,7 +3982,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                   readOnly={false}
                   style={{ minHeight: 40 }}
                   ref={(r: any) =>
-                    (refs['CollapsePanel_5495_290662_803286'] = r)
+                    refs.setComponentRef(r, 'CollapsePanel_5495_290662_803286')
                   }
                   {...injectData}
                   uid="CollapsePanel_5495_290662_803286"
@@ -3928,7 +4012,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                       ...componentItem,
                     }}
                     style={{ minHeight: 40 }}
-                    ref={(r: any) => (refs['GridView_841399_438343_5488'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'GridView_841399_438343_5488')
+                    }
                     {...injectData}
                     getEngineApis={() => {
                       return {
@@ -3960,9 +4046,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                     overflowY: 'visible',
                                   }}
                                   ref={(r: any) =>
-                                    (refs[
-                                      'HorizontalView_300975_754921_615198'
-                                    ] = r)
+                                    refs.setComponentRef(
+                                      r,
+                                      'HorizontalView_300975_754921_615198',
+                                    )
                                   }
                                   {...injectData}
                                 >
@@ -3987,7 +4074,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                       margin: '0px 16px 0px 0px',
                                     }}
                                     ref={(r: any) =>
-                                      (refs['View_575815_869566_336478'] = r)
+                                      refs.setComponentRef(
+                                        r,
+                                        'View_575815_869566_336478',
+                                      )
                                     }
                                     {...injectData}
                                   >
@@ -4013,7 +4103,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                         'font-weight': 'bold',
                                       }}
                                       ref={(r: any) =>
-                                        (refs['Text_4120405_295623_673117'] = r)
+                                        refs.setComponentRef(
+                                          r,
+                                          'Text_4120405_295623_673117',
+                                        )
                                       }
                                       {...injectData}
                                     />
@@ -4038,7 +4131,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                       overflowY: 'visible',
                                     }}
                                     ref={(r: any) =>
-                                      (refs['View_2657547_1613493_219269'] = r)
+                                      refs.setComponentRef(
+                                        r,
+                                        'View_2657547_1613493_219269',
+                                      )
                                     }
                                     {...injectData}
                                   >
@@ -4177,9 +4273,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                         );
                                       }}
                                       ref={(r: any) =>
-                                        (refs[
-                                          'GridView_959384_5210218_50628178'
-                                        ] = r)
+                                        refs.setComponentRef(
+                                          r,
+                                          'GridView_959384_5210218_50628178',
+                                        )
                                       }
                                       {...injectData}
                                       getEngineApis={() => {
@@ -4225,9 +4322,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                       width: '100%',
                                                     }}
                                                     ref={(r: any) =>
-                                                      (refs[
-                                                        'View_9189376_823331_237747'
-                                                      ] = r)
+                                                      refs.setComponentRef(
+                                                        r,
+                                                        'View_9189376_823331_237747',
+                                                      )
                                                     }
                                                     {...injectData}
                                                   >
@@ -4242,6 +4340,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                         'Icon_724045_889597_626702'
                                                       }
                                                       {...injectData}
+                                                      parentEngineId={
+                                                        parentEngineId
+                                                      }
                                                     >
                                                       <Icon
                                                         name={'图标'}
@@ -4268,9 +4369,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                           color: 'unset',
                                                         }}
                                                         ref={(r: any) =>
-                                                          (refs[
-                                                            'Icon_724045_889597_626702'
-                                                          ] = r)
+                                                          refs.setComponentRef(
+                                                            r,
+                                                            'Icon_724045_889597_626702',
+                                                          )
                                                         }
                                                         {...injectData}
                                                       />
@@ -4296,9 +4398,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                         color: 'unset',
                                                       }}
                                                       ref={(r: any) =>
-                                                        (refs[
-                                                          'Text_968473_0492097_608111'
-                                                        ] = r)
+                                                        refs.setComponentRef(
+                                                          r,
+                                                          'Text_968473_0492097_608111',
+                                                        )
                                                       }
                                                       {...injectData}
                                                     />
@@ -4347,7 +4450,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                 'border-radius': '2px',
                 'margin-bottom': '2.5px',
               }}
-              ref={(r: any) => (refs['View_239728_9872634_84657'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'View_239728_9872634_84657')
+              }
               {...injectData}
             >
               <Collapse
@@ -4450,7 +4555,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Collapse_228917_310864_255018'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Collapse_228917_310864_255018')
+                }
                 {...injectData}
               >
                 <CollapsePanel
@@ -4472,7 +4579,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                   readOnly={false}
                   style={{ minHeight: 40 }}
                   ref={(r: any) =>
-                    (refs['CollapsePanel_5495_8462436_0759457'] = r)
+                    refs.setComponentRef(
+                      r,
+                      'CollapsePanel_5495_8462436_0759457',
+                    )
                   }
                   {...injectData}
                   uid="CollapsePanel_5495_8462436_0759457"
@@ -4502,7 +4612,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                       ...componentItem,
                     }}
                     style={{ minHeight: 40 }}
-                    ref={(r: any) => (refs['GridView_841399_31317_765537'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'GridView_841399_31317_765537')
+                    }
                     {...injectData}
                     getEngineApis={() => {
                       return {
@@ -4534,9 +4646,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                     overflowY: 'visible',
                                   }}
                                   ref={(r: any) =>
-                                    (refs[
-                                      'HorizontalView_300975_674423_468611'
-                                    ] = r)
+                                    refs.setComponentRef(
+                                      r,
+                                      'HorizontalView_300975_674423_468611',
+                                    )
                                   }
                                   {...injectData}
                                 >
@@ -4561,7 +4674,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                       margin: '0px 16px 0px 0px',
                                     }}
                                     ref={(r: any) =>
-                                      (refs['View_575815_656931_7176215'] = r)
+                                      refs.setComponentRef(
+                                        r,
+                                        'View_575815_656931_7176215',
+                                      )
                                     }
                                     {...injectData}
                                   >
@@ -4587,8 +4703,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                         'font-weight': 'bold',
                                       }}
                                       ref={(r: any) =>
-                                        (refs['Text_4120405_1898459_760702'] =
-                                          r)
+                                        refs.setComponentRef(
+                                          r,
+                                          'Text_4120405_1898459_760702',
+                                        )
                                       }
                                       {...injectData}
                                     />
@@ -4613,7 +4731,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                       overflowY: 'visible',
                                     }}
                                     ref={(r: any) =>
-                                      (refs['View_2657547_363083_267165'] = r)
+                                      refs.setComponentRef(
+                                        r,
+                                        'View_2657547_363083_267165',
+                                      )
                                     }
                                     {...injectData}
                                   >
@@ -4752,8 +4873,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                         );
                                       }}
                                       ref={(r: any) =>
-                                        (refs['GridView_959384_69925_548227'] =
-                                          r)
+                                        refs.setComponentRef(
+                                          r,
+                                          'GridView_959384_69925_548227',
+                                        )
                                       }
                                       {...injectData}
                                       getEngineApis={() => {
@@ -4799,9 +4922,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                       width: '100%',
                                                     }}
                                                     ref={(r: any) =>
-                                                      (refs[
-                                                        'View_9189376_722286_1884202'
-                                                      ] = r)
+                                                      refs.setComponentRef(
+                                                        r,
+                                                        'View_9189376_722286_1884202',
+                                                      )
                                                     }
                                                     {...injectData}
                                                   >
@@ -4816,6 +4940,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                         'Icon_724045_232884_033236'
                                                       }
                                                       {...injectData}
+                                                      parentEngineId={
+                                                        parentEngineId
+                                                      }
                                                     >
                                                       <Icon
                                                         name={'图标'}
@@ -4842,9 +4969,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                           color: 'unset',
                                                         }}
                                                         ref={(r: any) =>
-                                                          (refs[
-                                                            'Icon_724045_232884_033236'
-                                                          ] = r)
+                                                          refs.setComponentRef(
+                                                            r,
+                                                            'Icon_724045_232884_033236',
+                                                          )
                                                         }
                                                         {...injectData}
                                                       />
@@ -4870,9 +4998,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                                                         color: 'unset',
                                                       }}
                                                       ref={(r: any) =>
-                                                        (refs[
-                                                          'Text_968473_797346_748646'
-                                                        ] = r)
+                                                        refs.setComponentRef(
+                                                          r,
+                                                          'Text_968473_797346_748646',
+                                                        )
                                                       }
                                                       {...injectData}
                                                     />
@@ -4917,7 +5046,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
               height: '52px',
               justifyContent: 'center',
             }}
-            ref={(r: any) => (refs['View_21611_0306224'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_21611_0306224')}
             {...injectData}
           >
             <VerticalView
@@ -4939,7 +5068,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                 height: 'auto',
                 overflowY: 'auto',
               }}
-              ref={(r: any) => (refs['VerticalView_2049022_156257'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'VerticalView_2049022_156257')
+              }
               {...injectData}
             >
               <View
@@ -4962,7 +5093,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                   justifyContent: 'space-between',
                   alignItems: 'center',
                 }}
-                ref={(r: any) => (refs['View_971858_925512'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_971858_925512')}
                 {...injectData}
               >
                 <Text
@@ -4996,7 +5127,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                     color: '#3a3d4b',
                     textAlign: 'left',
                   }}
-                  ref={(r: any) => (refs['Text_8788706_543971_7239151'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_8788706_543971_7239151')
+                  }
                   {...injectData}
                 />
                 <View
@@ -5018,7 +5151,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                     width: 'auto',
                     textAlign: 'right',
                   }}
-                  ref={(r: any) => (refs['View_772576_732094'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'View_772576_732094')
+                  }
                   {...injectData}
                 >
                   <Text
@@ -5042,7 +5177,10 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                       color: 'rgba(208, 2, 27, 1)',
                     }}
                     ref={(r: any) =>
-                      (refs['Text_8788706_2538147_5100973_550189'] = r)
+                      refs.setComponentRef(
+                        r,
+                        'Text_8788706_2538147_5100973_550189',
+                      )
                     }
                     {...injectData}
                   />
@@ -5170,7 +5308,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_355871_403936'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'Button_355871_403936')
+                    }
                     {...injectData}
                   />
                   <Button
@@ -5875,7 +6015,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_665529_269842'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'Button_665529_269842')
+                    }
                     {...injectData}
                   />
                   <Button
@@ -5926,7 +6068,9 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
                         platform: 'pc',
                       });
                     }}
-                    ref={(r: any) => (refs['Button_3119094_913616'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'Button_3119094_913616')
+                    }
                     {...injectData}
                   />
                 </View>
@@ -5940,7 +6084,7 @@ const AuditStartcopydxxx$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AuditStartcopydxxx$$Page, {
-  pageId: '958264556868681728',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

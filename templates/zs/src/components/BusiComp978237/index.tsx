@@ -1,21 +1,23 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
   Card,
-  Form,
-  Input,
-  Radio,
-  StdUpload,
-  TextArea,
   View,
+  Form,
+  Radio,
+  TextArea,
+  Input,
+  StdUpload,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = 'pageId 未找到';
 const BusiComp978237$$BusiComp: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -30,6 +32,7 @@ const BusiComp978237$$BusiComp: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -147,7 +150,7 @@ const BusiComp978237$$BusiComp: React.FC<PageProps> = ({
           overflowY: 'visible',
           margin: '0 0 16px 0',
         }}
-        ref={(r: any) => (refs['Card_674854'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'Card_674854')}
         {...injectData}
       >
         <View
@@ -166,7 +169,7 @@ const BusiComp978237$$BusiComp: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_6881883'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_6881883')}
           {...injectData}
         >
           <Form
@@ -189,7 +192,7 @@ const BusiComp978237$$BusiComp: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_0063102'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_0063102')}
             {...injectData}
           >
             <Radio
@@ -250,7 +253,7 @@ const BusiComp978237$$BusiComp: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Radio_774135'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Radio_774135')}
               {...injectData}
             />
             <TextArea
@@ -275,7 +278,7 @@ const BusiComp978237$$BusiComp: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_4776246'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TextArea_4776246')}
               {...injectData}
             />
             <Input
@@ -319,7 +322,7 @@ const BusiComp978237$$BusiComp: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_355936'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_355936')}
               {...injectData}
             />
             <StdUpload
@@ -376,7 +379,7 @@ const BusiComp978237$$BusiComp: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['StdUpload_3523188'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'StdUpload_3523188')}
               {...injectData}
             />
             <Input
@@ -420,7 +423,7 @@ const BusiComp978237$$BusiComp: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_6412724_049375'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_6412724_049375')}
               {...injectData}
             />
             <Input
@@ -464,7 +467,7 @@ const BusiComp978237$$BusiComp: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_233347_453721'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_233347_453721')}
               {...injectData}
             />
           </Form>
@@ -475,7 +478,7 @@ const BusiComp978237$$BusiComp: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(BusiComp978237$$BusiComp, {
-  pageId: 'pageId 未找到',
+  pageId,
   hasLogin: true,
   defaultState: { tacheCode: '', meetingType: '', meetingOrderType: '' },
 });

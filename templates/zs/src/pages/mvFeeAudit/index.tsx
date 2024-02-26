@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Input, Select, Table, View } from '@/components/factory';
+import { View, Form, Select, Input, Button, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '899188357497327616';
 const MvFeeAudit$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const calculEndDiscount = (options_152622: any) => {
     const eventDatagetValue15: any = [
@@ -4702,7 +4705,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_8430824_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_8430824_1')}
         {...injectData}
       >
         <View
@@ -4723,7 +4726,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_917911'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_917911')}
           {...injectData}
         >
           <Form
@@ -5208,7 +5211,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Form_981467'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_981467')}
             {...injectData}
           >
             <Select
@@ -5660,7 +5663,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Input_busiType_956176'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_busiType_956176')}
               {...injectData}
             />
             <Select
@@ -7098,7 +7101,9 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Input_bandwidth_198362'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_bandwidth_198362')
+              }
               {...injectData}
             />
             <Input
@@ -7285,7 +7290,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_235377'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_235377')}
               {...injectData}
             />
             <Input
@@ -7330,7 +7335,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_0535377'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_0535377')}
               {...injectData}
             />
             <Input
@@ -7961,7 +7966,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_719179'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_719179')}
               {...injectData}
             />
             <Input
@@ -8946,7 +8951,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_719179_478743'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_719179_478743')}
               {...injectData}
             />
             <Input
@@ -8990,7 +8995,9 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_standardPrice_89896'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_standardPrice_89896')
+              }
               {...injectData}
             />
             <Input
@@ -9035,7 +9042,9 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_receiptsPrice_488443'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_receiptsPrice_488443')
+              }
               {...injectData}
             />
             <Input
@@ -9122,7 +9131,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_204527'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_204527')}
               {...injectData}
             />
             <Input
@@ -9168,7 +9177,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_905326'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_905326')}
               {...injectData}
             />
             <Select
@@ -9586,7 +9595,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_598944'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_598944')}
               {...injectData}
             />
           </Form>
@@ -9613,7 +9622,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
           visible={false}
           readOnly={false}
           style={{ padding: '0px 0px 0px 0px', margin: '10px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Form_719112'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_719112')}
           {...injectData}
         >
           <Input
@@ -9803,7 +9812,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Input_672199'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_672199')}
             {...injectData}
           />
           <View
@@ -9835,7 +9844,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_015288'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_015288')}
             {...injectData}
           >
             <Button
@@ -9998,7 +10007,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Button_096039'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_096039')}
               {...injectData}
             />
           </View>
@@ -10027,7 +10036,10 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
             margin: '10px 0px 0px 0px',
           }}
           ref={(r: any) =>
-            (refs['View_015288_239109_6528729_3449095_643503_2822962'] = r)
+            refs.setComponentRef(
+              r,
+              'View_015288_239109_6528729_3449095_643503_2822962',
+            )
           }
           {...injectData}
         >
@@ -10213,7 +10225,10 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
               );
             }}
             ref={(r: any) =>
-              (refs['Button_898304_051444_817773_2709943_217698_197552'] = r)
+              refs.setComponentRef(
+                r,
+                'Button_898304_051444_817773_2709943_217698_197552',
+              )
             }
             {...injectData}
           />
@@ -10378,7 +10393,10 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
               );
             }}
             ref={(r: any) =>
-              (refs['Button_096039_453083_336442_869852_4170704_929181'] = r)
+              refs.setComponentRef(
+                r,
+                'Button_096039_453083_336442_869852_4170704_929181',
+              )
             }
             {...injectData}
           />
@@ -10506,7 +10524,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
           visible={false}
           readOnly={false}
           style={{ margin: '10px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Table_6112271'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_6112271')}
           {...injectData}
         />
       </View>
@@ -10515,7 +10533,7 @@ const MvFeeAudit$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(MvFeeAudit$$Modal, {
-  pageId: '899188357497327616',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

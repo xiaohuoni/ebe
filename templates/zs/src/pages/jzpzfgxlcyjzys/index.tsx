@@ -1,18 +1,19 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  VerticalView,
   Card,
   Form,
-  Input,
-  RemoteComponent,
   Select,
-  StdUpload,
+  Input,
+  Button,
   Table,
-  VerticalView,
-  View,
+  RemoteComponent,
+  StdUpload,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -23,6 +24,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '882205278798561280';
 const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -37,6 +39,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const onLoadTable = (options_0806668: any) => {
     const eventDatareloadDataSource14: any = [
@@ -2308,7 +2311,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_2695813_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_2695813_1')}
         {...injectData}
       >
         <VerticalView
@@ -2330,7 +2333,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
             height: '100%',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['VerticalView_286985'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_286985')}
           {...injectData}
         >
           <View
@@ -2351,7 +2354,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
               height: '30%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_490162'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_490162')}
             {...injectData}
           >
             <Card
@@ -2873,7 +2876,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Card_502669'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_502669')}
               {...injectData}
             >
               <Form
@@ -2898,7 +2901,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ padding: '0px 0px 0px 0px' }}
-                ref={(r: any) => (refs['Form_030076'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_030076')}
                 {...injectData}
               >
                 <Select
@@ -2928,7 +2931,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={false}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_7701837'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_7701837')}
                   {...injectData}
                 />
                 <Input
@@ -2972,7 +2975,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_874365'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_874365')}
                   {...injectData}
                 />
                 <View
@@ -3003,7 +3006,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                     width: '100%',
                     textAlign: 'center',
                   }}
-                  ref={(r: any) => (refs['View_7612077'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_7612077')}
                   {...injectData}
                 >
                   <Button
@@ -3061,7 +3064,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_287918'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_287918')}
                     {...injectData}
                   />
                   <Button
@@ -3094,7 +3097,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                         (form) => form?.resetFields(),
                       );
                     }}
-                    ref={(r: any) => (refs['Button_0011149'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_0011149')}
                     {...injectData}
                   />
                 </View>
@@ -3992,7 +3995,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_317067'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_317067')}
                 {...injectData}
               />
             </Card>
@@ -4015,7 +4018,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
               height: '100%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_529397'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_529397')}
             {...injectData}
           >
             <Card
@@ -4054,7 +4057,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                 overflowY: 'visible',
                 margin: '0 0 16px 0',
               }}
-              ref={(r: any) => (refs['Card_454008'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_454008')}
               {...injectData}
             >
               <RemoteComponent
@@ -4100,7 +4103,9 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['RemoteComponent_6577708'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'RemoteComponent_6577708')
+                }
                 {...injectData}
               />
               <Form
@@ -4129,7 +4134,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   margin: '16px 0px 0px 0px',
                 }}
-                ref={(r: any) => (refs['Form_035658'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_035658')}
                 {...injectData}
               >
                 <Select
@@ -4159,7 +4164,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_563245'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_563245')}
                   {...injectData}
                 />
                 <Select
@@ -4225,7 +4230,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Select_304001'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_304001')}
                   {...injectData}
                 />
                 <Input
@@ -4269,7 +4274,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_280595'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_280595')}
                   {...injectData}
                 />
                 <Select
@@ -4299,7 +4304,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_163295'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_163295')}
                   {...injectData}
                 />
                 <Select
@@ -4329,7 +4334,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_0218257'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_0218257')}
                   {...injectData}
                 />
                 <Select
@@ -4359,7 +4364,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_606786'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_606786')}
                   {...injectData}
                 />
                 <Select
@@ -4389,7 +4394,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_5550348'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_5550348')}
                   {...injectData}
                 />
                 <Select
@@ -4419,7 +4424,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_974786'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_974786')}
                   {...injectData}
                 />
                 <Select
@@ -4449,7 +4454,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_401873'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_401873')}
                   {...injectData}
                 />
                 <Input
@@ -4493,7 +4498,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_033825'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_033825')}
                   {...injectData}
                 />
                 <Input
@@ -4537,7 +4542,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_896358'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_896358')}
                   {...injectData}
                 />
                 <Input
@@ -4581,7 +4586,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_919808'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_919808')}
                   {...injectData}
                 />
                 <Select
@@ -4613,7 +4618,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_918023'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_918023')}
                   {...injectData}
                 />
                 <Select
@@ -4643,7 +4648,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={false}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_824103'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_824103')}
                   {...injectData}
                 />
                 <Input
@@ -4687,7 +4692,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={false}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_94589524'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_94589524')}
                   {...injectData}
                 />
                 <StdUpload
@@ -4746,7 +4751,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   visible={false}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['StdUpload_382647'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'StdUpload_382647')}
                   {...injectData}
                 />
               </Form>
@@ -4770,7 +4775,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   textAlign: 'center',
                   margin: '20px 0px 0px 0px',
                 }}
-                ref={(r: any) => (refs['View_1383526'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_1383526')}
                 {...injectData}
               >
                 <Button
@@ -9212,7 +9217,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                       platform: 'pc',
                     });
                   }}
-                  ref={(r: any) => (refs['Button_8340845'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_8340845')}
                   {...injectData}
                 />
                 <Button
@@ -9312,7 +9317,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                       platform: 'pc',
                     });
                   }}
-                  ref={(r: any) => (refs['Button_873123'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_873123')}
                   {...injectData}
                 />
               </View>
@@ -9325,7 +9330,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Jzpzfgxlcyjzys$$Page, {
-  pageId: '882205278798561280',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { sceneCode: '', sceneId: '', nodeObj: '' },

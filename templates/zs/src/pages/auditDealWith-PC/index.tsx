@@ -1,22 +1,23 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  Text,
   Card,
+  RemoteComponent,
+  Icon,
   Collapse,
   CollapsePanel,
   Description,
   Form,
-  GridView,
-  Icon,
   Input,
   QuillEditor,
-  RemoteComponent,
   Table,
-  Text,
-  View,
+  GridView,
+  Button,
 } from '@/components/factory';
 
 import Pageview from '@/components/Pageview';
@@ -39,6 +40,7 @@ styleInject(
   '9704152',
 );
 
+const pageId = '884773713167953920';
 const AuditDealWithPc$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -53,6 +55,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const getFactor = (options_357128: any) => {
     // console 166255097358009000
@@ -7658,7 +7661,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
           width: 'auto',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_9704152_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_9704152_1')}
         {...injectData}
       >
         <View
@@ -7682,7 +7685,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             margin: '0px 0px 0px 0px',
             position: 'relative',
           }}
-          ref={(r: any) => (refs['View_183103_093211'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_183103_093211')}
           {...injectData}
         >
           <View
@@ -7709,7 +7712,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
               right: '4px',
               top: '12px',
             }}
-            ref={(r: any) => (refs['View_2218655_35852399'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_2218655_35852399')}
             {...injectData}
           >
             <Text
@@ -7734,7 +7737,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
                 color: 'rgba(50, 137, 249, 1)',
                 textAlign: 'right',
               }}
-              ref={(r: any) => (refs['Text_331457_4558343'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_331457_4558343')}
               {...injectData}
             />
             <Text
@@ -7753,7 +7756,9 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ fontSize: 18, lineHeight: '24px', color: '#3289f9' }}
-              ref={(r: any) => (refs['Text_331457_850218_85208'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Text_331457_850218_85208')
+              }
               {...injectData}
             />
           </View>
@@ -7780,7 +7785,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
               fontWeight: '',
               letterSpacing: '',
             }}
-            ref={(r: any) => (refs['Text_728821_969279'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_728821_969279')}
             {...injectData}
           />
         </View>
@@ -7821,7 +7826,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             margin: '0px 0px 0px 0px',
             'margin-bottom': '2.5px',
           }}
-          ref={(r: any) => (refs['Card_931416'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_931416')}
           {...injectData}
         >
           <RemoteComponent
@@ -7836,7 +7841,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             appId={undefined}
             lcdpParentRenderId={undefined}
             onMessage={(msg: any) => {}}
-            ref={(r: any) => (refs['RemoteComponent_8565859'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'RemoteComponent_8565859')}
             {...injectData}
           />
         </Card>
@@ -7962,7 +7967,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
               platform: 'pc',
             });
           }}
-          ref={(r: any) => (refs['View_23774'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_23774')}
           {...injectData}
         >
           <Icon
@@ -7990,7 +7995,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
               margin: '0auto',
               display: 'block',
             }}
-            ref={(r: any) => (refs['Icon_981767'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Icon_981767')}
             {...injectData}
           />
           <Text
@@ -8025,7 +8030,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
               'padding-left': '4px',
               left: '36px',
             }}
-            ref={(r: any) => (refs['Text_144135'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_144135')}
             {...injectData}
           />
           <Text
@@ -8050,7 +8055,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
               textAlign: 'center',
               display: 'block',
             }}
-            ref={(r: any) => (refs['Text_633474'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_633474')}
             {...injectData}
           />
         </View>
@@ -8094,7 +8099,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             padding: '20px 20px 20px 20px',
             'margin-bottom': '2.5px',
           }}
-          ref={(r: any) => (refs['Collapse_55754'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Collapse_55754')}
           {...injectData}
         >
           <CollapsePanel
@@ -8112,7 +8117,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['CollapsePanel_62692348'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'CollapsePanel_62692348')}
             {...injectData}
             uid="CollapsePanel_62692348"
           >
@@ -8325,7 +8330,9 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
               disabled={false}
               visible={true}
               readOnly={false}
-              ref={(r: any) => (refs['Description_61586_563957'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Description_61586_563957')
+              }
               {...injectData}
             />
           </CollapsePanel>
@@ -8369,7 +8376,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['Card_5478263'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_5478263')}
           {...injectData}
         >
           <Form
@@ -8394,7 +8401,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px', margin: '8px 0px 8px 0px' }}
-            ref={(r: any) => (refs['Form_541805_391396'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_541805_391396')}
             {...injectData}
           >
             <Input
@@ -8438,7 +8445,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_32550878'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_32550878')}
               {...injectData}
             />
             <QuillEditor
@@ -8467,7 +8474,9 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['QuillEditor_637236_622641'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'QuillEditor_637236_622641')
+              }
               {...injectData}
             />
           </Form>
@@ -8509,7 +8518,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             margin: '3px 0px 16px 0px',
             'margin-bottom': '2.5px',
           }}
-          ref={(r: any) => (refs['Card_5914895'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_5914895')}
           {...injectData}
         >
           <Table
@@ -8917,7 +8926,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             readOnly={false}
             rowSelection={undefined}
             style={{ margin: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Table_994258'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_994258')}
             {...injectData}
           />
           <Description
@@ -9313,7 +9322,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             visible={false}
             readOnly={false}
             style={{ margin: '10px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Description_424409'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Description_424409')}
             {...injectData}
           />
         </Card>
@@ -9355,7 +9364,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             margin: '0px 0px 0px 0px',
             'margin-bottom': '2.5px',
           }}
-          ref={(r: any) => (refs['Card_6571733'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_6571733')}
           {...injectData}
         >
           <Form
@@ -9380,7 +9389,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px', margin: '10px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_245058_252079'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_245058_252079')}
             {...injectData}
           >
             <Input
@@ -9424,7 +9433,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_32550878_867458'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_32550878_867458')}
               {...injectData}
             />
           </Form>
@@ -9452,7 +9461,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['GridView_295504'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'GridView_295504')}
             {...injectData}
             getEngineApis={() => {
               return {
@@ -9484,8 +9493,11 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
                             margin: '0px 0px 0px 0px',
                             overflow: 'visible',
                           }}
-                          ref={(r: any) => (refs['Pageview_8687683'] = r)}
+                          ref={(r: any) =>
+                            refs.setComponentRef(r, 'Pageview_8687683')
+                          }
                           {...injectData}
+                          parentEngineId={parentEngineId}
                         />
                       </>
                     );
@@ -9516,7 +9528,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px', margin: '10px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_476484'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_476484')}
             {...injectData}
           >
             <Input
@@ -9557,7 +9569,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_014189'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_014189')}
               {...injectData}
             />
             <Text
@@ -9611,7 +9623,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
                 color: 'rgba(233, 21, 48, 1)',
                 backgroundColor: 'rgba(255, 255, 255,0)',
               }}
-              ref={(r: any) => (refs['Text_2770074'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_2770074')}
               {...injectData}
             />
             <View
@@ -9643,7 +9655,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_186904'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_186904')}
               {...injectData}
             />
           </Form>
@@ -10055,7 +10067,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_035381'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_035381')}
             {...injectData}
           />
         </Card>
@@ -10071,7 +10083,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             sceneCode: data?.pageParam?.catalogCode,
           }}
           style={{ margin: '0px 0px 0px 0px' }}
-          ref={(r: any) => (refs['BOFramer_848795'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'BOFramer_848795')}
           {...injectData}
         />
         <Pageview
@@ -10083,8 +10095,9 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             'margin-top': '2.5px',
             'margin-bottom': '2.5px',
           }}
-          ref={(r: any) => (refs['Pageview_232504'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Pageview_232504')}
           {...injectData}
+          parentEngineId={parentEngineId}
         />
         <BusiComp0496635
           name={'处理过程组件'}
@@ -10096,7 +10109,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
           }}
           basicStatus={2}
           style={{ margin: '0px 0px 0px 0px' }}
-          ref={(r: any) => (refs['BOFramer_438929'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'BOFramer_438929')}
           {...injectData}
         />
         <View
@@ -10117,7 +10130,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_106266'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_106266')}
           {...injectData}
         >
           <Pageview
@@ -10137,8 +10150,9 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             }}
             pageSrc={data?.pageParam?.dealPageUrl}
             style={{ height: 'auto', width: '100%', 'margin-top': '2.5px' }}
-            ref={(r: any) => (refs['Pageview_117636'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Pageview_117636')}
             {...injectData}
+            parentEngineId={parentEngineId}
           />
         </View>
         <View
@@ -10166,7 +10180,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
             'background-color': '#f0f0f0',
             'z-index': '3',
           }}
-          ref={(r: any) => (refs['View_938709'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_938709')}
           {...injectData}
         >
           <Button
@@ -10553,7 +10567,9 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_2061707_637045_014961'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Button_2061707_637045_014961')
+            }
             {...injectData}
           />
           <Button
@@ -10661,7 +10677,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Button_8796906_85186'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_8796906_85186')}
             {...injectData}
           />
           <Button
@@ -10956,7 +10972,9 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_2061707_637045_014961_479135'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Button_2061707_637045_014961_479135')
+            }
             {...injectData}
           />
         </View>
@@ -10966,7 +10984,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AuditDealWithPc$$Page, {
-  pageId: '884773713167953920',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { ordersSubmit: '' },

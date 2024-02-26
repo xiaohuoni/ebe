@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Input, Table, View } from '@/components/factory';
+import { View, Form, Input, Button, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '953566352405966848';
 const RoleNotHaveUserPop$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const RoleNotHaveUserPop$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const refreshOaUser = (options_966448: any) => {
     const eventDatasetLoading32: any = [
@@ -1082,7 +1085,7 @@ const RoleNotHaveUserPop$$Modal: React.FC<PageProps> = ({
           ...componentItem,
         }}
         style={{ minHeight: '100%' }}
-        ref={(r: any) => (refs['View_7975706_1_345242'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_7975706_1_345242')}
         {...injectData}
       >
         <View
@@ -1100,7 +1103,7 @@ const RoleNotHaveUserPop$$Modal: React.FC<PageProps> = ({
             flex: '1 1 auto',
             padding: '20px 20px 16px 20px',
           }}
-          ref={(r: any) => (refs['View_7975706_12_60355746'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_7975706_12_60355746')}
           {...injectData}
         >
           <Form
@@ -1124,7 +1127,7 @@ const RoleNotHaveUserPop$$Modal: React.FC<PageProps> = ({
             }}
             style={{ padding: '12px 0px 0px 0px' }}
             ref={(r: any) =>
-              (refs['Form_148709_997679_5118644_9851280906'] = r)
+              refs.setComponentRef(r, 'Form_148709_997679_5118644_9851280906')
             }
             {...injectData}
           >
@@ -1201,7 +1204,9 @@ const RoleNotHaveUserPop$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_3889064_769378_089515_423271'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_3889064_769378_089515_423271')
+              }
               {...injectData}
             />
             <Input
@@ -1278,7 +1283,7 @@ const RoleNotHaveUserPop$$Modal: React.FC<PageProps> = ({
                 });
               }}
               ref={(r: any) =>
-                (refs['Input_33684855_8070024_3641753_679962'] = r)
+                refs.setComponentRef(r, 'Input_33684855_8070024_3641753_679962')
               }
               {...injectData}
             />
@@ -1310,7 +1315,9 @@ const RoleNotHaveUserPop$$Modal: React.FC<PageProps> = ({
                 width: '100%',
                 textAlign: 'center',
               }}
-              ref={(r: any) => (refs['View_841498_323645_360219_603005'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'View_841498_323645_360219_603005')
+              }
               {...injectData}
             >
               <Button
@@ -1368,7 +1375,7 @@ const RoleNotHaveUserPop$$Modal: React.FC<PageProps> = ({
                   );
                 }}
                 ref={(r: any) =>
-                  (refs['Button_224226_335492_451924_332741'] = r)
+                  refs.setComponentRef(r, 'Button_224226_335492_451924_332741')
                 }
                 {...injectData}
               />
@@ -1442,7 +1449,7 @@ const RoleNotHaveUserPop$$Modal: React.FC<PageProps> = ({
                   });
                 }}
                 ref={(r: any) =>
-                  (refs['Button_499055_286527_9962765_535941'] = r)
+                  refs.setComponentRef(r, 'Button_499055_286527_9962765_535941')
                 }
                 {...injectData}
               />
@@ -2445,7 +2452,9 @@ const RoleNotHaveUserPop$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_7975706_122_503267'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Table_7975706_122_503267')
+            }
             {...injectData}
           />
         </View>
@@ -2455,7 +2464,7 @@ const RoleNotHaveUserPop$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(RoleNotHaveUserPop$$Modal, {
-  pageId: '953566352405966848',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '' },

@@ -1,22 +1,24 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
   Card,
+  View,
   Form,
-  Input,
   Radio,
   Select,
-  StdUpload,
+  Input,
   TextArea,
-  View,
+  StdUpload,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = 'pageId 未找到';
 const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -31,6 +33,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDataapiRequest10: any = [
@@ -1570,7 +1573,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
           overflowY: 'visible',
           margin: '0 0 16px 0',
         }}
-        ref={(r: any) => (refs['Card_674854'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'Card_674854')}
         {...injectData}
       >
         <View
@@ -1591,7 +1594,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_6881883'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_6881883')}
           {...injectData}
         >
           <Form
@@ -1616,7 +1619,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_0063102'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_0063102')}
             {...injectData}
           >
             <Radio
@@ -3448,7 +3451,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Radio_774135'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Radio_774135')}
               {...injectData}
             />
             <Select
@@ -3696,7 +3699,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_6041524'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_6041524')}
               {...injectData}
             />
             <Input
@@ -4061,7 +4064,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_668689'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_668689')}
               {...injectData}
             />
             <Input
@@ -4105,7 +4108,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_9206452'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_9206452')}
               {...injectData}
             />
             <Input
@@ -4218,7 +4221,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_668689_0650375'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_668689_0650375')}
               {...injectData}
             />
             <Input
@@ -4262,7 +4265,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_9206452_583366'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_9206452_583366')}
               {...injectData}
             />
             <TextArea
@@ -4287,7 +4290,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_4776246'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TextArea_4776246')}
               {...injectData}
             />
             <Input
@@ -4331,7 +4334,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_658782'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_658782')}
               {...injectData}
             />
             <Input
@@ -4375,7 +4378,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_6412724'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_6412724')}
               {...injectData}
             />
             <Input
@@ -4419,7 +4422,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_764551'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_764551')}
               {...injectData}
             />
             <Input
@@ -4463,7 +4466,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_587676'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_587676')}
               {...injectData}
             />
             <Input
@@ -4507,7 +4510,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_233347'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_233347')}
               {...injectData}
             />
             <StdUpload
@@ -4566,7 +4569,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['StdUpload_3523188'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'StdUpload_3523188')}
               {...injectData}
             />
           </Form>
@@ -4577,7 +4580,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(BusiComp530274$$BusiComp, {
-  pageId: 'pageId 未找到',
+  pageId,
   hasLogin: true,
   defaultState: {
     tacheCode: '',

@@ -1,14 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  Text,
   Form,
   Select,
-  Text,
   TextArea,
-  View,
+  Button,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -17,6 +18,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '948135990866505728';
 const FlowExceptionDeal$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -31,6 +33,7 @@ const FlowExceptionDeal$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -59,7 +62,7 @@ const FlowExceptionDeal$$Page: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_30_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_30_1')}
         {...injectData}
       >
         <View
@@ -74,7 +77,7 @@ const FlowExceptionDeal$$Page: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_30_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_30_11')}
           {...injectData}
         >
           <View
@@ -97,7 +100,7 @@ const FlowExceptionDeal$$Page: React.FC<PageProps> = ({
               margin: '0px 0px 20px 0px',
               borderRadius: '2px 2px 2px 2px',
             }}
-            ref={(r: any) => (refs['View_30_111'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_30_111')}
             {...injectData}
           >
             <Text
@@ -122,7 +125,7 @@ const FlowExceptionDeal$$Page: React.FC<PageProps> = ({
                 color: '#1c242e',
                 margin: '0px 0px 4px 0px',
               }}
-              ref={(r: any) => (refs['Text_30_1111'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_30_1111')}
               {...injectData}
             />
             <Text
@@ -145,7 +148,7 @@ const FlowExceptionDeal$$Page: React.FC<PageProps> = ({
                 lineHeight: '20px',
                 color: 'rgba(28,36,46,0.45)',
               }}
-              ref={(r: any) => (refs['Text_30_1112'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_30_1112')}
               {...injectData}
             />
           </View>
@@ -171,7 +174,7 @@ const FlowExceptionDeal$$Page: React.FC<PageProps> = ({
               overflowY: 'visible',
               borderRadius: '2px 2px 2px 2px',
             }}
-            ref={(r: any) => (refs['View_30_112'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_30_112')}
             {...injectData}
           >
             <Form
@@ -297,7 +300,7 @@ const FlowExceptionDeal$$Page: React.FC<PageProps> = ({
                 width: '90%',
                 padding: '20px 20px 20px 20px',
               }}
-              ref={(r: any) => (refs['Form_30_1121'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_30_1121')}
               {...injectData}
             >
               <Select
@@ -526,7 +529,7 @@ const FlowExceptionDeal$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Select_30_11213'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Select_30_11213')}
                 {...injectData}
               />
               <TextArea
@@ -545,7 +548,7 @@ const FlowExceptionDeal$$Page: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TextArea_30_11219'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'TextArea_30_11219')}
                 {...injectData}
               />
               <TextArea
@@ -565,7 +568,9 @@ const FlowExceptionDeal$$Page: React.FC<PageProps> = ({
                 }}
                 isFormRootChild={true}
                 style={{ height: '300px' }}
-                ref={(r: any) => (refs['TextArea_30_11219_3222443'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TextArea_30_11219_3222443')
+                }
                 {...injectData}
               />
             </Form>
@@ -590,7 +595,7 @@ const FlowExceptionDeal$$Page: React.FC<PageProps> = ({
                 backgroundColor: '#ffffff',
                 boxShadow: '0px 1px 0px 0px #e7e8ea inset',
               }}
-              ref={(r: any) => (refs['View_30_1122'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_30_1122')}
               {...injectData}
             >
               <Button
@@ -853,7 +858,7 @@ const FlowExceptionDeal$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_30_121'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_30_121')}
                 {...injectData}
               />
             </View>
@@ -865,7 +870,7 @@ const FlowExceptionDeal$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(FlowExceptionDeal$$Page, {
-  pageId: '948135990866505728',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

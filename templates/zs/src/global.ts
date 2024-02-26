@@ -1,13 +1,13 @@
 import { security } from '@lingxiteam/assets';
 import { message, Modal, notification } from 'antd';
 // 直接引入 pcfactory 打包好的 css，不需要主工程再单独构建了
+import '@lingxiteam/pcfactory/dist/index.component.min.css';
 import assetHelper from '@lingxiteam/engine-assets';
 import {
   httpConfig,
   lcdpApi,
   setPlatformConfig,
 } from '@lingxiteam/engine-platform';
-import '@lingxiteam/pcfactory/dist/index.component.min.css';
 import componentCMD from '@lingxiteam/pcfactory/es/index.cmdexec';
 import sysAction from '@lingxiteam/sys-action';
 import type { CommandFunction, CondFunction } from '@lingxiteam/types';

@@ -1,6 +1,7 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import { View } from '@/components/factory';
 
@@ -10,6 +11,7 @@ import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '878192581235183616';
 const Guochengchuli4891$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -24,6 +26,7 @@ const Guochengchuli4891$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDatasetCompState5: any = [
@@ -72,7 +75,7 @@ const Guochengchuli4891$$Page: React.FC<PageProps> = ({
           ...componentItem,
         }}
         style={{ minHeight: '100%' }}
-        ref={(r: any) => (refs['View_52_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_52_1')}
         {...injectData}
       >
         <View
@@ -94,7 +97,7 @@ const Guochengchuli4891$$Page: React.FC<PageProps> = ({
             borderRadius: '4px',
             flexShrink: 0,
           }}
-          ref={(r: any) => (refs['View_52_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_52_11')}
           {...injectData}
         >
           <View
@@ -112,14 +115,14 @@ const Guochengchuli4891$$Page: React.FC<PageProps> = ({
               padding: '16px 16px 16px 16px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_52_111'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_52_111')}
             {...injectData}
           >
             <BusiComp0496635
               busiCompId={'878166584210399232'}
               name={'处理过程组件'}
               style={{ margin: '0 0 12px 0' }}
-              ref={(r: any) => (refs['BOFramer_318329'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'BOFramer_318329')}
               {...injectData}
             />
           </View>
@@ -130,7 +133,7 @@ const Guochengchuli4891$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Guochengchuli4891$$Page, {
-  pageId: '878192581235183616',
+  pageId,
   hasLogin: false,
   defaultState: {},
 });

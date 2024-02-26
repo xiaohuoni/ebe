@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, Table, Text, TextArea, View } from '@/components/factory';
+import { View, Text, Form, Input, Table, TextArea } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = 'pageId 未找到';
 const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -22,6 +24,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -576,7 +579,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
           padding: '0px 0px 0px 0px',
           width: '100%',
         }}
-        ref={(r: any) => (refs['View_436132'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_436132')}
         {...injectData}
       >
         <View
@@ -598,7 +601,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_7338818'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_7338818')}
           {...injectData}
         >
           <View
@@ -623,7 +626,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
               alignItems: 'center',
               margin: '0px 0px 8px 0px',
             }}
-            ref={(r: any) => (refs['View_284985'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_284985')}
             {...injectData}
           >
             <View
@@ -648,7 +651,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 alignItems: 'center',
                 flex: 1,
               }}
-              ref={(r: any) => (refs['View_9265983'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_9265983')}
               {...injectData}
             >
               <View
@@ -672,7 +675,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                   height: '22px',
                   borderRadius: '10px 10px 10px 10px',
                 }}
-                ref={(r: any) => (refs['View_004572'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_004572')}
                 {...injectData}
               />
               <Text
@@ -698,7 +701,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                   backgroundColor: 'rgba(255, 255, 255,0)',
                   margin: '0px 0px 0px 8px',
                 }}
-                ref={(r: any) => (refs['Text_8923296'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Text_8923296')}
                 {...injectData}
               />
             </View>
@@ -722,7 +725,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 width: '100%',
                 flex: 4,
               }}
-              ref={(r: any) => (refs['View_773214'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_773214')}
               {...injectData}
             >
               <Text
@@ -748,7 +751,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                   backgroundColor: '#FFFF80',
                   letterSpacing: '',
                 }}
-                ref={(r: any) => (refs['Text_4091554'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Text_4091554')}
                 {...injectData}
               />
             </View>
@@ -772,7 +775,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_489073'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_489073')}
             {...injectData}
           >
             <Form
@@ -1513,7 +1516,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Form_0331902'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_0331902')}
               {...injectData}
             >
               <Input
@@ -1557,7 +1560,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_belongCityText_470431'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_belongCityText_470431')
+                }
                 {...injectData}
               />
               <Input
@@ -1601,7 +1606,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_belongAreaText_1998728'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_belongAreaText_1998728')
+                }
                 {...injectData}
               />
               <Input
@@ -1645,7 +1652,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_customerCreditRate_334148'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_customerCreditRate_334148')
+                }
                 {...injectData}
               />
               <Input
@@ -1689,7 +1698,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_groupName_516823'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_groupName_516823')
+                }
                 {...injectData}
               />
               <Input
@@ -1733,7 +1744,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_groupId_350608'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_groupId_350608')
+                }
                 {...injectData}
               />
               <Input
@@ -1777,7 +1790,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_groupBelongRegion_146806'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_groupBelongRegion_146806')
+                }
                 {...injectData}
               />
               <Input
@@ -1821,7 +1836,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_custManagerName_638052'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_custManagerName_638052')
+                }
                 {...injectData}
               />
               <Input
@@ -1865,7 +1882,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_custManagerPhone_6186653'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_custManagerPhone_6186653')
+                }
                 {...injectData}
               />
               <Input
@@ -1912,7 +1931,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_custManagerCreditRate_583118'] = r)
+                  refs.setComponentRef(r, 'Input_custManagerCreditRate_583118')
                 }
                 {...injectData}
               />
@@ -1960,7 +1979,10 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_earliestOverdueYearMonth_4565813'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_earliestOverdueYearMonth_4565813',
+                  )
                 }
                 {...injectData}
               />
@@ -2005,7 +2027,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_totalArrearage_706952'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_totalArrearage_706952')
+                }
                 {...injectData}
               />
               <Input
@@ -2049,7 +2073,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_maxOverdueMonth_4462742'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_maxOverdueMonth_4462742')
+                }
                 {...injectData}
               />
               <Input
@@ -2096,7 +2122,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_cumulativeOverdueFee_703401'] = r)
+                  refs.setComponentRef(r, 'Input_cumulativeOverdueFee_703401')
                 }
                 {...injectData}
               />
@@ -2145,7 +2171,10 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_predictPaymentWithinThreeMonnth_716274'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_predictPaymentWithinThreeMonnth_716274',
+                  )
                 }
                 {...injectData}
               />
@@ -2193,7 +2222,10 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_predictPaymentWithinYear_47848'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_predictPaymentWithinYear_47848',
+                  )
                 }
                 {...injectData}
               />
@@ -2241,7 +2273,10 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_lastCollectionRequireYear_655031'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_lastCollectionRequireYear_655031',
+                  )
                 }
                 {...injectData}
               />
@@ -2289,7 +2324,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_lastCollectionTimeYear_867747'] = r)
+                  refs.setComponentRef(r, 'Input_lastCollectionTimeYear_867747')
                 }
                 {...injectData}
               />
@@ -2337,7 +2372,10 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_lastCollectionActionYear_61561'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_lastCollectionActionYear_61561',
+                  )
                 }
                 {...injectData}
               />
@@ -2364,7 +2402,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
             width: '100%',
             margin: '16px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['View_944976'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_944976')}
           {...injectData}
         >
           <View
@@ -2389,7 +2427,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
               alignItems: 'center',
               margin: '0px 0px 8px 0px',
             }}
-            ref={(r: any) => (refs['View_890466'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_890466')}
             {...injectData}
           >
             <View
@@ -2414,7 +2452,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 alignItems: 'center',
                 flex: 1,
               }}
-              ref={(r: any) => (refs['View_348735'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_348735')}
               {...injectData}
             >
               <View
@@ -2438,7 +2476,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                   height: '22px',
                   borderRadius: '10px 10px 10px 10px',
                 }}
-                ref={(r: any) => (refs['View_792075'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_792075')}
                 {...injectData}
               />
               <Text
@@ -2464,7 +2502,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                   backgroundColor: 'rgba(255, 255, 255,0)',
                   margin: '0px 0px 0px 8px',
                 }}
-                ref={(r: any) => (refs['Text_510131'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Text_510131')}
                 {...injectData}
               />
             </View>
@@ -2488,7 +2526,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 width: '100%',
                 flex: 4,
               }}
-              ref={(r: any) => (refs['View_2817205'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_2817205')}
               {...injectData}
             >
               <Text
@@ -2514,7 +2552,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                   backgroundColor: '#FFFF80',
                   letterSpacing: '',
                 }}
-                ref={(r: any) => (refs['Text_622604'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Text_622604')}
                 {...injectData}
               />
             </View>
@@ -2538,7 +2576,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_906396'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_906396')}
             {...injectData}
           >
             <Form
@@ -3150,7 +3188,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Form_958609'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_958609')}
               {...injectData}
             >
               <Input
@@ -3197,7 +3235,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_idType_175286'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_idType_175286')}
                 {...injectData}
               />
               <Input
@@ -3244,7 +3282,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_idNum_178696'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_idNum_178696')}
                 {...injectData}
               />
               <Input
@@ -3291,7 +3329,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_enterpriseName_062242'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_enterpriseName_062242')
+                }
                 {...injectData}
               />
               <Input
@@ -3339,7 +3379,10 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_sameIdCumulativeArrearage_013646'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_sameIdCumulativeArrearage_013646',
+                  )
                 }
                 {...injectData}
               />
@@ -3388,7 +3431,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_sameIdOverdueArrearage_197253'] = r)
+                  refs.setComponentRef(r, 'Input_sameIdOverdueArrearage_197253')
                 }
                 {...injectData}
               />
@@ -3437,7 +3480,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_sameIdMaxOverdueMonth_410984'] = r)
+                  refs.setComponentRef(r, 'Input_sameIdMaxOverdueMonth_410984')
                 }
                 {...injectData}
               />
@@ -3486,7 +3529,10 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_sameIdProvinceArchiveGroupNum_2342673'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_sameIdProvinceArchiveGroupNum_2342673',
+                  )
                 }
                 {...injectData}
               />
@@ -3534,7 +3580,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_blacklistReason_920752'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_blacklistReason_920752')
+                }
                 {...injectData}
               />
             </Form>
@@ -3749,7 +3797,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ margin: '8px 0px 8px 0px' }}
-            ref={(r: any) => (refs['Table_202246'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_202246')}
             {...injectData}
           />
         </View>
@@ -3773,7 +3821,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
             width: '100%',
             margin: '0px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['View_273682'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_273682')}
           {...injectData}
         >
           <View
@@ -3798,7 +3846,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
               alignItems: 'center',
               margin: '0px 0px 8px 0px',
             }}
-            ref={(r: any) => (refs['View_3458'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_3458')}
             {...injectData}
           >
             <View
@@ -3823,7 +3871,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 alignItems: 'center',
                 flex: 1,
               }}
-              ref={(r: any) => (refs['View_434'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_434')}
               {...injectData}
             >
               <View
@@ -3847,7 +3895,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                   height: '22px',
                   borderRadius: '10px 10px 10px 10px',
                 }}
-                ref={(r: any) => (refs['View_520073'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_520073')}
                 {...injectData}
               />
               <Text
@@ -3873,7 +3921,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                   backgroundColor: 'rgba(255, 255, 255,0)',
                   margin: '0px 0px 0px 8px',
                 }}
-                ref={(r: any) => (refs['Text_28043255'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Text_28043255')}
                 {...injectData}
               />
             </View>
@@ -3897,7 +3945,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 width: '100%',
                 flex: 8,
               }}
-              ref={(r: any) => (refs['View_6314626'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_6314626')}
               {...injectData}
             />
           </View>
@@ -3920,7 +3968,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_255859'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_255859')}
             {...injectData}
           >
             <Form
@@ -4876,7 +4924,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Form_51758'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_51758')}
               {...injectData}
             >
               <Input
@@ -4921,7 +4969,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_whitelistType_868947'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_whitelistType_868947')
+                }
                 {...injectData}
               />
               <Input
@@ -4969,7 +5019,10 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_appliedWhiteListNumYear_1262595'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_appliedWhiteListNumYear_1262595',
+                  )
                 }
                 {...injectData}
               />
@@ -5018,7 +5071,10 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_appliedWhiteListUpNumYear_714535'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Input_appliedWhiteListUpNumYear_714535',
+                  )
                 }
                 {...injectData}
               />
@@ -5065,7 +5121,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_appliedWhiteListDay_8230675'] = r)
+                  refs.setComponentRef(r, 'Input_appliedWhiteListDay_8230675')
                 }
                 {...injectData}
               />
@@ -5114,7 +5170,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 readOnly={true}
                 isFormRootChild={true}
                 ref={(r: any) =>
-                  (refs['Input_predictEffectiveTime_4897933'] = r)
+                  refs.setComponentRef(r, 'Input_predictEffectiveTime_4897933')
                 }
                 {...injectData}
               />
@@ -5160,7 +5216,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_predictDeadTime_523525'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_predictDeadTime_523525')
+                }
                 {...injectData}
               />
               <TextArea
@@ -5186,7 +5244,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_arrearsReason_883225'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_arrearsReason_883225')
+                }
                 {...injectData}
               />
               <TextArea
@@ -5212,7 +5272,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_collectionCondition_604802'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_collectionCondition_604802')
+                }
                 {...injectData}
               />
               <TextArea
@@ -5238,7 +5300,9 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_riskAssessment_401639'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_riskAssessment_401639')
+                }
                 {...injectData}
               />
             </Form>
@@ -5250,7 +5314,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(BusiComp335152$$BusiComp, {
-  pageId: 'pageId 未找到',
+  pageId,
   hasLogin: true,
   defaultState: { whitelistApplyInfo: '' },
 });

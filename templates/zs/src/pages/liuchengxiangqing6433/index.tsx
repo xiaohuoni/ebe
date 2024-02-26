@@ -1,20 +1,22 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
+  View,
   Form,
   Input,
   MultipleSelect,
   Select,
   TextArea,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '899974150071754752';
 const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -30,6 +32,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDataifelse333: any = [
@@ -1040,7 +1043,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_689515_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_689515_1')}
         {...injectData}
       >
         <View
@@ -1059,7 +1062,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_168374'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_168374')}
           {...injectData}
         >
           <Form
@@ -1082,7 +1085,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '0px 0px 0px 0px', margin: '20px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_088682'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_088682')}
             {...injectData}
           >
             <Input
@@ -1126,7 +1129,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_157513'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_157513')}
               {...injectData}
             />
             <Input
@@ -1170,7 +1173,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_407501'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_407501')}
               {...injectData}
             />
             <Input
@@ -1214,7 +1217,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_468987'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_468987')}
               {...injectData}
             />
             <Input
@@ -1258,7 +1261,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_45155'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_45155')}
               {...injectData}
             />
             <MultipleSelect
@@ -1287,7 +1290,9 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['MultipleSelect_0354337'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'MultipleSelect_0354337')
+              }
               {...injectData}
             />
             <Select
@@ -1316,7 +1321,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Select_67822'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_67822')}
               {...injectData}
             />
             <Input
@@ -1360,7 +1365,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_183301'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_183301')}
               {...injectData}
             />
             <Input
@@ -1404,7 +1409,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_540411'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_540411')}
               {...injectData}
             />
             <Input
@@ -1448,7 +1453,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_944097'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_944097')}
               {...injectData}
             />
             <Input
@@ -1492,7 +1497,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_9293691'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_9293691')}
               {...injectData}
             />
             <TextArea
@@ -1517,7 +1522,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_348804'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TextArea_348804')}
               {...injectData}
             />
             <Input
@@ -1561,7 +1566,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_312662'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_312662')}
               {...injectData}
             />
           </Form>
@@ -1572,7 +1577,7 @@ const Liuchengxiangqing6433$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Liuchengxiangqing6433$$Modal, {
-  pageId: '899974150071754752',
+  pageId,
   hasLogin: false,
   defaultState: { bizId: '', sceneCode: '', flowObi: '' },
 });

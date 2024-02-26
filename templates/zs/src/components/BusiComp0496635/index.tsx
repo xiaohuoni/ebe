@@ -1,21 +1,23 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
   Card,
-  Description,
-  LoopList,
   Table,
-  TabPane,
   Tabs,
+  TabPane,
+  LoopList,
   View,
+  Description,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = 'pageId 未找到';
 const BusiComp0496635$$BusiComp: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -30,6 +32,7 @@ const BusiComp0496635$$BusiComp: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     // console 169095599948170020
@@ -1863,7 +1866,7 @@ const BusiComp0496635$$BusiComp: React.FC<PageProps> = ({
           margin: '0px 0px 0px 0px',
           'margin-bottom': '2.5px',
         }}
-        ref={(r: any) => (refs['Card_5124717'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'Card_5124717')}
         {...injectData}
       >
         <Table
@@ -2250,7 +2253,7 @@ const BusiComp0496635$$BusiComp: React.FC<PageProps> = ({
               },
             );
           }}
-          ref={(r: any) => (refs['Table_40091'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_40091')}
           {...injectData}
         />
         <Tabs
@@ -2276,7 +2279,7 @@ const BusiComp0496635$$BusiComp: React.FC<PageProps> = ({
             margin: '0 0 16px 0',
             padding: '20px 20px 20px 20px',
           }}
-          ref={(r: any) => (refs['Tabs_280626'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Tabs_280626')}
           {...injectData}
         >
           <TabPane
@@ -2293,7 +2296,7 @@ const BusiComp0496635$$BusiComp: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['TabPane_7853296'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'TabPane_7853296')}
             {...injectData}
           >
             <Table
@@ -2680,7 +2683,7 @@ const BusiComp0496635$$BusiComp: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Table_631766'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Table_631766')}
               {...injectData}
             />
           </TabPane>
@@ -2698,7 +2701,7 @@ const BusiComp0496635$$BusiComp: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ minHeight: 40 }}
-            ref={(r: any) => (refs['TabPane_141349'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'TabPane_141349')}
             {...injectData}
           >
             <LoopList
@@ -2724,7 +2727,7 @@ const BusiComp0496635$$BusiComp: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['LoopList_0055633'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'LoopList_0055633')}
               {...injectData}
               getEngineApis={() => {
                 return {
@@ -2760,7 +2763,9 @@ const BusiComp0496635$$BusiComp: React.FC<PageProps> = ({
                               padding: '0px 0px 0px 0px',
                               width: '100%',
                             }}
-                            ref={(r: any) => (refs['View_451129'] = r)}
+                            ref={(r: any) =>
+                              refs.setComponentRef(r, 'View_451129')
+                            }
                             {...injectData}
                           >
                             <Description
@@ -2907,7 +2912,7 @@ const BusiComp0496635$$BusiComp: React.FC<PageProps> = ({
                               visible={true}
                               readOnly={false}
                               ref={(r: any) =>
-                                (refs['Description_3958499'] = r)
+                                refs.setComponentRef(r, 'Description_3958499')
                               }
                               {...injectData}
                             />
@@ -3123,7 +3128,9 @@ const BusiComp0496635$$BusiComp: React.FC<PageProps> = ({
                             visible={true}
                             readOnly={false}
                             style={{ margin: '10px 0px 0px 0px' }}
-                            ref={(r: any) => (refs['Table_0972668'] = r)}
+                            ref={(r: any) =>
+                              refs.setComponentRef(r, 'Table_0972668')
+                            }
                             {...injectData}
                           />
                         </>
@@ -3141,7 +3148,7 @@ const BusiComp0496635$$BusiComp: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(BusiComp0496635$$BusiComp, {
-  pageId: 'pageId 未找到',
+  pageId,
   hasLogin: true,
   defaultState: { workId: '', isBig: '', busiObjNbr: '' },
 });

@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
+  View,
+  Text,
   Card,
   Description,
+  Table,
   Form,
   QuillEditor,
-  Table,
-  Text,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -18,6 +19,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '907454980792348672';
 const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -33,6 +35,7 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const getFactor = (options_357128: any) => {
     // console 166255097358009000
@@ -1648,7 +1651,7 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_9704152_1_436365'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_9704152_1_436365')}
         {...injectData}
       >
         <View
@@ -1669,7 +1672,7 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
             textAlign: 'center',
             margin: '0px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['View_183103_0410717'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_183103_0410717')}
           {...injectData}
         >
           <Text
@@ -1693,7 +1696,7 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
               fontWeight: '',
               letterSpacing: '',
             }}
-            ref={(r: any) => (refs['Text_728821_875879'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_728821_875879')}
             {...injectData}
           />
         </View>
@@ -1714,7 +1717,7 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
             width: '100%',
             textAlign: 'right',
           }}
-          ref={(r: any) => (refs['View_2218655_657974'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_2218655_657974')}
           {...injectData}
         >
           <Text
@@ -1737,7 +1740,7 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
               color: 'rgba(50, 137, 249, 1)',
               textAlign: 'right',
             }}
-            ref={(r: any) => (refs['Text_331457_3626'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_331457_3626')}
             {...injectData}
           />
           <Text
@@ -1754,7 +1757,9 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ fontSize: 18, lineHeight: '24px', color: '#3289f9' }}
-            ref={(r: any) => (refs['Text_331457_850218_1983355'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Text_331457_850218_1983355')
+            }
             {...injectData}
           />
         </View>
@@ -1794,7 +1799,7 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_886999_6204882'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_886999_6204882')}
           {...injectData}
         >
           <Description
@@ -2004,7 +2009,9 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
               type: 'Description',
               ...componentItem,
             }}
-            ref={(r: any) => (refs['Description_61586_690029'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Description_61586_690029')
+            }
             {...injectData}
           />
         </Card>
@@ -2044,7 +2051,7 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_5914895_299813'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_5914895_299813')}
           {...injectData}
         >
           <Table
@@ -2394,7 +2401,7 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
             }}
             rowSelection={undefined}
             style={{ margin: '10px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Table_994258_0297237'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_994258_0297237')}
             {...injectData}
           />
           <Description
@@ -2714,7 +2721,9 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ margin: '10px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Description_424409_381284'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Description_424409_381284')
+            }
             {...injectData}
           />
         </Card>
@@ -2754,7 +2763,7 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_6571733_52364'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_6571733_52364')}
           {...injectData}
         >
           <Form
@@ -2777,7 +2786,7 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '0px 0px 0px 0px', margin: '8px 0px 8px 0px' }}
-            ref={(r: any) => (refs['Form_541805_6251186'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_541805_6251186')}
             {...injectData}
           >
             <QuillEditor
@@ -2802,7 +2811,9 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['QuillEditor_637236_25551'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'QuillEditor_637236_25551')
+              }
               {...injectData}
             />
           </Form>
@@ -3174,7 +3185,7 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_035381_986137'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_035381_986137')}
             {...injectData}
           />
         </Card>
@@ -3184,7 +3195,7 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AuditDetailsModal$$Modal, {
-  pageId: '907454980792348672',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

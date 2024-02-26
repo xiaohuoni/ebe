@@ -1,20 +1,22 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
+  View,
   Form,
   Input,
-  Select,
   TextArea,
+  Select,
   TreeSelect,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '928551575885271040';
 const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -30,6 +32,7 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatavalidateCurrentForm55: any = [
@@ -1729,7 +1732,7 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_31_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_31_1')}
         {...injectData}
       >
         <View
@@ -1752,7 +1755,7 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
             margin: '0px 0px 0px 0px',
             borderRadius: '2px 2px 2px 2px',
           }}
-          ref={(r: any) => (refs['View_31_112_8719828'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_31_112_8719828')}
           {...injectData}
         >
           <Form
@@ -1774,7 +1777,7 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '20px 20px 20px 20px' }}
-            ref={(r: any) => (refs['Form_31_1121_886082'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_31_1121_886082')}
             {...injectData}
           >
             <Input
@@ -1810,7 +1813,9 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_31_11211_0223722'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_31_11211_0223722')
+              }
               {...injectData}
             />
             <Input
@@ -1846,7 +1851,7 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_31_11212_657783'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_31_11212_657783')}
               {...injectData}
             />
             <TextArea
@@ -1869,7 +1874,9 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_31_112114_022705'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'TextArea_31_112114_022705')
+              }
               {...injectData}
             />
             <Input
@@ -1905,7 +1912,9 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_31_11211_0223722_231151'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_31_11211_0223722_231151')
+              }
               {...injectData}
             />
             <Select
@@ -1934,7 +1943,7 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Select_302587'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_302587')}
               {...injectData}
             />
             <Input
@@ -1970,7 +1979,9 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_31_11211_0223722_9735233'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_31_11211_0223722_9735233')
+              }
               {...injectData}
             />
             <Input
@@ -2006,7 +2017,9 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_31_11211_0223722_689949'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_31_11211_0223722_689949')
+              }
               {...injectData}
             />
             <Select
@@ -2448,7 +2461,9 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Select_31_11213_350488'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Select_31_11213_350488')
+              }
               {...injectData}
             />
             <View
@@ -2478,7 +2493,7 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_58290555'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_58290555')}
               {...injectData}
             />
             <TreeSelect
@@ -2595,7 +2610,7 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['TreeSelect_4164986'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TreeSelect_4164986')}
               {...injectData}
             />
             <Select
@@ -2618,7 +2633,9 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Select_31_11218_751786'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Select_31_11218_751786')
+              }
               {...injectData}
             />
             <Select
@@ -2641,7 +2658,9 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Select_31_11218_751786_9747682'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Select_31_11218_751786_9747682')
+              }
               {...injectData}
             />
             <Select
@@ -2664,7 +2683,7 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Select_31_11217_1911'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_31_11217_1911')}
               {...injectData}
             />
             <Select
@@ -2692,7 +2711,7 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_31_11215_901165'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_31_11215_901165')}
               {...injectData}
             />
             <Select
@@ -2721,7 +2740,9 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_31_11216_07830984'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_31_11216_07830984')
+              }
               {...injectData}
             />
             <Input
@@ -2776,7 +2797,9 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TimePicker_31_11219_3337999'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'TimePicker_31_11219_3337999')
+              }
               {...injectData}
             />
             <Input
@@ -2823,7 +2846,9 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_31_112110_990096'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_31_112110_990096')
+              }
               {...injectData}
             />
             <Input
@@ -2867,7 +2892,7 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_115146'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_115146')}
               {...injectData}
             />
           </Form>
@@ -2878,7 +2903,7 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Yingxiaohuodongdangci5110$$Modal, {
-  pageId: '928551575885271040',
+  pageId,
   hasLogin: false,
   defaultState: {
     bizId: '',

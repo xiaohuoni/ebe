@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
+  View,
   Card,
   Form,
+  Tree,
+  Text,
   Input,
   Table,
-  Text,
-  Tree,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -18,6 +19,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '881887068344979456';
 const AuditSelectoneuser$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -33,6 +35,7 @@ const AuditSelectoneuser$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatagetCurrentFormValues13: any = [
@@ -743,7 +746,7 @@ const AuditSelectoneuser$$Modal: React.FC<PageProps> = ({
           padding: 0,
           minHeight: '300px',
         }}
-        ref={(r: any) => (refs['View_2310769_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_2310769_1')}
         {...injectData}
       >
         <View
@@ -766,7 +769,7 @@ const AuditSelectoneuser$$Modal: React.FC<PageProps> = ({
             overflowY: 'visible',
             height: '100%',
           }}
-          ref={(r: any) => (refs['View_883261'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_883261')}
           {...injectData}
         >
           <Card
@@ -805,7 +808,7 @@ const AuditSelectoneuser$$Modal: React.FC<PageProps> = ({
               padding: '12px 12px 12px 12px',
               height: '350px',
             }}
-            ref={(r: any) => (refs['Card_2310769_12'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_2310769_12')}
             {...injectData}
           >
             <Form
@@ -831,7 +834,7 @@ const AuditSelectoneuser$$Modal: React.FC<PageProps> = ({
               visible={false}
               readOnly={false}
               style={{ padding: '16px 16px 16px 16px' }}
-              ref={(r: any) => (refs['Form_2310769_121'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_2310769_121')}
               {...injectData}
             >
               <Tree
@@ -1499,7 +1502,7 @@ const AuditSelectoneuser$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Tree_443137'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Tree_443137')}
                 {...injectData}
               />
             </Form>
@@ -1523,7 +1526,7 @@ const AuditSelectoneuser$$Modal: React.FC<PageProps> = ({
               padding: '12px 12px 12px 12px',
               width: '600px',
             }}
-            ref={(r: any) => (refs['View_2310769_11'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_2310769_11')}
             {...injectData}
           >
             <Text
@@ -1547,7 +1550,7 @@ const AuditSelectoneuser$$Modal: React.FC<PageProps> = ({
                 color: 'rgba(208, 2, 27, 1)',
                 fontWeight: '',
               }}
-              ref={(r: any) => (refs['Text_895823'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_895823')}
               {...injectData}
             />
             <Input
@@ -2432,7 +2435,7 @@ const AuditSelectoneuser$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Input_262276'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_262276')}
               {...injectData}
             />
             <Table
@@ -3127,7 +3130,9 @@ const AuditSelectoneuser$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Table_2310769_112_40579678'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Table_2310769_112_40579678')
+              }
               {...injectData}
             />
             <Form
@@ -3152,7 +3157,7 @@ const AuditSelectoneuser$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ padding: '0px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_486003'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_486003')}
               {...injectData}
             >
               <Input
@@ -3196,7 +3201,7 @@ const AuditSelectoneuser$$Modal: React.FC<PageProps> = ({
                 visible={false}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_3184618'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_3184618')}
                 {...injectData}
               />
             </Form>
@@ -3208,7 +3213,7 @@ const AuditSelectoneuser$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AuditSelectoneuser$$Modal, {
-  pageId: '881887068344979456',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

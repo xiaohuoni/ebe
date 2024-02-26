@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { DatePicker, Form, Input, View } from '@/components/factory';
+import { View, Form, Input, DatePicker } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '1028611675218784256';
 const Jianshesaoraozhilibaozhangmingdanshenpidantanchuang1964$$Modal: React.FC<
   PageProps
 > = ({
@@ -27,6 +29,7 @@ const Jianshesaoraozhilibaozhangmingdanshenpidantanchuang1964$$Modal: React.FC<
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatavalidateCurrentForm51: any = [
@@ -355,7 +358,7 @@ const Jianshesaoraozhilibaozhangmingdanshenpidantanchuang1964$$Modal: React.FC<
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_3531993_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_3531993_1')}
         {...injectData}
       >
         <Form
@@ -580,7 +583,7 @@ const Jianshesaoraozhilibaozhangmingdanshenpidantanchuang1964$$Modal: React.FC<
               },
             );
           }}
-          ref={(r: any) => (refs['Form_4688755'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_4688755')}
           {...injectData}
         >
           <Input
@@ -626,7 +629,7 @@ const Jianshesaoraozhilibaozhangmingdanshenpidantanchuang1964$$Modal: React.FC<
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_city_0947392'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_city_0947392')}
             {...injectData}
           />
           <Input
@@ -671,7 +674,7 @@ const Jianshesaoraozhilibaozhangmingdanshenpidantanchuang1964$$Modal: React.FC<
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_area_708369'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_area_708369')}
             {...injectData}
           />
           <Input
@@ -716,7 +719,7 @@ const Jianshesaoraozhilibaozhangmingdanshenpidantanchuang1964$$Modal: React.FC<
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_msisdn_563737'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_msisdn_563737')}
             {...injectData}
           />
           <Input
@@ -761,7 +764,7 @@ const Jianshesaoraozhilibaozhangmingdanshenpidantanchuang1964$$Modal: React.FC<
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_groupId_617653'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_groupId_617653')}
             {...injectData}
           />
           <Input
@@ -806,7 +809,7 @@ const Jianshesaoraozhilibaozhangmingdanshenpidantanchuang1964$$Modal: React.FC<
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_groupName_756192'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_groupName_756192')}
             {...injectData}
           />
           <Input
@@ -851,7 +854,9 @@ const Jianshesaoraozhilibaozhangmingdanshenpidantanchuang1964$$Modal: React.FC<
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_tradeclassTop_8316912'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Input_tradeclassTop_8316912')
+            }
             {...injectData}
           />
           <Input
@@ -896,7 +901,9 @@ const Jianshesaoraozhilibaozhangmingdanshenpidantanchuang1964$$Modal: React.FC<
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_customerType_592422'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Input_customerType_592422')
+            }
             {...injectData}
           />
           <Input
@@ -941,7 +948,9 @@ const Jianshesaoraozhilibaozhangmingdanshenpidantanchuang1964$$Modal: React.FC<
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_recommendEnsuredType_1776988'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Input_recommendEnsuredType_1776988')
+            }
             {...injectData}
           />
           <DatePicker
@@ -976,7 +985,9 @@ const Jianshesaoraozhilibaozhangmingdanshenpidantanchuang1964$$Modal: React.FC<
             readOnly={false}
             defaultValue={undefined}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_expiredTime_348851'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Input_expiredTime_348851')
+            }
             {...injectData}
           />
         </Form>
@@ -988,7 +999,7 @@ const Jianshesaoraozhilibaozhangmingdanshenpidantanchuang1964$$Modal: React.FC<
 export default withPageHOC(
   Jianshesaoraozhilibaozhangmingdanshenpidantanchuang1964$$Modal,
   {
-    pageId: '1028611675218784256',
+    pageId,
     hasLogin: false,
     dataSource,
     defaultState: { bizId: '', sceneCode: '', bizData: '', governInfo: '' },

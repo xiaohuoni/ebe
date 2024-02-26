@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Card, Form, Input, View } from '@/components/factory';
+import { View, Card, Form, Input, Button } from '@/components/factory';
 
 import Pageview from '@/components/Pageview';
 
@@ -10,6 +11,7 @@ import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '917739110552064000';
 const Yemian18007$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -24,6 +26,7 @@ const Yemian18007$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -55,7 +58,7 @@ const Yemian18007$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_5210986_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_5210986_1')}
         {...injectData}
       >
         <Card
@@ -97,7 +100,7 @@ const Yemian18007$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_485027'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_485027')}
           {...injectData}
         >
           <Pageview
@@ -106,8 +109,9 @@ const Yemian18007$$Page: React.FC<PageProps> = ({
             pageSrc={'/biaodan2899'}
             pageId={'917738986538536960'}
             style={{ height: 'auto', width: '100%' }}
-            ref={(r: any) => (refs['Pageview_217088'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Pageview_217088')}
             {...injectData}
+            parentEngineId={parentEngineId}
           />
         </Card>
         <Card
@@ -149,7 +153,7 @@ const Yemian18007$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_0889776'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_0889776')}
           {...injectData}
         >
           <Pageview
@@ -158,8 +162,9 @@ const Yemian18007$$Page: React.FC<PageProps> = ({
             pageSrc={'/yemian18007copy'}
             pageId={'917740319912513536'}
             style={{ height: 'auto', width: '100%' }}
-            ref={(r: any) => (refs['Pageview_020085'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Pageview_020085')}
             {...injectData}
+            parentEngineId={parentEngineId}
           />
         </Card>
         <Form
@@ -184,7 +189,7 @@ const Yemian18007$$Page: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ padding: '0px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Form_26087_909456'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_26087_909456')}
           {...injectData}
         >
           <Input
@@ -228,7 +233,7 @@ const Yemian18007$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_3307815_86359934'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_3307815_86359934')}
             {...injectData}
           />
           <Button
@@ -387,7 +392,7 @@ const Yemian18007$$Page: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_522422'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_522422')}
             {...injectData}
           />
         </Form>
@@ -397,7 +402,7 @@ const Yemian18007$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Yemian18007$$Page, {
-  pageId: '917739110552064000',
+  pageId,
   hasLogin: false,
   defaultState: {},
 });

@@ -1,13 +1,14 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Card,
   HorizontalView,
+  Button,
   Table,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -16,6 +17,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '879998060900732928';
 const MyDraft$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -30,6 +32,7 @@ const MyDraft$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDataapiRequest504: any = [
@@ -231,7 +234,7 @@ const MyDraft$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_852562_1_890036'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_852562_1_890036')}
         {...injectData}
       >
         <Card
@@ -270,7 +273,7 @@ const MyDraft$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_3514477'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_3514477')}
           {...injectData}
         >
           <View
@@ -291,7 +294,7 @@ const MyDraft$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_221112'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_221112')}
             {...injectData}
           >
             <HorizontalView
@@ -314,7 +317,9 @@ const MyDraft$$Page: React.FC<PageProps> = ({
                 overflowY: 'auto',
                 justifyContent: 'space-between',
               }}
-              ref={(r: any) => (refs['HorizontalView_6241587'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'HorizontalView_6241587')
+              }
               {...injectData}
             >
               <Button
@@ -679,7 +684,7 @@ const MyDraft$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_844662'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_844662')}
                 {...injectData}
               />
               <Button
@@ -731,7 +736,7 @@ const MyDraft$$Page: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Button_7872035'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_7872035')}
                 {...injectData}
               />
             </HorizontalView>
@@ -1586,7 +1591,7 @@ const MyDraft$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Table_642395'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Table_642395')}
               {...injectData}
             />
           </View>
@@ -1597,7 +1602,7 @@ const MyDraft$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(MyDraft$$Page, {
-  pageId: '879998060900732928',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

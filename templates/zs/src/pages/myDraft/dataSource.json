@@ -629,7 +629,9 @@
                     "_id": "body.pageNum",
                     "compType": "Input",
                     "name": "pageNum",
-                    "parents": ["body"]
+                    "parents": [
+                      "body"
+                    ]
                   },
                   {
                     "code": "instStatus",
@@ -639,7 +641,9 @@
                     "_id": "body.instStatus",
                     "compType": "Input",
                     "name": "instStatus",
-                    "parents": ["body"]
+                    "parents": [
+                      "body"
+                    ]
                   },
                   {
                     "code": "pageSize",
@@ -649,7 +653,9 @@
                     "_id": "body.pageSize",
                     "compType": "Input",
                     "name": "pageSize",
-                    "parents": ["body"]
+                    "parents": [
+                      "body"
+                    ]
                   },
                   {
                     "code": "createStaff",
@@ -659,7 +665,9 @@
                     "_id": "body.createStaff",
                     "compType": "Input",
                     "name": "createStaff",
-                    "parents": ["body"]
+                    "parents": [
+                      "body"
+                    ]
                   }
                 ],
                 "_id": "body",

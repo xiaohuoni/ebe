@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Card,
   Form,
   Input,
-  Table,
   TreeSelect,
-  View,
+  Button,
+  Table,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -20,6 +21,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '927804270010707968';
 const FileTemplateManagement$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -34,6 +36,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const refresh_table = (options_011688: any) => {
     const eventDatasetLoading21: any = [
@@ -559,7 +562,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_5031917_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_5031917_1')}
         {...injectData}
       >
         <View
@@ -580,7 +583,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_318342'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_318342')}
           {...injectData}
         >
           <Card
@@ -694,7 +697,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Card_406032'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_406032')}
             {...injectData}
           >
             <Form
@@ -719,7 +722,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ padding: '0px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_4818053'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_4818053')}
               {...injectData}
             >
               <Input
@@ -882,7 +885,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_055331'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_055331')}
                 {...injectData}
               />
               <TreeSelect
@@ -1015,7 +1018,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['TreeSelect_7069203'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'TreeSelect_7069203')}
                 {...injectData}
               />
               <View
@@ -1048,7 +1051,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
                   textAlign: 'center',
                   height: '100%',
                 }}
-                ref={(r: any) => (refs['View_150732'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_150732')}
                 {...injectData}
               >
                 <Button
@@ -1107,7 +1110,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_0254483'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_0254483')}
                   {...injectData}
                 />
                 <Button
@@ -1260,7 +1263,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_6393469'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_6393469')}
                   {...injectData}
                 />
               </View>
@@ -1283,7 +1286,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_46096'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_46096')}
               {...injectData}
             >
               <Table
@@ -2174,7 +2177,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_2130203'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_2130203')}
                 {...injectData}
               />
             </View>
@@ -2186,7 +2189,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(FileTemplateManagement$$Page, {
-  pageId: '927804270010707968',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { scene: '' },

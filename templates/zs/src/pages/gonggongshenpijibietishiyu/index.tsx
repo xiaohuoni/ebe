@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Text, View } from '@/components/factory';
+import { View, Text } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '882436135732752384';
 const Gonggongshenpijibietishiyu$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -22,6 +24,7 @@ const Gonggongshenpijibietishiyu$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -49,7 +52,7 @@ const Gonggongshenpijibietishiyu$$Page: React.FC<PageProps> = ({
           width: 'auto',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_5629_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_5629_1')}
         {...injectData}
       >
         <View
@@ -70,7 +73,7 @@ const Gonggongshenpijibietishiyu$$Page: React.FC<PageProps> = ({
             textAlign: 'center',
             margin: '200px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['View_319232'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_319232')}
           {...injectData}
         >
           <Text
@@ -87,7 +90,7 @@ const Gonggongshenpijibietishiyu$$Page: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ fontSize: 30, lineHeight: '24px', color: '#1c242e' }}
-            ref={(r: any) => (refs['Text_643483'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_643483')}
             {...injectData}
           />
         </View>
@@ -97,7 +100,7 @@ const Gonggongshenpijibietishiyu$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Gonggongshenpijibietishiyu$$Page, {
-  pageId: '882436135732752384',
+  pageId,
   hasLogin: false,
   defaultState: {},
 });

@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Row, TextArea, View } from '@/components/factory';
+import { View, Row, Form, TextArea, Button } from '@/components/factory';
 
 import Pageview from '@/components/Pageview';
 
@@ -12,6 +13,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '916972510371729408';
 const GobackCommonPopup$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -27,6 +29,7 @@ const GobackCommonPopup$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const fillTacheRemark = (options_141226: any) => {
     const eventDatasetValue8: any = [
@@ -167,7 +170,7 @@ const GobackCommonPopup$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_30_1_229696_8928726'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_30_1_229696_8928726')}
         {...injectData}
       >
         <Row
@@ -185,7 +188,9 @@ const GobackCommonPopup$$Modal: React.FC<PageProps> = ({
           disabled={false}
           visible={true}
           readOnly={false}
-          ref={(r: any) => (refs['Row_628506_2746863_7455035'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'Row_628506_2746863_7455035')
+          }
           {...injectData}
         >
           <Form
@@ -210,7 +215,9 @@ const GobackCommonPopup$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_0063102_5441816_834516_505306'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Form_0063102_5441816_834516_505306')
+            }
             {...injectData}
           >
             <TextArea
@@ -238,7 +245,7 @@ const GobackCommonPopup$$Modal: React.FC<PageProps> = ({
               isFormRootChild={true}
               style={{ height: '300px' }}
               ref={(r: any) =>
-                (refs['TextArea_4776246_432797_396424_203052'] = r)
+                refs.setComponentRef(r, 'TextArea_4776246_432797_396424_203052')
               }
               {...injectData}
             />
@@ -249,8 +256,11 @@ const GobackCommonPopup$$Modal: React.FC<PageProps> = ({
             pageSrc={'/common/comment/listpage'}
             pageId={'907443177794400256'}
             style={{ height: '340px', width: '100%' }}
-            ref={(r: any) => (refs['Pageview_098802_42779_24032'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Pageview_098802_42779_24032')
+            }
             {...injectData}
+            parentEngineId={parentEngineId}
           />
         </Row>
         <View
@@ -275,7 +285,10 @@ const GobackCommonPopup$$Modal: React.FC<PageProps> = ({
             boxShadow: '0px 1px 0px 0px #e7e8ea inset',
           }}
           ref={(r: any) =>
-            (refs['View_30_1122_56129022_411221_5151687_9291032'] = r)
+            refs.setComponentRef(
+              r,
+              'View_30_1122_56129022_411221_5151687_9291032',
+            )
           }
           {...injectData}
         >
@@ -324,7 +337,10 @@ const GobackCommonPopup$$Modal: React.FC<PageProps> = ({
               });
             }}
             ref={(r: any) =>
-              (refs['Button_30_122_408084_070965_1557667_519805'] = r)
+              refs.setComponentRef(
+                r,
+                'Button_30_122_408084_070965_1557667_519805',
+              )
             }
             {...injectData}
           />
@@ -973,7 +989,10 @@ const GobackCommonPopup$$Modal: React.FC<PageProps> = ({
               );
             }}
             ref={(r: any) =>
-              (refs['Button_30_121_490898_246542_8622692_338763'] = r)
+              refs.setComponentRef(
+                r,
+                'Button_30_121_490898_246542_8622692_338763',
+              )
             }
             {...injectData}
           />
@@ -984,7 +1003,7 @@ const GobackCommonPopup$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(GobackCommonPopup$$Modal, {
-  pageId: '916972510371729408',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

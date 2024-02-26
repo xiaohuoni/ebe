@@ -1,21 +1,22 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Checkbox,
-  Condition,
-  Description,
-  Divider,
-  Form,
-  GridView,
-  HorizontalView,
-  Input,
-  Row,
-  Table,
-  Text,
-  TextArea,
   View,
+  Divider,
+  HorizontalView,
+  Form,
+  Checkbox,
+  Input,
+  TextArea,
+  Row,
+  Text,
+  GridView,
+  Condition,
+  Table,
+  Description,
 } from '@/components/factory';
 
 import BusiComp371631 from '@/components/BusiComp371631';
@@ -26,6 +27,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '892383116470751232';
 const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -40,6 +42,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDataapiRequest102: any = [
@@ -1735,7 +1738,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
           width: '100.',
           overflow: 'hidden',
         }}
-        ref={(r: any) => (refs['View_537892_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_537892_1')}
         {...injectData}
       >
         <Divider
@@ -1755,7 +1758,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ margin: '12px 0 12px 0', height: 'auto' }}
-          ref={(r: any) => (refs['Divider_719552'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Divider_719552')}
           {...injectData}
         />
         <View
@@ -1776,7 +1779,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_6806553'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_6806553')}
           {...injectData}
         >
           <HorizontalView
@@ -1800,7 +1803,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
               overflowY: 'auto',
               margin: '0px 0px 12px 0px',
             }}
-            ref={(r: any) => (refs['HorizontalView_004602'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'HorizontalView_004602')}
             {...injectData}
           >
             <View
@@ -1823,7 +1826,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 overflowY: 'auto',
                 margin: '15px 0px 5px 0px',
               }}
-              ref={(r: any) => (refs['View_339406'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_339406')}
               {...injectData}
             >
               <Form
@@ -1850,7 +1853,10 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 readOnly={false}
                 style={{ padding: '0px 0px 0px 0px' }}
                 ref={(r: any) =>
-                  (refs['Form_4311097_9385662_1929847_738917_68642'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'Form_4311097_9385662_1929847_738917_68642',
+                  )
                 }
                 {...injectData}
               >
@@ -1883,9 +1889,10 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                   readOnly={false}
                   isFormRootChild={true}
                   ref={(r: any) =>
-                    (refs[
-                      'Checkbox_882584_5289015_934499_57326296_002468_16388665'
-                    ] = r)
+                    refs.setComponentRef(
+                      r,
+                      'Checkbox_882584_5289015_934499_57326296_002468_16388665',
+                    )
                   }
                   {...injectData}
                 />
@@ -1916,7 +1923,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_949332'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_949332')}
                   {...injectData}
                 />
                 <Input
@@ -1962,8 +1969,10 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                   readOnly={false}
                   isFormRootChild={true}
                   ref={(r: any) =>
-                    (refs['Input_361479_887285_2150708_0235518_772568_273065'] =
-                      r)
+                    refs.setComponentRef(
+                      r,
+                      'Input_361479_887285_2150708_0235518_772568_273065',
+                    )
                   }
                   {...injectData}
                 />
@@ -2130,7 +2139,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
               platform: 'pc',
             });
           }}
-          ref={(r: any) => (refs['Form_412511_107682'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_412511_107682')}
           {...injectData}
         >
           <Input
@@ -2175,7 +2184,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_flowType_5008433'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_flowType_5008433')}
             {...injectData}
           />
           <Input
@@ -2220,7 +2229,9 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_workOrderNbr_146745'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Input_workOrderNbr_146745')
+            }
             {...injectData}
           />
           <Input
@@ -2265,7 +2276,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_380435'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_380435')}
             {...injectData}
           />
           <TextArea
@@ -2291,7 +2302,9 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             isFormRootChild={true}
-            ref={(r: any) => (refs['Input_approvaItemDesc_0698245'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Input_approvaItemDesc_0698245')
+            }
             {...injectData}
           />
         </Form>
@@ -2316,7 +2329,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             'font-weight': 'bold',
             display: 'flex',
           }}
-          ref={(r: any) => (refs['Row_26691126'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_26691126')}
           {...injectData}
         >
           <Text
@@ -2335,7 +2348,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ fontSize: 15, lineHeight: '24px', color: '#1c242e' }}
-            ref={(r: any) => (refs['Text_9164415'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_9164415')}
             {...injectData}
           />
         </Row>
@@ -2363,7 +2376,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ minHeight: 40 }}
-          ref={(r: any) => (refs['GridView_45004'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'GridView_45004')}
           {...injectData}
           getEngineApis={() => {
             return {
@@ -2380,7 +2393,9 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                         name={'银行到账信息'}
                         busiCompStates={{ bankAccount: item }}
                         style={{ margin: '0 0 12px 0' }}
-                        ref={(r: any) => (refs['BOFramer_299744'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'BOFramer_299744')
+                        }
                         {...injectData}
                       />
                     </>
@@ -2411,7 +2426,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             'font-weight': 'bold',
             display: 'flex',
           }}
-          ref={(r: any) => (refs['Row_2802134_078966'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_2802134_078966')}
           {...injectData}
         >
           <Text
@@ -2430,7 +2445,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ fontSize: 15, lineHeight: '24px', color: '#1c242e' }}
-            ref={(r: any) => (refs['Text_467514_235314'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_467514_235314')}
             {...injectData}
           />
           <View
@@ -2452,7 +2467,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_919028'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_919028')}
             {...injectData}
           >
             <Condition
@@ -2489,7 +2504,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 )}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['Condition_671699'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Condition_671699')}
               {...injectData}
             >
               <Divider
@@ -2509,7 +2524,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ margin: '12px 0 12px 0', height: 'auto' }}
-                ref={(r: any) => (refs['Divider_227786'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Divider_227786')}
                 {...injectData}
               />
               <Table
@@ -2844,7 +2859,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 readOnly={false}
-                ref={(r: any) => (refs['Table_088834'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_088834')}
                 {...injectData}
               />
             </Condition>
@@ -2882,7 +2897,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 )}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['Condition_236354'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Condition_236354')}
               {...injectData}
             >
               <Divider
@@ -2902,7 +2917,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ margin: '12px 0 12px 0', height: 'auto' }}
-                ref={(r: any) => (refs['Divider_333768'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Divider_333768')}
                 {...injectData}
               />
               <Table
@@ -3156,7 +3171,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 readOnly={false}
-                ref={(r: any) => (refs['Table_902235'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_902235')}
                 {...injectData}
               />
             </Condition>
@@ -3194,7 +3209,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 )}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['Condition_8688958'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Condition_8688958')}
               {...injectData}
             >
               <Divider
@@ -3214,7 +3229,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ margin: '12px 0 12px 0', height: 'auto' }}
-                ref={(r: any) => (refs['Divider_727703'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Divider_727703')}
                 {...injectData}
               />
               <Table
@@ -3662,7 +3677,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 readOnly={false}
-                ref={(r: any) => (refs['Table_4909574'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_4909574')}
                 {...injectData}
               />
             </Condition>
@@ -3700,7 +3715,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 )}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['Condition_985687'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Condition_985687')}
               {...injectData}
             >
               <Divider
@@ -3720,7 +3735,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ margin: '12px 0 12px 0', height: 'auto' }}
-                ref={(r: any) => (refs['Divider_702503'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Divider_702503')}
                 {...injectData}
               />
               <Table
@@ -4141,7 +4156,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 readOnly={false}
-                ref={(r: any) => (refs['Table_900354'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_900354')}
                 {...injectData}
               />
             </Condition>
@@ -4179,7 +4194,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 )}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['Condition_526522'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Condition_526522')}
               {...injectData}
             >
               <Divider
@@ -4199,7 +4214,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ margin: '12px 0 12px 0', height: 'auto' }}
-                ref={(r: any) => (refs['Divider_6317116'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Divider_6317116')}
                 {...injectData}
               />
               <Table
@@ -4480,7 +4495,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 readOnly={false}
-                ref={(r: any) => (refs['Table_290076'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_290076')}
                 {...injectData}
               />
             </Condition>
@@ -4518,7 +4533,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 )}` === '4'
               }
               style={{ minHeight: 40 }}
-              ref={(r: any) => (refs['Condition_312308'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Condition_312308')}
               {...injectData}
             >
               <Divider
@@ -4538,7 +4553,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ margin: '12px 0 12px 0', height: 'auto' }}
-                ref={(r: any) => (refs['Divider_87821'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Divider_87821')}
                 {...injectData}
               />
               <Table
@@ -4873,7 +4888,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 disabled={false}
                 visible={true}
                 readOnly={false}
-                ref={(r: any) => (refs['Table_943125'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_943125')}
                 {...injectData}
               />
             </Condition>
@@ -4895,7 +4910,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ 'line-height': '32ox' }}
-          ref={(r: any) => (refs['Row_9301746_9484946'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_9301746_9484946')}
           {...injectData}
         >
           <View
@@ -4916,7 +4931,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_58611_6287033'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_58611_6287033')}
             {...injectData}
           >
             <Text
@@ -4939,7 +4954,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(252, 2, 31, 1)',
               }}
-              ref={(r: any) => (refs['Text_9945374_550461'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_9945374_550461')}
               {...injectData}
             />
             <Text
@@ -4961,7 +4976,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(252, 2, 31, 1)',
               }}
-              ref={(r: any) => (refs['Text_2451_168378'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_2451_168378')}
               {...injectData}
             />
           </View>
@@ -4983,7 +4998,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_58611'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_58611')}
             {...injectData}
           >
             <Text
@@ -5002,7 +5017,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ fontSize: '14px', lineHeight: '24px', color: '#fc021f' }}
-              ref={(r: any) => (refs['Text_9945374'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_9945374')}
               {...injectData}
             />
             <Text
@@ -5024,7 +5039,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(252, 2, 31, 1)',
               }}
-              ref={(r: any) => (refs['Text_2451'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_2451')}
               {...injectData}
             />
           </View>
@@ -5046,7 +5061,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_58611_717376'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_58611_717376')}
             {...injectData}
           >
             <Text
@@ -5069,7 +5084,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(252, 2, 31, 1)',
               }}
-              ref={(r: any) => (refs['Text_9945374_8459843'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_9945374_8459843')}
               {...injectData}
             />
             <Text
@@ -5091,7 +5106,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(252, 2, 31, 1)',
               }}
-              ref={(r: any) => (refs['Text_2451_4726555'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_2451_4726555')}
               {...injectData}
             />
           </View>
@@ -5113,7 +5128,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_1032745'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_1032745')}
             {...injectData}
           >
             <Text
@@ -5136,7 +5151,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(252, 2, 31, 1)',
               }}
-              ref={(r: any) => (refs['Text_669756'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_669756')}
               {...injectData}
             />
             <Text
@@ -5158,7 +5173,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(252, 2, 31, 1)',
               }}
-              ref={(r: any) => (refs['Text_2328527'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_2328527')}
               {...injectData}
             />
           </View>
@@ -5184,7 +5199,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             'font-weight': 'bold',
             display: 'flex',
           }}
-          ref={(r: any) => (refs['Row_2802134'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_2802134')}
           {...injectData}
         >
           <Text
@@ -5203,7 +5218,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ fontSize: 15, lineHeight: '24px', color: '#1c242e' }}
-            ref={(r: any) => (refs['Text_467514'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_467514')}
             {...injectData}
           />
         </Row>
@@ -5712,7 +5727,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
           disabled={false}
           visible={true}
           readOnly={false}
-          ref={(r: any) => (refs['Table_9211005'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_9211005')}
           {...injectData}
         />
         <Row
@@ -5731,7 +5746,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ 'line-height': '32ox' }}
-          ref={(r: any) => (refs['Row_9301746'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_9301746')}
           {...injectData}
         >
           <View
@@ -5752,7 +5767,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_58611_99175'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_58611_99175')}
             {...injectData}
           >
             <Text
@@ -5771,7 +5786,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ fontSize: '14px', lineHeight: '24px', color: '#1c242e' }}
-              ref={(r: any) => (refs['Text_9945374_739862'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_9945374_739862')}
               {...injectData}
             />
             <Text
@@ -5789,7 +5804,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ fontSize: '14px', lineHeight: '24px', color: '#1c242e' }}
-              ref={(r: any) => (refs['Text_2451_3083706'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_2451_3083706')}
               {...injectData}
             />
           </View>
@@ -5815,7 +5830,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             'font-weight': 'bold',
             display: 'flex',
           }}
-          ref={(r: any) => (refs['Row_2802134_5819016'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_2802134_5819016')}
           {...injectData}
         >
           <Text
@@ -5834,7 +5849,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ fontSize: 15, lineHeight: '24px', color: '#1c242e' }}
-            ref={(r: any) => (refs['Text_467514_503441'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_467514_503441')}
             {...injectData}
           />
           <View
@@ -5855,7 +5870,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_009264'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_009264')}
             {...injectData}
           >
             <Text
@@ -5878,7 +5893,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(0, 0, 0, 1)',
               }}
-              ref={(r: any) => (refs['Text_349893'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_349893')}
               {...injectData}
             />
             <Text
@@ -5900,7 +5915,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(252, 2, 31, 1)',
               }}
-              ref={(r: any) => (refs['Text_605866'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_605866')}
               {...injectData}
             />
           </View>
@@ -6166,7 +6181,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
           disabled={false}
           visible={true}
           readOnly={false}
-          ref={(r: any) => (refs['Table_9211005_1611749'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_9211005_1611749')}
           {...injectData}
         />
         <Row
@@ -6190,7 +6205,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             'font-weight': 'bold',
             display: 'flex',
           }}
-          ref={(r: any) => (refs['Row_2802134_078966_035446'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_2802134_078966_035446')}
           {...injectData}
         >
           <Text
@@ -6209,7 +6224,9 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ fontSize: 15, lineHeight: '24px', color: '#1c242e' }}
-            ref={(r: any) => (refs['Text_467514_235314_557867'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Text_467514_235314_557867')
+            }
             {...injectData}
           />
         </Row>
@@ -6600,7 +6617,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
           disabled={false}
           visible={false}
           readOnly={false}
-          ref={(r: any) => (refs['Table_23071'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_23071')}
           {...injectData}
         />
         <GridView
@@ -6627,7 +6644,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ minHeight: 40 }}
-          ref={(r: any) => (refs['GridView_9617166'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'GridView_9617166')}
           {...injectData}
           getEngineApis={() => {
             return {
@@ -6828,7 +6845,9 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                         disabled={false}
                         visible={true}
                         readOnly={false}
-                        ref={(r: any) => (refs['Description_566961'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Description_566961')
+                        }
                         {...injectData}
                       />
                     </>
@@ -6857,7 +6876,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_4949093'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_4949093')}
           {...injectData}
         >
           <Table
@@ -7324,7 +7343,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_5369494'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_5369494')}
             {...injectData}
           />
         </View>
@@ -7334,7 +7353,7 @@ const ClsJc_0008_0002$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ClsJc_0008_0002$$Page, {
-  pageId: '892383116470751232',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

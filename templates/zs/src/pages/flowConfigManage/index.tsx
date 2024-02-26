@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  VerticalView,
   Card,
   Form,
   Input,
+  Button,
   Table,
-  VerticalView,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -20,6 +21,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '899899936245522432';
 const FlowConfigManage$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -34,6 +36,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const reloadFlowTableList = (options_6814412: any) => {
     const eventDatareloadDataSource34: any = [
@@ -1715,7 +1718,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_8383459_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_8383459_1')}
         {...injectData}
       >
         <VerticalView
@@ -1737,7 +1740,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
             height: '100%',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['VerticalView_379285'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_379285')}
           {...injectData}
         >
           <View
@@ -1758,7 +1761,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
               height: '100%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_9595362'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_9595362')}
             {...injectData}
           >
             <Card
@@ -1885,7 +1888,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Card_523603'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_523603')}
               {...injectData}
             >
               <View
@@ -1907,7 +1910,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                   width: '100%',
                   margin: '0px 0px 20px 0px',
                 }}
-                ref={(r: any) => (refs['View_502387'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_502387')}
                 {...injectData}
               >
                 <Form
@@ -1932,7 +1935,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   style={{ padding: '0px 0px 0px 0px' }}
-                  ref={(r: any) => (refs['Form_7756987'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Form_7756987')}
                   {...injectData}
                 >
                   <Input
@@ -2013,7 +2016,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Input_650422'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Input_650422')}
                     {...injectData}
                   />
                   <Input
@@ -2094,7 +2097,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Input_984985'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Input_984985')}
                     {...injectData}
                   />
                   <View
@@ -2124,7 +2127,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                       padding: '0px 0px 0px 0px',
                       width: '100%',
                     }}
-                    ref={(r: any) => (refs['View_756929'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'View_756929')}
                     {...injectData}
                   >
                     <Button
@@ -2186,7 +2189,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                           },
                         );
                       }}
-                      ref={(r: any) => (refs['Button_508625'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Button_508625')}
                       {...injectData}
                     />
                     <Button
@@ -2222,7 +2225,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                           : [forms139]
                         ).forEach((form) => form?.resetFields());
                       }}
-                      ref={(r: any) => (refs['Button_228714'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Button_228714')}
                       {...injectData}
                     />
                   </View>
@@ -2246,7 +2249,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   width: '100%',
                 }}
-                ref={(r: any) => (refs['View_41543'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_41543')}
                 {...injectData}
               >
                 <Table
@@ -3742,7 +3745,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Table_197744'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Table_197744')}
                   {...injectData}
                 />
               </View>
@@ -3766,7 +3769,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
               height: '100%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_082334'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_082334')}
             {...injectData}
           >
             <Card
@@ -3994,7 +3997,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Card_295202'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_295202')}
               {...injectData}
             >
               <Form
@@ -4019,7 +4022,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ padding: '0px 0px 10px 0px' }}
-                ref={(r: any) => (refs['Form_57797197'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_57797197')}
                 {...injectData}
               >
                 <Input
@@ -4100,7 +4103,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_728906'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_728906')}
                   {...injectData}
                 />
                 <Input
@@ -4181,7 +4184,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_878055'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_878055')}
                   {...injectData}
                 />
                 <View
@@ -4211,7 +4214,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_1854728'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_1854728')}
                   {...injectData}
                 >
                   <Button
@@ -4269,7 +4272,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_0164553'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_0164553')}
                     {...injectData}
                   />
                   <Button
@@ -4420,7 +4423,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_7121838'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_7121838')}
                     {...injectData}
                   />
                 </View>
@@ -5643,7 +5646,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_279004'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_279004')}
                 {...injectData}
               />
             </Card>
@@ -5655,7 +5658,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(FlowConfigManage$$Page, {
-  pageId: '899899936245522432',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

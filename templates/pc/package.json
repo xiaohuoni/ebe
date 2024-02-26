@@ -40,7 +40,9 @@
     "alita": "3.3.7",
     "antd": "4.18.8",
     "lodash": "^4.17.21",
-    "qs": "^6.11.2"
+    "qs": "^6.11.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.162",

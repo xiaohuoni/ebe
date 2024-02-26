@@ -45,6 +45,8 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
         '**/*.{ts,tsx,json,jsx,less}': ['git add', 'prettier --write'],
       },
       dependencies: {
+        react: '^17.0.2',
+        'react-dom': '^17.0.2',
         '@alita/flow': '*',
         '@lingxiteam/types': LINGXI_TYPES_VERSION,
         alita: '3.3.7',

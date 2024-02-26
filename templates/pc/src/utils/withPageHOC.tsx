@@ -215,7 +215,7 @@ export const withPageHOC = (
               }),
             getVisible: (compId: string) => {
               // @ts-ignore
-              return refs[compId]?.visible;
+              return refs.value[compId]?.visible;
             },
             stateListener: getStateListener(pageId),
             sandBoxRun,
@@ -239,10 +239,10 @@ export const withPageHOC = (
       const getValue = (id: string, stateName?: string) => {
         if (stateName) {
           // @ts-ignore
-          return refs?.[id]?.[stateName];
+          return refs.value?.[id]?.[stateName];
         }
         // @ts-ignore
-        return refs?.[id]?.value;
+        return refs.value?.[id]?.value;
       };
       const defaultContext = {
         getValue,
@@ -371,7 +371,7 @@ export const withPageHOC = (
             $$compDefine,
             Modal,
             messageApi,
-            refs,
+            refs: refs.value,
             utils: engineApis,
             history,
             sandBoxRun: (

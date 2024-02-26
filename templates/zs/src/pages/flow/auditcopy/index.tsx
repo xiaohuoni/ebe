@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Input, Row, View } from '@/components/factory';
+import { View, Form, Input, Row, Button } from '@/components/factory';
 
 import BusiComp530274 from '@/components/BusiComp530274';
 
@@ -14,6 +15,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '915850728420368384';
 const FlowAuditcopy$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -28,6 +30,7 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const fillTacheRemark = (options_233843: any) => {
     const eventDatasetCompState2: any = [
@@ -784,7 +787,7 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
           margin: '0px 0px 0px 0px',
           height: '100%',
         }}
-        ref={(r: any) => (refs['View_30_1_249883'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_30_1_249883')}
         {...injectData}
       >
         <View
@@ -801,7 +804,7 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
             overflowY: 'auto',
             margin: '0px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['VerticalView_30_11_556828'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_30_11_556828')}
           {...injectData}
         >
           <Form
@@ -824,7 +827,7 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_078676_811245'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_078676_811245')}
             {...injectData}
           >
             <Input
@@ -868,7 +871,7 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_576756_8344003'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_576756_8344003')}
               {...injectData}
             />
           </Form>
@@ -887,7 +890,7 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
             disabled={false}
             visible={true}
             readOnly={false}
-            ref={(r: any) => (refs['Row_061181_32513'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Row_061181_32513')}
             {...injectData}
           >
             <BusiComp530274
@@ -895,7 +898,9 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
               visible={true}
               busiCompId={'874552826138832896'}
               style={{ margin: '0 0 12px 0' }}
-              ref={(r: any) => (refs['BOFramer_123191_120668'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'BOFramer_123191_120668')
+              }
               {...injectData}
             />
             <Pageview
@@ -904,8 +909,11 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
               pageSrc={'/common/comment/listpage'}
               pageId={'907443177794400256'}
               style={{ height: 'auto', width: '100%' }}
-              ref={(r: any) => (refs['Pageview_9057389_689963'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Pageview_9057389_689963')
+              }
               {...injectData}
+              parentEngineId={parentEngineId}
             />
           </Row>
           <View
@@ -931,7 +939,7 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
               'background-color': '#f0f0f0',
               'z-index': '3',
             }}
-            ref={(r: any) => (refs['View_30_1122_8434322'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_30_1122_8434322')}
             {...injectData}
           >
             <Button
@@ -1004,7 +1012,7 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_30_122_8377773'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_30_122_8377773')}
               {...injectData}
             />
             <Button
@@ -1472,7 +1480,7 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_542333_9381074'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_542333_9381074')}
               {...injectData}
             />
             <Button
@@ -1539,7 +1547,9 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_30_121_905546_8734944'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Button_30_121_905546_8734944')
+              }
               {...injectData}
             />
             <Button
@@ -2700,7 +2710,7 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_30_121_235733'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_30_121_235733')}
               {...injectData}
             />
             <Button
@@ -2815,7 +2825,9 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_3413253_0798622'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Button_3413253_0798622')
+              }
               {...injectData}
             />
             <Button
@@ -3324,7 +3336,9 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_3413253_309566_452391'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Button_3413253_309566_452391')
+              }
               {...injectData}
             />
           </View>
@@ -3335,7 +3349,7 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(FlowAuditcopy$$Page, {
-  pageId: '915850728420368384',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { sceneCode: '', isRollback: '' },

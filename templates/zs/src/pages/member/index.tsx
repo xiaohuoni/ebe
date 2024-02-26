@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Card, Form, Input, Select, View } from '@/components/factory';
+import { View, Card, Form, Select, Input } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '888741696593555456';
 const Member$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const Member$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const initInput = (options_140988: any) => {
     const eventDataapiRequest25: any = [
@@ -4540,7 +4543,7 @@ const Member$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_31_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_31_1')}
         {...injectData}
       >
         <Card
@@ -4582,7 +4585,7 @@ const Member$$Modal: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_191052'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_191052')}
           {...injectData}
         >
           <Form
@@ -4649,7 +4652,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Form_3478828'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_3478828')}
             {...injectData}
           >
             <Select
@@ -5206,7 +5209,9 @@ const Member$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_actionType_2765516'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Select_actionType_2765516')
+              }
               {...injectData}
             />
             <Select
@@ -5727,7 +5732,9 @@ const Member$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_sceneType_065939'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Select_sceneType_065939')
+              }
               {...injectData}
             />
             <Input
@@ -7787,8 +7794,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                           },
                                                                           {
                                                                             attrId:
@@ -7800,8 +7806,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                           },
                                                                           {
                                                                             attrId:
@@ -7813,8 +7818,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -7836,8 +7840,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                                 value:
                                                                                   '未知',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -7859,8 +7862,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                                 value:
                                                                                   '办公人员',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -7882,8 +7884,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                                 value:
                                                                                   '其他',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -7903,8 +7904,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -7924,8 +7924,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -7945,8 +7944,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -7966,8 +7964,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [],
@@ -7984,8 +7981,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                           },
                                                                           {
                                                                             attrId:
@@ -7997,8 +7993,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8018,8 +8013,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8039,8 +8033,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8060,8 +8053,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                           },
                                                                           {
                                                                             attrId:
@@ -8073,8 +8065,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8094,8 +8085,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                           },
                                                                           {
                                                                             attrId:
@@ -8109,8 +8099,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                                 value:
                                                                                   '99',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8132,8 +8121,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                                 value:
                                                                                   '1',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8155,8 +8143,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                                 value:
                                                                                   '0',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8176,8 +8163,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8197,8 +8183,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8218,8 +8203,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8239,8 +8223,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8260,8 +8243,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8281,8 +8263,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8302,8 +8283,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8323,8 +8303,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [],
@@ -8341,8 +8320,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8362,8 +8340,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                           },
                                                                           {
                                                                             attrId:
@@ -8375,8 +8352,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8396,8 +8372,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8417,8 +8392,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                           },
                                                                           {
                                                                             attrId:
@@ -8430,8 +8404,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                           },
                                                                           {
                                                                             attrId:
@@ -8443,8 +8416,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                               {
                                                                                 type: 'static',
                                                                               },
-                                                                            showInput:
-                                                                              true,
+                                                                            showInput: true,
                                                                             value:
                                                                               {
                                                                                 type: [
@@ -8456,8 +8428,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                           },
                                                                         ],
                                                                       operateType: 1,
-                                                                      onlySetPatch:
-                                                                        true,
+                                                                      onlySetPatch: true,
                                                                       otherObjectArrayOptions:
                                                                         {},
                                                                       targetDataSourcePaths:
@@ -9427,8 +9398,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -9440,8 +9410,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -9453,8 +9422,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9475,8 +9443,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '未知',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9497,8 +9464,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '办公人员',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9519,8 +9485,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '其他',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9539,8 +9504,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9559,8 +9523,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9579,8 +9542,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9599,8 +9561,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [],
                                                                       code: '',
@@ -9616,8 +9577,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -9629,8 +9589,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9649,8 +9608,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9669,8 +9627,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9689,8 +9646,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -9702,8 +9658,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9722,8 +9677,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -9737,8 +9691,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '99',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9759,8 +9712,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '1',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9781,8 +9733,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '0',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9801,8 +9752,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9821,8 +9771,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9841,8 +9790,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9861,8 +9809,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9881,8 +9828,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9901,8 +9847,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9921,8 +9866,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9941,8 +9885,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [],
                                                                       code: '',
@@ -9958,8 +9901,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -9978,8 +9920,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -9991,8 +9932,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -10011,8 +9951,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -10031,8 +9970,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -10044,8 +9982,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                   },
                                                                   {
                                                                     attrId:
@@ -10057,8 +9994,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -10069,8 +10005,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                   },
                                                                 ],
                                                               operateType: 1,
-                                                              onlySetPatch:
-                                                                true,
+                                                              onlySetPatch: true,
                                                               otherObjectArrayOptions:
                                                                 {},
                                                               targetDataSourcePaths:
@@ -11962,8 +11897,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'actionTypeName',
                                                                     ],
@@ -11983,8 +11917,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '领导担保',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'sceneTypeName',
                                                                     ],
@@ -12002,8 +11935,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -12030,8 +11962,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '未知',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'officialLevelName',
                                                                     ],
@@ -12051,8 +11982,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '办公人员',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'memberTypeName',
                                                                     ],
@@ -12072,8 +12002,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '其他',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'keyTypeName',
                                                                     ],
@@ -12091,8 +12020,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'genderName',
                                                                     ],
@@ -12110,8 +12038,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -12136,8 +12063,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'homeCityName',
                                                                     ],
@@ -12155,8 +12081,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'tempName',
                                                                     ],
@@ -12181,8 +12106,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'tempMemberInfo',
                                                                     ],
@@ -12200,8 +12124,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'custodianType',
                                                                     ],
@@ -12219,8 +12142,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'custodianTypeName',
                                                                     ],
@@ -12238,8 +12160,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'groupLevelName',
                                                                     ],
@@ -12257,8 +12178,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'actionType',
                                                                     ],
@@ -12276,8 +12196,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -12302,8 +12221,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'email',
                                                                     ],
@@ -12323,8 +12241,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '99',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'keyType',
                                                                     ],
@@ -12344,8 +12261,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '1',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'memberType',
                                                                     ],
@@ -12365,8 +12281,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '0',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'officialLevel',
                                                                     ],
@@ -12384,8 +12299,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'department',
                                                                     ],
@@ -12403,8 +12317,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'duty',
                                                                     ],
@@ -12422,8 +12335,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'gender',
                                                                     ],
@@ -12441,8 +12353,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'record',
                                                                     ],
@@ -12460,8 +12371,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'hobby',
                                                                     ],
@@ -12479,8 +12389,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'groupId',
                                                                     ],
@@ -12498,8 +12407,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'groupName',
                                                                     ],
@@ -12519,8 +12427,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '1',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'sceneType',
                                                                     ],
@@ -12538,8 +12445,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -12564,8 +12470,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'msisdn',
                                                                     ],
@@ -12583,8 +12488,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -12609,8 +12513,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'homeCity',
                                                                     ],
@@ -12628,8 +12531,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'whetherAgeExcept',
                                                                     ],
@@ -12647,8 +12549,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'whetherEmpAndRe',
                                                                     ],
@@ -12666,8 +12567,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     value: {
                                                                       type: [
                                                                         'context',
@@ -12692,8 +12592,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'oldGroupId',
                                                                     ],
@@ -12711,8 +12610,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'oldGroupName',
                                                                     ],
@@ -12730,8 +12628,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'oldHomeCity',
                                                                     ],
@@ -12749,8 +12646,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'oldHomeCityName',
                                                                     ],
@@ -12770,8 +12666,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '1',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'managementFlag',
                                                                     ],
@@ -12791,8 +12686,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                         value:
                                                                           '通讯录+正式成员',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'managementFlagName',
                                                                     ],
@@ -12810,8 +12704,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                       {
                                                                         type: 'static',
                                                                       },
-                                                                    showInput:
-                                                                      true,
+                                                                    showInput: true,
                                                                     _codePath: [
                                                                       'tempBossName',
                                                                     ],
@@ -12828,8 +12721,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                                                                   },
                                                                 ],
                                                               operateType: 1,
-                                                              onlySetPatch:
-                                                                true,
+                                                              onlySetPatch: true,
                                                               otherObjectArrayOptions:
                                                                 {},
                                                               targetDataSourcePaths:
@@ -13223,7 +13115,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_msisdn_563204'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_msisdn_563204')}
               {...injectData}
             />
             <Input
@@ -13743,7 +13635,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_name_0033302'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_name_0033302')}
               {...injectData}
             />
             <Input
@@ -14259,7 +14151,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_3330123'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_3330123')}
               {...injectData}
             />
             <Select
@@ -14778,7 +14670,9 @@ const Member$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_msisdnomeCity_2412424'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Select_msisdnomeCity_2412424')
+              }
               {...injectData}
             />
             <Select
@@ -15299,7 +15193,9 @@ const Member$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_objType_6992002'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Select_objType_6992002')
+              }
               {...injectData}
             />
           </Form>
@@ -15344,7 +15240,7 @@ const Member$$Modal: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_4214537'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_4214537')}
           {...injectData}
         >
           <Form
@@ -15369,7 +15265,7 @@ const Member$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_270918'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_270918')}
             {...injectData}
           >
             <Input
@@ -18399,7 +18295,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_239552'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_239552')}
               {...injectData}
             />
             <Input
@@ -18448,7 +18344,7 @@ const Member$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_73501567'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_73501567')}
               {...injectData}
             />
             <Input
@@ -18497,7 +18393,7 @@ const Member$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_9037186'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_9037186')}
               {...injectData}
             />
             <Input
@@ -18546,7 +18442,7 @@ const Member$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_1008252'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_1008252')}
               {...injectData}
             />
             <Select
@@ -18579,7 +18475,9 @@ const Member$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Select_homeCity_814541'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Select_homeCity_814541')
+              }
               {...injectData}
             />
             <Select
@@ -18612,7 +18510,7 @@ const Member$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Select_322211'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_322211')}
               {...injectData}
             />
             <Select
@@ -18642,7 +18540,7 @@ const Member$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Select_065512'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_065512')}
               {...injectData}
             />
             <Input
@@ -18687,7 +18585,7 @@ const Member$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_6641926'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_6641926')}
               {...injectData}
             />
           </Form>
@@ -18731,7 +18629,7 @@ const Member$$Modal: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_105493'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_105493')}
           {...injectData}
         >
           <Form
@@ -18809,7 +18707,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Form_31_1121'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_31_1121')}
             {...injectData}
           >
             <Select
@@ -19328,7 +19226,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_394573'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_394573')}
               {...injectData}
             />
             <Select
@@ -19847,7 +19745,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_975152'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_975152')}
               {...injectData}
             />
             <Select
@@ -20366,7 +20264,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_675775'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_675775')}
               {...injectData}
             />
             <Select
@@ -20885,7 +20783,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_1964398'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_1964398')}
               {...injectData}
             />
             <Input
@@ -20934,7 +20832,9 @@ const Member$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_department_507186'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_department_507186')
+              }
               {...injectData}
             />
             <Input
@@ -20994,7 +20894,7 @@ const Member$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_email_273839'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_email_273839')}
               {...injectData}
             />
             <Input
@@ -21039,7 +20939,7 @@ const Member$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_272221'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_272221')}
               {...injectData}
             />
             <Select
@@ -21557,7 +21457,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Input_gender_005851'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_gender_005851')}
               {...injectData}
             />
             <Input
@@ -21602,7 +21502,7 @@ const Member$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_6271152'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_6271152')}
               {...injectData}
             />
             <Input
@@ -21647,7 +21547,7 @@ const Member$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_958866'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_958866')}
               {...injectData}
             />
             <Select
@@ -22135,7 +22035,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_74674014'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_74674014')}
               {...injectData}
             />
             <Select
@@ -22624,7 +22524,7 @@ const Member$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_116528'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_116528')}
               {...injectData}
             />
             <Input
@@ -22672,7 +22572,7 @@ const Member$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_remark_268355'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_remark_268355')}
               {...injectData}
             />
           </Form>
@@ -22683,7 +22583,7 @@ const Member$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Member$$Modal, {
-  pageId: '888741696593555456',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

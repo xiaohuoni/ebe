@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, RemoteComponent, View } from '@/components/factory';
+import { View, Button, RemoteComponent } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '906774173425287168';
 const ZjqZhengjingqindeceshi9775$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -22,6 +24,7 @@ const ZjqZhengjingqindeceshi9775$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -53,7 +56,7 @@ const ZjqZhengjingqindeceshi9775$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_789114_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_789114_1')}
         {...injectData}
       >
         <Button
@@ -104,7 +107,7 @@ const ZjqZhengjingqindeceshi9775$$Page: React.FC<PageProps> = ({
               platform: 'pc',
             });
           }}
-          ref={(r: any) => (refs['Button_5558158'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Button_5558158')}
           {...injectData}
         />
         <RemoteComponent
@@ -124,7 +127,7 @@ const ZjqZhengjingqindeceshi9775$$Page: React.FC<PageProps> = ({
           appId={undefined}
           lcdpParentRenderId={undefined}
           onMessage={(msg: any) => {}}
-          ref={(r: any) => (refs['RemoteComponent_5882053'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'RemoteComponent_5882053')}
           {...injectData}
         />
       </View>
@@ -133,7 +136,7 @@ const ZjqZhengjingqindeceshi9775$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ZjqZhengjingqindeceshi9775$$Page, {
-  pageId: '906774173425287168',
+  pageId,
   hasLogin: false,
   defaultState: {},
 });

@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, QuillEditor, View } from '@/components/factory';
+import { View, Form, QuillEditor, Button } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '914793725992869888';
 const Fuwenbenbianjiqi3012$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -22,6 +24,7 @@ const Fuwenbenbianjiqi3012$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -51,7 +54,7 @@ const Fuwenbenbianjiqi3012$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_17679166_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_17679166_1')}
         {...injectData}
       >
         <View
@@ -72,7 +75,7 @@ const Fuwenbenbianjiqi3012$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_782269'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_782269')}
           {...injectData}
         >
           <Form
@@ -97,7 +100,7 @@ const Fuwenbenbianjiqi3012$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_257305'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_257305')}
             {...injectData}
           >
             <QuillEditor
@@ -123,7 +126,7 @@ const Fuwenbenbianjiqi3012$$Page: React.FC<PageProps> = ({
               disabled={false}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['QuillEditor_921149'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'QuillEditor_921149')}
               {...injectData}
             />
           </Form>
@@ -148,7 +151,7 @@ const Fuwenbenbianjiqi3012$$Page: React.FC<PageProps> = ({
             textAlign: 'center',
             margin: '20px 20px 20px 20px',
           }}
-          ref={(r: any) => (refs['View_6615784'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_6615784')}
           {...injectData}
         >
           <Button
@@ -217,7 +220,7 @@ const Fuwenbenbianjiqi3012$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Button_0458746'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_0458746')}
             {...injectData}
           />
         </View>
@@ -227,7 +230,7 @@ const Fuwenbenbianjiqi3012$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Fuwenbenbianjiqi3012$$Page, {
-  pageId: '914793725992869888',
+  pageId,
   hasLogin: false,
   defaultState: {},
 });

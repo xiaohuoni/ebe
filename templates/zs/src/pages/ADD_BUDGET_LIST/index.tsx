@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, View } from '@/components/factory';
+import { View, Form, Input } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '1051773767489089536';
 const AddBudgetList$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -25,6 +27,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatavalidateCurrentForm30: any = [
@@ -166,7 +169,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
           width: 'auto',
           textAlign: 'left',
         }}
-        ref={(r: any) => (refs['View_558169_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_558169_1')}
         {...injectData}
       >
         <View
@@ -188,7 +191,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
             padding: '0px 20px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_480919'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_480919')}
           {...injectData}
         >
           <Form
@@ -417,7 +420,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Form_775282'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_775282')}
             {...injectData}
           >
             <Input
@@ -535,7 +538,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Input_3342'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_3342')}
               {...injectData}
             />
             <Input
@@ -579,7 +582,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={true}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_341384'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_341384')}
               {...injectData}
             />
             <Input
@@ -623,7 +626,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_8230705'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_8230705')}
               {...injectData}
             />
             <Input
@@ -667,7 +670,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_548785'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_548785')}
               {...injectData}
             />
             <Input
@@ -721,7 +724,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_8974914'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_8974914')}
               {...injectData}
             />
             <Input
@@ -775,7 +778,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_861572'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_861572')}
               {...injectData}
             />
             <Input
@@ -829,7 +832,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_379836'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_379836')}
               {...injectData}
             />
             <Input
@@ -883,7 +886,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_63548266'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_63548266')}
               {...injectData}
             />
             <Input
@@ -937,7 +940,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_719'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_719')}
               {...injectData}
             />
             <Input
@@ -991,7 +994,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_6826827'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_6826827')}
               {...injectData}
             />
             <Input
@@ -1035,7 +1038,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_94381'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_94381')}
               {...injectData}
             />
           </Form>
@@ -1046,7 +1049,7 @@ const AddBudgetList$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AddBudgetList$$Modal, {
-  pageId: '1051773767489089536',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

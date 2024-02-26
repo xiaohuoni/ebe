@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Table, Text, View } from '@/components/factory';
+import { View, Text, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '1062298928165249024';
 const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -24,6 +26,7 @@ const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDatacustomActionCode241: any = [
@@ -922,7 +925,7 @@ const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_360551_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_360551_1')}
         {...injectData}
       >
         <View
@@ -947,7 +950,7 @@ const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
             alignItems: 'center',
             margin: '0px 0px 4px 0px',
           }}
-          ref={(r: any) => (refs['View_42937'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_42937')}
           {...injectData}
         >
           <View
@@ -972,7 +975,7 @@ const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
               alignItems: 'center',
               flex: 1,
             }}
-            ref={(r: any) => (refs['View_688274'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_688274')}
             {...injectData}
           >
             <View
@@ -996,7 +999,7 @@ const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
                 height: '22px',
                 borderRadius: '10px 10px 10px 10px',
               }}
-              ref={(r: any) => (refs['View_159945'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_159945')}
               {...injectData}
             />
             <Text
@@ -1022,7 +1025,7 @@ const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
                 backgroundColor: 'rgba(255, 255, 255,0)',
                 margin: '0px 0px 0px 8px',
               }}
-              ref={(r: any) => (refs['Text_173086'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_173086')}
               {...injectData}
             />
           </View>
@@ -1046,7 +1049,7 @@ const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
               width: '100%',
               flex: 13,
             }}
-            ref={(r: any) => (refs['View_1765626'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_1765626')}
             {...injectData}
           >
             <Text
@@ -1074,7 +1077,7 @@ const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
                 backgroundColor: '#ffff80',
                 letterSpacing: '',
               }}
-              ref={(r: any) => (refs['Text_750665'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_750665')}
               {...injectData}
             />
           </View>
@@ -1639,7 +1642,7 @@ const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
               },
             );
           }}
-          ref={(r: any) => (refs['Table_5017878'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_5017878')}
           {...injectData}
         />
       </View>
@@ -1648,7 +1651,7 @@ const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ClsCp_0019_0001MultiPage$$Page, {
-  pageId: '1062298928165249024',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', bizData: '', customObject: '' },

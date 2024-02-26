@@ -1,14 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  VerticalView,
   Form,
   Input,
+  Button,
   Table,
-  VerticalView,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -19,6 +20,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '953183095901683712';
 const RoleNotHavePrivilegePopup$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -34,6 +36,7 @@ const RoleNotHavePrivilegePopup$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatagetTableSelectedKey4: any = [
@@ -771,7 +774,7 @@ const RoleNotHavePrivilegePopup$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_2694965_1_993205'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_2694965_1_993205')}
         {...injectData}
       >
         <VerticalView
@@ -793,7 +796,9 @@ const RoleNotHavePrivilegePopup$$Modal: React.FC<PageProps> = ({
             height: '100%',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['VerticalView_632783_224319'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'VerticalView_632783_224319')
+          }
           {...injectData}
         >
           <View
@@ -814,7 +819,7 @@ const RoleNotHavePrivilegePopup$$Modal: React.FC<PageProps> = ({
               height: '30%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_563648_3759885'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_563648_3759885')}
             {...injectData}
           >
             <Form
@@ -839,7 +844,9 @@ const RoleNotHavePrivilegePopup$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ padding: '0px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_5336927_5441987_624807'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Form_5336927_5441987_624807')
+              }
               {...injectData}
             >
               <Input
@@ -883,7 +890,9 @@ const RoleNotHavePrivilegePopup$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_510699_196741_413539'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_510699_196741_413539')
+                }
                 {...injectData}
               />
               <Input
@@ -927,7 +936,9 @@ const RoleNotHavePrivilegePopup$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_0129142_45762604_671757'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_0129142_45762604_671757')
+                }
                 {...injectData}
               />
               <View
@@ -956,7 +967,10 @@ const RoleNotHavePrivilegePopup$$Modal: React.FC<PageProps> = ({
                   width: '100%',
                 }}
                 ref={(r: any) =>
-                  (refs['View_756929_0062074_7390883_0416838_926976'] = r)
+                  refs.setComponentRef(
+                    r,
+                    'View_756929_0062074_7390883_0416838_926976',
+                  )
                 }
                 {...injectData}
               >
@@ -1304,7 +1318,10 @@ const RoleNotHavePrivilegePopup$$Modal: React.FC<PageProps> = ({
                     );
                   }}
                   ref={(r: any) =>
-                    (refs['Button_508625_7684763_98176_9864996_379453'] = r)
+                    refs.setComponentRef(
+                      r,
+                      'Button_508625_7684763_98176_9864996_379453',
+                    )
                   }
                   {...injectData}
                 />
@@ -1340,7 +1357,10 @@ const RoleNotHavePrivilegePopup$$Modal: React.FC<PageProps> = ({
                     );
                   }}
                   ref={(r: any) =>
-                    (refs['Button_228714_24039_080445_397017_049885'] = r)
+                    refs.setComponentRef(
+                      r,
+                      'Button_228714_24039_080445_397017_049885',
+                    )
                   }
                   {...injectData}
                 />
@@ -1365,7 +1385,7 @@ const RoleNotHavePrivilegePopup$$Modal: React.FC<PageProps> = ({
               height: '100%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_3108781_769266'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_3108781_769266')}
             {...injectData}
           >
             <Table
@@ -1898,7 +1918,9 @@ const RoleNotHavePrivilegePopup$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Table_554268_831796_544988'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Table_554268_831796_544988')
+              }
               {...injectData}
             />
           </View>
@@ -1909,7 +1931,7 @@ const RoleNotHavePrivilegePopup$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(RoleNotHavePrivilegePopup$$Modal, {
-  pageId: '953183095901683712',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '' },

@@ -1,14 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Checkbox,
+  View,
   Divider,
   HorizontalView,
-  Table,
+  Checkbox,
   Text,
-  View,
+  Table,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -17,6 +18,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '945945165751009280';
 const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -31,6 +33,7 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDataifelse286: any = [
@@ -481,7 +484,7 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_998316_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_998316_1')}
         {...injectData}
       >
         <Divider
@@ -498,7 +501,9 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ margin: '12px 0 12px 0', height: 'auto' }}
-          ref={(r: any) => (refs['Divider_52558_185475_5957383'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'Divider_52558_185475_5957383')
+          }
           {...injectData}
         />
         <HorizontalView
@@ -520,7 +525,9 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
             overflowY: 'auto',
             margin: '0px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['HorizontalView_004602_63707_184292'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'HorizontalView_004602_63707_184292')
+          }
           {...injectData}
         >
           <View
@@ -541,7 +548,9 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
               overflowY: 'auto',
               margin: '15px 0px 5px 0px',
             }}
-            ref={(r: any) => (refs['View_339406_281032_646688'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'View_339406_281032_646688')
+            }
             {...injectData}
           >
             <HorizontalView
@@ -564,7 +573,9 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
                 overflowY: 'auto',
                 margin: '0px 0px 0px 0px',
               }}
-              ref={(r: any) => (refs['HorizontalView_806975_615337'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'HorizontalView_806975_615337')
+              }
               {...injectData}
             >
               <View
@@ -586,7 +597,7 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
                   height: '100%',
                   overflowY: 'auto',
                 }}
-                ref={(r: any) => (refs['View_9690203_764231'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_9690203_764231')}
                 {...injectData}
               >
                 <Checkbox
@@ -978,9 +989,10 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
                     );
                   }}
                   ref={(r: any) =>
-                    (refs[
-                      'Checkbox_882584_5289015_934499_355644_646764_5265724_8221694_7217427_269901_5135105_850025'
-                    ] = r)
+                    refs.setComponentRef(
+                      r,
+                      'Checkbox_882584_5289015_934499_355644_646764_5265724_8221694_7217427_269901_5135105_850025',
+                    )
                   }
                   {...injectData}
                 />
@@ -1004,7 +1016,7 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
                   width: '100%',
                   textAlign: 'right',
                 }}
-                ref={(r: any) => (refs['View_200544_2254418'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_200544_2254418')}
                 {...injectData}
               >
                 <Text
@@ -1028,7 +1040,9 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
                     color: '#1c242e',
                     textAlign: 'right',
                   }}
-                  ref={(r: any) => (refs['Text_35633157_932619'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_35633157_932619')
+                  }
                   {...injectData}
                 />
               </View>
@@ -1050,7 +1064,9 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   width: '100%',
                 }}
-                ref={(r: any) => (refs['View_200544_764009_235065'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'View_200544_764009_235065')
+                }
                 {...injectData}
               >
                 <Text
@@ -1073,7 +1089,9 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
                     lineHeight: '24px',
                     color: '#1c242e',
                   }}
-                  ref={(r: any) => (refs['Text_4468414_420767'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_4468414_420767')
+                  }
                   {...injectData}
                 />
               </View>
@@ -1097,7 +1115,9 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
                   overflowY: 'auto',
                   textAlign: 'right',
                 }}
-                ref={(r: any) => (refs['View_741146_4429651_1314985'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'View_741146_4429651_1314985')
+                }
                 {...injectData}
               >
                 <Text
@@ -1120,7 +1140,9 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
                     lineHeight: '24px',
                     color: '#1c242e',
                   }}
-                  ref={(r: any) => (refs['Text_456671_992346'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_456671_992346')
+                  }
                   {...injectData}
                 />
               </View>
@@ -1144,7 +1166,7 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
                   overflowY: 'auto',
                 }}
                 ref={(r: any) =>
-                  (refs['View_741146_4429651_673978_949314'] = r)
+                  refs.setComponentRef(r, 'View_741146_4429651_673978_949314')
                 }
                 {...injectData}
               >
@@ -1169,7 +1191,9 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
                     lineHeight: '24px',
                     color: '#1c242e',
                   }}
-                  ref={(r: any) => (refs['Text_269337_825089'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_269337_825089')
+                  }
                   {...injectData}
                 />
               </View>
@@ -1192,7 +1216,9 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_6806553_618556_511396'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'View_6806553_618556_511396')
+          }
           {...injectData}
         >
           <Table
@@ -1351,7 +1377,9 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ margin: '10px 0px 10px 0px' }}
-            ref={(r: any) => (refs['Table_8700198_489761_029143_2441613'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Table_8700198_489761_029143_2441613')
+            }
             {...injectData}
           />
         </View>
@@ -1361,7 +1389,7 @@ const CreateRejectOrderClsCp_0007_0015$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(CreateRejectOrderClsCp_0007_0015$$Page, {
-  pageId: '945945165751009280',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { itemList: '', sceneCode: '', busiObjNbr: '' },

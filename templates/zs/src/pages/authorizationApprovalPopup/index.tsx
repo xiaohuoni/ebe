@@ -1,16 +1,17 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Card,
   Form,
-  HorizontalView,
-  Input,
   MultipleSelect,
+  HorizontalView,
   Text,
-  View,
+  Input,
+  Button,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -19,6 +20,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '993430674647535616';
 const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -34,6 +36,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     // console 168862184913602800
@@ -2571,7 +2574,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_0433935_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_0433935_1')}
         {...injectData}
       >
         <View
@@ -2593,7 +2596,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_580561'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_580561')}
           {...injectData}
         >
           <Card
@@ -2635,7 +2638,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
               overflowY: 'visible',
               margin: '0 0 16px 0',
             }}
-            ref={(r: any) => (refs['Card_722949'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_722949')}
             {...injectData}
           >
             <Form
@@ -2660,7 +2663,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ padding: '0px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_7248776'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_7248776')}
               {...injectData}
             >
               <MultipleSelect
@@ -2832,7 +2835,9 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['MultipleSelect_0191438'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'MultipleSelect_0191438')
+                }
                 {...injectData}
               />
               <View
@@ -2863,7 +2868,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   width: '100%',
                 }}
-                ref={(r: any) => (refs['View_558677'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_558677')}
                 {...injectData}
               />
               <HorizontalView
@@ -2895,7 +2900,9 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                   height: '100%',
                   overflowY: 'auto',
                 }}
-                ref={(r: any) => (refs['HorizontalView_921552'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'HorizontalView_921552')
+                }
                 {...injectData}
               >
                 <View
@@ -2917,7 +2924,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                     height: '100%',
                     overflowY: 'auto',
                   }}
-                  ref={(r: any) => (refs['View_476468'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_476468')}
                   {...injectData}
                 >
                   <HorizontalView
@@ -2940,7 +2947,9 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                       height: '100%',
                       overflowY: 'auto',
                     }}
-                    ref={(r: any) => (refs['HorizontalView_808041'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'HorizontalView_808041')
+                    }
                     {...injectData}
                   >
                     <View
@@ -2962,7 +2971,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                         height: '100%',
                         overflowY: 'auto',
                       }}
-                      ref={(r: any) => (refs['View_6401829'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'View_6401829')}
                       {...injectData}
                     >
                       <Text
@@ -2988,7 +2997,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                           backgroundColor: 'rgba(255, 255, 255,0)',
                           margin: '8px 8px 8px 8px',
                         }}
-                        ref={(r: any) => (refs['Text_779954'] = r)}
+                        ref={(r: any) => refs.setComponentRef(r, 'Text_779954')}
                         {...injectData}
                       />
                     </View>
@@ -3011,7 +3020,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                         height: '100%',
                         overflowY: 'auto',
                       }}
-                      ref={(r: any) => (refs['View_1936224'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'View_1936224')}
                       {...injectData}
                     >
                       <Input
@@ -3055,7 +3064,9 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                         disabled={true}
                         visible={true}
                         readOnly={false}
-                        ref={(r: any) => (refs['Input_1422086'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Input_1422086')
+                        }
                         {...injectData}
                       />
                     </View>
@@ -3080,7 +3091,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                     height: '100%',
                     overflowY: 'auto',
                   }}
-                  ref={(r: any) => (refs['View_175491'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_175491')}
                   {...injectData}
                 >
                   <Button
@@ -4533,7 +4544,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_8668672'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_8668672')}
                     {...injectData}
                   />
                 </View>
@@ -4580,7 +4591,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_287437'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_287437')}
                 {...injectData}
               />
               <Input
@@ -4625,7 +4636,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_231478'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_231478')}
                 {...injectData}
               />
               <Input
@@ -4670,7 +4681,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_5550554'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_5550554')}
                 {...injectData}
               />
             </Form>
@@ -4682,7 +4693,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AuthorizationApprovalPopup$$Modal, {
-  pageId: '993430674647535616',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {

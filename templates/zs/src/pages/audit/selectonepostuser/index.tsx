@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Input, Table, View } from '@/components/factory';
+import { View, Form, Input, Button, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -12,6 +13,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '897014700989980672';
 const AuditSelectonepostuser$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -27,6 +29,7 @@ const AuditSelectonepostuser$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatagetTableSelected8: any = [
@@ -681,7 +684,7 @@ const AuditSelectonepostuser$$Modal: React.FC<PageProps> = ({
           flexDirection: 'row',
           padding: 0,
         }}
-        ref={(r: any) => (refs['View_2310769_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_2310769_1')}
         {...injectData}
       >
         <View
@@ -703,7 +706,7 @@ const AuditSelectonepostuser$$Modal: React.FC<PageProps> = ({
             padding: '12px 12px 12px 12px',
             width: '600px',
           }}
-          ref={(r: any) => (refs['View_2310769_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_2310769_11')}
           {...injectData}
         >
           <Form
@@ -728,7 +731,7 @@ const AuditSelectonepostuser$$Modal: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_318666'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_318666')}
             {...injectData}
           >
             <Input
@@ -772,7 +775,7 @@ const AuditSelectonepostuser$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_558255'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_558255')}
               {...injectData}
             />
             <Input
@@ -816,7 +819,7 @@ const AuditSelectonepostuser$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_76103245'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_76103245')}
               {...injectData}
             />
             <Input
@@ -860,7 +863,7 @@ const AuditSelectonepostuser$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_966705'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_966705')}
               {...injectData}
             />
           </Form>
@@ -885,7 +888,7 @@ const AuditSelectonepostuser$$Modal: React.FC<PageProps> = ({
               margin: '20px 0px 0px 0px',
               textAlign: 'center',
             }}
-            ref={(r: any) => (refs['View_30_1122_2987'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_30_1122_2987')}
             {...injectData}
           >
             <Button
@@ -1400,7 +1403,7 @@ const AuditSelectonepostuser$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Button_30_121_247817'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_30_121_247817')}
               {...injectData}
             />
             <Button
@@ -1431,7 +1434,7 @@ const AuditSelectonepostuser$$Modal: React.FC<PageProps> = ({
                   (form) => form?.resetFields(),
                 );
               }}
-              ref={(r: any) => (refs['Button_30_122_438833'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_30_122_438833')}
               {...injectData}
             />
           </View>
@@ -2235,7 +2238,7 @@ const AuditSelectonepostuser$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_2310769_112'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_2310769_112')}
             {...injectData}
           />
         </View>
@@ -2245,7 +2248,7 @@ const AuditSelectonepostuser$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AuditSelectonepostuser$$Modal, {
-  pageId: '897014700989980672',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', flowCode: '', tacheCode: '' },

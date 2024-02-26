@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Card, HorizontalView, Tree, View } from '@/components/factory';
+import { View, HorizontalView, Card, Tree } from '@/components/factory';
 
 import Pageview from '@/components/Pageview';
 
@@ -12,6 +13,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '882184557321994240';
 const SceneMatrixManage$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -26,6 +28,7 @@ const SceneMatrixManage$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     const eventDataapiRequest503: any = [
@@ -224,7 +227,7 @@ const SceneMatrixManage$$Page: React.FC<PageProps> = ({
           width: 'auto',
           height: '100%',
         }}
-        ref={(r: any) => (refs['View_3361663_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_3361663_1')}
         {...injectData}
       >
         <HorizontalView
@@ -245,7 +248,7 @@ const SceneMatrixManage$$Page: React.FC<PageProps> = ({
             height: '100%',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['HorizontalView_1699304'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'HorizontalView_1699304')}
           {...injectData}
         >
           <View
@@ -266,7 +269,7 @@ const SceneMatrixManage$$Page: React.FC<PageProps> = ({
               height: '100%',
               overflowY: 'hidden',
             }}
-            ref={(r: any) => (refs['View_182395'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_182395')}
             {...injectData}
           >
             <Card
@@ -306,7 +309,7 @@ const SceneMatrixManage$$Page: React.FC<PageProps> = ({
                 margin: '0 0 16px 0',
                 height: '100%',
               }}
-              ref={(r: any) => (refs['Card_677682'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_677682')}
               {...injectData}
             >
               <Tree
@@ -1420,7 +1423,7 @@ const SceneMatrixManage$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Tree_978091'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Tree_978091')}
                 {...injectData}
               />
             </Card>
@@ -1443,7 +1446,7 @@ const SceneMatrixManage$$Page: React.FC<PageProps> = ({
               height: '100%',
               overflowY: 'auto',
             }}
-            ref={(r: any) => (refs['View_8830146'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_8830146')}
             {...injectData}
           >
             <Pageview
@@ -1452,8 +1455,9 @@ const SceneMatrixManage$$Page: React.FC<PageProps> = ({
               pageSrc={'/gonggongshenpijibietishiyu'}
               pageId={'882436135732752384'}
               style={{ height: '100%', width: '100%' }}
-              ref={(r: any) => (refs['Pageview_99560082'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Pageview_99560082')}
               {...injectData}
+              parentEngineId={parentEngineId}
             />
           </View>
         </HorizontalView>
@@ -1463,7 +1467,7 @@ const SceneMatrixManage$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(SceneMatrixManage$$Page, {
-  pageId: '882184557321994240',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

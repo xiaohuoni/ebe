@@ -1,16 +1,17 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  VerticalView,
   Card,
   Form,
   Input,
   Select,
+  Button,
   Table,
-  VerticalView,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -21,6 +22,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '993406268634288128';
 const AuthorizationApproval$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -35,6 +37,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const refreshUserTable = (options_635272: any) => {
     const eventDatasetLoading14: any = [
@@ -1122,7 +1125,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_4868135_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_4868135_1')}
         {...injectData}
       >
         <VerticalView
@@ -1144,7 +1147,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
             height: '100%',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['VerticalView_9463015'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_9463015')}
           {...injectData}
         >
           <View
@@ -1165,7 +1168,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
               height: '100%',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_869717'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_869717')}
             {...injectData}
           >
             <Card
@@ -1620,7 +1623,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Card_96776'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_96776')}
               {...injectData}
             >
               <Form
@@ -1645,7 +1648,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ padding: '0px 0px 0px 0px' }}
-                ref={(r: any) => (refs['Form_148709_504968'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_148709_504968')}
                 {...injectData}
               >
                 <Input
@@ -1726,7 +1729,9 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_3889064_9290923'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Input_3889064_9290923')
+                  }
                   {...injectData}
                 />
                 <Input
@@ -1807,7 +1812,9 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_33684855_42499777'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Input_33684855_42499777')
+                  }
                   {...injectData}
                 />
                 <View
@@ -1837,7 +1844,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_1193615'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_1193615')}
                   {...injectData}
                 />
                 <Input
@@ -1919,7 +1926,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_801507'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_801507')}
                   {...injectData}
                 />
                 <Select
@@ -1952,7 +1959,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_87392'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Input_87392')}
                   {...injectData}
                 />
                 <View
@@ -1984,7 +1991,9 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_841498_1719896'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'View_841498_1719896')
+                  }
                   {...injectData}
                 >
                   <Button
@@ -2043,7 +2052,9 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_224226_2154932'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'Button_224226_2154932')
+                    }
                     {...injectData}
                   />
                   <Button
@@ -2083,7 +2094,9 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                         (form) => form?.resetFields(),
                       );
                     }}
-                    ref={(r: any) => (refs['Button_499055_798351'] = r)}
+                    ref={(r: any) =>
+                      refs.setComponentRef(r, 'Button_499055_798351')
+                    }
                     {...injectData}
                   />
                 </View>
@@ -5700,7 +5713,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_8475669'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_8475669')}
                 {...injectData}
               />
             </Card>
@@ -5725,7 +5738,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
               width: '100%',
               height: '100%',
             }}
-            ref={(r: any) => (refs['View_1715415'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_1715415')}
             {...injectData}
           >
             <Card
@@ -6045,7 +6058,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Card_341811'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_341811')}
               {...injectData}
             >
               <View
@@ -6084,7 +6097,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                   height: '30%',
                   width: '100%',
                 }}
-                ref={(r: any) => (refs['View_209956'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_209956')}
                 {...injectData}
               >
                 <Form
@@ -6109,7 +6122,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   style={{ padding: '0px 0px 5px 0px' }}
-                  ref={(r: any) => (refs['Form_8509595'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Form_8509595')}
                   {...injectData}
                 >
                   <Input
@@ -6198,7 +6211,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Input_666461'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Input_666461')}
                     {...injectData}
                   />
                   <Input
@@ -6287,7 +6300,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Input_008044298'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Input_008044298')}
                     {...injectData}
                   />
                   <View
@@ -6318,7 +6331,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                       height: '1000%',
                       overflowY: 'auto',
                     }}
-                    ref={(r: any) => (refs['View_3866124'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'View_3866124')}
                     {...injectData}
                   >
                     <Button
@@ -6383,7 +6396,9 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                           },
                         );
                       }}
-                      ref={(r: any) => (refs['Button_1432671'] = r)}
+                      ref={(r: any) =>
+                        refs.setComponentRef(r, 'Button_1432671')
+                      }
                       {...injectData}
                     />
                     <Button
@@ -6459,7 +6474,9 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                           },
                         );
                       }}
-                      ref={(r: any) => (refs['Button_19651206'] = r)}
+                      ref={(r: any) =>
+                        refs.setComponentRef(r, 'Button_19651206')
+                      }
                       {...injectData}
                     />
                   </View>
@@ -7175,7 +7192,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Table_204147'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Table_204147')}
                   {...injectData}
                 />
               </View>
@@ -7188,7 +7205,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AuthorizationApproval$$Page, {
-  pageId: '993406268634288128',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

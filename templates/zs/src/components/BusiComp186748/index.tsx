@@ -1,21 +1,23 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Form,
   Select,
   StdUpload,
-  Table,
   Text,
-  View,
+  Button,
+  Table,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = 'pageId 未找到';
 const BusiComp186748$$BusiComp: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -30,6 +32,7 @@ const BusiComp186748$$BusiComp: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     // console 168240878934557380
@@ -1267,7 +1270,7 @@ const BusiComp186748$$BusiComp: React.FC<PageProps> = ({
           padding: '0px 0px 0px 0px',
           width: '100%',
         }}
-        ref={(r: any) => (refs['View_834125'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_834125')}
         {...injectData}
       >
         <Form
@@ -1297,9 +1300,10 @@ const BusiComp186748$$BusiComp: React.FC<PageProps> = ({
           readOnly={false}
           style={{ padding: '0px 0px 0px 0px', margin: '10px 0px 0px 0px' }}
           ref={(r: any) =>
-            (refs[
-              'Form_395851_1727917_9692158_9612234_1000722_434628_511208_810317_526148_446103'
-            ] = r)
+            refs.setComponentRef(
+              r,
+              'Form_395851_1727917_9692158_9612234_1000722_434628_511208_810317_526148_446103',
+            )
           }
           {...injectData}
         >
@@ -1330,9 +1334,10 @@ const BusiComp186748$$BusiComp: React.FC<PageProps> = ({
             readOnly={false}
             isFormRootChild={true}
             ref={(r: any) =>
-              (refs[
-                'Input_690228_5400337_280051_232429_7501497_288005_8195412_48663836_335482_605811'
-              ] = r)
+              refs.setComponentRef(
+                r,
+                'Input_690228_5400337_280051_232429_7501497_288005_8195412_48663836_335482_605811',
+              )
             }
             {...injectData}
           />
@@ -1366,9 +1371,10 @@ const BusiComp186748$$BusiComp: React.FC<PageProps> = ({
               width: '100%',
             }}
             ref={(r: any) =>
-              (refs[
-                'View_22346374_875512_926873_4359147_729981_339083_0134945_145611_42193717_9310839'
-              ] = r)
+              refs.setComponentRef(
+                r,
+                'View_22346374_875512_926873_4359147_729981_339083_0134945_145611_42193717_9310839',
+              )
             }
             {...injectData}
           >
@@ -1792,9 +1798,10 @@ const BusiComp186748$$BusiComp: React.FC<PageProps> = ({
                 });
               }}
               ref={(r: any) =>
-                (refs[
-                  'StdUpload_6230546_867413_538179_36057857_3505279_0434_242878_424019_1466135_40249'
-                ] = r)
+                refs.setComponentRef(
+                  r,
+                  'StdUpload_6230546_867413_538179_36057857_3505279_0434_242878_424019_1466135_40249',
+                )
               }
               {...injectData}
             />
@@ -1818,7 +1825,7 @@ const BusiComp186748$$BusiComp: React.FC<PageProps> = ({
                 lineHeight: '24px',
                 color: 'rgba(251, 18, 5, 1)',
               }}
-              ref={(r: any) => (refs['Text_701669'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_701669')}
               {...injectData}
             />
           </View>
@@ -1852,7 +1859,7 @@ const BusiComp186748$$BusiComp: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_952946'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_952946')}
             {...injectData}
           />
           <View
@@ -1883,7 +1890,7 @@ const BusiComp186748$$BusiComp: React.FC<PageProps> = ({
               width: '100%',
               textAlign: 'right',
             }}
-            ref={(r: any) => (refs['View_282318'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_282318')}
             {...injectData}
           >
             <Button
@@ -2029,7 +2036,7 @@ const BusiComp186748$$BusiComp: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_8469743'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_8469743')}
               {...injectData}
             />
           </View>
@@ -2418,7 +2425,7 @@ const BusiComp186748$$BusiComp: React.FC<PageProps> = ({
               },
             );
           }}
-          ref={(r: any) => (refs['Table_125878'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_125878')}
           {...injectData}
         />
       </View>
@@ -2427,7 +2434,7 @@ const BusiComp186748$$BusiComp: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(BusiComp186748$$BusiComp, {
-  pageId: 'pageId 未找到',
+  pageId,
   hasLogin: true,
   defaultState: {
     catalogCode: '',

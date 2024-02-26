@@ -79,7 +79,7 @@
 - [ ] context 补齐 packages/render/src/renderer/BaseRenderer.tsx#L67 调试服务器 http://172.21.72.205:8088/
 - [ ] 数据源清理，只保留必须的字段
 - [ ] 表格数据导入
-- [ ] pc Form ref getTableSelected
+- [x] pc Table ref getTableSelected
 
 资产 DSL - 林喜 PC 端 实习生打卡 DICT 指令源码化？源数据 dataSource 清理？
 

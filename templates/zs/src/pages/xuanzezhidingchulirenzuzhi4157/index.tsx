@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Tree, View } from '@/components/factory';
+import { View, Tree } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '913666163952467968';
 const Xuanzezhidingchulirenzuzhi4157$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -23,6 +25,7 @@ const Xuanzezhidingchulirenzuzhi4157$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDatagetSelectedData21: any = [
@@ -330,7 +333,7 @@ const Xuanzezhidingchulirenzuzhi4157$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_30_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_30_1')}
         {...injectData}
       >
         <View
@@ -343,7 +346,7 @@ const Xuanzezhidingchulirenzuzhi4157$$Modal: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_30_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_30_11')}
           {...injectData}
         >
           <Tree
@@ -527,7 +530,7 @@ const Xuanzezhidingchulirenzuzhi4157$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Tree_0118687'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Tree_0118687')}
             {...injectData}
           />
         </View>
@@ -537,7 +540,7 @@ const Xuanzezhidingchulirenzuzhi4157$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Xuanzezhidingchulirenzuzhi4157$$Modal, {
-  pageId: '913666163952467968',
+  pageId,
   hasLogin: false,
   defaultState: { bizId: '', sceneCode: '' },
 });

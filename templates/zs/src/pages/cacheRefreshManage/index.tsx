@@ -1,19 +1,20 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
-  Card,
-  Divider,
-  Form,
-  HorizontalView,
-  Input,
-  Select,
-  Table,
-  Text,
-  TextArea,
   View,
+  Card,
+  Table,
+  Form,
+  Select,
+  Input,
+  Button,
+  TextArea,
+  HorizontalView,
+  Text,
+  Divider,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -22,6 +23,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '914356829242146816';
 const CacheRefreshManage$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -36,6 +38,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const joinKey = (options_7521525: any) => {
     const eventDatacustomActionCode203: any = [
@@ -222,7 +225,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_3764757_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_3764757_1')}
         {...injectData}
       >
         <Card
@@ -264,7 +267,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_5833677'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_5833677')}
           {...injectData}
         >
           <Table
@@ -961,7 +964,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_419514'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_419514')}
             {...injectData}
           />
         </Card>
@@ -1004,7 +1007,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_249558'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_249558')}
           {...injectData}
         >
           <Form
@@ -1029,7 +1032,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_8043725'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_8043725')}
             {...injectData}
           >
             <Select
@@ -1120,7 +1123,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Select_22474'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_22474')}
               {...injectData}
             />
             <Input
@@ -1216,7 +1219,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Input_9153166'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_9153166')}
               {...injectData}
             />
             <View
@@ -1246,7 +1249,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 20px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_670865'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_670865')}
               {...injectData}
             >
               <Button
@@ -1410,7 +1413,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_9430177'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_9430177')}
                 {...injectData}
               />
             </View>
@@ -1455,7 +1458,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_6436985'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_6436985')}
               {...injectData}
             />
             <Input
@@ -1499,7 +1502,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_6953198'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_6953198')}
               {...injectData}
             />
             <View
@@ -1531,7 +1534,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_169362'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_169362')}
               {...injectData}
             />
           </Form>
@@ -1554,7 +1557,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
               width: '100%',
               margin: '20px 0px 0px 0px',
             }}
-            ref={(r: any) => (refs['View_2205763'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_2205763')}
             {...injectData}
           >
             <TextArea
@@ -1576,7 +1579,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                 type: 'TextArea',
                 ...componentItem,
               }}
-              ref={(r: any) => (refs['TextArea_204814'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TextArea_204814')}
               {...injectData}
             />
           </View>
@@ -1620,7 +1623,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_958347'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_958347')}
           {...injectData}
         >
           <Form
@@ -1645,7 +1648,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_0294937'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_0294937')}
             {...injectData}
           >
             <HorizontalView
@@ -1678,7 +1681,9 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                 height: '100%',
                 overflowY: 'auto',
               }}
-              ref={(r: any) => (refs['HorizontalView_3902025'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'HorizontalView_3902025')
+              }
               {...injectData}
             >
               <View
@@ -1700,7 +1705,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                   height: '100%',
                   overflowY: 'auto',
                 }}
-                ref={(r: any) => (refs['View_063018'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_063018')}
                 {...injectData}
               >
                 <Text
@@ -1724,7 +1729,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                     color: '#1c242e',
                     textAlign: 'center',
                   }}
-                  ref={(r: any) => (refs['Text_218923'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Text_218923')}
                   {...injectData}
                 />
               </View>
@@ -1747,7 +1752,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                   height: '100%',
                   overflowY: 'auto',
                 }}
-                ref={(r: any) => (refs['View_334674'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_334674')}
                 {...injectData}
               >
                 <Button
@@ -1869,7 +1874,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                       platform: 'pc',
                     });
                   }}
-                  ref={(r: any) => (refs['Button_334436'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_334436')}
                   {...injectData}
                 />
               </View>
@@ -1904,7 +1909,9 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                 height: '100%',
                 overflowY: 'auto',
               }}
-              ref={(r: any) => (refs['HorizontalView_3902025_283213'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'HorizontalView_3902025_283213')
+              }
               {...injectData}
             >
               <View
@@ -1926,7 +1933,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                   height: '100%',
                   overflowY: 'auto',
                 }}
-                ref={(r: any) => (refs['View_063018_9698747'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_063018_9698747')}
                 {...injectData}
               >
                 <Text
@@ -1950,7 +1957,9 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                     color: '#1c242e',
                     textAlign: 'center',
                   }}
-                  ref={(r: any) => (refs['Text_218923_530318'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_218923_530318')
+                  }
                   {...injectData}
                 />
               </View>
@@ -1973,7 +1982,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                   height: '100%',
                   overflowY: 'auto',
                 }}
-                ref={(r: any) => (refs['View_334674_0541157'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_334674_0541157')}
                 {...injectData}
               >
                 <Button
@@ -2071,7 +2080,9 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                       platform: 'pc',
                     });
                   }}
-                  ref={(r: any) => (refs['Button_334436_327606'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Button_334436_327606')
+                  }
                   {...injectData}
                 />
               </View>
@@ -2092,7 +2103,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
             disabled={false}
             readOnly={false}
             style={{ margin: '12px 0 12px 0', height: '1px' }}
-            ref={(r: any) => (refs['Divider_011072'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Divider_011072')}
             {...injectData}
           />
         </Card>
@@ -2102,7 +2113,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(CacheRefreshManage$$Page, {
-  pageId: '914356829242146816',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

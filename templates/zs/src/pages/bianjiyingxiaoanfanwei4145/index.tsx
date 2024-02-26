@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Form, Input, Select, TextArea, View } from '@/components/factory';
+import { View, Form, Input, Select, TextArea } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '912619917963702272';
 const Bianjiyingxiaoanfanwei4145$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -23,6 +25,7 @@ const Bianjiyingxiaoanfanwei4145$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const onOk = () => {
     const eventDataifelse300: any = [
@@ -1254,7 +1257,7 @@ const Bianjiyingxiaoanfanwei4145$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_30_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_30_1')}
         {...injectData}
       >
         <View
@@ -1267,7 +1270,7 @@ const Bianjiyingxiaoanfanwei4145$$Modal: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_30_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_30_11')}
           {...injectData}
         >
           <Form
@@ -1296,7 +1299,7 @@ const Bianjiyingxiaoanfanwei4145$$Modal: React.FC<PageProps> = ({
               width: '100%',
               padding: '20px 20px 20px 20px',
             }}
-            ref={(r: any) => (refs['Form_30_1121'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_30_1121')}
             {...injectData}
           >
             <Input
@@ -1329,7 +1332,7 @@ const Bianjiyingxiaoanfanwei4145$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_30_11211'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_30_11211')}
               {...injectData}
             />
             <Input
@@ -1362,7 +1365,7 @@ const Bianjiyingxiaoanfanwei4145$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_30_11212'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_30_11212')}
               {...injectData}
             />
             <Select
@@ -1385,7 +1388,7 @@ const Bianjiyingxiaoanfanwei4145$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Select_30_11213'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_30_11213')}
               {...injectData}
             />
             <Select
@@ -1405,7 +1408,7 @@ const Bianjiyingxiaoanfanwei4145$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Select_30_11217'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Select_30_11217')}
               {...injectData}
             />
             <TextArea
@@ -1422,7 +1425,7 @@ const Bianjiyingxiaoanfanwei4145$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['TextArea_30_11219'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TextArea_30_11219')}
               {...injectData}
             />
           </Form>
@@ -1433,7 +1436,7 @@ const Bianjiyingxiaoanfanwei4145$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(Bianjiyingxiaoanfanwei4145$$Modal, {
-  pageId: '912619917963702272',
+  pageId,
   hasLogin: false,
   defaultState: {
     saleCfgId: '',

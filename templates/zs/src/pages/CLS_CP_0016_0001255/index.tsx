@@ -1,13 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Text, View } from '@/components/factory';
+import { View, Text } from '@/components/factory';
 
 import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = '961190365010231296';
 const ClsCp_0016_0001255$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -22,6 +24,7 @@ const ClsCp_0016_0001255$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -51,7 +54,7 @@ const ClsCp_0016_0001255$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_088762_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_088762_1')}
         {...injectData}
       >
         <View
@@ -72,7 +75,7 @@ const ClsCp_0016_0001255$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_9640137'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_9640137')}
           {...injectData}
         >
           <Text
@@ -91,7 +94,7 @@ const ClsCp_0016_0001255$$Page: React.FC<PageProps> = ({
             disabled={false}
             readOnly={false}
             style={{ fontSize: '14px', lineHeight: '24px', color: '#1c242e' }}
-            ref={(r: any) => (refs['Text_7412922'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Text_7412922')}
             {...injectData}
           />
         </View>
@@ -101,7 +104,7 @@ const ClsCp_0016_0001255$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ClsCp_0016_0001255$$Page, {
-  pageId: '961190365010231296',
+  pageId,
   hasLogin: false,
   defaultState: {},
 });

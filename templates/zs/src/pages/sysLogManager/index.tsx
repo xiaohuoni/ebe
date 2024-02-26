@@ -1,15 +1,16 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Card,
   Form,
-  Input,
   Select,
+  Input,
+  Button,
   Table,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -20,6 +21,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '984380475535167488';
 const SysLogManager$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -34,6 +36,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const refresh_table = (options_763614: any) => {
     const eventDatasetLoading29: any = [
@@ -278,7 +281,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_302536_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_302536_1')}
         {...injectData}
       >
         <Card
@@ -318,7 +321,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_11411'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_11411')}
           {...injectData}
         >
           <Form
@@ -343,7 +346,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
             visible={true}
             readOnly={false}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_2804244'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_2804244')}
             {...injectData}
           >
             <Select
@@ -377,7 +380,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_881668'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_881668')}
               {...injectData}
             />
             <Input
@@ -454,7 +457,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_5254568'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_5254568')}
               {...injectData}
             />
             <View
@@ -485,7 +488,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_432067'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_432067')}
               {...injectData}
             />
             <Input
@@ -562,7 +565,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_736686'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_736686')}
               {...injectData}
             />
             <Input
@@ -639,7 +642,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_064485'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_064485')}
               {...injectData}
             />
             <View
@@ -669,7 +672,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_131191'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_131191')}
               {...injectData}
             >
               <Button
@@ -728,7 +731,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_7271396'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_7271396')}
                 {...injectData}
               />
               <Button
@@ -790,7 +793,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_5706071'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_5706071')}
                 {...injectData}
               />
             </View>
@@ -1329,7 +1332,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_833694'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_833694')}
             {...injectData}
           />
         </Card>
@@ -1339,7 +1342,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(SysLogManager$$Page, {
-  pageId: '984380475535167488',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

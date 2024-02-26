@@ -28,6 +28,15 @@ const Modal0804$$Modal: React.FC<PageProps> = ({
   forwardedRef,
   parentEngineId = pageId,
 }) => {
+  const callFunctionTestModal = (options_265061: any) => {
+    // console 170849664014925700
+    console.log('1213');
+  };
+
+  React.useImperativeHandle(customActionMapRef, () => ({
+    callFunctionTestModal,
+  }));
+
   const onOk = () => {};
 
   const onCancel = () => {
@@ -85,7 +94,7 @@ const Modal0804$$Modal: React.FC<PageProps> = ({
           width: 'auto',
           height: 'auto',
         }}
-        ref={(r: any) => (refs['View_155774_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_155774_1')}
         {...injectData}
       >
         <Text
@@ -109,7 +118,7 @@ const Modal0804$$Modal: React.FC<PageProps> = ({
             color: '#1c242e',
             backgroundColor: 'rgba(255, 255, 255,0)',
           }}
-          ref={(r: any) => (refs['Text_306996'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Text_306996')}
           {...injectData}
         />
         <Pageview
@@ -118,7 +127,7 @@ const Modal0804$$Modal: React.FC<PageProps> = ({
           pageSrc={'/cdd5883'}
           pageId={'1028120483871506432'}
           style={{ height: 'auto', width: '100%' }}
-          ref={(r: any) => (refs['Pageview_710085'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Pageview_710085')}
           {...injectData}
           parentEngineId={parentEngineId}
         />

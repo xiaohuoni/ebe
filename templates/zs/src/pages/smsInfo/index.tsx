@@ -1,16 +1,17 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Card,
   Form,
   Input,
-  Select,
+  Button,
   Table,
   TextArea,
-  View,
+  Select,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -21,6 +22,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '896272552489095168';
 const SmsInfo$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -35,6 +37,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const refresh_table = (options_453492: any) => {
     const eventDatasetLoading37: any = [
@@ -902,7 +905,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_324541_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_324541_1')}
         {...injectData}
       >
         <Card
@@ -941,7 +944,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          ref={(r: any) => (refs['Card_324043'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Card_324043')}
           {...injectData}
         >
           <Form
@@ -964,7 +967,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
               ...componentItem,
             }}
             style={{ padding: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Form_777001'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_777001')}
             {...injectData}
           >
             <Input
@@ -1040,7 +1043,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_528228'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_528228')}
               {...injectData}
             />
             <Input
@@ -1116,7 +1119,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_35058'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_35058')}
               {...injectData}
             />
             <View
@@ -1146,7 +1149,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 12px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_9485957'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_9485957')}
               {...injectData}
             >
               <Button
@@ -1203,7 +1206,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Button_576403'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_576403')}
                 {...injectData}
               />
               <Button
@@ -1234,7 +1237,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                     (form) => form?.resetFields(),
                   );
                 }}
-                ref={(r: any) => (refs['Button_113745'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Button_113745')}
                 {...injectData}
               />
             </View>
@@ -2009,7 +2012,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Table_7176273'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Table_7176273')}
             {...injectData}
           />
         </Card>
@@ -2029,7 +2032,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_186485'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_186485')}
           {...injectData}
         >
           <Card
@@ -2068,7 +2071,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
               overflowY: 'visible',
               margin: '0 0 16px 0',
             }}
-            ref={(r: any) => (refs['Card_80665877'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_80665877')}
             {...injectData}
           >
             <Form
@@ -2091,7 +2094,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ padding: '0px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_7102554'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_7102554')}
               {...injectData}
             >
               <Input
@@ -2134,7 +2137,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_2588383'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_2588383')}
                 {...injectData}
               />
               <Input
@@ -2177,7 +2180,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_6414946'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_6414946')}
                 {...injectData}
               />
               <TextArea
@@ -2201,7 +2204,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_82301'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_82301')}
                 {...injectData}
               />
               <Select
@@ -2232,7 +2235,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_747164'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_747164')}
                 {...injectData}
               />
               <Select
@@ -2263,7 +2266,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_641907'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_641907')}
                 {...injectData}
               />
               <Select
@@ -2294,7 +2297,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_9832584'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_9832584')}
                 {...injectData}
               />
               <Input
@@ -2337,7 +2340,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_0847962'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_0847962')}
                 {...injectData}
               />
               <Input
@@ -2380,7 +2383,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_345016'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_345016')}
                 {...injectData}
               />
               <Input
@@ -2423,7 +2426,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_852248'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_852248')}
                 {...injectData}
               />
               <Input
@@ -2466,7 +2469,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_767033'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_767033')}
                 {...injectData}
               />
               <Input
@@ -2509,7 +2512,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_619303'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_619303')}
                 {...injectData}
               />
               <Input
@@ -2552,7 +2555,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_2797085'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_2797085')}
                 {...injectData}
               />
               <TextArea
@@ -2576,7 +2579,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
                   ...componentItem,
                 }}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_081212'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_081212')}
                 {...injectData}
               />
             </Form>
@@ -2588,7 +2591,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(SmsInfo$$Page, {
-  pageId: '896272552489095168',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

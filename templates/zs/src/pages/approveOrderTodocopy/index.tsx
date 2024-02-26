@@ -1,21 +1,22 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
-  Card,
-  CheckboxGroup,
-  Form,
-  Icon,
-  Img,
-  Input,
-  RangePicker,
-  Row,
-  Table,
-  Text,
-  TreeSelect,
   View,
+  Row,
+  Text,
+  Img,
+  Icon,
+  Card,
+  Form,
+  Input,
+  Button,
+  RangePicker,
+  TreeSelect,
+  CheckboxGroup,
+  Table,
 } from '@/components/factory';
 
 import BusiComp2086 from '@/components/BusiComp2086';
@@ -30,6 +31,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '915422467695218688';
 const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -44,6 +46,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const query = (options_84995934: any) => {
     const eventDataifelse60: any = [
@@ -2074,8 +2077,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                                                                   code: 'listItem',
                                                                   name: '列表元素',
                                                                   sort: {
-                                                                    isSort:
-                                                                      true,
+                                                                    isSort: true,
                                                                   },
                                                                   initialData: {
                                                                     type: 'static',
@@ -2340,8 +2342,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                                                                   code: 'listItem',
                                                                   name: '列表元素',
                                                                   sort: {
-                                                                    isSort:
-                                                                      true,
+                                                                    isSort: true,
                                                                   },
                                                                   initialData: {
                                                                     type: 'static',
@@ -2464,8 +2465,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                                                                   code: 'handleStaffName',
                                                                   name: 'handleStaffName',
                                                                   sort: {
-                                                                    isSort:
-                                                                      true,
+                                                                    isSort: true,
                                                                   },
                                                                   initialData: {
                                                                     type: 'static',
@@ -2478,8 +2478,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                                                                   code: 'approveOrdNbr',
                                                                   name: 'approveOrdNbr',
                                                                   sort: {
-                                                                    isSort:
-                                                                      true,
+                                                                    isSort: true,
                                                                   },
                                                                   initialData: {
                                                                     type: 'static',
@@ -2492,8 +2491,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                                                                   code: 'createStaffName',
                                                                   name: 'createStaffName',
                                                                   sort: {
-                                                                    isSort:
-                                                                      true,
+                                                                    isSort: true,
                                                                   },
                                                                   initialData: {
                                                                     type: 'static',
@@ -2506,8 +2504,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                                                                   code: 'lastHandleTime',
                                                                   name: 'lastHandleTime',
                                                                   sort: {
-                                                                    isSort:
-                                                                      true,
+                                                                    isSort: true,
                                                                   },
                                                                   initialData: {
                                                                     type: 'static',
@@ -2520,8 +2517,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                                                                   code: 'tacheName',
                                                                   name: 'tacheName',
                                                                   sort: {
-                                                                    isSort:
-                                                                      true,
+                                                                    isSort: true,
                                                                   },
                                                                   initialData: {
                                                                     type: 'static',
@@ -2534,8 +2530,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                                                                   code: 'createTime',
                                                                   name: 'createTime',
                                                                   sort: {
-                                                                    isSort:
-                                                                      true,
+                                                                    isSort: true,
                                                                   },
                                                                   initialData: {
                                                                     type: 'static',
@@ -2548,8 +2543,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                                                                   code: 'title',
                                                                   name: 'title',
                                                                   sort: {
-                                                                    isSort:
-                                                                      true,
+                                                                    isSort: true,
                                                                   },
                                                                   initialData: {
                                                                     type: 'static',
@@ -2562,8 +2556,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                                                                   code: 'isCurrentUserHandle',
                                                                   name: '新增节点',
                                                                   sort: {
-                                                                    isSort:
-                                                                      true,
+                                                                    isSort: true,
                                                                   },
                                                                   initialData: {
                                                                     type: 'static',
@@ -2576,8 +2569,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                                                                   code: 'queryType',
                                                                   name: '查询类型',
                                                                   sort: {
-                                                                    isSort:
-                                                                      true,
+                                                                    isSort: true,
                                                                   },
                                                                   initialData: {
                                                                     type: 'static',
@@ -5780,7 +5772,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_541575_1_210887'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_541575_1_210887')}
         {...injectData}
       >
         <Row
@@ -5797,7 +5789,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ backgroundColor: '#f0f2f5\n!important' }}
-          ref={(r: any) => (refs['Row_781611_967166'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_781611_967166')}
           {...injectData}
         >
           <View
@@ -5917,7 +5909,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['View_011447_98638_751521_919607'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'View_011447_98638_751521_919607')
+            }
             {...injectData}
           >
             <View
@@ -5936,7 +5930,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_15602_3008735_190707_3855435'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'View_15602_3008735_190707_3855435')
+              }
               {...injectData}
             >
               <Text
@@ -5958,7 +5954,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   color: '#1c242e',
                 }}
                 ref={(r: any) =>
-                  (refs['Text_609574_9990358_822433_383113'] = r)
+                  refs.setComponentRef(r, 'Text_609574_9990358_822433_383113')
                 }
                 {...injectData}
               />
@@ -5979,7 +5975,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   width: '100%',
                   margin: '8px 0px 0px 0px',
                 }}
-                ref={(r: any) => (refs['View_1478523_6666_08103_4591978'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'View_1478523_6666_08103_4591978')
+                }
                 {...injectData}
               >
                 <Text
@@ -6003,7 +6001,10 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     fontWeight: 700,
                   }}
                   ref={(r: any) =>
-                    (refs['Text_074538_816425_1562435_3175163'] = r)
+                    refs.setComponentRef(
+                      r,
+                      'Text_074538_816425_1562435_3175163',
+                    )
                   }
                   {...injectData}
                 />
@@ -6028,7 +6029,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     marginLeft: '8px',
                   }}
                   ref={(r: any) =>
-                    (refs['Text_899064_131466_7776104_885414'] = r)
+                    refs.setComponentRef(r, 'Text_899064_131466_7776104_885414')
                   }
                   {...injectData}
                 />
@@ -6047,7 +6048,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ width: '48px' }}
-              ref={(r: any) => (refs['Img_4689277_858797_5727136_130585'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Img_4689277_858797_5727136_130585')
+              }
               {...injectData}
             />
           </View>
@@ -6163,7 +6166,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['View_011447_315475_353029'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'View_011447_315475_353029')
+            }
             {...injectData}
           >
             <View
@@ -6182,7 +6187,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_15602_1948197_126614'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'View_15602_1948197_126614')
+              }
               {...injectData}
             >
               <Text
@@ -6203,7 +6210,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   lineHeight: '24px',
                   color: '#1c242e',
                 }}
-                ref={(r: any) => (refs['Text_609574_82860284_762588'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Text_609574_82860284_762588')
+                }
                 {...injectData}
               />
               <View
@@ -6223,7 +6232,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   width: '100%',
                   margin: '8px 0px 0px 0px',
                 }}
-                ref={(r: any) => (refs['View_1478523_2604544_1623139'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'View_1478523_2604544_1623139')
+                }
                 {...injectData}
               >
                 <Text
@@ -6250,7 +6261,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     color: '#1c242e',
                     fontWeight: 700,
                   }}
-                  ref={(r: any) => (refs['Text_074538_584845_281666'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_074538_584845_281666')
+                  }
                   {...injectData}
                 />
                 <Text
@@ -6273,7 +6286,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     letterSpacing: '',
                     marginLeft: '8px',
                   }}
-                  ref={(r: any) => (refs['Text_899064_8603628_25583264'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_899064_8603628_25583264')
+                  }
                   {...injectData}
                 />
               </View>
@@ -6291,7 +6306,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ width: '56px', height: '55px' }}
-              ref={(r: any) => (refs['Img_4689277_7268616_951593'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Img_4689277_7268616_951593')
+              }
               {...injectData}
             />
           </View>
@@ -6412,7 +6429,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['View_011447_315475_771001_852093'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'View_011447_315475_771001_852093')
+            }
             {...injectData}
           >
             <View
@@ -6431,7 +6450,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_15602_1948197_2625135_451015'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'View_15602_1948197_2625135_451015')
+              }
               {...injectData}
             >
               <Text
@@ -6453,7 +6474,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   color: '#1c242e',
                 }}
                 ref={(r: any) =>
-                  (refs['Text_609574_82860284_0895322_813604'] = r)
+                  refs.setComponentRef(r, 'Text_609574_82860284_0895322_813604')
                 }
                 {...injectData}
               />
@@ -6475,7 +6496,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   margin: '8px 0px 0px 0px',
                 }}
                 ref={(r: any) =>
-                  (refs['View_1478523_2604544_7920888_963314'] = r)
+                  refs.setComponentRef(r, 'View_1478523_2604544_7920888_963314')
                 }
                 {...injectData}
               >
@@ -6500,7 +6521,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     fontWeight: 700,
                   }}
                   ref={(r: any) =>
-                    (refs['Text_074538_584845_8868265_961662'] = r)
+                    refs.setComponentRef(r, 'Text_074538_584845_8868265_961662')
                   }
                   {...injectData}
                 />
@@ -6525,7 +6546,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     marginLeft: '8px',
                   }}
                   ref={(r: any) =>
-                    (refs['Text_899064_8603628_84636_477363'] = r)
+                    refs.setComponentRef(r, 'Text_899064_8603628_84636_477363')
                   }
                   {...injectData}
                 />
@@ -6544,7 +6565,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ width: '56px', height: '55px' }}
-              ref={(r: any) => (refs['Img_4689277_7268616_128348_930795'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Img_4689277_7268616_128348_930795')
+              }
               {...injectData}
             />
           </View>
@@ -6647,7 +6670,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['View_011447_103708_487827'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'View_011447_103708_487827')
+            }
             {...injectData}
           >
             <View
@@ -6666,7 +6691,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_15602_302336_612127'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'View_15602_302336_612127')
+              }
               {...injectData}
             >
               <Text
@@ -6687,7 +6714,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   lineHeight: '24px',
                   color: '#1c242e',
                 }}
-                ref={(r: any) => (refs['Text_609574_1616464_8609066'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Text_609574_1616464_8609066')
+                }
                 {...injectData}
               />
               <View
@@ -6707,7 +6736,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   width: '100%',
                   margin: '8px 0px 0px 0px',
                 }}
-                ref={(r: any) => (refs['View_1478523_581132_4800225'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'View_1478523_581132_4800225')
+                }
                 {...injectData}
               >
                 <Text
@@ -6730,7 +6761,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     color: '#1c242e',
                     fontWeight: 700,
                   }}
-                  ref={(r: any) => (refs['Text_074538_886383_201425'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_074538_886383_201425')
+                  }
                   {...injectData}
                 />
                 <Text
@@ -6753,7 +6786,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     letterSpacing: '',
                     marginLeft: '8px',
                   }}
-                  ref={(r: any) => (refs['Text_899064_033877_9580497'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_899064_033877_9580497')
+                  }
                   {...injectData}
                 />
               </View>
@@ -6771,7 +6806,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ width: '48px', height: '64px' }}
-              ref={(r: any) => (refs['Img_4689277_9304956_72346655'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Img_4689277_9304956_72346655')
+              }
               {...injectData}
             />
           </View>
@@ -6790,7 +6827,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ margin: '0px 0px 0px 0px' }}
-          ref={(r: any) => (refs['Row_843008_436616'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_843008_436616')}
           {...injectData}
         >
           <Row
@@ -6813,7 +6850,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
               paddingTop: '16px',
               paddingBottom: '16px',
             }}
-            ref={(r: any) => (refs['Row_022256_600571'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Row_022256_600571')}
             {...injectData}
           >
             <Text
@@ -6830,7 +6867,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ fontSize: '14px', lineHeight: '24px', color: '#1c242e' }}
-              ref={(r: any) => (refs['Text_8980095_165553'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Text_8980095_165553')}
               {...injectData}
             />
             <View
@@ -6851,7 +6888,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 justifyContent: 'space-between',
                 margin: '12px 0px 0px 0px',
               }}
-              ref={(r: any) => (refs['View_715972_474908'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_715972_474908')}
               {...injectData}
             >
               <View
@@ -6871,7 +6908,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   width: 'auto',
                   alignItems: 'center',
                 }}
-                ref={(r: any) => (refs['View_751812_562956'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_751812_562956')}
                 {...injectData}
               >
                 <Icon
@@ -6890,7 +6927,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     ...componentItem,
                   }}
                   style={{ color: '#2b86b3', fontSize: 22 }}
-                  ref={(r: any) => (refs['Icon_4101164_094153'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Icon_4101164_094153')
+                  }
                   {...injectData}
                 />
                 <Text
@@ -6912,7 +6951,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     color: '#1c242e',
                     marginLeft: '4px',
                   }}
-                  ref={(r: any) => (refs['Text_6674564_94514086'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_6674564_94514086')
+                  }
                   {...injectData}
                 />
               </View>
@@ -6933,7 +6974,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   width: 'auto',
                   alignItems: 'center',
                 }}
-                ref={(r: any) => (refs['View_751812_237034_27382'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'View_751812_237034_27382')
+                }
                 {...injectData}
               >
                 <Icon
@@ -6952,7 +6995,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     ...componentItem,
                   }}
                   style={{ color: '#52c41b', fontSize: 22 }}
-                  ref={(r: any) => (refs['Icon_4101164_991908_984088'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Icon_4101164_991908_984088')
+                  }
                   {...injectData}
                 />
                 <Text
@@ -6975,7 +7020,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     flex: '',
                     marginLeft: '4px',
                   }}
-                  ref={(r: any) => (refs['Text_6674564_282261_0704085'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_6674564_282261_0704085')
+                  }
                   {...injectData}
                 />
               </View>
@@ -6996,7 +7043,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   width: 'auto',
                   alignItems: 'center',
                 }}
-                ref={(r: any) => (refs['View_751812_833089_40955585'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'View_751812_833089_40955585')
+                }
                 {...injectData}
               >
                 <Icon
@@ -7015,7 +7064,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     ...componentItem,
                   }}
                   style={{ color: '#2b86b3', fontSize: 22 }}
-                  ref={(r: any) => (refs['Icon_4101164_8364435_044917'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Icon_4101164_8364435_044917')
+                  }
                   {...injectData}
                 />
                 <Text
@@ -7037,7 +7088,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     color: '#1c242e',
                     marginLeft: '4px',
                   }}
-                  ref={(r: any) => (refs['Text_6674564_9192471_689094'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_6674564_9192471_689094')
+                  }
                   {...injectData}
                 />
               </View>
@@ -7058,7 +7111,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   width: 'auto',
                   alignItems: 'center',
                 }}
-                ref={(r: any) => (refs['View_751812_504837_00492115'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'View_751812_504837_00492115')
+                }
                 {...injectData}
               >
                 <Icon
@@ -7077,7 +7132,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     ...componentItem,
                   }}
                   style={{ color: '#52c41b', fontSize: 22 }}
-                  ref={(r: any) => (refs['Icon_4101164_1208576_677605'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Icon_4101164_1208576_677605')
+                  }
                   {...injectData}
                 />
                 <Text
@@ -7099,7 +7156,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     color: '#1c242e',
                     marginLeft: '4px',
                   }}
-                  ref={(r: any) => (refs['Text_6674564_2758312_0911126'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Text_6674564_2758312_0911126')
+                  }
                   {...injectData}
                 />
               </View>
@@ -7128,7 +7187,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
             width: '100%',
             margin: '12px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['View_065343_0367107'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_065343_0367107')}
           {...injectData}
         >
           <Card
@@ -7167,7 +7226,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
               overflowY: 'visible',
               margin: '0px 0px 0px 0px',
             }}
-            ref={(r: any) => (refs['Card_012576_982357'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_012576_982357')}
             {...injectData}
           >
             <Form
@@ -7190,7 +7249,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               style={{ padding: '0px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_126816_52006'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_126816_52006')}
               {...injectData}
             >
               <Input
@@ -7275,7 +7334,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_8789281_057708'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_8789281_057708')
+                }
                 {...injectData}
               />
               <Input
@@ -7360,7 +7421,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_421306_869556'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_421306_869556')}
                 {...injectData}
               />
               <View
@@ -7392,7 +7453,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   justifyContent: 'flex-end',
                   alignItems: 'center',
                 }}
-                ref={(r: any) => (refs['View_445165_1895924'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_445165_1895924')}
                 {...injectData}
               >
                 <Button
@@ -7450,7 +7511,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_616697_954532'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Button_616697_954532')
+                  }
                   {...injectData}
                 />
                 <Button
@@ -7554,7 +7617,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                       platform: 'pc',
                     });
                   }}
-                  ref={(r: any) => (refs['Button_505213_4149997'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Button_505213_4149997')
+                  }
                   {...injectData}
                 />
                 <Button
@@ -7701,7 +7766,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_5899747_568383'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Button_5899747_568383')
+                  }
                   {...injectData}
                 />
                 <Button
@@ -7848,7 +7915,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_582318_337196'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Button_582318_337196')
+                  }
                   {...injectData}
                 />
               </View>
@@ -7869,7 +7938,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_158841_251269'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_158841_251269')}
               {...injectData}
             >
               <Form
@@ -7895,7 +7964,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   margin: '12px 0px 0px 0px',
                 }}
-                ref={(r: any) => (refs['Form_9423813_834841'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_9423813_834841')}
                 {...injectData}
               >
                 <Input
@@ -7939,7 +8008,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_85608_706666'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Input_85608_706666')
+                  }
                   {...injectData}
                 />
               </Form>
@@ -7966,7 +8037,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   margin: '12px 0px 0px 0px',
                 }}
-                ref={(r: any) => (refs['Form_071412_019488'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_071412_019488')}
                 {...injectData}
               >
                 <RangePicker
@@ -7995,7 +8066,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     ...componentItem,
                   }}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['RangePicker_0811484_1786124'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'RangePicker_0811484_1786124')
+                  }
                   {...injectData}
                 />
                 <Input
@@ -8039,7 +8112,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     ...componentItem,
                   }}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_116573_626916'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Input_116573_626916')
+                  }
                   {...injectData}
                 />
               </Form>
@@ -8066,7 +8141,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   margin: '12px 0px 0px 0px',
                 }}
-                ref={(r: any) => (refs['Form_433981_917962'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_433981_917962')}
                 {...injectData}
               >
                 <Input
@@ -8169,7 +8244,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_836023_2454495'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Input_836023_2454495')
+                  }
                   {...injectData}
                 />
                 <TreeSelect
@@ -8522,7 +8599,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['TreeSelect_07743_3306392'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'TreeSelect_07743_3306392')
+                  }
                   {...injectData}
                 />
                 <Input
@@ -8566,7 +8645,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     ...componentItem,
                   }}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_295293_25015'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Input_295293_25015')
+                  }
                   {...injectData}
                 />
               </Form>
@@ -8575,7 +8656,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 visible={true}
                 busiCompId={'878114493837852672'}
                 style={{ margin: '12px 0px 12px 0px' }}
-                ref={(r: any) => (refs['BOFramer_6134255_98179'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'BOFramer_6134255_98179')
+                }
                 {...injectData}
               />
               <Form
@@ -8601,7 +8684,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   padding: '0px 0px 0px 0px',
                   margin: '12px 0px 0px 0px',
                 }}
-                ref={(r: any) => (refs['Form_513266_2673'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_513266_2673')}
                 {...injectData}
               >
                 <CheckboxGroup
@@ -8634,7 +8717,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                     ...componentItem,
                   }}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['CheckboxGroup_1187331_7703337'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'CheckboxGroup_1187331_7703337')
+                  }
                   {...injectData}
                 />
               </Form>
@@ -11238,7 +11323,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Table_37209506_336166'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Table_37209506_336166')}
               {...injectData}
             />
           </Card>
@@ -11265,7 +11350,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
             width: '100%',
             margin: '12px 0px 0px 0px',
           }}
-          ref={(r: any) => (refs['View_8238124_81288'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_8238124_81288')}
           {...injectData}
         >
           <Pageview
@@ -11274,8 +11359,9 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
             pageSrc={'/myDraft'}
             pageId={'879998060900732928'}
             style={{ height: 'auto', width: '100%', margin: '0px 0px 0px 0px' }}
-            ref={(r: any) => (refs['Pageview_361429_0568945'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Pageview_361429_0568945')}
             {...injectData}
+            parentEngineId={parentEngineId}
           />
         </View>
       </View>
@@ -11284,7 +11370,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ApproveOrderTodocopy$$Page, {
-  pageId: '915422467695218688',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

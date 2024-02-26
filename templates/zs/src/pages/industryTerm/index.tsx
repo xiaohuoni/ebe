@@ -1,18 +1,19 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
-  Form,
+  View,
   GridView,
   HorizontalView,
   Icon,
+  Button,
+  Form,
   Input,
+  TimePicker,
   Select,
   TextArea,
-  TimePicker,
-  View,
 } from '@/components/factory';
 
 import BusiComp4158382 from '@/components/BusiComp4158382';
@@ -23,6 +24,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '906791712949166080';
 const IndustryTerm$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -38,6 +40,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const calculV4Num = (options_8722644: any) => {
     const eventDatagetValue109: any = [
@@ -1617,7 +1620,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_8430824_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_8430824_1')}
         {...injectData}
       >
         <GridView
@@ -1643,7 +1646,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
             ...componentItem,
           }}
           style={{ minHeight: 40 }}
-          ref={(r: any) => (refs['GridView_933784'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'GridView_933784')}
           {...injectData}
           getEngineApis={() => {
             return {
@@ -1673,7 +1676,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                           overflowY: 'auto',
                           margin: 'px px px px',
                         }}
-                        ref={(r: any) => (refs['HorizontalView_784462'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'HorizontalView_784462')
+                        }
                         {...injectData}
                       >
                         <View
@@ -1693,7 +1698,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                             height: '100%',
                             overflowY: 'auto',
                           }}
-                          ref={(r: any) => (refs['View_325572'] = r)}
+                          ref={(r: any) =>
+                            refs.setComponentRef(r, 'View_325572')
+                          }
                           {...injectData}
                         >
                           <BusiComp4158382
@@ -1894,7 +1901,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                                 },
                               );
                             }}
-                            ref={(r: any) => (refs['BOFramer_6249292'] = r)}
+                            ref={(r: any) =>
+                              refs.setComponentRef(r, 'BOFramer_6249292')
+                            }
                             {...injectData}
                           />
                         </View>
@@ -1915,7 +1924,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                             height: '100%',
                             overflowY: 'auto',
                           }}
-                          ref={(r: any) => (refs['View_095062'] = r)}
+                          ref={(r: any) =>
+                            refs.setComponentRef(r, 'View_095062')
+                          }
                           {...injectData}
                         >
                           <Icon
@@ -2044,7 +2055,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                                 },
                               );
                             }}
-                            ref={(r: any) => (refs['Icon_303872'] = r)}
+                            ref={(r: any) =>
+                              refs.setComponentRef(r, 'Icon_303872')
+                            }
                             {...injectData}
                           />
                         </View>
@@ -2073,7 +2086,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
             width: '100%',
             textAlign: 'right',
           }}
-          ref={(r: any) => (refs['View_977173'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_977173')}
           {...injectData}
         >
           <Icon
@@ -2160,7 +2173,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Icon_2263201'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Icon_2263201')}
             {...injectData}
           />
         </View>
@@ -2180,7 +2193,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_917911'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_917911')}
           {...injectData}
         >
           <View
@@ -2205,7 +2218,10 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
               margin: '10px 0px 0px 0px',
             }}
             ref={(r: any) =>
-              (refs['View_015288_239109_6528729_3449095_643503_344108'] = r)
+              refs.setComponentRef(
+                r,
+                'View_015288_239109_6528729_3449095_643503_344108',
+              )
             }
             {...injectData}
           >
@@ -2432,7 +2448,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Button_3488654_2211138'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Button_3488654_2211138')
+              }
               {...injectData}
             />
           </View>
@@ -2637,7 +2655,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Form_678195'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_678195')}
             {...injectData}
           >
             <Input
@@ -3023,7 +3041,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_marketCode_332199'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_marketCode_332199')
+              }
               {...injectData}
             />
             <Input
@@ -3068,7 +3088,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_marketName_081812'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_marketName_081812')
+              }
               {...injectData}
             />
             <Input
@@ -3113,7 +3135,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_area_892025'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_area_892025')}
               {...injectData}
             />
             <TimePicker
@@ -3147,7 +3169,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
               readOnly={false}
               defaultValue={{}}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_marketStartTime_197299'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_marketStartTime_197299')
+              }
               {...injectData}
             />
             <TimePicker
@@ -3181,7 +3205,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
               readOnly={false}
               defaultValue={{}}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_marketEndTime_11954'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_marketEndTime_11954')
+              }
               {...injectData}
             />
             <Select
@@ -3211,7 +3237,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_preMoney_937179'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_preMoney_937179')}
               {...injectData}
             />
             <Input
@@ -3256,7 +3282,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_guarMoney_868977'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_guarMoney_868977')
+              }
               {...injectData}
             />
             <Select
@@ -3286,7 +3314,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_guarantee_698753'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_guarantee_698753')
+              }
               {...injectData}
             />
             <Input
@@ -3331,7 +3361,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_acceptMul_6374716'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_acceptMul_6374716')
+              }
               {...injectData}
             />
             <Select
@@ -3361,7 +3393,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_effectType_582677'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_effectType_582677')
+              }
               {...injectData}
             />
             <Input
@@ -3438,7 +3472,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_receiptsMoney_65845'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_receiptsMoney_65845')
+              }
               {...injectData}
             />
             <Input
@@ -3483,7 +3519,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_lastDiscount_216509'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_lastDiscount_216509')
+              }
               {...injectData}
             />
             <TextArea
@@ -3509,7 +3547,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_marketDesc_7971046'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_marketDesc_7971046')
+              }
               {...injectData}
             />
             <TextArea
@@ -3534,7 +3574,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_terminalDesc_99592674'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_terminalDesc_99592674')
+              }
               {...injectData}
             />
           </Form>
@@ -3555,7 +3597,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
               width: '100%',
               textAlign: 'right',
             }}
-            ref={(r: any) => (refs['View_784828025'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_784828025')}
             {...injectData}
           >
             <Button
@@ -4329,7 +4371,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Button_489283'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_489283')}
               {...injectData}
             />
           </View>
@@ -4609,7 +4651,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Form_7899824'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_7899824')}
             {...injectData}
           >
             <Input
@@ -5072,7 +5114,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Input_groupId_441193'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_groupId_441193')}
               {...injectData}
             />
             <Input
@@ -5121,7 +5163,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_groupName_449926'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_groupName_449926')
+              }
               {...injectData}
             />
             <Input
@@ -5170,7 +5214,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_valueLevelName_2562986'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_valueLevelName_2562986')
+              }
               {...injectData}
             />
             <Input
@@ -5219,7 +5265,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_tradeclassTopName_252891'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_tradeclassTopName_252891')
+              }
               {...injectData}
             />
             <Select
@@ -5542,7 +5590,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Input_accountName_2958199'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_accountName_2958199')
+              }
               {...injectData}
             />
             <Input
@@ -5591,7 +5641,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_accountId_831068'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_accountId_831068')
+              }
               {...injectData}
             />
             <Input
@@ -5640,7 +5692,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_homeCityName_119262'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_homeCityName_119262')
+              }
               {...injectData}
             />
             <Input
@@ -5689,7 +5743,9 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_homeCountyName_573514'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_homeCountyName_573514')
+              }
               {...injectData}
             />
             <Input
@@ -5734,7 +5790,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_289884'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_289884')}
               {...injectData}
             />
             <Input
@@ -5783,7 +5839,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
                 ...componentItem,
               }}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_income_173855'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_income_173855')}
               {...injectData}
             />
           </Form>
@@ -5794,7 +5850,7 @@ const IndustryTerm$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(IndustryTerm$$Modal, {
-  pageId: '906791712949166080',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', returnPop: '', catalogCode: '' },

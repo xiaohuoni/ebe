@@ -1,17 +1,18 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Checkbox,
-  Divider,
-  Form,
-  HorizontalView,
-  Input,
-  Row,
-  Select,
-  TextArea,
   View,
+  Divider,
+  HorizontalView,
+  Form,
+  Checkbox,
+  Input,
+  TextArea,
+  Select,
+  Row,
 } from '@/components/factory';
 
 import BusiComp0521965 from '@/components/BusiComp0521965';
@@ -22,6 +23,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '948096795770634240';
 const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -36,6 +38,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const sceneFormCheck = (options_22250626: any) => {
     const eventDatavalidateCurrentForm8: any = [
@@ -1777,7 +1780,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
           margin: 'px px px px',
           overflow: 'hidden',
         }}
-        ref={(r: any) => (refs['View_537892_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_537892_1')}
         {...injectData}
       >
         <Divider
@@ -1797,7 +1800,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ margin: '12px 0 12px 0', height: '0A' }}
-          ref={(r: any) => (refs['Divider_8693014'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Divider_8693014')}
           {...injectData}
         />
         <View
@@ -1819,7 +1822,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_6806553'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_6806553')}
           {...injectData}
         >
           <HorizontalView
@@ -1843,7 +1846,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
               overflowY: 'visible',
               margin: '0px 0px 8px 0px',
             }}
-            ref={(r: any) => (refs['HorizontalView_004602'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'HorizontalView_004602')}
             {...injectData}
           >
             <View
@@ -1866,7 +1869,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
                 overflowY: 'visible',
                 margin: '0px 0px 0px 0px',
               }}
-              ref={(r: any) => (refs['View_339406'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_339406')}
               {...injectData}
             >
               <Form
@@ -1891,7 +1894,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ padding: '0px 0px 0px 0px' }}
-                ref={(r: any) => (refs['Form_4311097'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_4311097')}
                 {...injectData}
               >
                 <Checkbox
@@ -1922,7 +1925,9 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Checkbox_882584_5289015'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Checkbox_882584_5289015')
+                  }
                   {...injectData}
                 />
                 <View
@@ -1954,7 +1959,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
                     padding: '0px 0px 0px 0px',
                     width: '100%',
                   }}
-                  ref={(r: any) => (refs['View_556162'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'View_556162')}
                   {...injectData}
                 />
                 <Input
@@ -1998,7 +2003,9 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
                   visible={false}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Input_361479_887285'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Input_361479_887285')
+                  }
                   {...injectData}
                 />
               </Form>
@@ -2522,7 +2529,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Form_449441'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Form_449441')}
             {...injectData}
           >
             <TextArea
@@ -4091,7 +4098,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['TextArea_344333'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'TextArea_344333')}
               {...injectData}
             />
             <Select
@@ -4319,7 +4326,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Input_city_84519'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_city_84519')}
               {...injectData}
             />
             <Select
@@ -4349,7 +4356,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_area_891638'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_area_891638')}
               {...injectData}
             />
             <Input
@@ -4405,7 +4412,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_3158738'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_3158738')}
               {...injectData}
             />
             <Select
@@ -4435,7 +4442,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_periods_7297227'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Input_periods_7297227')}
               {...injectData}
             />
             <Select
@@ -4465,7 +4472,9 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_reportDimension_06575'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_reportDimension_06575')
+              }
               {...injectData}
             />
             <Select
@@ -4693,7 +4702,9 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Input_reportType_5828085'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_reportType_5828085')
+              }
               {...injectData}
             />
             <Select
@@ -4723,7 +4734,9 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               isFormRootChild={true}
-              ref={(r: any) => (refs['Input_callReportName_9508676'] = r)}
+              ref={(r: any) =>
+                refs.setComponentRef(r, 'Input_callReportName_9508676')
+              }
               {...injectData}
             />
           </Form>
@@ -4742,7 +4755,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
             disabled={false}
             visible={false}
             readOnly={false}
-            ref={(r: any) => (refs['Row_851124'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Row_851124')}
             {...injectData}
           />
         </View>
@@ -4755,7 +4768,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
             fileList: state?.itemList?.fileInfo,
           }}
           style={{ margin: '0 0 12px 0' }}
-          ref={(r: any) => (refs['BOFramer_134087'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'BOFramer_134087')}
           {...injectData}
         />
       </View>
@@ -4764,7 +4777,7 @@ const ClsDz_0002_0002$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(ClsDz_0002_0002$$Page, {
-  pageId: '948096795770634240',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {},

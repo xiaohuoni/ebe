@@ -1,14 +1,15 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Form,
   Input,
   Select,
   TimePicker,
-  View,
+  Button,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -19,6 +20,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '945202588504145920';
 const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -34,6 +36,7 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const initInput = (options_140988: any) => {
     const eventDataapiRequest31: any = [
@@ -1911,7 +1914,7 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_31_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_31_1')}
         {...injectData}
       >
         <View
@@ -1926,7 +1929,7 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ width: '100%', overflowY: 'auto' }}
-          ref={(r: any) => (refs['VerticalView_31_11'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'VerticalView_31_11')}
           {...injectData}
         >
           <View
@@ -1949,7 +1952,7 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
               margin: '0px 0px 0px 0px',
               borderRadius: '2px 2px 2px 2px',
             }}
-            ref={(r: any) => (refs['View_31_112'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_31_112')}
             {...injectData}
           >
             <Form
@@ -2162,7 +2165,7 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Form_31_1121'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_31_1121')}
               {...injectData}
             >
               <Input
@@ -2207,7 +2210,9 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_redListTel_0403494'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_redListTel_0403494')
+                }
                 {...injectData}
               />
               <Input
@@ -2252,7 +2257,9 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_ensureType_177166'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_ensureType_177166')
+                }
                 {...injectData}
               />
               <Input
@@ -2297,7 +2304,9 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_belongCityText_50772483'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_belongCityText_50772483')
+                }
                 {...injectData}
               />
               <Input
@@ -2342,7 +2351,9 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_belongAreaText_284013'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_belongAreaText_284013')
+                }
                 {...injectData}
               />
               <Input
@@ -2387,7 +2398,9 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_userCurrentStatus_701219'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_userCurrentStatus_701219')
+                }
                 {...injectData}
               />
               <Input
@@ -2432,7 +2445,9 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_currentCreditLevel_70948'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_currentCreditLevel_70948')
+                }
                 {...injectData}
               />
               <Input
@@ -2477,7 +2492,9 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_creditEffDate_921116'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_creditEffDate_921116')
+                }
                 {...injectData}
               />
               <Input
@@ -2522,7 +2539,9 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_creditExpDate_024315'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_creditExpDate_024315')
+                }
                 {...injectData}
               />
               <Select
@@ -2960,7 +2979,9 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Input_isDelay_156479'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_isDelay_156479')
+                }
                 {...injectData}
               />
               <TimePicker
@@ -2995,7 +3016,7 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
                 readOnly={false}
                 defaultValue={undefined}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TimePicker_2045607'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'TimePicker_2045607')}
                 {...injectData}
               />
               <Input
@@ -3040,7 +3061,9 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_noDelayReason_049466'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_noDelayReason_049466')
+                }
                 {...injectData}
               />
             </Form>
@@ -3066,7 +3089,7 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
             textAlign: 'center',
             fontSize: '',
           }}
-          ref={(r: any) => (refs['View_279348'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_279348')}
           {...injectData}
         >
           <Button
@@ -3378,7 +3401,7 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Button_2339'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_2339')}
             {...injectData}
           />
           <Button
@@ -3421,7 +3444,7 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_853853'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Button_853853')}
             {...injectData}
           />
         </View>
@@ -3431,7 +3454,7 @@ const RedVerticalUpdate$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(RedVerticalUpdate$$Modal, {
-  pageId: '945202588504145920',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', catalogCode: '', redObj: '' },

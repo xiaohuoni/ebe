@@ -1,16 +1,17 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
   Card,
   Form,
   Input,
+  Button,
   Select,
   Table,
   TextArea,
-  View,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -21,6 +22,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '1059760450592399360';
 const SceneTplManage$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -35,6 +37,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const queryData = (options_291597: any) => {
     const eventDatareloadDataSource17: any = [
@@ -219,7 +222,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_0268335_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_0268335_1')}
         {...injectData}
       >
         <View
@@ -240,7 +243,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
             padding: '0px 0px 0px 0px',
             width: '100%',
           }}
-          ref={(r: any) => (refs['View_060452'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'View_060452')}
           {...injectData}
         >
           <Card
@@ -347,7 +350,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Card_380913'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_380913')}
             {...injectData}
           >
             <Form
@@ -372,7 +375,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ padding: '0px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_869119'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_869119')}
               {...injectData}
             >
               <Input
@@ -463,7 +466,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_33469'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_33469')}
                 {...injectData}
               />
               <Input
@@ -554,7 +557,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_4319877'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_4319877')}
                 {...injectData}
               />
               <View
@@ -587,7 +590,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                   textAlign: 'center',
                   height: '100%',
                 }}
-                ref={(r: any) => (refs['View_77596'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'View_77596')}
                 {...injectData}
               >
                 <Button
@@ -646,7 +649,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_18118'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_18118')}
                   {...injectData}
                 />
                 <Button
@@ -712,7 +715,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Button_872716'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Button_872716')}
                   {...injectData}
                 />
               </View>
@@ -744,7 +747,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_1317317'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_1317317')}
                 {...injectData}
               />
               <Input
@@ -835,7 +838,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_612903'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_612903')}
                 {...injectData}
               />
             </Form>
@@ -857,7 +860,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_9572742'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_9572742')}
               {...injectData}
             >
               <Table
@@ -1701,7 +1704,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_780292'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_780292')}
                 {...injectData}
               />
             </View>
@@ -1742,7 +1745,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
               overflowY: 'visible',
               margin: '30px 0px 16px 0px',
             }}
-            ref={(r: any) => (refs['Card_897562'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Card_897562')}
             {...injectData}
           >
             <Form
@@ -1767,7 +1770,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ padding: '0px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_6700227'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_6700227')}
               {...injectData}
             >
               <Input
@@ -1809,7 +1812,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                 visible={false}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_3233426'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_3233426')}
                 {...injectData}
               />
               <Input
@@ -1853,7 +1856,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_4921618'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_4921618')}
                 {...injectData}
               />
               <Input
@@ -1898,7 +1901,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_732881'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_732881')}
                 {...injectData}
               />
               <Input
@@ -1941,7 +1944,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                 visible={false}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_5512436'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_5512436')}
                 {...injectData}
               />
               <Select
@@ -1970,7 +1973,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Select_985583'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Select_985583')}
                 {...injectData}
               />
               <Input
@@ -2013,7 +2016,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_502628'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_502628')}
                 {...injectData}
               />
               <TextArea
@@ -2037,7 +2040,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TextArea_221912'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'TextArea_221912')}
                 {...injectData}
               />
               <Input
@@ -2080,7 +2083,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_1967627'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_1967627')}
                 {...injectData}
               />
               <Input
@@ -2123,7 +2126,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_4682584'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_4682584')}
                 {...injectData}
               />
               <Input
@@ -2166,7 +2169,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_117588'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_117588')}
                 {...injectData}
               />
               <Input
@@ -2209,7 +2212,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={true}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_921329'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Input_921329')}
                 {...injectData}
               />
             </Form>
@@ -2221,7 +2224,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(SceneTplManage$$Page, {
-  pageId: '1059760450592399360',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', bizData: '' },

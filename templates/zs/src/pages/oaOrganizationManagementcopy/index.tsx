@@ -1,21 +1,22 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
+  View,
+  HorizontalView,
+  Tabs,
+  TabPane,
+  Tree,
   Card,
   Form,
-  HorizontalView,
   Input,
   Select,
+  Button,
   Table,
-  TabPane,
-  Tabs,
-  TimePicker,
-  Tree,
   TreeSelect,
-  View,
+  TimePicker,
 } from '@/components/factory';
 
 import { useEffect } from 'react';
@@ -26,6 +27,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '967266347405778944';
 const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -40,6 +42,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   const refreshOaOrg = (options_618734: any) => {
     const eventDatasetLoading30: any = [
@@ -3026,7 +3029,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
           overflowY: 'auto',
           width: 'auto',
         }}
-        ref={(r: any) => (refs['View_4868135_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_4868135_1')}
         {...injectData}
       >
         <HorizontalView
@@ -3049,7 +3052,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
             height: '100%',
             overflowY: 'auto',
           }}
-          ref={(r: any) => (refs['HorizontalView_763739'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'HorizontalView_763739')}
           {...injectData}
         >
           <View
@@ -3072,7 +3075,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
               overflowY: 'auto',
               lineHeight: '100%px',
             }}
-            ref={(r: any) => (refs['View_480841'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_480841')}
             {...injectData}
           >
             <View
@@ -3095,7 +3098,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                 width: '100%',
                 lineHeight: '100%px',
               }}
-              ref={(r: any) => (refs['View_0687078'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_0687078')}
               {...injectData}
             >
               <Tabs
@@ -3291,7 +3294,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Tabs_58095364'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Tabs_58095364')}
                 {...injectData}
               >
                 <TabPane
@@ -3309,7 +3312,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   style={{ minHeight: 40 }}
-                  ref={(r: any) => (refs['TabPane_759436'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'TabPane_759436')}
                   {...injectData}
                 >
                   <Tree
@@ -3802,7 +3805,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Tree_27954628'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Tree_27954628')}
                     {...injectData}
                   />
                 </TabPane>
@@ -3820,7 +3823,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   style={{ minHeight: 40 }}
-                  ref={(r: any) => (refs['TabPane_6830295'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'TabPane_6830295')}
                   {...injectData}
                 >
                   <Tree
@@ -4267,7 +4270,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Tree_1088'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Tree_1088')}
                     {...injectData}
                   />
                 </TabPane>
@@ -4293,7 +4296,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
               height: '100%',
               overflowY: 'auto',
             }}
-            ref={(r: any) => (refs['View_1951314'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_1951314')}
             {...injectData}
           >
             <Card
@@ -4446,7 +4449,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Card_839649_655036'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Card_839649_655036')}
               {...injectData}
             >
               <Form
@@ -4471,7 +4474,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 style={{ padding: '0px 0px 12px 0px' }}
-                ref={(r: any) => (refs['Form_148709_2103377'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Form_148709_2103377')}
                 {...injectData}
               >
                 <Input
@@ -4552,7 +4555,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_3889064_9887114'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Input_3889064_9887114')
+                  }
                   {...injectData}
                 />
                 <Input
@@ -4633,7 +4638,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       },
                     );
                   }}
-                  ref={(r: any) => (refs['Input_33684855_0267973'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'Input_33684855_0267973')
+                  }
                   {...injectData}
                 />
                 <Select
@@ -4665,7 +4672,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   isFormRootChild={true}
-                  ref={(r: any) => (refs['Select_26459'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'Select_26459')}
                   {...injectData}
                 />
                 <View
@@ -4699,7 +4706,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                     textAlign: 'center',
                     justifyContent: 'flex-start',
                   }}
-                  ref={(r: any) => (refs['View_841498_8261476'] = r)}
+                  ref={(r: any) =>
+                    refs.setComponentRef(r, 'View_841498_8261476')
+                  }
                   {...injectData}
                 >
                   <View
@@ -4721,7 +4730,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       width: '100%',
                       textAlign: 'left',
                     }}
-                    ref={(r: any) => (refs['View_110211'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'View_110211')}
                     {...injectData}
                   >
                     <Button
@@ -4780,7 +4789,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                           },
                         );
                       }}
-                      ref={(r: any) => (refs['Button_224226_9699964'] = r)}
+                      ref={(r: any) =>
+                        refs.setComponentRef(r, 'Button_224226_9699964')
+                      }
                       {...injectData}
                     />
                     <Button
@@ -4851,7 +4862,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                           },
                         );
                       }}
-                      ref={(r: any) => (refs['Button_499055_253437'] = r)}
+                      ref={(r: any) =>
+                        refs.setComponentRef(r, 'Button_499055_253437')
+                      }
                       {...injectData}
                     />
                   </View>
@@ -5162,7 +5175,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Button_81895453'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Button_81895453')}
                     {...injectData}
                   />
                 </View>
@@ -8230,7 +8243,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Table_109153'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Table_109153')}
                 {...injectData}
               />
             </Card>
@@ -8252,7 +8265,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                 padding: '0px 0px 0px 0px',
                 width: '100%',
               }}
-              ref={(r: any) => (refs['View_086921'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'View_086921')}
               {...injectData}
             >
               <Tabs
@@ -8278,7 +8291,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                   margin: '0 0 16px 0',
                   padding: '20px 20px 20px 20px',
                 }}
-                ref={(r: any) => (refs['Tabs_283124'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Tabs_283124')}
                 {...injectData}
               >
                 <TabPane
@@ -8295,7 +8308,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   style={{ minHeight: 40 }}
-                  ref={(r: any) => (refs['TabPane_621603'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'TabPane_621603')}
                   {...injectData}
                 >
                   <Form
@@ -8320,7 +8333,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                     visible={true}
                     readOnly={false}
                     style={{ padding: '0px 0px 0px 0px' }}
-                    ref={(r: any) => (refs['Form_0232295'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Form_0232295')}
                     {...injectData}
                   >
                     <Input
@@ -8364,7 +8377,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={false}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['Input_434938'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Input_434938')}
                       {...injectData}
                     />
                     <Input
@@ -8408,7 +8421,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={false}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['Input_38217'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Input_38217')}
                       {...injectData}
                     />
                     <TreeSelect
@@ -8455,7 +8468,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={false}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['TreeSelect_257432'] = r)}
+                      ref={(r: any) =>
+                        refs.setComponentRef(r, 'TreeSelect_257432')
+                      }
                       {...injectData}
                     />
                     <Select
@@ -8529,7 +8544,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                           },
                         );
                       }}
-                      ref={(r: any) => (refs['Input_0253633'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Input_0253633')}
                       {...injectData}
                     />
                     <Select
@@ -8558,7 +8573,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={false}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['Select_02652'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Select_02652')}
                       {...injectData}
                     />
                     <Select
@@ -8587,7 +8602,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={false}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['Select_665971'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Select_665971')}
                       {...injectData}
                     />
                     <Select
@@ -8616,7 +8631,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={false}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['Input_667391'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Input_667391')}
                       {...injectData}
                     />
                     <Select
@@ -8645,7 +8660,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={false}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['Select_905847'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Select_905847')}
                       {...injectData}
                     />
                     <Select
@@ -8677,7 +8692,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={false}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['Select_5255812'] = r)}
+                      ref={(r: any) =>
+                        refs.setComponentRef(r, 'Select_5255812')
+                      }
                       {...injectData}
                     />
                     <Select
@@ -8706,7 +8723,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={false}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['Select_692647'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Select_692647')}
                       {...injectData}
                     />
                     <Select
@@ -8934,7 +8951,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                           platform: 'pc',
                         });
                       }}
-                      ref={(r: any) => (refs['Select_070408'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Select_070408')}
                       {...injectData}
                     />
                     <Select
@@ -8964,7 +8981,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={false}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['Select_314728'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Select_314728')}
                       {...injectData}
                     />
                     <Input
@@ -9008,7 +9025,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={false}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['Input_4483666'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Input_4483666')}
                       {...injectData}
                     />
                     <TimePicker
@@ -9042,7 +9059,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       readOnly={false}
                       defaultValue={undefined}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['DatePicker_894548'] = r)}
+                      ref={(r: any) =>
+                        refs.setComponentRef(r, 'DatePicker_894548')
+                      }
                       {...injectData}
                     />
                     <Input
@@ -9086,7 +9105,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={false}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['Input_270361'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Input_270361')}
                       {...injectData}
                     />
                     <TimePicker
@@ -9120,7 +9139,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       readOnly={false}
                       defaultValue={undefined}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['DatePicker_14902132'] = r)}
+                      ref={(r: any) =>
+                        refs.setComponentRef(r, 'DatePicker_14902132')
+                      }
                       {...injectData}
                     />
                     <Input
@@ -9164,7 +9185,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       visible={true}
                       readOnly={false}
                       isFormRootChild={true}
-                      ref={(r: any) => (refs['Input_076117'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Input_076117')}
                       {...injectData}
                     />
                     <View
@@ -9194,7 +9215,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                         padding: '0px 0px 0px 0px',
                         width: '100%',
                       }}
-                      ref={(r: any) => (refs['View_443992'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'View_443992')}
                       {...injectData}
                     />
                   </Form>
@@ -9216,7 +9237,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       padding: '0px 0px 0px 0px',
                       width: '100%',
                     }}
-                    ref={(r: any) => (refs['View_0371899'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'View_0371899')}
                     {...injectData}
                   >
                     <View
@@ -9242,7 +9263,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                         textAlign: 'center',
                         margin: '20px 0px 0px 0px',
                       }}
-                      ref={(r: any) => (refs['View_579073'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'View_579073')}
                       {...injectData}
                     >
                       <Button
@@ -11611,7 +11632,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                             platform: 'pc',
                           });
                         }}
-                        ref={(r: any) => (refs['Button_671049'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Button_671049')
+                        }
                         {...injectData}
                       />
                       <Button
@@ -11750,7 +11773,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                             },
                           );
                         }}
-                        ref={(r: any) => (refs['Button_166271'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Button_166271')
+                        }
                         {...injectData}
                       />
                     </View>
@@ -11770,7 +11795,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                   visible={true}
                   readOnly={false}
                   style={{ minHeight: 40 }}
-                  ref={(r: any) => (refs['TabPane_421331'] = r)}
+                  ref={(r: any) => refs.setComponentRef(r, 'TabPane_421331')}
                   {...injectData}
                 >
                   <View
@@ -11791,7 +11816,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                       padding: '0px 0px 0px 0px',
                       width: '100%',
                     }}
-                    ref={(r: any) => (refs['View_482554'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'View_482554')}
                     {...injectData}
                   >
                     <Form
@@ -11819,7 +11844,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                         padding: '0px 0px 0px 0px',
                         margin: '0px 0px 8px 0px',
                       }}
-                      ref={(r: any) => (refs['Form_493328'] = r)}
+                      ref={(r: any) => refs.setComponentRef(r, 'Form_493328')}
                       {...injectData}
                     >
                       <Input
@@ -11901,7 +11926,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                             },
                           );
                         }}
-                        ref={(r: any) => (refs['Input_485159'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Input_485159')
+                        }
                         {...injectData}
                       />
                       <Input
@@ -11983,7 +12010,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                             },
                           );
                         }}
-                        ref={(r: any) => (refs['Input_4717291'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'Input_4717291')
+                        }
                         {...injectData}
                       />
                       <View
@@ -12016,7 +12045,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                           padding: '0px 0px 0px 24px',
                           width: '100%',
                         }}
-                        ref={(r: any) => (refs['View_43339095'] = r)}
+                        ref={(r: any) =>
+                          refs.setComponentRef(r, 'View_43339095')
+                        }
                         {...injectData}
                       >
                         <Button
@@ -12076,7 +12107,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                               },
                             );
                           }}
-                          ref={(r: any) => (refs['Button_213218'] = r)}
+                          ref={(r: any) =>
+                            refs.setComponentRef(r, 'Button_213218')
+                          }
                           {...injectData}
                         />
                         <Button
@@ -12147,7 +12180,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                               },
                             );
                           }}
-                          ref={(r: any) => (refs['Button_221995'] = r)}
+                          ref={(r: any) =>
+                            refs.setComponentRef(r, 'Button_221995')
+                          }
                           {...injectData}
                         />
                       </View>
@@ -12182,7 +12217,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                           width: '100%',
                           textAlign: 'right',
                         }}
-                        ref={(r: any) => (refs['View_746273'] = r)}
+                        ref={(r: any) => refs.setComponentRef(r, 'View_746273')}
                         {...injectData}
                       >
                         <Button
@@ -12501,7 +12536,9 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                             ); // console 168230403789973860
                             console.log(data?.pageParam?.orgCode);
                           }}
-                          ref={(r: any) => (refs['Button_8258636'] = r)}
+                          ref={(r: any) =>
+                            refs.setComponentRef(r, 'Button_8258636')
+                          }
                           {...injectData}
                         />
                       </View>
@@ -13610,7 +13647,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
                         },
                       );
                     }}
-                    ref={(r: any) => (refs['Table_4678628'] = r)}
+                    ref={(r: any) => refs.setComponentRef(r, 'Table_4678628')}
                     {...injectData}
                   />
                 </TabPane>
@@ -13624,7 +13661,7 @@ const OaOrganizationManagementcopy$$Page: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(OaOrganizationManagementcopy$$Page, {
-  pageId: '967266347405778944',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { mode: '', associatedUsrKeys: '', associatedUsers: '' },

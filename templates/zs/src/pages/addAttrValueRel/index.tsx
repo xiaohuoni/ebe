@@ -1,8 +1,9 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
-import { Button, Form, Input, Table, View } from '@/components/factory';
+import { View, Form, Input, Button, Table } from '@/components/factory';
 
 import { useEffect } from 'react';
 
@@ -12,6 +13,7 @@ import dataSource from './dataSource.json';
 
 import { getFormByCompId } from '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper';
 
+const pageId = '1003183883381542912';
 const AddAttrValueRel$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -27,6 +29,7 @@ const AddAttrValueRel$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const refeshAttrValue = (options_4358395: any) => {
     const eventDatareloadDataSource29: any = [
@@ -442,7 +445,7 @@ const AddAttrValueRel$$Modal: React.FC<PageProps> = ({
           width: '0A',
           margin: '12px 12px 12px 12px',
         }}
-        ref={(r: any) => (refs['View_7443712'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_7443712')}
         {...injectData}
       >
         <Form
@@ -467,7 +470,7 @@ const AddAttrValueRel$$Modal: React.FC<PageProps> = ({
           visible={true}
           readOnly={false}
           style={{ padding: '0px 0px 10px 0px' }}
-          ref={(r: any) => (refs['Form_0478987'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Form_0478987')}
           {...injectData}
         >
           <Input
@@ -539,7 +542,7 @@ const AddAttrValueRel$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Input_17281'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_17281')}
             {...injectData}
           />
           <Input
@@ -611,7 +614,7 @@ const AddAttrValueRel$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Input_2629198'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Input_2629198')}
             {...injectData}
           />
           <View
@@ -643,7 +646,7 @@ const AddAttrValueRel$$Modal: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_594897'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_594897')}
             {...injectData}
           >
             <Button
@@ -696,7 +699,7 @@ const AddAttrValueRel$$Modal: React.FC<PageProps> = ({
                   platform: 'pc',
                 });
               }}
-              ref={(r: any) => (refs['Button_338022'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_338022')}
               {...injectData}
             />
             <Button
@@ -875,7 +878,7 @@ const AddAttrValueRel$$Modal: React.FC<PageProps> = ({
                   },
                 );
               }}
-              ref={(r: any) => (refs['Button_69472'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Button_69472')}
               {...injectData}
             />
           </View>
@@ -1501,7 +1504,7 @@ const AddAttrValueRel$$Modal: React.FC<PageProps> = ({
               },
             );
           }}
-          ref={(r: any) => (refs['Table_86506425'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Table_86506425')}
           {...injectData}
         />
       </View>
@@ -1510,7 +1513,7 @@ const AddAttrValueRel$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AddAttrValueRel$$Modal, {
-  pageId: '1003183883381542912',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: { bizId: '', sceneCode: '', bizData: '' },

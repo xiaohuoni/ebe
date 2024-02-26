@@ -1,6 +1,7 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import { Description } from '@/components/factory';
 
@@ -8,6 +9,7 @@ import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+const pageId = 'pageId 未找到';
 const BusiComp734913$$BusiComp: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -22,6 +24,7 @@ const BusiComp734913$$BusiComp: React.FC<PageProps> = ({
   componentItem,
   style,
   urlParam,
+  parentEngineId = pageId,
 }) => {
   useEffect(() => {
     return () => {};
@@ -701,7 +704,7 @@ const BusiComp734913$$BusiComp: React.FC<PageProps> = ({
         disabled={false}
         visible={true}
         readOnly={false}
-        ref={(r: any) => (refs['Description_46427466'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'Description_46427466')}
         {...injectData}
       />
     </div>
@@ -709,7 +712,7 @@ const BusiComp734913$$BusiComp: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(BusiComp734913$$BusiComp, {
-  pageId: 'pageId 未找到',
+  pageId,
   hasLogin: true,
   defaultState: { singleGroup: '' },
 });

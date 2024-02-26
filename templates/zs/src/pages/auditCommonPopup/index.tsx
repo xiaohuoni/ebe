@@ -1,18 +1,19 @@
 // 注意: 出码模块正在调试
 import React from 'react';
 // 默认都加，应该用到再加
+import Popover from '@/components/Popover';
 
 import {
-  Button,
-  Form,
-  Input,
-  Radio,
-  Row,
-  Select,
-  StdUpload,
-  Text,
-  TextArea,
   View,
+  Row,
+  Form,
+  Radio,
+  Select,
+  Input,
+  TextArea,
+  Text,
+  StdUpload,
+  Button,
 } from '@/components/factory';
 
 import Pageview from '@/components/Pageview';
@@ -23,6 +24,7 @@ import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
 import dataSource from './dataSource.json';
 
+const pageId = '911800134937767936';
 const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -38,6 +40,7 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
   style,
   urlParam,
   forwardedRef,
+  parentEngineId = pageId,
 }) => {
   const nextTacheChange = (options_1889766: any) => {
     // console 167308492132364500
@@ -5805,7 +5808,7 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
           overflowY: 'hidden',
           margin: '0px 0px 0px 0px',
         }}
-        ref={(r: any) => (refs['View_30_1'] = r)}
+        ref={(r: any) => refs.setComponentRef(r, 'View_30_1')}
         {...injectData}
       >
         <Row
@@ -5823,7 +5826,7 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
           disabled={false}
           visible={true}
           readOnly={false}
-          ref={(r: any) => (refs['Row_628506'] = r)}
+          ref={(r: any) => refs.setComponentRef(r, 'Row_628506')}
           {...injectData}
         >
           <View
@@ -5845,7 +5848,7 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
               padding: '0px 0px 0px 0px',
               width: '100%',
             }}
-            ref={(r: any) => (refs['View_860362'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'View_860362')}
             {...injectData}
           >
             <Form
@@ -5870,7 +5873,7 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
               visible={true}
               readOnly={false}
               style={{ padding: '8px 0px 0px 0px' }}
-              ref={(r: any) => (refs['Form_0063102_5441816'] = r)}
+              ref={(r: any) => refs.setComponentRef(r, 'Form_0063102_5441816')}
               {...injectData}
             >
               <Radio
@@ -8600,7 +8603,7 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Radio_774135_211748'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Radio_774135_211748')}
                 {...injectData}
               />
               <Select
@@ -8889,7 +8892,9 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Select_6041524_150172'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Select_6041524_150172')
+                }
                 {...injectData}
               />
               <Input
@@ -9266,7 +9271,9 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_668689_6608047'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_668689_6608047')
+                }
                 {...injectData}
               />
               <Input
@@ -9310,7 +9317,9 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
                 visible={false}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_9206452_214088'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_9206452_214088')
+                }
                 {...injectData}
               />
               <TextArea
@@ -9337,7 +9346,9 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
                 visible={true}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['TextArea_4776246_432797'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'TextArea_4776246_432797')
+                }
                 {...injectData}
               />
               <Input
@@ -9459,7 +9470,9 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
                     },
                   );
                 }}
-                ref={(r: any) => (refs['Input_668689_0650375_084025'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_668689_0650375_084025')
+                }
                 {...injectData}
               />
               <Radio
@@ -9552,7 +9565,7 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
                     platform: 'pc',
                   });
                 }}
-                ref={(r: any) => (refs['Radio_349884'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Radio_349884')}
                 {...injectData}
               />
               <Text
@@ -9587,7 +9600,7 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
                   backgroundColor: 'rgba(255, 255, 255,0)',
                   padding: '0px 0px 0px 100px',
                 }}
-                ref={(r: any) => (refs['Text_770741'] = r)}
+                ref={(r: any) => refs.setComponentRef(r, 'Text_770741')}
                 {...injectData}
               />
               <Input
@@ -9633,7 +9646,9 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
                 visible={false}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['Input_9206452_583366_90175265'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'Input_9206452_583366_90175265')
+                }
                 {...injectData}
               />
               <StdUpload
@@ -9692,7 +9707,9 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
                 visible={false}
                 readOnly={false}
                 isFormRootChild={true}
-                ref={(r: any) => (refs['StdUpload_3523188_48947'] = r)}
+                ref={(r: any) =>
+                  refs.setComponentRef(r, 'StdUpload_3523188_48947')
+                }
                 {...injectData}
               />
             </Form>
@@ -9703,8 +9720,9 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
             pageSrc={'/common/comment/listpage'}
             pageId={'907443177794400256'}
             style={{ height: '100%', width: '100%' }}
-            ref={(r: any) => (refs['Pageview_098802'] = r)}
+            ref={(r: any) => refs.setComponentRef(r, 'Pageview_098802')}
             {...injectData}
+            parentEngineId={parentEngineId}
           />
         </Row>
         <View
@@ -9728,7 +9746,9 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
             backgroundColor: '#ffffff',
             boxShadow: '0px 1px 0px 0px #e7e8ea inset',
           }}
-          ref={(r: any) => (refs['View_30_1122_56129022_411221'] = r)}
+          ref={(r: any) =>
+            refs.setComponentRef(r, 'View_30_1122_56129022_411221')
+          }
           {...injectData}
         >
           <Button
@@ -9775,7 +9795,9 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
                 platform: 'pc',
               });
             }}
-            ref={(r: any) => (refs['Button_30_122_408084_070965'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Button_30_122_408084_070965')
+            }
             {...injectData}
           />
           <Button
@@ -10480,7 +10502,9 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
                 },
               );
             }}
-            ref={(r: any) => (refs['Button_30_121_490898_246542'] = r)}
+            ref={(r: any) =>
+              refs.setComponentRef(r, 'Button_30_121_490898_246542')
+            }
             {...injectData}
           />
         </View>
@@ -10490,7 +10514,7 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
 };
 
 export default withPageHOC(AuditCommonPopup$$Modal, {
-  pageId: '911800134937767936',
+  pageId,
   hasLogin: false,
   dataSource,
   defaultState: {
