@@ -18,6 +18,8 @@ import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+import dataSource from './dataSource.json';
+
 const pageId = '874552826138832896';
 const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
   data,
@@ -4583,6 +4585,7 @@ const BusiComp530274$$BusiComp: React.FC<PageProps> = ({
 export default withPageHOC(BusiComp530274$$BusiComp, {
   pageId,
   hasLogin: true,
+  dataSource,
   defaultState: {
     tacheCode: '',
     meetingType: '',

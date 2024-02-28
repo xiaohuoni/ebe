@@ -9,6 +9,8 @@ import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+import dataSource from './dataSource.json';
+
 const pageId = '1062542629777006592';
 const BusiComp922954$$BusiComp: React.FC<PageProps> = ({
   data,
@@ -701,5 +703,6 @@ const BusiComp922954$$BusiComp: React.FC<PageProps> = ({
 export default withPageHOC(BusiComp922954$$BusiComp, {
   pageId,
   hasLogin: true,
+  dataSource,
   defaultState: { accountInfo: '' },
 });

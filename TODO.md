@@ -66,6 +66,7 @@
 - [x] 检查语法错误，舍弃代码
 - [x] customFuctions 自定义事件,唯一 name 重复，改用 eventCode
 - [x] 命令 callParentCustomFunc 用于调用父级页面自定义方法 engineRelation
+- [ ] 命令 callCustomPageFunc 调用任意页面方法
 - [ ] visible 需要兼容动态指令显隐 和 basicStatus(已实现)
 - [ ] 应用勾子？-- 内部发起都处理，若移除 createApp 则需要重新处理
 - [ ] 应用勾子 pageDidMount 这个应该在页面处理
@@ -82,6 +83,7 @@
 - [x] pc Table ref getTableSelected
 - [ ] pageview 是否应该按需载入？
 - [x] 业务组件 pageId 来自页面 pageId
+- [x] 业务组件拥有自己的数据源
 
 资产 DSL - 林喜 PC 端 实习生打卡 DICT 指令源码化？源数据 dataSource 清理？
 

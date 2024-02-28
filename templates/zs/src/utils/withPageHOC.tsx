@@ -333,8 +333,6 @@ export const withPageHOC = (
         EventName: string,
         $$compDefine: $$compDefine,
       ) => {
-    console.log('urlparam', urlParam);
-
         return CMDParse(
           targetEventData,
           '',

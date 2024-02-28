@@ -9,6 +9,8 @@ import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
+import dataSource from './dataSource.json';
+
 const pageId = '1064468557612539904';
 const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
   data,
@@ -5335,5 +5337,6 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
 export default withPageHOC(BusiComp335152$$BusiComp, {
   pageId,
   hasLogin: true,
+  dataSource,
   defaultState: { whitelistApplyInfo: '' },
 });

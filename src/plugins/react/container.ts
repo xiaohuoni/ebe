@@ -184,11 +184,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       });
     }
     let hasDataSource = false;
-    if (
-      PAGE_TYPES.includes(ir.containerType) &&
-      ir.dataSource &&
-      ir.dataSource.length
-    ) {
+    if (ir.dataSource && ir.dataSource.length) {
       // import dataSource from './dataSource';
       next.ir.deps.push(
         getImportFrom('./dataSource.json', 'dataSource', false),

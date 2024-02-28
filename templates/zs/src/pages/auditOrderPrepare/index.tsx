@@ -43,7 +43,6 @@ const AuditOrderPrepare$$Page: React.FC<PageProps> = ({
   urlParam,
   parentEngineId = pageId,
 }) => {
-  console.info("datadatadatadatadatadata",data)
   const getFactor = (options_357128: any) => {
     // console 166452080315011000
     console.log('===========父页面112=============');
@@ -22819,7 +22818,6 @@ const AuditOrderPrepare$$Page: React.FC<PageProps> = ({
                   MemoLoopItem: (props: any) => {
                     const item = props[props.itemKey] ?? props?.item;
                     const i = props[props.indexKey] ?? props?.i;
-                    console.log('MemoLoopItemMemoLoopItem',item)
                     return (
                       <>
                         <Pageview
