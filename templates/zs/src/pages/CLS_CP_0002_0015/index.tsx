@@ -574,6 +574,7 @@ const ClsCp_0002_0015$$Page: React.FC<PageProps> = ({
       className="__CustomClass_887424__"
     >
       <View
+        className="View_View_887424_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_887424_1',
@@ -596,6 +597,7 @@ const ClsCp_0002_0015$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_254915"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -638,6 +640,7 @@ const ClsCp_0002_0015$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_659479"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -687,6 +690,7 @@ const ClsCp_0002_0015$$Page: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_515422"
                 name={'布局容器'}
                 $$componentItem={{
                   id: 'View_515422',
@@ -768,6 +772,7 @@ const ClsCp_0002_0015$$Page: React.FC<PageProps> = ({
                     {...injectData}
                   />
                   <View
+                    className="View_View_955453"
                     name={'布局容器'}
                     labelCol={8}
                     wrapperCol={16}
@@ -969,6 +974,7 @@ const ClsCp_0002_0015$$Page: React.FC<PageProps> = ({
             />
           </Form>
           <BusiComp0521965
+            pageId={pageId}
             busiCompId={'922396081753948160'}
             name={'附件'}
             formItemIndex={5}

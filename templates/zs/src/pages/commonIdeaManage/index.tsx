@@ -824,6 +824,7 @@ const CommonIdeaManage$$Page: React.FC<PageProps> = ({
       className="__CustomClass_2540494__"
     >
       <View
+        className="View_View_2540494_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_2540494_1',
@@ -867,6 +868,7 @@ const CommonIdeaManage$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_434019"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_434019',
@@ -1557,6 +1559,7 @@ const CommonIdeaManage$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_480932"
                   name={'布局容器'}
                   labelCol={8}
                   wrapperCol={16}
@@ -2687,6 +2690,7 @@ const CommonIdeaManage$$Page: React.FC<PageProps> = ({
             </Card>
           </View>
           <View
+            className="View_View_115754"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_115754',
@@ -2987,6 +2991,7 @@ const CommonIdeaManage$$Page: React.FC<PageProps> = ({
                 />
               </Form>
               <View
+                className="View_View_994054"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{

@@ -474,6 +474,7 @@ const ClsJc_0011_0001$$Page: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_6806553"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -519,6 +520,7 @@ const ClsJc_0011_0001$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_339406"
               name={'布局容器'}
               $$componentItem={{
                 id: 'View_339406',
@@ -863,6 +865,7 @@ const ClsJc_0011_0001$$Page: React.FC<PageProps> = ({
           />
         </Form>
         <View
+          className="View_View_6870919"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -902,6 +905,7 @@ const ClsJc_0011_0001$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_697731"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -1000,6 +1004,7 @@ const ClsJc_0011_0001$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_3532197"
               name={'布局容器'}
               $$componentItem={{
                 id: 'View_3532197',
@@ -1041,6 +1046,7 @@ const ClsJc_0011_0001$$Page: React.FC<PageProps> = ({
               />
             </View>
             <View
+              className="View_View_850696"
               name={'布局容器'}
               $$componentItem={{
                 id: 'View_850696',
@@ -1104,6 +1110,7 @@ const ClsJc_0011_0001$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_873478"
               name={'布局容器'}
               $$componentItem={{
                 id: 'View_873478',
@@ -1179,6 +1186,7 @@ const ClsJc_0011_0001$$Page: React.FC<PageProps> = ({
               />
             </View>
             <View
+              className="View_View_663994"
               name={'布局容器'}
               $$componentItem={{
                 id: 'View_663994',

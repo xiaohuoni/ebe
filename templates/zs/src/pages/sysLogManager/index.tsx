@@ -263,6 +263,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
       className="__CustomClass_302536__"
     >
       <View
+        className="View_View_302536_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_302536_1',
@@ -461,6 +462,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_432067"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -646,6 +648,7 @@ const SysLogManager$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_131191"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{

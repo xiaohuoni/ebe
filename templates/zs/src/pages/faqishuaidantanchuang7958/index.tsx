@@ -838,6 +838,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_621037__"
     >
       <View
+        className="View_View_621037_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_621037_1',
@@ -902,6 +903,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_1213064"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -945,6 +947,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_3880396_016015_4849573"
                 name={'布局容器'}
                 $$componentItem={{
                   id: 'View_3880396_016015_4849573',
@@ -994,6 +997,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                 />
               </View>
               <View
+                className="View_View_3880396_016015"
                 name={'布局容器'}
                 $$componentItem={{
                   id: 'View_3880396_016015',
@@ -1040,6 +1044,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                 />
               </View>
               <View
+                className="View_View_3880396"
                 name={'布局容器'}
                 $$componentItem={{
                   id: 'View_3880396',
@@ -1087,6 +1092,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                 />
               </View>
               <View
+                className="View_View_3880396_602922"
                 name={'布局容器'}
                 $$componentItem={{
                   id: 'View_3880396_602922',
@@ -1137,6 +1143,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                 />
               </View>
               <View
+                className="View_View_73037_688675"
                 name={'布局容器'}
                 $$componentItem={{
                   id: 'View_73037_688675',
@@ -1185,6 +1192,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                 />
               </View>
               <View
+                className="View_View_73037"
                 name={'布局容器'}
                 $$componentItem={{
                   id: 'View_73037',
@@ -1236,6 +1244,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                 />
               </View>
               <View
+                className="View_View_73037_688675_255858"
                 name={'布局容器'}
                 $$componentItem={{
                   id: 'View_73037_688675_255858',
@@ -1261,6 +1270,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_73037_366036"
                 name={'布局容器'}
                 $$componentItem={{
                   id: 'View_73037_366036',
@@ -1287,6 +1297,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
           </View>
         </Card>
         <View
+          className="View_View_44557453"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -1416,6 +1427,7 @@ const Faqishuaidantanchuang7958$$Modal: React.FC<PageProps> = ({
           </Card>
         </View>
         <View
+          className="View_View_398657"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{

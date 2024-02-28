@@ -595,6 +595,7 @@ const CommonCommentList$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_2540494__"
     >
       <View
+        className="View_View_2540494_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -635,6 +636,7 @@ const CommonCommentList$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_434019"
             name={'布局容器'}
             visible={true}
             $$componentItem={{

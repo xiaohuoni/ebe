@@ -5737,6 +5737,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
       className="__CustomClass_541575__"
     >
       <View
+        className="View_View_541575_1"
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: undefined }}
         $$componentItem={{
@@ -5782,6 +5783,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_778702"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_778702',
@@ -6020,6 +6022,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
                 {...injectData}
               >
                 <View
+                  className="View_View_15602_3008735_190707_779205"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -6072,6 +6075,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
                     {...injectData}
                   />
                   <View
+                    className="View_View_1478523_6666_08103_620739"
                     name={'布局容器'}
                     backgroundType={{ type: 'cleanColor', color: undefined }}
                     $$componentItem={{
@@ -6375,6 +6379,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
                 {...injectData}
               >
                 <View
+                  className="View_View_15602_1948197_081284"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -6424,6 +6429,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
                     {...injectData}
                   />
                   <View
+                    className="View_View_1478523_2604544_2958093"
                     name={'布局容器'}
                     backgroundType={{ type: 'cleanColor', color: undefined }}
                     $$componentItem={{
@@ -6532,6 +6538,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
             </Row>
           </View>
           <View
+            className="View_View_1978837"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_1978837',
@@ -6767,6 +6774,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
                 {...injectData}
               >
                 <View
+                  className="View_View_15602_1948197_52433046"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -6815,6 +6823,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
                     {...injectData}
                   />
                   <View
+                    className="View_View_1478523_2604544_01611"
                     name={'布局容器'}
                     backgroundType={{ type: 'cleanColor', color: undefined }}
                     $$componentItem={{
@@ -7109,6 +7118,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
                 {...injectData}
               >
                 <View
+                  className="View_View_15602_1948197_2625135_926708"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -7160,6 +7170,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
                     {...injectData}
                   />
                   <View
+                    className="View_View_1478523_2604544_7920888_9220447"
                     name={'布局容器'}
                     backgroundType={{ type: 'cleanColor', color: undefined }}
                     $$componentItem={{
@@ -7381,6 +7392,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
                 {...injectData}
               >
                 <View
+                  className="View_View_15602_302336_103744"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -7429,6 +7441,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
                     {...injectData}
                   />
                   <View
+                    className="View_View_1478523_581132_426944"
                     name={'布局容器'}
                     backgroundType={{ type: 'cleanColor', color: undefined }}
                     $$componentItem={{
@@ -7533,6 +7546,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
           </View>
         </HorizontalView>
         <View
+          className="View_View_065343"
           name={'查询类型'}
           fieldName={'data.global_variable.queryType'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -7808,6 +7822,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_445165"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{
@@ -8420,6 +8435,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
               </View>
             </Form>
             <View
+              className="View_View_158841"
               name={'高级查询条件'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -9150,6 +9166,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
                 />
               </Form>
               <BusiComp2086
+                pageId={pageId}
                 name={'地市/区县二级联动'}
                 busiCompId={'878114493837852672'}
                 basicStatus={1}
@@ -23658,6 +23675,7 @@ const ApproveOrderTodo$$Page: React.FC<PageProps> = ({
           </Card>
         </View>
         <View
+          className="View_View_8238124"
           name={'查询类型'}
           fieldName={'data.global_variable.queryType'}
           backgroundType={{ type: 'cleanColor', color: undefined }}

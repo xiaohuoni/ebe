@@ -41,6 +41,7 @@ const Test$$Page: React.FC<PageProps> = ({
       className="__CustomClass_537892__"
     >
       <View
+        className="View_View_537892_1_2061057_500084"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -81,6 +82,7 @@ const Test$$Page: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_6806553_449831_263933"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -126,6 +128,7 @@ const Test$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_339406_281032_85457"
               name={'布局容器'}
               visible={true}
               $$componentItem={{
@@ -174,6 +177,7 @@ const Test$$Page: React.FC<PageProps> = ({
                 {...injectData}
               >
                 <View
+                  className="View_View_9690203_08144"
                   name={'布局容器'}
                   visible={true}
                   $$componentItem={{
@@ -360,6 +364,7 @@ const Test$$Page: React.FC<PageProps> = ({
                   />
                 </View>
                 <View
+                  className="View_View_200544_113112"
                   name={'布局容器'}
                   visible={true}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -384,6 +389,7 @@ const Test$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_200544_764009_37918"
                   name={'布局容器'}
                   visible={true}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -407,6 +413,7 @@ const Test$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_741146_4429651_115949"
                   name={'布局容器'}
                   visible={true}
                   $$componentItem={{
@@ -432,6 +439,7 @@ const Test$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_741146_4429651_673978_643572"
                   name={'布局容器'}
                   visible={true}
                   $$componentItem={{

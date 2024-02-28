@@ -65,6 +65,7 @@ const Guochengchuli4891$$Page: React.FC<PageProps> = ({
   return (
     <div style={{ height: '100%', ...style }} className="__CustomClass_52__">
       <View
+        className="View_View_52_1"
         name={'页面'}
         visible={true}
         backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -79,6 +80,7 @@ const Guochengchuli4891$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_52_11"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -101,6 +103,7 @@ const Guochengchuli4891$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_52_111"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -119,6 +122,7 @@ const Guochengchuli4891$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <BusiComp0496635
+              pageId={pageId}
               busiCompId={'878166584210399232'}
               name={'处理过程组件'}
               style={{ margin: '0 0 12px 0' }}

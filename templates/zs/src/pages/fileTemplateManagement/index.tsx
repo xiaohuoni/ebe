@@ -544,6 +544,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
       className="__CustomClass_5031917__"
     >
       <View
+        className="View_View_5031917_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_5031917_1',
@@ -566,6 +567,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_318342"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -1022,6 +1024,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_150732"
                 name={'布局容器'}
                 labelCol={8}
                 wrapperCol={16}
@@ -1269,6 +1272,7 @@ const FileTemplateManagement$$Page: React.FC<PageProps> = ({
               </View>
             </Form>
             <View
+              className="View_View_46096"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{

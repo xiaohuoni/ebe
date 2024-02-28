@@ -448,6 +448,7 @@ const ClsJc_0007_0005$$Page: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_6806553"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -489,6 +490,7 @@ const ClsJc_0007_0005$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_339406"
               name={'布局容器'}
               visible={true}
               $$componentItem={{
@@ -696,6 +698,7 @@ const ClsJc_0007_0005$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_58611"
             name={'布局容器'}
             visible={true}
             backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -749,6 +752,7 @@ const ClsJc_0007_0005$$Page: React.FC<PageProps> = ({
             />
           </View>
           <View
+            className="View_View_58611_6287033"
             name={'布局容器'}
             visible={true}
             backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -802,6 +806,7 @@ const ClsJc_0007_0005$$Page: React.FC<PageProps> = ({
             />
           </View>
           <View
+            className="View_View_58611_717376"
             name={'布局容器'}
             visible={true}
             backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -901,6 +906,7 @@ const ClsJc_0007_0005$$Page: React.FC<PageProps> = ({
           />
         </Row>
         <View
+          className="View_View_4949093"
           name={'布局容器'}
           visible={true}
           formItemIndex={0}
@@ -1268,6 +1274,7 @@ const ClsJc_0007_0005$$Page: React.FC<PageProps> = ({
                         {...injectData}
                       >
                         <View
+                          className="View_View_58611_08291"
                           name={'布局容器'}
                           visible={true}
                           backgroundType={{
@@ -1339,6 +1346,7 @@ const ClsJc_0007_0005$$Page: React.FC<PageProps> = ({
                           />
                         </View>
                         <View
+                          className="View_View_58611_6287033_724501"
                           name={'布局容器'}
                           visible={true}
                           backgroundType={{
@@ -1481,6 +1489,7 @@ const ClsJc_0007_0005$$Page: React.FC<PageProps> = ({
                                       {...injectData}
                                     >
                                       <View
+                                        className="View_View_58611_08291_132198"
                                         name={'布局容器'}
                                         visible={true}
                                         backgroundType={{
@@ -1561,6 +1570,7 @@ const ClsJc_0007_0005$$Page: React.FC<PageProps> = ({
                                         />
                                       </View>
                                       <View
+                                        className="View_View_58611_6287033_724501_623026"
                                         name={'布局容器'}
                                         visible={true}
                                         backgroundType={{
@@ -1641,6 +1651,7 @@ const ClsJc_0007_0005$$Page: React.FC<PageProps> = ({
                                         />
                                       </View>
                                       <View
+                                        className="View_View_58611_6287033_724501_623026_157274"
                                         name={'布局容器'}
                                         visible={true}
                                         backgroundType={{

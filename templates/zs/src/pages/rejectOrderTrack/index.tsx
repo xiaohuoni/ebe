@@ -185,6 +185,7 @@ const RejectOrderTrack$$Page: React.FC<PageProps> = ({
       className="__CustomClass_915749__"
     >
       <View
+        className="View_View_915749_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -205,6 +206,7 @@ const RejectOrderTrack$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_137881_333325"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}

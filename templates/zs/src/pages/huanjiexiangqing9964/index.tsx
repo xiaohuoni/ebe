@@ -5962,6 +5962,7 @@ const Huanjiexiangqing9964$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_098531__"
     >
       <View
+        className="View_View_098531_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -5982,6 +5983,7 @@ const Huanjiexiangqing9964$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_7476677"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}

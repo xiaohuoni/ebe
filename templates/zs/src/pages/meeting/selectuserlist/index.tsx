@@ -1064,6 +1064,7 @@ const MeetingSelectuserlist$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_2310769__"
     >
       <View
+        className="View_View_2310769_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_2310769_1',
@@ -1777,6 +1778,7 @@ const MeetingSelectuserlist$$Modal: React.FC<PageProps> = ({
           </Form>
         </Card>
         <View
+          className="View_View_2310769_11"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{

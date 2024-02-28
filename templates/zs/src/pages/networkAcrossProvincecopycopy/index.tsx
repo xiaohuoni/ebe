@@ -2300,6 +2300,7 @@ const NetworkAcrossProvincecopycopy$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_8430824__"
     >
       <View
+        className="View_View_8430824_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_8430824_1',
@@ -2322,6 +2323,7 @@ const NetworkAcrossProvincecopycopy$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_917911"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{

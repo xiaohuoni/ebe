@@ -186,6 +186,7 @@ const Kehujinglijixiaokaohefanganshenpixiangqing7745copy$$Modal: React.FC<
       className="__CustomClass_687791__"
     >
       <View
+        className="View_View_687791_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_687791_1',
@@ -208,6 +209,7 @@ const Kehujinglijixiaokaohefanganshenpixiangqing7745copy$$Modal: React.FC<
         {...injectData}
       >
         <View
+          className="View_View_9453773"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{

@@ -1541,6 +1541,7 @@ const QueryLine$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_784293__"
     >
       <View
+        className="View_View_784293_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_784293_1',
@@ -1563,6 +1564,7 @@ const QueryLine$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_2188005"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{

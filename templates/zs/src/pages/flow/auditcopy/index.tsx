@@ -770,6 +770,7 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
   return (
     <div style={{ height: '100%', ...style }} className="__CustomClass_30__">
       <View
+        className="View_View_30_1_249883"
         name={'页面'}
         visible={true}
         backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -791,6 +792,7 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_VerticalView_30_11_556828"
           name={'布局容器'}
           visible={true}
           $$componentItem={{
@@ -894,6 +896,7 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <BusiComp530274
+              pageId={pageId}
               name={'环节审批组件'}
               visible={true}
               busiCompId={'874552826138832896'}
@@ -917,6 +920,7 @@ const FlowAuditcopy$$Page: React.FC<PageProps> = ({
             />
           </Row>
           <View
+            className="View_View_30_1122_8434322"
             name={'布局容器'}
             visible={true}
             $$componentItem={{

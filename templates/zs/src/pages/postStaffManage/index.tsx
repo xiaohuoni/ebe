@@ -1946,6 +1946,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
       className="__CustomClass_4868135__"
     >
       <View
+        className="View_View_4868135_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_4868135_1',
@@ -1989,6 +1990,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_179182"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_179182',
@@ -2359,6 +2361,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_841498"
                   name={'布局容器'}
                   labelCol={8}
                   wrapperCol={16}
@@ -5053,6 +5056,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
             </Card>
           </View>
           <View
+            className="View_View_869717"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_869717',
@@ -5802,6 +5806,7 @@ const PostStaffManage$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_841498_1719896"
                   name={'布局容器'}
                   labelCol={8}
                   wrapperCol={16}

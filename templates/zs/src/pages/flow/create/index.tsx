@@ -61,6 +61,7 @@ const FlowCreate$$Page: React.FC<PageProps> = ({
   return (
     <div style={{ height: '100%', ...style }} className="__CustomClass_30__">
       <View
+        className="View_View_30_1"
         name={'页面'}
         visible={true}
         backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -81,6 +82,7 @@ const FlowCreate$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_VerticalView_30_11"
           name={'布局容器'}
           visible={true}
           $$componentItem={{
@@ -94,6 +96,7 @@ const FlowCreate$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_30_111"
             name={'布局容器'}
             visible={true}
             backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -162,6 +165,7 @@ const FlowCreate$$Page: React.FC<PageProps> = ({
             />
           </View>
           <BusiComp6260603
+            pageId={pageId}
             name={'起草环节组件'}
             visible={true}
             busiCompId={'874216482399985664'}
@@ -170,6 +174,7 @@ const FlowCreate$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_30_112"
             name={'布局容器'}
             visible={true}
             backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -192,6 +197,7 @@ const FlowCreate$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_30_1122"
               name={'布局容器'}
               visible={true}
               $$componentItem={{

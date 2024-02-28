@@ -1933,6 +1933,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_183103"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -1957,6 +1958,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_2218655"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -3964,6 +3966,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
           />
         </Card>
         <BusiComp6260603
+          pageId={pageId}
           name={'起草环节组件'}
           busiCompId={'874216482399985664'}
           busiCompStates={{
@@ -4039,6 +4042,7 @@ const AuditOrderSubmit$$Page: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_938709"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{

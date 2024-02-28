@@ -393,6 +393,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
       className="__CustomClass_2540494__"
     >
       <View
+        className="View_View_2540494_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -433,6 +434,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_115754"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -725,6 +727,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
                 />
               </Form>
               <View
+                className="View_View_994054"
                 name={'布局容器'}
                 visible={true}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -1557,6 +1560,7 @@ const LeaveHandover$$Page: React.FC<PageProps> = ({
             </Card>
           </View>
           <View
+            className="View_View_434019"
             name={'布局容器'}
             visible={true}
             $$componentItem={{

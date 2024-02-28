@@ -1381,6 +1381,7 @@ const ClsYx_0001_0003$$Page: React.FC<PageProps> = ({
       className="__CustomClass_537892__"
     >
       <View
+        className="View_View_537892_1_049877"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -1417,6 +1418,7 @@ const ClsYx_0001_0003$$Page: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_6806553_078583"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -1460,6 +1462,7 @@ const ClsYx_0001_0003$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_339406_745623"
               name={'布局容器'}
               visible={true}
               $$componentItem={{
@@ -1541,6 +1544,7 @@ const ClsYx_0001_0003$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_859609_193133_743022"
                   name={'布局容器'}
                   visible={true}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -2821,6 +2825,7 @@ const ClsYx_0001_0003$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_919043_703503"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -2840,6 +2845,7 @@ const ClsYx_0001_0003$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_281081_940833"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -2859,6 +2865,7 @@ const ClsYx_0001_0003$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_9696145_360431"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -2878,6 +2885,7 @@ const ClsYx_0001_0003$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_335931_032047"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -2897,6 +2905,7 @@ const ClsYx_0001_0003$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_006783_7425663"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -2916,6 +2925,7 @@ const ClsYx_0001_0003$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_859813_969715"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -7210,6 +7220,7 @@ const ClsYx_0001_0003$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_22346374_875512_926873_4359147_729981_7620959_718537"
                 name={'布局容器'}
                 visible={true}
                 labelCol={8}
@@ -7699,6 +7710,7 @@ const ClsYx_0001_0003$$Page: React.FC<PageProps> = ({
           </Row>
         </View>
         <View
+          className="View_View_4949093_8809663"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}

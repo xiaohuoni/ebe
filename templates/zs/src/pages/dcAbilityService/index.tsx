@@ -688,6 +688,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
       className="__CustomClass_302536__"
     >
       <View
+        className="View_View_302536_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -1110,6 +1111,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_131191"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -2283,6 +2285,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
           />
         </Card>
         <View
+          className="View_View_6254694"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -2829,6 +2832,7 @@ const DcAbilityService$$Page: React.FC<PageProps> = ({
               />
             </Form>
             <View
+              className="View_View_567932"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}

@@ -959,6 +959,7 @@ const ClsCp_0017_0001ProdInfo$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_2331069__"
     >
       <View
+        className="View_View_2331069_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_2331069_1',

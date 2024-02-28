@@ -364,6 +364,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_084715__"
     >
       <View
+        className="View_View_084715_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_084715_1',
@@ -1013,6 +1014,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_98842"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -1153,6 +1155,7 @@ const UserSelectList$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_540917"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}

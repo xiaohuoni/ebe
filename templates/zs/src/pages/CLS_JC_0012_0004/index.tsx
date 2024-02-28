@@ -386,6 +386,7 @@ const ClsJc_0012_0004$$Page: React.FC<PageProps> = ({
       className="__CustomClass_724622414__"
     >
       <View
+        className="View_View_724622414_1_27472"
         name={'页面'}
         $$componentItem={{
           id: 'View_724622414_1_27472',
@@ -430,6 +431,7 @@ const ClsJc_0012_0004$$Page: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_6806553_8058562_8839184_2485034"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -483,6 +485,7 @@ const ClsJc_0012_0004$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_339406_2087875_965124_831519"
               name={'布局容器'}
               $$componentItem={{
                 id: 'View_339406_2087875_965124_831519',
@@ -575,6 +578,7 @@ const ClsJc_0012_0004$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_5097806_1317393_2394241_21977"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -664,6 +668,7 @@ const ClsJc_0012_0004$$Page: React.FC<PageProps> = ({
           </HorizontalView>
         </View>
         <View
+          className="View_View_4949093_2026766_78116154_9383766_0165402"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -1423,6 +1428,7 @@ const ClsJc_0012_0004$$Page: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_4949093_2026766_78116154_9383766"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -1874,6 +1880,7 @@ const ClsJc_0012_0004$$Page: React.FC<PageProps> = ({
           />
         </View>
         <BusiComp0521965
+          pageId={pageId}
           busiCompId={'922396081753948160'}
           name={'附件'}
           formItemIndex={5}

@@ -713,6 +713,7 @@ const CreateRejectOrderClsCp_0007_0009$$Page: React.FC<PageProps> = ({
       className="__CustomClass_537892__"
     >
       <View
+        className="View_View_537892_1_47249"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -749,6 +750,7 @@ const CreateRejectOrderClsCp_0007_0009$$Page: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_6806553_449831_241779"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -794,6 +796,7 @@ const CreateRejectOrderClsCp_0007_0009$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_339406_281032_719202"
               name={'布局容器'}
               visible={true}
               $$componentItem={{
@@ -842,6 +845,7 @@ const CreateRejectOrderClsCp_0007_0009$$Page: React.FC<PageProps> = ({
                 {...injectData}
               >
                 <View
+                  className="View_View_9690203_19122"
                   name={'布局容器'}
                   visible={true}
                   $$componentItem={{
@@ -1263,6 +1267,7 @@ const CreateRejectOrderClsCp_0007_0009$$Page: React.FC<PageProps> = ({
                   />
                 </View>
                 <View
+                  className="View_View_200544_3384213"
                   name={'布局容器'}
                   visible={true}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -1314,6 +1319,7 @@ const CreateRejectOrderClsCp_0007_0009$$Page: React.FC<PageProps> = ({
                   />
                 </View>
                 <View
+                  className="View_View_200544_764009_3289322"
                   name={'布局容器'}
                   visible={true}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -1363,6 +1369,7 @@ const CreateRejectOrderClsCp_0007_0009$$Page: React.FC<PageProps> = ({
                   />
                 </View>
                 <View
+                  className="View_View_741146_4429651_528883"
                   name={'布局容器'}
                   visible={true}
                   $$componentItem={{
@@ -1412,6 +1419,7 @@ const CreateRejectOrderClsCp_0007_0009$$Page: React.FC<PageProps> = ({
                   />
                 </View>
                 <View
+                  className="View_View_741146_4429651_673978_1736115"
                   name={'布局容器'}
                   visible={true}
                   $$componentItem={{

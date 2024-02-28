@@ -640,6 +640,7 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_482782__"
     >
       <View
+        className="View_View_482782_1_2245467"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -660,6 +661,7 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_947999_9714262"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -862,6 +864,7 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_841498_8261476_979664_9421495"
               name={'布局容器'}
               visible={true}
               labelCol={8}
@@ -896,6 +899,7 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_110211_6102645_905926"
                 name={'布局容器'}
                 visible={true}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -1053,6 +1057,7 @@ const Xuanzerenyuanguanlianzuzhi3072copy$$Modal: React.FC<PageProps> = ({
           </Form>
         </View>
         <View
+          className="View_View_740935_509061"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}

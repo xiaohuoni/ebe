@@ -43,6 +43,7 @@ const AuditOrderPrepare$$Page: React.FC<PageProps> = ({
   urlParam,
   parentEngineId = pageId,
 }) => {
+  console.info("datadatadatadatadatadata",data)
   const getFactor = (options_357128: any) => {
     // console 166452080315011000
     console.log('===========父页面112=============');
@@ -13577,6 +13578,7 @@ const AuditOrderPrepare$$Page: React.FC<PageProps> = ({
       className="__CustomClass_9704152__"
     >
       <View
+        className="View_View_9704152_1"
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: undefined }}
         $$componentItem={{
@@ -13601,6 +13603,7 @@ const AuditOrderPrepare$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_183103_94042"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -13625,6 +13628,7 @@ const AuditOrderPrepare$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_2218655_711727"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -14020,6 +14024,7 @@ const AuditOrderPrepare$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_3115613"
             name={'集团信息查询条件'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -22814,6 +22819,7 @@ const AuditOrderPrepare$$Page: React.FC<PageProps> = ({
                   MemoLoopItem: (props: any) => {
                     const item = props[props.itemKey] ?? props?.item;
                     const i = props[props.indexKey] ?? props?.i;
+                    console.log('MemoLoopItemMemoLoopItem',item)
                     return (
                       <>
                         <Pageview
@@ -22959,6 +22965,7 @@ const AuditOrderPrepare$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_1351337"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}
@@ -24854,6 +24861,7 @@ const AuditOrderPrepare$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_938709"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{

@@ -45,6 +45,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
       className="__CustomClass_889267__"
     >
       <View
+        className="View_View_889267_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -65,6 +66,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_VerticalView_30_11_068364"
           name={'布局容器'}
           visible={true}
           $$componentItem={{
@@ -78,6 +80,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_30_111_163518"
             name={'布局容器'}
             visible={true}
             backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -144,6 +147,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
             />
           </View>
           <View
+            className="View_View_30_112_907789"
             name={'布局容器'}
             visible={true}
             disabled={false}
@@ -362,6 +366,7 @@ const PostRequestPage$$Page: React.FC<PageProps> = ({
               />
             </Form>
             <View
+              className="View_View_30_1122_8942146"
               name={'布局容器'}
               visible={true}
               $$componentItem={{

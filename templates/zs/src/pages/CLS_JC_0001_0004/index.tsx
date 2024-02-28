@@ -4442,6 +4442,7 @@ const ClsJc_0001_0004$$Page: React.FC<PageProps> = ({
       className="__CustomClass_537892__"
     >
       <View
+        className="View_View_537892_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_537892_1',
@@ -4483,6 +4484,7 @@ const ClsJc_0001_0004$$Page: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_6806553"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -4528,6 +4530,7 @@ const ClsJc_0001_0004$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_339406"
               name={'布局容器'}
               $$componentItem={{
                 id: 'View_339406',
@@ -4618,6 +4621,7 @@ const ClsJc_0001_0004$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_6319234_3569864_15467365_781748_241037"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -6273,6 +6277,7 @@ const ClsJc_0001_0004$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_935668"
               name={'布局容器'}
               labelCol={'6'}
               wrapperCol={18}
@@ -6456,6 +6461,7 @@ const ClsJc_0001_0004$$Page: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_5355296"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{
@@ -6481,6 +6487,7 @@ const ClsJc_0001_0004$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_8856092"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{
@@ -11402,6 +11409,7 @@ const ClsJc_0001_0004$$Page: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_716685"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{
@@ -11427,6 +11435,7 @@ const ClsJc_0001_0004$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_334894"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{
@@ -16324,6 +16333,7 @@ const ClsJc_0001_0004$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_697142"
                   name={'布局容器'}
                   labelCol={8}
                   wrapperCol={16}
@@ -17493,6 +17503,7 @@ const ClsJc_0001_0004$$Page: React.FC<PageProps> = ({
                   />
                 </View>
                 <View
+                  className="View_View_067872"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -18628,6 +18639,7 @@ const ClsJc_0001_0004$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_059305"
                   name={'布局容器'}
                   labelCol={8}
                   wrapperCol={16}
@@ -19369,6 +19381,7 @@ const ClsJc_0001_0004$$Page: React.FC<PageProps> = ({
                   />
                 </View>
                 <View
+                  className="View_View_954018"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -20149,6 +20162,7 @@ const ClsJc_0001_0004$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_4316576"
                   name={'布局容器'}
                   labelCol={8}
                   wrapperCol={16}
@@ -20892,6 +20906,7 @@ const ClsJc_0001_0004$$Page: React.FC<PageProps> = ({
                   />
                 </View>
                 <View
+                  className="View_View_582257"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{

@@ -220,6 +220,7 @@ const ExportDownLoad$$Page: React.FC<PageProps> = ({
       className="__CustomClass_2739003__"
     >
       <View
+        className="View_View_2739003_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -338,6 +339,7 @@ const ExportDownLoad$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_2699974"
             name={'布局容器'}
             visible={true}
             backgroundType={{ type: 'cleanColor', color: undefined }}

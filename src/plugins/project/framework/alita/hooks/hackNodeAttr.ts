@@ -45,6 +45,11 @@ export default function hackEngineApis(
     const { options = {} } = config!;
     const { busiCompMapping = {} } = options as LXProjectOptions;
     pieces[0].value = `BusiComp${busiCompMapping[nodeItem?.props?.busiCompId]}`;
+    // 业务组件的 pageId 来自 页面
+    pieces.unshift({
+      type: PIECE_TYPE.ATTR,
+      value: `pageId={pageId}`,
+    });
   }
   // 如果是CardHeader要改成 Card.Header，另外依赖分析那边 import 要过滤
   if (nodeTags === 'CardHeader') {
@@ -187,5 +192,15 @@ export default function hackEngineApis(
       value: `parentEngineId={parentEngineId}`,
     });
   }
+  // className='View_View_938709'
+  if (nodeTags === 'View') {
+    if (!nodeItem?.props?.className) {
+      pieces.unshift({
+        type: PIECE_TYPE.ATTR,
+        value: `className='View_${nodeItem?.id}'`,
+      });
+    }
+  }
+
   return pieces;
 }

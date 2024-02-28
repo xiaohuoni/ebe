@@ -907,6 +907,7 @@ const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
       className="__CustomClass_360551__"
     >
       <View
+        className="View_View_360551_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_360551_1',
@@ -929,6 +930,7 @@ const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_42937"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -954,6 +956,7 @@ const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_688274"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -979,6 +982,7 @@ const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_159945"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: '#1890ff' }}
               $$componentItem={{
@@ -1030,6 +1034,7 @@ const ClsCp_0019_0001MultiPage$$Page: React.FC<PageProps> = ({
             />
           </View>
           <View
+            className="View_View_1765626"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{

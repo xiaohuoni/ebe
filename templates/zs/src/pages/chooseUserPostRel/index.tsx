@@ -1672,6 +1672,7 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_7975706__"
     >
       <View
+        className="View_View_7975706_1"
         name={'布局容器'}
         backgroundType={{ type: 'cleanColor', color: undefined }}
         $$componentItem={{
@@ -1688,6 +1689,7 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_7975706_12"
           name={'布局容器'}
           $$componentItem={{
             id: 'View_7975706_12',
@@ -2063,6 +2065,7 @@ const ChooseUserPostRel$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_841498_323645_360219"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}

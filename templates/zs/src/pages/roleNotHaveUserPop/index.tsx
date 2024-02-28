@@ -1075,6 +1075,7 @@ const RoleNotHaveUserPop$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_7975706__"
     >
       <View
+        className="View_View_7975706_1_345242"
         name={'布局容器'}
         visible={true}
         backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -1089,6 +1090,7 @@ const RoleNotHaveUserPop$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_7975706_12_60355746"
           name={'布局容器'}
           visible={true}
           $$componentItem={{
@@ -1288,6 +1290,7 @@ const RoleNotHaveUserPop$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_841498_323645_360219_603005"
               name={'布局容器'}
               visible={true}
               labelCol={8}

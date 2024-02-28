@@ -216,6 +216,7 @@ const MyDraft$$Page: React.FC<PageProps> = ({
       className="__CustomClass_536217__"
     >
       <View
+        className="View_View_852562_1_890036"
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: undefined }}
         $$componentItem={{
@@ -277,6 +278,7 @@ const MyDraft$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_221112"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{

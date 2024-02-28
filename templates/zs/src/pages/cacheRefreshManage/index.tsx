@@ -208,6 +208,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
       className="__CustomClass_3764757__"
     >
       <View
+        className="View_View_3764757_1"
         name={'页面'}
         visible={true}
         backgroundType={{ type: 'cleanColor', color: '#FFFFFF' }}
@@ -1223,6 +1224,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_670865"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -1506,6 +1508,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_169362"
               name={'布局容器'}
               visible={true}
               labelCol={8}
@@ -1539,6 +1542,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
             />
           </Form>
           <View
+            className="View_View_2205763"
             name={'布局容器'}
             visible={true}
             backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -1687,6 +1691,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_063018"
                 name={'布局容器'}
                 visible={true}
                 $$componentItem={{
@@ -1734,6 +1739,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                 />
               </View>
               <View
+                className="View_View_334674"
                 name={'布局容器'}
                 visible={true}
                 $$componentItem={{
@@ -1915,6 +1921,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_063018_9698747"
                 name={'布局容器'}
                 visible={true}
                 $$componentItem={{
@@ -1964,6 +1971,7 @@ const CacheRefreshManage$$Page: React.FC<PageProps> = ({
                 />
               </View>
               <View
+                className="View_View_334674_0541157"
                 name={'布局容器'}
                 visible={true}
                 $$componentItem={{

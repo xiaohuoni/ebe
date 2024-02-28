@@ -574,6 +574,7 @@ const MarketDeptApproveWorkbench$$Page: React.FC<PageProps> = ({
       className="__CustomClass_212281__"
     >
       <View
+        className="View_View_212281_1_3280208"
         name={'页面'}
         $$componentItem={{
           id: 'View_212281_1_3280208',

@@ -2093,6 +2093,7 @@ const ApproveOrderQuery1$$Page: React.FC<PageProps> = ({
       className="__CustomClass_541575__"
     >
       <View
+        className="View_View_541575_1"
         name={'页面'}
         visible={true}
         backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -2336,6 +2337,7 @@ const ApproveOrderQuery1$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_445165"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -2837,6 +2839,7 @@ const ApproveOrderQuery1$$Page: React.FC<PageProps> = ({
             </View>
           </Form>
           <View
+            className="View_View_158841"
             name={'高级查询条件'}
             visible={false}
             backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -3541,6 +3544,7 @@ const ApproveOrderQuery1$$Page: React.FC<PageProps> = ({
               />
             </Form>
             <BusiComp2086
+              pageId={pageId}
               name={'地市/区县二级联动'}
               visible={true}
               busiCompId={'878114493837852672'}
@@ -3610,6 +3614,7 @@ const ApproveOrderQuery1$$Page: React.FC<PageProps> = ({
             </Form>
           </View>
           <View
+            className="View_View_706566"
             name={'布局容器'}
             visible={true}
             backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -3657,6 +3662,7 @@ const ApproveOrderQuery1$$Page: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_615533"
                 name={'布局容器'}
                 visible={true}
                 labelCol={8}

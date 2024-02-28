@@ -1714,6 +1714,7 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
   return (
     <div style={{ height: '100%', ...style }} className="__CustomClass_31__">
       <View
+        className="View_View_31_1"
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: undefined }}
         $$componentItem={{
@@ -1736,6 +1737,7 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_31_112_8719828"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -2467,6 +2469,7 @@ const Yingxiaohuodongdangci5110$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_58290555"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{

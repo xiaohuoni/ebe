@@ -591,6 +591,7 @@ const Duojituanbaimingdanxinxi4961$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_653507__"
     >
       <View
+        className="View_View_653507_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_653507_1',
@@ -613,6 +614,7 @@ const Duojituanbaimingdanxinxi4961$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <BusiComp335152
+          pageId={pageId}
           busiCompId={'1064468557612539904'}
           name={'欠费高风险白名单信息'}
           fieldName={'singleGroup'}
@@ -622,6 +624,7 @@ const Duojituanbaimingdanxinxi4961$$Modal: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_281404"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -646,6 +649,7 @@ const Duojituanbaimingdanxinxi4961$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_8956481"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{

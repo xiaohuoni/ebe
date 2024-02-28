@@ -324,6 +324,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
       className="__CustomClass_5254274__"
     >
       <View
+        className="View_View_5254274_1"
         name={'布局容器'}
         backgroundType={{ type: 'cleanColor', color: undefined }}
         $$componentItem={{
@@ -340,6 +341,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_5254274_11"
           name={'布局容器'}
           $$componentItem={{
             id: 'View_5254274_11',
@@ -385,6 +387,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
           />
         </View>
         <View
+          className="View_View_5254274_12"
           name={'布局容器'}
           $$componentItem={{
             id: 'View_5254274_12',
@@ -405,6 +408,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_5254274_121"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_5254274_121',
@@ -815,6 +819,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_756929_0062074_3365063"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{
@@ -2336,6 +2341,7 @@ const ExceptionList$$Page: React.FC<PageProps> = ({
           />
         </View>
         <View
+          className="View_View_49_21119_559187"
           name={'布局容器'}
           $$componentItem={{
             id: 'View_49_21119_559187',

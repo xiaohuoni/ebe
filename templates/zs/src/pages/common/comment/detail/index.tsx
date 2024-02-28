@@ -349,6 +349,7 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_2540494__"
     >
       <View
+        className="View_View_2540494_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -389,6 +390,7 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_115754"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -649,6 +651,7 @@ const CommonCommentDetail$$Modal: React.FC<PageProps> = ({
               </Form>
             </Card>
             <View
+              className="View_View_994054_940879"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}

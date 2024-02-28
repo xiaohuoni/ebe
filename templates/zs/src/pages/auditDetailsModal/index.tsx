@@ -1655,6 +1655,7 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_183103_0410717"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -1701,6 +1702,7 @@ const AuditDetailsModal$$Modal: React.FC<PageProps> = ({
           />
         </View>
         <View
+          className="View_View_2218655_657974"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}

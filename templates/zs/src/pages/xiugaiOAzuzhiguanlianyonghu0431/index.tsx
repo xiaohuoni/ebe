@@ -361,6 +361,7 @@ const XiugaiOAzuzhiguanlianyonghu0431$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_044253__"
     >
       <View
+        className="View_View_044253_1"
         name={'页面'}
         visible={true}
         $$componentItem={{

@@ -1240,6 +1240,7 @@ const ApproveWorkbench$$Page: React.FC<PageProps> = ({
       className="__CustomClass_212281__"
     >
       <View
+        className="View_View_212281_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_212281_1',

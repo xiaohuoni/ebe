@@ -916,6 +916,7 @@ const MeetingCreatepopcopy$$Modal: React.FC<PageProps> = ({
   return (
     <div style={{ height: '100%', ...style }} className="__CustomClass_30__">
       <View
+        className="View_View_30_1"
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: undefined }}
         $$componentItem={{
@@ -938,6 +939,7 @@ const MeetingCreatepopcopy$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_VerticalView_30_11"
           name={'布局容器'}
           $$componentItem={{
             id: 'VerticalView_30_11',
@@ -953,6 +955,7 @@ const MeetingCreatepopcopy$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_30_112"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{

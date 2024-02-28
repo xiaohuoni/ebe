@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
-const pageId = 'pageId 未找到';
+const pageId = '1064468557612539904';
 const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -561,6 +561,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
       className="__CustomClass_335152__"
     >
       <View
+        className="View_View_436132"
         name={'布局容器'}
         backgroundType={{ type: 'cleanColor', color: undefined }}
         $$componentItem={{
@@ -583,6 +584,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_7338818"
           name={'集团基本信息及欠费催缴情况布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -605,6 +607,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_284985"
             name={'标题容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -630,6 +633,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_9265983"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -655,6 +659,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_004572"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: '#1890ff' }}
                 $$componentItem={{
@@ -706,6 +711,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
               />
             </View>
             <View
+              className="View_View_773214"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -757,6 +763,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
             </View>
           </View>
           <View
+            className="View_View_489073"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -2383,6 +2390,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
           </View>
         </View>
         <View
+          className="View_View_944976"
           name={'同一证件号码关联集团欠费情况容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -2406,6 +2414,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_890466"
             name={'标题容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -2431,6 +2440,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_348735"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -2456,6 +2466,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_792075"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: '#1890ff' }}
                 $$componentItem={{
@@ -2507,6 +2518,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
               />
             </View>
             <View
+              className="View_View_2817205"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -2558,6 +2570,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
             </View>
           </View>
           <View
+            className="View_View_906396"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -3802,6 +3815,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
           />
         </View>
         <View
+          className="View_View_273682"
           name={'申请信息容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -3825,6 +3839,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_3458"
             name={'标题容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -3850,6 +3865,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_434"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -3875,6 +3891,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_520073"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: '#1890ff' }}
                 $$componentItem={{
@@ -3926,6 +3943,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
               />
             </View>
             <View
+              className="View_View_6314626"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -3950,6 +3968,7 @@ const BusiComp335152$$BusiComp: React.FC<PageProps> = ({
             />
           </View>
           <View
+            className="View_View_255859"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{

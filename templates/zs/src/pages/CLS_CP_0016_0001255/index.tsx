@@ -38,6 +38,7 @@ const ClsCp_0016_0001255$$Page: React.FC<PageProps> = ({
       className="__CustomClass_088762__"
     >
       <View
+        className="View_View_088762_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -58,6 +59,7 @@ const ClsCp_0016_0001255$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_9640137"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}

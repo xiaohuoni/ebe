@@ -1088,6 +1088,7 @@ const Wenjianmubanxinzeng3140$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_8851423__"
     >
       <View
+        className="View_View_8851423_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_8851423_1',
@@ -1110,6 +1111,7 @@ const Wenjianmubanxinzeng3140$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_134"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{

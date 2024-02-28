@@ -214,6 +214,7 @@ const SelectNet$$Page: React.FC<PageProps> = ({
       className="__CustomClass_2540494__"
     >
       <View
+        className="View_View_2540494_1_1337952"
         name={'页面'}
         $$componentItem={{
           id: 'View_2540494_1_1337952',
@@ -260,6 +261,7 @@ const SelectNet$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_434019_744563"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_434019_744563',

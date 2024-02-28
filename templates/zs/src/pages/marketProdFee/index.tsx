@@ -1671,6 +1671,7 @@ const MarketProdFee$$Modal: React.FC<PageProps> = ({
                         {...injectData}
                       >
                         <View
+                          className="View_View_325572"
                           name={'布局容器'}
                           visible={true}
                           $$componentItem={{
@@ -1693,6 +1694,7 @@ const MarketProdFee$$Modal: React.FC<PageProps> = ({
                           {...injectData}
                         >
                           <BusiComp4158382
+                            pageId={pageId}
                             busiCompId={'887945485951266816'}
                             name={'动态添加表单'}
                             busiCompStates={{
@@ -1897,6 +1899,7 @@ const MarketProdFee$$Modal: React.FC<PageProps> = ({
                           />
                         </View>
                         <View
+                          className="View_View_095062"
                           name={'布局容器'}
                           visible={true}
                           $$componentItem={{
@@ -2059,6 +2062,7 @@ const MarketProdFee$$Modal: React.FC<PageProps> = ({
           }}
         />
         <View
+          className="View_View_977173"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -2167,6 +2171,7 @@ const MarketProdFee$$Modal: React.FC<PageProps> = ({
           />
         </View>
         <View
+          className="View_View_6145193"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -2417,6 +2422,7 @@ const MarketProdFee$$Modal: React.FC<PageProps> = ({
           />
         </View>
         <View
+          className="View_View_917911"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -3545,6 +3551,7 @@ const MarketProdFee$$Modal: React.FC<PageProps> = ({
             />
           </Form>
           <View
+            className="View_View_784828025"
             name={'布局容器'}
             visible={true}
             backgroundType={{ type: 'cleanColor', color: undefined }}

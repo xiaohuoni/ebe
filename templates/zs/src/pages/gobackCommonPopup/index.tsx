@@ -152,6 +152,7 @@ const GobackCommonPopup$$Modal: React.FC<PageProps> = ({
   return (
     <div style={{ height: '100%', ...style }} className="__CustomClass_30__">
       <View
+        className="View_View_30_1_229696_8928726"
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: 'rgba(255, 255, 255, 1)' }}
         $$componentItem={{
@@ -264,6 +265,7 @@ const GobackCommonPopup$$Modal: React.FC<PageProps> = ({
           />
         </Row>
         <View
+          className="View_View_30_1122_56129022_411221_5151687_9291032"
           name={'布局容器'}
           $$componentItem={{
             id: 'View_30_1122_56129022_411221_5151687_9291032',

@@ -423,6 +423,7 @@ const ProductInfoPop$$Modal: React.FC<PageProps> = ({
   return (
     <div style={{ height: '100%', ...style }} className="__CustomClass_31__">
       <View
+        className="View_View_31_1"
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: undefined }}
         $$componentItem={{
@@ -445,6 +446,7 @@ const ProductInfoPop$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_VerticalView_31_11"
           name={'布局容器'}
           $$componentItem={{
             id: 'VerticalView_31_11',
@@ -460,6 +462,7 @@ const ProductInfoPop$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_31_112"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{

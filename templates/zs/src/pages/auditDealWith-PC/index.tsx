@@ -7665,6 +7665,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_183103_093211"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -7689,6 +7690,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_2218655_35852399"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -7846,6 +7848,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
           />
         </Card>
         <View
+          className="View_View_23774"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -9627,6 +9630,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_186904"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}
@@ -10072,6 +10076,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
           />
         </Card>
         <BusiComp3851874
+          pageId={pageId}
           busiCompId={'908252960735510528'}
           name={'处理信息'}
           busiCompStates={{
@@ -10100,6 +10105,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
           parentEngineId={parentEngineId}
         />
         <BusiComp0496635
+          pageId={pageId}
           name={'处理过程组件'}
           busiCompId={'878166584210399232'}
           busiCompStates={{
@@ -10113,6 +10119,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_106266"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -10156,6 +10163,7 @@ const AuditDealWithPc$$Page: React.FC<PageProps> = ({
           />
         </View>
         <View
+          className="View_View_938709"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{

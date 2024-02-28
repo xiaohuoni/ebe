@@ -40,6 +40,7 @@ const Kaifaceshiyemian7391$$Page: React.FC<PageProps> = ({
       className="__CustomClass_5102934__"
     >
       <View
+        className="View_View_5102934_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_5102934_1',

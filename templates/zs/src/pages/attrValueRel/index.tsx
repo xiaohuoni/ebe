@@ -1429,6 +1429,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
   return (
     <div style={{ height: '100%', ...style }} className="__CustomClass_69315__">
       <View
+        className="View_View_69315_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_69315_1',
@@ -1481,6 +1482,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_456427"
             name={'左布局容器'}
             $$componentItem={{
               id: 'View_456427',
@@ -1804,6 +1806,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                 {...injectData}
               >
                 <View
+                  className="View_View_512562"
                   name={'上布局容器'}
                   $$componentItem={{
                     id: 'View_512562',
@@ -2055,6 +2058,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                       {...injectData}
                     />
                     <View
+                      className="View_View_533838"
                       name={'布局容器'}
                       $$componentItem={{
                         id: 'View_533838',
@@ -2238,6 +2242,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                   </Form>
                 </View>
                 <View
+                  className="View_View_204431"
                   name={'下布局容器'}
                   $$componentItem={{
                     id: 'View_204431',
@@ -3473,6 +3478,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
             </Card>
           </View>
           <View
+            className="View_View_739623"
             name={'右布局容器'}
             $$componentItem={{
               id: 'View_739623',
@@ -4198,6 +4204,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                 {...injectData}
               >
                 <View
+                  className="View_View_841967"
                   name={'上布局容器'}
                   $$componentItem={{
                     id: 'View_841967',
@@ -4450,6 +4457,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                       {...injectData}
                     />
                     <View
+                      className="View_View_5690884"
                       name={'布局容器'}
                       backgroundType={{ type: 'cleanColor', color: undefined }}
                       $$componentItem={{
@@ -4633,6 +4641,7 @@ const AttrValueRel$$Modal: React.FC<PageProps> = ({
                   </Form>
                 </View>
                 <View
+                  className="View_View_5014642"
                   name={'下布局容器'}
                   $$componentItem={{
                     id: 'View_5014642',

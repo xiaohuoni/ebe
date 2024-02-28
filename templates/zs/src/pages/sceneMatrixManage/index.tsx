@@ -209,6 +209,7 @@ const SceneMatrixManage$$Page: React.FC<PageProps> = ({
       className="__CustomClass_3361663__"
     >
       <View
+        className="View_View_3361663_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_3361663_1',
@@ -252,6 +253,7 @@ const SceneMatrixManage$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_182395"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_182395',
@@ -1429,6 +1431,7 @@ const SceneMatrixManage$$Page: React.FC<PageProps> = ({
             </Card>
           </View>
           <View
+            className="View_View_8830146"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_8830146',

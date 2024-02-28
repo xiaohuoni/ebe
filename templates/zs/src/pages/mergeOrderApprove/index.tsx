@@ -2846,6 +2846,7 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_905871_961943_677577"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -3384,6 +3385,7 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_5773624_9763604_45619156"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -3774,6 +3776,7 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_028577_482375_5168184"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -5607,6 +5610,7 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
             />
           </Form>
           <View
+            className="View_View_582992_8451582_75132"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -6886,6 +6890,7 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
           </View>
         </Card>
         <View
+          className="View_View_672632_9537307_170568"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -8106,6 +8111,7 @@ const MergeOrderApprove$$Page: React.FC<PageProps> = ({
           />
         </View>
         <BusiComp0496635
+          pageId={pageId}
           busiCompId={'878166584210399232'}
           name={'处理过程组件'}
           basicStatus={1}

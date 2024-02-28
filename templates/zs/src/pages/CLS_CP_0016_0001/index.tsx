@@ -1869,6 +1869,7 @@ const ClsCp_0016_0001$$Page: React.FC<PageProps> = ({
       className="__CustomClass_537892__"
     >
       <View
+        className="View_View_537892_1_573149"
         name={'页面'}
         $$componentItem={{
           id: 'View_537892_1_573149',
@@ -1959,6 +1960,7 @@ const ClsCp_0016_0001$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_339406_177732"
               name={'布局容器'}
               $$componentItem={{
                 id: 'View_339406_177732',
@@ -2049,6 +2051,7 @@ const ClsCp_0016_0001$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_6319234_3569864_15467365_781748_88437"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -2479,6 +2482,7 @@ const ClsCp_0016_0001$$Page: React.FC<PageProps> = ({
             />
           </Form>
           <View
+            className="View_View_37170591_329379"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_37170591_329379',
@@ -3415,6 +3419,7 @@ const ClsCp_0016_0001$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_22346374_875512_926873_4359147_729981_339083_0134945_145611_016034"
                 name={'布局容器'}
                 labelCol={8}
                 wrapperCol={16}
@@ -3908,6 +3913,7 @@ const ClsCp_0016_0001$$Page: React.FC<PageProps> = ({
           </Row>
         </View>
         <View
+          className="View_View_4949093_2824552"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -4355,6 +4361,7 @@ const ClsCp_0016_0001$$Page: React.FC<PageProps> = ({
           />
         </View>
         <BusiComp0521965
+          pageId={pageId}
           busiCompId={'922396081753948160'}
           name={'附件'}
           busiCompStates={{

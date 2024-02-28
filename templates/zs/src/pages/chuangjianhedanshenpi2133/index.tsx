@@ -3127,6 +3127,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_905871_961943"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -3421,6 +3422,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_5773624_9763604"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -3862,6 +3864,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_028577_482375"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -5763,6 +5766,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
             />
           </Form>
           <View
+            className="View_View_582992_8451582"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -6238,6 +6242,7 @@ const Chuangjianhedanshenpi2133$$Page: React.FC<PageProps> = ({
           </View>
         </Card>
         <View
+          className="View_View_672632_9537307"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{

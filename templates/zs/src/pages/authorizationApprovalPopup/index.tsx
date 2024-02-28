@@ -2556,6 +2556,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_0433935__"
     >
       <View
+        className="View_View_0433935_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_0433935_1',
@@ -2578,6 +2579,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_580561"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -2841,6 +2843,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_558677"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{
@@ -2906,6 +2909,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                 {...injectData}
               >
                 <View
+                  className="View_View_476468"
                   name={'布局容器'}
                   $$componentItem={{
                     id: 'View_476468',
@@ -2953,6 +2957,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                     {...injectData}
                   >
                     <View
+                      className="View_View_6401829"
                       name={'布局容器'}
                       $$componentItem={{
                         id: 'View_6401829',
@@ -3002,6 +3007,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                       />
                     </View>
                     <View
+                      className="View_View_1936224"
                       name={'布局容器'}
                       $$componentItem={{
                         id: 'View_1936224',
@@ -3073,6 +3079,7 @@ const AuthorizationApprovalPopup$$Modal: React.FC<PageProps> = ({
                   </HorizontalView>
                 </View>
                 <View
+                  className="View_View_175491"
                   name={'布局容器'}
                   $$componentItem={{
                     id: 'View_175491',

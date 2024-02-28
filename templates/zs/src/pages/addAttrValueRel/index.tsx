@@ -427,6 +427,7 @@ const AddAttrValueRel$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_9713623__"
     >
       <View
+        className="View_View_7443712"
         name={'布局容器'}
         $$componentItem={{
           id: 'View_7443712',
@@ -618,6 +619,7 @@ const AddAttrValueRel$$Modal: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_594897"
             name={'布局容器'}
             labelCol={8}
             wrapperCol={16}

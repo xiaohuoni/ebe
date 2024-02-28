@@ -1034,6 +1034,7 @@ const ClsTy_0001_0001copy1$$Page: React.FC<PageProps> = ({
       className="__CustomClass_537892__"
     >
       <View
+        className="View_View_537892_1_3667"
         name={'页面'}
         $$componentItem={{
           id: 'View_537892_1_3667',
@@ -1125,6 +1126,7 @@ const ClsTy_0001_0001copy1$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_339406_75809365"
               name={'布局容器'}
               $$componentItem={{
                 id: 'View_339406_75809365',
@@ -1206,6 +1208,7 @@ const ClsTy_0001_0001copy1$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_556162_4411805"
                   name={'布局容器'}
                   labelCol={8}
                   wrapperCol={16}
@@ -2676,6 +2679,7 @@ const ClsTy_0001_0001copy1$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_22346374_783539"
                 name={'布局容器'}
                 labelCol={8}
                 wrapperCol={16}
@@ -3167,6 +3171,7 @@ const ClsTy_0001_0001copy1$$Page: React.FC<PageProps> = ({
           </Row>
         </View>
         <View
+          className="View_View_4949093_3768224"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{

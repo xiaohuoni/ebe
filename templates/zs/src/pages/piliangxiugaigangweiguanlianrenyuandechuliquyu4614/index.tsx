@@ -332,6 +332,7 @@ const Piliangxiugaigangweiguanlianrenyuandechuliquyu4614$$Modal: React.FC<
       className="__CustomClass_557436__"
     >
       <View
+        className="View_View_557436_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -352,6 +353,7 @@ const Piliangxiugaigangweiguanlianrenyuandechuliquyu4614$$Modal: React.FC<
         {...injectData}
       >
         <View
+          className="View_View_798911"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}

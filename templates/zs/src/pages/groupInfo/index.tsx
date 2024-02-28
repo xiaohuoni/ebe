@@ -468,6 +468,7 @@ const GroupInfo$$Modal: React.FC<PageProps> = ({
   return (
     <div style={{ height: '100%', ...style }} className="__CustomClass_33__">
       <View
+        className="View_View_33_1"
         name={'页面'}
         visible={true}
         backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -488,6 +489,7 @@ const GroupInfo$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_422725"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -507,6 +509,7 @@ const GroupInfo$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_VerticalView_33_11"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -520,6 +523,7 @@ const GroupInfo$$Modal: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_33_112"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -541,6 +545,7 @@ const GroupInfo$$Modal: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_536562"
                 name={'布局容器'}
                 visible={true}
                 backgroundType={{ type: 'cleanColor', color: undefined }}

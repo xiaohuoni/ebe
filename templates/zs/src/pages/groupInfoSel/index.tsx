@@ -2226,6 +2226,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_6584614__"
     >
       <View
+        className="View_View_6584614_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_6584614_1',
@@ -2249,6 +2250,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_921869"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -2456,6 +2458,7 @@ const GroupInfoSel$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_394487_610869"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}

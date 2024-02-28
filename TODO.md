@@ -80,6 +80,8 @@
 - [ ] 数据源清理，只保留必须的字段
 - [ ] 表格数据导入
 - [x] pc Table ref getTableSelected
+- [ ] pageview 是否应该按需载入？
+- [x] 业务组件 pageId 来自页面 pageId
 
 资产 DSL - 林喜 PC 端 实习生打卡 DICT 指令源码化？源数据 dataSource 清理？
 

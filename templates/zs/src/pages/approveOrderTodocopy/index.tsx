@@ -5755,6 +5755,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
       className="__CustomClass_541575__"
     >
       <View
+        className="View_View_541575_1_210887"
         name={'页面'}
         visible={true}
         backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -5915,6 +5916,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_15602_3008735_190707_3855435"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -5959,6 +5961,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_1478523_6666_08103_4591978"
                 name={'布局容器'}
                 visible={true}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -6172,6 +6175,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_15602_1948197_126614"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -6216,6 +6220,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_1478523_2604544_1623139"
                 name={'布局容器'}
                 visible={true}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -6435,6 +6440,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_15602_1948197_2625135_451015"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -6479,6 +6485,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_1478523_2604544_7920888_963314"
                 name={'布局容器'}
                 visible={true}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -6676,6 +6683,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_15602_302336_612127"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -6720,6 +6728,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_1478523_581132_4800225"
                 name={'布局容器'}
                 visible={true}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -6871,6 +6880,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_715972_474908"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -6892,6 +6902,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_751812_562956"
                 name={'布局容器'}
                 visible={true}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -6958,6 +6969,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 />
               </View>
               <View
+                className="View_View_751812_237034_27382"
                 name={'布局容器'}
                 visible={true}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -7027,6 +7039,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 />
               </View>
               <View
+                className="View_View_751812_833089_40955585"
                 name={'布局容器'}
                 visible={true}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -7095,6 +7108,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 />
               </View>
               <View
+                className="View_View_751812_504837_00492115"
                 name={'布局容器'}
                 visible={true}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -7166,6 +7180,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
           </Row>
         </Row>
         <View
+          className="View_View_065343_0367107"
           name={'查询类型'}
           visible={functorsMap?.IF(
             data?.global_variable?.queryType == 'MyDraft',
@@ -7425,6 +7440,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_445165_1895924"
                 name={'布局容器'}
                 visible={true}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -7923,6 +7939,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
               </View>
             </Form>
             <View
+              className="View_View_158841_251269"
               name={'高级查询条件'}
               visible={false}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -8652,6 +8669,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
                 />
               </Form>
               <BusiComp2086
+                pageId={pageId}
                 name={'地市/区县二级联动'}
                 visible={true}
                 busiCompId={'878114493837852672'}
@@ -11329,6 +11347,7 @@ const ApproveOrderTodocopy$$Page: React.FC<PageProps> = ({
           </Card>
         </View>
         <View
+          className="View_View_8238124_81288"
           name={'查询类型'}
           visible={functorsMap?.IF(
             data?.global_variable?.queryType == 'MyDraft',

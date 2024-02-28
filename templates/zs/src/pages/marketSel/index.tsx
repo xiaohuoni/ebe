@@ -440,6 +440,7 @@ const MarketSel$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_6584614__"
     >
       <View
+        className="View_View_6584614_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -460,6 +461,7 @@ const MarketSel$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_415392"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -594,6 +596,7 @@ const MarketSel$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_989063"
               name={'布局容器'}
               visible={true}
               labelCol={8}

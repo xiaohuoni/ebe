@@ -38,15 +38,29 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
 
     const isModal =
       ir.containerType === 'MobileModal' || ir.containerType === 'Modal';
-
+    let pageId = 'pageIdError';
+    const getBusiCompPageId = (busiCompMapping: any[], id: string) => {
+      const keys = Object.keys(busiCompMapping) as any;
+      for (let i = 0; i <= keys.length; i++) {
+        if (busiCompMapping[keys[i]] === id) {
+          return keys[i];
+        }
+      }
+      return 'pageIdError';
+    };
+    if (next?.contextData?.options?.pageIdMapping[ir.pagePath]) {
+      pageId = next?.contextData?.options?.pageIdMapping[ir.pagePath];
+    } else {
+      pageId = getBusiCompPageId(
+        next?.contextData?.options?.busiCompMapping,
+        ir.id!,
+      );
+    }
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: CLASS_DEFINE_CHUNK_NAME.Start,
-      content: `const pageId = '${
-        next?.contextData?.options?.pageIdMapping[ir.pagePath] ??
-        'pageId 未找到'
-      }';
+      content: `const pageId = '${pageId}';
         const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, 
           attrDataMap={},customActionMapRef,
           injectData, refs, state, functorsMap, getStaticDataSourceService, getValue, componentItem, style, urlParam, ${

@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
-const pageId = 'pageId 未找到';
+const pageId = '878114493837852672';
 const BusiComp2086$$BusiComp: React.FC<PageProps> = ({
   data,
   CMDGenerator,

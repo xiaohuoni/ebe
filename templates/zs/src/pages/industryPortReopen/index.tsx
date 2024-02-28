@@ -1042,6 +1042,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_884882__"
     >
       <View
+        className="View_View_884882_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_884882_1',
@@ -1064,6 +1065,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_632961"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -1279,6 +1281,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_561734"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}
@@ -1357,6 +1360,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_225653"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}
@@ -1597,6 +1601,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
               />
             </View>
             <View
+              className="View_View_352131"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}
@@ -1675,6 +1680,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_694778"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}
@@ -1708,6 +1714,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_937846"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}
@@ -1909,6 +1916,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_5191"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}
@@ -1942,6 +1950,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_5373545"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}
@@ -2020,6 +2029,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_90806"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}
@@ -2053,6 +2063,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_89121"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}
@@ -2131,6 +2142,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_580862"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}
@@ -2164,6 +2176,7 @@ const IndustryPortReopen$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_593768"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}

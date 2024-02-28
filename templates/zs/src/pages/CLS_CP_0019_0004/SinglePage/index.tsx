@@ -336,6 +336,7 @@ const ClsCp_0019_0004SinglePage$$Page: React.FC<PageProps> = ({
       className="__CustomClass_259116__"
     >
       <View
+        className="View_View_259116_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_259116_1',
@@ -359,6 +360,7 @@ const ClsCp_0019_0004SinglePage$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_7822638"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -384,6 +386,7 @@ const ClsCp_0019_0004SinglePage$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_245706"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -409,6 +412,7 @@ const ClsCp_0019_0004SinglePage$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_8909442"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: '#1890ff' }}
               $$componentItem={{
@@ -460,6 +464,7 @@ const ClsCp_0019_0004SinglePage$$Page: React.FC<PageProps> = ({
             />
           </View>
           <View
+            className="View_View_182218"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -511,6 +516,7 @@ const ClsCp_0019_0004SinglePage$$Page: React.FC<PageProps> = ({
           </View>
         </View>
         <View
+          className="View_View_582089"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -533,6 +539,7 @@ const ClsCp_0019_0004SinglePage$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <BusiComp734913
+            pageId={pageId}
             busiCompId={'1064073224944443392'}
             name={'恶意欠费纳黑申请集团'}
             fieldName={'singleGroup'}

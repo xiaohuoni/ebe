@@ -148,6 +148,7 @@ const ClsCp_0003_0013Addport$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_558169__"
     >
       <View
+        className="View_View_558169_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_558169_1',
@@ -171,6 +172,7 @@ const ClsCp_0003_0013Addport$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_480919"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{

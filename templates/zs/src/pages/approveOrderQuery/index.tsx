@@ -3095,6 +3095,7 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
       className="__CustomClass_541575__"
     >
       <View
+        className="View_View_541575_1_200529_475974_265917_515541_776758"
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: undefined }}
         $$componentItem={{
@@ -3123,6 +3124,7 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_065343_473472_05015_3702278_362488_208726"
           name={'查询类型'}
           fieldName={'data.global_variable.queryType'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -3916,6 +3918,7 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
               />
             </Form>
             <View
+              className="View_View_158841_0371773_652933_2275427_708486_46303"
               name={'高级查询条件'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -3942,6 +3945,7 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
               {...injectData}
             >
               <BusiComp416634
+                pageId={pageId}
                 busiCompId={'955762952733732864'}
                 name={'用户区域二级联动'}
                 style={{ margin: '12px 0px 12px 0px' }}
@@ -4241,6 +4245,7 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
               </Form>
             </View>
             <View
+              className="View_View_445165_7123897_657787_86374398_163868_526544_405938"
               name={'布局容器'}
               formItemIndex={2}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -4494,6 +4499,7 @@ const ApproveOrderQuery$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_1400643"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{

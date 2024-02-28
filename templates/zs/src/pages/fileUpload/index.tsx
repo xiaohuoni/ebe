@@ -38,6 +38,7 @@ const FileUpload$$Page: React.FC<PageProps> = ({
       className="__CustomClass_361215__"
     >
       <View
+        className="View_View_361215_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -58,6 +59,7 @@ const FileUpload$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_120203"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -193,6 +195,7 @@ const FileUpload$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_154979"
               name={'布局容器'}
               visible={true}
               labelCol={8}

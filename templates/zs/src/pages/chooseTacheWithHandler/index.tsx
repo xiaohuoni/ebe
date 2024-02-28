@@ -847,6 +847,7 @@ const ChooseTacheWithHandler$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_7975706__"
     >
       <View
+        className="View_View_7975706_1_0303566"
         name={'布局容器'}
         visible={true}
         backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -861,6 +862,7 @@ const ChooseTacheWithHandler$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_7975706_12_2671242"
           name={'布局容器'}
           visible={true}
           $$componentItem={{
@@ -1060,6 +1062,7 @@ const ChooseTacheWithHandler$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_841498_323645_360219_635269"
               name={'布局容器'}
               visible={true}
               labelCol={8}

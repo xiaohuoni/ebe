@@ -539,6 +539,7 @@ const MyDraft_202212191639$$Page: React.FC<PageProps> = ({
       className="__CustomClass_536217__"
     >
       <View
+        className="View_View_852562_1_890036_927504"
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: '#ffffff' }}
         $$componentItem={{

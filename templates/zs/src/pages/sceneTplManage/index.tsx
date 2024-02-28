@@ -204,6 +204,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
       className="__CustomClass_0268335__"
     >
       <View
+        className="View_View_0268335_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_0268335_1',
@@ -226,6 +227,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_060452"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -561,6 +563,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_77596"
                 name={'布局容器'}
                 labelCol={8}
                 wrapperCol={16}
@@ -843,6 +846,7 @@ const SceneTplManage$$Page: React.FC<PageProps> = ({
               />
             </Form>
             <View
+              className="View_View_9572742"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{

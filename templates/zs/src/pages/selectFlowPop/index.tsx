@@ -809,6 +809,7 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_3917512__"
     >
       <View
+        className="View_View_3917512_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -829,6 +830,7 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_502387_150344"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -1024,6 +1026,7 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_756929_604978"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -1484,6 +1487,7 @@ const SelectFlowPop$$Modal: React.FC<PageProps> = ({
           </Form>
         </View>
         <View
+          className="View_View_41543_33842"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}

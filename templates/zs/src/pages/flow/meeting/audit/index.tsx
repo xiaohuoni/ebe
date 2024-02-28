@@ -244,6 +244,7 @@ const FlowMeetingAudit$$Page: React.FC<PageProps> = ({
   return (
     <div style={{ height: '100%', ...style }} className="__CustomClass_30__">
       <View
+        className="View_View_30_1"
         name={'页面'}
         visible={true}
         backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -264,6 +265,7 @@ const FlowMeetingAudit$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_VerticalView_30_11"
           name={'布局容器'}
           visible={true}
           $$componentItem={{
@@ -277,6 +279,7 @@ const FlowMeetingAudit$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <BusiComp978237
+            pageId={pageId}
             name={'会签审批组件'}
             visible={true}
             busiCompId={'875193427660898304'}
@@ -285,6 +288,7 @@ const FlowMeetingAudit$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_30_1122"
             name={'布局容器'}
             visible={true}
             $$componentItem={{

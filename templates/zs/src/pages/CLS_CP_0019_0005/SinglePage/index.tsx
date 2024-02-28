@@ -565,6 +565,7 @@ const ClsCp_0019_0005SinglePage$$Page: React.FC<PageProps> = ({
       className="__CustomClass_4868583__"
     >
       <View
+        className="View_View_4868583_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_4868583_1',
@@ -587,6 +588,7 @@ const ClsCp_0019_0005SinglePage$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <BusiComp335152
+          pageId={pageId}
           busiCompId={'1064468557612539904'}
           name={'欠费高风险白名单信息'}
           fieldName={'singleGroup'}

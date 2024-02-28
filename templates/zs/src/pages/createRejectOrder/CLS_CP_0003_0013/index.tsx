@@ -951,6 +951,7 @@ const CreateRejectOrderClsCp_0003_0013$$Page: React.FC<PageProps> = ({
       className="__CustomClass_537892__"
     >
       <View
+        className="View_View_537892_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_537892_1',
@@ -992,6 +993,7 @@ const CreateRejectOrderClsCp_0003_0013$$Page: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_6806553"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -1037,6 +1039,7 @@ const CreateRejectOrderClsCp_0003_0013$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_006963"
               name={'布局容器'}
               $$componentItem={{
                 id: 'View_006963',
@@ -1085,6 +1088,7 @@ const CreateRejectOrderClsCp_0003_0013$$Page: React.FC<PageProps> = ({
                 {...injectData}
               >
                 <View
+                  className="View_View_810657"
                   name={'布局容器'}
                   $$componentItem={{
                     id: 'View_810657',
@@ -1488,6 +1492,7 @@ const CreateRejectOrderClsCp_0003_0013$$Page: React.FC<PageProps> = ({
                   />
                 </View>
                 <View
+                  className="View_View_927165"
                   name={'布局容器'}
                   $$componentItem={{
                     id: 'View_927165',
@@ -1535,6 +1540,7 @@ const CreateRejectOrderClsCp_0003_0013$$Page: React.FC<PageProps> = ({
                   />
                 </View>
                 <View
+                  className="View_View_6804508"
                   name={'布局容器'}
                   $$componentItem={{
                     id: 'View_6804508',

@@ -5929,6 +5929,7 @@ const NetworkFeeAudit$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_8430824__"
     >
       <View
+        className="View_View_8430824_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_8430824_1',
@@ -5951,6 +5952,7 @@ const NetworkFeeAudit$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_917911"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -7014,6 +7016,7 @@ const NetworkFeeAudit$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_9239465"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}
@@ -7046,6 +7049,7 @@ const NetworkFeeAudit$$Modal: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_731177"
                 name={'布局容器'}
                 formItemIndex={1}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -7122,6 +7126,7 @@ const NetworkFeeAudit$$Modal: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_30524"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -7147,6 +7152,7 @@ const NetworkFeeAudit$$Modal: React.FC<PageProps> = ({
                   {...injectData}
                 >
                   <View
+                    className="View_View_646185"
                     name={'布局容器'}
                     backgroundType={{ type: 'cleanColor', color: undefined }}
                     $$componentItem={{
@@ -7216,6 +7222,7 @@ const NetworkFeeAudit$$Modal: React.FC<PageProps> = ({
                     />
                   </View>
                   <View
+                    className="View_View_08044"
                     name={'布局容器'}
                     backgroundType={{ type: 'cleanColor', color: undefined }}
                     $$componentItem={{
@@ -11928,6 +11935,7 @@ const NetworkFeeAudit$$Modal: React.FC<PageProps> = ({
             />
           </Form>
           <View
+            className="View_View_015288_239109_6528729"
             name={'布局容器'}
             formItemIndex={2}
             labelCol={8}

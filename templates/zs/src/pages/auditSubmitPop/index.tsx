@@ -42,6 +42,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_958791__"
     >
       <View
+        className="View_View_958791_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -83,6 +84,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_398957"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -129,6 +131,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
             />
           </View>
           <View
+            className="View_View_251956"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -198,6 +201,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_398957_6809206"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -242,6 +246,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
             />
           </View>
           <View
+            className="View_View_251956_174864"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -282,6 +287,7 @@ const AuditSubmitPop$$Modal: React.FC<PageProps> = ({
           </View>
         </HorizontalView>
         <View
+          className="View_View_969983"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}

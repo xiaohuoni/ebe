@@ -347,6 +347,7 @@ const Biaozhunhuayicixingdaeshenqingtanchuang5063$$Modal: React.FC<
       className="__CustomClass_295317__"
     >
       <View
+        className="View_View_295317_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_295317_1',

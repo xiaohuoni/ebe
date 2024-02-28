@@ -282,6 +282,7 @@ const ClsCp_0017_0001FeeInfo$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_912842__"
     >
       <View
+        className="View_View_912842_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_912842_1',
@@ -1044,6 +1045,7 @@ const ClsCp_0017_0001FeeInfo$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_0021094"
               name={'布局容器'}
               labelCol={8}
               wrapperCol={16}

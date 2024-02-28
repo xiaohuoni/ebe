@@ -1701,6 +1701,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
       className="__CustomClass_8383459__"
     >
       <View
+        className="View_View_8383459_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_8383459_1',
@@ -1744,6 +1745,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_9595362"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_9595362',
@@ -1892,6 +1894,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_502387"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{
@@ -2101,6 +2104,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                     {...injectData}
                   />
                   <View
+                    className="View_View_756929"
                     name={'布局容器'}
                     backgroundType={{ type: 'cleanColor', color: undefined }}
                     $$componentItem={{
@@ -2232,6 +2236,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                 </Form>
               </View>
               <View
+                className="View_View_41543"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{
@@ -3752,6 +3757,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
             </Card>
           </View>
           <View
+            className="View_View_082334"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_082334',
@@ -4188,6 +4194,7 @@ const FlowConfigManage$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_1854728"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{

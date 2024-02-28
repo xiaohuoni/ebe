@@ -457,6 +457,7 @@ const ClsTy_0004_0001$$Page: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_6806553"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -505,6 +506,7 @@ const ClsTy_0004_0001$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_339406"
               name={'布局容器'}
               $$componentItem={{
                 id: 'View_339406',
@@ -592,6 +594,7 @@ const ClsTy_0004_0001$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_0477386"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -834,6 +837,7 @@ const ClsTy_0004_0001$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_217266"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -864,6 +868,7 @@ const ClsTy_0004_0001$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_1154496"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -941,6 +946,7 @@ const ClsTy_0004_0001$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_5401066"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -1094,6 +1100,7 @@ const ClsTy_0004_0001$$Page: React.FC<PageProps> = ({
           />
         </Row>
         <View
+          className="View_View_637025"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -1706,6 +1713,7 @@ const ClsTy_0004_0001$$Page: React.FC<PageProps> = ({
           />
         </Row>
         <View
+          className="View_View_686538"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -2328,6 +2336,7 @@ const ClsTy_0004_0001$$Page: React.FC<PageProps> = ({
           </Form>
         </View>
         <View
+          className="View_View_4949093"
           name={'布局容器'}
           formItemIndex={0}
           backgroundType={{ type: 'cleanColor', color: undefined }}

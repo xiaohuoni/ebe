@@ -35,6 +35,7 @@ const Gonggongshenpijibietishiyu$$Page: React.FC<PageProps> = ({
   return (
     <div style={{ height: '100%', ...style }} className="__CustomClass_5629__">
       <View
+        className="View_View_5629_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -56,6 +57,7 @@ const Gonggongshenpijibietishiyu$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_319232"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}

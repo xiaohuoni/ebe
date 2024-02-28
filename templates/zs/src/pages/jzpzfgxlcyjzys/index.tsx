@@ -2294,6 +2294,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
       className="__CustomClass_2695813__"
     >
       <View
+        className="View_View_2695813_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_2695813_1',
@@ -2337,6 +2338,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_490162"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_490162',
@@ -2979,6 +2981,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_7612077"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -4001,6 +4004,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
             </Card>
           </View>
           <View
+            className="View_View_529397"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_529397',
@@ -4756,6 +4760,7 @@ const Jzpzfgxlcyjzys$$Page: React.FC<PageProps> = ({
                 />
               </Form>
               <View
+                className="View_View_1383526"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{

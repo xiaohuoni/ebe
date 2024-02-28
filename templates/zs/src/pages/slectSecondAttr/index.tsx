@@ -393,6 +393,7 @@ const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_203067__"
     >
       <View
+        className="View_View_203067_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_203067_1',
@@ -415,6 +416,7 @@ const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_840584"
           name={'布局容器'}
           $$componentItem={{
             id: 'View_840584',
@@ -663,6 +665,7 @@ const SlectSecondAttr$$Modal: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_467733"
                 name={'布局容器'}
                 labelCol={8}
                 wrapperCol={16}

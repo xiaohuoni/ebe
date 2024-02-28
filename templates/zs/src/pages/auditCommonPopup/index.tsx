@@ -5790,6 +5790,7 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
   return (
     <div style={{ height: '100%', ...style }} className="__CustomClass_30__">
       <View
+        className="View_View_30_1"
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: undefined }}
         $$componentItem={{
@@ -5830,6 +5831,7 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_860362"
             name={'布局容器'}
             formItemIndex={0}
             backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -9726,6 +9728,7 @@ const AuditCommonPopup$$Modal: React.FC<PageProps> = ({
           />
         </Row>
         <View
+          className="View_View_30_1122_56129022_411221"
           name={'布局容器'}
           $$componentItem={{
             id: 'View_30_1122_56129022_411221',

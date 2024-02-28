@@ -2301,6 +2301,7 @@ const SceneManage$$Page: React.FC<PageProps> = ({
   return (
     <div style={{ height: '100%', ...style }} className="__CustomClass_90041__">
       <View
+        className="View_View_90041_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_90041_1',
@@ -2345,6 +2346,7 @@ const SceneManage$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_902712"
             name={'左布局容器'}
             $$componentItem={{
               id: 'View_902712',
@@ -5030,6 +5032,7 @@ const SceneManage$$Page: React.FC<PageProps> = ({
             </Card>
           </View>
           <View
+            className="View_View_196885"
             name={'右布局容器'}
             $$componentItem={{
               id: 'View_196885',
@@ -5051,6 +5054,7 @@ const SceneManage$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_076837"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -6315,6 +6319,7 @@ const SceneManage$$Page: React.FC<PageProps> = ({
                     {...injectData}
                   />
                   <View
+                    className="View_View_84902764"
                     name={'布局容器'}
                     labelCol={8}
                     wrapperCol={16}
@@ -9491,6 +9496,7 @@ const SceneManage$$Page: React.FC<PageProps> = ({
               </Card>
             </View>
             <View
+              className="View_View_148617_002395"
               name={'布局容器'}
               formItemIndex={2}
               labelCol={8}
@@ -10883,6 +10889,7 @@ const SceneManage$$Page: React.FC<PageProps> = ({
                   />
                 </Form>
                 <View
+                  className="View_View_2988045"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{

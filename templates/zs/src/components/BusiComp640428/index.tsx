@@ -17,7 +17,7 @@ import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
-const pageId = 'pageId 未找到';
+const pageId = '974190141528584192';
 const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -529,6 +529,7 @@ const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_634821"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_634821',
@@ -637,6 +638,7 @@ const BusiComp640428$$BusiComp: React.FC<PageProps> = ({
                       return (
                         <>
                           <View
+                            className="View_View_085735"
                             name={'布局容器'}
                             backgroundType={{
                               type: 'cleanColor',

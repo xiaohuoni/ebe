@@ -776,6 +776,7 @@ const SaleConfigManage$$Page: React.FC<PageProps> = ({
       className="__CustomClass_541575__"
     >
       <View
+        className="View_View_541575_1_991005"
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: undefined }}
         $$componentItem={{
@@ -799,6 +800,7 @@ const SaleConfigManage$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_065343_495453"
           name={'查询类型'}
           fieldName={'data.global_variable.queryType'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -2236,6 +2238,7 @@ const SaleConfigManage$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_445165_85808"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{

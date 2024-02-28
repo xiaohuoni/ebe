@@ -1133,6 +1133,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
       className="__CustomClass_615837__"
     >
       <View
+        className="View_View_615837_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_615837_1',
@@ -1177,6 +1178,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_778994"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_778994',
@@ -2728,6 +2730,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
             </Card>
           </View>
           <View
+            className="View_View_733267"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_733267',
@@ -3276,6 +3279,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_126841"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{
@@ -3487,6 +3491,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                     {...injectData}
                   />
                   <View
+                    className="View_View_948154"
                     name={'布局容器'}
                     labelCol={8}
                     wrapperCol={16}
@@ -3712,6 +3717,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                 </Form>
               </View>
               <View
+                className="View_View_1373491"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{
@@ -5473,6 +5479,7 @@ const SceneAttrManage$$Page: React.FC<PageProps> = ({
                 />
               </Form>
               <View
+                className="View_View_345884"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{

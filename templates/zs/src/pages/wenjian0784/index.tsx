@@ -46,6 +46,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
       className="__CustomClass_941967__"
     >
       <View
+        className="View_View_941967_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -3799,6 +3800,7 @@ const Wenjian0784$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_0571046"
             name={'布局容器'}
             visible={true}
             labelCol={8}

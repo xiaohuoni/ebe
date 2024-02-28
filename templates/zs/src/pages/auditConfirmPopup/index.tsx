@@ -184,6 +184,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_958791__"
     >
       <View
+        className="View_View_958791_1_1768424"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -229,6 +230,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_398957_82413"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -273,6 +275,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
             />
           </View>
           <View
+            className="View_View_251956_128608"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -345,6 +348,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_398957_6809206_665471_878381"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -393,6 +397,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
             />
           </View>
           <View
+            className="View_View_251956_174864_13805_9114867"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -462,6 +467,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_398957_6809206_665471"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -510,6 +516,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
             />
           </View>
           <View
+            className="View_View_251956_174864_13805"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -559,6 +566,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
           </View>
         </HorizontalView>
         <View
+          className="View_View_218669"
           name={'最后环节展示布局容器'}
           visible={false}
           disabled={false}
@@ -607,6 +615,7 @@ const AuditConfirmPopup$$Modal: React.FC<PageProps> = ({
           />
         </View>
         <View
+          className="View_View_969983_1581134"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}

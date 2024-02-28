@@ -2374,6 +2374,7 @@ const MyOrderInitiatedApplication_202212191621$$Page: React.FC<PageProps> = ({
       className="__CustomClass_541575__"
     >
       <View
+        className="View_View_541575_1_200529_475974_265917"
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: '#ffffff' }}
         $$componentItem={{
@@ -2399,6 +2400,7 @@ const MyOrderInitiatedApplication_202212191621$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_065343_473472_05015_3702278"
           name={'查询类型'}
           fieldName={'data.global_variable.queryType'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -3162,6 +3164,7 @@ const MyOrderInitiatedApplication_202212191621$$Page: React.FC<PageProps> = ({
               />
             </Form>
             <View
+              className="View_View_158841_0371773_652933_2275427"
               name={'高级查询条件'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -3185,6 +3188,7 @@ const MyOrderInitiatedApplication_202212191621$$Page: React.FC<PageProps> = ({
               {...injectData}
             >
               <BusiComp2086
+                pageId={pageId}
                 name={'地市/区县二级联动'}
                 busiCompId={'878114493837852672'}
                 basicStatus={1}
@@ -3478,6 +3482,7 @@ const MyOrderInitiatedApplication_202212191621$$Page: React.FC<PageProps> = ({
               </Form>
             </View>
             <View
+              className="View_View_445165_7123897_657787_86374398_163868"
               name={'布局容器'}
               formItemIndex={2}
               backgroundType={{ type: 'cleanColor', color: undefined }}

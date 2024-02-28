@@ -938,6 +938,7 @@ const BusiFeeAddAudit$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_0606944__"
     >
       <View
+        className="View_View_0606944_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_0606944_1',
@@ -2364,6 +2365,7 @@ const BusiFeeAddAudit$$Modal: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_909994"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -2395,6 +2397,7 @@ const BusiFeeAddAudit$$Modal: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_57235118"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -4824,6 +4827,7 @@ const BusiFeeAddAudit$$Modal: React.FC<PageProps> = ({
           />
         </Form>
         <View
+          className="View_View_17764"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -4848,6 +4852,7 @@ const BusiFeeAddAudit$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_1245294"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -5471,6 +5476,7 @@ const BusiFeeAddAudit$$Modal: React.FC<PageProps> = ({
             />
           </View>
           <View
+            className="View_View_80102"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{

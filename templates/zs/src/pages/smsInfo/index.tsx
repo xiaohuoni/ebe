@@ -889,6 +889,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
       className="__CustomClass_324541__"
     >
       <View
+        className="View_View_324541_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -1123,6 +1124,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_9485957"
               name={'布局容器'}
               visible={true}
               labelCol={8}
@@ -2017,6 +2019,7 @@ const SmsInfo$$Page: React.FC<PageProps> = ({
           />
         </Card>
         <View
+          className="View_View_186485"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}

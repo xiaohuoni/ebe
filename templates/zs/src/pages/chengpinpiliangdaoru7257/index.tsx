@@ -64,6 +64,7 @@ const Chengpinpiliangdaoru7257$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_609171__"
     >
       <View
+        className="View_View_609171_1"
         name={'页面'}
         visible={true}
         backgroundType={{ type: 'cleanColor', color: 'rgba(255, 255, 255, 1)' }}

@@ -182,6 +182,7 @@ const ClsGl_0003_0001$$Page: React.FC<PageProps> = ({
       className="__CustomClass_088762__"
     >
       <View
+        className="View_View_088762_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_088762_1',
@@ -224,6 +225,7 @@ const ClsGl_0003_0001$$Page: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_8144002"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -269,6 +271,7 @@ const ClsGl_0003_0001$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_033895"
               name={'布局容器'}
               $$componentItem={{
                 id: 'View_033895',
@@ -349,6 +352,7 @@ const ClsGl_0003_0001$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_625682"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -683,6 +687,7 @@ const ClsGl_0003_0001$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <View
+            className="View_View_387122"
             name={'布局容器'}
             labelCol={8}
             wrapperCol={16}
@@ -901,6 +906,7 @@ const ClsGl_0003_0001$$Page: React.FC<PageProps> = ({
                         {...injectData}
                       >
                         <View
+                          className="View_View_707748"
                           name={'布局容器'}
                           backgroundType={{
                             type: 'cleanColor',
@@ -956,6 +962,7 @@ const ClsGl_0003_0001$$Page: React.FC<PageProps> = ({
                           />
                         </View>
                         <View
+                          className="View_View_464676"
                           name={'布局容器'}
                           backgroundType={{
                             type: 'cleanColor',
@@ -1019,6 +1026,7 @@ const ClsGl_0003_0001$$Page: React.FC<PageProps> = ({
           }}
         />
         <BusiComp0521965
+          pageId={pageId}
           busiCompId={'922396081753948160'}
           name={'附件'}
           busiCompStates={{

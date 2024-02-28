@@ -3802,6 +3802,7 @@ const ClsDz_0001_0002$$Page: React.FC<PageProps> = ({
       className="__CustomClass_537892__"
     >
       <View
+        className="View_View_537892_1_573149_701132_218771"
         name={'页面'}
         $$componentItem={{
           id: 'View_537892_1_573149_701132_218771',
@@ -3901,6 +3902,7 @@ const ClsDz_0001_0002$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_339406_177732_031805_647988"
               name={'布局容器'}
               $$componentItem={{
                 id: 'View_339406_177732_031805_647988',
@@ -3993,6 +3995,7 @@ const ClsDz_0001_0002$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_6319234_3569864_15467365_781748_88437_8005128_331855"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -4248,6 +4251,7 @@ const ClsDz_0001_0002$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_167873"
               name={'详情表格容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -4876,6 +4880,7 @@ const ClsDz_0001_0002$$Page: React.FC<PageProps> = ({
               />
             </View>
             <View
+              className="View_View_836897_988729"
               name={'无多选档次表格容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -5586,6 +5591,7 @@ const ClsDz_0001_0002$$Page: React.FC<PageProps> = ({
               />
             </View>
             <View
+              className="View_View_836897_8898268_3011325"
               name={'多选档次表格容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -6085,6 +6091,7 @@ const ClsDz_0001_0002$$Page: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_852425_151885"
                 name={'表格按钮容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{
@@ -6233,6 +6240,7 @@ const ClsDz_0001_0002$$Page: React.FC<PageProps> = ({
           </Row>
         </View>
         <BusiComp0521965
+          pageId={pageId}
           busiCompId={'922396081753948160'}
           name={'附件'}
           busiCompStates={{

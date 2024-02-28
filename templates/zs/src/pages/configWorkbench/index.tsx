@@ -1362,6 +1362,7 @@ const ConfigWorkbench$$Page: React.FC<PageProps> = ({
       className="__CustomClass_177297__"
     >
       <View
+        className="View_View_177297_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_177297_1',

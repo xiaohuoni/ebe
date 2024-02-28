@@ -704,6 +704,7 @@ const PrivilegeNotHaveRolePopup$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_2694965__"
     >
       <View
+        className="View_View_2694965_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -746,6 +747,7 @@ const PrivilegeNotHaveRolePopup$$Modal: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_563648"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -882,6 +884,7 @@ const PrivilegeNotHaveRolePopup$$Modal: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_756929_0062074_7390883_0416838"
                 name={'布局容器'}
                 visible={true}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -1302,6 +1305,7 @@ const PrivilegeNotHaveRolePopup$$Modal: React.FC<PageProps> = ({
             </Form>
           </View>
           <View
+            className="View_View_3108781"
             name={'布局容器'}
             visible={true}
             $$componentItem={{

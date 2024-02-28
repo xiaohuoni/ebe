@@ -1108,6 +1108,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
       className="__CustomClass_4868135__"
     >
       <View
+        className="View_View_4868135_1"
         name={'页面'}
         $$componentItem={{
           id: 'View_4868135_1',
@@ -1151,6 +1152,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_869717"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_869717',
@@ -1818,6 +1820,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_1193615"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -1963,6 +1966,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_841498_1719896"
                   name={'布局容器'}
                   labelCol={8}
                   wrapperCol={16}
@@ -5719,6 +5723,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
             </Card>
           </View>
           <View
+            className="View_View_1715415"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
@@ -6062,6 +6067,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_209956"
                 name={'布局容器'}
                 $$componentItem={{
                   id: 'View_209956',
@@ -6304,6 +6310,7 @@ const AuthorizationApproval$$Page: React.FC<PageProps> = ({
                     {...injectData}
                   />
                   <View
+                    className="View_View_3866124"
                     name={'布局容器'}
                     $$componentItem={{
                       id: 'View_3866124',

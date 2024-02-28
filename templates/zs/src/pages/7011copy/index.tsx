@@ -1471,6 +1471,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
       className="__CustomClass_537892__"
     >
       <View
+        className="View_View_537892_1"
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: '#f7f8fa' }}
         $$componentItem={{
@@ -1519,6 +1520,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_01124"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: '#F7F8FA' }}
             $$componentItem={{
@@ -1608,6 +1610,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
             />
           </View>
           <View
+            className="View_View_464629"
             name={'场景最高审批等级容器'}
             $$componentItem={{
               id: 'View_464629',
@@ -1657,6 +1660,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
           </View>
         </HorizontalView>
         <View
+          className="View_View_6806553"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: '#f7f8fa' }}
           $$componentItem={{
@@ -2245,6 +2249,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
             />
           </Form>
           <BusiComp640428
+            pageId={pageId}
             busiCompId={'974190141528584192'}
             name={'场景触发信息'}
             busiCompStates={{ instNbr: state?.props?.instNbr }}
@@ -2253,6 +2258,7 @@ const $7011copy$$Page: React.FC<PageProps> = ({
             {...injectData}
           />
           <BusiComp186748
+            pageId={pageId}
             busiCompId={'974149396524412928'}
             name={'场景附件(云南)'}
             busiCompStates={{

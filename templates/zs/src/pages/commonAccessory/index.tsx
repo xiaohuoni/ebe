@@ -309,6 +309,7 @@ const CommonAccessory$$Page: React.FC<PageProps> = ({
       className="__CustomClass_303862__"
     >
       <View
+        className="View_View_303862_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -467,6 +468,7 @@ const CommonAccessory$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_22346374_224745"
               name={'布局容器'}
               visible={true}
               labelCol={8}
@@ -934,6 +936,7 @@ const CommonAccessory$$Page: React.FC<PageProps> = ({
           </Form>
         </Row>
         <View
+          className="View_View_4949093_4607945"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}

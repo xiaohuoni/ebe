@@ -1027,6 +1027,7 @@ const ClsJc_0012_0001$$Page: React.FC<PageProps> = ({
       className="__CustomClass_6620457__"
     >
       <View
+        className="View_View_537892_1_0196438"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -1063,6 +1064,7 @@ const ClsJc_0012_0001$$Page: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_6806553_8058562"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -1106,6 +1108,7 @@ const ClsJc_0012_0001$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_339406_2087875"
               name={'布局容器'}
               visible={true}
               $$componentItem={{
@@ -1191,6 +1194,7 @@ const ClsJc_0012_0001$$Page: React.FC<PageProps> = ({
                   {...injectData}
                 />
                 <View
+                  className="View_View_5097806_1317393"
                   name={'布局容器'}
                   visible={true}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -1921,6 +1925,7 @@ const ClsJc_0012_0001$$Page: React.FC<PageProps> = ({
           </Form>
         </View>
         <BusiComp0521965
+          pageId={pageId}
           busiCompId={'922396081753948160'}
           name={'附件'}
           busiCompStates={{
@@ -1933,6 +1938,7 @@ const ClsJc_0012_0001$$Page: React.FC<PageProps> = ({
           {...injectData}
         />
         <View
+          className="View_View_4949093_2026766"
           name={'布局容器'}
           visible={false}
           disabled={false}
@@ -2016,6 +2022,7 @@ const ClsJc_0012_0001$$Page: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_22346374_875512_926873_4359147_729981_339083_0134945_145611_9662925_280408_7978568"
               name={'布局容器'}
               visible={true}
               labelCol={8}

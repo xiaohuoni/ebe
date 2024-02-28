@@ -38,6 +38,7 @@ const Fuwenbenbianjiqi3012$$Page: React.FC<PageProps> = ({
       className="__CustomClass_17679166__"
     >
       <View
+        className="View_View_17679166_1"
         name={'页面'}
         visible={true}
         $$componentItem={{
@@ -58,6 +59,7 @@ const Fuwenbenbianjiqi3012$$Page: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_782269"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -132,6 +134,7 @@ const Fuwenbenbianjiqi3012$$Page: React.FC<PageProps> = ({
           </Form>
         </View>
         <View
+          className="View_View_6615784"
           name={'布局容器'}
           visible={true}
           backgroundType={{ type: 'cleanColor', color: undefined }}

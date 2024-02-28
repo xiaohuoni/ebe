@@ -6663,6 +6663,7 @@ const LineFeeAudit$$Modal: React.FC<PageProps> = ({
         {...injectData}
       >
         <View
+          className="View_View_917911"
           name={'布局容器'}
           backgroundType={{ type: 'cleanColor', color: undefined }}
           $$componentItem={{
@@ -8836,6 +8837,7 @@ const LineFeeAudit$$Modal: React.FC<PageProps> = ({
               {...injectData}
             />
             <View
+              className="View_View_97731"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -8920,6 +8922,7 @@ const LineFeeAudit$$Modal: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_78639"
                 name={'布局容器'}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
                 $$componentItem={{
@@ -8945,6 +8948,7 @@ const LineFeeAudit$$Modal: React.FC<PageProps> = ({
                 {...injectData}
               >
                 <View
+                  className="View_View_815674"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -9012,6 +9016,7 @@ const LineFeeAudit$$Modal: React.FC<PageProps> = ({
                   />
                 </View>
                 <View
+                  className="View_View_331433"
                   name={'布局容器'}
                   backgroundType={{ type: 'cleanColor', color: undefined }}
                   $$componentItem={{
@@ -22094,6 +22099,7 @@ const LineFeeAudit$$Modal: React.FC<PageProps> = ({
           </Condition>
         </View>
         <View
+          className="View_View_015288_239109"
           name={'布局容器'}
           formItemIndex={2}
           labelCol={8}

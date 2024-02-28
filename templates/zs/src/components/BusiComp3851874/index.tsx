@@ -17,7 +17,7 @@ import { useEffect } from 'react';
 
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 
-const pageId = 'pageId 未找到';
+const pageId = '908252960735510528';
 const BusiComp3851874$$BusiComp: React.FC<PageProps> = ({
   data,
   CMDGenerator,
@@ -181,6 +181,7 @@ const BusiComp3851874$$BusiComp: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_170403"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -224,6 +225,7 @@ const BusiComp3851874$$BusiComp: React.FC<PageProps> = ({
               {...injectData}
             >
               <View
+                className="View_View_7700925"
                 name={'布局容器'}
                 visible={true}
                 backgroundType={{ type: 'cleanColor', color: undefined }}
@@ -246,6 +248,7 @@ const BusiComp3851874$$BusiComp: React.FC<PageProps> = ({
                 {...injectData}
               >
                 <View
+                  className="View_View_766293_021352"
                   name={'布局容器'}
                   visible={true}
                   $$componentItem={{
@@ -296,6 +299,7 @@ const BusiComp3851874$$BusiComp: React.FC<PageProps> = ({
                   />
                 </View>
                 <View
+                  className="View_View_766293_1966767"
                   name={'布局容器'}
                   visible={true}
                   $$componentItem={{
@@ -365,6 +369,7 @@ const BusiComp3851874$$BusiComp: React.FC<PageProps> = ({
                 </View>
               </View>
               <View
+                className="View_View_073911"
                 name={'布局容器'}
                 visible={true}
                 $$componentItem={{
@@ -387,6 +392,7 @@ const BusiComp3851874$$BusiComp: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_073911_1711518"
                 name={'布局容器'}
                 visible={true}
                 $$componentItem={{
@@ -409,6 +415,7 @@ const BusiComp3851874$$BusiComp: React.FC<PageProps> = ({
                 {...injectData}
               />
               <View
+                className="View_View_6771183_6459074"
                 name={'布局容器'}
                 visible={true}
                 $$componentItem={{
@@ -432,6 +439,7 @@ const BusiComp3851874$$BusiComp: React.FC<PageProps> = ({
                 {...injectData}
               >
                 <View
+                  className="View_View_073911_0947543"
                   name={'布局容器'}
                   visible={true}
                   $$componentItem={{
@@ -458,6 +466,7 @@ const BusiComp3851874$$BusiComp: React.FC<PageProps> = ({
             </HorizontalView>
           </View>
           <View
+            className="View_View_6771183"
             name={'布局容器'}
             visible={true}
             $$componentItem={{
@@ -481,6 +490,7 @@ const BusiComp3851874$$BusiComp: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_908265"
               name={'布局容器'}
               visible={true}
               backgroundType={{ type: 'cleanColor', color: undefined }}

@@ -155,6 +155,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
           {...injectData}
         >
           <View
+            className="View_View_780133"
             name={'布局容器'}
             $$componentItem={{
               id: 'View_780133',
@@ -176,6 +177,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
             {...injectData}
           >
             <View
+              className="View_View_184115"
               name={'布局容器'}
               backgroundType={{ type: 'cleanColor', color: undefined }}
               $$componentItem={{
@@ -592,6 +594,7 @@ const DiyigePCyemian5870$$Page: React.FC<PageProps> = ({
             </Tabs>
           </View>
           <View
+            className="View_View_475158"
             name={'布局容器'}
             backgroundType={{ type: 'cleanColor', color: undefined }}
             $$componentItem={{
