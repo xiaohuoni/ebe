@@ -74,6 +74,7 @@ const Modal0804$$Modal: React.FC<PageProps> = ({
       className="__CustomClass_155774__"
     >
       <View
+        className="View_View_155774_1"
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: 'rgba(255, 255, 255, 1)' }}
         $$componentItem={{

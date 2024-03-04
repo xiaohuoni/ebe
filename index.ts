@@ -92,7 +92,7 @@ import { createZipPublisher } from './src/core/publisher/zip';
   await createDiskPublisher().publish({
     project, // 上一步生成的 project
     outputPath: './templates/', // 输出目录
-    projectSlug: testPlatformIsH5 ? 'h5' : 'zs', // 项目标识 -- 对应生成 h5.zip 文件
+    projectSlug: testPlatformIsH5 ? 'h5' : 'pc', // 项目标识 -- 对应生成 h5.zip 文件
   });
 
   async function loadSchemaFile(schemaFile: string): Promise<any> {

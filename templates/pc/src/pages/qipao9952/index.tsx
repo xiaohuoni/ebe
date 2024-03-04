@@ -46,6 +46,7 @@ const Qipao9952$$Popover: React.FC<PageProps> = ({
   return (
     <Popover {...injectData} parentEngineId={parentEngineId}>
       <View
+        className="View_View_268601_1"
         name={'页面'}
         backgroundType={{ type: 'cleanColor', color: 'rgba(255, 255, 255, 1)' }}
         $$componentItem={{

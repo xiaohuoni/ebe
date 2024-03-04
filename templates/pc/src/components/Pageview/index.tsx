@@ -1,3 +1,4 @@
+import { useAppData } from 'alita';
 import { parse } from 'qs';
 import React from 'react';
 
@@ -15,47 +16,23 @@ export const RootProps: any = {
     customHeight: 500,
   },
 };
-const Pages: any = {
-  '/ceshi8260': React.lazy(
-    () =>
-      import(
-        /* webpackChunkName: "src__pages__/ceshi8260__index" */ '@/pages/ceshi8260'
-      ),
-  ),
-  '1024261720265998336': React.lazy(
-    () =>
-      import(/* webpackChunkName: "1024261720265998336" */ '@/pages/ceshi8260'),
-  ),
-  '/cdd5883': React.lazy(
-    () =>
-      import(
-        /* webpackChunkName: "src__pages__/cdd5883__index" */ '@/pages/cdd5883'
-      ),
-  ),
-  '1028120483871506432': React.lazy(
-    () =>
-      import(/* webpackChunkName: "1028120483871506432" */ '@/pages/cdd5883'),
-  ),
-  '/qipao9952': React.lazy(
-    () =>
-      import(
-        /* webpackChunkName: "src__pages__/qipao9952__index" */ '@/pages/qipao9952'
-      ),
-  ),
-  '1077467890419003392': React.lazy(
-    () =>
-      import(/* webpackChunkName: "1077467890419003392" */ '@/pages/qipao9952'),
-  ),
-  '/modal0804': React.lazy(
-    () =>
-      import(
-        /* webpackChunkName: "src__pages__/modal0804__index" */ '@/pages/modal0804'
-      ),
-  ),
-  '1077431851017072640': React.lazy(
-    () =>
-      import(/* webpackChunkName: "1077431851017072640" */ '@/pages/modal0804'),
-  ),
+const pageRouteMapping: any = {
+  '1024261720265998336': '/ceshi8260',
+  '1028120483871506432': '/cdd5883',
+  '1077467890419003392': '/qipao9952',
+  '1077431851017072640': '/modal0804',
+};
+const P = (props: any) => <div>{props?.pageSrc} 页面未找到</div>;
+
+const getPage = (target: string, clientRoutes: any, routeComponents: any) => {
+  const { routes = [] } = clientRoutes[0];
+  let path = target;
+  // 支持传进来的是 pageId
+  if (!target.startsWith('/')) {
+    path = pageRouteMapping[target] ?? target;
+  }
+  const route = routes.find((r: any) => `/${r.path}` === path);
+  return routeComponents[route?.id] ?? P;
 };
 
 export function parseSrc(src?: string): [string, any] {
@@ -63,11 +40,11 @@ export function parseSrc(src?: string): [string, any] {
   return [arr[0], parse(arr[1])];
 }
 
-const P = (props: any) => <div>{props?.pageSrc} 页面未找到</div>;
 const Pageview = React.forwardRef<any, any>((props, ref) => {
+  const { clientRoutes, routeComponents } = useAppData();
   // 页面 src 可能是带参数的如 /a?b=1&c=2
   const [path, query] = parseSrc(props?.pageSrc);
-  const Page = Pages[path] ?? P;
+  const Page = getPage(path, clientRoutes, routeComponents);
   return <Page ref={ref} {...query} {...props} />;
 });
 export default Pageview;

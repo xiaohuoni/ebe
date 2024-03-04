@@ -46,6 +46,7 @@ const Cdd5883$$Page: React.FC<PageProps> = ({
       className="__CustomClass_09010154__"
     >
       <View
+        className="View_View_884363"
         name={'普通容器1'}
         backgroundType={{ type: 'cleanColor' }}
         $$componentItem={{

@@ -249,7 +249,8 @@ export const withPageHOC = (
         urlParam,
         appId,
         pageId,
-        // 如果是子组件，直接存父组件对象？
+        busiCompId: props?.busiCompId,
+        // 如果是子组件，直接存父组件对象
         routerId: props?.parentEngineId ?? pageId,
         renderId: props?.parentEngineId ?? pageId,
         parentEngineId: props?.parentEngineId ?? pageId,

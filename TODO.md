@@ -81,7 +81,7 @@
 - [ ] 数据源清理，只保留必须的字段
 - [ ] 表格数据导入
 - [x] pc Table ref getTableSelected
-- [ ] pageview 是否应该按需载入？
+- [x] pageview 使用路由中的组件信息
 - [x] 业务组件 pageId 来自页面 pageId
 - [x] 业务组件拥有自己的数据源
 

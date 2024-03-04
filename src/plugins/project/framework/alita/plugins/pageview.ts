@@ -22,6 +22,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.InternalDepsImport,
       content: `
+      import { useAppData } from 'alita';
         import { parse } from 'qs';
         import React from 'react';
       `,
@@ -48,24 +49,21 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           )
           .join(',')}
       }
-      const Pages: any = {
-        ${ir.routes
-          ?.map(
-            (route: any) => ` '${route.path}': React.lazy(
-              () =>
-                import(
-                  /* webpackChunkName: "src__pages__${route.type}__index" */ '@/pages${route.path}'
-                ),
-            ),
-            '${route.pageId}': React.lazy(
-              () =>
-                import(
-                  /* webpackChunkName: "${route.pageId}" */ '@/pages${route.path}'
-                ),
-            )`,
-          )
-          .join(',')}
-      };
+      const pageRouteMapping: any = {${ir.routes?.map(
+        (r: any) => `'${r.pageId}':'${r.path}'`,
+      )}}
+        const P = (props: any) => <div>{props?.pageSrc} 页面未找到</div>;
+
+        const getPage = (target: string, clientRoutes: any, routeComponents: any) => {
+          const { routes = [] } = clientRoutes[0];
+          let path = target;
+          // 支持传进来的是 pageId
+          if (!target.startsWith('/')) {
+            path = pageRouteMapping[target] ?? target;
+          }
+          const route = routes.find((r: any) => \`/\${r.path}\` === path);
+          return routeComponents[route?.id] ?? P;
+        };
       `,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
@@ -86,11 +84,11 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         return [arr[0], parse(arr[1])];
       }
 
-      const P = (props: any) => <div>{props?.pageSrc} 页面未找到</div>;
       const Pageview = React.forwardRef<any, any>((props, ref) => {
+        const { clientRoutes, routeComponents } = useAppData();
         // 页面 src 可能是带参数的如 /a?b=1&c=2
         const [path, query] = parseSrc(props?.pageSrc);
-        const Page = Pages[path] ?? P;
+        const Page = getPage(path, clientRoutes, routeComponents);
         return <Page ref={ref} {...query} {...props} />;
       });
       export default Pageview;
