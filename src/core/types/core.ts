@@ -152,6 +152,7 @@ export interface LXProjectOptions {
   appId: string;
   pageIdMapping: any;
   busiCompMapping?: any;
+  compAssetList?: any;
   baseUrl?: string;
 }
 export interface IProjectBuilderOptions {

@@ -3,6 +3,7 @@ import {
   findAppPolymerizationInfo,
   findBusiCompById,
   getPageVersionById,
+  qryPageCompAssetList,
 } from '@/services/api';
 import { Button, Form, Input, message, Switch } from 'antd';
 import { useEffect, useState } from 'react';
@@ -93,6 +94,10 @@ const Page = () => {
       terminalType: values.platform ? 'APP' : 'PC',
       // operationType: 'publish',
     });
+    // 根据 appId 获取当前应用的使用的自定义组件
+    const compAssetList = await qryPageCompAssetList({
+      appId: values.appId,
+    });
     console.log(resultObject);
     const pageIdMapping: any = {};
     const appPageList = resultObject?.appPageList.map((i) => {
@@ -152,6 +157,7 @@ const Page = () => {
       appId: values.appId,
       pageIdMapping,
       busiCompMapping,
+      compAssetList: compAssetList?.resultObject || [],
       baseUrl: process.env.BASE_URL,
       appConfig,
     };

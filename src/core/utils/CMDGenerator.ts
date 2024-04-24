@@ -64,6 +64,10 @@ export const CMDGeneratorEvent = (
   // TODO: 后续无用移除
   prefix: string = '',
 ) => {
+  if(!value || !value.params){
+    console.log(value);
+return '()=>{ console.log("这里找不到参数/？")}'
+  }
   const renderEvent = `(${prefix}${value.params
     .filter((obj: { name: any }, index: any, arr: any[]) => {
       // 删掉 name 重复的对象，如 Tree {title: '节点key(单选)',name: 'selectedKeys',value: '$selectedKeys[0]$',},{title: '节点keys(多选)',name: 'selectedKeys',value: '$selectedKeys$', },

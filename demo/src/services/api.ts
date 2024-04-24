@@ -70,6 +70,27 @@ export async function findAppPolymerizationInfo(params): Promise<any> {
   });
 }
 
+export async function qryPageCompAssetList(params): Promise<any> {
+  // 本地 mock 数据
+  if (useMock) {
+    return new Promise((resolve) => {
+      resolve(appList);
+    });
+  }
+  const headers: any = {
+    'Content-Type': 'application/json',
+    'APP-ID': params.appId,
+  };
+  // app/appPage/qryPageCompAssetList
+  return request('/app/appPage/qryPageCompAssetList', {
+    params,
+    method: 'GET',
+    headers: {
+      ...headers,
+    },
+  });
+}
+
 export async function getPageVersionById(params): Promise<any> {
   // 本地 mock 数据
   if (useMock) {

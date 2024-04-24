@@ -52,8 +52,13 @@ export class SchemaParser implements ISchemaParser {
     const {
       platform = 'h5',
       busiCompMapping = {},
+      compAssetList = [],
       pageIdMapping = {},
     } = options || {};
+    const compAssetListMapping: Record<string, any> = {};
+    compAssetList.forEach((asset: any) => {
+      compAssetListMapping[asset.compCode] = asset;
+    });
     // compLib schema.platform
     // 解析三方组件依赖
     // const getPackage = ({ compLib, type }) => {
@@ -77,7 +82,9 @@ export class SchemaParser implements ISchemaParser {
           pageStaticData[pageId] ??= [];
           pageStaticData[pageId].push(info?.props?.staticData?.data?.attrNbr);
         }
-        if (info.type === 'Pageview' || info.type === 'Popover') {
+        if (compAssetListMapping[info.type]) {
+          //TODO: 为自定义组件
+        } else if (info.type === 'Pageview' || info.type === 'Popover') {
           compDeps[info.type] = {
             package: `@/components/${info.type}`,
             dependencyType: DependencyType.External,

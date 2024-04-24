@@ -3,12 +3,12 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build:app": "alita build",
-    "dev:app": "alita dev",
+    "build:app": "NODE_OPTIONS=--max-old-space-size=8192 alita build",
+    "build": "OKAM=@alipay/umi-bundler-okam NODE_OPTIONS=--max-old-space-size=8192 alita build",
     "format": "prettier --write .",
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .ts,.tsx",
-    "plugin": "alita plugin list",
+    "start:app": "NODE_OPTIONS=--max-old-space-size=8192 alita dev",
     "start": "NODE_OPTIONS=--max-old-space-size=8192 alita dev"
   },
   "lint-staged": {
@@ -21,14 +21,7 @@
     ]
   },
   "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "@alita/flow": "*",
-    "@lingxiteam/types": "3.3.1-alpha.14",
-    "alita": "3.3.7",
-    "antd": "4.18.8",
-    "lodash": "^4.17.21",
-    "qs": "^6.11.2",
     "@lingxiteam/assets": "3.3.1-alpha.13",
     "@lingxiteam/engine-assets": "3.3.1-alpha.14",
     "@lingxiteam/engine-command": "3.3.1-alpha.14",
@@ -42,17 +35,24 @@
     "@lingxiteam/engine-utils": "3.3.1-alpha.14",
     "@lingxiteam/icons": "0.0.3",
     "@lingxiteam/pcfactory": "3.4.1-alpha.5",
-    "@lingxiteam/sys-action": "3.3.1-alpha.14"
+    "@lingxiteam/sys-action": "3.3.1-alpha.14",
+    "@lingxiteam/types": "3.3.1-alpha.14",
+    "alita": "3.3.7",
+    "antd": "4.18.8",
+    "lodash": "^4.17.21",
+    "qs": "^6.11.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.162",
+    "@types/qs": "^6.9.6",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "cross-env": "^6.0.3",
     "prettier": "^2",
     "ts-node": "^10",
-    "typescript": "^4",
-    "@types/qs": "^6.9.6",
-    "@types/lodash": "^4.14.162"
+    "typescript": "^4"
   },
   "engines": {
     "node": ">=14.0.1"

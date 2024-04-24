@@ -55,6 +55,11 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             });
             const item = value[0];
             customFuctionsIds.push(e.eventCode);
+            // TODO: setEvents 不存在，应该要执行 dynamicActionSource？
+            if (!item) {
+              return `// TODO: setEvents 不存在 执行 dynamicActionSource？
+              const ${e.eventCode} = ${e.dynamicActionSource}`;
+            }
             // const { eName, eValue } = events;
             // schema.events[eName] = {
             //   id: `${eName}`,
