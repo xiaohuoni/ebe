@@ -46,19 +46,31 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         name: CUSTOM_ACTION_CHUNK_NAME.Map,
         content: ir?.customFuctions
           .map((e) => {
-            const value = e.setEvents.map((event: any) => {
+            const value = e.setEvents?.map((event: any) => {
               const { eName, eValue } = getEvents(event);
               return {
                 id: `${eName}`,
                 value: eValue,
               };
             });
-            const item = value[0];
+            const item = value?.[0];
             customFuctionsIds.push(e.eventCode);
             // TODO: setEvents 不存在，应该要执行 dynamicActionSource？
             if (!item) {
-              return `// TODO: setEvents 不存在 执行 dynamicActionSource？
-              const ${e.eventCode} = ${e.dynamicActionSource}`;
+              if (!e.originDynamicActionSource) {
+                return `// 编排时为空
+                const ${e.eventCode} = (options: any)=>{}`;
+              }
+              const startIndex = e.originDynamicActionSource.indexOf('try {');
+              const endIndex =
+                e.originDynamicActionSource.indexOf('} catch (err) {');
+              const extractedString = e.originDynamicActionSource.substring(
+                startIndex,
+                endIndex,
+              );
+              return `const ${e.eventCode} = (options: any)=>{${extractedString}} catch (err) {
+                console.log(err);
+              }}`;
             }
             // const { eName, eValue } = events;
             // schema.events[eName] = {

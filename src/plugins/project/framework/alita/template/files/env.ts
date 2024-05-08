@@ -19,7 +19,7 @@ PORT=8888
 
 # 以下配置请在.env.local文件里设置
 #环境地址
-LCDP_SERVICE_URL=${
+# LCDP_SERVICE_URL=${
       config?.baseUrl ?? 'http://xxx.xx.xx.xxx:8888/'
     }lcdp-app/server/
  `,

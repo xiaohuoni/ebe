@@ -33,7 +33,7 @@ import {
 export function getConsole({ value }: CMDGeneratorPrames): string {
   const { options, type, dataId } = value;
   return `// ${type} ${dataId} \n console.log(${options?.value
-    .map((v: string) => {
+    ?.map((v: string) => {
       if (isJSVar(v)) {
         return generateVarString(v);
       }

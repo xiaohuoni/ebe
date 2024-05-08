@@ -1,5 +1,6 @@
 import { flatMap, camelCase, get } from 'lodash';
 import { COMMON_CHUNK_NAME } from '../../const/generator';
+import { printCmdList } from '../../utils/debug';
 
 import {
   BuilderComponentPlugin,
@@ -503,7 +504,6 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     useAliasName: true,
     ...(config || {}),
   };
-
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
     const next: ICodeStruct = {
       ...pre,
@@ -540,7 +540,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         next.chunks.push(...chunks);
       });
     }
-
+    printCmdList();
     return next;
   };
 

@@ -51,6 +51,12 @@ export default function hackEngineApis(
       value: `pageId={pageId}`,
     });
   }
+  if (nodeTags === 'TabPane' || nodeTags === 'CollapsePanel') {
+    pieces.unshift({
+      type: PIECE_TYPE.ATTR,
+      value: `schema={{ props :{ key: '${nodeItem?.props?.key}' }}}`,
+    });
+  }
   // 如果是CardHeader要改成 Card.Header，另外依赖分析那边 import 要过滤
   if (nodeTags === 'CardHeader') {
     pieces[0].value = `Card.Header`;
@@ -102,12 +108,13 @@ export default function hackEngineApis(
       value: LoopchildrenStr,
     });
   }
-  if (nodeTags === 'CollapsePanel') {
-    pieces.push({
-      type: PIECE_TYPE.ATTR,
-      value: `uid='${nodeItem?.id}'`,
-    });
-  }
+  // uid 全加了
+  // if (nodeTags === 'CollapsePanel') {
+  //   pieces.push({
+  //     type: PIECE_TYPE.ATTR,
+  //     value: `uid='${nodeItem?.id}'`,
+  //   });
+  // }
   // 循环容器 和 动态待办
   if (
     nodeTags === 'Loop' ||

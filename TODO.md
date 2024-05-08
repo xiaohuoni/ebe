@@ -84,7 +84,6 @@
 - [x] pageview 使用路由中的组件信息
 - [x] 业务组件 pageId 来自页面 pageId
 - [x] 业务组件拥有自己的数据源
-- [ ] 业务组件文件名取 pagePath pagePath 为空？？
 - [ ] 组件类型 type 包含不合法字符 - 
 - [ ] 自定义组件运行
 - [ ] 自定义组件 cmd 加载

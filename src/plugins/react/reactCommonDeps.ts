@@ -22,6 +22,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       content: `
 // 注意: 出码模块正在调试
 import React from 'react';
+import moment from 'moment';
 // 默认都加，应该用到再加
 import Popover from '@/components/Popover';`,
       linkAfter: [],

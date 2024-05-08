@@ -10,12 +10,25 @@ import {
   getIfelse,
   getResetCurrentForm,
 } from '../../cmd';
+import { getDebugData } from './debug';
+
+const countCMD = (value: any | any[]) => {
+  const debugData = getDebugData();
+  debugData.cmdHash ??= [];
+  debugData.cmdHash[value?.type] = true;
+  if (value?.callback1) {
+    value?.callback1.forEach((element: any) => {
+      countCMD(element);
+    });
+  }
+};
 
 const CMDGenerator = (prames: CMDGeneratorPrames) => {
   if (!prames?.value?.type) {
     // 没有事件就抛弃
     return '';
   }
+  countCMD(prames?.value);
   let str = '';
   switch (prames?.value?.type) {
     case 'console':
@@ -25,9 +38,9 @@ const CMDGenerator = (prames: CMDGeneratorPrames) => {
     // case 'ifelse':
     //   str = getIfelse(prames);
     //   break;
-    case 'resetCurrentForm':
-      str = getResetCurrentForm(prames);
-      break;
+    // case 'resetCurrentForm':
+    //   str = getResetCurrentForm(prames);
+    //   break;
     default:
       str = getDefault(prames);
       break;
@@ -64,9 +77,9 @@ export const CMDGeneratorEvent = (
   // TODO: 后续无用移除
   prefix: string = '',
 ) => {
-  if(!value || !value.params){
+  if (!value || !value.params) {
     console.log(value);
-return '()=>{ console.log("这里找不到参数/？")}'
+    return '()=>{ console.log("这里找不到参数/？")}';
   }
   const renderEvent = `(${prefix}${value.params
     .filter((obj: { name: any }, index: any, arr: any[]) => {

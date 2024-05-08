@@ -139,6 +139,7 @@ const preprocessComponentSchema = (
     // platform: schema.platform,
     // TODO: fusionMode
     // fusionMode: schema?.fusionMode,
+    uid: schema.id,
     $$componentItem: `##{{id: '${schema.id}',uid: '${schema.id}',type: '${schema.compName}',...componentItem}}##`,
   };
   // 执行组件预处理
@@ -175,7 +176,9 @@ const preprocessComponentSchema = (
     newSchema.props.visible = `$\`\${${basicStatusStr}}\` !== '2'$`;
     newSchema.props.readOnly = `$\`\${${basicStatusStr}}\` === '4'$`;
   }
-  delete newSchema.props.basicStatus;
+  if (newSchema?.props?.basicStatus) {
+    delete newSchema.props.basicStatus;
+  }
   // 预处理中已经将 collapseColumns 转成子集，这里删掉
   if (collapseColumns) {
     delete newSchema.props.collapseColumns;
@@ -210,9 +213,7 @@ const modifySchemaCompName = (schema: IProjectSchema, isRoot: boolean) => {
     if (schema.compName) {
       schema.compName = compName;
     }
-    if (schema.type) {
-      schema.type = compName;
-    }
+    schema.type = compName;
     if (schema?.customClass) {
       schema.props.className = schema.id;
     }

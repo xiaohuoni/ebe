@@ -81,7 +81,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         type: ChunkType.STRING,
         fileType: FileType.TSX,
         name: INJECT_STYLE_CHUNK_NAME.InjectStyleContent,
-        content: `'${normalizeCSS(customClass ?? ' ', classRoot)}'`,
+        content: `\`${normalizeCSS(customClass ?? ' ', classRoot)}\``,
         linkAfter: [INJECT_STYLE_CHUNK_NAME.InjectStyleStart],
       });
     }

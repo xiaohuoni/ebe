@@ -109,16 +109,26 @@ const Page = () => {
     console.log(appConfig);
     let lastPageId: any = '';
     // 根据 pageId 获得 dsl
-    const data = await Promise.all(
-      appPageList.map((i) => {
-        lastPageId = i.pageId;
-        return getPageVersionById({
-          appId: values.appId,
-          pageId: i.pageId,
-          // actionType: 'publish',
-        });
-      }),
-    );
+    let data = [];
+    if (!values.pageId) {
+      data = await Promise.all(
+        appPageList.map((i) => {
+          lastPageId = i.pageId;
+          return getPageVersionById({
+            appId: values.appId,
+            pageId: i.pageId,
+            // actionType: 'publish',
+          });
+        }),
+      );
+    } else {
+      const p = await getPageVersionById({
+        appId: values.appId,
+        pageId: values.pageId,
+        // actionType: 'publish',
+      });
+      data = [p];
+    }
     console.log(data);
     const pages = getPageDsls(data);
     console.log(pages);
@@ -183,7 +193,7 @@ const Page = () => {
       pages: cleanedTree,
       options,
       appId: values.appId,
-      cache: true,
+      cache: false,
     });
     console.log(res);
     if (res.resultCode === '0') {
@@ -206,11 +216,15 @@ const Page = () => {
         onFinish={onFinish}
         initialValues={{
           // appId: '868681578956083200',
-          appId: '1024143353417228288',
+          appId: '868681578956083200',
+          pageId: '903831414833057792',
           platform: false,
         }}
       >
         <Item name="appId" label="AppID">
+          <Input />
+        </Item>
+        <Item name="pageId" label="PageID">
           <Input />
         </Item>
         <Item name="platform" label="是否是 H5">

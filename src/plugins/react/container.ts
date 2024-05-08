@@ -63,7 +63,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       content: `const pageId = '${pageId}';
         const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, 
           attrDataMap={},customActionMapRef,
-          injectData, refs, state, functorsMap, getStaticDataSourceService, getValue, componentItem, style, urlParam, ${
+          injectData, refs, state, functorsMap, getStaticDataSourceService, getValue, updateData, updateGlobalDataSource, componentItem, style, urlParam, ${
             isModal ? 'forwardedRef,' : ''
           } 
           parentEngineId = pageId

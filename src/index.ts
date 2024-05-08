@@ -108,7 +108,12 @@ async function loadWorkerJs(workerJsUrl: string) {
     return cached;
   }
 
-  const workerJsContent = await fetch(workerJsUrl)
+  const workerJsContent = await fetch(workerJsUrl, {
+    //@ts-ignore
+    headers: {
+      disabledSignKey: true,
+    },
+  })
     .then((res) => res.text())
     .catch((err) => {
       throw new Error(`Failed to fetch worker js: ${err}`);
