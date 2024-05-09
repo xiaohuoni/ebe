@@ -232,7 +232,7 @@ const Page = () => {
         </Item>
         <Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit" loading={loading}>
-            服务端出码
+            生成json
           </Button>
           <Button
             loading={loading}

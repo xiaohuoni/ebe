@@ -75,12 +75,12 @@ export default (api: IApi) => {
           fsExtra.mkdirpSync(dirname(tmpPath));
 
           writeFileSync(tmpPath, JSON.stringify(req.body));
-          await generateZip({
-            options,
-            pages,
-            appId,
-            outputPath: api.paths.absOutputPath,
-          });
+          // await generateZip({
+          //   options,
+          //   pages,
+          //   appId,
+          //   outputPath: api.paths.absOutputPath,
+          // });
           generaterHash[appId] = false;
           res.send({
             resultCode: '0',
