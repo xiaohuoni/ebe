@@ -3,6 +3,8 @@ import { createResultDir } from '../../../../../core/utils/resultHelper';
 import { runFileGenerator } from '../../../../../core/utils/templateHelper';
 import constants from './files/constants';
 import context from './files/context';
+import useTool from './files/useTool';
+import historytool from './files/historytool';
 import editorconfig from './files/editorconfig';
 import env from './files/env';
 import factory from './files/factory';
@@ -39,6 +41,8 @@ export function generateStaticFiles(
   runFileGenerator(postProcessors, root, constants, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, context, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, editorconfig);
+  runFileGenerator(postProcessors, root, useTool);
+  runFileGenerator(postProcessors, root, historytool);
   runFileGenerator(postProcessors, root, env, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, factory, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, gitignore);

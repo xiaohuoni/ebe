@@ -45,6 +45,9 @@ import Popover from '@/components/Popover';`,
     next.ir.deps.push(
       ...getImportsFrom('@/utils/withPageHOC', ['PageProps', 'withPageHOC']),
     );
+    next.ir.deps.push(
+      ...getImportsFrom('@/utils/useTool', ['useTool']),
+    );
     // next.ir.deps.push(
     //   getImportFrom('@lingxiteam/engine-sandbox', 'Sandbox', false),
     // );
