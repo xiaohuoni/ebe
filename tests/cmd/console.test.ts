@@ -17,13 +17,13 @@ describe('getConsole', () => {
   it('should handle JS variables correctly', () => {
     const value = {
       options: {
-        value: ['option1', 'option2', 'var1', 'var2'],
+        value: ['option1', 'option2', '$var1$', 'var2'],
       },
       type: 'log',
       dataId: '123',
     };
     const expected =
-      "// log 123 \n console.log('option1','option2','var1','var2');\n";
+      "// log 123 \n console.log('option1','option2',var1,'var2');\n";
     const result = getConsole({ value });
     expect(result).toEqual(expected);
   });
