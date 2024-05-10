@@ -5,8 +5,8 @@ import { createDiskPublisher } from './src/core/publisher/disk';
 import { createZipPublisher } from './src/core/publisher/zip';
 (async () => {
   const appId = '868681578956083200';
-  // const schemaFile = `./demo/node_modules/.cache/${appId}/req.json`;
-  const schemaFile = `./req.json`;
+  const schemaFile = `./demo/node_modules/.cache/${appId}/req.json`;
+  // const schemaFile = `./req.json`;
   // 读取 Schema
   const schema = await loadSchemaFile(schemaFile);
 
@@ -19,7 +19,7 @@ import { createZipPublisher } from './src/core/publisher/zip';
   await createDiskPublisher().publish({
     project, // 上一步生成的 project
     outputPath: './templates/', // 输出目录
-    projectSlug: 'n9',
+    projectSlug: 'n8',
   });
 
   async function loadSchemaFile(schemaFile: string): Promise<any> {
