@@ -24,3 +24,7 @@ export const CUSTOM_ACTION_CHUNK_NAME = {
   Map: 'CustomActionMap',
   ImperativeHandle: 'CustomActionMapUseImperativeHandle',
 };
+
+export const DATA_SOURCE_CHUNK_NAME = {
+  CallDataSource: 'CallDataSource'
+}

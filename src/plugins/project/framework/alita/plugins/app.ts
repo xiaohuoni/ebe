@@ -26,7 +26,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.InternalDepsImport,
-      content: `import { history } from 'alita';
+      content: `import { history, RequestConfig } from 'alita';
 ${
   isMobile
     ? `const titleList = [
@@ -64,6 +64,20 @@ export const mobileLayout = {
       export function getKeepAlive(keepalive: any) {
         return ${JSON.stringify(ir.keepalive)};
       }
+
+      export const request: RequestConfig = {
+        timeout: 300000,
+        middlewares: [],
+        prefix: ${JSON.stringify(isMobile ? '../server/' : 'server/')},
+        method: 'get',
+        errorHandler: (error) => {
+          // 集中处理错误
+          console.log(11111111);
+          console.log(error);
+        },
+        requestInterceptors: [],
+        responseInterceptors: [],
+      };
       `,
       linkAfter: [COMMON_CHUNK_NAME.ExternalDepsImport],
     });

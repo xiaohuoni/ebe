@@ -16,39 +16,40 @@ function cleanTree(tree: any, fields: string[]): any {
 }
 
 export const cleanDataSource = (dataSource: any[]) => {
-  return dataSource.map((item) => {
-    switch (item?.source) {
-      // {
-      //     "id": 166780606235440800,
-      //     "name": "$_hxLabelDataList",
-      //     "description": "画像标签数据集合",
-      //     "source": "custom",
-      //     "type": "objectArray",
-      //     "filterParams": [],
-      //     "outParams": [],
-      //     "config": { "hooks": [] }
-      //   },
-      // item: {name: string, outParams?: never[] | undefined; type?: 'object' | 'objectArray'; rootOutParams: any; }
-      case 'custom': {
-        return cleanTree(item, ['id', 'description', 'filterParams', 'config']);
-      }
-      case 'object': {
-        return cleanTree(item, ['id', 'description']);
-      }
-      case 'service': {
-        return cleanTree(item, ['id', 'description']);
-      }
-      case 'funcComp': {
-        return cleanTree(item, [
-          'id',
-          'description',
-          'filterParams',
-          'config',
-          'objectArray',
-        ]);
-      }
-      default:
-        break;
-    }
-  });
+  // return dataSource.map((item) => {
+  //   switch (item?.source) {
+  //     // {
+  //     //     "id": 166780606235440800,
+  //     //     "name": "$_hxLabelDataList",
+  //     //     "description": "画像标签数据集合",
+  //     //     "source": "custom",
+  //     //     "type": "objectArray",
+  //     //     "filterParams": [],
+  //     //     "outParams": [],
+  //     //     "config": { "hooks": [] }
+  //     //   },
+  //     // item: {name: string, outParams?: never[] | undefined; type?: 'object' | 'objectArray'; rootOutParams: any; }
+  //     case 'custom': {
+  //       return cleanTree(item, ['id', 'description', 'filterParams', 'config']);
+  //     }
+  //     case 'object': {
+  //       return cleanTree(item, ['id', 'description']);
+  //     }
+  //     case 'service': {
+  //       return cleanTree(item, ['id', 'description']);
+  //     }
+  //     case 'funcComp': {
+  //       return cleanTree(item, [
+  //         'id',
+  //         'description',
+  //         'filterParams',
+  //         'config',
+  //         'objectArray',
+  //       ]);
+  //     }
+  //     default:
+  //       break;
+  //   }
+  // });
+  return dataSource;
 };

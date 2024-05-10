@@ -8,6 +8,7 @@ import {
   REACT_CHUNK_NAME,
   MODAL_CHUNK_NAME,
   CUSTOM_ACTION_CHUNK_NAME,
+  DATA_SOURCE_CHUNK_NAME,
 } from './const';
 
 import {
@@ -61,9 +62,9 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: CLASS_DEFINE_CHUNK_NAME.Start,
       content: `const pageId = '${pageId}';
-        const ${type}: React.FC<PageProps> = ({ data, CMDGenerator, 
-          attrDataMap={},customActionMapRef,
-          injectData, refs, state, functorsMap, getStaticDataSourceService, getValue, updateData, updateGlobalDataSource, componentItem, style, urlParam, ${
+        const ${type}: React.FC<PageProps> = ({CMDGenerator, 
+          attrDataMap={},customActionMapRef,routerData,lcdpApi,
+          injectData, refs, state, functorsMap, getStaticDataSourceService, getValue, updateGlobalDataSource, componentItem, style, urlParam, ${
             isModal ? 'forwardedRef,' : ''
           } 
           parentEngineId = pageId
@@ -76,6 +77,25 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         COMMON_CHUNK_NAME.FileUtilDefine,
       ],
     });
+
+
+    if (ir.dataSource?.length) {
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: FileType.TSX,
+        name: DATA_SOURCE_CHUNK_NAME.CallDataSource,
+        content: `
+          const { data, updateData, resetDataSource, reloadDataSource } = useDataSource({
+            urlParam,
+            routerData,
+            state,
+            lcdpApi,
+          })`,
+        linkAfter: [
+          CLASS_DEFINE_CHUNK_NAME.Start
+        ],
+      })
+    }
 
     next.chunks.push({
       type: ChunkType.STRING,
@@ -187,7 +207,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     if (ir.dataSource && ir.dataSource.length) {
       // import dataSource from './dataSource';
       next.ir.deps.push(
-        getImportFrom('./dataSource.json', 'dataSource', false),
+        getImportFrom('./useDataSource', 'useDataSource', false),
       );
       hasDataSource = true;
     }
@@ -206,9 +226,8 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       name: COMMON_CHUNK_NAME.FileExport,
       content: `export default withPageHOC(${type}, {
         pageId,
-        hasLogin: ${!!!ir.ignoreLogin},${
-        hasDataSource ? 'dataSource,' : ''
-      }defaultState:${JSON.stringify(defaultState)},
+        hasLogin: ${!!!ir.ignoreLogin},
+        defaultState:${JSON.stringify(defaultState)},
       });`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
