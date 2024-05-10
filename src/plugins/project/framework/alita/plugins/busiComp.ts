@@ -10,6 +10,7 @@ import {
   IContainerInfo,
 } from '../../../../../core/types';
 import { getImportFrom } from '../../../../../utils/depsHelper';
+import { getBusiCompName } from '../../../../../utils/schema/getBusiCompName';
 
 export interface PluginConfig {
   fileType?: string;
@@ -37,13 +38,8 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     if (ir?.busiComp) {
       Object.keys(ir.busiComp).forEach((key) => {
         const item = ir.busiComp[key];
-        next.ir.deps.push(
-          getImportFrom(
-            `@/components/BusiComp${item?.id}`,
-            `BusiComp${item?.id}`,
-            false,
-          ),
-        );
+        const name = getBusiCompName({}, item);
+        next.ir.deps.push(getImportFrom(`@/components/${name}`, name, false));
       });
     }
     return next;

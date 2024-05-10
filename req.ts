@@ -4,7 +4,7 @@ import alita from './src/solutions/alita';
 import { createDiskPublisher } from './src/core/publisher/disk';
 import { createZipPublisher } from './src/core/publisher/zip';
 (async () => {
-  const appId = '868681578956083200';
+  const appId = '871672424566726656';
   const schemaFile = `./demo/node_modules/.cache/${appId}/req.json`;
   // const schemaFile = `./req.json`;
   // 读取 Schema
@@ -19,7 +19,7 @@ import { createZipPublisher } from './src/core/publisher/zip';
   await createDiskPublisher().publish({
     project, // 上一步生成的 project
     outputPath: './templates/', // 输出目录
-    projectSlug: 'n8',
+    projectSlug: 'n2',
   });
 
   async function loadSchemaFile(schemaFile: string): Promise<any> {

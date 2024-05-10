@@ -198,7 +198,7 @@ const Page = () => {
     console.log(res);
     if (res.resultCode === '0') {
       message.success(res.resultObject.message);
-      window.open(`/download?appId=${values.appId}`);
+      // window.open(`/download?appId=${values.appId}`);
     } else {
       message.error(res.resultObject.message);
     }
@@ -215,9 +215,8 @@ const Page = () => {
         autoComplete="off"
         onFinish={onFinish}
         initialValues={{
-          // appId: '868681578956083200',
           appId: '868681578956083200',
-          pageId: '903831414833057792',
+          pageId: '',
           platform: false,
         }}
       >

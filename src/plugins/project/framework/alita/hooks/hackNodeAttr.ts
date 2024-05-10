@@ -7,6 +7,7 @@ import {
   IProjectSchema,
   LXProjectOptions,
 } from '../../../../../core/types';
+import { getBusiCompName } from '../../../../../utils/schema/getBusiCompName';
 
 export default function hackEngineApis(
   nodeItem: IProjectSchema,
@@ -44,7 +45,7 @@ export default function hackEngineApis(
   if (nodeTags === 'BOFramer') {
     const { options = {} } = config!;
     const { busiCompMapping = {} } = options as LXProjectOptions;
-    pieces[0].value = `BusiComp${busiCompMapping[nodeItem?.props?.busiCompId]}`;
+    pieces[0].value = getBusiCompName(busiCompMapping, nodeItem);
     // 业务组件的 pageId 来自 页面
     pieces.unshift({
       type: PIECE_TYPE.ATTR,

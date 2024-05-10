@@ -12,6 +12,7 @@ import {
   IPublicTypeNodeDataType,
   LXProjectOptions,
 } from '../core';
+import { getBusiCompName } from '../utils/schema/getBusiCompName';
 import { handleSubNodes, parseSchema } from '../utils/schema/lxschema';
 import { uniqueArray } from '../core/utils/common';
 // @ts-ignore
@@ -23,7 +24,7 @@ import enRunPreprocessPC from '../utils/factory/pc/index.enRunPreprocess';
 import assetHelper from '../utils/schema/assets/assets';
 import { LINGXI_PROJECT_VERSION, PAGE_TYPES, MODAL_TYPES } from '../constants';
 import { cleanDataSource } from '../utils/schema/cleanDataSource';
-
+import pinyin from 'pinyin';
 import * as _ from 'lodash';
 
 function getInternalDep(
@@ -93,10 +94,8 @@ export class SchemaParser implements ISchemaParser {
             version: '*',
             destructuring: false,
           };
-        } else if (info.type === 'BOFramer') {
-          const typeBOFramer = `BusiComp${
-            busiCompMapping[info?.props?.busiCompId] ?? ''
-          }`;
+        } else if (info.type === 'BOFramer' || info.type === 'BusiComp') {
+          const typeBOFramer = getBusiCompName(busiCompMapping, info);
           compDeps[typeBOFramer] = {
             package: `@/components/${typeBOFramer}`,
             dependencyType: DependencyType.External,
@@ -147,11 +146,15 @@ export class SchemaParser implements ISchemaParser {
       if (newSchema?.pageDynamicFlag && newSchema.pagePath) {
         keepalive.push(newSchema.pagePath);
       }
+      // 简写 业务组件没有 pagePath
+      let moduleName = newSchema.pagePath;
+      if (newSchema.pageContainerType === 'BusiComp') {
+        moduleName = getBusiCompName(busiCompMapping, newSchema);
+      }
       if (newSchema.dataSource) {
         dataSources.push({
-          moduleName: newSchema.pagePath
-            ? newSchema.pagePath
-            : `${newSchema.pageContainerType}${newSchema.id}`,
+          moduleName,
+          abc: 1,
           containerType: newSchema.pageContainerType ?? 'Page',
           type: newSchema.pageContainerType ?? 'Page',
           analyzeResult: {
@@ -165,10 +168,7 @@ export class SchemaParser implements ISchemaParser {
       }
       return {
         ...newSchema,
-        // 简写 业务组件没有 pagePath
-        moduleName: newSchema.pagePath
-          ? newSchema.pagePath
-          : `${newSchema.pageContainerType}${newSchema.id}`,
+        moduleName,
         containerType: newSchema.pageContainerType ?? 'Page',
         type: newSchema.pageContainerType ?? 'Page',
         analyzeResult: {
@@ -321,13 +321,9 @@ export class SchemaParser implements ISchemaParser {
       components,
       {
         node: (i: any) => {
-          if (i.type === 'BOFramer') {
-            const otherType =
-              options?.busiCompMapping[i?.props?.busiCompId] ?? '';
-            if (otherType) {
-              return `BusiComp${otherType}`;
-            }
-            return i.type;
+          if (i.type === 'BOFramer' || i.type === 'BusiComp') {
+            const name = getBusiCompName(options?.busiCompMapping, i);
+            return name;
           }
           return i.type;
         },
