@@ -1,56 +1,56 @@
-import { generatorDataType } from "./type";
+import { generatorDataType } from './type';
 
 /**
  * 生成导入的头文件列表
  */
-const importDeps = () => { 
+const importDeps = () => {
   return [
     `import { useState, useRef, useEffect, useMemo } from 'react'`,
     `import { useRequest } from 'alita'`,
     `import { DataSourceType } from './dataSourceType'`,
-  ].join(';\n')
-}
+  ].join(';\n');
+};
 
 // 获取数据的起止节点
-const getDataSourceBegin = (params: Record<string, { isRequired: boolean, type: string }> = {}) => { 
+const getDataSourceBegin = (
+  params: Record<string, { isRequired: boolean; type: string }> = {},
+) => {
   return `
     export interface DataSourceOptions {
-      ${Object.keys(params).map(propertyKey => { 
-        const { isRequired, type } = params[propertyKey];
-        return `${propertyKey}${isRequired ? '' : '?'} : ${ type || 'unknown'}`
-      }).join(';')}
+      ${Object.keys(params)
+        .map((propertyKey) => {
+          const { isRequired, type } = params[propertyKey];
+          return `${propertyKey}${isRequired ? '' : '?'} : ${
+            type || 'unknown'
+          }`;
+        })
+        .join(';')}
     }
 
     const useDataSource = (options: DataSourceOptions) => {
-      const { ${Object.keys(params).join(',') }} = options;
-  `
-}
+      const { ${Object.keys(params).join(',')}} = options;
+  `;
+};
 
 // 生成数据源内容
-const getDataSourceContent = (dataSource: any[]) => { 
+const getDataSourceContent = (dataSource: any[]) => {
   const defineDataCode = `const [data, setData] = useState<DataSourceType>()`;
 
-  return [
-    `${defineDataCode}`,
-  ]
-}
+  return [`${defineDataCode}`];
+};
 
 /**
  * 数据源结束
  */
-const getDataSourceEnd = () => { 
-  return [
-    '}',
-    'export default useDataSource'
-  ].join('\n')
-}
-
+const getDataSourceEnd = () => {
+  return ['}', 'export default useDataSource'].join('\n');
+};
 
 /**
  * 生成
- * @param dataSource 
+ * @param dataSource
  */
-export const generate = (dataSource: any[]) => { 
+export const generate = (dataSource: any[]) => {
   // 生成头文件
   const deps = importDeps();
 
@@ -58,34 +58,29 @@ export const generate = (dataSource: any[]) => {
   const beginCode = getDataSourceBegin({
     urlParam: {
       isRequired: false,
-      type: 'Record<string, unknown>'
+      type: 'Record<string, unknown>',
     },
     routerData: {
       isRequired: false,
-      type: 'Record<string, unknown>'
+      type: 'Record<string, unknown>',
     },
     state: {
       isRequired: false,
-      type: 'Record<string, unknown>'
+      type: 'Record<string, unknown>',
     },
     lcdpApi: {
       isRequired: false,
-      type: 'any'
+      type: 'any',
     },
-  })
+  });
 
-  const dataCode = getDataSourceContent(dataSource)
+  const dataCode = getDataSourceContent(dataSource);
 
   // 生成结束
   const endCode = getDataSourceEnd();
 
   return {
     type: generatorDataType(dataSource),
-    code: [
-      deps,
-      beginCode,
-      dataCode,
-      endCode,
-    ].join('\n')
-  }
-}
+    code: [deps, beginCode, dataCode, endCode].join('\n'),
+  };
+};

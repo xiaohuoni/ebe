@@ -78,7 +78,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       ],
     });
 
-
     if (ir.dataSource?.length) {
       next.chunks.push({
         type: ChunkType.STRING,
@@ -91,10 +90,8 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
             state,
             lcdpApi,
           })`,
-        linkAfter: [
-          CLASS_DEFINE_CHUNK_NAME.Start
-        ],
-      })
+        linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
+      });
     }
 
     next.chunks.push({

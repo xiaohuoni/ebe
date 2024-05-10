@@ -26,5 +26,5 @@ export const CUSTOM_ACTION_CHUNK_NAME = {
 };
 
 export const DATA_SOURCE_CHUNK_NAME = {
-  CallDataSource: 'CallDataSource'
-}
+  CallDataSource: 'CallDataSource',
+};

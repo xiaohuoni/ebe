@@ -20,7 +20,7 @@ const pluginDataSource: BuilderComponentPluginFactory<unknown> = () => {
     }
 
     const dataSource = JSON.parse(ir.dataSource);
-    
+
     if (dataSource.length === 0) {
       return next;
     }

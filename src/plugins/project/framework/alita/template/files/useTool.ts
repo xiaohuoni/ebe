@@ -1,5 +1,3 @@
-
-
 import { ResultFile, LXProjectOptions } from '../../../../../../core';
 import { createResultFile } from '../../../../../../core/utils/resultHelper';
 
@@ -34,15 +32,5 @@ export default function getFile(
     };`,
   );
 
-  return [['src', 'utils'], file]
+  return [['src', 'utils'], file];
 }
-
-
-
-
-
-
-
-
-
-
