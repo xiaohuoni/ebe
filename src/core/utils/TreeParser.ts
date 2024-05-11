@@ -177,12 +177,9 @@ class TreeParser {
         // 如果value已经有值了，就不在需要下钻
         if (value !== undefined) {
           shouldNext = false;
-        }
-        console.log('下钻', value);
-      
+        }      
         // 继续下钻 遍历
       if (shouldNext && Array.isArray(children)) {
-        console.log('下钻');
         const brotherKeys: string[] = [];
         let fragmentCode: {
             keyCode: string;
