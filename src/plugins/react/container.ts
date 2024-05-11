@@ -62,7 +62,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: CLASS_DEFINE_CHUNK_NAME.Start,
       content: `const pageId = '${pageId}';
-        const ${type}: React.FC<PageProps> = ({CMDGenerator, 
+        const ${type}: React.FC<PageProps> = ({
           attrDataMap={},customActionMapRef,routerData,lcdpApi,
           injectData, refs, state, functorsMap, getStaticDataSourceService, getValue, updateGlobalDataSource, componentItem, style, urlParam, ${
             isModal ? 'forwardedRef,' : ''

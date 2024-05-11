@@ -9,7 +9,7 @@ export default function getFile(
   const file = createResultFile(
     'withPageHOC',
     'tsx',
-    `
+    `import { PLATFORM } from '@/constants';
 ${
   isMobile
     ? `import {
@@ -18,21 +18,21 @@ ${
 } from '@lingxiteam/engine-app/es/components/MessageApi';`
     : `import { message as messageApi, Modal } from 'antd';`
 }
+import assetHelper from '@lingxiteam/engine-assets';
+import {
+  checkIfCMDHasReturn,
+  checkIfRefValue,
+  checkIfRefValueByObject,
+  CMDParse,
+  CONDrun,
+} from '@lingxiteam/engine-command';
+import Meta from '@lingxiteam/engine-meta';
 import locales from '@lingxiteam/engine-${
       isMobile ? 'app' : 'pc'
     }/es/utils/locales';
-${
-  isMobile
-    ? ''
-    : `import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';`
-}
-
-import { pageStaticData } from '@/components/Pageview';
-import { PLATFORM } from '@/constants';
-import assetHelper from '@lingxiteam/engine-assets';
-import { getRunningUtils } from '@lingxiteam/engine-platform';
+import { createApp, getApis, getRunningUtils, user } from '@lingxiteam/engine-platform';
+import monitt from '@lingxiteam/engine-plog';
 import AwaitHandleData from '@lingxiteam/engine-render-core/es/utils/AwaitHandleData';
-import EngineMapping from '@lingxiteam/engine-render/es/utils/EngineMapping';
 import Sandbox from '@lingxiteam/engine-sandbox';
 import {
   copyText,
@@ -44,12 +44,19 @@ import {
   SERVICE_SOURCE_PARAMS,
   transformValueDefined,
 } from '@lingxiteam/engine-utils';
-import { SandBoxContext } from '@lingxiteam/types';
-import { useLocation } from 'alita';
-import { merge } from 'lodash';
-import { parse } from 'qs';
+import { $$compDefine, SandBoxContext } from '@lingxiteam/types';
+import { history, useLocation } from 'alita';
 import React, { useContext, useEffect, useState } from 'react';
+import EngineMapping from '@lingxiteam/engine-render/es/utils/EngineMapping';
+import { parse } from 'qs';
 import { Context } from './Context/context';
+import { merge } from 'lodash';
+${
+  isMobile
+    ? ''
+    : `import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';`
+}
+import { pageStaticData } from '@/components/Pageview';
 
 const awaitKeys: Set<string> = new Set();
 const cacheKeys: Set<string> = new Set();
@@ -83,9 +90,7 @@ export const withPageHOC = (
   WrappedComponent: React.FC<PageProps>,
   options: PageHOCOptions,
 ) => {
-  return React.forwardRef((props: any, ref) => {
-    // TODO: 和 service 的时候一起处理
-    const api: any = {};
+  return React.forwardRef((props: any,ref) => {
     const location = useLocation();
     const urlParam = parse((location?.search ?? '?')?.split('?')[1]);
     const { ModalManagerRef, refs, appId } = useContext(Context);
@@ -102,8 +107,29 @@ export const withPageHOC = (
         locales,
       );
     const [data, setData] = useState<any>();
+    let meta: Meta;
     const pageId = props?.pageId ?? options?.pageId;
     const init = async () => {
+      // 页面容器会传 pageId
+      const api = getApis({
+        appId,
+        // 页面容器会传 pageId
+        pageId,
+      });
+      const appInst: any = await createApp({
+        appId,
+        isInstallComponent: false,
+        isUsePermission: false,
+        isCheckUsedOldFlow: false,
+        isCF: false,
+        isMock: false,
+        dataCollect: false,
+        isOpenTheme: false,
+        // TODO: 页面开启免登录，页面里面又绑定了用户信息，怎么处理？
+        beforeCreateApp: () => user.init(),
+        // beforeCreateApp: () => options?.hasLogin && user.init(),
+      });
+
       const getStaticAttrByKeys = async (attrNbrKeys: string[]) => {
         const reqNbrKeys = attrNbrKeys.filter((key) => !cacheKeys.has(key));
         if (reqNbrKeys.length) {
@@ -179,6 +205,7 @@ export const withPageHOC = (
         }
         return Promise.resolve(cacheAttrDataMap);
       };
+
       const attrDataMap = await getStaticAttrByKeys(
         pageStaticData[pageId] ?? [],
       );
@@ -247,7 +274,7 @@ export const withPageHOC = (
         renderId: props?.parentEngineId ?? pageId,
         parentEngineId: props?.parentEngineId ?? pageId,
         engineRelation: EngineMapping.publicMethod,
-        lcdpApi: api,
+        lcdpApi: appInst.lcdpApi,
         transformValueDefined,
         processCustomParams,
         SERVICE_SOURCE,
@@ -275,12 +302,41 @@ export const withPageHOC = (
         },
         utils: merge(platformUtils, engineApis),
       };
+      meta = new Meta({
+        SandBox: Sandbox,
+        trigger: ({ relationMap }) => {
+          meta.updateComponentWithRelationMap(relationMap);
+        },
+        pageInst: {
+          dataSource: options?.dataSource || [],
+        },
+        service: api,
+        // @ts-ignore
+        context: defaultContext,
+        provideData: {},
+        state: {
+          ...(options?.defaultState || {}),
+          ...(props?.busiCompStates || {}),
+          ...(props?.pageViewCompState || {}),
+          ...(props?.state || {}),
+        },
+        engineStateChange: () => {
+          console.log('engineStateChange');
+        },
+        dataDidUpdate: () => {
+          console.log('dataDidUpdate');
+        },
+      });
+      appInst.use(meta.globalInstance);
+      // 收集内置数据
+      await meta.initialData();
+      const context = meta?.getContext(defaultContext);
       const sandBoxRun = (
         code: string,
         extendAllowMap: Record<string, any> = {},
       ) => {
         return Sandbox.run(code, {
-          ...defaultContext,
+          ...context,
           ...extendAllowMap,
         });
       };
@@ -290,8 +346,62 @@ export const withPageHOC = (
         pageId,
         platform: PLATFORM,
       };
+      const CMDGenerator = (
+        targetEventData: any,
+        args: any,
+        EventName: string,
+        $$compDefine: $$compDefine,
+      ) => {
+        return CMDParse(
+          targetEventData,
+          '',
+          engineApis,
+        )({ ...args, urlParam }, {
+          ...context,
+          api,
+          checkIfCMDHasReturn: (cmddata: any[]) => {
+            return checkIfCMDHasReturn(cmddata, engineApis);
+          },
+          checkIfRefValue: (val: string, field: any, cmd: any) => {
+            return checkIfRefValue(val, field, cmd, engineApis);
+          },
+          checkIfRefValueByObject: (
+            val: string | Record<string, any>,
+            field: Record<string, any>,
+            cmd?: any,
+          ) => {
+            return checkIfRefValueByObject(val, field, cmd, engineApis);
+          },
+          CMDParse: (cmddata: string | any[], actionname?: string) => {
+            return CMDParse(cmddata, actionname, engineApis);
+          },
+          CONDrun: (arg0: any, arg1: any, arg2: SandBoxContext, arg3: any) => {
+            return CONDrun(arg0, arg1, arg2, arg3, engineApis);
+          },
+          customActionMap: customActionMapRef.current,
+          monitt,
+          EventName,
+          $$compDefine,
+          Modal,
+          messageApi,
+          refs: refs.value,
+          utils: engineApis,
+          history,
+          sandBoxRun: (
+            code: string,
+            extendAllowMap: Record<string, any> = {},
+          ) => {
+            return Sandbox.run(code, {
+              ...context,
+              ...engineApis,
+              ...extendAllowMap,
+            });
+          },
+        });
+      };
       setData({
-        ...defaultContext,
+        ...context,
+        CMDGenerator,
         injectData,
         refs,
         functorsMap: assetHelper.function.functorsMap,
@@ -302,11 +412,22 @@ export const withPageHOC = (
         setTimeout(() => {
           // 太早设置，ref 还未渲染！
           EngineMapping.add(pageId, pageId, {
-            ...defaultContext,
+            ...context,
             customActionMap: customActionMapRef.current,
-          } as any);
+          });
         }, 100);
       }
+      meta.dataDidUpdate = () => {
+        setData({
+          ...context,
+          CMDGenerator,
+          injectData,
+          refs,
+          functorsMap: assetHelper.function.functorsMap,
+          componentItem,
+          attrDataMap,
+        });
+      };
     };
     useEffect(() => {
       init();
@@ -318,13 +439,8 @@ export const withPageHOC = (
     }
     return (
       <>
-        <WrappedComponent
-          {...data}
-          {...props}
-          urlParam={urlParam}
-          forwardedRef={ref}
-          customActionMapRef={customActionMapRef}
-        />
+        {' '}
+        <WrappedComponent {...data} {...props} urlParam={urlParam} forwardedRef={ref} customActionMapRef={customActionMapRef}/>
         ${
           isMobile
             ? ''
