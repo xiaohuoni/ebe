@@ -255,7 +255,8 @@ export const initialDataSource = (dataSource: any[]) => {
 
   code.push(...[
    `const newData: Partial<DataSourceType> = cloneDeep(initialData);`,
-  `type DataSourceKey = keyof DataSourceType;`,
+    `type DataSourceKey = keyof DataSourceType;`,
+    'setLoading(true);\n\n',
   `const dataSourceValues: Promise<{ name: DataSourceKey, value: any }>[] = [`,
     dataSourceValues.join(','),
     ']',
@@ -269,6 +270,7 @@ export const initialDataSource = (dataSource: any[]) => {
       console.log(err)
     }).finally(() => {
       setData(newData as DataSourceType);
+      setLoading(false)
     });
     `
   ]);
@@ -307,7 +309,9 @@ export const updateData = (dataSource: any[]) => {
  */
 export const reloadDataSource = (dataSource: any[]) => { 
   
-  const code = ``;
+  const code = `
+    setLoading(true);
+  `;
 
   return [
     `

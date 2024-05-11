@@ -38,7 +38,10 @@ const getDataSourceBegin = (
 
 // 生成数据源内容
 const getDataSourceContent = (dataSource: any[]) => { 
-  const defineDataCode = `const [data, setData] = useSetState<DataSourceType>()`;
+  const defineDataCode = `
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useSetState<DataSourceType>();
+  `;
 
   return [
     `${defineDataCode}`,
@@ -60,6 +63,7 @@ const getDataSourceEnd = () => {
         updateData,
         resetDataSource,
         reloadDataSource,
+        loading,
       };
     `,
     '}',
