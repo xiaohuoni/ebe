@@ -5,14 +5,13 @@ import {
   CompositeValueGeneratorOptions,
   CMDGeneratorPrames,
 } from '../core/types';
+import { parseDSSetVal, transformValueDefined } from '../core/utils/transformValueDefined';
 
 
 export function getSetDataSource({ value }: CMDGeneratorPrames): string {
-  const { options, type, dataId } = value;
-  console.log(options.dataSourceSetValue);
+  const { options } = value;
+
   return `updateData({
-    ${options.dataSourceName}: {
-      param1: '11'
-    },
+    ${options.dataSourceName}: ${transformValueDefined(parseDSSetVal(options), options.dataSourceName, options?.targetDataSourcePaths?.length > 0)},
   })`;
 }
