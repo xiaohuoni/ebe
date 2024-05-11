@@ -14,6 +14,7 @@ import {
   IContainerInfo,
   IScope,
 } from '../../core/types';
+import { getImportsFrom } from '../../utils/depsHelper';
 
 export interface PluginConfig {
   fileType?: string;
@@ -40,10 +41,14 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     const ir = next.ir as IContainerInfo;
     if (ir?.customFuctions && ir?.customFuctions.length > 0) {
       const customFuctionsIds: string[] = [];
+      // 写到独立文件
+      // TODO: 会丢失上下文，后续测试需要重点关注
+      // 后续根据指令修改情况，需要补齐缺失的上下文，如ceshi:(options:any)=>ceshi(options,other),
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.Map,
+        subModule: 'customAction',
         content: ir?.customFuctions
           .map((e) => {
             const value = e.setEvents?.map((event: any) => {
@@ -68,7 +73,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
                 startIndex,
                 endIndex,
               );
-              return `const ${e.eventCode} = (options: any)=>{${extractedString}} catch (err) {
+              return `export const ${e.eventCode} = (options: any)=>{${extractedString}} catch (err) {
                 console.log(err);
               }}`;
             }
@@ -77,7 +82,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             //   id: `${eName}`,
             //   value: eValue,
             // };
-            return `const ${e.eventCode} = ${CMDGeneratorEvent(
+            return `export const ${e.eventCode} = ${CMDGeneratorEvent(
               item?.value,
               next?.contextData,
               {} as IScope,
@@ -89,6 +94,10 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         ],
       });
+      // 在文件头引入
+      next.ir.deps.push(
+        ...getImportsFrom('./customAction', customFuctionsIds),
+      );
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: cfg.fileType,
@@ -96,7 +105,9 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         content: `React.useImperativeHandle(customActionMapRef, () => ({
           ${customFuctionsIds.join(',')}
         }));`,
-        linkAfter: [CUSTOM_ACTION_CHUNK_NAME.Map],
+        linkAfter: [
+          ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
+        ],
       });
     }
     return next;

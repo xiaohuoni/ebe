@@ -36,6 +36,11 @@ export function getDefault({
   scope,
   config = {},
 }: CMDGeneratorPrames) {
+  const { options, type, dataId } = value;
+
+  const consoleValue = options?.value ? Array.isArray(options?.value) ? options?.value : [options?.value] : []
+
+  return `// ${type} ${dataId} 未支持转源码 \n console.error(${type} ${dataId});\n`;
   const isLoopChildren = scope && scope?.parentType === 'Loop';
 
   let suffix = '';
