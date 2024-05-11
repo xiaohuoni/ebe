@@ -3,30 +3,13 @@ import { generateVarString } from "../../../../../../core/utils/compositeType";
 import { isJSVar } from "../../../../../../core/utils/deprecated";
 import { getDSFilterName } from "./type";
 import { cleanDataSource } from "./template";
+import TreeParser from "../../../../../../core/utils/TreeParser";
 
 const DATADOURCE_TYPE_CN = {
   'custom': '自定义数据源',
   'object': '对象数据源',
   'service': '服务数据源'
 };
-
-/**
- * 遍历子元素
- */
-const forEach = (params: any[], cb: (code: string, item: any) => void) => { 
-  const loop = (list: any[]) => {
-    list.forEach((item) => {
-      const { name, children } = item;
-      cb(name, item);
-      if (Array.isArray(children)) {
-        loop(children);
-      }
-    })
-  }
-
-  loop(params)
-}
-
 
 /**
  * 获取用户信息
@@ -47,123 +30,47 @@ const useInfo = () => {
 }
 
 const generateParams = (dataItem: any, t: keyof typeof DATADOURCE_TYPE_CN = 'custom') => { 
-  const { children = [] } = dataItem;
+  const { name, rootOutParams, rootFilterParams, outParams, filterParams } = dataItem;
 
-  const parseValue = (item: any) => { 
-    let initialValue = ``;
-    if (['array', 'objectArray', 'fieldArray'].includes(item.type)) {
-      initialValue = `[]`;
-    } else if (item?.initialData?.value) {
-      initialValue += generateVarString(item?.initialData?.value);
-    } else { 
-      const loop = (list: any[]) => {
-        let resultCode = '';
-        list?.forEach((item) => {
-          const { code, children, initialData, type } = item;
-
-          let value: any = initialData?.value;
-          
-          if (isString(initialData?.value)) {
-            if (isJSVar(initialData?.value)) {
-              value = generateVarString(initialData.value);
-            } else { 
-              value = JSON.stringify(value)
-            }
-          }
-
-          const generate = {
-            string: () => value,
-            number: () => value,
-            boolean: () => value,
-            date: () => value,
-            datetime: () => value,
-            double: () => value,
-            long: () => value,
-            array: () => value || '[]',
-            objectArray: () => value || '[]',
-            fieldArray: () => value || '[]',
-            object: () => {
-              if (value !== undefined) {
-                return value;
-              }
-
-              const obj = loop(children);
-
-              return [
-                `{`,
-                obj,
-                '}'
-              ].join('\n');
-              
-            }
-          }
-          value = generate[type as keyof typeof generate]?.();
-          if (![undefined].includes(value)) {
-            resultCode += `${code}: ${value},`;
-          }
-
-        });
-        return resultCode;
-      }
-    
-      initialValue += [
-        '{',
-        loop(children),
-        '}'
-     ].join('\n')
-    }
-    return initialValue;
+  const generateStr = (children: any[], value?: any, type?: string) => { 
+    const parser = new TreeParser();
+    return parser.stringify({
+      ...dataItem,
+      initialData: {
+        value,
+      },
+      children: children,
+      code: name,
+      type: type || dataItem.type
+    });
   }
 
-  return parseValue(dataItem);
-}
+  return `
+      \n
+      /**
+     * ${DATADOURCE_TYPE_CN[t]}: ${name}
+     */
+    ${getDSFilterName(name)}: ${generateStr(filterParams, rootFilterParams, 'object')},
+    ${name}: ${generateStr(outParams, rootOutParams?.value)}
+    \n
+  `;
 
+}
 
 const gData = {
   // 生成自定义初始化内容
   custom: (dataItem: any, t: keyof typeof DATADOURCE_TYPE_CN = 'custom') => { 
-    const { name, outParams = [], rootOutParams } = dataItem;
-
-    return `
-      \n
-      /**
-       * ${DATADOURCE_TYPE_CN[t]}: ${name}
-       */
-      ${getDSFilterName(name)}: {},
-      ${name}: ${generateParams({
-        ...dataItem,
-        initialData: rootOutParams,
-        children: outParams,
-      })}
-      \n
-    `;
+    return generateParams({
+      ...dataItem,
+      rootFilterParams: '${}$',
+    }, 'custom')
   },
 
   // 生成对象
   object: (dataItem: any) => {
-    const { name, outParams = [], rootOutParams, filterParams } = dataItem;
-
-    const initialValue = `
-    \n
-      /**
-       * ${DATADOURCE_TYPE_CN.service}: ${name}
-       */
-      ${getDSFilterName(name)}: ${generateParams({
-      ...dataItem,
-      children: filterParams,
-      type: 'object'
-    })},
-      ${name}: ${generateParams({
-      ...dataItem,
-      initialData: rootOutParams,
-      children: outParams,
-    })}
-      \n
-    `;
-
     return {
       requestCode: '',
-      initialValue,
+      initialValue: generateParams(dataItem, 'object')
     }
   },
 
@@ -171,29 +78,10 @@ const gData = {
   service: (dataItem: any) => { 
     const { name, outParams = [], rootOutParams, filterParams } = dataItem;
 
-    const initialValue = `
-    \n
-      /**
-       * ${DATADOURCE_TYPE_CN.service}: ${name}
-       */
-      ${getDSFilterName(name)}: ${generateParams({
-      ...dataItem,
-      children: filterParams,
-      type: 'object'
-    })},
-      ${name}: ${generateParams({
-      ...dataItem,
-      initialData: rootOutParams,
-      children: outParams,
-    })}
-      \n
-    `;
-
     return {
       requestCode: '',
-      initialValue
+      initialValue: generateParams(dataItem, 'service')
     }
-
   },
 };
 

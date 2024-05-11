@@ -1,4 +1,4 @@
-import { get } from "lodash";
+import { get, isPlainObject } from "lodash";
 import { isJSVar } from "./deprecated";
 import { generateVarString } from "./compositeType";
 
@@ -69,7 +69,7 @@ class TreeParser {
     return this.options?.filterEmpty ?? true;
   }
 
-  private getKey(code: string) { 
+  private getKey(code: string = '') { 
     const iCode = code.trim();
     if (
       !/^[\$_a-zA-Z][\d_\$a-zA-Z]{0,}/.test(iCode) && !/^\d+$/.test(iCode)
@@ -97,11 +97,19 @@ class TreeParser {
    * @param value 
    * @returns 
    */
-  private getFragment = (key: string, value: string) => {
-    if (!value && this.filterEmpty) {
+  private getFragment = (value: string, type: string) => {
+    if (!value && this.filterEmpty && !['array', 'fieldArray', 'objectArray', 'object'].includes(type)) {
       return '';
     }
-    return `${key}: ${value || undefined}`;
+
+    let placeholder = 'undefined';
+    if (type === 'object') {
+      placeholder = '{}';
+    } else if (['array', 'fieldArray', 'objectArray'].includes(type)) {
+      placeholder = '[]'
+    }
+
+    return `${value || placeholder}`;
   }
 
   /**
@@ -109,52 +117,35 @@ class TreeParser {
    * @param val 
    * @returns 
    */
-  private parseValue = (val: any, type: string) => { 
+  private parseValue = (val: any) => { 
     if (typeof val === 'string') {
       if (isJSVar(val)) {
         return generateVarString(val);
       } 
     }
 
-    if (['array', 'fieldArray', 'objectArray'].includes(type)) {
-      return val || '[]';
-    }
-
-    
     return JSON.stringify(val);
   }
 
   /**
    * 开始解析
    */
-  public stringify(tree: any[], replacer?: (options: { key: string, value: any, path: string[] }, stop: () => void) => (any | void)) {
-    if (!Array.isArray(tree) || !tree.length) return 'undefined';
+  public stringify(tree: any, replacer?: (options: { key: string, value: any, path: string[] }, stop: () => void) => (any | void)) {
 
-    const loop = (list: any[], path: string[]) => { 
+    if (!isPlainObject(tree) || Object.keys(tree).length === 0) return 'undefined';
 
-      // 字段片段  `key: a`,
-      let fragmentCode: string[] = [];
-      const brotherKeys: string[] = [];
-      list.forEach(item => {
+    const loop = (item: any, path: string[]) => { 
         const code = get(item, this.fieldCode);
         const children = get(item, this.children);
         const type = get(item, this.type);
-        const value = this.parseValue(get(item, this.value), type);
+        const value = this.parseValue(get(item, this.value));
 
         const keyCode = this.getKey(code);
 
-        // 自动检测key是否重复，重复了就放弃该字段
-        if (brotherKeys.includes(keyCode)) {
-          return;
-        }
-
-        brotherKeys.push(keyCode);
-
         // 更新是否继续下钻
         let shouldNext = shouldDeepLoop(type);
-
         // 先给予默认值
-        let keyVal: string = '';
+        let keyVal: string = '{}';
 
         if (typeof replacer === 'function') {
           const stopParam = this.getStopFn();
@@ -169,36 +160,61 @@ class TreeParser {
             path
           }, stopParam.stop);
 
-          keyVal = this.getFragment(keyCode, val === undefined ? value : val)
+          keyVal = this.getFragment(val === undefined ? value : val, type)
 
           // 更新是否继续下钻
           shouldNext = !stopParam.isStop;
         } else if (!shouldNext) {
           // 不需要递归的情况下，直接赋值即可
-          keyVal = this.getFragment(keyCode, value);
+          keyVal = this.getFragment(value, type);
         }
         
         // 部分字段为字符串、数字等类型，确实无法下钻。即使用户设置为下钻也不继续执行
         if (!shouldDeepLoop(type)) {
           shouldNext = false;
         }
-
+      
+        // 如果value已经有值了，就不在需要下钻
+        if (value !== undefined) {
+          shouldNext = false;
+        }
+        console.log('下钻', value);
+      
         // 继续下钻 遍历
-        if (shouldNext && Array.isArray(children)) {
-          const objCode = loop(children, [...path, code]);
-          keyVal = this.getFragment(keyCode, objCode);
-        }
+      if (shouldNext && Array.isArray(children)) {
+        console.log('下钻');
+        const brotherKeys: string[] = [];
+        let fragmentCode: {
+            keyCode: string;
+            value: string;
+          }[] = [];
+        children.forEach(it => {
+          const fragmentItem = loop(it, [...path, code]);
+          // 自动检测key是否重复，重复了就放弃该字段
+          if (brotherKeys.includes(fragmentItem.keyCode)) {
+            fragmentCode = fragmentCode.filter(it => it.keyCode !== fragmentItem.keyCode);
+          }
+          brotherKeys.push(fragmentItem.keyCode);
 
-        if (keyVal) {
-          fragmentCode.push(keyVal);
-        }
-      });
+          if (fragmentItem.value) {
+            fragmentCode.push(fragmentItem);
+          }
+          
+        });
 
-      return `{${fragmentCode.join(',')}}`;
+        keyVal = `{${fragmentCode.map(item => `${item.keyCode}: ${item.value}`).join(',')}}`;
+
+      }
+      
+      return {
+        keyCode,
+        value: keyVal,
+      }
     }
 
-    
-    return loop(tree, []);
+    const key = loop(tree, []);
+
+    return this.getFragment(key.value, tree.type);
   }
 }
 
