@@ -40,7 +40,7 @@ export function getDefault({
 
   const consoleValue = options?.value ? Array.isArray(options?.value) ? options?.value : [options?.value] : []
 
-  return `// ${type} ${dataId} 未支持转源码 \n console.error(${type} ${dataId});\n`;
+  return `// ${type} ${dataId} 未支持转源码 \n console.error('${type} ${dataId}');\n`;
   const isLoopChildren = scope && scope?.parentType === 'Loop';
 
   let suffix = '';
