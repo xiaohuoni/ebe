@@ -4,14 +4,7 @@ import {
   CompositeValueGeneratorOptions,
   CMDGeneratorPrames,
 } from '../types';
-import {
-  getConsole,
-  getDefault,
-  getIfelse,
-  getResetCurrentForm,
-  getResetDataSource,
-  getSetDataSource,
-} from '../../cmd';
+import * as cmd from '../../cmd';
 import { getDebugData } from './debug';
 
 const countCMD = (value: any | any[]) => {
@@ -32,27 +25,38 @@ const CMDGenerator = (prames: CMDGeneratorPrames) => {
   }
   countCMD(prames?.value);
   let str = '';
-  switch (prames?.value?.type) {
-    case 'console':
-      str = getConsole(prames);
-      break;
-    // TODO: ifelse 条件没写全，待补充，如 "operate": "notEmpty"
-    // case 'ifelse':
-    //   str = getIfelse(prames);
-    //   break;
-    // case 'resetCurrentForm':
-    //   str = getResetCurrentForm(prames);
-    //   break;
-    case 'setDataSource':
-      str = getSetDataSource(prames)
-      break;
-    case 'resetDataSource':
-      str = getResetDataSource(prames)
-      break;
-    default:
-      str = getDefault(prames);
-      break;
+
+  // 指令入口临时调整
+  const type = prames?.value?.type as keyof typeof cmd;
+
+  if (typeof cmd[type] === 'function') {
+    str = cmd[type](prames);
+  } else { 
+    str = cmd.defaultCmd(prames);
+    console.warn('源码指令缺失');
   }
+
+  // switch (prames?.value?.type) {
+  //   case 'console':
+  //     str = getConsole(prames);
+  //     break;
+  //   // TODO: ifelse 条件没写全，待补充，如 "operate": "notEmpty"
+  //   // case 'ifelse':
+  //   //   str = getIfelse(prames);
+  //   //   break;
+  //   // case 'resetCurrentForm':
+  //   //   str = getResetCurrentForm(prames);
+  //   //   break;
+  //   case 'setDataSource':
+  //     str = getSetDataSource(prames)
+  //     break;
+  //   case 'resetDataSource':
+  //     str = getResetDataSource(prames)
+  //     break;
+  //   default:
+  //     str = getDefault(prames);
+  //     break;
+  // }
   return str;
 };
 
