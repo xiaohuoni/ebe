@@ -1,0 +1,43 @@
+import { ResultFile, LXProjectOptions } from '../../../../../../core';
+import { createResultFile } from '../../../../../../core/utils/resultHelper';
+
+export default function getFile(
+  config?: LXProjectOptions,
+): [string[], ResultFile] {
+  const isMobile = config?.platform === 'h5';
+  const file = createResultFile(
+    'useSetState',
+    'ts',
+    `
+    import { useCallback, useState } from 'react';
+import isFunction from 'lodash/isFunction';
+
+export type SetState<S extends Record<string, any>> = <K extends keyof S>(
+  state?:
+    | Pick<S, K>
+    | null
+    | ((prevState: Readonly<S>) => Pick<S, K> | S | null),
+) => void;
+
+const useSetState = <S extends Record<string, any>>(
+  initialState?: S | (() => S) | undefined,
+): [S | undefined, SetState<S>] => {
+  const [state, setState] = useState<S | undefined>(initialState);
+
+  const setMergeState = useCallback((patch: any) => {
+    setState((prevState) => {
+      const newState = isFunction(patch) ? patch(prevState) : patch;
+      return newState ? { ...prevState, ...newState } : prevState;
+    });
+  }, []);
+
+  return [state, setMergeState];
+};
+
+export default useSetState;
+
+`,
+  );
+
+  return [['src/hooks'], file];
+}

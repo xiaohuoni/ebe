@@ -30,6 +30,7 @@ import stylelintrc from './files/stylelintrc';
 import tsconfig from './files/tsconfig';
 import typings from './files/typings';
 import withPageHOC from './files/withPageHOC';
+import useSetState from './files/useSetState';
 
 export function generateStaticFiles(
   parseResult: IParseResult,
@@ -110,5 +111,6 @@ export function generateStaticFiles(
   runFileGenerator(postProcessors, root, tsconfig);
   runFileGenerator(postProcessors, root, typings);
   runFileGenerator(postProcessors, root, withPageHOC, parseResult?.staticFiles);
+  runFileGenerator(postProcessors, root, useSetState);
   return root;
 }

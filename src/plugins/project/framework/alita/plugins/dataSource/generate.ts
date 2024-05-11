@@ -1,4 +1,5 @@
-import { generatorDataType } from './type';
+import { initialDataSource, reloadDataSource, resetDataSource, updateData } from "./utils";
+import { generatorDataType } from "./type";
 
 /**
  * 生成导入的头文件列表
@@ -7,6 +8,7 @@ const importDeps = () => {
   return [
     `import { useState, useRef, useEffect, useMemo } from 'react'`,
     `import { useRequest } from 'alita'`,
+    `import useSetState from '@/hooks/useSetState'`,
     `import { DataSourceType } from './dataSourceType'`,
   ].join(';\n');
 };
@@ -33,18 +35,36 @@ const getDataSourceBegin = (
 };
 
 // 生成数据源内容
-const getDataSourceContent = (dataSource: any[]) => {
-  const defineDataCode = `const [data, setData] = useState<DataSourceType>()`;
+const getDataSourceContent = (dataSource: any[]) => { 
+  const defineDataCode = `const [data, setData] = useSetState<DataSourceType>()`;
 
-  return [`${defineDataCode}`];
-};
+  return [
+    `${defineDataCode}`,
+    initialDataSource(dataSource),
+    updateData(dataSource),
+    resetDataSource(dataSource),
+    reloadDataSource(dataSource),
+  ].join('\n\n')
+}
 
 /**
  * 数据源结束
  */
-const getDataSourceEnd = () => {
-  return ['}', 'export default useDataSource'].join('\n');
-};
+const getDataSourceEnd = () => { 
+  return [
+    `
+      return {
+        data,
+        updateData,
+        resetDataSource,
+        reloadDataSource,
+      };
+    `,
+    '}',
+    'export default useDataSource'
+  ].join('\n')
+}
+
 
 /**
  * 生成
