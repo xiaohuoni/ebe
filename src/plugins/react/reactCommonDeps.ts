@@ -24,7 +24,10 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
 import React from 'react';
 import moment from 'moment';
 // 默认都加，应该用到再加
-import Popover from '@/components/Popover';`,
+import Popover from '@/components/Popover';
+import _ from 'lodash';
+`,
+
       linkAfter: [],
     });
     // next.ir.deps.push(

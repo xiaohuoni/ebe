@@ -61,7 +61,8 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: CLASS_DEFINE_CHUNK_NAME.Start,
-      content: `const pageId = '${pageId}';
+      content: `
+        const pageId = '${pageId}';
         const ${type}: React.FC<PageProps> = ({
           attrDataMap={},customActionMapRef,routerData,lcdpApi,
           injectData, refs, state, functorsMap, getStaticDataSourceService, getValue, updateGlobalDataSource, componentItem, style, urlParam, ${

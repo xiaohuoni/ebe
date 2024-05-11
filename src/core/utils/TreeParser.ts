@@ -45,9 +45,7 @@ const shouldDeepLoop = (type: string) => {
  * 树状结构解析器
  */
 class TreeParser { 
-  constructor(readonly options?: TreeParserOptions) { 
-
-  }
+  constructor(readonly options?: TreeParserOptions) {}
 
   private get fieldCode() { 
     return this.options?.alias?.fieldCode || 'code';
