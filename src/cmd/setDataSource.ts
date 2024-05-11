@@ -1,8 +1,4 @@
-import { isJSVar } from '../core/utils/deprecated';
-import { generateVarString } from '../core/utils/compositeType';
 import {
-  IScope,
-  CompositeValueGeneratorOptions,
   CMDGeneratorPrames,
 } from '../core/types';
 import { parseDSSetVal, transformValueDefined } from '../core/utils/transformValueDefined';

@@ -2,6 +2,7 @@ import { isString } from "lodash";
 import { generateVarString } from "../../../../../../core/utils/compositeType";
 import { isJSVar } from "../../../../../../core/utils/deprecated";
 import { getDSFilterName } from "./type";
+import { cleanDataSource } from "./template";
 
 const DATADOURCE_TYPE_CN = {
   'custom': '自定义数据源',
@@ -253,6 +254,7 @@ export const initialDataSource = (dataSource: any[]) => {
   initialData.push('};')
 
   code.push(...[
+   `const newData: Partial<DataSourceType> = cloneDeep(initialData);`,
   `type DataSourceKey = keyof DataSourceType;`,
   `const dataSourceValues: Promise<{ name: DataSourceKey, value: any }>[] = [`,
     dataSourceValues.join(','),
@@ -260,13 +262,13 @@ export const initialDataSource = (dataSource: any[]) => {
     `
     Promise.all(dataSourceValues).then((items) => {
       items.forEach(({ name, value }) => {
-        initialData[name] = value;
+        newData[name] = value;
       });
     }).catch(err => {
       console.log('数据源初始化失败')
       console.log(err)
-    }).finally(() => { 
-      setData(initialData as DataSourceType);
+    }).finally(() => {
+      setData(newData as DataSourceType);
     });
     `
   ]);
@@ -304,14 +306,16 @@ export const updateData = (dataSource: any[]) => {
  * 刷新数据源
  */
 export const reloadDataSource = (dataSource: any[]) => { 
-  const code = '';
+  
+  const code = ``;
+
   return [
     `
       /**
        * 刷新数据源
        */
     `,
-    `const reloadDataSource = () => {`,
+    `const reloadDataSource = (name: string) => {`,
     code,
     '}'
   ].join('');
@@ -320,15 +324,24 @@ export const reloadDataSource = (dataSource: any[]) => {
 /**
  * 重置数据源
  */
-export const resetDataSource = (dataSource: any[]) => { 
-  const code = 'setData(initialData as Required<DataSourceType>);';
+export const resetDataSource = () => { 
+  const code = `
+  /**
+   * 数据源名字不存在，无需重置数据源
+   */
+  if (!name) return;
+  setData({
+    [name]: cleanDataSource(name),
+  })
+`;
   return [
+    cleanDataSource,
     `
       /**
        * 重置数据源
        */
     `,
-    `const resetDataSource = () => {`,
+    `const resetDataSource = (name: string) => {`,
     code,
     '}'
   ].join('');

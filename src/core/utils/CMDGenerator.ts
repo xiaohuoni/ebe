@@ -9,6 +9,7 @@ import {
   getDefault,
   getIfelse,
   getResetCurrentForm,
+  getResetDataSource,
   getSetDataSource,
 } from '../../cmd';
 import { getDebugData } from './debug';
@@ -44,6 +45,9 @@ const CMDGenerator = (prames: CMDGeneratorPrames) => {
     //   break;
     case 'setDataSource':
       str = getSetDataSource(prames)
+      break;
+    case 'resetDataSource':
+      str = getResetDataSource(prames)
       break;
     default:
       str = getDefault(prames);

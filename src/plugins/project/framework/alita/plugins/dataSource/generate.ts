@@ -6,8 +6,10 @@ import { generatorDataType } from "./type";
  */
 const importDeps = () => {
   return [
-    `import { useState, useRef, useEffect, useMemo } from 'react'`,
-    `import { useRequest } from 'alita'`,
+    `import { useState, useRef, useEffect, useMemo } from 'react';`,
+    `import { useRequest } from 'alita';`,
+    `import cloneDeep from 'lodash/cloneDeep';`,
+    `import isPlainObject from 'lodash/isPlainObject';`,
     `import useSetState from '@/hooks/useSetState'`,
     `import { DataSourceType } from './dataSourceType'`,
   ].join(';\n');
@@ -42,7 +44,7 @@ const getDataSourceContent = (dataSource: any[]) => {
     `${defineDataCode}`,
     initialDataSource(dataSource),
     updateData(dataSource),
-    resetDataSource(dataSource),
+    resetDataSource(),
     reloadDataSource(dataSource),
   ].join('\n\n')
 }

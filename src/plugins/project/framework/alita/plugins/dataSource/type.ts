@@ -13,8 +13,8 @@ const gType = {
       const { code, type, children, name } = it;
       
       // 如果key重复了，就不再生成
-      if (propertyKey.includes(name)) return;
-      propertyKey.push(name);
+      if (propertyKey.includes(code)) return;
+      propertyKey.push(code);
 
       typeCode.push(` ${name ? `/**
       * ${name}
@@ -91,6 +91,7 @@ export const generatorDataType = (dataSource: any[]) => {
       personInfo: Record<string, any>
     }`,
     code.join(';'),
+    '[key: string]: any',
     '}'
   ].join('');
 }
