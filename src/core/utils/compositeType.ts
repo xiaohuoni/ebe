@@ -274,3 +274,4 @@ export function generateCompositeType(
   const result = generateUnknownType(value, scope, options);
   return result;
 }
+

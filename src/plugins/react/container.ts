@@ -89,7 +89,9 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
             routerData,
             state,
             lcdpApi,
-          })`,
+          })
+          const { getValue, setValue, setVisible, getVisible } = useTool(refs)
+          `,
         linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
       });
     }
