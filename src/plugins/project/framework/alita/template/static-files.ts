@@ -4,6 +4,7 @@ import { runFileGenerator } from '../../../../../core/utils/templateHelper';
 import constants from './files/constants';
 import context from './files/context';
 import useTool from './files/useTool';
+import messageApi from './files/messageApi';
 import historytool from './files/historytool';
 import editorconfig from './files/editorconfig';
 import env from './files/env';
@@ -43,6 +44,7 @@ export function generateStaticFiles(
   runFileGenerator(postProcessors, root, context, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, editorconfig);
   runFileGenerator(postProcessors, root, useTool);
+  runFileGenerator(postProcessors, root, messageApi);
   runFileGenerator(postProcessors, root, historytool);
   runFileGenerator(postProcessors, root, env, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, factory, parseResult?.staticFiles);
