@@ -6,6 +6,7 @@ import {
 } from '../types';
 import * as cmd from '../../cmd';
 import { getDebugData } from './debug';
+import { as } from 'fp-ts/lib/Option';
 
 const countCMD = (value: any | any[]) => {
   const debugData = getDebugData();
@@ -108,5 +109,6 @@ export const CMDGeneratorEvent = (
   )}
     }`;
 
-  return renderEvent;
+  // 统一对每个指令结束后增加换行
+  return renderEvent + '/n';
 };

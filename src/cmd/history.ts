@@ -13,5 +13,5 @@ export function setLoading({ value }: CMDGeneratorPrames): string {
   };
   return `// 路由跳转 \n  historytool(${options.type}, ${JSON.stringify(
     historyParmas,
-  )});\n`;
+  )});`;
 }

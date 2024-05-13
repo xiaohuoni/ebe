@@ -42,5 +42,5 @@ export function getConsole({ value }: CMDGeneratorPrames): string {
       return `'${v}'`;
     })
     .filter(Boolean)
-    .join(',')});\n`;
+    .join(',')});`;
 }
