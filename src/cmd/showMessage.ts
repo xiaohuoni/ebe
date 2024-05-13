@@ -1,15 +1,11 @@
-import { isJSVar } from '../core/utils/deprecated';
-import { generateVarString } from '../core/utils/compositeType';
+import { parse2Var } from '../core/utils/compositeType';
 import {
-  CMDGeneratorPrames,
+    CMDGeneratorPrames,
 } from '../core/types';
 
 export function showMessage({ value }: CMDGeneratorPrames): string {
-const { options } = value;
- let content = options.value;
- if (isJSVar(content)) {
-    content = generateVarString(content)
-  }
+    const { options } = value;
+    let content = options.value;
 
-  return `// 提示消息 \n messageApi('${options.type}', ${content}) ` ;
+    return `// 提示消息 \n messageApi('${options.type}', ${parse2Var(content)}) `;
 }

@@ -101,7 +101,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: PAGE_TOOL_CHUNK_NAME.PageTooL,
-      content: `const { getValue, setValue, setVisible, getVisible, callComponentMethod } = useTool(refs);`,
+      content: `const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired } = useTool(refs);`,
       linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
     });
 

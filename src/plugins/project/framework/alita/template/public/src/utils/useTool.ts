@@ -35,17 +35,22 @@ export const useTool = (props: IUseTool) => {
     return refs?.[id]?.visible || true;
   };
 
-  const setVisible = (ids: string[], visibleList: Record<string, boolean | 'toggle' >) => {
-    if (Array.isArray(ids)) {
-      ids.forEach((id) => {
-        if (visibleList[id] === 'toggle') {
+  const setVisible = (ids: Record<string, boolean | 'toggle'> | string, value?: any) => {
+    if(Object.prototype.toString.call(ids) === '[object Object]') {
+      Object.keys(ids).forEach(id => {
+      if (ids[id]) {
+        if (ids[id] === 'toggle') {
           refs?.[id]?.setVisible(!getVisible(id));
         } else {
-          refs?.[id]?.setVisible(visibleList[id]);
+          refs?.[id]?.setVisible(ids[id]);
         }
-      });
+      }
+    })
+    }
+    else if (typeof ids === 'string' && value !== undefined) {
+      refs?.[ids]?.setVisible(value);
     } else {
-      console.error('传入的组件ID数据异常');
+      console.error('传入的组件ID数据异常')
     }
   };
 
@@ -53,17 +58,22 @@ export const useTool = (props: IUseTool) => {
     return refs?.[id]?.required || false;
   };
 
-  const setRequired = (ids: string[], visibleList: Record<string, boolean | 'toggle' >) => {
-    if (Array.isArray(ids)) {
-      ids.forEach((id) => {
-        if (visibleList[id] === 'toggle') {
-          refs?.[id]?.setRequired(!getRequired(id));
+  const setRequired = (ids: Record<string, boolean | 'toggle'> | string, value?: any) => {
+    if(Object.prototype.toString.call(ids) === '[object Object]') {
+      Object.keys(ids).forEach(id => {
+      if (ids[id]) {
+        if (ids[id] === 'toggle') {
+          refs?.[id]?.setVisible(!getRequired(id));
         } else {
-          refs?.[id]?.setRequired(visibleList[id]);
+          refs?.[id]?.setVisible(ids[id]);
         }
-      });
+      }
+    })
+    }
+    else if (typeof ids === 'string' && value !== undefined) {
+      refs?.[ids]?.setVisible(value);
     } else {
-      console.error('传入的组件ID数据异常');
+      console.error('传入的组件ID数据异常')
     }
   };
 
