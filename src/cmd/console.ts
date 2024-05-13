@@ -34,8 +34,7 @@ export function getConsole({ value }: CMDGeneratorPrames): string {
   const { options, type, dataId } = value;
 
   const consoleValue = options?.value ? Array.isArray(options?.value) ? options?.value : [options?.value] : []
-
-  return `// ${type} ${dataId} \n console.log(${consoleValue
+  return `// 打印日志\n console.log(${consoleValue
     ?.map((v: string) => {
       if (isJSVar(v)) {
         return generateVarString(v);

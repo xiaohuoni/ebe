@@ -4,14 +4,14 @@ export function getValue({ value, platform, scope, config  }: CMDGeneratorPrames
   const { options, callback1 } = value;
   if (options?.compId) {
     const { id, compId } = options;
-    return `// 获取组件的值 \n const value_${id} = getValue(${compId});\n
-    {${CMDGeneratorFunction(
+    return `// 获取组件的值 \n const value_${id} = getValue('${compId}');\n
+    ${CMDGeneratorFunction(
       callback1,
-      params,
+      {},
       platform,
       scope,
       config,
-    )}} 
+    )}
     `;
   }
   return '';
