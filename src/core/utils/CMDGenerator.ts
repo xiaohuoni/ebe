@@ -110,5 +110,5 @@ export const CMDGeneratorEvent = (
     }`;
 
   // 统一对每个指令结束后增加换行
-  return renderEvent + '/n';
+  return renderEvent + '\n';
 };
