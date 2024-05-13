@@ -6,5 +6,5 @@ import {
 
 export function sysSetVisible({ value }: CMDGeneratorPrames): string {
   const { compId, valueList } = value.options;
-  return `// 批量设置控件的值 \n setValue(${compId}, ${JSON.stringify(valueList)}) ` ;
+  return `// 批量设置控件的值 \n setVisible('${compId}', ${JSON.stringify(valueList)}) ` ;
 }

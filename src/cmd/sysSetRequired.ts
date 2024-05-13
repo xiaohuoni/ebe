@@ -7,5 +7,5 @@ import {
 export function sysSetRequired({ value }: CMDGeneratorPrames): string {
   const { compId, valueList } = value.options;
 
-  return `// 批量设置控件的值 \n setRequired(${compId}, ${JSON.stringify(valueList)}) ` ;
+  return `// 批量设置控件的值 \n setRequired('${compId}', ${JSON.stringify(valueList)}) ` ;
 }

@@ -17,15 +17,17 @@ export const useTool = (props: IUseTool) => {
       return refs?.[id]?.value;
   };
 
-  const setValue = (ids: string [], valueList: Record<string, any>) => {
-    if(Array.isArray(ids)) {
-      ids.forEach(id => {
-        if (valueList[id]) {
-          refs?.[id]?.setValue(valueList[id]);
-        }
-      })
+  const setValue = (ids: Record<string, any> | string, value?: any ) => {
+    if(Object.prototype.toString.call(ids) === '[object Object]') {
+      Object.keys(ids).forEach(id => {
+      if (ids[id]) {
+        refs?.[id]?.setValue(ids[id]);
+      }
+    })
     }
-    else {
+    else if (typeof ids === 'string' && value !== undefined) {
+      refs?.[ids]?.setValue(value);
+    } else {
       console.error('传入的组件ID数据异常')
     }
   };

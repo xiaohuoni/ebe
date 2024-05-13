@@ -4,7 +4,7 @@ export function getValue({ value, platform, scope, config  }: CMDGeneratorPrames
   const { options, callback1 } = value;
   if (options?.compId) {
     const { id, compId } = options;
-    return `\n // 获取组件的值 \n const value_${id} = getValue('${compId}');
+    return `// 获取组件的值 \n const value_${id} = getValue('${compId}');
     ${CMDGeneratorFunction(
       callback1,
       {},
