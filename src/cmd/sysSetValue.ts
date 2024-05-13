@@ -5,7 +5,7 @@ import {
 } from '../core/types';
 
 export function sysSetValue({ value }: CMDGeneratorPrames): string {
-  const { compId, valueList: temValue } = value;
+  const { compId, valueList: temValue } = value.options;
  let valueList: any = {};
  compId.map((id: string ) => {
   if (temValue?.[id]) {

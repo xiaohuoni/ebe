@@ -5,6 +5,6 @@ import {
 } from '../core/types';
 
 export function sysSetVisible({ value }: CMDGeneratorPrames): string {
-  const { compId, valueList } = value;
+  const { compId, valueList } = value.options;
   return `// 批量设置控件的值 \n setValue(${compId}, ${JSON.stringify(valueList)}) ` ;
 }

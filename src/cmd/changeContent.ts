@@ -5,12 +5,12 @@ import {
 } from '../core/types';
 
 export function changeContent({ value }: CMDGeneratorPrames): string {
-  const { name,  compId} = value;
+  const { name,  compId} = value.options;
   let param = undefined;
   if (isJSVar(name)) {
     param = generateVarString(name);
   } else if (name){
-    param = `'${param}'`;
+    param = `'${name}'`;
   }
-  return `// 按钮更改内容 \n callComponentMethod(compId, 'changeContent', ${param}) ` ;
+  return `// 按钮更改内容 \n callComponentMethod('${compId}', 'changeContent', ${param}) \n` ;
 }

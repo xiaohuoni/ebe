@@ -5,11 +5,11 @@ import {
 } from '../core/types';
 
 export function showMessage({ value }: CMDGeneratorPrames): string {
-
- let content = value.value;
+const { options } = value;
+ let content = options.value;
  if (isJSVar(content)) {
     content = generateVarString(content)
   }
 
-  return `// 提示消息 \n showMessage(${value.type}, ${content}) ` ;
+  return `// 提示消息 \n showMessage(${options.type}, ${content}) ` ;
 }

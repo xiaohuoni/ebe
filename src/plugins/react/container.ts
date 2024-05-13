@@ -9,6 +9,7 @@ import {
   MODAL_CHUNK_NAME,
   CUSTOM_ACTION_CHUNK_NAME,
   DATA_SOURCE_CHUNK_NAME,
+  PAGE_TOOL_CHUNK_NAME,
 } from './const';
 
 import {
@@ -91,11 +92,18 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
             state,
             lcdpApi,
           })
-          const { getValue, setValue, setVisible, getVisible, callComponentMethod } = useTool(refs);
           `,
         linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
       });
     }
+
+    next.chunks.push({
+      type: ChunkType.STRING,
+      fileType: FileType.TSX,
+      name: PAGE_TOOL_CHUNK_NAME.PageTooL,
+      content: `const { getValue, setValue, setVisible, getVisible, callComponentMethod } = useTool(refs);`,
+      linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
+    });
 
     next.chunks.push({
       type: ChunkType.STRING,
