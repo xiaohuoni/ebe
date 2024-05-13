@@ -3,6 +3,8 @@ import { jsonc } from 'jsonc';
 import alita from './src/solutions/alita';
 import { createDiskPublisher } from './src/core/publisher/disk';
 import { createZipPublisher } from './src/core/publisher/zip';
+import { copyStatic } from './scripts/copyStatic';
+import { join } from 'path';
 (async () => {
   const appId = '868681578956083200';
   // const schemaFile = `./demo/node_modules/.cache/${appId}/req.json`;
@@ -15,13 +17,17 @@ import { createZipPublisher } from './src/core/publisher/zip';
   const project = await projectBuilder.generateProject(
     schema.pages, // 编排搭建出来的 schema
   );
+  const projectSlug = 'n2';
   // 写入到 zip 包
   await createDiskPublisher().publish({
     project, // 上一步生成的 project
     outputPath: './templates/', // 输出目录
-    projectSlug: 'n2',
+    projectSlug,
   });
-
+  copyStatic(
+    './src/plugins/project/framework/alita/template/public',
+    join('./templates/', projectSlug),
+  );
   async function loadSchemaFile(schemaFile: string): Promise<any> {
     if (!schemaFile) {
       throw new Error('invalid schema file name');
