@@ -91,7 +91,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
             state,
             lcdpApi,
           })
-          const { getValue, setValue, setVisible, getVisible } = useTool(refs);
+          const { getValue, setValue, setVisible, getVisible, callComponentMethod } = useTool(refs);
           `,
         linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
       });
