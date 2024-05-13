@@ -7,3 +7,4 @@ export { getSetDataSource as setDataSource } from './setDataSource';
 export  { changeContent } from './changeContent';
 export  { getValue } from './getValue';
 export { getResetDataSource as resetDataSource } from './resetDataSource';
+export { history } from './history'

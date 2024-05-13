@@ -1,6 +1,6 @@
 import { CMDGeneratorPrames } from '../core/types';
 import { generateVarString } from '../core/utils/compositeType';
-export function setLoading({ value }: CMDGeneratorPrames): string {
+export function history({ value }: CMDGeneratorPrames): string {
   const { options } = value;
   const paramsObj = generateVarString(options.paramsObj);
   const pathname = generateVarString(options.pathname);
@@ -11,7 +11,7 @@ export function setLoading({ value }: CMDGeneratorPrames): string {
     search: paramsObj,
     state: routerData || {},
   };
-  return `// 路由跳转 \n  historytool(${options.type}, ${JSON.stringify(
+  return `// 路由跳转 \n  historytool(HISTORYTYPES.${options.type}, ${JSON.stringify(
     historyParmas,
   )});`;
 }

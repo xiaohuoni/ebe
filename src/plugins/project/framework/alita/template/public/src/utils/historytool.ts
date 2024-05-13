@@ -1,5 +1,14 @@
 import Qs from 'qs';
 
+
+
+export const HISTORYTYPES = {
+  replace: 'replace',
+  push: 'push',
+  window: 'window',
+  portal: 'portal',
+
+} 
 export interface HistoryReplaceProps {
   history: any;
   pathname: string;

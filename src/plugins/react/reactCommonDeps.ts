@@ -51,6 +51,7 @@ import ArrayUtil from '@/utils/array';
     );
     next.ir.deps.push(...getImportsFrom('@/utils/messageApi', ['messageApi']));
     next.ir.deps.push(...getImportsFrom('@/utils/useTool', ['useTool']));
+    next.ir.deps.push(...getImportsFrom('@/utils/historytool', ['historytool', 'HISTORYTYPES']));
 
     // next.ir.deps.push(
     //   getImportFrom('@lingxiteam/engine-sandbox', 'Sandbox', false),
