@@ -32,7 +32,7 @@ const createId = (prefix?: string, id?: string, slength: number = 12) => {
 };
 
 const historyFunc = (type: 'replace' | 'push' | 'window' | 'portal' ) => (params: HistoryReplaceProps) => {
-  const { key, history, pathname, search, state } = params;
+  const { history, pathname, search, state } = params;
   if (type === 'window') {
     window.open(createUrl(false, params), '_blank');
     return

@@ -11,5 +11,5 @@ const { options } = value;
     content = generateVarString(content)
   }
 
-  return `// 提示消息 \n showMessage(${options.type}, ${content}) ` ;
+  return `// 提示消息 \n messageApi('${options.type}', ${content}) ` ;
 }

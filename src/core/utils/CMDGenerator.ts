@@ -79,7 +79,7 @@ export const CMDGeneratorFunction = (
     });
   });
 
-  return renderEvent.join('');
+  return renderEvent.join('\n');
 };
 
 export const CMDGeneratorEvent = (
@@ -108,7 +108,5 @@ export const CMDGeneratorEvent = (
     options,
   )}
     }`;
-
-  // 统一对每个指令结束后增加换行
-  return renderEvent + '\n';
+  return renderEvent;
 };
