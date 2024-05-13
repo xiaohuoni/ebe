@@ -6,7 +6,7 @@ import {
   isJSVar,
   isLXComponent,
 } from '../utils/deprecated';
-import _ from 'lodash';
+import _, { isArray, isPlainObject, isString } from 'lodash';
 
 import {
   IScope,
@@ -275,3 +275,51 @@ export function generateCompositeType(
   return result;
 }
 
+// 把变量标识解析成变量
+export const parse2Var = (object: any): string => { 
+
+  const getType = (o: any): keyof typeof variableType => {
+    if (isArray(o)) {
+      return 'array';
+    }
+    if (isPlainObject(o)) {
+      return 'object';
+    }
+    if (isString(o)) {
+      return 'string';
+    }
+    return 'any';
+  }
+
+  // 按照低代码平台特性，只需要解析string/array/object类型即可，其他类型无需关注
+  const variableType = {
+    string: (v: string) => {
+      if (isJSVar(v)) {
+        return generateVarString(v);
+      }
+      // 需要将字符串 修改为raw
+      return generateString(v);
+    },
+
+    array: (v: any[]) => { 
+      if (!Array.isArray(v)) return v;    
+      const codes = v.map(item => variableType[getType(item)](item));
+      const t: string = `${codes.join(',')}`;
+      return `[${t}]`;
+    },
+
+    object: (v: any) => { 
+      if (!isPlainObject(v)) return v;
+      let target: string[] = [];
+      Object.keys(v).forEach(key => {
+        // target += `${key}: `;
+        target.push(`${key}: ${variableType[getType(v[key])](v[key])}`);
+      });
+      return `{${target.join(',')}}`;
+    },
+
+    any: (v: any) => `${v}`,
+  };
+
+ return variableType[getType(object)](object);
+}

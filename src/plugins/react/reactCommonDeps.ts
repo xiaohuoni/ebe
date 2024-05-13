@@ -26,6 +26,7 @@ import moment from 'moment';
 // 默认都加，应该用到再加
 import Popover from '@/components/Popover';
 import _ from 'lodash';
+import ArrayUtil from '@/utils/array';
 `,
 
       linkAfter: [],

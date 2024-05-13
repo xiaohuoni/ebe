@@ -1,13 +1,192 @@
+import { last } from 'lodash';
 import {
   CMDGeneratorPrames,
 } from '../core/types';
-import { parseDSSetVal, transformValueDefined } from '../core/utils/transformValueDefined';
+import TreeParser from '../core/utils/TreeParser';
+import { parse2Var } from '../core/utils/compositeType';
+import { GetReqParamValues, getDSFilterName, parseDSSetVal, transformValueDefined } from '../core/utils/transformValueDefined';
 
+// 数组操作类型 operateType
+const ARRAY_OPERATE_TYPE = {
+  ADD: 0, // 新增元素
+  UPDATE: 1, // 更新元素
+  DELETE: 2, // 删除元素
+  REPLACE: 3, // 替换数据
+};
 
-export function getSetDataSource({ value }: CMDGeneratorPrames): string {
+/**
+ * itemLocateKey 枚举，按照索引 字段  自定义函数
+ */
+const ITME_LOCAL_TYPE = {
+  index: 'index', // 对应取值字段 itemIndex
+  key: 'key', // 对应取值字段：key itemLocateKey  value itemLocateKeyValue
+  custom: 'custom'  // 对应取值字段： itemLocateCustomFunction: { code: code,  originCode }
+};
+
+const getTargetsPath = (config: any, targetDataSourcePaths: any[]) => {
+  const pathMap: Record<string, string[]> = {}
+
+  const allPathMap: Record<string, any> = {
+    [config.id]: {
+      attrId: config.id,
+      code: config.name,
+      name: config.description,
+      type: config.type,
+      initialData: config.rootOutParams,
+      path: [],
+    }
+    
+  };
+
+  const loopCode = (list: any[], path: string[]) => {
+    list?.forEach?.(item => {
+      allPathMap[item.attrId] = {
+        ...item,
+        path,
+      };
+      loopCode(item?.children || [], [...path, item.code]);
+    });
+  };
+  loopCode(config.outParams || [], []);
+
+  targetDataSourcePaths?.forEach(item => {
+    const { attrId } = item;
+    const t = allPathMap[attrId];
+    pathMap[attrId] = t.path;
+    item.fieldType = t.type;
+  });
+  return pathMap;
+}
+
+const getArrayFilterCbCode = (item: any) => { 
+  let filterCode = '';
+  let errorMsg = '';
+  const { itemLocateType, itemIndex, itemLocateKey, itemLocateKeyValue, itemLocateCustomFunction, attrId } = item;
+  switch (itemLocateType) {
+    case ITME_LOCAL_TYPE.key:
+      if (!itemLocateKey) {
+        errorMsg = `配置中缺少【行属性】`;
+        break;
+      }
+      filterCode = `
+        (row: any, index: number) => row[${itemLocateKey}] == ${itemLocateKeyValue})
+      `;
+      break;
+    case ITME_LOCAL_TYPE.custom:
+      if (Array.isArray(itemLocateCustomFunction.originCode)) {
+        filterCode = `
+          (item_${attrId || ''}, index_${attrId}) => {
+            ${itemLocateCustomFunction.originCode.join('\n')};
+            return main(item_${attrId || ''}, index_${attrId});
+          }
+        `;
+      } else { 
+        errorMsg = `配置中缺少【自定义配置】配置`;
+      }
+      
+      break;
+    case ITME_LOCAL_TYPE.index:
+    default:
+      if (itemIndex !== undefined) {
+        filterCode = `
+        (row: any, index: number) => index == Number(${parse2Var(itemIndex)})
+        `;
+      } else { 
+        errorMsg = `配置中缺少【索引编码】配置`;
+      }
+      break;
+  }
+  return {
+    errorMsg,
+    filterCode
+  };
+}
+
+export function getSetDataSource({ value, config }: CMDGeneratorPrames): string {
   const { options } = value;
 
-  return `updateData({
-    ${options.dataSourceName}: ${transformValueDefined(parseDSSetVal(options), options.dataSourceName, options?.targetDataSourcePaths?.length > 0)},
-  })`;
+  // 检查数据源
+  const dataSourceName = options?.dataSourceName;
+  if (!dataSourceName) return `// 数据源名称不存在，请检查配置`;
+
+
+  // 检查是否配置了该数据源
+  const dataSourceConfig = config?.ir?.dataSource;
+  const dsConfig = dataSourceConfig?.find(item => [item.name, getDSFilterName(item.name)].includes(dataSourceName));
+  if (!dsConfig) return `// 数据源${dataSourceName}不存在，请检查配置`;
+
+
+  const { onlySetPatch, targetDataSourcePaths = [] } = options;
+
+  const payloadCode = transformValueDefined(parseDSSetVal(options), options.dataSourceName);
+
+if (!Array.isArray(targetDataSourcePaths) || targetDataSourcePaths.length === 0) {
+    targetDataSourcePaths.push({
+      attrId: `${dsConfig.id}`,
+      onlySetPatch,
+      operateType: options.operateType,
+      itemLocateType: options.itemLocateType,
+      itemLocateKey: options.itemLocateKey,
+      itemLocateKeyValue: options.itemLocateKeyValue,
+      itemIndex: options.itemIndex,
+      itemLocateCustomFunction: options.itemLocateCustomFunction,
+      fieldType: dsConfig.type,
+      newData: options.newData
+    })
+}
+
+  const getPath = (path: string[]) => { 
+    return parse2Var([`${dataSourceName}`, ...path].join('.'))
+  }
+
+  const pathMap = getTargetsPath(dsConfig, targetDataSourcePaths);
+  const lastItem = last<any>(targetDataSourcePaths);
+  const { attrId, fieldType, operateType, newData } = lastItem;
+  const path = pathMap[attrId];
+
+  const updateParams = {
+    name: parse2Var(dataSourceName),
+    path: getPath(path),
+    value: payloadCode,
+    predicate: '',
+    operateType: '',
+    type: parse2Var(['objectArray', 'array'].includes(fieldType) ? 'array' : 'object'),
+  }
+
+  if (['objectArray', 'array'].includes(fieldType)) {
+    updateParams.operateType = operateType;
+    // 数组
+    if (operateType === ARRAY_OPERATE_TYPE.DELETE) {
+      let deleteCb = getArrayFilterCbCode(lastItem);
+      if (deleteCb.errorMsg) {
+        return `// FIXME: 更新数据源出错! ${dataSourceName}: ${deleteCb.errorMsg}
+          console.warn('${deleteCb.errorMsg}');
+        `;
+      }
+      updateParams.predicate = deleteCb.filterCode;
+    } else if (lastItem.operateType === ARRAY_OPERATE_TYPE.REPLACE) {
+      updateParams.value = parse2Var(newData);
+    } else if (lastItem.operateType === ARRAY_OPERATE_TYPE.UPDATE) {
+      const { errorMsg, filterCode } = getArrayFilterCbCode(lastItem);
+      if (errorMsg) {
+        return `// FIXME: 更新数据源出错! ${dataSourceName}: ${errorMsg}
+          console.warn('${errorMsg}');
+        `;
+      }
+      updateParams.predicate = filterCode;
+    }
+  }
+
+  return `
+    // 更新数据源 ${dataSourceName}
+    updateData({
+      ${Object.keys(updateParams)
+      .filter(key => Boolean(updateParams[key as keyof typeof updateParams]))
+      .map(key => (`${key}: ${updateParams[key as keyof typeof updateParams]}`))}
+    }).then(() => {
+      // 成功回调
+    }).catch(() => {
+      // 失败回调
+    })
+  `
 }

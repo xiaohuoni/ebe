@@ -1,4 +1,8 @@
 import { get, setWith } from "lodash";
+import TreeParser from "./TreeParser";
+import { cons } from "fp-ts/lib/ReadonlyNonEmptyArray";
+import { isJSVar } from "./deprecated";
+import { parse2Var } from "./compositeType";
 
 export const getDSFilterName = (name: string) => `${name}Filter`;
 export const GetReqParamValues = (value: { type: string[]; code: string }) => {
@@ -20,11 +24,7 @@ export const GetReqParamValues = (value: { type: string[]; code: string }) => {
     case 'functionLib':
     case 'functorsMap':
     case 'customize': {
-      if (typeof valueCode === 'string' && /^\$.*\$$/.test(valueCode)) {
-        targetVal = valueCode.slice(1, valueCode.length - 1);
-      } else {
-        targetVal = valueCode;
-      }
+      targetVal = parse2Var(valueCode);
       break;
     }
     case 'page': {
@@ -39,18 +39,15 @@ export const GetReqParamValues = (value: { type: string[]; code: string }) => {
       break;
     }
     case 'context': {
-      let valueStr = type[1];
-      if (/^\$.*\$$/.test(valueStr)) {
-        valueStr = valueStr.slice(1, valueStr.length - 1);
-      }
+      let valueStr = parse2Var(type[1]);
       if (valueCode) {
-        valueStr = `${valueStr} === null || ${valueStr} === void 0 ? void 0 : ${valueStr}.${valueCode}`;
+        valueStr = `${valueStr}?.${valueCode}`;
       }
       targetVal = valueStr;
       break;
     }
     default:
-      targetVal = '';
+      targetVal = JSON.stringify('');
       // childParams[code] = '';
       break;
   }
@@ -103,68 +100,33 @@ export const parseDSSetVal = (options: any) => {
 export const transformValueDefined = (
   paramsConfig = [],
   dataSourceName: string,
-  deep: boolean = false
 ) => {
-  let reqParams: string = '{';
 
+  const parser = new TreeParser();
 
-  const getReqParams = (configs: any[] = [], path: string[] = [], top: boolean = false) => {
-    let result = ``;
-    for (let index = 0; index < configs?.length; index += 1) {
-      const _conf: any = configs[index];
-      const {
-        code,
-        value = {},
-        attrType,
-        type: dataType,
-        children,
-      } = _conf;
-      // attrType为服务入参属性类型 包含 对象(object)、数组（array）、属性（field），type为数据类型，对于程序统一用type进行类型判断
-      const _dataType = attrType && attrType !== 'field' ? attrType : dataType;
-
-      let _vals;
-      try {
-        // 属性节点有配置值，解析该属性值
-        if (value.type?.length) {
-          _vals = GetReqParamValues(value);
-          // 类型转换
-          if (
-            ['objectArray', 'array'].includes(_dataType)
-          ) {
-            _vals = !_vals ? '[]' : `[${_vals}]`;
-          }
-
-          result += `${code}: ${_vals},`;
-          // setWith(reqParams, [...path, code], _vals);
-        } else if (
-          (children?.length && _dataType === 'object') ||
-          (children?.length &&
-            _dataType === 'objectArray' &&
-            _conf.associatedObjectCode) || deep
-        ) {
-          // 节点没有配置值并为对象时遍历该对象属性
-          const t = getReqParams(children, [...path, code]);
-          result += `${code}: {${t},`;
-        }
-      } catch (err: any) {
-      }
-    }
-    return `${result}${top ? '' : '}'}`;
-  };
-
-  // 刷新数据源时，有dataSourceName
+  // TODO: 这段代码需要确认下是否需要
   if (dataSourceName) {
     const orderFields: string[] = paramsConfig.filter((it: any) => ['orderByAsc', 'orderByDesc'].includes(it.code));
     // 若内置排序字段，都没有值，则才取数据源初始排序值
     if (!orderFields.length) {
-      reqParams += `
-        orderByAsc: data.${getDSFilterName(dataSourceName)},
-        orderByDesc: data.${getDSFilterName(dataSourceName)},
-      `;
+      parser.appendProperty('orderByAsc', `data?.${getDSFilterName(dataSourceName)}?.orderByAsc`, '');
+      parser.appendProperty('orderByDesc', `data?.${getDSFilterName(dataSourceName)}?.orderByDesc`, '');
     }
   }
 
-  reqParams += `${getReqParams(paramsConfig)}`;
+  const code = parser.stringify({
+    type: 'object',
+    children: paramsConfig,
+    code: dataSourceName,
+  }, ({ item }, stop) => {
+    
+    if (item?.value?.type?.length) {
+      if (item.type === 'object' ) {
+        stop();
+      }
+      return GetReqParamValues(item.value);
+    }
+  });
 
-  return reqParams;
+  return code;
 };

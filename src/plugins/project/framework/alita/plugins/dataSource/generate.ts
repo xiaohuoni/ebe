@@ -8,9 +8,9 @@ const importDeps = () => {
   return [
     `import { useState, useRef, useEffect, useMemo } from 'react';`,
     `import { useRequest } from 'alita';`,
-    `import cloneDeep from 'lodash/cloneDeep';`,
-    `import isPlainObject from 'lodash/isPlainObject';`,
+    `import { cloneDeep, isPlainObject, set } from 'lodash';`,
     `import useSetState from '@/hooks/useSetState'`,
+    `import ArrayUtil from '@/utils/array';`,
     `import { DataSourceType } from './dataSourceType'`,
   ].join(';\n');
 };
@@ -20,6 +20,46 @@ const getDataSourceBegin = (
   params: Record<string, { isRequired: boolean; type: string }> = {},
 ) => {
   return `
+  // 数组操作类型 operateType
+  export const ARRAY_OPERATE_TYPE = {
+    ADD: 0, // 新增元素
+    UPDATE: 1, // 更新元素
+    DELETE: 2, // 删除元素
+    REPLACE: 3, // 替换数据
+  } as const;
+
+  export interface UpdateDataSourceOptions { 
+    /**
+     * 数据源名称
+     */
+    name: string;
+  
+    /**
+     * 更新数据源的路径
+     */
+    path: string;
+  
+    /**
+     * 目标值
+     */
+    value?: any;
+  
+    /**
+     * 需要过滤的变量
+     */
+    predicate?: (item: any, index: number) => boolean;
+  
+    /**
+     * 操作类型 数组时需要
+     */
+    operateType?: 0 | 1 | 2 | 3;
+  
+    /**
+     * 数组或者对象类型
+     */
+    type: 'object' | 'array'
+  }
+
     export interface DataSourceOptions {
       ${Object.keys(params)
         .map((propertyKey) => {

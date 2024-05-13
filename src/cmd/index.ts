@@ -4,6 +4,6 @@ export { getDefault as defaultCmd } from './defaultCmd';
 export { getIfelse as ifelse } from './ifelse';
 export { getResetCurrentForm as resetCurrentForm } from './resetCurrentForm';
 export { getSetDataSource as setDataSource } from './setDataSource';
-export { getResetDataSource as resetDataSource } from './getResetDataSource';
 export  { changeContent } from './changeContent';
 export  { getValue } from './getValue';
+export { getResetDataSource as resetDataSource } from './resetDataSource';

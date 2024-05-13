@@ -44,7 +44,12 @@ const shouldDeepLoop = (type: string) => {
 /**
  * 树状结构解析器
  */
-class TreeParser { 
+class TreeParser {
+  todoProperty: {
+    key: string,
+    value: string,
+    path: string
+  }[] = []; 
   constructor(readonly options?: TreeParserOptions) {}
 
   private get fieldCode() { 
@@ -125,10 +130,25 @@ class TreeParser {
     return JSON.stringify(val);
   }
 
+  public appendProperty(key: string, value: string, path: string) {
+    this.todoProperty.push({
+      key,
+      value,
+      path
+    });
+  }
+
+  private getKeyValueByPath(path: string[]) { 
+    return this.todoProperty.filter(it => it.path === path.join('.')).map(it => ({
+      keyCode: it.key,
+      value: it.value
+    }));
+  }
+
   /**
    * 开始解析
    */
-  public stringify(tree: any, replacer?: (options: { key: string, value: any, path: string[] }, stop: () => void) => (any | void)) {
+  public stringify(tree: any, replacer?: (options: { key: string, value: any, path: string[], item: any }, stop: () => void) => (any | void)) {
 
     if (!isPlainObject(tree) || Object.keys(tree).length === 0) return 'undefined';
 
@@ -155,7 +175,8 @@ class TreeParser {
           let val = replacer({
             key: code,
             value,
-            path
+            path,
+            item,
           }, stopParam.stop);
 
           keyVal = this.getFragment(val === undefined ? value : val, type)
@@ -197,8 +218,7 @@ class TreeParser {
           
         });
 
-        keyVal = `{${fragmentCode.map(item => `${item.keyCode}: ${item.value}`).join(',')}}`;
-
+        keyVal = `{${[...fragmentCode, ...this.getKeyValueByPath(path)].map(item => `${item.keyCode}: ${item.value}`).join(',')}}`;
       }
       
       return {
