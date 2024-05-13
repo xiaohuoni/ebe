@@ -215,7 +215,7 @@ const Page = () => {
         autoComplete="off"
         onFinish={onFinish}
         initialValues={{
-          appId: '868681578956083200',
+          appId: '1106101614441574400',
           pageId: '',
           platform: false,
         }}

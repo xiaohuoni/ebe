@@ -154,6 +154,7 @@ export interface LXProjectOptions {
   busiCompMapping?: any;
   compAssetList?: any;
   baseUrl?: string;
+  appConfig?: any;
 }
 export interface IProjectBuilderOptions {
   /** 是否处于严格模式 (默认：否) */
