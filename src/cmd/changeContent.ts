@@ -8,6 +8,7 @@ export function changeContent({ value }: CMDGeneratorPrames): string {
   let param = {
     name: name,
     iconType,
+    theme,
     fontAddress,
     isIconFont,
     iconFileInfo,
