@@ -35,6 +35,8 @@ function getInternalDep(
   return dep && dep.type !== InternalDependencyType.PAGE ? dep : null;
 }
 
+const CustomComponentName = 'CustomComponent';
+
 export class SchemaParser implements ISchemaParser {
   validate(): boolean {
     // TODO: 这里要检测数据合法性
@@ -84,7 +86,14 @@ export class SchemaParser implements ISchemaParser {
           pageStaticData[pageId].push(info?.props?.staticData?.data?.attrNbr);
         }
         if (compAssetListMapping[info.type]) {
-          //TODO: 为自定义组件
+          compDeps[CustomComponentName] = {
+            package: `@/components/factory`,
+            dependencyType: DependencyType.External,
+            type: CustomComponentName,
+            exportName: CustomComponentName,
+            version: '*',
+            destructuring: true,
+          };
         } else if (info.type === 'Pageview' || info.type === 'Popover') {
           compDeps[info.type] = {
             package: `@/components/${info.type}`,
@@ -200,6 +209,9 @@ export class SchemaParser implements ISchemaParser {
       const depNames = this.getCompNames(container.components, options);
       container.deps = uniqueArray<string>(depNames, (i: string) => i)
         .map((depName) => {
+          if (compAssetListMapping[depName]) {
+            return internalDeps[CustomComponentName] || compDeps[CustomComponentName];
+          }
           return internalDeps[depName] || compDeps[depName];
         })
         .filter(Boolean);

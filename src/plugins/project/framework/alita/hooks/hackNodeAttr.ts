@@ -19,6 +19,13 @@ export default function hackEngineApis(
   const nodeTags =
     pieces[0] && pieces[0].type === 'NodeCodePieceTag' ? pieces[0].value : '';
   const ignoreTags = ['div'];
+  const { options = {} } = config!;
+  const { compAssetList = [], busiCompMapping = {} } =
+    options as LXProjectOptions;
+  const compAssetListMapping: Record<string, any> = {};
+  compAssetList.forEach((asset: any) => {
+    compAssetListMapping[asset.compCode] = asset;
+  });
   if (!ignoreTags.includes(nodeTags)) {
     if (!['Popover'].includes(nodeTags)) {
       pieces.push({
@@ -43,8 +50,6 @@ export default function hackEngineApis(
   }
   // 如果是业务组件要改名字
   if (nodeTags === 'BOFramer') {
-    const { options = {} } = config!;
-    const { busiCompMapping = {} } = options as LXProjectOptions;
     pieces[0].value = getBusiCompName(busiCompMapping, nodeItem);
     // 业务组件的 pageId 来自 页面
     pieces.unshift({
@@ -161,6 +166,7 @@ export default function hackEngineApis(
       // @ts-ignore
       otherParams.push({ name: nodeItem?.props?.indexKey, item: false });
     }
+
     pieces.push({
       type: PIECE_TYPE.ATTR,
       value: `getEngineApis={() => {
@@ -210,5 +216,17 @@ export default function hackEngineApis(
     }
   }
 
+  // 如果是自定义组件要改名字
+  if (compAssetListMapping[nodeTags]) {
+    pieces[0].value = 'CustomComponent';
+    pieces.unshift({
+      type: PIECE_TYPE.ATTR,
+      value: `type="${nodeTags}"`,
+    });
+    pieces.unshift({
+      type: PIECE_TYPE.ATTR,
+      value: `fileCode="${compAssetListMapping[nodeTags]?.engineFileCode}"`,
+    });
+  }
   return pieces;
 }

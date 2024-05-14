@@ -44,6 +44,7 @@ export default function getFile(
       .map((i) => i + ' as _' + i)
       .join(',')}} from '@lingxiteam/${factory}/es/index.component';
 
+  export { CustomComponent } from './CustomComponent';
   export { RemoteComponent } from './RemoteComponent';
   export const syncInputValue = (
     e: unknown,

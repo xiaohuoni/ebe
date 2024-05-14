@@ -8,7 +8,7 @@ export default function getFile(
   const file = createResultFile(
     'constants',
     'ts',
-    `export const PLATFORM = '${isMobile ? 'h5' : 'pc'}';
+    `export const PLATFORM: 'pc' | 'h5' = '${isMobile ? 'h5' : 'pc'}';
 export const APPID = '${config?.appId}';`,
   );
 
