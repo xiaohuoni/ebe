@@ -57,7 +57,12 @@ const getDataSourceBegin = (
     /**
      * 数组或者对象类型
      */
-    type: 'object' | 'array'
+    type: 'object' | 'array';
+
+    /**
+     * 是否局部赋值
+     */
+    onlySetPatch: boolean;
   }
 
     export interface DataSourceOptions {

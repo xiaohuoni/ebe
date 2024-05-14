@@ -1,4 +1,4 @@
-import { get, isArray, set } from "lodash";
+import { get, isArray, mergeWith, set } from "lodash";
 
 /**
  * 往数组中添加数据元素
@@ -51,20 +51,63 @@ const replace = (data: any, path: string, value: any) => {
  * @param updateCb 只满足第一条内容，超出后不再兼容
  * @returns 
  */
-const update = (data: any, path: string, value: any, updateCb: (item: any, index: number) => boolean) => { 
+const update = (options: { 
+  data: any,
+  path: string,
+  value: any,
+  isPatch: boolean
+}, updateCb: (item: any, index: number) => boolean) => { 
   if (typeof updateCb !== 'function') {
     return;
   }
 
-  let arr = get(data, path);
+  const { data, path, value, isPatch } = options;
 
-  if (Array.isArray(arr)) {
-    const index = arr.findIndex(updateCb);
-    arr[index] = value;
+  let arr = get(data, path);
+  if (!Array.isArray(arr)) return;
+
+  let newData = value;
+
+  const index = arr.findIndex(updateCb);
+  if (index < -1) return;
+
+  const row = arr[index];
+  if (
+    Object.prototype.toString.call(row) === '[object Object]' &&
+    Object.prototype.toString.call(value) === '[object Object]' &&
+    isPatch
+  ) {
+    newData = Object.assign({}, row, newData);
   }
 
-  set(data, path, value);
+  arr[index] = newData;
+  set(data, path, arr);
   return arr;
+}
+
+/**
+ * 更新对象
+ * @param options 
+ */
+const updateObject = (options: {
+  data: any,
+  path: string,
+  value: any,
+  isPatch: boolean
+}) => { 
+  const { data, path, value, isPatch } = options;
+  const oldItem = get(data, path);
+  let newData = value;
+
+  if (
+    Object.prototype.toString.call(oldItem) === '[object Object]' &&
+    Object.prototype.toString.call(value) === '[object Object]' &&
+    isPatch
+  ) {
+    newData = Object.assign({}, oldItem, newData);
+  }
+  set(data, path, newData);
+  return newData;
 }
 
 
@@ -73,4 +116,5 @@ export default {
   push,
   replace,
   update,
+  updateObject,
 }

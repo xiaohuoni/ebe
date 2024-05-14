@@ -5,6 +5,7 @@ import {
 import TreeParser from '../core/utils/TreeParser';
 import { parse2Var } from '../core/utils/compositeType';
 import { GetReqParamValues, getDSFilterName, parseDSSetVal, transformValueDefined } from '../core/utils/transformValueDefined';
+import { CMDGeneratorEvent, CMDGeneratorFunction } from '../core/utils/CMDGenerator';
 
 // 数组操作类型 operateType
 const ARRAY_OPERATE_TYPE = {
@@ -55,7 +56,10 @@ const getTargetsPath = (config: any, targetDataSourcePaths: any[]) => {
     pathMap[attrId] = t.path;
     item.fieldType = t.type;
   });
-  return pathMap;
+  return {
+    pathMap,
+    allPathMap,
+  };
 }
 
 const getArrayFilterCbCode = (item: any) => { 
@@ -102,8 +106,25 @@ const getArrayFilterCbCode = (item: any) => {
   };
 }
 
-export function getSetDataSource({ value, config }: CMDGeneratorPrames): string {
-  const { options } = value;
+const findNode = (list: any[], attrId: string) => { 
+  let result: any = null;
+  
+  const loop = (arr?: any[]) => {
+    arr?.forEach(item => { 
+      if (item.attrId === attrId) {
+        result = item;
+      } else { 
+        loop(item.children);
+      }
+    })
+  };
+
+  loop(list);
+  return result;
+}
+
+export function getSetDataSource({ value, platform, scope, config }: CMDGeneratorPrames): string {
+  const { options, callback1, callback2 } = value;
 
   // 检查数据源
   const dataSourceName = options?.dataSourceName;
@@ -118,9 +139,10 @@ export function getSetDataSource({ value, config }: CMDGeneratorPrames): string 
 
   const { onlySetPatch, targetDataSourcePaths = [] } = options;
 
-  const payloadCode = transformValueDefined(parseDSSetVal(options), options.dataSourceName);
+  const dSSetVals = parseDSSetVal(options);
+  const payloadCode = transformValueDefined(dSSetVals, options.dataSourceName, false);
 
-if (!Array.isArray(targetDataSourcePaths) || targetDataSourcePaths.length === 0) {
+if (targetDataSourcePaths.length === 0) {
     targetDataSourcePaths.push({
       attrId: `${dsConfig.id}`,
       onlySetPatch,
@@ -131,7 +153,7 @@ if (!Array.isArray(targetDataSourcePaths) || targetDataSourcePaths.length === 0)
       itemIndex: options.itemIndex,
       itemLocateCustomFunction: options.itemLocateCustomFunction,
       fieldType: dsConfig.type,
-      newData: options.newData
+      newData: options.newData,
     })
 }
 
@@ -139,7 +161,7 @@ if (!Array.isArray(targetDataSourcePaths) || targetDataSourcePaths.length === 0)
     return parse2Var([`${dataSourceName}`, ...path].join('.'))
   }
 
-  const pathMap = getTargetsPath(dsConfig, targetDataSourcePaths);
+  const { pathMap, allPathMap } = getTargetsPath(dsConfig, targetDataSourcePaths);
   const lastItem = last<any>(targetDataSourcePaths);
   const { attrId, fieldType, operateType, newData } = lastItem;
   const path = pathMap[attrId];
@@ -151,10 +173,21 @@ if (!Array.isArray(targetDataSourcePaths) || targetDataSourcePaths.length === 0)
     predicate: '',
     operateType: '',
     type: parse2Var(['objectArray', 'array'].includes(fieldType) ? 'array' : 'object'),
+    onlySetPatch,
   }
 
   if (['objectArray', 'array'].includes(fieldType)) {
     updateParams.operateType = operateType;
+    updateParams.path = getPath([...path, allPathMap[attrId]?.code])
+    if ([ARRAY_OPERATE_TYPE.UPDATE, ARRAY_OPERATE_TYPE.ADD].includes(operateType)) {
+      const node = findNode(dSSetVals, attrId);
+      if (!node) {
+        return `// FIXME: 更新数据源出错! ${dataSourceName}: 不存在的节点id[${attrId}]
+          console.warn('不存在的节点id[${attrId}]');
+        `;
+      }
+      updateParams.value = transformValueDefined(node.children, node.code, false)
+    }
     // 数组
     if (operateType === ARRAY_OPERATE_TYPE.DELETE) {
       let deleteCb = getArrayFilterCbCode(lastItem);
@@ -175,18 +208,40 @@ if (!Array.isArray(targetDataSourcePaths) || targetDataSourcePaths.length === 0)
       }
       updateParams.predicate = filterCode;
     }
+
   }
 
-  return `
-    // 更新数据源 ${dataSourceName}
+  const callback1Code = CMDGeneratorFunction(
+    callback1,
+    {},
+    platform,
+    scope,
+    config,
+  );
+
+  const callback2Code = CMDGeneratorFunction(
+    callback2,
+    {},
+    platform,
+    scope,
+    config,
+  );
+
+  return [
+    `// 更新数据源 ${dataSourceName}
     updateData({
       ${Object.keys(updateParams)
-      .filter(key => Boolean(updateParams[key as keyof typeof updateParams]))
+      .filter(key => updateParams[key as keyof typeof updateParams] !== '')
       .map(key => (`${key}: ${updateParams[key as keyof typeof updateParams]}`))}
-    }).then(() => {
+    })`,
+    callback1Code ? `then(() => {
       // 成功回调
-    }).catch(() => {
-      // 失败回调
-    })
-  `
+      ${callback1Code}
+    })`: '',
+
+    callback2Code ? `catch(() => {
+      // 成功回调
+      ${callback2Code}
+    })`: '',
+  ].filter(Boolean).join('.');
 }

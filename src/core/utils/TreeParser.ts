@@ -127,6 +127,10 @@ class TreeParser {
       } 
     }
 
+    if (!val) {
+      return val;
+    }
+
     return JSON.stringify(val);
   }
 
@@ -157,13 +161,13 @@ class TreeParser {
         const children = get(item, this.children);
         const type = get(item, this.type);
         const value = this.parseValue(get(item, this.value));
-
+      
         const keyCode = this.getKey(code);
 
         // 更新是否继续下钻
         let shouldNext = shouldDeepLoop(type);
         // 先给予默认值
-        let keyVal: string = '{}';
+        let keyVal: string = value ?? '{}';
 
         if (typeof replacer === 'function') {
           const stopParam = this.getStopFn();
@@ -215,7 +219,6 @@ class TreeParser {
           if (fragmentItem.value) {
             fragmentCode.push(fragmentItem);
           }
-          
         });
 
         keyVal = `{${[...fragmentCode, ...this.getKeyValueByPath(path)].map(item => `${item.keyCode}: ${item.value}`).join(',')}}`;

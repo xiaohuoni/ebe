@@ -100,12 +100,13 @@ export const parseDSSetVal = (options: any) => {
 export const transformValueDefined = (
   paramsConfig = [],
   dataSourceName: string,
+  isOrder: boolean = false
 ) => {
 
   const parser = new TreeParser();
 
   // TODO: 这段代码需要确认下是否需要
-  if (dataSourceName) {
+  if (dataSourceName && isOrder) {
     const orderFields: string[] = paramsConfig.filter((it: any) => ['orderByAsc', 'orderByDesc'].includes(it.code));
     // 若内置排序字段，都没有值，则才取数据源初始排序值
     if (!orderFields.length) {

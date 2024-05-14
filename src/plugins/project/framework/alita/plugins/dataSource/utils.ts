@@ -193,32 +193,42 @@ export const updateData = (dataSource: any[]) => {
       value,
       type,
       operateType,
-      predicate = () => false
+      predicate = () => false,
+      onlySetPatch = true,
     }: UpdateDataSourceOptions) => { 
-      if (!data) return;
-      
-      // 对象类型 直接赋值
-      if (type === 'object') {
-        set(data, path, value);
-      } else if (type === 'array') {
-        if (operateType === ARRAY_OPERATE_TYPE.ADD) {
-          ArrayUtil.push(data, path, value)
-        } else if (operateType === ARRAY_OPERATE_TYPE.DELETE) {
-          ArrayUtil.remove(data, path, predicate);
-        } else if (operateType === ARRAY_OPERATE_TYPE.REPLACE) {
-          ArrayUtil.replace(data, path, value);
-        } else if (operateType === ARRAY_OPERATE_TYPE.UPDATE) {
-          ArrayUtil.update(data, path, value, predicate);
+      const newData = {};
+      try {
+        // 对象类型 直接赋值
+        if (type === 'object') {
+          ArrayUtil.updateObject({
+            data,
+            path,
+            value,
+            isPatch: onlySetPatch,
+          });
+        } else if (type === 'array') {
+          if (operateType === ARRAY_OPERATE_TYPE.ADD) {
+            ArrayUtil.push(data, path, value)
+          } else if (operateType === ARRAY_OPERATE_TYPE.DELETE) {
+            ArrayUtil.remove(data, path, predicate);
+          } else if (operateType === ARRAY_OPERATE_TYPE.REPLACE) {
+            ArrayUtil.replace(data, path, value);
+          } else if (operateType === ARRAY_OPERATE_TYPE.UPDATE) {
+            ArrayUtil.update({
+              data,
+              path,
+              value,
+              isPatch: onlySetPatch,
+            }, predicate);
+          }
         }
+    
+        return setData({
+          [name]: cloneDeep(data[name])
+        });
+      } catch (error) {
+        return Promise.reject(error as Error);
       }
-  
-      setData({
-        [name]: cloneDeep(data[name])
-      });
-  
-      return new Promise(resolve => {
-        resolve(data);
-      });
     };
     `
   ].join('');
