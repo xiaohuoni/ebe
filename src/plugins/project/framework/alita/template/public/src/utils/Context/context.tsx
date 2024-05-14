@@ -1,6 +1,7 @@
 import React from 'react';
 import { type ImperativeHandleReturn } from '@lingxiteam/types';
 
+
 export const Context = React.createContext<{
   ModalManagerRef: React.MutableRefObject<any>;
   refs: any;
@@ -46,59 +47,35 @@ export function mergeGetter<
 }
 interface componentRef extends ImperativeHandleReturn {}
 
-// 组件唯一id
-type CompUniqueId = string;
-
 export class RefsManager {
   constructor() {}
 
-  /**
-   * 组件级别Ref
-   */
-  private componentRef: Record<CompUniqueId, componentRef> = {};
+
 
   /**
-   * 平台级别组件Ref
+   * 页面级别Ref
    */
-  private systemRef: Record<CompUniqueId, componentRef> = {};
+  private systemRef: Record<string, Record<string, any>> = {};
+
 
   /**
-   * 最后Ref
-   */
-  private compRefs: Record<CompUniqueId, ImperativeHandleReturn> = {};
-
-  /**
-   * 组件级别的ref
+   * 页面级别的ref
    * @param ref
    */
-  private setComponentRef = (ref: any, id: string) => {
-    this.componentRef[id] = ref;
-    this.updateRefs(id);
+  private setSystemRef = (renderId: string,  comRefs: Record<string, any>) => {
+    if (this.systemRef[renderId]) {
+      Object.assign(this.systemRef[renderId], comRefs);
+    } else {
+      this.systemRef[renderId] = comRefs;
+    }
   };
 
-  /**
-   * 平台级别的ref，来自hoc组件
-   * @param ref
-   * @param id
-   */
-  private setSysRef = (ref: any, id: string) => {
-    this.systemRef[id] = ref;
-    this.updateRefs(id);
-  };
+  private getComRefs = (renderId: string) => {
+    return this.systemRef[renderId] || {};
+  }
+ 
 
-  /**
-   * 最终的refs
-   * @param id
-   */
-  private updateRefs = (id: string) => {
-    const compRefs = this.componentRef[id] || {};
-    const sysRefs = this.systemRef[id] || {};
-
-    // 注意：这里不要做展开合并, 会改变getter方法引用值
-    this.compRefs[id] = mergeGetter(this.compRefs[id], sysRefs, compRefs);
-  };
-
-  public get value(): any {
-    return this.compRefs;
+  public get refs(): any {
+    return this.systemRef;
   }
 }

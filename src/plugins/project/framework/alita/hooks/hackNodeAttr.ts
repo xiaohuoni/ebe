@@ -23,7 +23,7 @@ export default function hackEngineApis(
     if (!['Popover'].includes(nodeTags)) {
       pieces.push({
         type: PIECE_TYPE.ATTR,
-        value: `ref={(r:any)=>refs.setComponentRef(r,'${nodeItem.id}')}`,
+        value: `ref={(r:any)=>setComponentRef(r,'${nodeItem.id}')}`,
       });
     }
     pieces.push({

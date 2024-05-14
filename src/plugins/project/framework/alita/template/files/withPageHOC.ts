@@ -48,8 +48,9 @@ import { SandBoxContext } from '@lingxiteam/types';
 import { useLocation } from 'alita';
 import { merge } from 'lodash';
 import { parse } from 'qs';
-import React, { useContext, useEffect, useState } from 'react';
-import { Context } from './Context/context';
+import React, { useContext, useEffect, useState, useRef } from 'react';
+import { Context } from '. /Context/context';
+import { createId } from '../utils/historytool'
 
 const awaitKeys: Set<string> = new Set();
 const cacheKeys: Set<string> = new Set();
@@ -88,7 +89,16 @@ export const withPageHOC = (
     const api: any = {};
     const location = useLocation();
     const urlParam = parse((location?.search ?? '?')?.split('?')[1]);
-    const { ModalManagerRef, refs, appId } = useContext(Context);
+    const refs = useRef<Record<string, any>>({}).current;
+    const { ModalManagerRef, refs: renerRefs, appId } = useContext(Context);
+    const renderId = createId(location.pathname)
+    const setComponentRef = (r: any, comId: string) => {
+      if (r) {
+        // @ts-ignore
+        refs[comId] = r;
+      }
+      renerRefs.setSystemRef(renderId, refs);
+    }
     const ExpBusiObjModalRef = React.useRef<any>();
     const customActionMapRef = React.useRef<any>();
     const { getLocaleLanguage, getLocale, getLocaleEnv, locale, language } =
@@ -324,6 +334,8 @@ export const withPageHOC = (
           urlParam={urlParam}
           forwardedRef={ref}
           customActionMapRef={customActionMapRef}
+          refs={refs}
+          setComponentRef={setComponentRef}
         />
         ${
           isMobile

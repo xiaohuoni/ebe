@@ -71,7 +71,7 @@ export default function getFile(
   
       const compProps: any = { ...props, visible: state.visible };
   
-      compProps.ref = ref;
+      const componentRef = React.useRef({});
   
       if (onChangeHandle) {
         compProps[fieldProps?.trigger!] = onChangeHandle;
@@ -93,7 +93,7 @@ export default function getFile(
         };
       }, [state.value]);
   
-      let imperative: ImperativeHandleReturn = {
+      useImperativeHandle(ref, () => ({
         get compName() {
           return compProps.$$componentItem.type;
         },
@@ -117,12 +117,11 @@ export default function getFile(
           //   onChangeHandle(v);
           // }
         },
-      };
-  
-      useImperativeHandle(compProps.ref, () => imperative);
+        ...componentRef.current
+      }));
   
       // 统一处理部分逻辑
-      return <Component {...compProps} {...(compProps?.extendProps||{})} />;
+      return <Component {...compProps} {...(compProps?.extendProps || {})} ref= {componentRef}/>;
     });
   
     return HOC;

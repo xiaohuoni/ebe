@@ -135,7 +135,7 @@ const historytool = (type: 'replace' | 'push' | 'window' | 'portal', historyParm
       break;
   }
 }
-export default {
+export {
   createId,
   historytool,
 };
