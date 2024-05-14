@@ -24,7 +24,8 @@ export default function getFile(
   compHash.forEach((c) => {
     if (cg[c] && cg[c].fieldProps) {
       formHash[c] = cg[c].fieldProps;
-    } else {
+      // 远程组件是本地提供
+    } else if (c !== 'RemoteComponent') {
       otherHash.push(c);
     }
   });
@@ -43,6 +44,7 @@ export default function getFile(
       .map((i) => i + ' as _' + i)
       .join(',')}} from '@lingxiteam/${factory}/es/index.component';
 
+  export { RemoteComponent } from './RemoteComponent';
   export const syncInputValue = (
     e: unknown,
     preValue: unknown,
@@ -55,7 +57,7 @@ export default function getFile(
     return false;
   };
   
-  const Hoc = (Component: any, fieldProps:any) => {
+  const Hoc = (Component: any, fieldProps?:any) => {
     const fieldPropsChange = () => {};
   
     const HOC = React.forwardRef<unknown, HOCProps>((props, ref) => {

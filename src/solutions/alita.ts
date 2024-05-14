@@ -94,7 +94,7 @@ export default function createIceJsProjectBuilder(
             '@lingxiteam/engine-sandbox': '3.3.1-alpha.14',
             '@lingxiteam/engine-utils': '3.3.1-alpha.14',
             '@lingxiteam/icons': '0.0.3',
-            '@lingxiteam/pcfactory': '3.4.1-alpha.5',
+            '@lingxiteam/pcfactory': '3.7.1-alpha.12',
             '@lingxiteam/sys-action': '3.3.1-alpha.14',
             '@lingxiteam/types': '3.3.1-alpha.14',
           },
