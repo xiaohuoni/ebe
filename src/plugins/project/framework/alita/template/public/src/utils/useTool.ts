@@ -1,14 +1,4 @@
-export interface IUseTool {
-  /**
-   * 组件的refs
-   */
-  refs: Record<string, any>;
-}
-export const useTool = (props: IUseTool) => {
-
-  const {
-      refs,
-  } = props;
+export const useTool = (refs: Record<string, any>) => {
 
   const getValue = (id: string, stateName?: string) => {
       if (stateName) {
