@@ -13,3 +13,5 @@ export { showMessage } from './showMessage';
 export { sysSetRequired } from './sysSetRequired';
 export { sysSetValue } from './sysSetValue';
 export { sysSetVisible } from './sysSetVisible';
+export { showCustomModal } from './showCustomModal';
+export { okCallbackData } from './okCallbackData';

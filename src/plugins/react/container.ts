@@ -69,6 +69,8 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           } 
           parentEngineId = pageId,
           setComponentRef,
+          ModalManagerRef,
+          ${isModal ? 'onOk: fatherOnOk': ''}
       }) => {`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
