@@ -49,7 +49,7 @@ import { useLocation } from 'alita';
 import { merge } from 'lodash';
 import { parse } from 'qs';
 import React, { useContext, useEffect, useState, useRef } from 'react';
-import { Context } from '. /Context/context';
+import { Context } from './Context/context';
 import { createId } from '../utils/historytool'
 
 const awaitKeys: Set<string> = new Set();

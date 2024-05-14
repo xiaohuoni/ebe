@@ -69,7 +69,8 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           injectData, refs, state, functorsMap, getStaticDataSourceService, updateGlobalDataSource, componentItem, style, urlParam, ${
             isModal ? 'forwardedRef,' : ''
           } 
-          parentEngineId = pageId
+          parentEngineId = pageId,
+          setComponentRef,
       }) => {`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
