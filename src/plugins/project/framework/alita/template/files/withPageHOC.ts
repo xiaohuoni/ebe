@@ -9,7 +9,7 @@ export default function getFile(
   const file = createResultFile(
     'withPageHOC',
     'tsx',
-    `
+    `import { api as baseApi } from '@/services/api';
 ${
   isMobile
     ? `import {
@@ -201,6 +201,7 @@ export const withPageHOC = (
       const injectData = {
         getEngineApis: () => {
           return {
+            ...baseApi,
             // TODO: 这需要正确的请求
             downloadFileByFileCode: () => null,
             downloadByFileId: () => null,
@@ -232,7 +233,10 @@ export const withPageHOC = (
               return undefined;
             },
             // ??? 外层和 service 都需要？
-            service: api,
+            service: {
+              ...api,
+              ...baseApi.service
+            },
             ...api,
           };
         },

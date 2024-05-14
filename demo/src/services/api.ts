@@ -117,3 +117,29 @@ export async function getPageVersionById(params): Promise<any> {
     },
   });
 }
+
+
+export async function getThemeCss(params): Promise<any> {
+  // 本地 mock 数据
+  if (useMock) {
+    return new Promise((resolve) => {
+      resolve(appList);
+    });
+  }
+  const headers: any = {
+    'Content-Type': 'application/json',
+    'APP-ID': params.appId,
+  };
+  // app/appPage/findAppPolymerizationInfo
+  return request('/app/appTheme/getThemeCss', {
+    params,
+    method: 'GET',
+    headers: {
+      ...headers,
+      // 'X-SIGN': security.httpEncryption.createHttpSignStr(
+      //   '/app/appPage/findAppPolymerizationInfo',
+      //   { method: 'GET', headers, body: {}, search: params },
+      // ),
+    },
+  });
+}
