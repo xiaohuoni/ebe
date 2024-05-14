@@ -1,5 +1,10 @@
-import { initialDataSource, reloadDataSource, resetDataSource, updateData } from "./utils";
-import { generatorDataType } from "./type";
+import { generatorDataType } from './type';
+import {
+  initialDataSource,
+  reloadDataSource,
+  resetDataSource,
+  updateData,
+} from './utils';
 
 /**
  * 生成导入的头文件列表
@@ -82,7 +87,7 @@ const getDataSourceBegin = (
 };
 
 // 生成数据源内容
-const getDataSourceContent = (dataSource: any[]) => { 
+const getDataSourceContent = (dataSource: any[]) => {
   const defineDataCode = `
   const [loading, setLoading] = useState(false);
   const [data, setData] = useSetState<DataSourceType>();
@@ -94,13 +99,13 @@ const getDataSourceContent = (dataSource: any[]) => {
     updateData(dataSource),
     resetDataSource(),
     reloadDataSource(dataSource),
-  ].join('\n\n')
-}
+  ].join('\n\n');
+};
 
 /**
  * 数据源结束
  */
-const getDataSourceEnd = () => { 
+const getDataSourceEnd = () => {
   return [
     `
       return {
@@ -112,10 +117,9 @@ const getDataSourceEnd = () => {
       };
     `,
     '}',
-    'export default useDataSource'
-  ].join('\n')
-}
-
+    'export default useDataSource',
+  ].join('\n');
+};
 
 /**
  * 生成

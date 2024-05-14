@@ -1,9 +1,9 @@
-import { IProjectSchema } from './page';
-import { ResultDir, ResultFile } from './files';
 import type { ProjectBuilderInitOptions } from '../generator/ProjectBuilder';
 import { IScopeBindings } from '../utils/ScopeBindings';
-import { IParseResult } from './intermediate';
 import { IContainerInfo } from './';
+import { ResultDir, ResultFile } from './files';
+import { IParseResult } from './intermediate';
+import { IProjectSchema } from './page';
 
 export enum FileType {
   CSS = 'css',

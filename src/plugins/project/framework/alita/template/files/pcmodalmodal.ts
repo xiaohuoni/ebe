@@ -5,15 +5,15 @@ export default function getFile(): [string[], ResultFile] {
   const file = createResultFile(
     'Modal',
     'tsx',
-    `import Pageview, { RootProps } from '@/components/Pageview';
-    import { Modal } from '@lingxiteam/engine-pc/es/components/EnhanceAntdComp';
-    import { Spin } from 'antd';
+    `import react from 'react';
+    import Pageview, { RootProps } from '@/components/Pageview';
+    import { Modal } from 'antd';
     import classnames from 'classnames';
     import React, { forwardRef, useEffect, useRef, useState } from 'react';
     
     const DM = forwardRef((props: any) => {
       const {
-        pageId,
+        pagePath,
         modalInstId,
         setStatue,
         managerRef,
@@ -24,15 +24,13 @@ export default function getFile(): [string[], ResultFile] {
         className,
         lcdpParentRenderId,
         title,
-        getLocale,
         ...restProp
       } = props;
       const [mProps, setMDProps] = useState<any>({ title: '' });
-      const [modalLoading, setModalLoading] = useState<boolean>(false);
       const mRef = useRef<any>();
       // 设置弹窗抽屉属性
       useEffect(() => {
-        const pageInst = RootProps[pageId || ''];
+        const pageInst = RootProps[pagePath || ''];
         const mdProps: any = {
           title: pageInst.modalTitle || pageInst.pageName,
           width:
@@ -43,8 +41,8 @@ export default function getFile(): [string[], ResultFile] {
             pageInst.width === 'custom'
               ? pageInst.customHeight || 'auto'
               : pageInst.height,
-          okText: pageInst.okText || getLocale('confirm', '确定'),
-          cancelText: pageInst.cancelText || getLocale('cancelText', '取消'),
+          okText: pageInst.okText,
+          cancelText: pageInst.cancelText,
           placement: pageInst.placement || 'right',
           maskClosable: pageInst.closeOnClickOverlay !== false,
         };
@@ -52,23 +50,22 @@ export default function getFile(): [string[], ResultFile] {
           mdProps.footer = null;
         }
         setMDProps(mdProps);
-      }, [pageId]);
+      }, [pagePath]);
       return (
         <>
           <Modal
             {...mProps}
             {...restProp}
-            maskClosable={modalLoading ? false : mProps?.maskClosable}
-            style={modalLoading ? { display: 'none' } : {}}
+            maskClosable={mProps?.maskClosable}
             destroyOnClose
             className={classnames(
               className,
               'ued-modal-wrap',
-              \`dynamic_modal_\${pageId || ''}\`,
+              \`dynamic_modal_\${pagePath || ''}\`,
             )}
             onOk={() => {
-              console.log('里面会回调 props.onOK')
-              console.log(mRef)
+              console.log('里面会回调 props.onOK');
+              console.log(mRef);
               if (mRef.current && typeof mRef.current.onOk === 'function') {
                 mRef.current.onOk(); // 这里面会回调 props.onOK
               }
@@ -86,7 +83,6 @@ export default function getFile(): [string[], ResultFile] {
               }
             }}
           >
-            <Spin spinning={modalLoading}>
               <div
                 style={
                   mProps.height
@@ -94,19 +90,18 @@ export default function getFile(): [string[], ResultFile] {
                     : { overflowX: 'auto' }
                 }
               >
-                <Pageview pageSrc={pageId} state={params} ref={mRef} parentEngineId={lcdpParentRenderId}/>
+                <Pageview
+                  pageSrc={pagePath}
+                  state={params}
+                  ref={mRef}
+                  parentEngineId={lcdpParentRenderId}
+                />
               </div>
-            </Spin>
           </Modal>
-          {/* 弹窗等到页面信息读取后再加载 */}
-          {modalLoading && <Spin spinning className="modal-spinning-mask" />}
         </>
       );
     });
     
-    DM.defaultProps = {
-      getLocale: (k?: string, p?: string) => p ?? '',
-    };
     
     export default DM;
     `,

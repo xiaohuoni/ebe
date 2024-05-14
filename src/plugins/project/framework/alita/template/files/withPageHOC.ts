@@ -1,4 +1,4 @@
-import { ResultFile, LXProjectOptions } from '../../../../../../core';
+import { LXProjectOptions, ResultFile } from '../../../../../../core';
 import { createResultFile } from '../../../../../../core/utils/resultHelper';
 
 export default function getFile(

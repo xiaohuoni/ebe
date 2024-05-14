@@ -1,16 +1,16 @@
-import * as parser from '@babel/parser';
 import generate from '@babel/generator';
+import * as parser from '@babel/parser';
 import traverse from '@babel/traverse';
 import * as t from '@babel/types';
-import { isJSExpression, isJSFunction, isEventData } from './deprecated';
 import {
   CodeGeneratorError,
-  IScope,
   CompositeValueGeneratorOptions,
+  IScope,
 } from '../types';
-import { transformExpressionLocalRef, ParseError } from './expressionParser';
-import { isJSExpressionFn } from './common';
 import { CMDGeneratorFunction } from './CMDGenerator';
+import { isJSExpressionFn } from './common';
+import { isEventData, isJSExpression, isJSFunction } from './deprecated';
+import { ParseError, transformExpressionLocalRef } from './expressionParser';
 
 function parseFunction(content: string): t.FunctionExpression | null {
   try {

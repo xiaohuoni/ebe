@@ -1,4 +1,4 @@
-import { ResultFile, LXProjectOptions } from '../../../../../../core';
+import { LXProjectOptions, ResultFile } from '../../../../../../core';
 import { createResultFile } from '../../../../../../core/utils/resultHelper';
 
 export default function getFile(
@@ -36,29 +36,29 @@ export default function getFile(
   // '@lingxiteam/icons': require('@lingxiteam/icons'),
   // moment: require('moment'),
    ${
-    ''
-  //   isMobile
-  //     ? `DynamicForm: require('@lingxiteam/dform'),
-  // '@lingxiteam/dform': require('@lingxiteam/dform'),
-  // '@lingxiteam/antd-mobile-plus': require('@lingxiteam/antd-mobile-plus'),
-  // '@lingxiteam/charts': require('@lingxiteam/charts'),
-  // 'ag-grid-react': require('ag-grid-react'),
-  // 'ag-grid-community': require('ag-grid-community'),
-  // antdMobile: require('antd-mobile-5'),
-  // 'antd-mobile-5': require('antd-mobile-5'),
-  // 'rc-field-form': require('rc-field-form'),
-  // '@alitajs/f2': require('@alitajs/f2'),
-  // 'react-loadable': require('react-loadable'),`
-  //     : `antd: require('antd'),
-  // echarts: require('echarts'),
-  // 'react-quill': require('react-quill'),
-  // 'react-resizable': require('react-resizable'),
-  // 'size-sensor': require('size-sensor'),
-  // 'qr-code-with-logo': require('qr-code-with-logo'),
-  // 'echarts/core': require('echarts/core'),
-  // 'echarts/charts': require('echarts/charts'),
-  // 'echarts/components': require('echarts/components'),
-  // 'echarts/renderers': require('echarts/renderers'),`
+     ''
+     //   isMobile
+     //     ? `DynamicForm: require('@lingxiteam/dform'),
+     // '@lingxiteam/dform': require('@lingxiteam/dform'),
+     // '@lingxiteam/antd-mobile-plus': require('@lingxiteam/antd-mobile-plus'),
+     // '@lingxiteam/charts': require('@lingxiteam/charts'),
+     // 'ag-grid-react': require('ag-grid-react'),
+     // 'ag-grid-community': require('ag-grid-community'),
+     // antdMobile: require('antd-mobile-5'),
+     // 'antd-mobile-5': require('antd-mobile-5'),
+     // 'rc-field-form': require('rc-field-form'),
+     // '@alitajs/f2': require('@alitajs/f2'),
+     // 'react-loadable': require('react-loadable'),`
+     //     : `antd: require('antd'),
+     // echarts: require('echarts'),
+     // 'react-quill': require('react-quill'),
+     // 'react-resizable': require('react-resizable'),
+     // 'size-sensor': require('size-sensor'),
+     // 'qr-code-with-logo': require('qr-code-with-logo'),
+     // 'echarts/core': require('echarts/core'),
+     // 'echarts/charts': require('echarts/charts'),
+     // 'echarts/components': require('echarts/components'),
+     // 'echarts/renderers': require('echarts/renderers'),`
    }
       };
       const Error = ({ type, fileCode }: { type: string; fileCode: string }) => {

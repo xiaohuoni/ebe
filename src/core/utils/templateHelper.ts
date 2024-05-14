@@ -1,10 +1,10 @@
 import {
-  ResultDir,
-  ResultFile,
   LXProjectOptions,
   PostProcessor,
+  ResultDir,
+  ResultFile,
 } from '../types';
-import { createResultDir, addDirectory, addFile } from './resultHelper';
+import { addDirectory, addFile, createResultDir } from './resultHelper';
 
 type FuncFileGenerator = (config?: LXProjectOptions) => [string[], ResultFile];
 

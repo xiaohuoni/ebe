@@ -1,12 +1,11 @@
 // 命令源码化
-import {
-  IScope,
-  CompositeValueGeneratorOptions,
-  CMDGeneratorPrames,
-} from '../types';
 import * as cmd from '../../cmd';
+import {
+  CMDGeneratorPrames,
+  CompositeValueGeneratorOptions,
+  IScope,
+} from '../types';
 import { getDebugData } from './debug';
-import { as } from 'fp-ts/lib/Option';
 
 const countCMD = (value: any | any[]) => {
   const debugData = getDebugData();
@@ -32,7 +31,7 @@ const CMDGenerator = (prames: CMDGeneratorPrames) => {
 
   if (typeof cmd[type] === 'function') {
     str = cmd[type](prames);
-  } else { 
+  } else {
     str = cmd.defaultCmd(prames);
     console.warn('源码指令缺失');
   }

@@ -1,4 +1,4 @@
-import { ResultDir, IProjectTemplate } from '../../../../../core';
+import { IProjectTemplate, ResultDir } from '../../../../../core';
 import { generateStaticFiles } from './static-files';
 
 const alitaTemplate: IProjectTemplate = {

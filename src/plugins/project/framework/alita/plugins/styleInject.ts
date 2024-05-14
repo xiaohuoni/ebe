@@ -1,4 +1,4 @@
-import { INJECT_STYLE_CHUNK_NAME } from './const';
+import { normalizeCSS } from 'css-string-utils';
 import { COMMON_CHUNK_NAME } from '../../../../../core/const/generator';
 import {
   BuilderComponentPlugin,
@@ -9,7 +9,7 @@ import {
   IContainerInfo,
 } from '../../../../../core/types';
 import { getImportFrom } from '../../../../../utils/depsHelper';
-import { normalizeCSS } from 'css-string-utils';
+import { INJECT_STYLE_CHUNK_NAME } from './const';
 export interface PluginConfig {
   fileType?: string;
   exportNameMapping?: Record<string, string>;

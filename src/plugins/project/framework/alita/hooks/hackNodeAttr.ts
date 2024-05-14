@@ -1,11 +1,11 @@
 import {
-  IScope,
-  PIECE_TYPE,
   CodePiece,
-  NodePlugin,
-  NodeGeneratorConfig,
   IProjectSchema,
+  IScope,
   LXProjectOptions,
+  NodeGeneratorConfig,
+  NodePlugin,
+  PIECE_TYPE,
 } from '../../../../../core/types';
 import { getBusiCompName } from '../../../../../utils/schema/getBusiCompName';
 

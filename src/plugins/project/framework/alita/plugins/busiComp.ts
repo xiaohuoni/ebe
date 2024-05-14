@@ -1,10 +1,6 @@
-import { MOBILE_CHUNK_NAME } from './const';
-import { REACT_CHUNK_NAME } from '../../../../react/const';
-import { generateFunction } from '../../../../../core/utils/jsExpression';
 import {
   BuilderComponentPlugin,
   BuilderComponentPluginFactory,
-  ChunkType,
   FileType,
   ICodeStruct,
   IContainerInfo,

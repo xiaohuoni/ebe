@@ -1,12 +1,12 @@
-import { createProjectBuilder } from './generator/ProjectBuilder';
 import { createModuleBuilder } from './generator/ModuleBuilder';
+import { createProjectBuilder } from './generator/ProjectBuilder';
 import { createDiskPublisher } from './publisher/disk';
 import { createZipPublisher } from './publisher/zip';
 
 // 引入说明
 import {
-  COMMON_CHUNK_NAME,
   CLASS_DEFINE_CHUNK_NAME,
+  COMMON_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from './const/generator';
 
@@ -56,14 +56,12 @@ export default {
 };
 
 // 一些类型定义
-export * from './types';
-
-// 一些常量定义
-export * from './const';
-
 // 一些工具函数
 export * from './analyzer/componentAnalyzer';
+// 一些常量定义
+export * from './const';
 export * from './generator/ChunkBuilder';
 export * from './generator/CodeBuilder';
 export * from './generator/ModuleBuilder';
 export * from './generator/ProjectBuilder';
+export * from './types';

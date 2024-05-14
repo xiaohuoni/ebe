@@ -1,9 +1,9 @@
 import fetch from 'node-fetch';
 import type { IProjectSchema, ResultDir } from './core';
-import type { FlattenFile } from './core/types/file';
-import alita from './solutions/alita';
 import { createDiskPublisher } from './core/publisher/disk';
 import { createZipPublisher } from './core/publisher/zip';
+import type { FlattenFile } from './core/types/file';
+import alita from './solutions/alita';
 declare const Worker: any;
 declare const self: any;
 declare const __PACKAGE_VERSION__: string;

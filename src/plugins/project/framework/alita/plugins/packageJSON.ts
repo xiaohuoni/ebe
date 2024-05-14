@@ -1,5 +1,6 @@
 import { COMMON_CHUNK_NAME } from '../../../../../core/const/generator';
 
+import { LINGXI_TYPES_VERSION } from '../../../../../constants';
 import {
   BuilderComponentPlugin,
   BuilderComponentPluginFactory,
@@ -7,13 +8,12 @@ import {
   FileType,
   ICodeStruct,
   IProjectInfo,
-  PackageJSON,
   IPublicTypeNpmInfo,
+  PackageJSON,
 } from '../../../../../core/types';
-import { isNpmInfo } from '../../../../../core/utils/schema';
 import { getErrorMessage } from '../../../../../core/utils/errors';
+import { isNpmInfo } from '../../../../../core/utils/schema';
 import { calcCompatibleVersion } from '../../../../../core/utils/version';
-import { LINGXI_TYPES_VERSION } from '../../../../../constants';
 const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
     const next: ICodeStruct = {

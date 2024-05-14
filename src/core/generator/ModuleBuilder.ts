@@ -6,24 +6,24 @@ import {
   IContextData,
   IModuleBuilder,
   IParseResult,
+  IProjectSchema,
   ISchemaParser,
   PostProcessor,
-  IProjectSchema,
-  ResultFile,
   ResultDir,
+  ResultFile,
 } from '../types';
 
 import { COMMON_SUB_MODULE_NAME } from '../const/generator';
 
 // TODO: 解析应该由外部传进来
 import { SchemaParser } from '../../parser/SchemaParser';
+import {
+  addFile,
+  createResultDir,
+  createResultFile,
+} from '../utils/resultHelper';
 import { ChunkBuilder } from './ChunkBuilder';
 import { CodeBuilder } from './CodeBuilder';
-import {
-  createResultFile,
-  createResultDir,
-  addFile,
-} from '../utils/resultHelper';
 
 export function createModuleBuilder(
   options: {

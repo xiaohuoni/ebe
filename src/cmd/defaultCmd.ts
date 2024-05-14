@@ -1,6 +1,4 @@
-import { isJSVar } from '../core/utils/deprecated';
-import { generateVarString } from '../core/utils/compositeType';
-import { IScope, CMDGeneratorPrames } from '../core/types';
+import { CMDGeneratorPrames } from '../core/types';
 
 // 同名的事件增加后缀
 const count = {} as any;
@@ -38,7 +36,11 @@ export function getDefault({
 }: CMDGeneratorPrames) {
   const { options, type, dataId } = value;
 
-  const consoleValue = options?.value ? Array.isArray(options?.value) ? options?.value : [options?.value] : []
+  const consoleValue = options?.value
+    ? Array.isArray(options?.value)
+      ? options?.value
+      : [options?.value]
+    : [];
 
   return `// ${type} ${dataId} 未支持转源码 \n console.error('${type} ${dataId}');\n`;
   const isLoopChildren = scope && scope?.parentType === 'Loop';

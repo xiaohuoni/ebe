@@ -1,22 +1,20 @@
 import lodash from 'lodash';
+import { PAGE_TYPES } from '../../constants';
 import {
-  IScope,
-  CodeGeneratorError,
-  PIECE_TYPE,
+  AttrData,
   CodePiece,
+  IProjectSchema,
+  IScope,
   NodeGenerator,
   NodeGeneratorConfig,
-  AttrData,
+  PIECE_TYPE,
 } from '../types';
-import { generateCompositeType } from './compositeType';
-import { PAGE_TYPES } from '../../constants';
-import { executeFunctionStack } from './aopHelper';
-import { encodeJsxStringNode } from './encodeJsxAttrString';
-import { unwrapJsExprQuoteInJsx } from './jsxHelpers';
 import { isNodeSchema } from '../utils/deprecated';
-import { isValidIdentifier } from './validate';
-import { IProjectSchema } from '../types';
+import { executeFunctionStack } from './aopHelper';
 import { CMDGeneratorEvent } from './CMDGenerator';
+import { generateCompositeType } from './compositeType';
+import { unwrapJsExprQuoteInJsx } from './jsxHelpers';
+import { isValidIdentifier } from './validate';
 
 function mergeNodeGeneratorConfig(
   cfg1: NodeGeneratorConfig,

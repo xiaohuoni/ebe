@@ -1,4 +1,4 @@
-import type { TComponentAnalyzer, IProjectSchema } from '../types';
+import type { IProjectSchema, TComponentAnalyzer } from '../types';
 import { handleSubNodes } from '../utils/schema';
 
 export const componentAnalyzer: TComponentAnalyzer = (container) => {

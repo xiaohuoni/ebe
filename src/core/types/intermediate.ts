@@ -1,7 +1,7 @@
-import { IProjectSchema } from './page';
-import { IDependency, INpmPackage } from './deps';
 import { ICompAnalyzeResult } from './analyze';
 import { LXProjectOptions } from './core';
+import { IDependency, INpmPackage } from './deps';
+import { IProjectSchema } from './page';
 export interface IParseResult {
   containers: IContainerInfo[];
   dataSources: IContainerInfo[];

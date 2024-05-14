@@ -1,10 +1,6 @@
-import { isJSVar } from '../core/utils/deprecated';
+import { CMDGeneratorPrames } from '../core/types';
 import { generateVarString } from '../core/utils/compositeType';
-import {
-  IScope,
-  CompositeValueGeneratorOptions,
-  CMDGeneratorPrames,
-} from '../core/types';
+import { isJSVar } from '../core/utils/deprecated';
 
 // const eventDataconsole2: any = [
 //     {
@@ -33,7 +29,11 @@ import {
 export function getConsole({ value }: CMDGeneratorPrames): string {
   const { options, type, dataId } = value;
 
-  const consoleValue = options?.value ? Array.isArray(options?.value) ? options?.value : [options?.value] : []
+  const consoleValue = options?.value
+    ? Array.isArray(options?.value)
+      ? options?.value
+      : [options?.value]
+    : [];
   return `// 打印日志\n console.log(${consoleValue
     ?.map((v: string) => {
       if (isJSVar(v)) {

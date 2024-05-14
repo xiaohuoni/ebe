@@ -1,13 +1,13 @@
 import {
   BuilderComponentPlugin,
+  FileType,
   IChunkBuilder,
   ICodeChunk,
   ICodeStruct,
-  FileType,
 } from '../types';
 
-import { COMMON_SUB_MODULE_NAME } from '../const/generator';
 import { FILE_TYPE_FAMILY } from '../const/file';
+import { COMMON_SUB_MODULE_NAME } from '../const/generator';
 
 interface ChunkGroupInfo {
   chunk: ICodeChunk;

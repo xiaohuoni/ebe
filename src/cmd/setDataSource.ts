@@ -1,11 +1,12 @@
 import { last } from 'lodash';
-import {
-  CMDGeneratorPrames,
-} from '../core/types';
-import TreeParser from '../core/utils/TreeParser';
+import { CMDGeneratorPrames } from '../core/types';
+import { CMDGeneratorFunction } from '../core/utils/CMDGenerator';
 import { parse2Var } from '../core/utils/compositeType';
-import { GetReqParamValues, getDSFilterName, parseDSSetVal, transformValueDefined } from '../core/utils/transformValueDefined';
-import { CMDGeneratorEvent, CMDGeneratorFunction } from '../core/utils/CMDGenerator';
+import {
+  getDSFilterName,
+  parseDSSetVal,
+  transformValueDefined,
+} from '../core/utils/transformValueDefined';
 
 // 数组操作类型 operateType
 const ARRAY_OPERATE_TYPE = {
@@ -21,11 +22,11 @@ const ARRAY_OPERATE_TYPE = {
 const ITME_LOCAL_TYPE = {
   index: 'index', // 对应取值字段 itemIndex
   key: 'key', // 对应取值字段：key itemLocateKey  value itemLocateKeyValue
-  custom: 'custom'  // 对应取值字段： itemLocateCustomFunction: { code: code,  originCode }
+  custom: 'custom', // 对应取值字段： itemLocateCustomFunction: { code: code,  originCode }
 };
 
 const getTargetsPath = (config: any, targetDataSourcePaths: any[]) => {
-  const pathMap: Record<string, string[]> = {}
+  const pathMap: Record<string, string[]> = {};
 
   const allPathMap: Record<string, any> = {
     [config.id]: {
@@ -35,12 +36,11 @@ const getTargetsPath = (config: any, targetDataSourcePaths: any[]) => {
       type: config.type,
       initialData: config.rootOutParams,
       path: [],
-    }
-    
+    },
   };
 
   const loopCode = (list: any[], path: string[]) => {
-    list?.forEach?.(item => {
+    list?.forEach?.((item) => {
       allPathMap[item.attrId] = {
         ...item,
         path,
@@ -50,7 +50,7 @@ const getTargetsPath = (config: any, targetDataSourcePaths: any[]) => {
   };
   loopCode(config.outParams || [], []);
 
-  targetDataSourcePaths?.forEach(item => {
+  targetDataSourcePaths?.forEach((item) => {
     const { attrId } = item;
     const t = allPathMap[attrId];
     pathMap[attrId] = t.path;
@@ -60,12 +60,19 @@ const getTargetsPath = (config: any, targetDataSourcePaths: any[]) => {
     pathMap,
     allPathMap,
   };
-}
+};
 
-const getArrayFilterCbCode = (item: any) => { 
+const getArrayFilterCbCode = (item: any) => {
   let filterCode = '';
   let errorMsg = '';
-  const { itemLocateType, itemIndex, itemLocateKey, itemLocateKeyValue, itemLocateCustomFunction, attrId } = item;
+  const {
+    itemLocateType,
+    itemIndex,
+    itemLocateKey,
+    itemLocateKeyValue,
+    itemLocateCustomFunction,
+    attrId,
+  } = item;
   switch (itemLocateType) {
     case ITME_LOCAL_TYPE.key:
       if (!itemLocateKey) {
@@ -84,10 +91,10 @@ const getArrayFilterCbCode = (item: any) => {
             return main(item_${attrId || ''}, index_${attrId});
           }
         `;
-      } else { 
+      } else {
         errorMsg = `配置中缺少【自定义配置】配置`;
       }
-      
+
       break;
     case ITME_LOCAL_TYPE.index:
     default:
@@ -95,54 +102,63 @@ const getArrayFilterCbCode = (item: any) => {
         filterCode = `
         (row: any, index: number) => index == Number(${parse2Var(itemIndex)})
         `;
-      } else { 
+      } else {
         errorMsg = `配置中缺少【索引编码】配置`;
       }
       break;
   }
   return {
     errorMsg,
-    filterCode
+    filterCode,
   };
-}
+};
 
-const findNode = (list: any[], attrId: string) => { 
+const findNode = (list: any[], attrId: string) => {
   let result: any = null;
-  
+
   const loop = (arr?: any[]) => {
-    arr?.forEach(item => { 
+    arr?.forEach((item) => {
       if (item.attrId === attrId) {
         result = item;
-      } else { 
+      } else {
         loop(item.children);
       }
-    })
+    });
   };
 
   loop(list);
   return result;
-}
+};
 
-export function getSetDataSource({ value, platform, scope, config }: CMDGeneratorPrames): string {
+export function getSetDataSource({
+  value,
+  platform,
+  scope,
+  config,
+}: CMDGeneratorPrames): string {
   const { options, callback1, callback2 } = value;
 
   // 检查数据源
   const dataSourceName = options?.dataSourceName;
   if (!dataSourceName) return `// 数据源名称不存在，请检查配置`;
 
-
   // 检查是否配置了该数据源
   const dataSourceConfig = config?.ir?.dataSource;
-  const dsConfig = dataSourceConfig?.find(item => [item.name, getDSFilterName(item.name)].includes(dataSourceName));
+  const dsConfig = dataSourceConfig?.find((item) =>
+    [item.name, getDSFilterName(item.name)].includes(dataSourceName),
+  );
   if (!dsConfig) return `// 数据源${dataSourceName}不存在，请检查配置`;
-
 
   const { onlySetPatch, targetDataSourcePaths = [] } = options;
 
   const dSSetVals = parseDSSetVal(options);
-  const payloadCode = transformValueDefined(dSSetVals, options.dataSourceName, false);
+  const payloadCode = transformValueDefined(
+    dSSetVals,
+    options.dataSourceName,
+    false,
+  );
 
-if (targetDataSourcePaths.length === 0) {
+  if (targetDataSourcePaths.length === 0) {
     targetDataSourcePaths.push({
       attrId: `${dsConfig.id}`,
       onlySetPatch,
@@ -154,14 +170,17 @@ if (targetDataSourcePaths.length === 0) {
       itemLocateCustomFunction: options.itemLocateCustomFunction,
       fieldType: dsConfig.type,
       newData: options.newData,
-    })
-}
-
-  const getPath = (path: string[]) => { 
-    return parse2Var([`${dataSourceName}`, ...path].join('.'))
+    });
   }
 
-  const { pathMap, allPathMap } = getTargetsPath(dsConfig, targetDataSourcePaths);
+  const getPath = (path: string[]) => {
+    return parse2Var([`${dataSourceName}`, ...path].join('.'));
+  };
+
+  const { pathMap, allPathMap } = getTargetsPath(
+    dsConfig,
+    targetDataSourcePaths,
+  );
   const lastItem = last<any>(targetDataSourcePaths);
   const { attrId, fieldType, operateType, newData } = lastItem;
   const path = pathMap[attrId];
@@ -172,21 +191,29 @@ if (targetDataSourcePaths.length === 0) {
     value: payloadCode,
     predicate: '',
     operateType: '',
-    type: parse2Var(['objectArray', 'array'].includes(fieldType) ? 'array' : 'object'),
+    type: parse2Var(
+      ['objectArray', 'array'].includes(fieldType) ? 'array' : 'object',
+    ),
     onlySetPatch,
-  }
+  };
 
   if (['objectArray', 'array'].includes(fieldType)) {
     updateParams.operateType = operateType;
-    updateParams.path = getPath([...path, allPathMap[attrId]?.code])
-    if ([ARRAY_OPERATE_TYPE.UPDATE, ARRAY_OPERATE_TYPE.ADD].includes(operateType)) {
+    updateParams.path = getPath([...path, allPathMap[attrId]?.code]);
+    if (
+      [ARRAY_OPERATE_TYPE.UPDATE, ARRAY_OPERATE_TYPE.ADD].includes(operateType)
+    ) {
       const node = findNode(dSSetVals, attrId);
       if (!node) {
         return `// FIXME: 更新数据源出错! ${dataSourceName}: 不存在的节点id[${attrId}]
           console.warn('不存在的节点id[${attrId}]');
         `;
       }
-      updateParams.value = transformValueDefined(node.children, node.code, false)
+      updateParams.value = transformValueDefined(
+        node.children,
+        node.code,
+        false,
+      );
     }
     // 数组
     if (operateType === ARRAY_OPERATE_TYPE.DELETE) {
@@ -208,7 +235,6 @@ if (targetDataSourcePaths.length === 0) {
       }
       updateParams.predicate = filterCode;
     }
-
   }
 
   const callback1Code = CMDGeneratorFunction(
@@ -231,17 +257,25 @@ if (targetDataSourcePaths.length === 0) {
     `// 更新数据源 ${dataSourceName}
     updateData({
       ${Object.keys(updateParams)
-      .filter(key => updateParams[key as keyof typeof updateParams] !== '')
-      .map(key => (`${key}: ${updateParams[key as keyof typeof updateParams]}`))}
+        .filter((key) => updateParams[key as keyof typeof updateParams] !== '')
+        .map(
+          (key) => `${key}: ${updateParams[key as keyof typeof updateParams]}`,
+        )}
     })`,
-    callback1Code ? `then(() => {
+    callback1Code
+      ? `then(() => {
       // 成功回调
       ${callback1Code}
-    })`: '',
+    })`
+      : '',
 
-    callback2Code ? `catch(() => {
+    callback2Code
+      ? `catch(() => {
       // 成功回调
       ${callback2Code}
-    })`: '',
-  ].filter(Boolean).join('.');
+    })`
+      : '',
+  ]
+    .filter(Boolean)
+    .join('.');
 }

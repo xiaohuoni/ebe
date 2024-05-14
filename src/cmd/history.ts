@@ -11,7 +11,7 @@ export function history({ value }: CMDGeneratorPrames): string {
     search: paramsObj,
     state: routerData || {},
   };
-  return `// 路由跳转 \n  historytool(HISTORYTYPES.${options.type}, ${JSON.stringify(
-    historyParmas,
-  )});`;
+  return `// 路由跳转 \n  historytool(HISTORYTYPES.${
+    options.type
+  }, ${JSON.stringify(historyParmas)});`;
 }

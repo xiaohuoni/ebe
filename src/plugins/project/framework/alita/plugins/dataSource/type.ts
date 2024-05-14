@@ -9,25 +9,25 @@ const gType = {
     const typeCode: string[] = [];
     // 存储key， 用来检测属性名的唯一性
     const propertyKey: string[] = [];
-    filedList.forEach(it => { 
+    filedList.forEach((it) => {
       const { code, type, children, name } = it;
-      
+
       // 如果key重复了，就不再生成
       if (propertyKey.includes(code)) return;
       propertyKey.push(code);
 
-      typeCode.push(` ${name ? `/**
+      typeCode.push(` ${
+        name
+          ? `/**
       * ${name}
-      */` : ''}
+      */`
+          : ''
+      }
       ${code}?: ${gType[type as keyof typeof gType]?.(children) ?? 'unknown'}
-      `)
-    })
+      `);
+    });
 
-    return [
-      '{',
-      typeCode.join(';'),
-      '}'
-    ].join('')
+    return ['{', typeCode.join(';'), '}'].join('');
   },
 
   fieldArray: (filedList: any) => {
@@ -56,14 +56,14 @@ export const generatorDataType = (dataSource: any[]) => {
 
   // 存储key， 用来检测属性名的唯一性
   const propertyKey: string[] = [];
-  dataSource.forEach(item => {
+  dataSource.forEach((item) => {
     const { name, filterParams, outParams, type, description } = item;
 
     const filterName = getDSFilterName(name);
     if (propertyKey.includes(filterName)) return;
     if (propertyKey.includes(name)) return;
 
-    propertyKey.push(...[filterName, name])
+    propertyKey.push(...[filterName, name]);
 
     code.push(
       `
@@ -71,13 +71,19 @@ export const generatorDataType = (dataSource: any[]) => {
         description
           ? `/**
       * 过滤字段: ${description}
-      */` : ''}
+      */`
+          : ''
+      }
       ${getDSFilterName(name)}?: ${gType.object?.(filterParams) ?? 'unknown'}
-      ${description ? `/**
+      ${
+        description
+          ? `/**
       * ${description}
-      */` : ''}
+      */`
+          : ''
+      }
       ${name}?: ${gType[type as keyof typeof gType]?.(outParams) ?? 'unknown'}
-      `
+      `,
     );
   });
 
@@ -92,6 +98,6 @@ export const generatorDataType = (dataSource: any[]) => {
     }`,
     code.join(';'),
     '[key: string]: any',
-    '}'
+    '}',
   ].join('');
-}
+};

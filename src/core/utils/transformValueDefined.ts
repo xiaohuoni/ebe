@@ -1,8 +1,5 @@
-import { get, setWith } from "lodash";
-import TreeParser from "./TreeParser";
-import { cons } from "fp-ts/lib/ReadonlyNonEmptyArray";
-import { isJSVar } from "./deprecated";
-import { parse2Var } from "./compositeType";
+import { parse2Var } from './compositeType';
+import TreeParser from './TreeParser';
 
 export const getDSFilterName = (name: string) => `${name}Filter`;
 export const GetReqParamValues = (value: { type: string[]; code: string }) => {
@@ -55,18 +52,24 @@ export const GetReqParamValues = (value: { type: string[]; code: string }) => {
 };
 
 export const parseDSSetVal = (options: any) => {
-  const { dataSourceSetValue, onlySetPatch, targetDataSourcePaths } = options || {};
+  const { dataSourceSetValue, onlySetPatch, targetDataSourcePaths } =
+    options || {};
   if (dataSourceSetValue?.length) {
     // 根据节点路径过滤出需要设置的对象值
     if (targetDataSourcePaths?.length > 0) {
-      const attrs: string[] = targetDataSourcePaths.map((item: { attrId: any; }) => item.attrId);
+      const attrs: string[] = targetDataSourcePaths.map(
+        (item: { attrId: any }) => item.attrId,
+      );
       const handleList = (list: any[]) => {
         if (list?.length > 0) {
-          list.forEach(item => {
+          list.forEach((item) => {
             if (attrs.includes(item.attrId)) {
               // 如果为最后一个
-              if (attrs.findIndex(str => str === item.attrId) === attrs.length - 1) {
-                item?.children?.forEach?.((child: { value: { type: any; }; }) => {
+              if (
+                attrs.findIndex((str) => str === item.attrId) ===
+                attrs.length - 1
+              ) {
+                item?.children?.forEach?.((child: { value: { type: any } }) => {
                   if (onlySetPatch && !child?.value?.type) {
                     // @ts-ignore
                     delete child.value;
@@ -83,7 +86,7 @@ export const parseDSSetVal = (options: any) => {
       };
       handleList(dataSourceSetValue);
     } else {
-      dataSourceSetValue.forEach((d: { value: { type: string | any[]; }; }) => {
+      dataSourceSetValue.forEach((d: { value: { type: string | any[] } }) => {
         if (d?.value?.type?.length === 0) {
           // @ts-ignore
           delete d.value;
@@ -95,39 +98,50 @@ export const parseDSSetVal = (options: any) => {
     }
   }
   return dataSourceSetValue;
-}; 
+};
 
 export const transformValueDefined = (
   paramsConfig = [],
   dataSourceName: string,
-  isOrder: boolean = false
+  isOrder: boolean = false,
 ) => {
-
   const parser = new TreeParser();
 
   // TODO: 这段代码需要确认下是否需要
   if (dataSourceName && isOrder) {
-    const orderFields: string[] = paramsConfig.filter((it: any) => ['orderByAsc', 'orderByDesc'].includes(it.code));
+    const orderFields: string[] = paramsConfig.filter((it: any) =>
+      ['orderByAsc', 'orderByDesc'].includes(it.code),
+    );
     // 若内置排序字段，都没有值，则才取数据源初始排序值
     if (!orderFields.length) {
-      parser.appendProperty('orderByAsc', `data?.${getDSFilterName(dataSourceName)}?.orderByAsc`, '');
-      parser.appendProperty('orderByDesc', `data?.${getDSFilterName(dataSourceName)}?.orderByDesc`, '');
+      parser.appendProperty(
+        'orderByAsc',
+        `data?.${getDSFilterName(dataSourceName)}?.orderByAsc`,
+        '',
+      );
+      parser.appendProperty(
+        'orderByDesc',
+        `data?.${getDSFilterName(dataSourceName)}?.orderByDesc`,
+        '',
+      );
     }
   }
 
-  const code = parser.stringify({
-    type: 'object',
-    children: paramsConfig,
-    code: dataSourceName,
-  }, ({ item }, stop) => {
-    
-    if (item?.value?.type?.length) {
-      if (item.type === 'object' ) {
-        stop();
+  const code = parser.stringify(
+    {
+      type: 'object',
+      children: paramsConfig,
+      code: dataSourceName,
+    },
+    ({ item }, stop) => {
+      if (item?.value?.type?.length) {
+        if (item.type === 'object') {
+          stop();
+        }
+        return GetReqParamValues(item.value);
       }
-      return GetReqParamValues(item.value);
-    }
-  });
+    },
+  );
 
   return code;
 };

@@ -1,31 +1,30 @@
 import {
-  IParseResult,
-  ISchemaParser,
-  IExternalDependency,
   DependencyType,
-  IProjectSchema,
-  IRouterInfo,
-  IInternalDependency,
-  InternalDependencyType,
   IDependency,
+  IExternalDependency,
+  IInternalDependency,
   INpmPackage,
+  InternalDependencyType,
+  IParseResult,
+  IProjectSchema,
   IPublicTypeNodeDataType,
+  IRouterInfo,
+  ISchemaParser,
   LXProjectOptions,
 } from '../core';
+import { uniqueArray } from '../core/utils/common';
 import { getBusiCompName } from '../utils/schema/getBusiCompName';
 import { handleSubNodes, parseSchema } from '../utils/schema/lxschema';
-import { uniqueArray } from '../core/utils/common';
 // @ts-ignore
 import enPreprocess from '@lingxiteam/factory/es/index.enPreprocess';
 // @ts-ignore
 import enRunPreprocess from '@lingxiteam/factory/es/index.enRunPreprocess';
+import * as _ from 'lodash';
+import { MODAL_TYPES, PAGE_TYPES } from '../constants';
 import enPreprocessPC from '../utils/factory/pc/index.enPreprocess';
 import enRunPreprocessPC from '../utils/factory/pc/index.enRunPreprocess';
 import assetHelper from '../utils/schema/assets/assets';
-import { LINGXI_PROJECT_VERSION, PAGE_TYPES, MODAL_TYPES } from '../constants';
 import { cleanDataSource } from '../utils/schema/cleanDataSource';
-import pinyin from 'pinyin';
-import * as _ from 'lodash';
 
 function getInternalDep(
   internalDeps: Record<string, IInternalDependency>,
@@ -210,7 +209,9 @@ export class SchemaParser implements ISchemaParser {
       container.deps = uniqueArray<string>(depNames, (i: string) => i)
         .map((depName) => {
           if (compAssetListMapping[depName]) {
-            return internalDeps[CustomComponentName] || compDeps[CustomComponentName];
+            return (
+              internalDeps[CustomComponentName] || compDeps[CustomComponentName]
+            );
           }
           return internalDeps[depName] || compDeps[depName];
         })

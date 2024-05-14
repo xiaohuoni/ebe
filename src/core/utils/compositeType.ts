@@ -1,23 +1,23 @@
+import _, { isArray, isPlainObject, isString } from 'lodash';
 import {
+  isJSCode,
   isJSExpression,
   isJSFunction,
   isJSSlot,
-  isJSCode,
   isJSVar,
   isLXComponent,
 } from '../utils/deprecated';
-import _, { isArray, isPlainObject, isString } from 'lodash';
 
 import {
-  IScope,
-  CompositeValueGeneratorOptions,
   CodeGeneratorError,
+  CompositeValueGeneratorOptions,
+  IScope,
 } from '../types';
+import { executeFunctionStack } from './aopHelper';
+import { isJSExpressionFn } from './common';
+import { parseExpressionGetKeywords } from './expressionParser';
 import { generateExpression, generateFunction } from './jsExpression';
 import { generateJsSlot } from './jsSlot';
-import { executeFunctionStack } from './aopHelper';
-import { parseExpressionGetKeywords } from './expressionParser';
-import { isJSExpressionFn } from './common';
 
 interface ILegaoVariable {
   type: 'variable';
@@ -118,10 +118,10 @@ export function generateVarString(value: any): string | undefined {
   // 将 `.` 改成 `?.`
   // 代码里面可能自己写了 ?. 最终会是 ??. 将它修正
   // 数字的不能转 比如0.1 不能变成 0?.1
-  if (!value){
+  if (!value) {
     return undefined;
   }
-  if (!isJSVar(value)){
+  if (!isJSVar(value)) {
     return value;
   }
   const code = value
@@ -282,8 +282,7 @@ export function generateCompositeType(
 }
 
 // 把变量标识解析成变量
-export const parse2Var = (object: any): string => { 
-
+export const parse2Var = (object: any): string => {
   const getType = (o: any): keyof typeof variableType => {
     if (isArray(o)) {
       return 'array';
@@ -295,7 +294,7 @@ export const parse2Var = (object: any): string => {
       return 'string';
     }
     return 'any';
-  }
+  };
 
   // 按照低代码平台特性，只需要解析string/array/object类型即可，其他类型无需关注
   const variableType = {
@@ -307,17 +306,17 @@ export const parse2Var = (object: any): string => {
       return generateString(v);
     },
 
-    array: (v: any[]) => { 
-      if (!Array.isArray(v)) return v;    
-      const codes = v.map(item => variableType[getType(item)](item));
+    array: (v: any[]) => {
+      if (!Array.isArray(v)) return v;
+      const codes = v.map((item) => variableType[getType(item)](item));
       const t: string = `${codes.join(',')}`;
       return `[${t}]`;
     },
 
-    object: (v: any) => { 
+    object: (v: any) => {
       if (!isPlainObject(v)) return v;
       let target: string[] = [];
-      Object.keys(v).forEach(key => {
+      Object.keys(v).forEach((key) => {
         // target += `${key}: `;
         target.push(`${key}: ${variableType[getType(v[key])](v[key])}`);
       });
@@ -327,5 +326,5 @@ export const parse2Var = (object: any): string => {
     any: (v: any) => `${v}`,
   };
 
- return variableType[getType(object)](object);
-}
+  return variableType[getType(object)](object);
+};

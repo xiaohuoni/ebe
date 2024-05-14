@@ -1,15 +1,15 @@
+import { Component } from '@lingxiteam/types';
 import * as _ from 'lodash';
+import { IPublicTypeNodeDataType } from '../types';
+import { CodeGeneratorError } from '../types/error';
 import {
-  isJSExpression,
-  isJSSlot,
   isDOMText,
+  isJSExpression,
   isJSFunction,
+  isJSSlot,
   isNodeSchema,
 } from '../utils/deprecated';
 import { isJSExpressionFn } from './common';
-import { CodeGeneratorError } from '../types/error';
-import { IPublicTypeNodeDataType } from '../types';
-import { Component } from '@lingxiteam/types';
 export function isContainerSchema(x: any): x is any {
   return (
     typeof x === 'object' &&

@@ -1,11 +1,7 @@
-import { isJSVar } from '../core/utils/deprecated';
-import { generateVarString } from '../core/utils/compositeType';
-import {
-  IScope,
-  CompositeValueGeneratorOptions,
-  CMDGeneratorPrames,
-} from '../core/types';
+import { CMDGeneratorPrames } from '../core/types';
 import { CMDGeneratorFunction } from '../core/utils/CMDGenerator';
+import { generateVarString } from '../core/utils/compositeType';
+import { isJSVar } from '../core/utils/deprecated';
 
 // const eventDataifelse5: any = [
 //   {

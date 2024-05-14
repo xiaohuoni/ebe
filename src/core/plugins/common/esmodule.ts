@@ -1,4 +1,4 @@
-import { flatMap, camelCase, get } from 'lodash';
+import { camelCase, flatMap, get } from 'lodash';
 import { COMMON_CHUNK_NAME } from '../../const/generator';
 import { printCmdList } from '../../utils/debug';
 

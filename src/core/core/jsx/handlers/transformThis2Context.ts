@@ -1,5 +1,5 @@
-import { Expression } from '@babel/types';
 import generate from '@babel/generator';
+import { Expression } from '@babel/types';
 import { IScope } from '../../../types';
 import { parseExpressionConvertThis2Context } from '../../../utils/expressionParser';
 

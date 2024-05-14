@@ -1,7 +1,7 @@
 import prettier from 'prettier';
 import parserBabel from 'prettier/parser-babel';
-import parserPostCss from 'prettier/parser-postcss';
 import parserHtml from 'prettier/parser-html';
+import parserPostCss from 'prettier/parser-postcss';
 
 import { PostProcessor, PostProcessorFactory } from '../../types';
 

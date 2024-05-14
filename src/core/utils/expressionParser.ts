@@ -1,11 +1,11 @@
-import * as parser from '@babel/parser';
 import generate from '@babel/generator';
+import * as parser from '@babel/parser';
 import traverse, { NodePath } from '@babel/traverse';
 import * as t from '@babel/types';
 import { isIdentifier, Node } from '@babel/types';
 
-import { OrderedSet } from './OrderedSet';
 import { IScope } from '../types';
+import { OrderedSet } from './OrderedSet';
 
 export class ParseError extends Error {
   readonly expr: string | t.Expression;

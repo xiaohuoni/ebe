@@ -1,13 +1,13 @@
+import { saveAs } from 'file-saver';
 import {
-  ResultDir,
-  PublisherFactory,
   IPublisher,
   IPublisherFactoryParams,
   PublisherError,
+  PublisherFactory,
+  ResultDir,
 } from '../../types';
 import { getErrorMessage } from '../../utils/errors';
-import { isNodeProcess, writeZipToDisk, generateProjectZip } from './utils';
-import { saveAs } from 'file-saver';
+import { generateProjectZip, isNodeProcess, writeZipToDisk } from './utils';
 
 export type ZipBuffer = Buffer | Blob;
 // export type ZipBuffer = Buffer;

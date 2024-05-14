@@ -1,5 +1,5 @@
+import { CodeGeneratorError, IScope, NodeGenerator } from '../types';
 import { isJSSlot } from '../utils/deprecated';
-import { CodeGeneratorError, NodeGenerator, IScope } from '../types';
 import { unwrapJsExprQuoteInJsx } from './jsxHelpers';
 
 function generateSingleLineComment(commentText: string): string {

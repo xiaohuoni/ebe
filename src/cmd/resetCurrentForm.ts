@@ -1,6 +1,6 @@
-import { isJSVar } from '../core/utils/deprecated';
+import { CMDGeneratorPrames } from '../core/types';
 import { generateVarString } from '../core/utils/compositeType';
-import { IScope, CMDGeneratorPrames } from '../core/types';
+import { isJSVar } from '../core/utils/deprecated';
 import { getImportFrom } from '../utils/depsHelper';
 
 // const eventDataresetCurrentForm: any = [

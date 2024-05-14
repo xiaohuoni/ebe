@@ -1,4 +1,4 @@
-import { ResultFile, ResultDir } from '../';
+import { ResultDir, ResultFile } from '../';
 // @ts-ignore
 import nm from 'nanomatch';
 

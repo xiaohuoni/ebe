@@ -1,6 +1,4 @@
-import {
-  CMDGeneratorPrames,
-} from '../core/types';
+import { CMDGeneratorPrames } from '../core/types';
 
 export function getResetDataSource({ value }: CMDGeneratorPrames): string {
   const { options } = value;

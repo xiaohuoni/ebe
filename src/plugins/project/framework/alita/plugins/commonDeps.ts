@@ -3,7 +3,6 @@ import {
   BuilderComponentPluginFactory,
   ICodeStruct,
 } from '../../../../../core/types';
-import { getImportFrom, getImportsFrom } from '../../../../../utils/depsHelper';
 
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {

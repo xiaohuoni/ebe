@@ -3,25 +3,25 @@ import {
   IParseResult,
   IProjectBuilder,
   IProjectPlugins,
+  IProjectSchema,
   IProjectTemplate,
   ISchemaParser,
   PostProcessor,
-  IProjectSchema,
   ResultDir,
   ResultFile,
 } from '../types';
 
-import { createResultDir, addDirectory, addFile } from '../utils/resultHelper';
+import { addDirectory, addFile, createResultDir } from '../utils/resultHelper';
 
-import { createModuleBuilder } from './ModuleBuilder';
+import { PAGE_TYPES } from '../../constants';
+import { isBuiltinSlotName } from '../const';
 import {
-  ProjectPreProcessor,
-  ProjectPostProcessor,
   IContextData,
+  ProjectPostProcessor,
+  ProjectPreProcessor,
 } from '../types/core';
 import { CodeGeneratorError } from '../types/error';
-import { isBuiltinSlotName } from '../const';
-import { PAGE_TYPES } from '../../constants';
+import { createModuleBuilder } from './ModuleBuilder';
 interface IModuleInfo {
   moduleName?: string;
   path: string[];

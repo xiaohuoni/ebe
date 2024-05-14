@@ -1,8 +1,7 @@
 import * as fs from 'fs-extra';
 import { jsonc } from 'jsonc';
-import alita from './src/solutions/alita';
 import { createDiskPublisher } from './src/core/publisher/disk';
-import { createZipPublisher } from './src/core/publisher/zip';
+import alita from './src/solutions/alita';
 (async () => {
   const testPlatformIsH5 = false;
   const schemaFile = testPlatformIsH5 ? 'lingxi-page-h5.json' : 'a.json';

@@ -1,10 +1,10 @@
+import { IContainerInfo, IProjectSchema } from './';
 import {
-  HandlerSet,
   BaseGenerator,
-  NodeGenerator,
+  HandlerSet,
   LXProjectOptions,
+  NodeGenerator,
 } from './core';
-import { IProjectSchema, IContainerInfo } from './';
 
 export enum PIECE_TYPE {
   BEFORE = 'NodeCodePieceBefore',

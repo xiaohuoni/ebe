@@ -1,6 +1,6 @@
-import { ResultFile, LXProjectOptions } from '../../../../../../core';
-import { isFirstLetterUpperCase } from '../../../../../../core/utils/validate';
+import { LXProjectOptions, ResultFile } from '../../../../../../core';
 import { createResultFile } from '../../../../../../core/utils/resultHelper';
+import { isFirstLetterUpperCase } from '../../../../../../core/utils/validate';
 // @ts-ignore
 import appconfig from '@lingxiteam/factory/lib/index.config';
 import pcconfig from '@lingxiteam/pcfactory/lib/index.config';

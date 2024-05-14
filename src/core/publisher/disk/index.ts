@@ -1,13 +1,13 @@
 import * as defaultFs from 'fs';
 import {
-  ResultDir,
-  PublisherFactory,
   IPublisher,
   IPublisherFactoryParams,
   PublisherError,
+  PublisherFactory,
+  ResultDir,
 } from '../../types';
 import { getErrorMessage } from '../../utils/errors';
-import { writeFolder, IFileSystem } from './utils';
+import { IFileSystem, writeFolder } from './utils';
 
 export interface IDiskFactoryParams extends IPublisherFactoryParams {
   outputPath?: string;

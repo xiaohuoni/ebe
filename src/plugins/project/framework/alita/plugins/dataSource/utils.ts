@@ -1,21 +1,18 @@
-import { isString } from "lodash";
-import { generateVarString } from "../../../../../../core/utils/compositeType";
-import { isJSVar } from "../../../../../../core/utils/deprecated";
-import { getDSFilterName } from "./type";
-import { cleanDataSource } from "./template";
-import TreeParser from "../../../../../../core/utils/TreeParser";
+import TreeParser from '../../../../../../core/utils/TreeParser';
+import { cleanDataSource } from './template';
+import { getDSFilterName } from './type';
 
 const DATADOURCE_TYPE_CN = {
-  'custom': '自定义数据源',
-  'object': '对象数据源',
-  'service': '服务数据源'
+  custom: '自定义数据源',
+  object: '对象数据源',
+  service: '服务数据源',
 };
 
 /**
  * 获取用户信息
- * @returns 
+ * @returns
  */
-const useInfo = () => { 
+const useInfo = () => {
   return `
   /**
    * 设置用户信息
@@ -27,12 +24,16 @@ const useInfo = () => {
         }
       })
     }, [lcdpApi.data?.user])`;
-}
+};
 
-const generateParams = (dataItem: any, t: keyof typeof DATADOURCE_TYPE_CN = 'custom') => { 
-  const { name, rootOutParams, rootFilterParams, outParams, filterParams } = dataItem;
+const generateParams = (
+  dataItem: any,
+  t: keyof typeof DATADOURCE_TYPE_CN = 'custom',
+) => {
+  const { name, rootOutParams, rootFilterParams, outParams, filterParams } =
+    dataItem;
 
-  const generateStr = (children: any[], value?: any, type?: string) => { 
+  const generateStr = (children: any[], value?: any, type?: string) => {
     const parser = new TreeParser();
     return parser.stringify({
       ...dataItem,
@@ -41,50 +42,55 @@ const generateParams = (dataItem: any, t: keyof typeof DATADOURCE_TYPE_CN = 'cus
       },
       children: children,
       code: name,
-      type: type || dataItem.type
+      type: type || dataItem.type,
     });
-  }
+  };
 
   return `
       \n
       /**
      * ${DATADOURCE_TYPE_CN[t]}: ${name}
      */
-    ${getDSFilterName(name)}: ${generateStr(filterParams, rootFilterParams, 'object')},
+    ${getDSFilterName(name)}: ${generateStr(
+    filterParams,
+    rootFilterParams,
+    'object',
+  )},
     ${name}: ${generateStr(outParams, rootOutParams?.value)}
     \n
   `;
-
-}
+};
 
 const gData = {
   // 生成自定义初始化内容
-  custom: (dataItem: any, t: keyof typeof DATADOURCE_TYPE_CN = 'custom') => { 
-    return generateParams({
-      ...dataItem,
-      rootFilterParams: '${}$',
-    }, 'custom')
+  custom: (dataItem: any, t: keyof typeof DATADOURCE_TYPE_CN = 'custom') => {
+    return generateParams(
+      {
+        ...dataItem,
+        rootFilterParams: '${}$',
+      },
+      'custom',
+    );
   },
 
   // 生成对象
   object: (dataItem: any) => {
     return {
       requestCode: '',
-      initialValue: generateParams(dataItem, 'object')
-    }
+      initialValue: generateParams(dataItem, 'object'),
+    };
   },
 
   // 服务
-  service: (dataItem: any) => { 
+  service: (dataItem: any) => {
     const { name, outParams = [], rootOutParams, filterParams } = dataItem;
 
     return {
       requestCode: '',
-      initialValue: generateParams(dataItem, 'service')
-    }
+      initialValue: generateParams(dataItem, 'service'),
+    };
   },
 };
-
 
 /**
  * 初始化数据源
@@ -97,16 +103,16 @@ export const initialDataSource = (dataSource: any[]) => {
     /**
      * 初始化数据
      */
-    const initialData: Partial<DataSourceType> = {`
+    const initialData: Partial<DataSourceType> = {`,
   ];
 
   const dataSourceValues: string[] = [];
- 
-  dataSource.map(dataItem => {
+
+  dataSource.map((dataItem) => {
     const { source } = dataItem;
-    switch (source) { 
-      case 'custom': 
-      initialData.push(`${gData.custom(dataItem)},`);
+    switch (source) {
+      case 'custom':
+        initialData.push(`${gData.custom(dataItem)},`);
         break;
       case 'object':
         // 解析对象
@@ -120,10 +126,10 @@ export const initialDataSource = (dataSource: any[]) => {
         }
 
         break;
-      
+
       case 'service':
-        { 
-           // 解析服务
+        {
+          // 解析服务
           const { initialValue, requestCode } = gData.service(dataItem);
 
           if (initialValue) {
@@ -136,19 +142,20 @@ export const initialDataSource = (dataSource: any[]) => {
         }
         break;
     }
-  })
+  });
 
   // 关闭对象
-  initialData.push('};')
+  initialData.push('};');
 
-  code.push(...[
-   `const newData: Partial<DataSourceType> = cloneDeep(initialData);`,
-    `type DataSourceKey = keyof DataSourceType;`,
-    'setLoading(true);\n\n',
-  `const dataSourceValues: Promise<{ name: DataSourceKey, value: any }>[] = [`,
-    dataSourceValues.join(','),
-    ']',
-    `
+  code.push(
+    ...[
+      `const newData: Partial<DataSourceType> = cloneDeep(initialData);`,
+      `type DataSourceKey = keyof DataSourceType;`,
+      'setLoading(true);\n\n',
+      `const dataSourceValues: Promise<{ name: DataSourceKey, value: any }>[] = [`,
+      dataSourceValues.join(','),
+      ']',
+      `
     Promise.all(dataSourceValues).then((items) => {
       items.forEach(({ name, value }) => {
         newData[name] = value;
@@ -160,8 +167,9 @@ export const initialDataSource = (dataSource: any[]) => {
       setData(newData as DataSourceType);
       setLoading(false)
     });
-    `
-  ]);
+    `,
+    ],
+  );
 
   return [
     useInfo(),
@@ -171,17 +179,16 @@ export const initialDataSource = (dataSource: any[]) => {
      * 初始化数据源
      */
     const initialDataSource = () => {`,
-      code.join(''),
+    code.join(''),
     '}',
-    'useEffect(() => {initialDataSource()}, [])'
+    'useEffect(() => {initialDataSource()}, [])',
   ].join('\n\n');
-}
-
+};
 
 /**
  * 更新数据源
  */
-export const updateData = (dataSource: any[]) => { 
+export const updateData = (dataSource: any[]) => {
   return [
     `
     /**
@@ -230,15 +237,14 @@ export const updateData = (dataSource: any[]) => {
         return Promise.reject(error as Error);
       }
     };
-    `
+    `,
   ].join('');
-}
+};
 
 /**
  * 刷新数据源
  */
-export const reloadDataSource = (dataSource: any[]) => { 
-  
+export const reloadDataSource = (dataSource: any[]) => {
   const code = `
     setLoading(true);
   `;
@@ -251,14 +257,14 @@ export const reloadDataSource = (dataSource: any[]) => {
     `,
     `const reloadDataSource = (name: string) => {`,
     code,
-    '}'
+    '}',
   ].join('');
-}
+};
 
 /**
  * 重置数据源
  */
-export const resetDataSource = () => { 
+export const resetDataSource = () => {
   const code = `
   /**
    * 数据源名字不存在，无需重置数据源
@@ -277,6 +283,6 @@ export const resetDataSource = () => {
     `,
     `const resetDataSource = (name: string) => {`,
     code,
-    '}'
+    '}',
   ].join('');
-}
+};

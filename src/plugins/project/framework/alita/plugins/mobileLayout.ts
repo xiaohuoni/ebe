@@ -1,6 +1,3 @@
-import { MOBILE_CHUNK_NAME } from './const';
-import { REACT_CHUNK_NAME } from '../../../../../plugins/react/const';
-import { generateFunction } from '../../../../../core/utils/jsExpression';
 import {
   BuilderComponentPlugin,
   BuilderComponentPluginFactory,
@@ -9,7 +6,10 @@ import {
   ICodeStruct,
   IContainerInfo,
 } from '../../../../../core/types';
+import { generateFunction } from '../../../../../core/utils/jsExpression';
+import { REACT_CHUNK_NAME } from '../../../../../plugins/react/const';
 import { getImportFrom } from '../../../../../utils/depsHelper';
+import { MOBILE_CHUNK_NAME } from './const';
 
 export interface PluginConfig {
   fileType?: string;
