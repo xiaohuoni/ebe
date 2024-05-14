@@ -1,18 +1,18 @@
 import {
-  IProjectBuilder,
-  IProjectBuilderOptions,
   createProjectBuilder,
   FileType,
+  IProjectBuilder,
+  IProjectBuilderOptions,
 } from '../core';
-import alita from '../plugins/project/framework/alita';
-import { SchemaParser } from '../parser/SchemaParser';
-import { prettier } from '../core/postprocessor';
 import esModule from '../core/plugins/common/esmodule';
-import reactCommonDeps from '../plugins/react/reactCommonDeps';
+import { prettier } from '../core/postprocessor';
+import { SchemaParser } from '../parser/SchemaParser';
+import alita from '../plugins/project/framework/alita';
 import reactContainer from '../plugins/react/container';
 import containerLifeCycle from '../plugins/react/containerLifeCycle';
-import reactJsx from '../plugins/react/jsx';
 import customActionMap from '../plugins/react/customActionMap';
+import reactJsx from '../plugins/react/jsx';
+import reactCommonDeps from '../plugins/react/reactCommonDeps';
 
 export type AlitaProjectBuilderOptions = IProjectBuilderOptions;
 

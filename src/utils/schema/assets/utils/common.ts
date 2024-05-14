@@ -1,4 +1,4 @@
-import { ProcessFunctionType, ComPreprocessTypes } from '@lingxiteam/types';
+import { ComPreprocessTypes, ProcessFunctionType } from '@lingxiteam/types';
 
 /**
  * 支持属性key通过 "compName|compName"模式  * 全部处理

@@ -1,10 +1,9 @@
 import * as fs from 'fs-extra';
 import { jsonc } from 'jsonc';
-import alita from './src/solutions/alita';
-import { createDiskPublisher } from './src/core/publisher/disk';
-import { createZipPublisher } from './src/core/publisher/zip';
-import { copyStatic } from './scripts/copyStatic';
 import { join } from 'path';
+import { copyStatic } from './scripts/copyStatic';
+import { createDiskPublisher } from './src/core/publisher/disk';
+import alita from './src/solutions/alita';
 (async () => {
   const appId = '868681578956083200';
   // const schemaFile = `./demo/node_modules/.cache/${appId}/req.json`;

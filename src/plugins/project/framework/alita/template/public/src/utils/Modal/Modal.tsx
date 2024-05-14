@@ -76,24 +76,23 @@ const DM = forwardRef((props: any) => {
           }
         }}
       >
-          <div
-            style={
-              mProps.height
-                ? { height: mProps.height, overflow: 'auto' }
-                : { overflowX: 'auto' }
-            }
-          >
-            <Pageview
-              pageSrc={pagePath}
-              state={params}
-              ref={mRef}
-              parentEngineId={lcdpParentRenderId}
-            />
-          </div>
+        <div
+          style={
+            mProps.height
+              ? { height: mProps.height, overflow: 'auto' }
+              : { overflowX: 'auto' }
+          }
+        >
+          <Pageview
+            pageSrc={pagePath}
+            state={params}
+            ref={mRef}
+            parentEngineId={lcdpParentRenderId}
+          />
+        </div>
       </Modal>
     </>
   );
 });
-
 
 export default DM;

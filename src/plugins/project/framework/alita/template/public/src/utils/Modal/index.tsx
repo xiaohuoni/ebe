@@ -11,7 +11,6 @@ interface ModalManagerProps {
  * 打开弹窗入参
  */
 export interface OpenModalProps {
-
   /**
    * 页面路径
    */
@@ -56,12 +55,18 @@ export interface ModalManagerHooks {
    * PC端弹窗/抽屉设置属性
    * @param param0
    */
-  setStatue?: ({ modalInstId, pagePath, type, propsName, propsValue }: {
-      modalInstId?: string;
-      pagePath?: string;
-      type: 'model' | 'drawer';
-      propsName: string;
-      propsValue: any;
+  setStatue?: ({
+    modalInstId,
+    pagePath,
+    type,
+    propsName,
+    propsValue,
+  }: {
+    modalInstId?: string;
+    pagePath?: string;
+    type: 'model' | 'drawer';
+    propsName: string;
+    propsValue: any;
   }) => void;
 }
 
@@ -107,7 +112,9 @@ const ModalManager = React.forwardRef<ModalManagerHooks, ModalManagerProps>(
         return;
       }
 
-      const targetObj = instData.find((i) => i.pagePath && i.pagePath === pagePath);
+      const targetObj = instData.find(
+        (i) => i.pagePath && i.pagePath === pagePath,
+      );
       if (targetObj) {
         // 这个pagePath已经存在一个弹窗，改为打开它
         targetObj.visible = true;

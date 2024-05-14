@@ -1,6 +1,6 @@
 import type { PatchPropsFunctionType } from '@lingxiteam/types';
-import { hasSomeOwnProperty } from './index.enCommonPreprocess';
 import basicStatusTransfer from './basicStatusTransfer';
+import { hasSomeOwnProperty } from './index.enCommonPreprocess';
 
 /**
  * 组件渲染时候的预处理逻辑-组件每次渲染都会处理

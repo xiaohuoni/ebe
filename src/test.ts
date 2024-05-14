@@ -1,6 +1,6 @@
-import { run } from './worker';
 import * as fs from 'fs-extra';
 import { jsonc } from 'jsonc';
+import { run } from './worker';
 (async () => {
   const testPlatformIsH5 = false;
   const schemaFile = testPlatformIsH5

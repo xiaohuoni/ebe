@@ -2,9 +2,6 @@ import {
   CLASS_DEFINE_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
-import { CUSTOM_ACTION_CHUNK_NAME } from './const';
-import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
-import { getEvents } from '../../utils/schema/parseDsl';
 import {
   BuilderComponentPlugin,
   BuilderComponentPluginFactory,
@@ -14,7 +11,10 @@ import {
   IContainerInfo,
   IScope,
 } from '../../core/types';
+import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
 import { getImportsFrom } from '../../utils/depsHelper';
+import { getEvents } from '../../utils/schema/parseDsl';
+import { CUSTOM_ACTION_CHUNK_NAME } from './const';
 
 export interface PluginConfig {
   fileType?: string;
@@ -95,9 +95,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         ],
       });
       // 在文件头引入
-      next.ir.deps.push(
-        ...getImportsFrom('./customAction', customFuctionsIds),
-      );
+      next.ir.deps.push(...getImportsFrom('./customAction', customFuctionsIds));
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: cfg.fileType,

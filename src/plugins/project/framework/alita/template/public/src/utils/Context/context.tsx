@@ -1,7 +1,6 @@
 import React from 'react';
 import { type ImperativeHandleReturn } from '@lingxiteam/types';
 
-
 export const Context = React.createContext<{
   ModalManagerRef: React.MutableRefObject<any>;
   refs: any;
@@ -50,19 +49,16 @@ interface componentRef extends ImperativeHandleReturn {}
 export class RefsManager {
   constructor() {}
 
-
-
   /**
    * 页面级别Ref
    */
   private systemRef: Record<string, Record<string, any>> = {};
 
-
   /**
    * 页面级别的ref
    * @param ref
    */
-  private setSystemRef = (renderId: string,  comRefs: Record<string, any>) => {
+  private setSystemRef = (renderId: string, comRefs: Record<string, any>) => {
     if (this.systemRef[renderId]) {
       Object.assign(this.systemRef[renderId], comRefs);
     } else {
@@ -72,8 +68,7 @@ export class RefsManager {
 
   private getComRefs = (renderId: string) => {
     return this.systemRef[renderId] || {};
-  }
- 
+  };
 
   public get refs(): any {
     return this.systemRef;

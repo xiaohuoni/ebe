@@ -1,7 +1,7 @@
 import { SandBoxContext } from '@lingxiteam/types';
 import { boframer } from './compat';
-import { parseExpr } from './parseExpr';
 import parseEventCtx from './parseEventCtx';
+import { parseExpr } from './parseExpr';
 
 export declare type IPublicSchemaType = Record<string, any>;
 

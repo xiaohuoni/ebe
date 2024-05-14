@@ -25,8 +25,8 @@ import { findAppConfig } from '@/services/api/appConfig';
 import { useRequest } from 'alita';
 
 export default () => {
-  const xx= () =>{
-    findAppConfig({}, { appId: '868681578956083200' }).then()
-  }
+  const xx = () => {
+    findAppConfig({}, { appId: '868681578956083200' }).then();
+  };
 };
 ```

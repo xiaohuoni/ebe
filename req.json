@@ -40,9 +40,7 @@
           "code": "bizData"
         }
       ],
-      "style": {
-        
-      },
+      "style": {},
       "setEvents": [
         {
           "dataName": "event",
@@ -6862,19 +6860,11 @@
                             },
                             "showInput": false,
                             "value": {
-                              "type": [
-                                "$function$",
-                                "other",
-                                "random"
-                              ],
+                              "type": ["$function$", "other", "random"],
                               "code": "$_.random(1000)$"
                             },
-                            "_codePath": [
-                              "param1"
-                            ],
-                            "_idpath": [
-                              "715899"
-                            ]
+                            "_codePath": ["param1"],
+                            "_idpath": ["715899"]
                           },
                           {
                             "attrId": "12718",
@@ -6895,20 +6885,11 @@
                                   "type": "static"
                                 },
                                 "showInput": false,
-                                "_codePath": [
-                                  "object",
-                                  "text"
-                                ],
-                                "_idpath": [
-                                  "12718",
-                                  "244888"
-                                ],
+                                "_codePath": ["object", "text"],
+                                "_idpath": ["12718", "244888"],
                                 "parentKey": "12718",
                                 "value": {
-                                  "type": [
-                                    "EMPTY_DATA",
-                                    "array"
-                                  ],
+                                  "type": ["EMPTY_DATA", "array"],
                                   "hideAttr": true,
                                   "code": "$_.random(1000) + \"对象下\"$"
                                 }
@@ -6922,22 +6903,12 @@
                                   "type": "static"
                                 },
                                 "showInput": false,
-                                "_codePath": [
-                                  "object",
-                                  "param0"
-                                ],
-                                "_idpath": [
-                                  "12718",
-                                  "9891977"
-                                ]
+                                "_codePath": ["object", "param0"],
+                                "_idpath": ["12718", "9891977"]
                               }
                             ],
-                            "_codePath": [
-                              "object"
-                            ],
-                            "_idpath": [
-                              "12718"
-                            ]
+                            "_codePath": ["object"],
+                            "_idpath": ["12718"]
                           },
                           {
                             "attrId": "4934367",
@@ -6958,14 +6929,8 @@
                                   "type": "static"
                                 },
                                 "showInput": false,
-                                "_codePath": [
-                                  "obj2",
-                                  "obj2_Field"
-                                ],
-                                "_idpath": [
-                                  "4934367",
-                                  "488416"
-                                ]
+                                "_codePath": ["obj2", "obj2_Field"],
+                                "_idpath": ["4934367", "488416"]
                               },
                               {
                                 "attrId": "293552",
@@ -6991,36 +6956,20 @@
                                       "obj2_Field1",
                                       "param1"
                                     ],
-                                    "_idpath": [
-                                      "4934367",
-                                      "293552",
-                                      "573236"
-                                    ]
+                                    "_idpath": ["4934367", "293552", "573236"]
                                   }
                                 ],
-                                "_codePath": [
-                                  "obj2",
-                                  "obj2_Field1"
-                                ],
-                                "_idpath": [
-                                  "4934367",
-                                  "293552"
-                                ]
+                                "_codePath": ["obj2", "obj2_Field1"],
+                                "_idpath": ["4934367", "293552"]
                               }
                             ],
-                            "_codePath": [
-                              "obj2"
-                            ],
-                            "_idpath": [
-                              "4934367"
-                            ]
+                            "_codePath": ["obj2"],
+                            "_idpath": ["4934367"]
                           }
                         ],
                         "operateType": 1,
                         "onlySetPatch": false,
-                        "otherObjectArrayOptions": {
-                          
-                        },
+                        "otherObjectArrayOptions": {},
                         "targetDataSourcePaths": []
                       },
                       "actionObjId": "setDataSource",
@@ -7031,24 +6980,23 @@
                           "dataName": "callback",
                           "dataId": 171539003081904770,
                           "value": "callback1",
-                          "path": [171539002876253730,171539003081951740],
+                          "path": [171539002876253730, 171539003081951740],
                           "params": [],
                           "children": [
                             {
                               "dataName": "action",
                               "dataId": 171565031508087600,
-                              "todoOptions": [
-                                "valueArray"
+                              "todoOptions": ["valueArray"],
+                              "path": [
+                                171539002876253730, 171539003081951740,
+                                171539003081904770
                               ],
-                              "path": [171539002876253730,171539003081951740,171539003081904770],
                               "options": {
                                 "compId": "console",
                                 "compName": "system",
                                 "id": "369507",
                                 "pageJsonId": "97790956",
-                                "value": [
-                                  "$data.custom$"
-                                ]
+                                "value": ["$data.custom$"]
                               },
                               "actionObjId": "console",
                               "actionObjName": "system",
@@ -7063,7 +7011,7 @@
                           "dataName": "callback",
                           "dataId": 171539003081998900,
                           "value": "callback2",
-                          "path": [171539002876253730,171539003081951740],
+                          "path": [171539002876253730, 171539003081951740],
                           "params": [],
                           "children": [],
                           "elseIfs": []
@@ -7075,14 +7023,9 @@
                 }
               ],
               "isLabelDropBoxChild": false,
-              "functors": {
-                
-              },
+              "functors": {},
               "components": [],
-              "path": [
-                "97790956",
-                "View_97790956_1"
-              ]
+              "path": ["97790956", "View_97790956_1"]
             },
             {
               "id": "Button_160231",
@@ -7132,9 +7075,7 @@
                     {
                       "dataName": "action",
                       "dataId": 171539499669352030,
-                      "todoOptions": [
-                        "selectAllDataSource"
-                      ],
+                      "todoOptions": ["selectAllDataSource"],
                       "path": [171539499315503100],
                       "options": {
                         "compId": "resetDataSource",
@@ -7144,9 +7085,7 @@
                         "dataSourceId": 171538998779532580,
                         "dataSourceName": "custom",
                         "dataSourceRelType": "custom",
-                        "otherObjectArrayOptions": {
-                          
-                        },
+                        "otherObjectArrayOptions": {},
                         "targetDataSourcePaths": []
                       },
                       "actionObjId": "resetDataSource",
@@ -7157,25 +7096,23 @@
                           "dataName": "callback",
                           "dataId": 171539499669322370,
                           "value": "callback1",
-                          "path": [171539499315503100,171539499669352030],
+                          "path": [171539499315503100, 171539499669352030],
                           "params": [],
                           "children": [
                             {
                               "dataName": "action",
                               "dataId": 171565033965334940,
-                              "todoOptions": [
-                                "valueArray"
+                              "todoOptions": ["valueArray"],
+                              "path": [
+                                171539499315503100, 171539499669352030,
+                                171539499669322370
                               ],
-                              "path": [171539499315503100,171539499669352030,171539499669322370],
                               "options": {
                                 "compId": "console",
                                 "compName": "system",
                                 "id": "7332785",
                                 "pageJsonId": "97790956",
-                                "value": [
-                                  "清空数据源",
-                                  "$data.custom$"
-                                ]
+                                "value": ["清空数据源", "$data.custom$"]
                               },
                               "actionObjId": "console",
                               "actionObjName": "system",
@@ -7190,7 +7127,7 @@
                           "dataName": "callback",
                           "dataId": 171539499669326900,
                           "value": "callback2",
-                          "path": [171539499315503100,171539499669352030],
+                          "path": [171539499315503100, 171539499669352030],
                           "params": [],
                           "children": [],
                           "elseIfs": []
@@ -7210,10 +7147,7 @@
                 }
               },
               "components": [],
-              "path": [
-                "97790956",
-                "View_97790956_1"
-              ]
+              "path": ["97790956", "View_97790956_1"]
             },
             {
               "id": "Button_7733611",
@@ -7344,9 +7278,7 @@
                                 "parentCode": "4934367",
                                 "parentKey": "4934367",
                                 "value": {
-                                  "type": [
-                                    "customize"
-                                  ],
+                                  "type": ["customize"],
                                   "code": "aslkdfjalsdfkj"
                                 }
                               },
@@ -7372,9 +7304,7 @@
                                     "parentCode": "293552",
                                     "parentKey": "293552",
                                     "value": {
-                                      "type": [
-                                        "customize"
-                                      ],
+                                      "type": ["customize"],
                                       "code": "obj2_field1_param1"
                                     }
                                   }
@@ -7387,9 +7317,7 @@
                         ],
                         "operateType": 0,
                         "onlySetPatch": true,
-                        "otherObjectArrayOptions": {
-                          
-                        },
+                        "otherObjectArrayOptions": {},
                         "targetDataSourcePaths": [
                           {
                             "itemIndex": "1",
@@ -7426,25 +7354,23 @@
                           "dataName": "callback",
                           "dataId": 171543236195137400,
                           "value": "callback1",
-                          "path": [171543235814956770,171543236195076200],
+                          "path": [171543235814956770, 171543236195076200],
                           "params": [],
                           "children": [
                             {
                               "dataName": "action",
                               "dataId": 171560136388843000,
-                              "todoOptions": [
-                                "valueArray"
+                              "todoOptions": ["valueArray"],
+                              "path": [
+                                171543235814956770, 171543236195076200,
+                                171543236195137400
                               ],
-                              "path": [171543235814956770,171543236195076200,171543236195137400],
                               "options": {
                                 "compId": "console",
                                 "compName": "system",
                                 "id": "329564",
                                 "pageJsonId": "97790956",
-                                "value": [
-                                  "$data.custom$",
-                                  "新增行"
-                                ]
+                                "value": ["$data.custom$", "新增行"]
                               },
                               "actionObjId": "console",
                               "actionObjName": "system",
@@ -7459,7 +7385,7 @@
                           "dataName": "callback",
                           "dataId": 171543236195172930,
                           "value": "callback2",
-                          "path": [171543235814956770,171543236195076200],
+                          "path": [171543235814956770, 171543236195076200],
                           "params": [],
                           "children": [],
                           "elseIfs": []
@@ -7472,10 +7398,7 @@
               ],
               "isLabelDropBoxChild": false,
               "components": [],
-              "path": [
-                "97790956",
-                "View_97790956_1"
-              ]
+              "path": ["97790956", "View_97790956_1"]
             },
             {
               "id": "Button_011651",
@@ -7606,9 +7529,7 @@
                                 "parentCode": "4934367",
                                 "parentKey": "4934367",
                                 "value": {
-                                  "type": [
-                                    "customize"
-                                  ],
+                                  "type": ["customize"],
                                   "code": "修改行"
                                 }
                               },
@@ -7644,9 +7565,7 @@
                         "itemIndex": "0",
                         "operateType": 1,
                         "onlySetPatch": true,
-                        "otherObjectArrayOptions": {
-                          
-                        },
+                        "otherObjectArrayOptions": {},
                         "targetDataSourcePaths": [
                           {
                             "itemIndex": "0",
@@ -7664,25 +7583,23 @@
                           "dataName": "callback",
                           "dataId": 171560515282611170,
                           "value": "callback1",
-                          "path": [171557185574497400,171560515282679940],
+                          "path": [171557185574497400, 171560515282679940],
                           "params": [],
                           "children": [
                             {
                               "dataName": "action",
                               "dataId": 171565039831989220,
-                              "todoOptions": [
-                                "valueArray"
+                              "todoOptions": ["valueArray"],
+                              "path": [
+                                171557185574497400, 171560515282679940,
+                                171560515282611170
                               ],
-                              "path": [171557185574497400,171560515282679940,171560515282611170],
                               "options": {
                                 "compId": "console",
                                 "compName": "system",
                                 "id": "7696575",
                                 "pageJsonId": "97790956",
-                                "value": [
-                                  "修改行",
-                                  "$data.custom$"
-                                ]
+                                "value": ["修改行", "$data.custom$"]
                               },
                               "actionObjId": "console",
                               "actionObjName": "system",
@@ -7697,7 +7614,7 @@
                           "dataName": "callback",
                           "dataId": 171560515282649570,
                           "value": "callback2",
-                          "path": [171557185574497400,171560515282679940],
+                          "path": [171557185574497400, 171560515282679940],
                           "params": [],
                           "children": [],
                           "elseIfs": []
@@ -7710,10 +7627,7 @@
               ],
               "isLabelDropBoxChild": false,
               "components": [],
-              "path": [
-                "97790956",
-                "View_97790956_1"
-              ]
+              "path": ["97790956", "View_97790956_1"]
             },
             {
               "id": "Button_941986",
@@ -7876,9 +7790,7 @@
                         "itemIndex": "0",
                         "operateType": 2,
                         "onlySetPatch": true,
-                        "otherObjectArrayOptions": {
-                          
-                        },
+                        "otherObjectArrayOptions": {},
                         "targetDataSourcePaths": [
                           {
                             "itemIndex": "0",
@@ -7896,25 +7808,23 @@
                           "dataName": "callback",
                           "dataId": 171564967656301540,
                           "value": "callback1",
-                          "path": [171564967413987330,171564967656387170],
+                          "path": [171564967413987330, 171564967656387170],
                           "params": [],
                           "children": [
                             {
                               "dataName": "action",
                               "dataId": 171565042104026850,
-                              "todoOptions": [
-                                "valueArray"
+                              "todoOptions": ["valueArray"],
+                              "path": [
+                                171564967413987330, 171564967656387170,
+                                171564967656301540
                               ],
-                              "path": [171564967413987330,171564967656387170,171564967656301540],
                               "options": {
                                 "compId": "console",
                                 "compName": "system",
                                 "id": "21698875605",
                                 "pageJsonId": "97790956",
-                                "value": [
-                                  "删除行",
-                                  "$data.custom$"
-                                ]
+                                "value": ["删除行", "$data.custom$"]
                               },
                               "actionObjId": "console",
                               "actionObjName": "system",
@@ -7929,7 +7839,7 @@
                           "dataName": "callback",
                           "dataId": 171564967656377540,
                           "value": "callback2",
-                          "path": [171564967413987330,171564967656387170],
+                          "path": [171564967413987330, 171564967656387170],
                           "params": [],
                           "children": [],
                           "elseIfs": []
@@ -7942,10 +7852,7 @@
               ],
               "isLabelDropBoxChild": false,
               "components": [],
-              "path": [
-                "97790956",
-                "View_97790956_1"
-              ]
+              "path": ["97790956", "View_97790956_1"]
             },
             {
               "id": "Button_852496",
@@ -8108,9 +8015,7 @@
                         "newData": "$[{ id: \"2323\" }]$",
                         "operateType": 3,
                         "onlySetPatch": true,
-                        "otherObjectArrayOptions": {
-                          
-                        },
+                        "otherObjectArrayOptions": {},
                         "targetDataSourcePaths": [
                           {
                             "newData": "$[{ id: \"2323\" }]$",
@@ -8128,25 +8033,23 @@
                           "dataName": "callback",
                           "dataId": 171564971548945020,
                           "value": "callback1",
-                          "path": [171564971317840500,171564971548951460],
+                          "path": [171564971317840500, 171564971548951460],
                           "params": [],
                           "children": [
                             {
                               "dataName": "action",
                               "dataId": 171565044272322050,
-                              "todoOptions": [
-                                "valueArray"
+                              "todoOptions": ["valueArray"],
+                              "path": [
+                                171564971317840500, 171564971548951460,
+                                171564971548945020
                               ],
-                              "path": [171564971317840500,171564971548951460,171564971548945020],
                               "options": {
                                 "compId": "console",
                                 "compName": "system",
                                 "id": "511308",
                                 "pageJsonId": "97790956",
-                                "value": [
-                                  "替换数据",
-                                  "$data.custom$"
-                                ]
+                                "value": ["替换数据", "$data.custom$"]
                               },
                               "actionObjId": "console",
                               "actionObjName": "system",
@@ -8161,7 +8064,7 @@
                           "dataName": "callback",
                           "dataId": 171564971548927680,
                           "value": "callback2",
-                          "path": [171564971317840500,171564971548951460],
+                          "path": [171564971317840500, 171564971548951460],
                           "params": [],
                           "children": [],
                           "elseIfs": []
@@ -8174,10 +8077,7 @@
               ],
               "isLabelDropBoxChild": false,
               "components": [],
-              "path": [
-                "97790956",
-                "View_97790956_1"
-              ]
+              "path": ["97790956", "View_97790956_1"]
             },
             {
               "id": "Button_515112",
@@ -8252,9 +8152,7 @@
                             },
                             "showInput": false,
                             "value": {
-                              "type": [
-                                "customize"
-                              ],
+                              "type": ["customize"],
                               "code": "全部赋值"
                             }
                           },
@@ -8345,9 +8243,7 @@
                         ],
                         "operateType": 1,
                         "onlySetPatch": false,
-                        "otherObjectArrayOptions": {
-                          
-                        },
+                        "otherObjectArrayOptions": {},
                         "targetDataSourcePaths": []
                       },
                       "actionObjId": "setDataSource",
@@ -8358,24 +8254,23 @@
                           "dataName": "callback",
                           "dataId": 171565080729796670,
                           "value": "callback1",
-                          "path": [171565080450497020,171565080729715000],
+                          "path": [171565080450497020, 171565080729715000],
                           "params": [],
                           "children": [
                             {
                               "dataName": "action",
                               "dataId": 171565103642477980,
-                              "todoOptions": [
-                                "valueArray"
+                              "todoOptions": ["valueArray"],
+                              "path": [
+                                171565080450497020, 171565080729715000,
+                                171565080729796670
                               ],
-                              "path": [171565080450497020,171565080729715000,171565080729796670],
                               "options": {
                                 "compId": "console",
                                 "compName": "system",
                                 "id": "001041",
                                 "pageJsonId": "97790956",
-                                "value": [
-                                  "$data.custom$"
-                                ]
+                                "value": ["$data.custom$"]
                               },
                               "actionObjId": "console",
                               "actionObjName": "system",
@@ -8390,7 +8285,7 @@
                           "dataName": "callback",
                           "dataId": 171565080729733950,
                           "value": "callback2",
-                          "path": [171565080450497020,171565080729715000],
+                          "path": [171565080450497020, 171565080729715000],
                           "params": [],
                           "children": [],
                           "elseIfs": []
@@ -8403,15 +8298,10 @@
               ],
               "isLabelDropBoxChild": false,
               "components": [],
-              "path": [
-                "97790956",
-                "View_97790956_1"
-              ]
+              "path": ["97790956", "View_97790956_1"]
             }
           ],
-          "path": [
-            "97790956"
-          ]
+          "path": ["97790956"]
         }
       ],
       "path": []

@@ -16,13 +16,13 @@ const urlHelper = {
     };
 
     const arr = (v: string[], key: string) => {
-      v.forEach(item => {
+      v.forEach((item) => {
         add(key, item);
       });
     };
 
     const obj = (p: Record<string, any>) => {
-      Object.keys(p).forEach(k => {
+      Object.keys(p).forEach((k) => {
         const v = p[k];
         add(k, v);
       });
@@ -30,13 +30,21 @@ const urlHelper = {
     obj(param);
     return result.join('&');
   },
-  url: (url: string, params: Record<string, string> = {}, appCtx: AppCtxType) => {
+  url: (
+    url: string,
+    params: Record<string, string> = {},
+    appCtx: AppCtxType,
+  ) => {
     return `${url}?${urlHelper.stringify({
       ...params,
       ...appCtx,
     })}`;
   },
-  get: (url: string, params: Record<string, string> = {}, appCtx: AppCtxType) => {
+  get: (
+    url: string,
+    params: Record<string, string> = {},
+    appCtx: AppCtxType,
+  ) => {
     return http.get(urlHelper.url(url, params, appCtx), appCtx);
   },
   parse: (url: string) => {
@@ -44,6 +52,5 @@ const urlHelper = {
     console.log('TODO: 后续实现');
   },
 };
-
 
 export default urlHelper;

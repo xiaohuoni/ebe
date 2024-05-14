@@ -1,30 +1,23 @@
+import { PAGE_TYPES } from '../../constants';
 import {
   CLASS_DEFINE_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
-import {
-  REACT_CHUNK_NAME,
-  MODAL_CHUNK_NAME,
-  CUSTOM_ACTION_CHUNK_NAME,
-} from './const';
-import { PAGE_TYPES } from '../../constants';
 import { generateFunction } from '../../core/utils/jsExpression';
+import {
+  CUSTOM_ACTION_CHUNK_NAME,
+  MODAL_CHUNK_NAME,
+  REACT_CHUNK_NAME,
+} from './const';
 
 import {
   BuilderComponentPlugin,
   BuilderComponentPluginFactory,
   ChunkType,
   FileType,
-  ICodeChunk,
   ICodeStruct,
   IContainerInfo,
 } from '../../core/types';
-import {
-  isJSFunction,
-  isJSExpression,
-  isEventData,
-} from '../../core/utils/deprecated';
-import { isJSExpressionFn } from '../../core/utils/common';
 
 export interface PluginConfig {
   fileType?: string;

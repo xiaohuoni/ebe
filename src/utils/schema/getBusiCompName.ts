@@ -1,5 +1,5 @@
-import pinyin from 'pinyin';
 import changeCase from 'change-case';
+import pinyin from 'pinyin';
 
 const busiCompMap: any = {};
 export const getBusiCompName = (busiCompMapping: any, node: any) => {

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import './polyfills/buffer';
 import type { IProjectSchema } from './core';
 import { resultHelper } from './core/utils';
+import './polyfills/buffer';
 import alita from './solutions/alita';
 
 declare const self: any;

@@ -1,15 +1,11 @@
+import { PlatformType, ProcessFunctionType } from '@lingxiteam/types';
 import * as _ from 'lodash';
+import { IProjectSchema, IPublicTypeNodeDataType } from '../../core';
 import { CodeGeneratorError } from '../../core/types/error';
-import { ProcessFunctionType, PlatformType } from '@lingxiteam/types';
-import {
-  IProjectSchema,
-  IPublicTypeNodeDataType,
-  LXProjectOptions,
-} from '../../core';
-import { parseDsl } from './parseDsl';
-import assetHelper from './assets/assets';
-import { isNodeSchema, isJSVar } from '../../core/utils/deprecated';
 import { generateVarString } from '../../core/utils/compositeType';
+import { isJSVar, isNodeSchema } from '../../core/utils/deprecated';
+import assetHelper from './assets/assets';
+import { parseDsl } from './parseDsl';
 
 const noop = () => undefined;
 

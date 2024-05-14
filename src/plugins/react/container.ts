@@ -1,15 +1,15 @@
 import changeCase from 'change-case';
 import {
-  COMMON_CHUNK_NAME,
   CLASS_DEFINE_CHUNK_NAME,
+  COMMON_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
 import {
-  REACT_CHUNK_NAME,
-  MODAL_CHUNK_NAME,
   CUSTOM_ACTION_CHUNK_NAME,
   DATA_SOURCE_CHUNK_NAME,
+  MODAL_CHUNK_NAME,
   PAGE_TOOL_CHUNK_NAME,
+  REACT_CHUNK_NAME,
 } from './const';
 
 import {
@@ -19,11 +19,9 @@ import {
   FileType,
   ICodeStruct,
   IContainerInfo,
-  IScope,
 } from '../../core/types';
 import { ensureValidClassName } from '../../core/utils/validate';
 import { getImportFrom } from '../../utils/depsHelper';
-import { PAGE_TYPES } from '../../constants';
 
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {

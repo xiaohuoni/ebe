@@ -3,16 +3,15 @@ import {
   BuilderComponentPluginFactory,
   ChunkType,
   FileType,
-  NodePlugin,
   ICodeStruct,
   IContainerInfo,
   IScope,
   NodeGeneratorConfig,
+  NodePlugin,
 } from '../../core/types';
-import { getImportFrom } from '../../utils/depsHelper';
-import { REACT_CHUNK_NAME } from './const';
 import { createReactNodeGenerator } from '../../core/utils/nodeToJSX';
 import { Scope } from '../../core/utils/Scope';
+import { REACT_CHUNK_NAME } from './const';
 
 export interface PluginConfig {
   fileType?: string;

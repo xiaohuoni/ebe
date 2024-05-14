@@ -2,8 +2,8 @@
  * 组件渲染前预处理逻辑(运行态生效)
  */
 import { ProcessFunctionType } from '@lingxiteam/types';
-import comPc from './index.enCommonPreprocess';
 import { isObject } from 'lodash';
+import comPc from './index.enCommonPreprocess';
 
 /**
  * 移除 表达式两头包裹的 $$

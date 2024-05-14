@@ -6,7 +6,7 @@ export function getApiBasePath() {
 }
 
 // 解析 API 路径
-const resolveApiPath: ResolveApiPath = (path, prefix) =>/* @__HOT_UPDATE__ */ {
+const resolveApiPath: ResolveApiPath = (path, prefix) => /* @__HOT_UPDATE__ */ {
   const basePath = prefix || getApiBasePath();
   let apiPath = `${basePath}${path[0] === '/' ? path.slice(1) : path}`;
 
