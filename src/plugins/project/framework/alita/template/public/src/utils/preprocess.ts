@@ -1,4 +1,9 @@
 import { flatten } from "lodash";
+import basicStatusTransfer from "./basicStatusTransfer";
+
+interface PreprocessMethodContext { 
+  extraData?: Record<string, any>;
+}
 
 /**
  * 函数预处理逻辑
@@ -8,17 +13,19 @@ import { flatten } from "lodash";
  * “Button” 直接有组件的 优先级最高 最后执行
  */
 const preprocessMethod = {
-  '*': (props: Record<string, any>) => {
-    return props;
+  '*': (originProps: Record<string, any>, context: PreprocessMethodContext) => {
+    return originProps;
   }
 }
+
+type PreprocessFunctionType = typeof preprocessMethod[keyof typeof preprocessMethod];
 
 /**
  * 获取待执行的函数列表
  * @param type 
  */
 const getTodoFunc = (type: string) => { 
-  const todoFunc: ((props: Record<string, any>) => Record<string, any>)[][] = [
+  const todoFunc: PreprocessFunctionType[][] = [
     // 带有 *
     [],
     // 带有 |
@@ -37,19 +44,19 @@ const getTodoFunc = (type: string) => {
       if (!key.includes('|')) {
         index = 2;
       }
-      todoFunc[index].push(preprocessMethod[key]);
+      todoFunc[index].push(preprocessMethod[key as keyof typeof preprocessMethod]);
     }
   })
 
   return flatten(todoFunc);
 }
 
-const runFunc = (funcs: ((props: Record<string, any>) => Record<string, any>)[], originProps: Record<string, any>) => { 
+const runFunc = (funcs: PreprocessFunctionType[], originProps: Record<string, any>, context: PreprocessMethodContext) => { 
   let props = originProps;
 
   funcs.forEach(func => { 
     try { 
-      props = func(props) ?? props;
+      props = func(props, context) ?? props;
     }catch(err){}
   })
 
@@ -61,12 +68,12 @@ const runFunc = (funcs: ((props: Record<string, any>) => Record<string, any>)[],
  * @param type 
  * @returns 
  */
-export const preprocessMethods = (type: string) => {
-  const todoFunc: ((props: Record<string, any>) => Record<string, any>)[] = getTodoFunc(type);
+export const preprocessMethods = (type: string, context: PreprocessMethodContext) => {
+  const todoFunc: PreprocessFunctionType[] = getTodoFunc(type);
 
   return { 
     run: (originProps: Record<string, any>) => { 
-      return runFunc(todoFunc, originProps);
+      return runFunc(todoFunc, originProps, context);
     }
   } 
 }

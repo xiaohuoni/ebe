@@ -61,7 +61,9 @@ export default function getFile(
   const Hoc = (Component: any, config?:any) => {
     const fieldPropsChange = () => {};
     const { type, fieldProps } = config;
-    const { run } = preprocessMethods(type);
+    const { run } = preprocessMethods(type, {
+      extraData: {}
+    });
 
     const HOC = React.forwardRef<unknown, HOCProps>((initialProps, ref) => {
       // 属性预处理
