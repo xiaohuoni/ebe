@@ -276,7 +276,7 @@ export interface IScope {
 }
 
 export interface CMDGeneratorPrames {
-  value: any | any[];
+  value: any;
   params?: any;
   platform?: string;
   scope?: IScope;

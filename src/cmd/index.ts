@@ -6,7 +6,7 @@ export { getValue } from './getValue';
 export { history } from './history';
 export { okCallbackData } from './okCallbackData';
 export { reloadDataSource } from './reloadDataSource';
-// export { getIfelse as ifelse } from './ifelse';
+export { getIfelse as ifelse } from './ifelse';
 export { getResetCurrentForm as resetCurrentForm } from './resetCurrentForm';
 export { getResetDataSource as resetDataSource } from './resetDataSource';
 export { getSetDataSource as setDataSource } from './setDataSource';

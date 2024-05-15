@@ -112,14 +112,14 @@ function checkJavaScriptSyntax(code: string): string {
   }
 }
 
-export function generateVarString(value: any): string | undefined {
+export function generateVarString(value: any): string {
   // 去掉头尾$，感觉不太保险
   // 去掉尾部分号 ; 不知道加这个的意义是啥！
   // 将 `.` 改成 `?.`
   // 代码里面可能自己写了 ?. 最终会是 ??. 将它修正
   // 数字的不能转 比如0.1 不能变成 0?.1
   if (!value) {
-    return undefined;
+    return '';
   }
   if (!isJSVar(value)) {
     return value;

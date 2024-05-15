@@ -1,293 +1,191 @@
-import { CMDGeneratorPrames } from '../core/types';
+import {
+  CMDGeneratorPrames,
+  CompositeValueGeneratorOptions,
+} from '../core/types';
 import { CMDGeneratorFunction } from '../core/utils/CMDGenerator';
 import { generateVarString } from '../core/utils/compositeType';
 import { isJSVar } from '../core/utils/deprecated';
+import { getImportFrom } from '../utils/depsHelper';
 
-// const eventDataifelse5: any = [
-//   {
-//     type: 'ifelse',
-//     condition: [
-//       {
-//         condId: '290724',
-//         options: {
-//           useManual: true,
-//           useObject: false,
-//           context: '$key$',
-//           operate: '==',
-//           manualValue: 'del',
-//         },
-//         conditionType: 'checkContextValue',
-//         objType: 'system',
-//         objId: 'sys',
-//       },
-//     ],
-//     dataId: 170599562924835360,
-//     elseIfs: [
-//       {
-//         dataName: 'elseIf',
-//         dataId: 170599564198584200,
-//         condition: [
-//           {
-//             options: {
-//               useManual: true,
-//               useObject: false,
-//               context: '$key$',
-//               operate: '==',
-//               manualValue: 'ktpz',
-//             },
-//             condId: '6309089',
-//             conditionType:
-//               'checkContextValue',
-//             objType: 'system',
-//             objId: 'sys',
-//           },
-//         ],
-//         value: 'elseIf',
-//         desc: '考题配置',
-//         children: [
-//           {
-//             dataName: 'action',
-//             dataId: 170599582405819780,
-//             todoOptions: [
-//               'historyType',
-//               'pathname',
-//               'searchParams',
-//               'routerData',
-//             ],
-//             options: {
-//               compId: 'history',
-//               compName: 'system',
-//               id: '437399',
-//               pageJsonId: '0314043',
-//               type: 'push',
-//               pathname: '/kaotipeizhi6839',
-//               selectedType: 'page',
-//               pageId: '1040511037455740928',
-//               modalPath: '/kaotipeizhi6839',
-//               paramsObj: {
-//                 bizId: '$item.id$',
-//               },
-//               paramsObjKeyValueMap: {
-//                 bizId: '$item.id$',
-//               },
-//             },
-//             actionObjId: 'history',
-//             actionObjName: 'system',
-//             value: 'history',
-//             children: [],
-//             elseIfs: [],
-//             line_number: 6,
-//           },
-//         ],
-//         elseIfs: [],
-//         callback: [
-//           {
-//             type: 'history',
-//             dataId: 170599582405819780,
-//             options: {
-//               compId: 'history',
-//               compName: 'system',
-//               id: '437399',
-//               pageJsonId: '0314043',
-//               type: 'push',
-//               pathname: '/kaotipeizhi6839',
-//               selectedType: 'page',
-//               pageId: '1040511037455740928',
-//               modalPath: '/kaotipeizhi6839',
-//               paramsObj: {
-//                 bizId: '$item.id$',
-//               },
-//               paramsObjKeyValueMap: {
-//                 bizId: '$item.id$',
-//               },
-//             },
-//             line_number: 6,
-//           },
-//         ],
-//       },
-//       {
-//         dataName: 'elseIf',
-//         dataId: 170599564466547300,
-//         condition: [
-//           {
-//             options: {
-//               useManual: true,
-//               useObject: false,
-//               context: '$key$',
-//               operate: '==',
-//               manualValue: 'ktyl',
-//             },
-//             condId: '7018615',
-//             conditionType:
-//               'checkContextValue',
-//             objType: 'system',
-//             objId: 'sys',
-//           },
-//         ],
-//         value: 'elseIf',
-//         desc: '考题预览',
-//         children: [
-//           {
-//             dataName: 'action',
-//             dataId: 170599584893539780,
-//             todoOptions: [
-//               'historyType',
-//               'pathname',
-//               'searchParams',
-//               'routerData',
-//             ],
-//             options: {
-//               compId: 'history',
-//               compName: 'system',
-//               id: '8851886',
-//               pageJsonId: '0314043',
-//               type: 'push',
-//               pathname: '/kaoshitimu9180',
-//               selectedType: 'page',
-//               pageId: '1040532731008397312',
-//               modalPath: '/kaoshitimu9180',
-//               paramsObj: {
-//                 bizId: '$item.id$',
-//               },
-//               paramsObjKeyValueMap: {
-//                 bizId: '$item.id$',
-//               },
-//             },
-//             actionObjId: 'history',
-//             actionObjName: 'system',
-//             value: 'history',
-//             children: [],
-//             elseIfs: [],
-//             line_number: 7,
-//           },
-//         ],
-//         elseIfs: [],
-//         callback: [
-//           {
-//             type: 'history',
-//             dataId: 170599584893539780,
-//             options: {
-//               compId: 'history',
-//               compName: 'system',
-//               id: '8851886',
-//               pageJsonId: '0314043',
-//               type: 'push',
-//               pathname: '/kaoshitimu9180',
-//               selectedType: 'page',
-//               pageId: '1040532731008397312',
-//               modalPath: '/kaoshitimu9180',
-//               paramsObj: {
-//                 bizId: '$item.id$',
-//               },
-//               paramsObjKeyValueMap: {
-//                 bizId: '$item.id$',
-//               },
-//             },
-//             line_number: 7,
-//           },
-//         ],
-//       },
-//     ],
-//     line_number: 2,
-//     callback1: [
-//       {
-//         type: 'apiRequest',
-//         dataId: 170599572431928220,
-//       },
-//     ],
-//   },
-// ];
-// eventDataifelse5.params =
-//   [
-//     {
-//       title: '菜单项key',
-//       name: 'key',
-//       value: '$key$',
-//     },
-//     {
-//       title: '菜单项页面地址',
-//       name: 'url',
-//       value: '$url$',
-//     },
-//     {
-//       title: '菜单项数据',
-//       name: 'node',
-//       value: '$node.data$',
-//       attrType: 'object',
-//     },
-//   ] || [];
-// CMDGenerator(
-//   eventDataifelse5,
-//   {
-//     key,
-//     url,
-//     node,
-//     rowData,
-//     rowIndex,
-//     item,
-//     i,
-//   },
-//   'ifelse',
-//   {
-//     id: 'ifelse',
-//     name: 'ifelse',
-//     type: 'ifelse',
-//     platform: 'pc',
-//   },
-// );
+const utilsFilePath = '@/utils/cmd';
 
-//         condition: [
-//           {
-//             options: {
-//               useManual: true,
-//               useObject: false,
-//               context: '$key$',
-//               operate: '==',
-//               manualValue: 'ktpz',
-//             },
-//             condId: '6309089',
-//             conditionType:
-//               'checkContextValue',
-//             objType: 'system',
-//             objId: 'sys',
-//             connector: '&&'
-//           },
-//         ],
-const getVarStr = (str: string) => {
+const getVarStr = (str: any) => {
   if (isJSVar(str)) {
     return generateVarString(str);
   }
   return `'${str}'`;
 };
-const getCondition = (condition: any[]) => {
-  return condition
-    .map((c) => {
-      return `${c?.connector ?? ''} ${getVarStr(c?.options?.context)} ${
-        c?.options?.operate
-      } ${getVarStr(c.options?.manualValue)}`;
+
+interface IConditionOptions {
+  operate?: string;
+  useManual?: boolean;
+  useObject?: boolean;
+  // useManual:true
+  manualValue?: string;
+  // useObject:true
+  objType?: string;
+  objId?: string;
+  objOperate?: string;
+  stateVal?: string;
+  context?: string;
+}
+// const condTypeStr: any = {
+//   checkValue: '判断当前的值',
+//   checkContextValue: '判断上下文的值',
+//   isVisible: '处于可见状态',
+//   notVisible: '处于隐藏状态',
+// };
+type IconditionType =
+  | 'checkValue'
+  | 'checkContextValue'
+  | 'isVisible'
+  | 'notVisible';
+
+type IconditionConnector = '&&' | '||' | undefined;
+
+export interface Icondition {
+  options: IConditionOptions;
+  condId?: string;
+  conditionType?: IconditionType;
+  objType?: string;
+  objId?: string;
+  connector?: IconditionConnector;
+}
+export const getConditionOption = (
+  value: string,
+  options: IConditionOptions,
+  config: CompositeValueGeneratorOptions,
+) => {
+  const {
+    operate,
+    useManual,
+    useObject,
+    manualValue,
+    objId,
+    objOperate,
+    stateVal,
+  } = options;
+  let v = manualValue;
+  if (useObject) {
+    if (objOperate && ['setValue', 'value'].includes(objOperate)) {
+      // 如果使用对象，修改 v
+      v = `safeNumber(getValue('${objId}'))`;
+      config?.ir?.deps?.push(getImportFrom(utilsFilePath, 'safeNumber'));
+    } else if (stateVal) {
+      v = getVarStr(stateVal);
+    } else {
+      // 都没有数据错误
+      console.error('都没有,数据错误');
+      return '';
+    }
+  }
+  switch (operate) {
+    case 'empty':
+      config?.ir?.deps?.push(getImportFrom(utilsFilePath, 'checkIsEmpty'));
+      return `checkIsEmpty(${value})`;
+    case 'notEmpty':
+      config?.ir?.deps?.push(getImportFrom(utilsFilePath, 'checkIsEmpty'));
+      return `!checkIsEmpty(${value})`;
+    case 'contains':
+      config?.ir?.deps?.push(getImportFrom(utilsFilePath, 'checkIsContains'));
+      return `checkIsContains(${value}, ${v})`;
+    case 'notContains':
+      config?.ir?.deps?.push(getImportFrom(utilsFilePath, 'checkIsContains'));
+      return `!checkIsContains(${value}, ${v})`;
+    case '>':
+      return `${value} > ${v}`;
+    case '>=':
+      return `${value} >= ${v}`;
+    case '<':
+      return `${value} < ${v}`;
+    case '<=':
+      return `${value} <= ${v}`;
+    case '==':
+      // eslint-disable-next-line eqeqeq
+      return `${value} == ${v}`;
+    case '!=':
+      // eslint-disable-next-line eqeqeq
+      return `${value} != ${v}`;
+    // eslint-disable-next-line no-duplicate-case
+    case '== true':
+      // eslint-disable-next-line eqeqeq
+      return `${value} == true`;
+    case '== false':
+      // eslint-disable-next-line eqeqeq
+      return `${value} == false`;
+    default:
+      console.error('找不到条件');
+      return '';
+  }
+};
+export const getCondition = (
+  conditions: Icondition[],
+  config: CompositeValueGeneratorOptions,
+) => {
+  return conditions
+    .map((condition) => {
+      const {
+        options,
+        conditionType,
+        objId,
+        objType,
+        connector = '',
+      } = condition;
+      let code = '';
+
+      switch (conditionType) {
+        case 'checkContextValue':
+          code = getConditionOption(
+            getVarStr(options.context),
+            options,
+            config,
+          );
+          break;
+        case 'checkValue':
+          code = getConditionOption(`getValue('${objId}')`, options, config);
+          break;
+        case 'isVisible':
+          code = `getVisible('${objId}')`;
+          break;
+        case 'notVisible':
+          code = `!getVisible('${objId}')`;
+          break;
+        default:
+          // 如果 connector 不为空，则给加一个 true 条件，不影响
+          code = connector === '' ? '' : 'true';
+          break;
+      }
+      return `${connector === '' ? '' : connector + ' '}${code}`;
     })
-    .filter(Boolean)
     .join(' ');
 };
-
-const getElseIfs = ({
-  value: elseIfs,
+export const getElseIf = ({
+  value,
   params,
   platform,
   scope,
   config = {},
-}: CMDGeneratorPrames) => {
-  return elseIfs
-    .filter(Boolean)
-    .map((c: any) => {
-      const { condition, callback = [] } = c;
-      return `else if(${getCondition(condition)}){ ${CMDGeneratorFunction(
-        callback,
-        params,
-        platform,
-        scope,
-        config,
-      )} }`;
+}: CMDGeneratorPrames): string => {
+  if (!value || value.length === 0) {
+    return '';
+  }
+  return value
+    .map((v1: any) => {
+      const { condition, callback = [], elseIfs } = v1;
+      const hasCondition = condition && condition.length > 0;
+      // 没有条件了，就是 else
+      let prefix = hasCondition ? ' else if ' : ' else ';
+      return `${prefix}${
+        hasCondition ? `(${getCondition(condition, config)}){` : '{'
+      }
+    ${CMDGeneratorFunction(callback, params, platform, scope, config)}
+  }${getElseIf({
+    value: elseIfs,
+    params,
+    platform,
+    scope,
+    config,
+  })}`;
     })
     .join(' ');
 };
@@ -300,11 +198,14 @@ export function getIfelse({
   config = {},
 }: CMDGeneratorPrames): string {
   const { condition, callback1 = [], elseIfs } = value;
-  return `if(${getCondition(condition)}){${CMDGeneratorFunction(
-    callback1,
+  if (!condition) return '';
+  return `if(${getCondition(condition, config)}){
+${CMDGeneratorFunction(callback1, params, platform, scope, config)}
+  }${getElseIf({
+    value: elseIfs,
     params,
     platform,
     scope,
     config,
-  )}} ${getElseIfs({ value: elseIfs, params, platform, scope, config })} `;
+  })}`;
 }
