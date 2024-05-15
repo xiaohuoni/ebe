@@ -7,21 +7,20 @@ const nextTick = () => {
 
 export type SetState<S extends Record<string, any>> = <K extends keyof S>(
   state?: Pick<S, K> | null,
-  complete?: () => void
-) => void;
+) => Promise<S>;
 
 const useSetState = <S extends Record<string, any>>(
   initialState?: S | (() => S) | undefined
 ): [S | undefined, SetState<S>] => {
   const [, forceUpdate] = useState({});
   const stateRef = useRef<any>(
-    isFunction(initialState) ? initialState() : initialState
+    typeof initialState === 'function' ? initialState() : initialState
   );
 
   /**
    * 更新数据
    */
-  const setMergeState = useCallback((patch: any, complete?: () => void) => {
+  const setMergeState = useCallback((patch: any) => {
     const prevState = stateRef.current;
     if (!stateRef.current) {
       stateRef.current = {};
@@ -33,7 +32,7 @@ const useSetState = <S extends Record<string, any>>(
       });
       forceUpdate({});
     }
-    nextTick().then(complete);
+    return nextTick().then(() => stateRef.current);
   }, []);
 
   return [stateRef.current, setMergeState];

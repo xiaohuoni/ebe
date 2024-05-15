@@ -1,4 +1,5 @@
 import { LXProjectOptions, ResultFile } from '../../../../../../core';
+import { parse2Var } from '../../../../../../core/utils/compositeType';
 import { createResultFile } from '../../../../../../core/utils/resultHelper';
 import { isFirstLetterUpperCase } from '../../../../../../core/utils/validate';
 // @ts-ignore
@@ -42,6 +43,7 @@ export default function getFile(
     .join(',')},${otherHash
       .map((i) => i + ' as _' + i)
       .join(',')}} from '@lingxiteam/${factory}/es/index.component';
+  import { preprocessMethods } from '@/utils/preprocess';
 
   export { CustomComponent } from './CustomComponent';
   export const syncInputValue = (
@@ -56,10 +58,14 @@ export default function getFile(
     return false;
   };
   
-  const Hoc = (Component: any, fieldProps?:any) => {
+  const Hoc = (Component: any, config?:any) => {
     const fieldPropsChange = () => {};
-  
-    const HOC = React.forwardRef<unknown, HOCProps>((props, ref) => {
+    const { type, fieldProps } = config;
+    const { run } = preprocessMethods(type);
+
+    const HOC = React.forwardRef<unknown, HOCProps>((initialProps, ref) => {
+      // 属性预处理
+      const props = useMemo(() => run(initialProps), [initialProps]);
       // 自定义组件HOC hooks  保持visible逻辑
       //@ts-ignore
       const { state, setState, onChangeHandle } = useComponentHoc(props, {
@@ -129,10 +135,15 @@ export default function getFile(
   ${Object.keys(formHash)
     .map(
       (i) =>
-        `  export const ${i} = Hoc(_${i}, ${JSON.stringify(formHash[i])});`,
+        `  export const ${i} = Hoc(_${i}, {
+          fieldProps: ${parse2Var(formHash[i])},
+          type: ${parse2Var(i)}
+        });`,
     )
     .join('\n')}
-    ${otherHash.map((i) => `  export const ${i} = Hoc(_${i});`).join('\n')}
+    ${otherHash.map((i) => `  export const ${i} = Hoc(_${i}, {
+      type: ${parse2Var(i)}
+    });`).join('\n')}
   `,
   );
 

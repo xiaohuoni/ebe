@@ -252,7 +252,7 @@ export const initialDataSource = (dataSource: any[]) => {
   const dataSourceValues: string[] = [];
 
   dataSource.map((dataItem) => {
-    const { source, name, id } = dataItem;
+    const { source } = dataItem;
     switch (source) {
       case 'custom':
         initialData.push(`${gData.custom(dataItem)},`);
@@ -293,9 +293,8 @@ export const initialDataSource = (dataSource: any[]) => {
   code.push(
     ...[
       `const newData: Partial<DataSourceType> = cloneDeep(initialData);`,
-      `type DataSourceKey = keyof DataSourceType;`,
       'setLoading(true);\n\n',
-      `const dataSourceValues: Promise<{ name: DataSourceKey, value: any }>[] = [`,
+      `const dataSourceValues: Promise<any>[] = [`,
       dataSourceValues.join(','),
       ']',
       `
@@ -446,10 +445,10 @@ export const resetDataSource = () => {
   /**
    * 数据源名字不存在，无需重置数据源
    */
-  if (!name) return;
-  setData({
+  if (!name) return Promise.resolve(null);
+  return setData({
     [name]: cleanDataSource(name),
-  })
+  });
 `;
   return [
     cleanDataSource,

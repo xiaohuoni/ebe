@@ -150,5 +150,5 @@ export const fetchQueryService = async (
     maybeNotStdResp: [SERVICE_SOURCE.INNER, SERVICE_SOURCE.PLATFORM].includes(
       _source || ""
     ),
-  });
+  }) as Promise<any>;
 };
