@@ -70,6 +70,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           parentEngineId = pageId,
           setComponentRef,
           ModalManagerRef,
+          renderId,
           ${isModal ? 'onOk: fatherOnOk' : ''}
       }) => {`,
       linkAfter: [

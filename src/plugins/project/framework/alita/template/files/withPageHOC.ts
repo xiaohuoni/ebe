@@ -340,6 +340,7 @@ export const withPageHOC = (
           customActionMapRef={customActionMapRef}
           refs={refs}
           setComponentRef={setComponentRef}
+          renderId={renderId}
         />
         ${
           isMobile
