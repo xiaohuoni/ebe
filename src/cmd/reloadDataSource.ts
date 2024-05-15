@@ -1,22 +1,19 @@
 import { CMDGeneratorPrames } from '../core/types';
-import { CMDGeneratorFunction } from '../core/utils/CMDGenerator';
 import { parse2Var } from '../core/utils/compositeType';
 import {
   getDSFilterName,
   transformValueDefined,
 } from '../core/utils/transformValueDefined';
 import { filterObjectEmptyField } from '../plugins/project/framework/alita/plugins/dataSource/utils';
+import { GeneratorCallbackWithThenCatch } from './utils';
 
-export function reloadDataSource({
-  value,
-  platform,
-  scope,
-  config,
-}: CMDGeneratorPrames): string {
-  const { options, callback1, callback2 } = value;
+export function reloadDataSource(generateParams: CMDGeneratorPrames): string {
+  const { value, config } = generateParams;
+  const { options } = value;
 
   // TODO: 全局数据源
-  if (options?.isGlobalData) return `//【刷新全局数据源】全局数据源指令暂不支持`;
+  if (options?.isGlobalData)
+    return `//【刷新全局数据源】全局数据源指令暂不支持`;
 
   // 检查数据源
   const dataSourceName = options?.dataSourceName;
@@ -37,22 +34,6 @@ export function reloadDataSource({
     dataSourceReloadFilter,
     options.dataSourceName,
     true,
-  );
-
-  const callback1Code = CMDGeneratorFunction(
-    callback1,
-    {},
-    platform,
-    scope,
-    config,
-  );
-
-  const callback2Code = CMDGeneratorFunction(
-    callback2,
-    {},
-    platform,
-    scope,
-    config,
   );
 
   let callMethodCode = ``;
@@ -107,22 +88,8 @@ export function reloadDataSource({
       dataSourceName,
     )}, ${payloadCode});`;
   }
-  return [
-    callMethodCode,
-    callback1Code
-      ? `then(() => {
-      // 成功回调
-      ${callback1Code}
-    })`
-      : '',
 
-    callback2Code
-      ? `catch(() => {
-      // 成功回调
-      ${callback2Code}
-    })`
-      : '',
-  ]
-    .filter(Boolean)
-    .join('.');
+  return GeneratorCallbackWithThenCatch(callMethodCode, generateParams, {
+    sync: options.sync,
+  });
 }

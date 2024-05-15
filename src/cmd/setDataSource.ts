@@ -7,6 +7,7 @@ import {
   parseDSSetVal,
   transformValueDefined,
 } from '../core/utils/transformValueDefined';
+import { GeneratorCallbackWithThenCatch } from './utils';
 
 // 数组操作类型 operateType
 const ARRAY_OPERATE_TYPE = {
@@ -130,12 +131,13 @@ const findNode = (list: any[], attrId: string) => {
   return result;
 };
 
-export function getSetDataSource({
-  value,
-  platform,
-  scope,
-  config,
-}: CMDGeneratorPrames): string {
+export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
+  const {
+    value,
+    platform,
+    scope,
+    config,
+  } = generateParams;
   const { options, callback1, callback2 } = value;
 
   // TODO: 全局数据源
@@ -257,29 +259,13 @@ export function getSetDataSource({
     config,
   );
 
-  return [
-    `// 更新数据源 ${dataSourceName}
-    updateData({
-      ${Object.keys(updateParams)
-        .filter((key) => updateParams[key as keyof typeof updateParams] !== '')
-        .map(
-          (key) => `${key}: ${updateParams[key as keyof typeof updateParams]}`,
-        )}
-    })`,
-    callback1Code
-      ? `then(() => {
-      // 成功回调
-      ${callback1Code}
-    })`
-      : '',
-
-    callback2Code
-      ? `catch(() => {
-      // 成功回调
-      ${callback2Code}
-    })`
-      : '',
-  ]
-    .filter(Boolean)
-    .join('.');
+  return GeneratorCallbackWithThenCatch(`
+  // 更新数据源 ${dataSourceName}
+  updateData({
+    ${Object.keys(updateParams)
+      .filter((key) => updateParams[key as keyof typeof updateParams] !== '')
+      .map(
+        (key) => `${key}: ${updateParams[key as keyof typeof updateParams]}`,
+      )}
+  })`, generateParams);
 }
