@@ -96,6 +96,7 @@ export default function getFile(): [string[], ResultFile] {
                   ref={mRef}
                   onOk={onOk}
                   parentEngineId={lcdpParentRenderId}
+                  closeModal={onCancel}
                 />
               </div>
           </Modal>

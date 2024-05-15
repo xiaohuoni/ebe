@@ -71,7 +71,8 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           setComponentRef,
           ModalManagerRef,
           renderId,
-          ${isModal ? 'onOk: fatherOnOk' : ''}
+          ${isModal ? 'onOk: fatherOnOk,' : ''}
+          ${isModal ? 'closeModal' : ''}
       }) => {`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
