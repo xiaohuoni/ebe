@@ -54,13 +54,13 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.InternalDepsImport,
-      content: `import { history, RequestConfig } from 'alita';
-      import type { Context } from 'alita';
+      content: `import { defaultResponense } from '@/utils/service/defaultResponseInterceptor';
       import { CryptoJS } from '@lingxiteam/engine-utils';
+      import type { Context } from 'alita';
+      import { RequestConfig } from 'alita';
+      import { message, Modal as modal, notification } from 'antd';
       import { isPlainObject, merge } from 'lodash';
-      import { message, notification } from 'antd';
-      // TODO: const { modal } = lcdpApi.antd;
-const modal: any = {};
+      import { RequestInterceptor, ResponseInterceptor } from 'umi-request';
 ${
   isMobile
     ? `const titleList = [
@@ -107,7 +107,10 @@ ${fetchResponse}
 const middleware = async (ctx: Context, next: () => void) => {
   // 可以在这写一些请求前做的事情 操作ctx.req
   await next();
-  const { res = {}, req = {} as any } = ctx;
+  
+  ${
+    !!fetchSuccess
+      ? `const { res = {}, req = {} as any } = ctx;
   const resultObject = fetchSuccess(
     res,
     {
@@ -118,23 +121,27 @@ const middleware = async (ctx: Context, next: () => void) => {
     { url: req?.url, params: req?.options?.params }, // fetchInfo
     { CryptoJS },
   );
-  ctx.res = resultObject || res;
+  ctx.res = resultObject || res;`
+      : ''
+  }
 };
-
-const requestInterceptor = (url, options) => {
+${
+  !!fetchSendBefore
+    ? `const requestInterceptor:RequestInterceptor = (url, options) => {
   try {
     let newUrl = url;
     // TODO: 这里要删除
     options.data.appId = ${appId};
     options.data.appId = ${pageId};
     const fetchSendBeforeResult =
-      fetchSendBefore(url, options.method, options.data, {
-        CryptoJS,
-      }) ?? ({} as any);
+    (fetchSendBefore(url, options.method, options.data, {
+      CryptoJS,
+    }) as any) ?? ({} as any);
 
-    if (fetchSendBeforeResult === false) {
-      return false;
-    }
+    // TODO: 返回 false 时取消请求
+    // if (fetchSendBeforeResult === false) {
+    //   return false;
+    // }
     if (fetchSendBeforeResult && isPlainObject(fetchSendBeforeResult)) {
       const { header, fetchOption, params } = fetchSendBeforeResult;
       if (header && isPlainObject(header)) {
@@ -161,9 +168,13 @@ const requestInterceptor = (url, options) => {
     url,
     options,
   };
-};
+};`
+    : ''
+}
 
-const responseInterceptor = (response, options) => {
+${
+  !!fetchResponse
+    ? `const responseInterceptor:ResponseInterceptor = (response, options) => {
   let successResponse = '';
   let failResponse = '';
   fetchResponse(
@@ -183,10 +194,13 @@ const responseInterceptor = (response, options) => {
       successResponse ||
       (failResponse && Promise.reject(new Error(failResponse))) ||
       response
-    );
+    ) as Promise<Response>;
   }
   return response;
-};
+};`
+    : ''
+}
+
 export const request: RequestConfig = {
   timeout: 300000,
   middlewares: [middleware],
@@ -200,7 +214,9 @@ export const request: RequestConfig = {
     "Zsmart-Locale": "zh-CN"
   },
   errorHandler: (error) => {
-    const eMsg = error instanceof Error ? error.message : error;
+    ${
+      !!fetchFail
+        ? `const eMsg = error instanceof Error ? error.message : error;
     fetchFail(
       eMsg,
       {
@@ -212,10 +228,14 @@ export const request: RequestConfig = {
       {} as any,
       { CryptoJS },
       error?.response?.status,
-    );
+    );`
+        : ''
+    }
   },
-  requestInterceptors: [requestInterceptor],
-  responseInterceptors: [responseInterceptor],
+  requestInterceptors: [${!!fetchSendBefore ? 'requestInterceptor' : ''}],
+  responseInterceptors: [${
+    !!fetchResponse ? 'responseInterceptor, ' : ''
+  }defaultResponense],
 };
       `,
       linkAfter: [COMMON_CHUNK_NAME.ExternalDepsImport],
