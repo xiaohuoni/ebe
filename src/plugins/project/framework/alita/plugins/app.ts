@@ -131,8 +131,8 @@ ${
   try {
     let newUrl = url;
     // TODO: 这里要删除
-    options.data.appId = ${appId};
-    options.data.appId = ${pageId};
+    options.data.appId = '${appId}';
+    options.data.pageId = '${pageId}';
     const fetchSendBeforeResult =
     (fetchSendBefore(url, options.method, options.data, {
       CryptoJS,
@@ -208,9 +208,9 @@ export const request: RequestConfig = {
   method: 'get',
   // TODO: 这里先写死，如果用到PageId 
   headers: {
-    'APP-ID': ${appId},
+    'APP-ID': '${appId}',
     "X-B-AUTH": 1,
-    "X-B-TARGET-ID": ${pageId},
+    "X-B-TARGET-ID": '${pageId}',
     "Zsmart-Locale": "zh-CN"
   },
   errorHandler: (error) => {
