@@ -301,5 +301,5 @@ export default function getFile(): [string[], ResultFile] {
     `,
   );
 
-  return [['src', 'utils', 'Modal'], file];
+  return [['src', 'components', 'Modal'], file];
 }
