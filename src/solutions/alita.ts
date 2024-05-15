@@ -98,6 +98,10 @@ export default function createIceJsProjectBuilder(
             '@paciolan/remote-component': '2.13.0',
             '@lingxiteam/sys-action': '3.3.1-alpha.14',
             '@lingxiteam/types': '3.3.1-alpha.14',
+            "crypto-js": "^4.2.0",
+            "jsencrypt": "^3.3.2",
+            "merge": "^2.1.1",
+            "uuid": "^9.0.1"
           },
           dependencies: {
             '@lingxiteam/cli': '^0.4.6',
@@ -118,6 +122,10 @@ export default function createIceJsProjectBuilder(
             'antd-mobile-5': '5.26.0',
             'react-loadable': '^5.5.0',
             '@lingxiteam/antd-mobile-v2-theme': '^0.0.1',
+            "crypto-js": "^4.2.0",
+            "jsencrypt": "^3.3.2",
+            "merge": "^2.1.1",
+            "uuid": "^9.0.1"
           },
           devDependencies: {
             '@types/qs': '^6.9.6',
