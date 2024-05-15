@@ -255,6 +255,8 @@ export interface CompositeValueGeneratorOptions {
   tolerateEvalErrors?: boolean;
   // 指令需要操作 import
   ir?: IContainerInfo;
+  // 事件调用的时候需要修改是否是 async 函数
+  parentIsAsync?: boolean;
 }
 
 /**
