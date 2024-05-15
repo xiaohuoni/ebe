@@ -15,6 +15,9 @@ export function reloadDataSource({
 }: CMDGeneratorPrames): string {
   const { options, callback1, callback2 } = value;
 
+  // TODO: 全局数据源
+  if (options?.isGlobalData) return `//【刷新全局数据源】全局数据源指令暂不支持`;
+
   // 检查数据源
   const dataSourceName = options?.dataSourceName;
   if (!dataSourceName) return `//【刷新数据源】数据源名称不存在，请检查配置`;
