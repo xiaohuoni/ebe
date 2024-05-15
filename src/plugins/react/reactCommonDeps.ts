@@ -7,7 +7,7 @@ import {
   FileType,
   ICodeStruct,
 } from '../../core/types';
-import { getImportsFrom } from '../../utils/depsHelper';
+import { getImportFrom, getImportsFrom } from '../../utils/depsHelper';
 
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
@@ -21,7 +21,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       name: COMMON_CHUNK_NAME.ExternalDepsImport,
       content: `
 // 注意: 出码模块正在调试
-import React from 'react';
+import React, { useImperativeHandle, useEffect } from 'react';
 import moment from 'moment';
 // 默认都加，应该用到再加
 import Popover from '@/components/Popover';
@@ -45,12 +45,13 @@ import ArrayUtil from '@/utils/array';
     // next.ir.deps.push(
     //   getImportFrom('@lingxiteam/engine-plog', 'monitt', false),
     // );
-    next.ir.deps.push(...getImportsFrom('react', ['useEffect']));
+    // next.ir.deps.push(...getImportsFrom('react', ['useEffect']));
     next.ir.deps.push(
       ...getImportsFrom('@/utils/withPageHOC', ['PageProps', 'withPageHOC']),
     );
     next.ir.deps.push(...getImportsFrom('@/utils/messageApi', ['messageApi']));
     next.ir.deps.push(...getImportsFrom('@/utils/useTool', ['useTool']));
+    next.ir.deps.push(getImportFrom('@/utils/customFuncMapping', 'customFuncMapping', false ));
     next.ir.deps.push(
       ...getImportsFrom('@/utils/historytool', ['historytool', 'HISTORYTYPES']),
     );

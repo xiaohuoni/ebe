@@ -54,7 +54,7 @@ export default function hackEngineApis(
     // 业务组件的 pageId 来自 页面
     pieces.unshift({
       type: PIECE_TYPE.ATTR,
-      value: `pageId={pageId}`,
+      value: `lcdpParentRenderId={renderId}`,
     });
   }
   if (nodeTags === 'TabPane' || nodeTags === 'CollapsePanel') {
@@ -198,12 +198,12 @@ export default function hackEngineApis(
     return [];
   }
 
-  // Pageview 容器组件需要塞入  parentEngineId={'1024261720265998336'}
+  // Pageview 容器组件需要塞入  lcdpParentRenderId={'1024261720265998336'}
   // Popover 组件里面可能用到 Pageview 所以也应该透传 parentEngineId
   if (nodeTags === 'Pageview' || nodeTags === 'Popover') {
     pieces.push({
       type: PIECE_TYPE.ATTR,
-      value: `parentEngineId={parentEngineId}`,
+      value: `lcdpParentRenderId={parentEngineId}`,
     });
   }
   // className='View_View_938709'

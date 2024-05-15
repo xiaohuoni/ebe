@@ -75,7 +75,7 @@ export interface PageProps extends SandBoxContext {
   [key: string]: any;
 }
 export interface PageHOCOptions {
-  pageId: string;
+  renderId: string;
   dataSource?: any[];
   defaultState: any;
   hasLogin?: boolean;
@@ -87,11 +87,12 @@ export const withPageHOC = (
   return React.forwardRef((props: any, ref) => {
     // TODO: 和 service 的时候一起处理
     const api: any = {};
+    const renderId = props.renderId;
     const location = useLocation();
     const urlParam = parse((location?.search ?? '?')?.split('?')[1]);
     const refs = useRef<Record<string, any>>({}).current;
     const { ModalManagerRef, refs: renerRefs, appId } = useContext(Context);
-    const renderId = createId(location.pathname)
+    const ExpBusiObjModalRef = React.useRef<any>();
     const setComponentRef = (r: any, comId: string) => {
       if (r) {
         // @ts-ignore
@@ -99,8 +100,6 @@ export const withPageHOC = (
       }
       renerRefs.setSystemRef(renderId, refs);
     }
-    const ExpBusiObjModalRef = React.useRef<any>();
-    const customActionMapRef = React.useRef<any>();
     const { getLocaleLanguage, getLocale, getLocaleEnv, locale, language } =
       i18n.useLocale(
         {
@@ -112,7 +111,6 @@ export const withPageHOC = (
         locales,
       );
     const [data, setData] = useState<any>();
-    const pageId = props?.pageId ?? options?.pageId;
     const init = async () => {
       const getStaticAttrByKeys = async (attrNbrKeys: string[]) => {
         const reqNbrKeys = attrNbrKeys.filter((key) => !cacheKeys.has(key));
@@ -120,7 +118,7 @@ export const withPageHOC = (
           const params = {
             attrCodes: reqNbrKeys,
             appId,
-            pageId,
+            renderId,
           };
           let res: any = {};
           if (process.env.LCDP_VERSION === '1.0.9') {
@@ -190,12 +188,12 @@ export const withPageHOC = (
         return Promise.resolve(cacheAttrDataMap);
       };
       const attrDataMap = await getStaticAttrByKeys(
-        pageStaticData[pageId] ?? [],
+        pageStaticData[renderId] ?? [],
       );
       const awaitHandleData = new AwaitHandleData();
       const platformUtils = getRunningUtils({
         appId: appId,
-        pageId: pageId,
+        renderId: renderId,
         language,
       });
       const injectData = {
@@ -220,7 +218,7 @@ export const withPageHOC = (
               // @ts-ignore
               return refs.value[compId]?.visible;
             },
-            stateListener: getStateListener(pageId),
+            stateListener: getStateListener(renderId),
             sandBoxRun,
             sandBoxSafeRun: (
               code: string,
@@ -253,14 +251,6 @@ export const withPageHOC = (
       const defaultContext = {
         getValue,
         urlParam,
-        appId,
-        pageId,
-        busiCompId: props?.busiCompId,
-        // 如果是子组件，直接存父组件对象
-        routerId: props?.parentEngineId ?? pageId,
-        renderId: props?.parentEngineId ?? pageId,
-        parentEngineId: props?.parentEngineId ?? pageId,
-        engineRelation: EngineMapping.publicMethod,
         lcdpApi: api,
         transformValueDefined,
         processCustomParams,
@@ -285,7 +275,7 @@ export const withPageHOC = (
           awaitHandleData.runQueue(comId, refs);
         },
         closeModal: (modalId: string) => {
-          ModalManagerRef.current?.closeModal(modalId, pageId);
+          ModalManagerRef.current?.closeModal(modalId, renderId);
         },
         utils: merge(platformUtils, engineApis),
       };
@@ -300,8 +290,6 @@ export const withPageHOC = (
       };
 
       const componentItem = {
-        appId,
-        pageId,
         platform: PLATFORM,
       };
       setData({
@@ -312,15 +300,6 @@ export const withPageHOC = (
         componentItem,
         attrDataMap,
       });
-      if (!props?.parentEngineId) {
-        setTimeout(() => {
-          // 太早设置，ref 还未渲染！
-          EngineMapping.add(pageId, pageId, {
-            ...defaultContext,
-            customActionMap: customActionMapRef.current,
-          } as any);
-        }, 100);
-      }
     };
     useEffect(() => {
       init();
@@ -337,20 +316,23 @@ export const withPageHOC = (
           {...props}
           urlParam={urlParam}
           forwardedRef={ref}
-          customActionMapRef={customActionMapRef}
+          customActionMapRef={(ref: any) => {
+            if (ref) {
+              renerRefs.setSysCustomActionMapRef(renderId, ref);
+            }
+          }}
           refs={refs}
           setComponentRef={setComponentRef}
-          renderId={renderId}
+          lcdpParentRenderId={props.lcdpParentRenderId}
+          renerRefs={renerRefs}
         />
         ${
           isMobile
             ? ''
             : `<ExpBusiObjModal
           ref={ExpBusiObjModalRef}
-          key={\`ExpBusiObjModal-\${pageId}\`}
+          key={\`ExpBusiObjModal-\${renderId}\`}
           api={data.utils}
-          pageId={pageId}
-          appId={appId}
           utils={data.utils}
           getLocale={getLocale}
         />`

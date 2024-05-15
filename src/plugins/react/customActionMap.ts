@@ -12,7 +12,7 @@ import {
   IScope,
 } from '../../core/types';
 import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
-import { getImportsFrom } from '../../utils/depsHelper';
+import { getImportFrom, getImportsFrom } from '../../utils/depsHelper';
 import { getEvents } from '../../utils/schema/parseDsl';
 import { CUSTOM_ACTION_CHUNK_NAME } from './const';
 
@@ -100,9 +100,18 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         type: ChunkType.STRING,
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
-        content: `React.useImperativeHandle(customActionMapRef, () => ({
+        content: `\n //当前页面的自定义事件 \n const customActionMap = {
           ${customFuctionsIds.join(',')}
-        }));`,
+        };
+        useEffect(() => {
+          // 挂载自定义事件
+          customFuncMapping.add(renderId, customActionMap);
+          return () => {
+            // 页面销毁移除
+            customFuncMapping.remove(renderId);
+          };
+        }, []);
+        `,
         linkAfter: [
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         ],

@@ -23,6 +23,22 @@ import {
 import { ensureValidClassName } from '../../core/utils/validate';
 import { getImportFrom } from '../../utils/depsHelper';
 
+/**
+ * 生成唯一id
+ * @param prefix
+ * @param id
+ * @param slength
+ * @returns
+ */
+const createId = (prefix?: string, id?: string, slength: number = 12) => {
+  let uid = id;
+  if (!uid) {
+    uid = Math.random().toString().slice(slength);
+  }
+  return prefix ? prefix + '--' + uid : uid;
+};
+
+
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
     const next: ICodeStruct = {
@@ -49,28 +65,28 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       return 'pageIdError';
     };
     if (next?.contextData?.options?.pageIdMapping[ir.pagePath]) {
-      pageId = next?.contextData?.options?.pageIdMapping[ir.pagePath];
+      pageId = createId(ir.pagePath) || createId(next?.contextData?.options?.pageIdMapping[ir.pagePath]);
     } else {
-      pageId = getBusiCompPageId(
+      pageId = createId(getBusiCompPageId(
         next?.contextData?.options?.busiCompMapping,
         ir.id!,
-      );
+      ));
     }
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: CLASS_DEFINE_CHUNK_NAME.Start,
       content: `
-        const pageId = '${pageId}';
+        // 生成一个Id，用来记录当前页面所有的自定义事件
+        const renderId = '${pageId}';
         const ${type}: React.FC<PageProps> = ({
           attrDataMap={},customActionMapRef,routerData,lcdpApi,
           injectData, refs, state, functorsMap, getStaticDataSourceService, updateGlobalDataSource, componentItem, style, urlParam, ${
             isModal ? 'forwardedRef,' : ''
           } 
-          parentEngineId = pageId,
           setComponentRef,
           ModalManagerRef,
-          renderId,
+          lcdpParentRenderId,
           ${isModal ? 'onOk: fatherOnOk,' : ''}
           ${isModal ? 'closeModal' : ''}
       }) => {`,
@@ -246,7 +262,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.FileExport,
       content: `export default withPageHOC(${type}, {
-        pageId,
+        renderId,
         hasLogin: ${!!!ir.ignoreLogin},
         defaultState:${JSON.stringify(defaultState)},
       });`,

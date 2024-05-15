@@ -17,3 +17,4 @@ export { sysSetRequired } from './sysSetRequired';
 export { sysSetValue } from './sysSetValue';
 export { sysSetVisible } from './sysSetVisible';
 export { closeModal } from './closeModal';
+export { callParentCustomFunc } from './callParentCustomFunc';

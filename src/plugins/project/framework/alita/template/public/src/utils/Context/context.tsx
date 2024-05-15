@@ -31,7 +31,7 @@ export function mergeGetter<
         try {
           target[key] = o[key];
           // eslint-disable-next-line no-empty
-        } catch {}
+        } catch { }
       }
     });
   };
@@ -44,10 +44,10 @@ export function mergeGetter<
 
   return target as any;
 }
-interface componentRef extends ImperativeHandleReturn {}
+interface componentRef extends ImperativeHandleReturn { }
 
 export class RefsManager {
-  constructor() {}
+  constructor() { }
 
   /**
    * 页面级别Ref
@@ -55,21 +55,41 @@ export class RefsManager {
   private systemRef: Record<string, Record<string, any>> = {};
 
   /**
+ * 页面级别Ref
+ */
+  private sysCustomActionMapRef: Record<string, Record<string, any>> = {};
+
+  /**
    * 页面级别的ref
    * @param ref
    */
   private setSystemRef = (renderId: string, comRefs: Record<string, any>) => {
     if (this.systemRef[renderId]) {
-      Object.assign(this.systemRef[renderId], comRefs);
+      mergeGetter(this.systemRef[renderId], comRefs);
     } else {
       this.systemRef[renderId] = comRefs;
     }
   };
 
+
+  /**
+ * 页面级别的ref
+ * @param ref
+ */
+  private setSysCustomActionMapRef = (renderId: string, customActionMapRef: Record<string, any>) => {
+    if (this.sysCustomActionMapRef[renderId]) {
+      mergeGetter(this.sysCustomActionMapRef[renderId], customActionMapRef);
+    } else {
+      this.sysCustomActionMapRef[renderId] = customActionMapRef;
+    }
+  };
   private getComRefs = (renderId: string) => {
     return this.systemRef[renderId] || {};
   };
 
+  public getCustomActionMapRef = (renderId: string): Record<string, any> => {
+    return this.sysCustomActionMapRef[renderId] || {};
+  }
   public get refs(): any {
     return this.systemRef;
   }
