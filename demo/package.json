@@ -39,6 +39,7 @@
   "devDependencies": {
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@umijs/utils": "4.2.3",
     "prettier": "^2",
     "ts-node": "^10",
     "typescript": "^4"

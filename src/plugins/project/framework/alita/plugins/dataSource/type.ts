@@ -1,7 +1,15 @@
 export const getDSFilterName = (name: string) => `${name}Filter`;
 
+const getKey = (code: string = '') => {
+  const iCode = code.trim();
+  if (!/^[\$_a-zA-Z][\d_\$a-zA-Z]{0,}/.test(iCode) && !/^\d+$/.test(iCode)) {
+    return `['${code}']`;
+  }
+  return iCode;
+};
+
 const gType = {
-  object: (filedList: any) => {
+  object: (filedList: any, extendCode?: string) => {
     if (!Array.isArray(filedList)) {
       return 'any';
     }
@@ -23,11 +31,25 @@ const gType = {
       */`
           : ''
       }
-      ${code}?: ${gType[type as keyof typeof gType]?.(children) ?? 'unknown'}
+      ${getKey(code)}?: ${
+        gType[type as keyof typeof gType]?.(children) ?? 'unknown'
+      }
       `);
     });
 
-    return ['{', typeCode.join(';'), '}'].join('');
+    return [
+      '{',
+      typeCode.join(';'),
+      extendCode
+        ? `
+      ${extendCode}
+      `
+        : '',
+
+      '}',
+    ]
+      .filter(Boolean)
+      .join('');
   },
 
   fieldArray: (filedList: any) => {
@@ -74,7 +96,12 @@ export const generatorDataType = (dataSource: any[]) => {
       */`
           : ''
       }
-      ${getDSFilterName(name)}?: ${gType.object?.(filterParams) ?? 'unknown'}
+      ${getKey(getDSFilterName(name))}?: ${
+        gType.object?.(
+          filterParams,
+          `orderByAsc?: string; orderByDesc?: string`,
+        ) ?? 'unknown'
+      }
       ${
         description
           ? `/**
@@ -82,7 +109,9 @@ export const generatorDataType = (dataSource: any[]) => {
       */`
           : ''
       }
-      ${name}?: ${gType[type as keyof typeof gType]?.(outParams) ?? 'unknown'}
+      ${getKey(name)}?: ${
+        gType[type as keyof typeof gType]?.(outParams) ?? 'unknown'
+      }
       `,
     );
   });

@@ -1,3 +1,5 @@
+import { isArray, isPlainObject } from 'lodash';
+import { parse2Var } from '../../../../../../core/utils/compositeType';
 import TreeParser from '../../../../../../core/utils/TreeParser';
 import { cleanDataSource } from './template';
 import { getDSFilterName } from './type';
@@ -26,6 +28,39 @@ const useInfo = () => {
     }, [lcdpApi.data?.user])`;
 };
 
+/**
+ * 过滤对象中的字段空字段
+ */
+export const filterObjectEmptyField = (object: any) => {
+  if (!isPlainObject(object)) return object;
+
+  const any = (o: any) => o;
+  const array = (o: any[]) =>
+    o.map((it) => {
+      if (isPlainObject(it)) return loopPlainObject(it);
+      return any(it);
+    });
+
+  const loopPlainObject = (o: any) => {
+    if (!isPlainObject(o)) return o;
+    const t: Record<string, any> = {};
+    Object.keys(o).forEach((key) => {
+      if (o[key] !== undefined) {
+        if (isArray(o[key])) {
+          t[key] = array(o[key]);
+        } else if (isPlainObject(o[key])) {
+          t[key] = loopPlainObject(o[key]);
+        } else {
+          t[key] = any(o[key]);
+        }
+      }
+    });
+    return t;
+  };
+
+  return loopPlainObject(object);
+};
+
 const generateParams = (
   dataItem: any,
   t: keyof typeof DATADOURCE_TYPE_CN = 'custom',
@@ -33,8 +68,35 @@ const generateParams = (
   const { name, rootOutParams, rootFilterParams, outParams, filterParams } =
     dataItem;
 
-  const generateStr = (children: any[], value?: any, type?: string) => {
+  const generateStr = (
+    children: any[],
+    value?: any,
+    type?: string,
+    filter: boolean = false,
+  ) => {
     const parser = new TreeParser();
+
+    // 过滤要增加排序入参
+    if (filter) {
+      const orderByAsc: any[] = [];
+      const orderByDesc: any[] = [];
+      children.forEach((param) => {
+        if (param?.sort?.value) {
+          if (param.sort.value === 'ascend') {
+            orderByAsc.push(param.code);
+          } else if (param.sort.value === 'descend') {
+            orderByDesc.push(param.code);
+          }
+        }
+      });
+      parser.appendProperty('orderByAsc', parse2Var(orderByAsc.join(',')), '');
+      parser.appendProperty(
+        'orderByDesc',
+        parse2Var(orderByDesc.join(',')),
+        '',
+      );
+    }
+
     return parser.stringify({
       ...dataItem,
       initialData: {
@@ -55,6 +117,7 @@ const generateParams = (
     filterParams,
     rootFilterParams,
     'object',
+    true,
   )},
     ${name}: ${generateStr(outParams, rootOutParams?.value)}
     \n
@@ -75,18 +138,98 @@ const gData = {
 
   // 生成对象
   object: (dataItem: any) => {
+    const {
+      config: { options, isInit },
+      name,
+      id,
+    } = dataItem;
+
+    let requestCode = ``;
+    if (isInit) {
+      requestCode = `
+      /**
+       * 加载${name}数据源
+       */
+      fetchQueryObject(
+        ${parse2Var(options.url)},
+        ${parse2Var({
+          method: options.method,
+          sceneCode: `$urlParam?.sceneCode ?? ''$`,
+          busiObjectInstId: options.service?.appServiceId,
+          actionId: id,
+          busiObjectId: options.object?.busiObjectId,
+          attrs: `$initialData.${getDSFilterName(name)}$`,
+        })}
+      ).then(res => {
+        newData.${name} = res;
+        ${
+          options.service?.responseType === 'array'
+            ? `
+          let snapShot = cloneDeep(res);
+            if (res === null) {
+              snapShot = [];
+            }
+        `
+            : 'const snapShot = cloneDeep(res);'
+        }
+        setDataSnapshot({
+          ${name}: snapShot,
+          ${getDSFilterName(name)}: cloneDeep(initialData.${getDSFilterName(
+        name,
+      )}),
+        })
+        return res;
+      }).catch(console.log)`;
+    }
+
     return {
-      requestCode: '',
+      requestCode,
       initialValue: generateParams(dataItem, 'object'),
     };
   },
 
   // 服务
   service: (dataItem: any) => {
-    const { name, outParams = [], rootOutParams, filterParams } = dataItem;
+    const {
+      config: { options, isInit },
+      name,
+      id,
+    } = dataItem;
+
+    let requestCode = ``;
+    if (isInit) {
+      requestCode = `
+      /**
+       * 加载${name}数据源
+       */
+      fetchQueryService(
+        ${parse2Var(
+          filterObjectEmptyField({
+            _capabilityCode: options.service?._capabilityCode,
+            _apiCode: options.service?._apiCode,
+            api: options.service?.api,
+            _source: options.service?._source,
+            _serviceId: options.service?._serviceId,
+            versionCode: options.service?.versionCode,
+            serviceCode: options.service?.serviceCode,
+            serviceMethod: options.service?.serviceMethod,
+          }),
+        )},
+        initialData.${getDSFilterName(name)}
+      ).then(res => {
+        newData.${name} = res;
+        setDataSnapshot({
+          ${name}: cloneDeep(res),
+          ${getDSFilterName(name)}: cloneDeep(initialData.${getDSFilterName(
+        name,
+      )}),
+        });
+        return res;
+      }).catch(console.log)`;
+    }
 
     return {
-      requestCode: '',
+      requestCode,
       initialValue: generateParams(dataItem, 'service'),
     };
   },
@@ -109,7 +252,7 @@ export const initialDataSource = (dataSource: any[]) => {
   const dataSourceValues: string[] = [];
 
   dataSource.map((dataItem) => {
-    const { source } = dataItem;
+    const { source, name, id } = dataItem;
     switch (source) {
       case 'custom':
         initialData.push(`${gData.custom(dataItem)},`);
@@ -156,16 +299,14 @@ export const initialDataSource = (dataSource: any[]) => {
       dataSourceValues.join(','),
       ']',
       `
-    Promise.all(dataSourceValues).then((items) => {
-      items.forEach(({ name, value }) => {
-        newData[name] = value;
-      });
-    }).catch(err => {
+    \n
+    Promise.all(dataSourceValues).catch(err => {
       console.log('数据源初始化失败')
       console.log(err)
     }).finally(() => {
       setData(newData as DataSourceType);
-      setLoading(false)
+      setLoading(false);
+      setDataReadyComplete(true);
     });
     `,
     ],
@@ -173,7 +314,9 @@ export const initialDataSource = (dataSource: any[]) => {
 
   return [
     useInfo(),
-    initialData.join('\n'),
+    initialData.join('\n\n'),
+    `
+    `,
     `
     /**
      * 初始化数据源
@@ -203,7 +346,6 @@ export const updateData = (dataSource: any[]) => {
       predicate = () => false,
       onlySetPatch = true,
     }: UpdateDataSourceOptions) => { 
-      const newData = {};
       try {
         // 对象类型 直接赋值
         if (type === 'object') {
@@ -231,7 +373,7 @@ export const updateData = (dataSource: any[]) => {
         }
     
         return setData({
-          [name]: cloneDeep(data[name])
+          [name]: cloneDeep(data![name])
         });
       } catch (error) {
         return Promise.reject(error as Error);
@@ -245,19 +387,54 @@ export const updateData = (dataSource: any[]) => {
  * 刷新数据源
  */
 export const reloadDataSource = (dataSource: any[]) => {
-  const code = `
-    setLoading(true);
-  `;
-
   return [
     `
-      /**
-       * 刷新数据源
-       */
+    /**
+     * 刷新自定义数据源
+     */
+    const reloadCustomDataSource = (name: string, params?: any) => setData({
+      [name]: params
+    });
+
+    /**
+     * 刷新对象数据源
+     */
+    const reloadObjectDataSource = (name: string, url: string, options: any, params: any) => {
+      setLoading(true);
+      return fetchQueryObject(url, { ...options, attrs: params }).then((res) => {
+        setData({
+          [name]: res
+        })
+        const snapShot = cloneDeep(res);
+        setDataSnapshot({
+          [name]: snapShot,
+          [\`\${name}Filter\`]: params,
+        });
+        return res;
+      })
+      .catch(console.log).finally(() => { setLoading(false) });
+    }
+
+    /**
+     * 刷新服务数据源
+     */
+    const reloadServiceDataSource = (name: string, service: any, params: any) => {
+      setLoading(true);
+      return fetchQueryService(service, params).then((res) => {
+        setData({
+          [name]: res
+        })
+        const snapShot = cloneDeep(res);
+        setDataSnapshot({
+          [name]: snapShot,
+          [\`\${name}Filter\`]: params,
+        });
+        return res;
+      })
+      .catch(console.log).finally(() => { setLoading(false) });
+    }
+
     `,
-    `const reloadDataSource = (name: string) => {`,
-    code,
-    '}',
   ].join('');
 };
 

@@ -140,14 +140,15 @@ export function getSetDataSource({
 
   // 检查数据源
   const dataSourceName = options?.dataSourceName;
-  if (!dataSourceName) return `// 数据源名称不存在，请检查配置`;
+  if (!dataSourceName) return `//【更新数据源】数据源名称不存在，请检查配置`;
 
   // 检查是否配置了该数据源
   const dataSourceConfig = config?.ir?.dataSource;
   const dsConfig = dataSourceConfig?.find((item) =>
     [item.name, getDSFilterName(item.name)].includes(dataSourceName),
   );
-  if (!dsConfig) return `// 数据源${dataSourceName}不存在，请检查配置`;
+  if (!dsConfig)
+    return `//【更新数据源】数据源${dataSourceName}不存在，请检查配置`;
 
   const { onlySetPatch, targetDataSourcePaths = [] } = options;
 

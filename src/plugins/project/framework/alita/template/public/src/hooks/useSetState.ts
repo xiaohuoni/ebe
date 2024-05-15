@@ -1,5 +1,5 @@
-import { useCallback, useRef, useState } from 'react';
-import isFunction from 'lodash/isFunction';
+import { useCallback, useRef, useState } from "react";
+import isFunction from "lodash/isFunction";
 
 const nextTick = () => {
   return Promise.resolve();
@@ -7,15 +7,15 @@ const nextTick = () => {
 
 export type SetState<S extends Record<string, any>> = <K extends keyof S>(
   state?: Pick<S, K> | null,
-  complete?: () => void,
+  complete?: () => void
 ) => void;
 
 const useSetState = <S extends Record<string, any>>(
-  initialState?: S | (() => S) | undefined,
+  initialState?: S | (() => S) | undefined
 ): [S | undefined, SetState<S>] => {
   const [, forceUpdate] = useState({});
   const stateRef = useRef<any>(
-    isFunction(initialState) ? initialState() : initialState,
+    isFunction(initialState) ? initialState() : initialState
   );
 
   /**

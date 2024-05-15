@@ -16,6 +16,7 @@ const importDeps = () => {
     `import { cloneDeep, isPlainObject, set } from 'lodash';`,
     `import useSetState from '@/hooks/useSetState'`,
     `import ArrayUtil from '@/utils/array';`,
+    `import { fetchQueryObject, fetchQueryService } from '@/utils/dataSource';`,
     `import { DataSourceType } from './dataSourceType'`,
   ].join(';\n');
 };
@@ -89,8 +90,21 @@ const getDataSourceBegin = (
 // 生成数据源内容
 const getDataSourceContent = (dataSource: any[]) => {
   const defineDataCode = `
+  // 是否正在加载数据，发起请求时会切换loading
   const [loading, setLoading] = useState(false);
+  // 数据源是否准备完成
+  const [dataReadyComplete, setDataReadyComplete] = useState(false);
+  // 数据源
   const [data, setData] = useSetState<DataSourceType>();
+  // 保存数据源快照，只有服务和对象发起成功后才会保存，用来缓存服务数据
+  const dataSnapshotRef = useRef<Record<string, any>>({});
+
+  /**
+   * 保存快照
+   */ 
+  const setDataSnapshot = (snapshot: Record<string, any>) => {
+    Object.assign(dataSnapshotRef.current, snapshot);
+  }
   `;
 
   return [
@@ -112,8 +126,12 @@ const getDataSourceEnd = () => {
         data,
         updateData,
         resetDataSource,
-        reloadDataSource,
+        reloadCustomDataSource,
         loading,
+        dataSnapshot: dataSnapshotRef.current,
+        reloadServiceDataSource,
+        reloadObjectDataSource,
+        dataReadyComplete,
       };
     `,
     '}',
@@ -133,15 +151,15 @@ export const generate = (dataSource: any[]) => {
   const beginCode = getDataSourceBegin({
     urlParam: {
       isRequired: false,
-      type: 'Record<string, unknown>',
+      type: 'Record<string, any>',
     },
     routerData: {
       isRequired: false,
-      type: 'Record<string, unknown>',
+      type: 'Record<string, any>',
     },
     state: {
       isRequired: false,
-      type: 'Record<string, unknown>',
+      type: 'Record<string, any>',
     },
     lcdpApi: {
       isRequired: false,

@@ -70,7 +70,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           parentEngineId = pageId,
           setComponentRef,
           ModalManagerRef,
-          ${isModal ? 'onOk: fatherOnOk': ''}
+          ${isModal ? 'onOk: fatherOnOk' : ''}
       }) => {`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
@@ -87,7 +87,17 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         fileType: FileType.TSX,
         name: DATA_SOURCE_CHUNK_NAME.CallDataSource,
         content: `
-          const { data, updateData, resetDataSource, reloadDataSource } = useDataSource({
+          const {
+            data,
+            updateData,
+            resetDataSource,
+            reloadCustomDataSource,
+            dataSnapshot,
+            reloadServiceDataSource,
+            reloadObjectDataSource,
+            loading: dataLoading,
+            dataReadyComplete
+          } = useDataSource({
             urlParam,
             routerData,
             state,
