@@ -7,6 +7,9 @@ import {
   ICodeStruct,
 } from '../../../../../core/types';
 
+// TODO: 这里的AppiD要删除
+const pageId = '1106388573299146752';
+
 // TODO: 应用钩子应该是i通用的，这里可以移动到 src/parser/SchemaParser.ts
 // 然后从上层传下来
 // options.appConfig.frontendHookList
@@ -34,6 +37,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       ...pre,
     };
 
+    const appId = next.contextData.options?.appId;
     const ir = next.ir as any;
     // 有进来两次？
     if (!ir.keepalive) {
@@ -120,6 +124,9 @@ const middleware = async (ctx: Context, next: () => void) => {
 const requestInterceptor = (url, options) => {
   try {
     let newUrl = url;
+    // TODO: 这里要删除
+    options.data.appId = ${appId};
+    options.data.appId = ${pageId};
     const fetchSendBeforeResult =
       fetchSendBefore(url, options.method, options.data, {
         CryptoJS,
@@ -185,6 +192,13 @@ export const request: RequestConfig = {
   middlewares: [middleware],
   prefix: 'server/',
   method: 'get',
+  // TODO: 这里先写死，如果用到PageId 
+  headers: {
+    'APP-ID': ${appId},
+    "X-B-AUTH": 1,
+    "X-B-TARGET-ID": ${pageId},
+    "Zsmart-Locale": "zh-CN"
+  },
   errorHandler: (error) => {
     const eMsg = error instanceof Error ? error.message : error;
     fetchFail(

@@ -5,9 +5,9 @@ import { copyStatic } from './scripts/copyStatic';
 import { createDiskPublisher } from './src/core/publisher/disk';
 import alita from './src/solutions/alita';
 (async () => {
-  const appId = '868681578956083200';
-  // const schemaFile = `./demo/node_modules/.cache/${appId}/req.json`;
-  const schemaFile = `./req.json`;
+  const appId = '772790966277644288';
+  const schemaFile = `./demo/node_modules/.cache/${appId}/req.json`;
+  // const schemaFile = `./req.json`;
   // 读取 Schema
   const schema = await loadSchemaFile(schemaFile);
 

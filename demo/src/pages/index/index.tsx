@@ -103,7 +103,7 @@ const Page = () => {
         // operationType: 'publish',
       });
       console.log(themeCss);
-      return
+      
     // 根据 appId 获取当前应用的使用的自定义组件
     const compAssetList = await qryPageCompAssetList({
       appId: values.appId,
