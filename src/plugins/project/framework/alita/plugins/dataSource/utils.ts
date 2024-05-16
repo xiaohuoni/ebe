@@ -105,7 +105,7 @@ const generateParams = (
       children: children,
       code: name,
       type: type || dataItem.type,
-    });
+    }) || 'null';
   };
 
   return `

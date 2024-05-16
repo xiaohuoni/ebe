@@ -84,7 +84,7 @@ export const CMDGeneratorFunction = (
 export const CMDGeneratorEvent = (
   value: any,
   nodeItem: any,
-  scope: IScope,
+  scope?: IScope,
   options: CompositeValueGeneratorOptions = {},
   // TODO: 后续无用移除
   prefix: string = '',

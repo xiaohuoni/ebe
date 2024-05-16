@@ -1,5 +1,5 @@
 import { CMDGeneratorPrames } from '../../core';
-import { CMDGeneratorFunction } from '../../core/utils/CMDGenerator';
+import { CMDGeneratorEvent, CMDGeneratorFunction } from '../../core/utils/CMDGenerator';
 
 /**
  * 用then和catch生成回调字符串
@@ -25,38 +25,35 @@ const GeneratorCallbackWithThenCatch = (
 
   const { callback1, callback2 } = value;
 
-  const callback1Code = CMDGeneratorFunction(
-    callback1,
-    {},
-    platform,
-    scope,
-    config,
-  );
-
-  const callback2Code = CMDGeneratorFunction(
-    callback2,
-    {},
-    platform,
-    scope,
-    config,
-  );
-
   const callback1Params = options?.params?.callback1 || [];
   const callback2Params = options?.params?.callback2 || [];
+  callback1.params = callback1Params.map(key => ({ name: key }));
+  callback2.params = callback2Params.map(key => ({ name: key }));
+
+  const callback1Code = Array.isArray(callback1) && callback1.length ? CMDGeneratorEvent(
+    callback1,
+    { platform },
+    scope,
+    config,
+  ) : '';
+
+  const callback2Code = Array.isArray(callback2) && callback2.length ? CMDGeneratorEvent(
+    callback2,
+    { platform },
+    scope,
+    config,
+  ) : "";
 
   let cmdCode = [
     code,
-    callback1Code
-      ? `then((${callback1Params.join(',')}) => {
-    ${callback1Code}
-  })`
+    callback1Code? `then(${callback1Code})`
       : '',
 
-    callback2Code
-      ? `catch((${callback2Params.join(',')}) => {
-    ${callback2Code}
-  })`
-      : '',
+    callback2Code ? `catch(${callback2Code})` : '',
+  //     ? `catch((${callback2Params.join(',')}) => {
+  //   ${callback2Code}
+  // })`
+  //     : '',
   ]
     .filter(Boolean)
     .join('.');
