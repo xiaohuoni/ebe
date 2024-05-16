@@ -120,12 +120,7 @@ export const withPageHOC = (
             appId,
             renderId,
           };
-          let res: any = {};
-          if (process.env.LCDP_VERSION === '1.0.9') {
-            res = await api.batchGetAppStaticAttr109(params);
-          } else {
-            res = await api.batchGetAppStaticAttr(params);
-          }
+          const res: any = await baseApi.batchGetAppStaticAttr(params);
           reqNbrKeys.forEach((key) => {
             const list = res[key];
             if (list?.length > 0) {

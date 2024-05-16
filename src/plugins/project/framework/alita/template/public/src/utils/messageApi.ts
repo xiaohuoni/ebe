@@ -89,4 +89,4 @@ const messageApi = (
   }
 };
 
-export default { messageApi };
+export { messageApi };

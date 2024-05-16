@@ -3,12 +3,14 @@ import { security } from '@lingxiteam/assets';
 import { getAppFileUrlByFileCode } from './getAppFileUrlByFileCode';
 import serviceApi from '@/utils/service/commonFetch';
 import batchInsert from './batchInsert';
+import urlHelper from '../../utils/service/urlHelper';
 
 export const api = {
   batchInsert,
   resolveApiPath,
   getAppFileUrlByFileCode,
   commonFetch: serviceApi.commonFetch,
+  batchGetAppStaticAttr: (params: any) => urlHelper.get('app/appAttr/batchGetAppStaticAttr', params),
   service: {
     uploadSingleFile: () => resolveApiPath('app/file/uploadSingleFile'),
     getAppFileUrlById: (params: any, appCtx: any) => {
