@@ -22,3 +22,4 @@ export { apiRequest } from './apiRequest';
 export { callCustomPageFunc } from './callCustomPageFunc';
 export { customActionCode } from './customActionCode';
 export { sysSetDisable } from './sysSetDisable';
+export { reloadSelectData } from './reloadSelectData';
