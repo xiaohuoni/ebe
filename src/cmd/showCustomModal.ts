@@ -1,5 +1,5 @@
 import { CMDGeneratorPrames } from '../core/types';
-import { CMDGeneratorFunction } from '../core/utils/CMDGenerator';
+import { CMDGeneratorEvent } from '../core/utils/CMDGenerator';
 import { parse2Var } from '../core/utils/compositeType';
 export function showCustomModal({
   value,
@@ -13,22 +13,10 @@ export function showCustomModal({
     pagePath: modalname || pageId,
     params: paramsObj || {},
   };
-  const cmdFunctionString = CMDGeneratorFunction(
-    callback1,
-    {},
-    platform,
-    scope,
-    config,
-  );
-
   const onOkString =
     Array.isArray(callback1) && callback1.length
-      ? `onOk: ${config?.parentIsAsync ? 'async ' : ''}(${
-          // @ts-ignore
-          callback1.params[0].name
-        }) => {
-    ${cmdFunctionString}
-  }`
+      ? // @ts-ignore
+        `onOk: ${CMDGeneratorEvent(callback1, { platform }, scope, config)}`
       : '\n';
   return `ModalManagerRef?.current?.openModal({pagePath: '${
     params.pagePath
