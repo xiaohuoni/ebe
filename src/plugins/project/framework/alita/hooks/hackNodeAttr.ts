@@ -60,7 +60,9 @@ export default function hackEngineApis(
   if (nodeTags === 'TabPane' || nodeTags === 'CollapsePanel') {
     pieces.unshift({
       type: PIECE_TYPE.ATTR,
-      value: `schema={{ props :{ key: '${nodeItem?.props?.key}' }}}`,
+      value: `schema={{ props :{ key: '${
+        nodeItem?.props?.key
+      }' },style:${JSON.stringify(nodeItem?.style)}}}`,
     });
   }
   // 如果是CardHeader要改成 Card.Header，另外依赖分析那边 import 要过滤
