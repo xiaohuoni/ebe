@@ -12,7 +12,7 @@ import {
   IScope,
 } from '../../core/types';
 import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
-import { getImportsFrom } from '../../utils/depsHelper';
+import { getImportFrom } from '../../utils/depsHelper';
 import { getEvents } from '../../utils/schema/parseDsl';
 import { CUSTOM_ACTION_CHUNK_NAME } from './const';
 
@@ -57,7 +57,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.Map,
         subModule: 'customAction',
-        content: ir?.customFuctions
+        content: 'const useCustomAction = (context: any) => {' + ir?.customFuctions
           .map((e) => {
             const value = e.setEvents?.map((event: any) => {
               const { eName, eValue } = getEvents(event);
@@ -91,27 +91,25 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             //   id: `${eName}`,
             //   value: eValue,
             // };
-            return `export const ${eventName} = ${CMDGeneratorEvent(
+            return `const ${eventName} = ${CMDGeneratorEvent(
               item?.value,
               next?.contextData,
               {} as IScope,
               { ir },
             )}`;
           })
-          .join(';'),
+          .join(';')+ `\n return {\n${customFuctionsIds.map(i => i).join(',')} \n}}; export default useCustomAction;`,
         linkAfter: [
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         ],
       });
       // 在文件头引入
-      next.ir.deps.push(...getImportsFrom('./customAction', customFuctionsIds));
+      next.ir.deps.push(getImportFrom('./customAction', 'useCustomAction', false));
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
-        content: `\n //当前页面的自定义事件 \n const customActionMap = {
-          ${customFuctionsIds.join(',')}
-        };
+        content: `\n //定义页面的自定义事件 \n  const customActionMap = useCustomAction({ data })
         useEffect(() => {
           // 挂载自定义事件
           customFuncMapping.add(createRenderId(renderId), customActionMap);
