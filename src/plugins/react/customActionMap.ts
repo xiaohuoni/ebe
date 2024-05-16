@@ -12,10 +12,18 @@ import {
   IScope,
 } from '../../core/types';
 import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
-import { getImportFrom, getImportsFrom } from '../../utils/depsHelper';
+import { getImportsFrom } from '../../utils/depsHelper';
 import { getEvents } from '../../utils/schema/parseDsl';
 import { CUSTOM_ACTION_CHUNK_NAME } from './const';
 
+const getSaleEventName = (eventName: any) => {
+  const sale =
+    /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(eventName) &&
+    !/^(?:abstract|arguments|await|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|eval|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|let|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with|yield)$/.test(
+      eventName,
+    );
+  return sale ? eventName : `event_${eventName}`;
+};
 export interface PluginConfig {
   fileType?: string;
   exportNameMapping?: Record<string, string>;
@@ -59,12 +67,13 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
               };
             });
             const item = value?.[0];
-            customFuctionsIds.push(e.eventCode);
+            const eventName = getSaleEventName(e.eventCode);
+            customFuctionsIds.push(eventName);
             // TODO: setEvents 不存在，应该要执行 dynamicActionSource？
             if (!item) {
               if (!e.originDynamicActionSource) {
                 return `// 编排时为空
-                const ${e.eventCode} = (options: any)=>{}`;
+                const ${eventName} = (options: any)=>{}`;
               }
               const startIndex = e.originDynamicActionSource.indexOf('try {');
               const endIndex =
@@ -73,7 +82,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
                 startIndex,
                 endIndex,
               );
-              return `export const ${e.eventCode} = (options: any)=>{${extractedString}} catch (err) {
+              return `export const ${eventName} = (options: any)=>{${extractedString}} catch (err) {
                 console.log(err);
               }}`;
             }
@@ -82,7 +91,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             //   id: `${eName}`,
             //   value: eValue,
             // };
-            return `export const ${e.eventCode} = ${CMDGeneratorEvent(
+            return `export const ${eventName} = ${CMDGeneratorEvent(
               item?.value,
               next?.contextData,
               {} as IScope,
