@@ -27,6 +27,7 @@ import moment from 'moment';
 import Popover from '@/components/Popover';
 import _ from 'lodash';
 import ArrayUtil from '@/utils/array';
+import { api } from '@/services/api';
 `,
 
       linkAfter: [],
