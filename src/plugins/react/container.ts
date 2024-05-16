@@ -23,22 +23,6 @@ import {
 import { ensureValidClassName } from '../../core/utils/validate';
 import { getImportFrom } from '../../utils/depsHelper';
 
-/**
- * 生成唯一id
- * @param prefix
- * @param id
- * @param slength
- * @returns
- */
-const createId = (prefix?: string, id?: string, slength: number = 12) => {
-  let uid = id;
-  if (!uid) {
-    uid = Math.random().toString().slice(slength);
-  }
-  return prefix ? prefix + '--' + uid : uid;
-};
-
-
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
     const next: ICodeStruct = {
@@ -65,12 +49,12 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       return 'pageIdError';
     };
     if (next?.contextData?.options?.pageIdMapping[ir.pagePath]) {
-      pageId = createId(ir.pagePath) || createId(next?.contextData?.options?.pageIdMapping[ir.pagePath]);
+      pageId = ir.pagePath || next?.contextData?.options?.pageIdMapping[ir.pagePath];
     } else {
-      pageId = createId(getBusiCompPageId(
+      pageId = getBusiCompPageId(
         next?.contextData?.options?.busiCompMapping,
         ir.id!,
-      ));
+      );
     }
     next.chunks.push({
       type: ChunkType.STRING,

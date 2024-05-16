@@ -53,7 +53,7 @@ import ArrayUtil from '@/utils/array';
     next.ir.deps.push(...getImportsFrom('@/utils/useTool', ['useTool']));
     next.ir.deps.push(getImportFrom('@/utils/customFuncMapping', 'customFuncMapping', false ));
     next.ir.deps.push(
-      ...getImportsFrom('@/utils/historytool', ['historytool', 'HISTORYTYPES']),
+      ...getImportsFrom('@/utils/historytool', ['historytool', 'HISTORYTYPES', 'createId']),
     );
 
     // next.ir.deps.push(

@@ -105,7 +105,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         };
         useEffect(() => {
           // 挂载自定义事件
-          customFuncMapping.add(renderId, customActionMap);
+          customFuncMapping.add(createId(renderId), customActionMap);
           return () => {
             // 页面销毁移除
             customFuncMapping.remove(renderId);
