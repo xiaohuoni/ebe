@@ -108,6 +108,66 @@ describe('getConditionOption 手写值比较', () => {
     const result = getConditionOption('value', options, config);
     expect(result).toEqual(expected);
   });
+  it(`比较值为 -2`, () => {
+    const options = {
+      operate: '==',
+      useManual: true,
+      manualValue: '-2',
+    };
+    const expected = `value == -2`;
+    const result = getConditionOption('value', options, config);
+    expect(result).toEqual(expected);
+  });
+  it(`比较值为 -1.2`, () => {
+    const options = {
+      operate: '==',
+      useManual: true,
+      manualValue: '-1.2',
+    };
+    const expected = `value == -1.2`;
+    const result = getConditionOption('value', options, config);
+    expect(result).toEqual(expected);
+  });
+  it(`比较值为 .2`, () => {
+    const options = {
+      operate: '==',
+      useManual: true,
+      manualValue: '.2',
+    };
+    const expected = `value == \".2\"`;
+    const result = getConditionOption('value', options, config);
+    expect(result).toEqual(expected);
+  });
+  it(`比较值为 2.`, () => {
+    const options = {
+      operate: '==',
+      useManual: true,
+      manualValue: '2.',
+    };
+    const expected = `value == \"2.\"`;
+    const result = getConditionOption('value', options, config);
+    expect(result).toEqual(expected);
+  });
+  it(`比较值为 1.2`, () => {
+    const options = {
+      operate: '==',
+      useManual: true,
+      manualValue: '1.2',
+    };
+    const expected = `value == 1.2`;
+    const result = getConditionOption('value', options, config);
+    expect(result).toEqual(expected);
+  });
+  it(`比较值为 1.2.1`, () => {
+    const options = {
+      operate: '==',
+      useManual: true,
+      manualValue: '1.2.1',
+    };
+    const expected = `value == \"1.2.1\"`;
+    const result = getConditionOption('value', options, config);
+    expect(result).toEqual(expected);
+  });
   it(`比较值为 12321`, () => {
     const options = {
       operate: '==',

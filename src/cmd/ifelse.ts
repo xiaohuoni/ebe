@@ -52,7 +52,7 @@ export interface Icondition {
   connector?: IconditionConnector;
 }
 export const safeNumberCode = (str: any) => {
-  if (/^\d+$/.test(str)) {
+  if (/^-?\d+(\.\d+)?$/.test(str)) {
     return str;
   } else {
     return parse2Var(str);
@@ -96,8 +96,6 @@ export const getConditionOption = (
       return `!checkIsEmpty(${value})`;
     case 'contains':
       config?.ir?.deps?.push(getImportFrom(utilsFilePath, 'checkIsContains'));
-      console.log(manualValue);
-      console.log(v);
       return `checkIsContains(${value}, ${v})`;
     case 'notContains':
       config?.ir?.deps?.push(getImportFrom(utilsFilePath, 'checkIsContains'));
