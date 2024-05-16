@@ -18,6 +18,12 @@ const countCMD = (value: any | any[]) => {
   }
 };
 
+const types = new Set();
+
+setTimeout(() => {
+  console.log('当前源码缺少的指令: ', [...types]);
+}, 5000);
+
 const CMDGenerator = (prames: CMDGeneratorPrames) => {
   if (!prames?.value?.type) {
     // 没有事件就抛弃
@@ -33,7 +39,8 @@ const CMDGenerator = (prames: CMDGeneratorPrames) => {
     str = cmd[type](prames);
   } else {
     str = cmd.defaultCmd(prames);
-    console.warn('源码指令缺失');
+    console.warn('源码指令缺失', type);
+    types.add(type);
   }
 
   // switch (prames?.value?.type) {

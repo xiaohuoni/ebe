@@ -2,12 +2,13 @@ import { CMDGeneratorPrames } from '../core/types';
 import { parse2Var } from '../core/utils/compositeType';
 import { toBool } from './utils/common';
 
-export function sysSetVisible({ value }: CMDGeneratorPrames): string {
+export function sysSetDisable({ value }: CMDGeneratorPrames): string {
   const { compId: tempCompId, compValueList: temValue } = value.options;
+
   let compId = Array.isArray(tempCompId) ? tempCompId : [];
   if (typeof tempCompId === 'string' && temValue?.[tempCompId]) {
     compId = [tempCompId];
-    return `// 设置控件显隐 \n setVisible('${compId}', ${parse2Var(
+    return `// 设置控件必填 \n setDisabled('${compId}', ${parse2Var(
       toBool(temValue?.[tempCompId]),
     )})`;
   } else if (Array.isArray(tempCompId)) {
@@ -18,11 +19,11 @@ export function sysSetVisible({ value }: CMDGeneratorPrames): string {
       }
     });
     if (Object.keys(valueList).length === 1) {
-      return `// 设置控件显隐 \n setVisible('${
+      return `// 设置控件必填  \n setDisabled('${
         Object.keys(valueList)[0]
       }', ${parse2Var(valueList[Object.keys(valueList)[0]])})`;
     }
-    return `// 批量设置控件显隐 \n setVisible(${parse2Var(valueList)})`;
+    return `// 批量设置控件必填  \n setDisabled(${parse2Var(valueList)})`;
   } else {
     return '';
   }

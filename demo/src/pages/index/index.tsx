@@ -182,7 +182,7 @@ const Page = () => {
       appConfig,
     };
     console.log(options);
-    let cleanedTree = cleanTree(pageDSLS, ['path', 'originCode']); // 清理字段'b'和字段'e'
+    let cleanedTree = cleanTree(pageDSLS, ['path']); // 清理字段'b'和字段'e'
     console.log('cleanedTree', cleanedTree);
     if (bower) {
       const result = await generateCode({

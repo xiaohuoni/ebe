@@ -20,3 +20,5 @@ export { closeModal } from './closeModal';
 export { callParentCustomFunc } from './callParentCustomFunc';
 export { apiRequest } from './apiRequest';
 export { callCustomPageFunc } from './callCustomPageFunc';
+export { customActionCode } from './customActionCode';
+export { sysSetDisable } from './sysSetDisable';

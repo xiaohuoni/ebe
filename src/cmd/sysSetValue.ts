@@ -1,6 +1,7 @@
 import { CMDGeneratorPrames } from '../core/types';
 import { CMDGeneratorFunction } from '../core/utils/CMDGenerator';
 import { parse2Var } from '../core/utils/compositeType';
+import { toBool } from './utils/common';
 
 export function sysSetValue({
   value,
@@ -18,13 +19,13 @@ export function sysSetValue({
   if (typeof tempCompId === 'string' && temValue?.[tempCompId]) {
     compId = [tempCompId];
     return `// 设置控件的值 \n setValue('${compId}', ${parse2Var(
-      temValue?.[tempCompId],
+      toBool(temValue?.[tempCompId]),
     )})${callback} `;
   } else if (Array.isArray(tempCompId)) {
     let valueList: any = {};
     compId.map((id: string) => {
       if (temValue?.[id]) {
-        valueList[id] = temValue[id];
+        valueList[id] = toBool(temValue[id]);
       }
     });
     return `// 批量设置控件的值 \n setValue(${parse2Var(

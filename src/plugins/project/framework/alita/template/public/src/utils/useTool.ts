@@ -1,3 +1,13 @@
+const toBool = (v: string | boolean) => { 
+  if (v === 'true') {
+    return true;
+  }
+  if (v === 'false') {
+    return false;
+  }
+  return v;
+}
+
 export const useTool = (refs: Record<string, any>) => {
   const getValue = (id: string, stateName?: string) => {
     if (stateName) {
@@ -56,14 +66,39 @@ export const useTool = (refs: Record<string, any>) => {
       Object.keys(ids).forEach((id) => {
         if (ids[id]) {
           if (ids[id] === 'toggle') {
-            refs?.[id]?.setVisible(!getRequired(id));
+            refs?.[id]?.setRequired(!getRequired(id));
           } else {
-            refs?.[id]?.setVisible(ids[id]);
+            refs?.[id]?.setRequired(ids[id]);
           }
         }
       });
     } else if (typeof ids === 'string' && value !== undefined) {
-      refs?.[ids]?.setVisible(value);
+      refs?.[ids]?.setRequired(value);
+    } else {
+      console.error('传入的组件ID数据异常');
+    }
+  };
+
+  const getDisabled = (id: string) => {
+    return refs?.[id]?.disabled || false;
+  };
+
+  const setDisabled = (
+    ids: Record<string, boolean | 'toggle' | 'false' | 'true'> | string,
+    value?: any,
+  ) => {
+    if (Object.prototype.toString.call(ids) === '[object Object]') {
+      Object.keys(ids).forEach((id) => {
+        if (ids[id]) {
+          if (ids[id] === 'toggle') {
+            refs?.[id]?.setDisabled(!getDisabled(id));
+          } else {
+            refs?.[id]?.setDisabled(toBool(ids[id]));
+          }
+        }
+      });
+    } else if (typeof ids === 'string' && value !== undefined) {
+      refs?.[ids]?.setDisabled(value);
     } else {
       console.error('传入的组件ID数据异常');
     }
@@ -95,5 +130,7 @@ export const useTool = (refs: Record<string, any>) => {
     getRequired,
     setRequired,
     callComponentMethod,
+    setDisabled,
+    getDisabled,
   };
 };
