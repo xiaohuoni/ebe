@@ -5,7 +5,7 @@ const busiCompMap: any = {};
 export const getBusiCompName = (busiCompMapping: any, node: any) => {
   const otherType = busiCompMapping?.[node?.props?.busiCompId] ?? '';
   try {
-    const pageName = node?.pageName ?? node?.props?.name;
+    const pageName = node?.pageName ?? node?.label;
     const name = pinyin(`${pageName}`, {
       style: 'normal',
     })
@@ -15,11 +15,11 @@ export const getBusiCompName = (busiCompMapping: any, node: any) => {
       .replaceAll('(', '')
       .replaceAll(')', '');
     if (busiCompMap[name]) {
-      return busiCompMap[name] === node?.props?.busiCompId
+      return busiCompMap[name] === otherType
         ? name
         : `${name}${otherType}`;
     }
-    busiCompMap[name] = node?.props?.busiCompId;
+    busiCompMap[name] = otherType;
     return name;
   } catch (error) {
     return `BusiComp${otherType}`;
