@@ -19,3 +19,4 @@ export { sysSetVisible } from './sysSetVisible';
 export { closeModal } from './closeModal';
 export { callParentCustomFunc } from './callParentCustomFunc';
 export { apiRequest } from './apiRequest';
+export { callCustomPageFunc } from './callCustomPageFunc';

@@ -54,7 +54,10 @@ import { api } from '@/services/api';
     next.ir.deps.push(...getImportsFrom('@/utils/useTool', ['useTool']));
     next.ir.deps.push(getImportFrom('@/utils/customFuncMapping', 'customFuncMapping', false ));
     next.ir.deps.push(
-      ...getImportsFrom('@/utils/historytool', ['historytool', 'HISTORYTYPES', 'createId']),
+      ...getImportsFrom('@/utils/customFuncMapping', ['createRenderId']),
+    );
+    next.ir.deps.push(
+      ...getImportsFrom('@/utils/historytool', ['historytool', 'HISTORYTYPES']),
     );
 
     // next.ir.deps.push(
