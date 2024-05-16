@@ -3,7 +3,7 @@ import {
   CompositeValueGeneratorOptions,
 } from '../core/types';
 import { CMDGeneratorFunction } from '../core/utils/CMDGenerator';
-import { generateVarString } from '../core/utils/compositeType';
+import { generateVarString, parse2Var } from '../core/utils/compositeType';
 import { isJSVar } from '../core/utils/deprecated';
 import { getImportFrom } from '../utils/depsHelper';
 
@@ -51,6 +51,13 @@ export interface Icondition {
   objId?: string;
   connector?: IconditionConnector;
 }
+export const safeNumberCode = (str: any) => {
+  if (/^\d+$/.test(str)) {
+    return str;
+  } else {
+    return parse2Var(str);
+  }
+};
 export const getConditionOption = (
   value: string,
   options: IConditionOptions,
@@ -65,7 +72,8 @@ export const getConditionOption = (
     objOperate,
     stateVal,
   } = options;
-  let v = manualValue;
+  let v = safeNumberCode(manualValue);
+
   if (useObject) {
     if (objOperate && ['setValue', 'value'].includes(objOperate)) {
       // 如果使用对象，修改 v
@@ -88,6 +96,8 @@ export const getConditionOption = (
       return `!checkIsEmpty(${value})`;
     case 'contains':
       config?.ir?.deps?.push(getImportFrom(utilsFilePath, 'checkIsContains'));
+      console.log(manualValue);
+      console.log(v);
       return `checkIsContains(${value}, ${v})`;
     case 'notContains':
       config?.ir?.deps?.push(getImportFrom(utilsFilePath, 'checkIsContains'));

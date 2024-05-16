@@ -98,6 +98,36 @@ describe('getConditionOption 手写值比较', () => {
     const result = getConditionOption('value', options, config);
     expect(result).toEqual(expected);
   });
+  it(`比较值为 ab`, () => {
+    const options = {
+      operate: '==',
+      useManual: true,
+      manualValue: 'ab',
+    };
+    const expected = `value == \"ab\"`;
+    const result = getConditionOption('value', options, config);
+    expect(result).toEqual(expected);
+  });
+  it(`比较值为 12321`, () => {
+    const options = {
+      operate: '==',
+      useManual: true,
+      manualValue: '12321',
+    };
+    const expected = `value == 12321`;
+    const result = getConditionOption('value', options, config);
+    expect(result).toEqual(expected);
+  });
+  it(`比较值为 a12321`, () => {
+    const options = {
+      operate: '==',
+      useManual: true,
+      manualValue: 'a12321',
+    };
+    const expected = `value == \"a12321\"`;
+    const result = getConditionOption('value', options, config);
+    expect(result).toEqual(expected);
+  });
 });
 
 describe('getConditionOption 使用对象比较', () => {
