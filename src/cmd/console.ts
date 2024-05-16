@@ -39,7 +39,11 @@ export function getConsole({ value }: CMDGeneratorPrames): string {
       if (isJSVar(v)) {
         return generateVarString(v);
       }
-      return `'${v}'`;
+      if (v.includes('\n')) {
+        return `\`${v}\``;
+      } else {
+        return `'${v}'`;
+      }
     })
     .filter(Boolean)
     .join(',')});`;
