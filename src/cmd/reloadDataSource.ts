@@ -80,7 +80,7 @@ export function reloadDataSource(generateParams: CMDGeneratorPrames): string {
         busiObjectId: dsConfig.config?.options?.object?.busiObjectId,
       })},
     ${payloadCode}
-  );
+  )
   `;
   } else {
     // 自定义

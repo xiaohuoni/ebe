@@ -1,1 +1,1 @@
-export { default as GeneratorCallbackWithThenCatch } from './generatorCallback';
+export { default as GeneratorCallbackWithThenCatch } from './GeneratorCallback';

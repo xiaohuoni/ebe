@@ -8,11 +8,12 @@ export const GetReqParamValues = (value: { type: string[]; code: string }) => {
   switch (type[0]) {
     case 'globaldatasource':
     case 'datasource': {
+      const prefix = type[0] === 'globaldatasource' ? 'globalData' : 'data';
       const [dsName, place] = [type[1], type[2]];
       const dataSourceName =
         place === 'filterData' ? getDSFilterName(dsName) : dsName;
       targetVal = valueCode
-        ? `${dataSourceName}?.${valueCode}`
+        ? `${prefix}?.${dataSourceName}?.${valueCode}`
         : `${valueCode}`;
       break;
     }

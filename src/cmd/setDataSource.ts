@@ -81,7 +81,7 @@ const getArrayFilterCbCode = (item: any) => {
         break;
       }
       filterCode = `
-        (row: any, index: number) => row[${itemLocateKey}] == ${itemLocateKeyValue})
+        (row: any, index: number) => row.${itemLocateKey} == ${parse2Var(itemLocateKeyValue)}
       `;
       break;
     case ITME_LOCAL_TYPE.custom:
