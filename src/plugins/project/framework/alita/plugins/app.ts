@@ -10,27 +10,6 @@ import {
 // TODO: 这里的AppiD要删除
 const pageId = '1106388573299146752';
 
-// TODO: 应用钩子应该是i通用的，这里可以移动到 src/parser/SchemaParser.ts
-// 然后从上层传下来
-// options.appConfig.frontendHookList
-// options.appConfig.frontendHookList[0]
-// options.appConfig.frontendHookList[0].hookCode = "fetchSuccess"
-// options.appConfig.frontendHookList[0].hookCompiledContent = "(function(data,_ref,_ref2,_ref3){var message=_ref.message,notification=_ref.notification,modal=_ref.modal;var url=_ref2.url,params=_ref2.params;var CryptoJS=_ref3.CryptoJS;console.log(\"\\u8BF7\\u6C42\\u6210\\u529F\");return data});"
-// options.appConfig.frontendHookList[0].hookSourceContent ="/**\n * @param {object} data 响应业务数据\n * @param {object} message 全局消息提示\n * @param {object} notification 通知提示框\n * @param {object} modal 对话框\n * @param {string} url 请求地址\n * @param {object} params 请求参数\n * @param {object} CryptoJS 加密工具\n * @return {object} 返回请求成文功报\n*/\n(data, { message, notification, modal }, { url, params }, { CryptoJS }) => {\n    console.log('请求成功')\n    return data\n}\n"
-// options.appConfig.frontendHookList[0].hookType = 'req'
-const getFrontendHookList = (frontendHookList: any[]) => {
-  const returnObject: any = {};
-  frontendHookList.forEach((item) => {
-    if (item?.hookCode && item.hookSourceContent) {
-      returnObject[item?.hookCode] = item.hookSourceContent.replace(
-        '\n(',
-        `\n const ${item?.hookCode} = (`,
-      );
-    }
-  });
-
-  return returnObject;
-};
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
     const next: ICodeStruct = {
@@ -45,8 +24,13 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     }
 
     const options = next.contextData.options;
-    const { fetchSuccess, fetchSendBefore, fetchFail, fetchResponse } =
-      getFrontendHookList(options?.appConfig?.frontendHookList);
+    const {
+      fetchSuccess,
+      fetchSendBefore,
+      fetchFail,
+      fetchResponse,
+      appDidInit,
+    } = options?.frontendHookMap;
 
     const isMobile = options?.platform === 'h5';
     // 暂时只需要改 keepalive ，如果后面修改的多了，可以参考 pageview 或者 jsx 的插件的生命周期
@@ -237,7 +221,18 @@ export const request: RequestConfig = {
     !!fetchResponse ? 'responseInterceptor, ' : ''
   }defaultResponense],
 };
-      `,
+      
+${
+  appDidInit
+    ? `
+${appDidInit}
+export async function render(oldRender: () => void) {
+  appDidInit({info:'TODO: 出码之后的应用信息'});
+  oldRender();
+}
+`
+    : ''
+}`,
       linkAfter: [COMMON_CHUNK_NAME.ExternalDepsImport],
     });
 

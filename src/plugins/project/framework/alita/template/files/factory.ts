@@ -9,8 +9,9 @@ import pcconfig from '@lingxiteam/pcfactory/lib/index.config';
 export default function getFile(
   config?: LXProjectOptions,
 ): [string[], ResultFile] {
-  let cg = appconfig;
+  let cg: any = appconfig;
   const isMobile = config?.platform === 'h5';
+  const { componentWillMount } = config?.frontendHookMap;
   if (!isMobile) {
     cg = pcconfig;
   }
@@ -58,6 +59,7 @@ export default function getFile(
     return false;
   };
   
+  ${componentWillMount ? componentWillMount : ''}
   const Hoc = (Component: any, config?:any) => {
     const fieldPropsChange = () => {};
     const { type, fieldProps } = config;
@@ -126,6 +128,13 @@ export default function getFile(
         },
         ...componentRef.current
       }));
+      ${
+        componentWillMount
+          ? `if(componentWillMount(initialProps?.uid, config?.type, initialProps, {}) === false){
+        return null;
+      }`
+          : ''
+      }
   
       // 统一处理部分逻辑
       return <Component {...compProps} {...(compProps?.extendProps || {})} ref= {componentRef}/>;
@@ -143,9 +152,13 @@ export default function getFile(
         });`,
     )
     .join('\n')}
-    ${otherHash.map((i) => `  export const ${i} = Hoc(_${i}, {
+    ${otherHash
+      .map(
+        (i) => `  export const ${i} = Hoc(_${i}, {
       type: ${parse2Var(i)}
-    });`).join('\n')}
+    });`,
+      )
+      .join('\n')}
   `,
   );
 

@@ -5,7 +5,7 @@ export default function getFile(
   config?: LXProjectOptions,
 ): [string[], ResultFile] {
   const isMobile = config?.platform === 'h5';
-
+  const { pageDidMount, pageWillUnmount } = config?.frontendHookMap;
   const file = createResultFile(
     'withPageHOC',
     'tsx',
@@ -295,8 +295,18 @@ export const withPageHOC = (
         attrDataMap,
       });
     };
+    ${pageDidMount ? pageDidMount : ''}
+    ${pageWillUnmount ? pageWillUnmount : ''}
     useEffect(() => {
+      ${pageDidMount ? `pageDidMount()` : ''}
       init();
+        ${
+          pageWillUnmount
+            ? `return ()=>{ 
+          pageWillUnmount()
+             }`
+            : ''
+        }
     }, []);
 
     // 可以在这里加 loading
