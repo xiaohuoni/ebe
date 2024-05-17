@@ -28,6 +28,7 @@ import Popover from '@/components/Popover';
 import _ from 'lodash';
 import ArrayUtil from '@/utils/array';
 import { api } from '@/services/api';
+import * as functorsMap from '@/utils/functors';
 `,
 
       linkAfter: [],

@@ -101,7 +101,8 @@ export default function createIceJsProjectBuilder(
             "crypto-js": "^4.2.0",
             "jsencrypt": "^3.3.2",
             "merge": "^2.1.1",
-            "uuid": "^9.0.1"
+            "uuid": "^9.0.1",
+            dayjs: "1.11.3"
           },
           dependencies: {
             '@lingxiteam/cli': '^0.4.6',
@@ -125,7 +126,8 @@ export default function createIceJsProjectBuilder(
             "crypto-js": "^4.2.0",
             "jsencrypt": "^3.3.2",
             "merge": "^2.1.1",
-            "uuid": "^9.0.1"
+            "uuid": "^9.0.1",
+            dayjs: "1.11.3"
           },
           devDependencies: {
             '@types/qs': '^6.9.6',

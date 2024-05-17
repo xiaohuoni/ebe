@@ -1,0 +1,20 @@
+import { FunctorDefine } from './types';
+
+export const COUNTBLANK = FunctorDefine({
+  label: '计空值数',
+  type: 'COUNTBLANK',
+  value: 'COUNTBLANK(1月,2月,3月)',
+  functor(...values: any[]): number {
+    return values.filter(v => v === null || v === undefined || '').length;
+  },
+  define: ['计算参数中包含的空值个数'],
+  description: {
+    tips: [],
+    title: '(数值1,数值2...)',
+  },
+  example: {
+    tips: ['计算第一季度指标的未完成数量，该表有三个检查框对应1、2、3月指标是否完成，名称分别为1月、2月、3月，2月份未完成'],
+    title: '(1月,2月,3月) ，结果：1',
+  },
+  groupsName: '数学函数',
+});
