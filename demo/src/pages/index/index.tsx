@@ -16,7 +16,11 @@ const Item = Form.Item;
 const getPageDsls = (resultObjects: any[]) => {
   return resultObjects
     .filter(Boolean)
-    .map((i) => JSON.parse(i.resultObject.attrMappingJson));
+    .map((i) => { 
+      const pageData = JSON.parse(i.resultObject.attrMappingJson);
+      pageData.pageId = i.resultObject?.pageId;
+      return pageData;
+    });
 };
 function findAllItem<T = any>(
   target: T[],
@@ -164,6 +168,7 @@ const Page = () => {
       const busiData = JSON.parse(
         i?.resultObject?.busiCompVersion?.sourceCodeJson,
       );
+      busiData.busiCompId = i?.resultObject?.busiCompId;
       busiCompMapping[itemLists[index]] = busiData.id;
       return busiData;
     });
@@ -225,8 +230,8 @@ const Page = () => {
         autoComplete="off"
         onFinish={onFinish}
         initialValues={{
-          appId: '1106101614441574400',
-          pageId: '',
+          appId: '1089426139952508928',
+          pageId: '1092016686784929792',
           platform: false,
         }}
       >

@@ -43,9 +43,16 @@ export default function hackEngineApis(
       type: PIECE_TYPE.ATTR,
       value: 'style={{ height: "100%", ...style }}',
     });
+
+    // 根据页面类型不同，渲染不同的id
+    let renderCls = `lcdp-renderer lcdp-renderer-dynamicPage-view_box dynamic_page_${nodeItem.pageId}`;
+    if (nodeItem.pageContainerType === 'BusiComp') {
+      renderCls = `dynamic_boframer dynamic_boframer_${nodeItem.busiCompId}, dynamic_page_${nodeItem.busiCompId}`;
+    }
+
     pieces.push({
       type: PIECE_TYPE.ATTR,
-      value: `className="__CustomClass_${nodeItem.id}__"`,
+      value: `className="${renderCls} __CustomClass_${nodeItem.id}__"`,
     });
   }
   // 如果是业务组件要改名字

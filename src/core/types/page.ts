@@ -43,6 +43,8 @@ export interface IProjectSchema extends Component {
   busiComp?: any;
   customClass?: string;
   customFuctions?: any[];
+  busiCompId?: string;
+  pageId?: string;
 }
 
 export interface PackageJSON {
