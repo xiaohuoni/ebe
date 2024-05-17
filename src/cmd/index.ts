@@ -27,3 +27,4 @@ export { callSelfFunc } from './callSelfFunc';
 export { setCompState } from './setCompState';
 export { getFormValue } from './getFormValue';
 export { exportSQLServiceData } from './exportSQLServiceData';
+export  { returnCmd as return }from './return';

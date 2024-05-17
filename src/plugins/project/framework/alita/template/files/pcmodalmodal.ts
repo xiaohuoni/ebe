@@ -61,7 +61,6 @@ export default function getFile(): [string[], ResultFile] {
             className={classnames(
               className,
               'ued-modal-wrap',
-              \`dynamic_modal_\${pagePath || ''}\`,
             )}
             onOk={() => {
               console.log('里面会回调 props.onOK');

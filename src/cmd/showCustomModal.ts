@@ -9,9 +9,13 @@ export function showCustomModal({
 }: CMDGeneratorPrames): string {
   const { paramsObj, modalname, pageId } = value.options;
   const { callback1 } = value;
+  const temParams = {
+    ...paramsObj,
+    // className: `dynamic_page_${pageId}, dynamic_pageView_${pageId}`
+  };
   const params = {
     pagePath: modalname || pageId,
-    params: paramsObj || {},
+    params: temParams,
   };
   const onOkString =
     Array.isArray(callback1) && callback1.length
