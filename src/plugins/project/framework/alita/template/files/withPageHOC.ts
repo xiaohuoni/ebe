@@ -211,7 +211,7 @@ export const withPageHOC = (
               }),
             getVisible: (compId: string) => {
               // @ts-ignore
-              return refs.value[compId]?.visible;
+              return refs.value?.[compId]?.visible;
             },
             stateListener: getStateListener(renderId),
             sandBoxRun,
@@ -228,9 +228,8 @@ export const withPageHOC = (
             // ??? 外层和 service 都需要？
             service: {
               ...api,
-              ...baseApi.service
+              ...baseApi
             },
-            ...api,
           };
         },
       };

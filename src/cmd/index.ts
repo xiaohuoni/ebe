@@ -25,3 +25,4 @@ export { sysSetDisable } from './sysSetDisable';
 export { reloadSelectData } from './reloadSelectData';
 export { callSelfFunc } from './callSelfFunc';
 export { setCompState } from './setCompState';
+export { getFormValue } from './getFormValue';

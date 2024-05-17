@@ -8,6 +8,9 @@ const toBool = (v: string | boolean) => {
   return v;
 }
 
+
+type RefsType = Record<string, any>;
+
 export const useTool = (refs: Record<string, any>) => {
   const getValue = (id: string, stateName?: string) => {
     if (stateName) {
@@ -122,6 +125,18 @@ export const useTool = (refs: Record<string, any>) => {
     }
   };
 
+  /**
+   * 获取当前表单值
+   * TODO: 这里的逻辑缺失，缺少循环容器内嵌套表单的情况
+   */
+  const getFormValue = (compId: string) => { 
+    // 这里逻辑肯定不对
+    if (refs[compId]) {
+      return refs[compId].getFieldsValue();
+    }
+    return null;
+  }
+
   return {
     getValue,
     setValue,
@@ -132,5 +147,6 @@ export const useTool = (refs: Record<string, any>) => {
     callComponentMethod,
     setDisabled,
     getDisabled,
+    getFormValue,
   };
 };
