@@ -158,7 +158,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       linkAfter: [
         ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
         CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
-        MODAL_CHUNK_NAME.ImperativeHandle,
       ],
     });
 

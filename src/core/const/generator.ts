@@ -1,3 +1,5 @@
+import { MODAL_CHUNK_NAME } from "../../plugins/react/const";
+
 export const COMMON_CHUNK_NAME = {
   ExternalDepsImport: 'CommonExternalDependencyImport',
   InternalDepsImport: 'CommonInternalDependencyImport',
@@ -109,6 +111,12 @@ export const DEFAULT_LINK_AFTER = {
     CLASS_DEFINE_CHUNK_NAME.InsMethod,
     CLASS_DEFINE_CHUNK_NAME.InsPrivateMethod,
     CLASS_DEFINE_CHUNK_NAME.ConstructorEnd,
+    MODAL_CHUNK_NAME.ImperativeHandle,
+    MODAL_CHUNK_NAME.PageDidMount,
+    MODAL_CHUNK_NAME.PageEndRequest,
+    MODAL_CHUNK_NAME.PageStateChange,
+    MODAL_CHUNK_NAME.PageWillUnmount
+    
   ],
   [COMMON_CHUNK_NAME.FileMainContent]: [
     COMMON_CHUNK_NAME.ExternalDepsImport,

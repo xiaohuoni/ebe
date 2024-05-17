@@ -14,7 +14,7 @@ import {
 import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
 import { getImportFrom } from '../../utils/depsHelper';
 import { getEvents } from '../../utils/schema/parseDsl';
-import { CUSTOM_ACTION_CHUNK_NAME } from './const';
+import { CUSTOM_ACTION_CHUNK_NAME, REACT_CHUNK_NAME } from './const';
 
 const getSaleEventName = (eventName: any) => {
   const sale =
@@ -57,68 +57,88 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.Map,
         subModule: 'customAction',
-        content: 'const useCustomAction = (context: any) => {' + ir?.customFuctions
-          .map((e) => {
-            const value = e.setEvents?.map((event: any) => {
-              const { eName, eValue } = getEvents(event);
-              return {
-                id: `${eName}`,
-                value: eValue,
-              };
-            });
-            const item = value?.[0];
-            const eventName = getSaleEventName(e.eventCode);
-            customFuctionsIds.push(eventName);
-            // TODO: setEvents 不存在，应该要执行 dynamicActionSource？
-            if (!item) {
-              if (!e.originDynamicActionSource) {
-                return `// 编排时为空
+        content:
+          'const useCustomAction = (context: any) => {' +
+          ir?.customFuctions
+            .map((e) => {
+              const value = e.setEvents?.map((event: any) => {
+                const { eName, eValue } = getEvents(event);
+                return {
+                  id: `${eName}`,
+                  value: eValue,
+                };
+              });
+              const item = value?.[0];
+              const eventName = getSaleEventName(e.eventCode);
+              customFuctionsIds.push(eventName);
+              // TODO: setEvents 不存在，应该要执行 dynamicActionSource？
+              if (!item) {
+                if (!e.originDynamicActionSource) {
+                  return `// 编排时为空
                 const ${eventName} = (options: any)=>{}`;
-              }
-              const startIndex = e.originDynamicActionSource.indexOf('try {');
-              const endIndex =
-                e.originDynamicActionSource.indexOf('} catch (err) {');
-              const extractedString = e.originDynamicActionSource.substring(
-                startIndex,
-                endIndex,
-              );
-              return `export const ${eventName} = (options: any)=>{${extractedString}} catch (err) {
+                }
+                const startIndex = e.originDynamicActionSource.indexOf('try {');
+                const endIndex =
+                  e.originDynamicActionSource.indexOf('} catch (err) {');
+                const extractedString = e.originDynamicActionSource.substring(
+                  startIndex,
+                  endIndex,
+                );
+                return `export const ${eventName} = (options: any)=>{${extractedString}} catch (err) {
                 console.log(err);
               }}`;
-            }
-            // const { eName, eValue } = events;
-            // schema.events[eName] = {
-            //   id: `${eName}`,
-            //   value: eValue,
-            // };
-            return `const ${eventName} = ${CMDGeneratorEvent(
-              item?.value,
-              next?.contextData,
-              {} as IScope,
-              { ir },
-            )}`;
-          })
-          .join(';')+ `\n return {\n${customFuctionsIds.map(i => i).join(',')} \n}}; export default useCustomAction;`,
+              }
+              // const { eName, eValue } = events;
+              // schema.events[eName] = {
+              //   id: `${eName}`,
+              //   value: eValue,
+              // };
+              return `const ${eventName} = ${CMDGeneratorEvent(
+                item?.value,
+                next?.contextData,
+                {} as IScope,
+                { ir },
+              )}`;
+            })
+            .join(';') +
+          `\n return {\n${customFuctionsIds
+            .map((i) => i)
+            .join(',')} \n}}; export default useCustomAction;`,
         linkAfter: [
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         ],
       });
       // 在文件头引入
-      next.ir.deps.push(getImportFrom('./customAction', 'useCustomAction', false));
+      next.ir.deps.push(
+        getImportFrom('./customAction', 'useCustomAction', false),
+      );
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: cfg.fileType,
+        name: CUSTOM_ACTION_CHUNK_NAME.DidMount,
+        content: `// 挂载自定义事件
+        customFuncMapping.add(createRenderId(renderId), customActionMap);`,
+        linkAfter: [
+          REACT_CHUNK_NAME.DidMountStart,
+          REACT_CHUNK_NAME.DidMountContent,
+        ],
+      });
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: cfg.fileType,
+        name: CUSTOM_ACTION_CHUNK_NAME.WillUnmount,
+        content: `// 页面销毁移除
+        customFuncMapping.remove(renderId);`,
+        linkAfter: [
+          REACT_CHUNK_NAME.WillUnmountStart,
+          REACT_CHUNK_NAME.WillUnmountContent,
+        ],
+      });
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
-        content: `\n //定义页面的自定义事件 \n  const customActionMap = useCustomAction({ data })
-        useEffect(() => {
-          // 挂载自定义事件
-          customFuncMapping.add(createRenderId(renderId), customActionMap);
-          return () => {
-            // 页面销毁移除
-            customFuncMapping.remove(renderId);
-          };
-        }, []);
-        `,
+        content: `\n //定义页面的自定义事件 \n  const customActionMap = useCustomAction({ data })`,
         linkAfter: [
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         ],

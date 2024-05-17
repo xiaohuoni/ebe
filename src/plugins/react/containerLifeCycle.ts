@@ -112,21 +112,34 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           linkAfter: [MODAL_CHUNK_NAME.OnOk, MODAL_CHUNK_NAME.OnCancel],
         });
       }
-      next.chunks.push({
-        type: ChunkType.STRING,
-        fileType: cfg.fileType,
-        name: REACT_CHUNK_NAME.DidUpdateContent,
-        content: events?.stateChange
-          ? generateFunction(
-              events?.stateChange,
-              {
-                name: ir.platform,
-              },
-              { ir },
-            )
-          : '',
-        linkAfter: [REACT_CHUNK_NAME.DidUpdateStart],
-      });
+
+      // 页面生命周期
+      if (events?.stateChange) {
+        next.chunks.push({
+          type: ChunkType.STRING,
+          fileType: cfg.fileType,
+          name: MODAL_CHUNK_NAME.PageStateChange,
+          content: `const stateChange = async ()=>{ ${generateFunction(
+            events?.stateChange,
+            {
+              name: ir.platform,
+            },
+            { ir },
+          )} }`,
+          linkAfter: [
+            ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
+            CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
+          ],
+        });
+        next.chunks.push({
+          type: ChunkType.STRING,
+          fileType: cfg.fileType,
+          name: REACT_CHUNK_NAME.DidUpdateContent,
+          content: 'stateChange()',
+          linkAfter: [REACT_CHUNK_NAME.DidUpdateStart],
+        });
+      }
+
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: FileType.TSX,
@@ -146,37 +159,56 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         ],
       });
 
-      next.chunks.push({
-        type: ChunkType.STRING,
-        fileType: cfg.fileType,
-        name: REACT_CHUNK_NAME.WillUnmountContent,
-        content: events?.willUnmount
-          ? generateFunction(
-              events?.willUnmount,
-              {
-                name: ir.platform,
-              },
-              { ir },
-            )
-          : '',
-        linkAfter: [REACT_CHUNK_NAME.WillUnmountStart],
-      });
+      if (events?.willUnmount) {
+        next.chunks.push({
+          type: ChunkType.STRING,
+          fileType: cfg.fileType,
+          name: MODAL_CHUNK_NAME.PageWillUnmount,
+          content: `const willUnmount = async ()=>{ ${generateFunction(
+            events?.willUnmount,
+            {
+              name: ir.platform,
+            },
+            { ir },
+          )} }`,
+          linkAfter: [
+            ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
+            CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
+          ],
+        });
+        next.chunks.push({
+          type: ChunkType.STRING,
+          fileType: cfg.fileType,
+          name: REACT_CHUNK_NAME.WillUnmountContent,
+          content: 'willUnmount()',
+          linkAfter: [REACT_CHUNK_NAME.WillUnmountStart],
+        });
+      }
 
-      next.chunks.push({
-        type: ChunkType.STRING,
-        fileType: cfg.fileType,
-        name: REACT_CHUNK_NAME.DidMountContent,
-        content: events?.useEffect
-          ? generateFunction(
-              events.useEffect,
-              {
-                name: ir.platform,
-              },
-              { ir },
-            )
-          : '',
-        linkAfter: [REACT_CHUNK_NAME.DidMountStart],
-      });
+      if (events?.useEffect) {
+        next.chunks.push({
+          type: ChunkType.STRING,
+          fileType: cfg.fileType,
+          name: MODAL_CHUNK_NAME.PageDidMount,
+          content: `const didMount = async ()=>{ ${generateFunction(
+            events?.useEffect,
+            {
+              name: ir.platform,
+            },
+            { ir },
+          )} }`,
+          linkAfter: [
+            CLASS_DEFINE_CHUNK_NAME.ConstructorStart
+          ],
+        });
+        next.chunks.push({
+          type: ChunkType.STRING,
+          fileType: cfg.fileType,
+          name: REACT_CHUNK_NAME.DidMountContent,
+          content: 'didMount()',
+          linkAfter: [REACT_CHUNK_NAME.DidMountStart],
+        });
+      }
     }
     return next;
   };
