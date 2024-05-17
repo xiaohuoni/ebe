@@ -12,6 +12,8 @@ export const REACT_CHUNK_NAME = {
   WillUnmountStart: 'ReactComponentWillUnmountStart',
   WillUnmountEnd: 'ReactComponentWillUnmountEnd',
   WillUnmountContent: 'ReactComponentWillUnmountContent',
+  RenderFormContextStart: 'ReactComponentRenderFormContextStart',
+  RenderFormContextEnd: 'ReactComponentRenderFormContextEnd',
 };
 
 export const MODAL_CHUNK_NAME = {

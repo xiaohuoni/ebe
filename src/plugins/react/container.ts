@@ -63,7 +63,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       content: `
         // 生成一个Id，用来记录当前页面所有的自定义事件
         const renderId = '${pageId}';
-        const ${type}: React.FC<PageProps> = ({
+        const ${type} = React.forwardRef<unknown, PageProps>(({
           attrDataMap={},customActionMapRef,routerData,lcdpApi,
           injectData, refs, state, functorsMap, getStaticDataSourceService, updateGlobalDataSource, componentItem, style, urlParam, ${isModal ? 'forwardedRef,' : ''
         } 
@@ -73,7 +73,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           lcdpParentRenderId,
           ${isModal ? 'onOk: fatherOnOk,' : ''}
           ${isModal ? 'closeModal' : ''}
-      }) => {`,
+      }, ref) => {`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
         COMMON_CHUNK_NAME.InternalDepsImport,
@@ -83,32 +83,30 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       ],
     });
 
-    if (ir.dataSource?.length) {
-      next.chunks.push({
-        type: ChunkType.STRING,
-        fileType: FileType.TSX,
-        name: DATA_SOURCE_CHUNK_NAME.CallDataSource,
-        content: `
-          const {
-            data,
-            updateData,
-            resetDataSource,
-            reloadCustomDataSource,
-            dataSnapshot,
-            reloadServiceDataSource,
-            reloadObjectDataSource,
-            loading: dataLoading,
-            dataReadyComplete
-          } = useDataSource({
-            urlParam,
-            routerData,
-            state,
-            lcdpApi,
-          })
-          `,
-        linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
-      });
-    }
+    next.chunks.push({
+      type: ChunkType.STRING,
+      fileType: FileType.TSX,
+      name: DATA_SOURCE_CHUNK_NAME.CallDataSource,
+      content: `
+        const {
+          data,
+          updateData,
+          resetDataSource,
+          reloadCustomDataSource,
+          dataSnapshot,
+          reloadServiceDataSource,
+          reloadObjectDataSource,
+          loading: dataLoading,
+          dataReadyComplete
+        } = useDataSource({
+          urlParam,
+          routerData,
+          state,
+          lcdpApi,
+        })
+        `,
+      linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
+    });
 
     next.chunks.push({
       type: ChunkType.STRING,
@@ -122,7 +120,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: CLASS_DEFINE_CHUNK_NAME.End,
-      content: '}',
+      content: '})',
       linkAfter: [
         ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
         REACT_CHUNK_NAME.RenderEnd,
@@ -214,6 +212,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         REACT_CHUNK_NAME.RenderStart,
         REACT_CHUNK_NAME.RenderPre,
         REACT_CHUNK_NAME.RenderJSX,
+        REACT_CHUNK_NAME.RenderFormContextEnd,
       ],
     });
 
@@ -226,11 +225,11 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     let hasDataSource = false;
     if (ir.dataSource && ir.dataSource.length) {
       // import dataSource from './dataSource';
-      next.ir.deps.push(
-        getImportFrom('./useDataSource', 'useDataSource', false),
-      );
       hasDataSource = true;
     }
+    next.ir.deps.push(
+      getImportFrom('./useDataSource', 'useDataSource', false),
+    );
     // "customFuctions": [
     //   {
     //       "eventName": "选中节点",
