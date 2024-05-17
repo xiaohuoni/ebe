@@ -51,15 +51,20 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       });
     };
     getComponentsMap(ir);
-
     if (customClass) {
-      // import { styleInject } from '@/utils/styleInject';
-      next.ir.deps.push(getImportFrom('@/utils/styleInject', 'styleInject'));
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: FileType.CSS,
+        name: COMMON_CHUNK_NAME.InternalDepsImport,
+        content: normalizeCSS(customClass ?? ' ', classRoot),
+        linkAfter: [COMMON_CHUNK_NAME.ExternalDepsImport],
+        subModule: 'customClass',
+      });
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: FileType.TSX,
         name: INJECT_STYLE_CHUNK_NAME.InjectStyleStart,
-        content: `styleInject(`,
+        content: `import './customClass.css'`,
         linkAfter: [
           COMMON_CHUNK_NAME.ExternalDepsImport,
           COMMON_CHUNK_NAME.InternalDepsImport,
@@ -67,22 +72,6 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           COMMON_CHUNK_NAME.FileVarDefine,
           COMMON_CHUNK_NAME.FileUtilDefine,
         ],
-      });
-
-      next.chunks.push({
-        type: ChunkType.STRING,
-        fileType: FileType.TSX,
-        name: INJECT_STYLE_CHUNK_NAME.InjectStyleEnd,
-        content: `,'${ir.id ?? 'id'}');`,
-        linkAfter: [INJECT_STYLE_CHUNK_NAME.InjectStyleContent],
-      });
-
-      next.chunks.push({
-        type: ChunkType.STRING,
-        fileType: FileType.TSX,
-        name: INJECT_STYLE_CHUNK_NAME.InjectStyleContent,
-        content: `\`${normalizeCSS(customClass ?? ' ', classRoot)}\``,
-        linkAfter: [INJECT_STYLE_CHUNK_NAME.InjectStyleStart],
       });
     }
     return next;
