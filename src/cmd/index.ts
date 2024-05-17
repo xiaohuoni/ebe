@@ -26,3 +26,4 @@ export { reloadSelectData } from './reloadSelectData';
 export { callSelfFunc } from './callSelfFunc';
 export { setCompState } from './setCompState';
 export { getFormValue } from './getFormValue';
+export { exportSQLServiceData } from './exportSQLServiceData';

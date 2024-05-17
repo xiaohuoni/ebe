@@ -10,6 +10,7 @@ export const api = {
   resolveApiPath,
   getAppFileUrlByFileCode,
   commonFetch: serviceApi.commonFetch,
+  getSqlQueryColumns: (params) => urlHelper.get('app/sql/getSqlQueryColumns', params),
   batchGetAppStaticAttr: (params: any) => urlHelper.get('app/appAttr/batchGetAppStaticAttr', params),
   uploadSingleFile: () => resolveApiPath('app/file/uploadSingleFile'),
   getAppFileUrlById: (params: any, appCtx: any) => {

@@ -19,6 +19,9 @@ import popover from './files/popover';
 import popoverwrapper from './files/popoverwrapper';
 import proxy from './files/proxy';
 import withPageHOC from './files/withPageHOC';
+import pcexpsqlservicemodal from './files/pcexpsqlservicemodal';
+import pcexpsqlservicemodalless from './files/pcexpsqlservicemodalless';
+import types from './files/types';
 
 // TODO:为了标记无用文件，注释先保留着，后续清理
 // import useSetState from './files/useSetState';
@@ -108,5 +111,8 @@ export function generateStaticFiles(
   }
   runFileGenerator(postProcessors, root, proxy, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, withPageHOC, parseResult?.staticFiles);
+  runFileGenerator(postProcessors, root, pcexpsqlservicemodal, parseResult?.staticFiles);
+  runFileGenerator(postProcessors, root, pcexpsqlservicemodalless, parseResult?.staticFiles);
+  runFileGenerator(postProcessors, root, types, parseResult?.staticFiles);
   return root;
 }

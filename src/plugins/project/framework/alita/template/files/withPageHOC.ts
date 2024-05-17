@@ -10,24 +10,22 @@ export default function getFile(
     'withPageHOC',
     'tsx',
     `import { api as baseApi } from '@/services/api';
-${
-  isMobile
-    ? `import {
+${isMobile
+      ? `import {
   messageApi,
   Modal,
 } from '@lingxiteam/engine-app/es/components/MessageApi';`
-    : `import { message as messageApi, Modal } from 'antd';`
-}
-import locales from '@lingxiteam/engine-${
-      isMobile ? 'app' : 'pc'
+      : `import { message as messageApi, Modal } from 'antd';`
+    }
+import locales from '@lingxiteam/engine-${isMobile ? 'app' : 'pc'
     }/es/utils/locales';
-${
-  isMobile
-    ? ''
-    : `import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';`
-}
+${isMobile
+      ? ''
+      : `import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';`
+    }
 
 import { pageStaticData } from '@/components/Pageview';
+import ExpSQLServiceModal from "@/components/ExpSQLServiceModal/ExpSQLServiceModal";
 import { PLATFORM } from '@/constants';
 import assetHelper from '@lingxiteam/engine-assets';
 import { getRunningUtils } from '@lingxiteam/engine-platform';
@@ -93,6 +91,7 @@ export const withPageHOC = (
     const refs = useRef<Record<string, any>>({}).current;
     const { ModalManagerRef, refs: renerRefs, appId } = useContext(Context);
     const ExpBusiObjModalRef = React.useRef<any>();
+    const ExpSQLServiceModalRef = React.useRef<any>();
     const setComponentRef = (r: any, comId: string) => {
       if (r) {
         // @ts-ignore
@@ -258,6 +257,7 @@ export const withPageHOC = (
         },
         ModalManagerRef,
         ExpBusiObjModalRef,
+        ExpSQLServiceModalRef,
         addToAwaitQueue: (
           compId: string,
           functionName: string,
@@ -320,17 +320,26 @@ export const withPageHOC = (
           lcdpParentRenderId={props.lcdpParentRenderId}
           renerRefs={renerRefs}
         />
-        ${
-          isMobile
-            ? ''
-            : `<ExpBusiObjModal
+        ${isMobile
+      ? ''
+      : `<ExpBusiObjModal
           ref={ExpBusiObjModalRef}
           key={\`ExpBusiObjModal-\${renderId}\`}
           api={data.utils}
           utils={data.utils}
           getLocale={getLocale}
         />`
-        }
+    }
+        <ExpSQLServiceModal
+        ref={ExpSQLServiceModalRef}
+        key={\`ExpSQLServiceModal-\${renderId}\`}
+        // TODO: 控件内部还存在需要 appId 的场景
+        appId={appId}
+        api={data.utils}
+        pageId={renderId}
+        utils={data.utils}
+        getLocale={getLocale}
+      />
       </>
     );
   });

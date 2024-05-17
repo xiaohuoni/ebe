@@ -102,7 +102,9 @@ export default function createIceJsProjectBuilder(
             "jsencrypt": "^3.3.2",
             "merge": "^2.1.1",
             "uuid": "^9.0.1",
-            dayjs: "1.11.3"
+            dayjs: "1.11.3",
+            "@ant-design/icons": "^4.2.2",
+            "classnames": "^2.2.6",
           },
           dependencies: {
             '@lingxiteam/cli': '^0.4.6',

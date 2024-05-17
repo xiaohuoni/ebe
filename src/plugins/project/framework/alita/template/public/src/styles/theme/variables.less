@@ -1,0 +1,131 @@
+// 基准灰色
+@gray-base: #000;
+@gray-1: mix(@gray-base, #fff, 100%);
+@gray-2: mix(@gray-base, #fff, 85%);
+@gray-3: mix(@gray-base, #fff, 65%);
+@gray-4: mix(@gray-base, #fff, 45%);
+@gray-5: mix(@gray-base, #fff, 25%);
+@gray-6: mix(@gray-base, #fff, 15%);
+@gray-7: mix(@gray-base, #fff, 10%);
+@gray-8: mix(@gray-base, #fff, 5%);
+@gray-9: mix(@gray-base, #fff, 2%);
+@gray-10: mix(@gray-base, #fff, 0%);
+
+// 主题色
+@primary-color: #2a71eb;
+@success-color: #2cb82c;
+@danger-color: #f52230;
+@warning-color: #f47a1d;
+
+// 背景
+@bg-default: #fff;
+@bg-gray: #f5f7f9;
+@bg-hover: rgba(65, 105, 225, .08);
+@box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .08);
+@box-hover-shadow: 0 12px 12px 0 rgba(0, 0, 0, .08);
+@bg-sider: #0f121f;
+
+// 间距
+@padding: 4px;
+@padding-xs: 6px; // 6px
+@padding-s: @padding*2; // 8px
+@padding-m: @padding*3; // 12px
+@padding-l: @padding*4; // 16px
+@padding-xl: @padding*10; // 40px
+@padding-xxl: @padding-xl*2; // 72px
+
+// 文字大小
+@font-size-sm: 12px;
+@font-size-base: 14px;
+@font-size-md: 16px;
+@font-size-lg: 18px;
+@font-size-xl: 20px;
+@font-size-heading: 24px;
+@font-size-strong: 32px;
+@font-weight: 500;
+
+// 文字颜色
+@base-color: #fff;
+@color-text-title: #1c242e; // 标题
+@color-text-base: rgba(28, 36, 46, .85); // 基本
+@color-text-paragraph: rgba(28, 36, 46, .65); // 段落
+@color-text-secondary: rgba(28, 36, 46, .45); // 辅助色
+@color-text-sub: rgba(28, 36, 46, .45); // 副标题色
+@color-text-base-inverse: #fff; // 基本 - 反色
+@color-text-strong: @danger-color; //价格、强调的数值，包含单位
+@color-link: @primary-color; // 链接
+@color-link-inverse: #f3af61; // 链接
+
+// 线条
+@border-color: rgba(28, 36, 46, .15);
+@dividing-color: rgba(28, 36, 46, .1);
+
+// 圆角
+@border-radius-base: 4px;
+@border-radius-sm: 2px;
+
+// 侧边栏
+@sidebar-selected-color: @color-text-title;
+@sidebar-selected-bg: rgba(68, 119, 238, 0.1);
+
+// 事件树
+@event-head-panel: #fff;
+@event-body-panel: #fff;
+@event-foot-panel: #fff;
+@event-btn-color: @color-text-base-inverse;
+@event-color: #47e;
+@action-color: #11c9ac;
+@cycle-color: #e8b339;
+@condition-color: #f759ab;
+@elseIf-color: #45d7ef;
+@callback-color: #a25fff;
+@shielding-color: rgba(28, 36, 46, 0.25);
+@event-line-color: #e5e5e5;
+@action-line-height: 28px;
+@action-table-line-height: 24px;
+
+@input-border-color: @gray-7;
+
+
+// 清除浮动
+.clearfix {
+  &::before,
+  &::after {
+    content: " ";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+.textEllipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.HeightOverflowY {
+  flex: 1 1 auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.flexModal {
+  top: 40px;
+  padding-bottom: @padding-l;
+
+  .@{ant-prefix}-modal-content {
+    min-height: 320px;
+    max-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .@{ant-prefix}-modal-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+  }
+}

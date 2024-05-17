@@ -65,11 +65,11 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         const renderId = '${pageId}';
         const ${type}: React.FC<PageProps> = ({
           attrDataMap={},customActionMapRef,routerData,lcdpApi,
-          injectData, refs, state, functorsMap, getStaticDataSourceService, updateGlobalDataSource, componentItem, style, urlParam, ${
-            isModal ? 'forwardedRef,' : ''
-          } 
+          injectData, refs, state, functorsMap, getStaticDataSourceService, updateGlobalDataSource, componentItem, style, urlParam, ${isModal ? 'forwardedRef,' : ''
+        } 
           setComponentRef,
           ModalManagerRef,
+          ExpSQLServiceModalRef,
           lcdpParentRenderId,
           ${isModal ? 'onOk: fatherOnOk,' : ''}
           ${isModal ? 'closeModal' : ''}

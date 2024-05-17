@@ -1,0 +1,64 @@
+// 先隐藏记得改造（林禧）
+@import (reference) '../../styles/index.less';
+@prefix: ProgressComp;
+
+.@{prefix}-confirm {
+  .@{ant-prefix}-popover-inner-content {
+    max-width: 250px;
+
+    .@{ant-prefix}-popover-buttons {
+      justify-content: flex-end;
+    }
+  }
+}
+
+.@{prefix}-notification {
+  border-radius: 8px;
+  margin-bottom: 16px;
+  width: 360px;
+
+  .lingxi-app-pc-notification-notice-message {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(41, 43, 51, 1);
+  }
+
+  .lingxi-app-pc-notification-notice-close {
+    font-size: 14px;
+    color: rgba(144, 146, 163, 1);
+  }
+
+  .desc {
+    color: rgba(100, 103, 122, 1);
+    font-size: 14px;
+    line-height: 22px;
+    margin-top: 10px;
+  }
+}
+
+.@{prefix}-progress {
+  .@{ant-prefix}-progress {
+    display: inline-flex;
+    align-items: center;
+    width: 100px;
+
+    &.notification {
+      width: 100%;
+    }
+
+    .@{ant-prefix}-progress-outer {
+      display: flex;
+      align-items: center;
+      margin-right: 0;
+      padding-right: 0;
+    }
+
+    .@{ant-prefix}-progress-text {
+      width: fit-content;
+
+      .anticon {
+        top: 0;
+      }
+    }
+  }
+}
