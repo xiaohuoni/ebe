@@ -23,7 +23,7 @@ ${isMobile
       ? ''
       : `import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';`
     }
-
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { pageStaticData } from '@/components/Pageview';
 import ExpSQLServiceModal from "@/components/ExpSQLServiceModal/ExpSQLServiceModal";
 import { PLATFORM } from '@/constants';
@@ -34,7 +34,7 @@ import {
 import { useLocation } from 'alita';
 import { merge } from 'lodash';
 import { parse } from 'qs';
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import lcdpApi from '@/utils/lcdpApi';
 import { Context } from './Context/context';
 import { createId } from '../utils/historytool'
 import assetHelper from '@lingxiteam/engine-assets';
@@ -71,8 +71,6 @@ export const withPageHOC = (
   options: PageHOCOptions,
 ) => {
   return React.forwardRef((props: any, ref) => {
-    // TODO: 和 service 的时候一起处理
-    const api: any = {};
     const renderId = props.renderId;
     const location = useLocation();
     const urlParam = parse((location?.search ?? '?')?.split('?')[1]);
@@ -80,6 +78,8 @@ export const withPageHOC = (
     const { ModalManagerRef, refs: renerRefs, appId } = useContext(Context);
     const ExpBusiObjModalRef = React.useRef<any>();
     const ExpSQLServiceModalRef = React.useRef<any>();
+    const [loading, setLoading] = useState(true);
+    const sandBoxContext = useRef<Record<string, any>>({});
     const setComponentRef = (r: any, comId: string) => {
       if (r) {
         // @ts-ignore
@@ -97,7 +97,6 @@ export const withPageHOC = (
         },
         locales,
       );
-    const [data, setData] = useState<any>();
     const init = async () => {
       const getStaticAttrByKeys = async (attrNbrKeys: string[]) => {
         const reqNbrKeys = attrNbrKeys.filter((key) => !cacheKeys.has(key));
@@ -207,13 +206,11 @@ export const withPageHOC = (
             },
             // ??? 外层和 service 都需要？
             service: {
-              ...api,
-              ...baseApi
+              ...baseApi,
             },
           };
         },
       };
-      const engineApis = injectData.getEngineApis();
       const getValue = (id: string, stateName?: string) => {
         if (stateName) {
           // @ts-ignore
@@ -225,7 +222,8 @@ export const withPageHOC = (
       const defaultContext = {
         getValue,
         urlParam,
-        lcdpApi: api,
+        // TODO 需要将lcdpApi移动过来
+        lcdpApi,
         getStaticDataSourceService,
         ModalManagerRef,
         ExpBusiObjModalRef,
@@ -243,17 +241,13 @@ export const withPageHOC = (
           ...extendAllowMap,
         });
       };
-
-      const componentItem = {
-        platform: PLATFORM,
-      };
-      setData({
+      sandBoxContext.current= {
+        ...injectData,
         ...defaultContext,
-        injectData,
-        refs,
-        componentItem,
+        sandBoxRun,
         attrDataMap,
-      });
+      }
+      setLoading(false);
     };
     ${pageDidMount ? pageDidMount : ''}
     ${pageWillUnmount ? pageWillUnmount : ''}
@@ -269,14 +263,13 @@ export const withPageHOC = (
         }
     }, []);
 
-    // 可以在这里加 loading
-    if (!data || Object.keys(data).length === 0) {
+    // // 可以在这里加 loading
+    if (loading === true) {
       return <div></div>;
     }
     return (
       <>
         <WrappedComponent
-          {...data}
           {...props}
           urlParam={urlParam}
           forwardedRef={ref}
@@ -289,14 +282,18 @@ export const withPageHOC = (
           setComponentRef={setComponentRef}
           lcdpParentRenderId={props.lcdpParentRenderId}
           renerRefs={renerRefs}
+          lcdpApi={lcdpApi}
+          injectData={{getEngineApis: sandBoxContext.current.getEngineApis}}
+          attrDataMap={sandBoxContext.current.attrDataMap}
+          ModalManagerRef={ModalManagerRef}
         />
         ${isMobile
       ? ''
       : `<ExpBusiObjModal
           ref={ExpBusiObjModalRef}
           key={\`ExpBusiObjModal-\${renderId}\`}
-          api={data.utils}
-          utils={data.utils}
+          api={baseApi}
+          utils={{}}
           getLocale={getLocale}
         />`
     }
@@ -305,9 +302,9 @@ export const withPageHOC = (
         key={\`ExpSQLServiceModal-\${renderId}\`}
         // TODO: 控件内部还存在需要 appId 的场景
         appId={appId}
-        api={data.utils}
+        api={baseApi}
         pageId={renderId}
-        utils={data.utils}
+        utils={{}}
         getLocale={getLocale}
       />
       </>

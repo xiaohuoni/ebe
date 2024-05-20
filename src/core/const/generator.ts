@@ -112,10 +112,10 @@ export const DEFAULT_LINK_AFTER = {
     CLASS_DEFINE_CHUNK_NAME.InsPrivateMethod,
     CLASS_DEFINE_CHUNK_NAME.ConstructorEnd,
     MODAL_CHUNK_NAME.ImperativeHandle,
-    MODAL_CHUNK_NAME.PageDidMount,
-    MODAL_CHUNK_NAME.PageEndRequest,
-    MODAL_CHUNK_NAME.PageStateChange,
-    MODAL_CHUNK_NAME.PageWillUnmount
+    // MODAL_CHUNK_NAME.PageDidMount,
+    // MODAL_CHUNK_NAME.PageEndRequest,
+    // MODAL_CHUNK_NAME.PageStateChange,
+    // MODAL_CHUNK_NAME.PageWillUnmount
     
   ],
   [COMMON_CHUNK_NAME.FileMainContent]: [

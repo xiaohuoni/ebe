@@ -88,6 +88,12 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: DATA_SOURCE_CHUNK_NAME.CallDataSource,
       content: `
+        const useDataSourceTool = useDataSource({
+          urlParam,
+          routerData,
+          state,
+          lcdpApi,
+        });
         const {
           data,
           updateData,
@@ -98,12 +104,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           reloadObjectDataSource,
           loading: dataLoading,
           dataReadyComplete
-        } = useDataSource({
-          urlParam,
-          routerData,
-          state,
-          lcdpApi,
-        })
+        } = useDataSourceTool;
         `,
       linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
     });
@@ -112,7 +113,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: PAGE_TOOL_CHUNK_NAME.PageTooL,
-      content: `const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled, getDisabled } = useTool(refs);`,
+      content: `const useTools = useTool(refs);\n const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled, getDisabled } = useTools`,
       linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
     });
 
