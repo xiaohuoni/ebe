@@ -26,6 +26,7 @@ import {
 } from './requester/xhr';
 import type { configType } from './types';
 import { checkIsModeValue } from './utils/check';
+import { createHttpSignStr, buildXSignUrl } from './encipher/sign';
 import message from './utils/message';
 
 let isHttpEncryption = false;
@@ -72,4 +73,4 @@ function stop() {
   });
 }
 
-export default { start, stop };
+export default { start, stop, createHttpSignStr, buildXSignUrl };

@@ -1,0 +1,197 @@
+@import (reference) "../../styles/index.less";
+
+@prefixCls: lcdp-previewFile;
+
+.@{prefixCls}-wrapPic {
+  display: flex;
+  align-items: center;
+  /*垂直居中*/
+  justify-content: center;
+  /*水平居中*/
+  height: auto !important;
+}
+
+.@{prefixCls}-wrap {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
+  .content {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+  }
+
+  .txt {
+    max-width: 70vw;
+    max-height: 70vh;
+
+    .code {
+      height: 100%;
+      padding: 10px;
+      overflow-y: auto;
+      background-color: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .ppt {
+    text-align: center;
+    align-items: center;
+
+    img {
+      height: fit-content;
+    }
+  }
+
+  .error {
+    text-align: center;
+    color: #fff;
+
+    .error-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    .error-tip {
+      font-size: 16px;
+    }
+  }
+
+  .iframe {
+    height: 80vh;
+    width: 50vw;
+    border: medium none;
+    background-color: white;
+  }
+
+  .preview_content {
+    width: 100%;
+    height: 100%;
+    padding: 30px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pdf-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0;
+    overflow: hidden;
+
+    .pdf-loading {
+      width: 50px;
+      height: 50px;
+    }
+
+    .react-pdf__Document {
+      max-width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      overflow: auto;
+    }
+
+    .react-pdf__Page__textContent {
+      display: none;
+    }
+
+    .react-pdf__Page__annotations {
+      display: none;
+    }
+
+    .pdf-content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .@{prefixCls}-group {
+    display: flex;
+    align-items: center;
+    padding: 13px 0;
+
+    &:empty {
+      display: none;
+    }
+
+    &:last-child {
+      padding-right: 32px;
+    }
+
+    &:first-child {
+      padding-left: 32px;
+    }
+
+    &:not(:last-child) {
+      &::after {
+        content: '';
+        display: flex;
+        width: 1px;
+        height: 14px;
+        margin: 0 16px;
+        background-color: #fff;
+      }
+    }
+  }
+}
+
+.@{prefixCls} {
+  &-zip-select {
+    color: white;
+    width: 256px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &-zip-select-label {
+    flex: 1;
+    overflow: hidden;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &-dropdown {
+    margin-bottom: 12px;
+    border-radius: @border-radius-base;
+    max-width: 65vw;
+    overflow: auto;
+
+    .@{ant-prefix}-cascader-menu-item-content {
+      display: inline-block;
+      flex: 1;
+      overflow: hidden;
+      max-width: 128px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .@{ant-prefix}-cascader-menu {
+      padding: 4px;
+
+      &-item {
+        border-radius: @border-radius-base;
+      }
+    }
+
+    .@{ant-prefix}-cascader-menus .@{ant-prefix}-cascader-menu-item-active:not(.@{ant-prefix}-cascader-menus .@{ant-prefix}-cascader-menu-item-disabled) {
+      background-color: fade(@primary-color, 8%);
+    }
+  }
+
+  &-error-tips {
+    font-size: @font-size-md;
+  }
+}

@@ -70,6 +70,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           setComponentRef,
           ModalManagerRef,
           ExpSQLServiceModalRef,
+          BannerModal,
           lcdpParentRenderId,
           ${isModal ? 'onOk: fatherOnOk,' : ''}
           ${isModal ? 'closeModal' : ''}

@@ -16,7 +16,8 @@ export default function getFile(): [string[], ResultFile] {
   import { prefix } from '../../styles';
   import { BaseModalProps, ExpSQLServiceModalHooks, ExpSQLServiceModalOptions } from '@/types';
   import { LocaleFunction } from '@lingxiteam/types';
-  
+  import { exportFileShowProgress } from "@/utils/platform/utils/fileUtils";
+
   const expSQLServiceModal =\`\${prefix}_expSQLServiceModal\`;
   
   const CheckboxGroup = Checkbox.Group;
@@ -93,7 +94,7 @@ export default function getFile(): [string[], ResultFile] {
         }
         const fileName = custFileName ? \`\${ custFileName }.xlsx\`:\`\${ sqlServiceCode }-\${ new Date().getTime() }.xlsx\`;
         const downloadIndex = \`\${ fileName }_\${ Math.random() }\`;
-        await utils.exportFileShowProgress({
+        await exportFileShowProgress({
           fileOrigin: 'sql',
           downloadIndex,
           params,
@@ -134,7 +135,7 @@ export default function getFile(): [string[], ResultFile] {
           params: typeof attrs === 'object' ? attrs : {},
         };
         const fileName = custFileName ? \`\${ custFileName }.xlsx\` : \`\${ sqlServiceCode }-\${ new Date().getTime() }.xlsx\`;
-        await utils.exportFileShowProgress({
+        await exportFileShowProgress({
           fileOrigin: 'sql',
           params: requestParams,
           fileName,

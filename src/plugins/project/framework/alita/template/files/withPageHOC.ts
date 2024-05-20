@@ -27,6 +27,7 @@ ${
 }
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import { pageStaticData } from '@/components/Pageview';
+import BannerModal from '@/components/BannerModal';
 import ExpSQLServiceModal from "@/components/ExpSQLServiceModal/ExpSQLServiceModal";
 import { PLATFORM } from '@/constants';
 import * as functorsMap from '@/utils/functors';
@@ -273,6 +274,11 @@ export const withPageHOC = (
         // @ts-ignore
         return refs.value?.[id]?.value;
       };
+      // 设置默认属性
+      BannerModal.defaultProps = {
+        // @ts-ignore
+        api: baseApi,
+      };
       const defaultContext = {
         getValue,
         urlParam,
@@ -346,6 +352,8 @@ export const withPageHOC = (
           state={state}
           addActionTimer={addActionTimer}
           clearActionTimer={clearActionTimer}
+          ExpSQLServiceModalRef={ExpSQLServiceModalRef}
+          BannerModal={BannerModal}
         />
         ${
           isMobile

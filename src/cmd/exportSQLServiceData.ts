@@ -1,6 +1,7 @@
 import { CMDGeneratorPrames } from '../core/types';
 import { CMDGeneratorEvent } from '../core/utils/CMDGenerator';
 import { parse2Var } from '../core/utils/compositeType';
+import { GeneratorCallbackWithThenCatch } from './utils';
 
 export function exportSQLServiceData({
   value,
@@ -25,26 +26,19 @@ export function exportSQLServiceData({
   } else {
     attrs = parse2Var(busiObjectFilterParams);
   }
-  const onSuccessStr =
-    Array.isArray(callback1) && callback1.length
-      ? // @ts-ignore
-        `onSuccess: ${CMDGeneratorEvent(
-          callback1,
-          { platform },
-          scope,
-          config,
-        )}`
-      : '\n';
+  const onSuccessStr = Array.isArray(callback1) && callback1.length
+    ? // @ts-ignore
+    `onSuccess: ${CMDGeneratorEvent(callback1, { platform }, scope, config)},`
+    : '\n';
 
-  const onFailStr =
-    Array.isArray(callback2) && callback2.length
-      ? // @ts-ignore
-        `onFail: ${CMDGeneratorEvent(callback2, { platform }, scope, config)}`
-      : '\n';
+  const onFailStr = Array.isArray(callback2) && callback2.length
+    ? // @ts-ignore
+    `onFail: ${CMDGeneratorEvent(callback2, { platform }, scope, config)},`
+    : '\n';
 
-  return `
-  (async () => {
-    const result = await new Promise<any>((resolve, reject) => {
+  return GeneratorCallbackWithThenCatch(`
+  // 导出SQL查询服务
+    new Promise<any>((resolve, reject) => {
       ExpSQLServiceModalRef.current.openWithCustFields({
         sqlServiceCode: ${parse2Var(sqlServiceCode)},
         sqlServiceFields: ${parse2Var(sqlServiceFields)},
@@ -53,11 +47,14 @@ export function exportSQLServiceData({
         async: ${parse2Var(async)},
         attrs:${attrs},
         custFileName: ${parse2Var(custFileName)},
-        ${onSuccessStr},
-        ${onFailStr},
+        ${onSuccessStr}
+        ${onFailStr}
       });
-    });
-    return result;
-  })()
-  `;
+    })
+  `, {
+    value,
+    platform,
+    scope,
+    config
+  });
 }
