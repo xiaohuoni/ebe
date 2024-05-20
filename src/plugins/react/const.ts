@@ -18,11 +18,17 @@ export const MODAL_CHUNK_NAME = {
   OnOk: 'ModalEventOnOk',
   OnCancel: 'ModalEventOnCancel',
   ImperativeHandle: 'ModalEventUseImperativeHandle',
+  PageDidMount:'PageDidMount',
+  PageStateChange:'PageStateChange',
+  PageWillUnmount:'PageWillUnmount',
+  PageEndRequest:'PageEndRequest',
 };
 
 export const CUSTOM_ACTION_CHUNK_NAME = {
   Map: 'CustomActionMap',
   ImperativeHandle: 'CustomActionMapUseImperativeHandle',
+  DidMount:'DidMount',
+  WillUnmount:'WillUnmount',
 };
 
 export const DATA_SOURCE_CHUNK_NAME = {
