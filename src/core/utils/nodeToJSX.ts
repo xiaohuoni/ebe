@@ -137,9 +137,14 @@ function generateAttrs(
     if (!Array.isArray(props)) {
       Object.keys(props).forEach((propName: string) => {
         if (isValidIdentifier(propName)) {
-          pieces = pieces.concat(
-            generateAttr(propName, props[propName] as any, scope, config),
-          );
+          // TODO: 过滤为空字符的属性
+          if (props[propName] !== '') {
+            pieces = pieces.concat(
+              generateAttr(propName, props[propName] as any, scope, config),
+            );
+          } else {
+            console.log(props[propName]);
+          }
         }
       });
     } else {

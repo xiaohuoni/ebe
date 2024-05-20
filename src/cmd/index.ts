@@ -29,3 +29,4 @@ export { getFormValue } from './getFormValue';
 export { exportSQLServiceData } from './exportSQLServiceData';
 export  { returnCmd as return }from './return';
 export { hideMessage } from './hideMessage';
+export { dropPageByCatch } from './dropPageByCatch';

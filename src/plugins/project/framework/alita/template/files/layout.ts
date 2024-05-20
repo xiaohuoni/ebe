@@ -13,7 +13,11 @@ export default function getFile(
     import { Context, RefsManager } from '@/utils/Context/context';
     import React, { useEffect, useRef } from 'react';
     import { APPID } from '@/constants';
-    ${routerChange ? `import { useLocation } from 'alita';` : ''}
+  ${
+    routerChange
+      ? `import { useLocation, useKeepOutlets } from 'alita';`
+      : `import { useKeepOutlets } from 'alita';`
+  }
 ${
   isMobile
     ? ''
@@ -24,6 +28,7 @@ ${routerChange ? `let prePathname = '';` : ''}
     const Layout = (props) => {
       const ModalManagerRef = useRef<any>(); // 页面弹窗的所有实例
       const refs = new RefsManager();
+      const element = useKeepOutlets();
       const getLocale = (_: string, t: string) => t || _;
       ${
         routerChange
@@ -44,7 +49,7 @@ ${routerChange ? `let prePathname = '';` : ''}
       return (
         ${isMobile ? '' : `<ConfigProvider locale={zhCN}>`}
         <Context.Provider value={{ ModalManagerRef, refs, appId: APPID}}>
-          {props.children}
+          {element}
           <ModalView
             getLocale={getLocale as any}
             appId={APPID}
