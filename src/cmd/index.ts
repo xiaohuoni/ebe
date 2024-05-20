@@ -37,3 +37,4 @@ export { setFormValues } from './setFormValues';
 export { validateCurrentForm } from './validateCurrentForm';
 export { getCurrentFormValues } from './getCurrentFormValues';
 export { setTimer } from './setTimer';
+export { historyGoBack } from './historyGoBack';
