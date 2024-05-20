@@ -1,5 +1,5 @@
-import { parse2Var } from '../core/utils/compositeType';
 import { CMDGeneratorPrames } from '../core/types';
+import { parse2Var } from '../core/utils/compositeType';
 import { GeneratorCallbackWithThenCatch } from './utils';
 const getSaleEventName = (eventName: any) => {
   const sale =
@@ -10,12 +10,14 @@ const getSaleEventName = (eventName: any) => {
   return sale ? eventName : `event_${eventName}`;
 };
 export function callSelfFunc(generateParams: CMDGeneratorPrames): string {
-    const { value = {} } = generateParams;
-    const { paramsObj, customFuncName, customFuncParams, id } = value.options;
-   const params = customFuncParams === 'object' ? paramsObj : customFuncParams;
+  const { value = {} } = generateParams;
+  const { paramsObj, customFuncName, customFuncParams, id } = value.options;
+  const params = customFuncParams === 'object' ? paramsObj : customFuncParams;
 
   return GeneratorCallbackWithThenCatch(
-    `// 调用当前页面自定义事件 \n customActionMap?.${getSaleEventName(customFuncName)}(${params ? parse2Var(params) : ''})`,
+    `// 调用当前页面自定义事件 \n customActionMap?.${getSaleEventName(
+      customFuncName,
+    )}(${params ? parse2Var(params) : ''})`,
     generateParams,
     {
       sync: false,

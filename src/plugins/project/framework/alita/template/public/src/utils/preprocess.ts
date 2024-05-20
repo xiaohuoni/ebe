@@ -1,7 +1,6 @@
-import { flatten } from "lodash";
-import basicStatusTransfer from "./basicStatusTransfer";
+import { flatten } from 'lodash';
 
-interface PreprocessMethodContext { 
+interface PreprocessMethodContext {
   extraData?: Record<string, any>;
 }
 
@@ -15,26 +14,27 @@ interface PreprocessMethodContext {
 const preprocessMethod = {
   '*': (originProps: Record<string, any>, context: PreprocessMethodContext) => {
     return originProps;
-  }
-}
+  },
+};
 
-type PreprocessFunctionType = typeof preprocessMethod[keyof typeof preprocessMethod];
+type PreprocessFunctionType =
+  (typeof preprocessMethod)[keyof typeof preprocessMethod];
 
 /**
  * 获取待执行的函数列表
- * @param type 
+ * @param type
  */
-const getTodoFunc = (type: string) => { 
+const getTodoFunc = (type: string) => {
   const todoFunc: PreprocessFunctionType[][] = [
     // 带有 *
     [],
     // 带有 |
     [],
-    // 单独组件 
-    []
+    // 单独组件
+    [],
   ];
 
-  Object.keys(preprocessMethod).forEach(key => { 
+  Object.keys(preprocessMethod).forEach((key) => {
     if (key === '*') {
       // 把 * 放在最前面，优先级最低
       todoFunc[0].push(preprocessMethod[key]);
@@ -44,36 +44,45 @@ const getTodoFunc = (type: string) => {
       if (!key.includes('|')) {
         index = 2;
       }
-      todoFunc[index].push(preprocessMethod[key as keyof typeof preprocessMethod]);
+      todoFunc[index].push(
+        preprocessMethod[key as keyof typeof preprocessMethod],
+      );
     }
-  })
+  });
 
   return flatten(todoFunc);
-}
+};
 
-const runFunc = (funcs: PreprocessFunctionType[], originProps: Record<string, any>, context: PreprocessMethodContext) => { 
+const runFunc = (
+  funcs: PreprocessFunctionType[],
+  originProps: Record<string, any>,
+  context: PreprocessMethodContext,
+) => {
   let props = originProps;
 
-  funcs.forEach(func => { 
-    try { 
+  funcs.forEach((func) => {
+    try {
       props = func(props, context) ?? props;
-    }catch(err){}
-  })
+    } catch (err) {}
+  });
 
   return props;
-}
+};
 
 /**
  * 属性预处理函数
- * @param type 
- * @returns 
+ * @param type
+ * @returns
  */
-export const preprocessMethods = (type: string, context: PreprocessMethodContext) => {
+export const preprocessMethods = (
+  type: string,
+  context: PreprocessMethodContext,
+) => {
   const todoFunc: PreprocessFunctionType[] = getTodoFunc(type);
 
-  return { 
-    run: (originProps: Record<string, any>) => { 
+  return {
+    run: (originProps: Record<string, any>) => {
       return runFunc(todoFunc, originProps, context);
-    }
-  } 
-}
+    },
+  };
+};

@@ -1,8 +1,13 @@
 import { useContext } from 'react';
 import { Context } from './Context/context';
-import { getBOFramerOwnFormValues, getBoframerOwnForms, getFieldsValue, getFormByCompId } from "./formUtils";
+import {
+  getBoframerOwnForms,
+  getBOFramerOwnFormValues,
+  getFieldsValue,
+  getFormByCompId,
+} from './formUtils';
 
-const toBool = (v: string | boolean) => { 
+const toBool = (v: string | boolean) => {
   if (v === 'true') {
     return true;
   }
@@ -10,7 +15,7 @@ const toBool = (v: string | boolean) => {
     return false;
   }
   return v;
-}
+};
 
 export const useTool = (refs: Record<string, any>) => {
   const { refs: renderRefs } = useContext(Context);
@@ -114,12 +119,12 @@ export const useTool = (refs: Record<string, any>) => {
    * 清空值
    */
   const clearValue = (compId: string) => {
-    if (!refs[compId]) { 
+    if (!refs[compId]) {
       console.warn(`当前组件ID=${compId}不存在，有可能已经删除或未初始化`);
       return;
     }
 
-    if (typeof refs[compId]?.clearValue === 'function') { 
+    if (typeof refs[compId]?.clearValue === 'function') {
       refs[compId]?.clearValue();
       return;
     }
@@ -127,9 +132,9 @@ export const useTool = (refs: Record<string, any>) => {
     if (typeof refs[compId]?.setValue === 'function') {
       refs[compId]?.setValue(null);
       return;
-    } 
+    }
     console.error(`当前组件ID=${compId}的clearValue方法不存在`);
-  }
+  };
 
   /**
    * 调用控件的内部方法
@@ -152,7 +157,7 @@ export const useTool = (refs: Record<string, any>) => {
   /**
    * 获取当前表单值
    */
-  const getFormValue = async (compId: string) => { 
+  const getFormValue = async (compId: string) => {
     // 表单不存在 就返回null
     if (!refs[compId]) return Promise.reject(new Error('组件不存在'));
 
@@ -165,7 +170,7 @@ export const useTool = (refs: Record<string, any>) => {
     }
 
     if (refs[compId].compName === 'BOFramer') {
-       return getBOFramerOwnFormValues(
+      return getBOFramerOwnFormValues(
         {
           refs,
           renderRefs,
@@ -175,14 +180,16 @@ export const useTool = (refs: Record<string, any>) => {
       );
     }
 
-    return Promise.reject(new Error('该组件不支持使用getFormValues获取表单数据'))
-  }
+    return Promise.reject(
+      new Error('该组件不支持使用getFormValues获取表单数据'),
+    );
+  };
 
   /**
    * 验证并取值
-   * @param compId 
+   * @param compId
    */
-  const validateForm = async (compId: string) => { 
+  const validateForm = async (compId: string) => {
     // 表单不存在 就返回null
     if (!refs[compId]) return Promise.reject(new Error('组件不存在'));
 
@@ -195,7 +202,7 @@ export const useTool = (refs: Record<string, any>) => {
     }
 
     if (refs[compId].compName === 'BOFramer') {
-        return getBOFramerOwnFormValues(
+      return getBOFramerOwnFormValues(
         {
           refs,
           renderRefs,
@@ -204,14 +211,16 @@ export const useTool = (refs: Record<string, any>) => {
         (form) => form?.validateFormAndScroll?.(),
       );
     }
-    return Promise.reject(new Error('该组件不支持使用getFormValues获取表单数据'))
-  }
+    return Promise.reject(
+      new Error('该组件不支持使用getFormValues获取表单数据'),
+    );
+  };
 
   /**
    * 重置表单值
-   * @param compId 
+   * @param compId
    */
-  const resetForm = (compId: string) => { 
+  const resetForm = (compId: string) => {
     if (!refs[compId]) return;
     const compName = refs[compId].compName;
     if (compName === 'BOFramer') {
@@ -220,16 +229,18 @@ export const useTool = (refs: Record<string, any>) => {
         renderRefs,
         compId,
       });
-  
+
       forms.forEach((form) => {
         form?.resetFields?.();
       });
     } else {
       const forms = getFormByCompId(compId, refs);
       // 支持循环容器中的表单重置
-      (Array.isArray(forms) ? forms : [forms]).forEach((form) => form?.resetFields());
+      (Array.isArray(forms) ? forms : [forms]).forEach((form) =>
+        form?.resetFields(),
+      );
     }
-  }
+  };
 
   return {
     getValue,

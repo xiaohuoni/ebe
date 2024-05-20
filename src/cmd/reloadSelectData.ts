@@ -1,5 +1,5 @@
-import { parse2Var } from '../core/utils/compositeType';
 import { CMDGeneratorPrames } from '../core/types';
+import { parse2Var } from '../core/utils/compositeType';
 export function reloadSelectData({ value }: CMDGeneratorPrames): string {
   const { compId, data, labelKey, valueKey } = value.options;
 

@@ -18,11 +18,15 @@ export const enum MODE {
   // AES参数加密
   AES = '3.0',
   // DES参数加密
-  DES = '4.0'
+  DES = '4.0',
 }
 
 // 自定义加解密函数
-type EncryptionFunctionType = (content: string, key: string, CryptoJS: CryptoJS) => string;
+type EncryptionFunctionType = (
+  content: string,
+  key: string,
+  CryptoJS: CryptoJS,
+) => string;
 
 export type fnDESEncryptType = EncryptionFunctionType;
 
@@ -32,9 +36,17 @@ export type fnAESEncryptType = EncryptionFunctionType;
 
 export type fnAESDecryptType = EncryptionFunctionType;
 
-export type fnRSAEncryptType = (content: string, publicKey: string, JSEncrypt: JSEncrypt) => string;
+export type fnRSAEncryptType = (
+  content: string,
+  publicKey: string,
+  JSEncrypt: JSEncrypt,
+) => string;
 
-export type fnRSADecryptType = (content: string, privKey: string, JSEncrypt: JSEncrypt) => string;
+export type fnRSADecryptType = (
+  content: string,
+  privKey: string,
+  JSEncrypt: JSEncrypt,
+) => string;
 
 export declare namespace encipherOptionType {
   interface sign {
@@ -82,11 +94,19 @@ export interface configType {
 }
 
 export interface signHttpOptionsType {
-  method?: 'OPTIONS' | 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'TRACE' | 'CONNECT',
-  headers?: any,
-  body?: any,
-  search?: string | any,
-  saltValue?: string,
+  method?:
+    | 'OPTIONS'
+    | 'GET'
+    | 'HEAD'
+    | 'POST'
+    | 'PUT'
+    | 'DELETE'
+    | 'TRACE'
+    | 'CONNECT';
+  headers?: any;
+  body?: any;
+  search?: string | any;
+  saltValue?: string;
 }
 
 namespace securityType {
@@ -95,25 +115,57 @@ namespace securityType {
     stop: () => void;
   }
 
-  export function createHttpSignStr(url: string, options: signHttpOptionsType, version?: any) : string;
+  export function createHttpSignStr(
+    url: string,
+    options: signHttpOptionsType,
+    version?: any,
+  ): string;
 
-  export function createHttpSignWithUrl(url: string, options?: signHttpOptionsType, version?: any) : string;
+  export function createHttpSignWithUrl(
+    url: string,
+    options?: signHttpOptionsType,
+    version?: any,
+  ): string;
 
-  export function RSAEncrypt(content: string, publicKey: string, handle?: fnRSAEncryptType) : string;
+  export function RSAEncrypt(
+    content: string,
+    publicKey: string,
+    handle?: fnRSAEncryptType,
+  ): string;
 
-  export function RSADecrypt(content: string, privKey: string, handle?: fnRSADecryptType) : string;
+  export function RSADecrypt(
+    content: string,
+    privKey: string,
+    handle?: fnRSADecryptType,
+  ): string;
 
-  export function AESEncrypt(content: string, aesKey: string, handle?: fnAESEncryptType) : string;
+  export function AESEncrypt(
+    content: string,
+    aesKey: string,
+    handle?: fnAESEncryptType,
+  ): string;
 
-  export function AESDecrypt(content: string, aesKey: string, handle?: fnAESDecryptType) : string;
+  export function AESDecrypt(
+    content: string,
+    aesKey: string,
+    handle?: fnAESDecryptType,
+  ): string;
 
-  export function DESEncrypt(content: string, desKey: string, handle?: fnDESEncryptType) : string;
+  export function DESEncrypt(
+    content: string,
+    desKey: string,
+    handle?: fnDESEncryptType,
+  ): string;
 
-  export function DESDecrypt(content: string, desKey: string, handle?: fnDESDecryptType) : string;
+  export function DESDecrypt(
+    content: string,
+    desKey: string,
+    handle?: fnDESDecryptType,
+  ): string;
 
-  export function setConfig(config: configType) : void;
+  export function setConfig(config: configType): void;
 
-  export function lxEncrypt(str: string) : string;
+  export function lxEncrypt(str: string): string;
 
   export type KEYS = {
     signKey: string;
@@ -121,7 +173,7 @@ namespace securityType {
     rsaPrivKey: string;
     aesKey: string;
     desKey: string;
-  }
+  };
 }
 
 export default securityType;

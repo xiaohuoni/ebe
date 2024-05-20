@@ -9,7 +9,7 @@ export const ROUNDDOWN = FunctorDefine({
     if (includes([x, digits], [null, undefined, ''])) {
       return undefined;
     }
-    return Math.floor(x * (10 ** digits)) / (10 ** digits);
+    return Math.floor(x * 10 ** digits) / 10 ** digits;
   },
   define: ['以绝对值减小的方向按指定位数舍入数字'],
   description: {

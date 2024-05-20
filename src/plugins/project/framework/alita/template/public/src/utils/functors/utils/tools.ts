@@ -1,4 +1,5 @@
-export const getGreenText = (text: string) => `<font color="rgb(76, 175, 80)">${text}</font>`;
+export const getGreenText = (text: string) =>
+  `<font color="rgb(76, 175, 80)">${text}</font>`;
 
 /**
  * 目标数组是否包含某个数组中的某一项
@@ -10,5 +11,5 @@ export const includes = (targetArr: (string | number)[], contained: any) => {
   if (!Array.isArray(contained)) {
     return targetArr.includes(contained);
   }
-  return targetArr.findIndex(target => contained.includes(target)) > -1;
+  return targetArr.findIndex((target) => contained.includes(target)) > -1;
 };

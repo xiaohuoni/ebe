@@ -18,14 +18,14 @@ export interface FunctorDefineParams {
   groupsName: string | string[];
 }
 
-export type FunctorDefineReturn = Omit<FunctorDefineParams, 'functor'> & FunctorDefineParams['functor'];
+export type FunctorDefineReturn = Omit<FunctorDefineParams, 'functor'> &
+  FunctorDefineParams['functor'];
 
-export type FunctorDefineFn = (params: FunctorDefineParams) => FunctorDefineReturn;
+export type FunctorDefineFn = (
+  params: FunctorDefineParams,
+) => FunctorDefineReturn;
 
-export const FunctorDefine: FunctorDefineFn = ({
-  functor,
-  ...restProps
-}) => {
+export const FunctorDefine: FunctorDefineFn = ({ functor, ...restProps }) => {
   const fn = functor as unknown as FunctorDefineReturn;
   Object.assign(fn, restProps);
   return fn;

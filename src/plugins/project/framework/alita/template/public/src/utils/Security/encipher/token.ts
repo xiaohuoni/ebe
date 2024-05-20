@@ -1,7 +1,7 @@
+import CryptoJS from 'crypto-js';
 import AES from 'crypto-js/aes';
 import encUtf8 from 'crypto-js/enc-utf8';
 import MD5 from 'crypto-js/md5';
-import CryptoJS from 'crypto-js';
 
 const key = 'Lixing666';
 const iv = '3468546098617269';
@@ -36,8 +36,12 @@ const checkToken = (token: string, salt: string): boolean => {
       const tokenarr = decryptedData.split('.');
       const pagemd5 = CryptoJS.MD5(salt).toString();
       // Token验证：第一段相同，且Timestamp和当前时间的差距在1小时（3600秒 = 3600000毫秒）内
-      if (tokenarr.length >= 2 && tokenarr[0] === pagemd5 &&
-        new Date(parseInt(tokenarr[1], 10)).getTime() - new Date().getTime() <= 3600000) {
+      if (
+        tokenarr.length >= 2 &&
+        tokenarr[0] === pagemd5 &&
+        new Date(parseInt(tokenarr[1], 10)).getTime() - new Date().getTime() <=
+          3600000
+      ) {
         result = true;
       }
     }
@@ -45,7 +49,4 @@ const checkToken = (token: string, salt: string): boolean => {
   return result;
 };
 
-export {
-  checkToken,
-  generateToken,
-};
+export { checkToken, generateToken };

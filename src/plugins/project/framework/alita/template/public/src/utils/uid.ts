@@ -20,7 +20,8 @@ export const getUid = (loopId: string, itemId: string, id: string) => {
   }
 
   // 查看父节点是否是已经包含在容器内了
-  const inLoop = loopId.includes(idSeparator) && loopId.includes(itemIdSeparator);
+  const inLoop =
+    loopId.includes(idSeparator) && loopId.includes(itemIdSeparator);
 
   let finialLoopId = loopId;
   // 在循环容器内

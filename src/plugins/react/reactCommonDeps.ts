@@ -52,7 +52,9 @@ import { api } from '@/services/api';
     );
     next.ir.deps.push(...getImportsFrom('@/utils/messageApi', ['messageApi']));
     next.ir.deps.push(...getImportsFrom('@/utils/useTool', ['useTool']));
-    next.ir.deps.push(getImportFrom('@/utils/customFuncMapping', 'customFuncMapping', false ));
+    next.ir.deps.push(
+      getImportFrom('@/utils/customFuncMapping', 'customFuncMapping', false),
+    );
     next.ir.deps.push(
       ...getImportsFrom('@/utils/customFuncMapping', ['createRenderId']),
     );

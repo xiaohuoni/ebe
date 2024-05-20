@@ -1,4 +1,4 @@
-import { get, isArray, mergeWith, set } from "lodash";
+import { get, isArray, set } from 'lodash';
 
 /**
  * 往数组中添加数据元素
@@ -25,7 +25,7 @@ const push = (data: any, path: string, value: any) => {
 const remove = (
   data: any,
   path: string,
-  deleteCb: (item: any, index: number) => boolean
+  deleteCb: (item: any, index: number) => boolean,
 ) => {
   let arr: any[] = get(data, path) || [];
   arr = arr.filter((item, index) => {
@@ -62,9 +62,9 @@ const update = (
     value: any;
     isPatch: boolean;
   },
-  updateCb: (item: any, index: number) => boolean
+  updateCb: (item: any, index: number) => boolean,
 ) => {
-  if (typeof updateCb !== "function") {
+  if (typeof updateCb !== 'function') {
     return;
   }
 
@@ -80,8 +80,8 @@ const update = (
 
   const row = arr[index];
   if (
-    Object.prototype.toString.call(row) === "[object Object]" &&
-    Object.prototype.toString.call(value) === "[object Object]" &&
+    Object.prototype.toString.call(row) === '[object Object]' &&
+    Object.prototype.toString.call(value) === '[object Object]' &&
     isPatch
   ) {
     newData = Object.assign({}, row, newData);
@@ -107,8 +107,8 @@ const updateObject = (options: {
   let newData = value;
 
   if (
-    Object.prototype.toString.call(oldItem) === "[object Object]" &&
-    Object.prototype.toString.call(value) === "[object Object]" &&
+    Object.prototype.toString.call(oldItem) === '[object Object]' &&
+    Object.prototype.toString.call(value) === '[object Object]' &&
     isPatch
   ) {
     newData = Object.assign({}, oldItem, newData);

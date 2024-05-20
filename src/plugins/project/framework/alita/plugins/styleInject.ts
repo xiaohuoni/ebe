@@ -8,7 +8,6 @@ import {
   ICodeStruct,
   IContainerInfo,
 } from '../../../../../core/types';
-import { getImportFrom } from '../../../../../utils/depsHelper';
 import { INJECT_STYLE_CHUNK_NAME } from './const';
 export interface PluginConfig {
   fileType?: string;

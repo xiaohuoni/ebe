@@ -1,17 +1,30 @@
 import merge from 'merge';
+import capabilities, { isBrowser } from './clientCapabilities';
+import {
+  aesKey,
+  desKey,
+  rsaPrivKey,
+  rsaPublicKey,
+  securityHeaderKey,
+  signHeaderKey,
+  signKey,
+  signSaltKey,
+} from './const';
 import type { configType } from './types';
 import { MODE } from './types';
-import { signHeaderKey, rsaPublicKey, rsaPrivKey, aesKey, desKey, signSaltKey, securityHeaderKey, signKey } from './const';
-import capabilities, { isBrowser } from './clientCapabilities';
 import CookieUtil from './utils/cookie';
 
-let isInit:boolean = false;
+let isInit: boolean = false;
 
 // 在浏览器模式下，通过平台env/info.js写入配置数据
-const defaultMode = () => (isBrowser && (window as any).lxSecurityMode) || MODE.SIGN_WITH_TIME;
-const countTimeDeviation = () => isBrowser && (window as any).lxServerTime ? (Date.now() - (window as any).lxServerTime) : 0;
+const defaultMode = () =>
+  (isBrowser && (window as any).lxSecurityMode) || MODE.SIGN_WITH_TIME;
+const countTimeDeviation = () =>
+  isBrowser && (window as any).lxServerTime
+    ? Date.now() - (window as any).lxServerTime
+    : 0;
 
-export const createDefaultConfig = () : configType => ({
+export const createDefaultConfig = (): configType => ({
   // 安全模式
   mode: defaultMode(),
 
@@ -20,7 +33,9 @@ export const createDefaultConfig = () : configType => ({
   sign: {
     key: signKey,
     saltKey: signSaltKey,
-    saltValue: isBrowser ? () => CookieUtil.get(config.sign?.saltKey as string) : '',
+    saltValue: isBrowser
+      ? () => CookieUtil.get(config.sign?.saltKey as string)
+      : '',
     valueKeyName: signHeaderKey,
   },
   aes: {
@@ -43,15 +58,22 @@ export const createDefaultConfig = () : configType => ({
   // 通过请求头传递给后端安全类型的字段
   securityHeaderKey,
 
-  debug: capabilities.localStorage ? localStorage.getItem('lxDebug') === 'true' : false,
+  debug: capabilities.localStorage
+    ? localStorage.getItem('lxDebug') === 'true'
+    : false,
 });
 
 const config: configType = {};
 
 const setConfig = (newConfig: configType = {}): void => {
   // 只更新服务器时间时，重新计算时间偏差
-  if (newConfig.serverTime && newConfig.serverTime !== config.serverTime && !newConfig.timeDeviation) {
-    newConfig.timeDeviation = Date.now() - Number(new Date(newConfig.serverTime));
+  if (
+    newConfig.serverTime &&
+    newConfig.serverTime !== config.serverTime &&
+    !newConfig.timeDeviation
+  ) {
+    newConfig.timeDeviation =
+      Date.now() - Number(new Date(newConfig.serverTime));
   }
   if (!isInit) {
     isInit = true;

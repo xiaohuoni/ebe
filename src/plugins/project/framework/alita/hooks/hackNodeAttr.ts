@@ -1,4 +1,4 @@
-import { LOOPCOMPONENTS, LoopMarkSymbol } from '../../../../../constants';
+import { LOOPCOMPONENTS } from '../../../../../constants';
 import {
   CodePiece,
   IProjectSchema,
@@ -168,7 +168,7 @@ export default function hackEngineApis(
       otherParams.push({ name: nodeItem?.props?.indexKey, item: false });
     }
 
-    // const uidPiece = () => { 
+    // const uidPiece = () => {
     //   if (nodeItem[LoopMarkSymbol]?.loopType === 'innerLayer') {
     //     return `
     //      itemId = item?.[props.itemKey] || i;

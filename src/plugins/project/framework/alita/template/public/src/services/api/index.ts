@@ -1,17 +1,19 @@
+import serviceApi from '@/utils/service/commonFetch';
 import resolveApiPath from '@/utils/service/resolveApiPath';
 import { security } from '@lingxiteam/assets';
-import { getAppFileUrlByFileCode } from './getAppFileUrlByFileCode';
-import serviceApi from '@/utils/service/commonFetch';
-import batchInsert from './batchInsert';
 import urlHelper from '../../utils/service/urlHelper';
+import batchInsert from './batchInsert';
+import { getAppFileUrlByFileCode } from './getAppFileUrlByFileCode';
 
 export const api = {
   batchInsert,
   resolveApiPath,
   getAppFileUrlByFileCode,
   commonFetch: serviceApi.commonFetch,
-  getSqlQueryColumns: (params) => urlHelper.get('app/sql/getSqlQueryColumns', params),
-  batchGetAppStaticAttr: (params: any) => urlHelper.get('app/appAttr/batchGetAppStaticAttr', params),
+  getSqlQueryColumns: (params) =>
+    urlHelper.get('app/sql/getSqlQueryColumns', params),
+  batchGetAppStaticAttr: (params: any) =>
+    urlHelper.get('app/appAttr/batchGetAppStaticAttr', params),
   uploadSingleFile: () => resolveApiPath('app/file/uploadSingleFile'),
   getAppFileUrlById: (params: any, appCtx: any) => {
     const { pageId, appId, language } = appCtx;

@@ -1,1 +1,1 @@
-export { fetchQueryObject, fetchQueryService } from "./fetchQuery";
+export { fetchQueryObject, fetchQueryService } from './fetchQuery';

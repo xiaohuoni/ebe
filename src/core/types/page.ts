@@ -50,8 +50,10 @@ export interface IProjectSchema extends Component {
     /**
      * 父循环容器的组件id
      */
-    parentLoopId?: string, 
-    loopType?: 'outerLayer' /** 最外层循环容器 */ | 'innerLayer' /** 内层循环容器 */
+    parentLoopId?: string;
+    loopType?:
+      | 'outerLayer' /** 最外层循环容器 */
+      | 'innerLayer' /** 内层循环容器 */;
   };
 }
 

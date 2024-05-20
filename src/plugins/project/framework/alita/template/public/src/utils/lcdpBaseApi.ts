@@ -1,9 +1,8 @@
 /* eslint-disable */
-import copy from 'copy-to-clipboard';
-import _ from 'lodash';
-import api from './service/commonFetch';
-import React from 'react';
 import { ModalManagerHooks } from '@lingxiteam/types';
+import copy from 'copy-to-clipboard';
+import React from 'react';
+import api from './service/commonFetch';
 // import PopoverUtils from '@/utils/popoverUtils';
 // import { Interceptor } from "../request";
 // import type { InterceptorType } from "../request";
@@ -11,12 +10,14 @@ import { ModalManagerHooks } from '@lingxiteam/types';
 
 // 对应用全局数据和全局方法访问的接口对象,为自定义代码提供更多可能性
 class LcdpBaseApi {
-  [x: string]:{
-    refs: {
-      ModalManager: React.RefObject<ModalManagerHooks>,
-      history: any,
-    }
-  } | any
+  [x: string]:
+    | {
+        refs: {
+          ModalManager: React.RefObject<ModalManagerHooks>;
+          history: any;
+        };
+      }
+    | any;
   constructor(mountObj?: any, singletonLcdpApi?: any) {
     // 数据
     this.data = {
@@ -36,7 +37,7 @@ class LcdpBaseApi {
     this.hooksOfApp = {};
     // 内部资产列表
     this.inLineComps = {};
-   // 收集antd对象
+    // 收集antd对象
     this.antd = {};
     // 对象引用
     this.refs = {
@@ -51,21 +52,17 @@ class LcdpBaseApi {
       /**
        * 收集页面popover引用
        */
-    //   PopoverManager: PopoverUtils.getInstance(),
+      //   PopoverManager: PopoverUtils.getInstance(),
     };
 
     // 调用接口合集
-    this.apis = {
-
-    };
+    this.apis = {};
 
     // 外部系统注册的原滋原味的接口，不需要去包装参数
     this.originalApis = {};
 
     // 通用工具方法
-    this.utils = {
-
-    };
+    this.utils = {};
 
     // http请求拦截器
     // this.interceptors = [];
@@ -75,25 +72,32 @@ class LcdpBaseApi {
 
     // 页面返回数据
     this.pageCallBackData = {};
-    
+
     /**
      * 用于兼容江西渠道-接收页面信息事件
      * @deprecated
      */
     this.messageHandlers = {};
-    
+
     /**
-    * @name 调用页面的自定义事件
-    * @param {string} currentPageId 当前页面id，由于自动取当前页面PageId存在问题，故新增此参数
-    * @param {string} funcName 自定义事件名
-    * @param {object} options 自定义事件所需参数
-    */
-    this.callSelCustomFunc = (currentPageId: string, funcName: string, options: any) => {
+     * @name 调用页面的自定义事件
+     * @param {string} currentPageId 当前页面id，由于自动取当前页面PageId存在问题，故新增此参数
+     * @param {string} funcName 自定义事件名
+     * @param {object} options 自定义事件所需参数
+     */
+    this.callSelCustomFunc = (
+      currentPageId: string,
+      funcName: string,
+      options: any,
+    ) => {
       let pageId = currentPageId;
       let func = funcName;
 
       // 存量数据第一个参数为funcName，该参数支持嵌套写法，现调整为currentPageId
-      if (typeof currentPageId === 'string' && currentPageId.indexOf('.') !== -1) {
+      if (
+        typeof currentPageId === 'string' &&
+        currentPageId.indexOf('.') !== -1
+      ) {
         pageId = currentPageId.split('.')[0];
         func = currentPageId.split('.')[1];
       }
@@ -115,17 +119,16 @@ class LcdpBaseApi {
       return this.selCustomFunc[pageId][func](options);
     };
 
-
     /**
-    * @name 复制到粘贴板
-    * @param {string} text 复制内容
-    * @param {object} options 配置项，详见：https://www.npmjs.com/package/copy-to-clipboard
-    */
+     * @name 复制到粘贴板
+     * @param {string} text 复制内容
+     * @param {object} options 配置项，详见：https://www.npmjs.com/package/copy-to-clipboard
+     */
     this.copy = copy;
 
     /**
-    * @name 发送请求
-    */
+     * @name 发送请求
+     */
     this.fetch = api.commonFetch;
 
     // 重构 屏蔽
@@ -137,12 +140,12 @@ class LcdpBaseApi {
     // 兼容旧数据，在访问lcdpApi的data数据（仅针对公共数据部分，如： pages, user等）时需要将singletonLcdpApi的数据返回
     if (singletonLcdpApi) {
       const dataKeys = new Set(['user', 'tenantId']);
-      Object.keys(singletonLcdpApi.data).forEach(k => {
+      Object.keys(singletonLcdpApi.data).forEach((k) => {
         if (this.data[k] === undefined) {
           dataKeys.add(k);
         }
       });
-      [...dataKeys].forEach(k => {
+      [...dataKeys].forEach((k) => {
         (() => {
           // 理论上不会用到val
           let val = null;
@@ -153,11 +156,11 @@ class LcdpBaseApi {
             set(value) {
               // this[k] = value; 这种写法会造成死循环
               val = value;
-            }
+            },
           });
-        })()
+        })();
       });
-      ['history'].forEach(k => {
+      ['history'].forEach((k) => {
         (() => {
           let val = null;
           Object.defineProperty(this.refs, k, {
@@ -166,10 +169,9 @@ class LcdpBaseApi {
             },
             set(value) {
               val = value;
-            }
+            },
           });
-        })()
-
+        })();
       });
     }
   }
@@ -189,10 +191,10 @@ class LcdpBaseApi {
   // }
 
   // // 注册拦截器
-  // registerInterceptors(interceptor: { 
+  // registerInterceptors(interceptor: {
   //   request: InterceptorType['request'],
   //   response: InterceptorType['response'],
-  // }) { 
+  // }) {
 
   //   interceptor.request.forEach(req => {
   //     Interceptor.addRequestInterceptors(req);
@@ -205,9 +207,12 @@ class LcdpBaseApi {
 
   setData(key: string, value: any, isReplaceAll = true) {
     // 对象/数组赋值保留原内存地址, 解决被变量引用内存地址，修改后导致该变量无法正常取值
-    if (Object.prototype.toString.call(value) === '[object Object]' && Object.prototype.toString.call(this.data[key]) === '[object Object]') {
+    if (
+      Object.prototype.toString.call(value) === '[object Object]' &&
+      Object.prototype.toString.call(this.data[key]) === '[object Object]'
+    ) {
       if (isReplaceAll) {
-        Object.keys(this.data[key]).forEach(n => delete this.data[key][n]);
+        Object.keys(this.data[key]).forEach((n) => delete this.data[key][n]);
       }
       this.data[key] = Object.assign(this.data[key], value);
     } else if (Array.isArray(value) && Array.isArray(this.data[key])) {
@@ -227,7 +232,7 @@ class LcdpBaseApi {
     this.pageCallBackData = data;
   }
 
-  setInLineComps(key:string, value: any) {
+  setInLineComps(key: string, value: any) {
     this.inLineComps[key] = value;
   }
   removeData(key: string) {
@@ -261,8 +266,8 @@ class LcdpBaseApi {
 
   /**
    * @deprecated 兼容存量，后续禁止使用
-   * @param pageId 
-   * @param funcString 
+   * @param pageId
+   * @param funcString
    */
   setSelCustomFunc(pageId: string, funcString: string) {
     this.selCustomFunc[pageId] = funcString;
@@ -270,9 +275,9 @@ class LcdpBaseApi {
 
   /**
    * @deprecated 兼容存量，后续禁止使用
-   * @param pageId 
+   * @param pageId
    */
-  clearSelCustomFunc(pageId: string) { 
+  clearSelCustomFunc(pageId: string) {
     this.selCustomFunc[pageId] = {};
   }
 
@@ -281,7 +286,7 @@ class LcdpBaseApi {
   }
 
   initHooks(hookArray: any[]) {
-    hookArray.forEach(c => {
+    hookArray.forEach((c) => {
       this.hooks[c.hookCode] = c.hookCompiledContent;
     });
   }

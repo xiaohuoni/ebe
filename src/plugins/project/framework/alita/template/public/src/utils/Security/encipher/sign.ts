@@ -1,14 +1,17 @@
 /* eslint-disable no-case-declarations */
 import { SHA256 } from 'crypto-js';
 import { v4 as uuidv4 } from 'uuid';
-import { AESEncrypt } from './aes';
-import { obj2QueryString, decodeQueryString, removeURLParameters } from '../utils/url';
-import { aesKey, securityHeaderKey, signHeaderKey } from '../const';
-import { checkIsSignMode } from '../utils/check';
 import config from '../config';
-import message from '../utils/message';
+import { aesKey, securityHeaderKey, signHeaderKey } from '../const';
 import { MODE, signHttpOptionsType } from '../types';
-
+import { checkIsSignMode } from '../utils/check';
+import message from '../utils/message';
+import {
+  decodeQueryString,
+  obj2QueryString,
+  removeURLParameters,
+} from '../utils/url';
+import { AESEncrypt } from './aes';
 
 // 注意：修改此文件请跑测试用例, npm run test
 
@@ -41,7 +44,11 @@ const getApiPath = (url: string) => {
   return url.split('/').pop();
 };
 
-export const createHttpSignStr = (url: string, options: signHttpOptionsType, version?: any) => {
+export const createHttpSignStr = (
+  url: string,
+  options: signHttpOptionsType,
+  version?: any,
+) => {
   if (!url || !options) {
     message.warn('签名失败，url地址或参数为空');
     return '';
@@ -65,11 +72,13 @@ export const createHttpSignStr = (url: string, options: signHttpOptionsType, ver
   let headerParams = '';
   const headersKeyArr: any = [];
   if (headers) {
-    Object.keys(headers).concat(config.sign?.includeHeaders || []).forEach((key) => {
-      if (key.startsWith('X-LX-') || hKeys.includes(key)) {
-        headersKeyArr.push(`${key.toLowerCase()}=${headers[key]}`);
-      }
-    });
+    Object.keys(headers)
+      .concat(config.sign?.includeHeaders || [])
+      .forEach((key) => {
+        if (key.startsWith('X-LX-') || hKeys.includes(key)) {
+          headersKeyArr.push(`${key.toLowerCase()}=${headers[key]}`);
+        }
+      });
   }
   headerParams = headersKeyArr.sort().join(';');
 
@@ -80,17 +89,24 @@ export const createHttpSignStr = (url: string, options: signHttpOptionsType, ver
   // java后端一般为null
   let finallyBody = body;
   if (typeof config.emptyBodyValue !== 'undefined') {
-    finallyBody = (body === undefined || body === null) ? config.emptyBodyValue : body;
+    finallyBody =
+      body === undefined || body === null ? config.emptyBodyValue : body;
   }
   if (method.toLowerCase() === 'get') {
     // 为保证与后端值一致此处需要将数据进行解码
     params = decodeQueryString(urlSearch);
   } else {
-    params = typeof finallyBody === 'object' ? JSON.stringify(finallyBody) : finallyBody;
+    params =
+      typeof finallyBody === 'object'
+        ? JSON.stringify(finallyBody)
+        : finallyBody;
   }
 
   // 获取参数4: 用户id, 优先从options.saltValue
-  const getSaltValue = (): string => typeof config.sign?.saltValue === 'function' ? config.sign.saltValue() : config.sign?.saltValue;
+  const getSaltValue = (): string =>
+    typeof config.sign?.saltValue === 'function'
+      ? config.sign.saltValue()
+      : config.sign?.saltValue;
 
   // 签名内容
   let content: string = '';
@@ -99,7 +115,13 @@ export const createHttpSignStr = (url: string, options: signHttpOptionsType, ver
   switch (signVersion) {
     case MODE.SIGN:
     case MODE.SIGN_KEY:
-      content = [apiPath, headerParams, params, saltValue || getSaltValue(), config.sign?.key].join('#');
+      content = [
+        apiPath,
+        headerParams,
+        params,
+        saltValue || getSaltValue(),
+        config.sign?.key,
+      ].join('#');
       result = SHA256(content).toString();
       break;
     case MODE.SIGN_WITH_TIME:
@@ -107,16 +129,35 @@ export const createHttpSignStr = (url: string, options: signHttpOptionsType, ver
       // eslint-disable-next-line no-case-declarations
       const deviation = config.timeDeviation as number;
       const now = Date.now() - deviation;
-      content = [apiPath, headerParams, params, signVersion === MODE.SIGN_WITHOUT_SALT ? '' : saltValue || getSaltValue(), config.sign?.key, now].join('#');
+      content = [
+        apiPath,
+        headerParams,
+        params,
+        signVersion === MODE.SIGN_WITHOUT_SALT
+          ? ''
+          : saltValue || getSaltValue(),
+        config.sign?.key,
+        now,
+      ].join('#');
       result = [SHA256(content).toString(), now, deviation].join('.');
       break;
     case MODE.SIGN_UUID:
     case MODE.SIGN_UUID_WITHOUT_SALT:
       const uuid = uuidv4();
-      content = [apiPath, headerParams, params, signVersion === MODE.SIGN_UUID_WITHOUT_SALT ? '' : saltValue || getSaltValue(), config.sign?.key, uuid].join('#');
+      content = [
+        apiPath,
+        headerParams,
+        params,
+        signVersion === MODE.SIGN_UUID_WITHOUT_SALT
+          ? ''
+          : saltValue || getSaltValue(),
+        config.sign?.key,
+        uuid,
+      ].join('#');
       result = AESEncrypt([SHA256(content).toString(), uuid].join('.'), aesKey);
       break;
-    default: break;
+    default:
+      break;
   }
 
   if (config.debug) {
@@ -131,7 +172,11 @@ export const createHttpSignStr = (url: string, options: signHttpOptionsType, ver
 };
 
 // 由于（img、script）无法进行处理请求头，将签名参数x-sign放到url参数里
-export const buildXSignUrl = (url: string, options: signHttpOptionsType = {}, version?: any) => {
+export const buildXSignUrl = (
+  url: string,
+  options: signHttpOptionsType = {},
+  version?: any,
+) => {
   if (!url) {
     return '';
   }
@@ -140,13 +185,25 @@ export const buildXSignUrl = (url: string, options: signHttpOptionsType = {}, ve
     return url;
   }
   let _url = url;
-  const signVersion = version || checkIsSignMode(config.mode as MODE) ? config.mode : MODE.SIGN_WITH_TIME ;
-  const signStr = createHttpSignStr(url, { method: 'GET', ...options }, signVersion);
+  const signVersion =
+    version || checkIsSignMode(config.mode as MODE)
+      ? config.mode
+      : MODE.SIGN_WITH_TIME;
+  const signStr = createHttpSignStr(
+    url,
+    { method: 'GET', ...options },
+    signVersion,
+  );
   // 如果url上存在签名则移除原签名
-  if (url.indexOf(signHeaderKey) !== -1 || url.indexOf(securityHeaderKey) !== -1) {
+  if (
+    url.indexOf(signHeaderKey) !== -1 ||
+    url.indexOf(securityHeaderKey) !== -1
+  ) {
     _url = removeURLParameters(url, [signHeaderKey, securityHeaderKey]);
   }
-  return `${_url}${_url.includes('?') ? '&' : '?'}${signHeaderKey}=${signStr}&${securityHeaderKey}=${signVersion}`;
+  return `${_url}${
+    _url.includes('?') ? '&' : '?'
+  }${signHeaderKey}=${signStr}&${securityHeaderKey}=${signVersion}`;
 };
 
 // buildXSignUrl兼容平台内部使用，外部使用createHttpSignWithUrl

@@ -5,7 +5,10 @@ export const AVERAGE = FunctorDefine({
   type: 'AVERAGE',
   value: 'AVERAGE(10,20,30)',
   functor(...numbers: number[]): number {
-    return numbers.reduce((a, b) => Number(a ?? 0) + Number(b ?? 0), 0) / numbers.length;
+    return (
+      numbers.reduce((a, b) => Number(a ?? 0) + Number(b ?? 0), 0) /
+      numbers.length
+    );
   },
   define: ['计算数字的绝对值'],
   description: {

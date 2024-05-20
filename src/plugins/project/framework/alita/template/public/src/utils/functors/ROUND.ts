@@ -9,7 +9,7 @@ export const ROUND = FunctorDefine({
     if (includes([x, digits], [null, undefined, ''])) {
       return undefined;
     }
-    return Math.round(x * (10 ** digits)) / (10 ** digits);
+    return Math.round(x * 10 ** digits) / 10 ** digits;
   },
   define: ['按指定位数对数字进行四舍五入'],
   description: {

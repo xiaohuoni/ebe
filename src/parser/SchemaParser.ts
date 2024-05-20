@@ -14,7 +14,11 @@ import {
 } from '../core';
 import { uniqueArray } from '../core/utils/common';
 import { getBusiCompName } from '../utils/schema/getBusiCompName';
-import { handleSubNodes, markerLoopComponent, parseSchema } from '../utils/schema/lxschema';
+import {
+  handleSubNodes,
+  markerLoopComponent,
+  parseSchema,
+} from '../utils/schema/lxschema';
 // @ts-ignore
 import enPreprocess from '@lingxiteam/factory/es/index.enPreprocess';
 // @ts-ignore
@@ -165,19 +169,17 @@ export class SchemaParser implements ISchemaParser {
 
       // 这里不能做dataSource判断，不然数据无法执行数据源的插件，导致文件无法生成
       // if (newSchema.dataSource) {
-        dataSources.push({
-          moduleName,
-          abc: 1,
-          containerType: newSchema.pageContainerType ?? 'Page',
-          type: newSchema.pageContainerType ?? 'Page',
-          analyzeResult: {
-            isUsingRef: false,
-          },
-          dataSource: JSON.stringify(
-            cleanDataSource(newSchema.dataSource ?? []),
-          ),
-        });
-        // delete newSchema.dataSource;
+      dataSources.push({
+        moduleName,
+        abc: 1,
+        containerType: newSchema.pageContainerType ?? 'Page',
+        type: newSchema.pageContainerType ?? 'Page',
+        analyzeResult: {
+          isUsingRef: false,
+        },
+        dataSource: JSON.stringify(cleanDataSource(newSchema.dataSource ?? [])),
+      });
+      // delete newSchema.dataSource;
       // }
       return {
         ...newSchema,

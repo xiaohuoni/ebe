@@ -116,7 +116,6 @@ export const generatorDataType = (dataSource: any[]) => {
     );
   });
 
-
   return [
     `export interface DataSourceType {`,
 

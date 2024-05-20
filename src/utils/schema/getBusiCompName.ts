@@ -15,9 +15,7 @@ export const getBusiCompName = (busiCompMapping: any, node: any) => {
       .replaceAll('(', '')
       .replaceAll(')', '');
     if (busiCompMap[name]) {
-      return busiCompMap[name] === otherType
-        ? name
-        : `${name}${otherType}`;
+      return busiCompMap[name] === otherType ? name : `${name}${otherType}`;
     }
     busiCompMap[name] = otherType;
     return name;

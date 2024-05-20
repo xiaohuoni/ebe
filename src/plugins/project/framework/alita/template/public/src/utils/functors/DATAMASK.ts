@@ -5,7 +5,7 @@ import { FunctorDefine } from './types';
 type DataMaskType = 'mobile' | 'email' | 'ID' | 'phone' | 'default' | 'service';
 
 if (!String.prototype.repeat) {
-  String.prototype.repeat = function(count) {
+  String.prototype.repeat = function (count) {
     if (this == null) {
       throw new TypeError(`can't convert ${this} to object`);
     }
@@ -27,7 +27,9 @@ if (!String.prototype.repeat) {
     // 确保 count 是一个 31 位的整数。这样我们就可以使用如下优化的算法。
     // 当前（2014 年 8 月），绝大多数浏览器都不能支持 1 << 28 长的字符串，所以：
     if (str.length * count >= 1 << 28) {
-      throw new RangeError('repeat count must not overflow maximum string size');
+      throw new RangeError(
+        'repeat count must not overflow maximum string size',
+      );
     }
     let rpt = '';
     for (;;) {
@@ -53,14 +55,19 @@ const defaultDataMaskProcess = (inputstr: String) => {
   return inputstr.replace(/(^.{2})(.*)(.{2}$)/g, `$1${'*'.repeat(count)}$3`);
 };
 
-const processDataMaskValue = (inputstr: String, type: DataMaskType = 'default') => {
+const processDataMaskValue = (
+  inputstr: String,
+  type: DataMaskType = 'default',
+) => {
   // 待脱敏数据类型检测提示
   if (typeof inputstr !== 'string') {
     // 数字类型自动转换
     if (typeof inputstr === 'number') {
       inputstr = (inputstr as number).toString();
     } else {
-      console.error(`待脱敏数据${inputstr}类型：${typeof inputstr}，不是string类型`);
+      console.error(
+        `待脱敏数据${inputstr}类型：${typeof inputstr}，不是string类型`,
+      );
       return inputstr;
     }
   }
@@ -76,25 +83,45 @@ const processDataMaskValue = (inputstr: String, type: DataMaskType = 'default') 
     case 'mobile':
       // 手机，手机遮4-7位
       if (inputstr.match(/^1[3-9]\d{9}$/g)) {
-        return inputstr.replace(/(^\d{3})(\d*)(\d{4}$)/g, `$1${'*'.repeat(4)}$3`);
+        return inputstr.replace(
+          /(^\d{3})(\d*)(\d{4}$)/g,
+          `$1${'*'.repeat(4)}$3`,
+        );
       }
     case 'email':
       // 电子邮箱，都只保留前两位
-      if (inputstr.match(/^[\w\+\-]+(\.[\w\+\-]+)*@[a-z\d\-]+(\.[a-z\d\-]+)*\.([a-z]{2,9})$/i)) {
+      if (
+        inputstr.match(
+          /^[\w\+\-]+(\.[\w\+\-]+)*@[a-z\d\-]+(\.[a-z\d\-]+)*\.([a-z]{2,9})$/i,
+        )
+      ) {
         const arr = inputstr.split('@');
-        const firstp = `${arr[0].substring(0, 2)}${'*'.repeat(arr[0].length - 2)}`;
-        const secondp = `${arr[1].substring(0, 2)}${'*'.repeat(arr[1].length - 2)}`;
+        const firstp = `${arr[0].substring(0, 2)}${'*'.repeat(
+          arr[0].length - 2,
+        )}`;
+        const secondp = `${arr[1].substring(0, 2)}${'*'.repeat(
+          arr[1].length - 2,
+        )}`;
         return `${firstp}@${secondp}`;
       }
     case 'ID':
       // 居民身份证号
       if (inputstr.match(/^\d{17}(\d|X)$/g)) {
-        return inputstr.replace(/(^\d{4})(\d*)(.{2}$)/g, `$1${'*'.repeat(12)}$3`);
+        return inputstr.replace(
+          /(^\d{4})(\d*)(.{2}$)/g,
+          `$1${'*'.repeat(12)}$3`,
+        );
       }
     case 'phone':
       // 固话，固话逻辑是保留前3位，遮4-7位
-      if (inputstr.match(/^(?:(?:0\d{2,3}[\- ]?[1-9]\d{6,7})|(?:[48]00[\- ]?[1-9]\d{6}))$/g)) {
-        return `${inputstr.substring(0, 3)}${'*'.repeat(4)}${inputstr.substring(7)}`;
+      if (
+        inputstr.match(
+          /^(?:(?:0\d{2,3}[\- ]?[1-9]\d{6,7})|(?:[48]00[\- ]?[1-9]\d{6}))$/g,
+        )
+      ) {
+        return `${inputstr.substring(0, 3)}${'*'.repeat(4)}${inputstr.substring(
+          7,
+        )}`;
       }
     default:
       // 回归保底通用规则

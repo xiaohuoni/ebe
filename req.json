@@ -40,9 +40,7 @@
           "code": "bizData"
         }
       ],
-      "style": {
-        
-      },
+      "style": {},
       "setEvents": [
         {
           "dataName": "event",
@@ -2556,18 +2554,14 @@
                   "dataName": "action",
                   "dataId": 171576635425161150,
                   "children": [],
-                  "todoOptions": [
-                    "valueArray"
-                  ],
+                  "todoOptions": ["valueArray"],
                   "path": [171576635264824200],
                   "options": {
                     "compId": "console",
                     "compName": "system",
                     "id": "8261586",
                     "pageJsonId": "947893",
-                    "value": [
-                      "$options_768712$"
-                    ]
+                    "value": ["$options_768712$"]
                   },
                   "actionObjId": "console",
                   "actionObjName": "system",
@@ -2689,10 +2683,7 @@
                     {
                       "dataName": "action",
                       "dataId": 171557132534251870,
-                      "todoOptions": [
-                        "name",
-                        "icon"
-                      ],
+                      "todoOptions": ["name", "icon"],
                       "path": [171557131908687900],
                       "options": {
                         "compId": "Button_830932",
@@ -2705,9 +2696,7 @@
                         "theme": "outlined",
                         "fontAddress": "",
                         "isIconFont": false,
-                        "iconFileInfo": {
-                          
-                        },
+                        "iconFileInfo": {},
                         "iconType": "arrow-up"
                       },
                       "actionObjId": "Button_830932",
@@ -2721,10 +2710,7 @@
               ],
               "isLabelDropBoxChild": false,
               "components": [],
-              "path": [
-                "947893",
-                "View_947893_1"
-              ]
+              "path": ["947893", "View_947893_1"]
             },
             {
               "id": "BOFramer_863053",
@@ -2759,10 +2745,7 @@
                 }
               },
               "components": [],
-              "path": [
-                "947893",
-                "View_947893_1"
-              ]
+              "path": ["947893", "View_947893_1"]
             },
             {
               "id": "Form_475914",
@@ -2846,11 +2829,7 @@
                             "sourceAttrId": "1001",
                             "sourceId": "1001",
                             "value": {
-                              "type": [
-                                "form",
-                                "Form_475914",
-                                "getFieldsValue"
-                              ],
+                              "type": ["form", "Form_475914", "getFieldsValue"],
                               "code": "user_id"
                             }
                           },
@@ -2868,11 +2847,7 @@
                             "sourceAttrId": "1002",
                             "sourceId": "1001",
                             "value": {
-                              "type": [
-                                "form",
-                                "Form_475914",
-                                "getFieldsValue"
-                              ],
+                              "type": ["form", "Form_475914", "getFieldsValue"],
                               "code": "user_name"
                             }
                           },
@@ -3070,7 +3045,7 @@
                           "dataName": "callback",
                           "dataId": 171557358942130750,
                           "value": "callback1",
-                          "path": [171557358942141060,171557358942170460],
+                          "path": [171557358942141060, 171557358942170460],
                           "params": [],
                           "elseIfs": [],
                           "children": []
@@ -3079,7 +3054,7 @@
                           "dataName": "callback",
                           "dataId": 171557358942109220,
                           "value": "callback2",
-                          "path": [171557358942141060,171557358942170460],
+                          "path": [171557358942141060, 171557358942170460],
                           "params": [],
                           "elseIfs": [],
                           "children": []
@@ -3116,16 +3091,12 @@
                     "fieldName": "user_id",
                     "showMore": false,
                     "defaultValue": null,
-                    "attr": {
-                      
-                    },
+                    "attr": {},
                     "regexp": [],
                     "value": "$data.lcdp_domain_user.user_id$",
                     "formItemIndex": 0
                   },
-                  "style": {
-                    
-                  },
+                  "style": {},
                   "isContainer": false,
                   "isBusiObjContainer": false,
                   "platform": "pc",
@@ -3133,11 +3104,7 @@
                   "busiObjectId": "1001",
                   "isLabelDropBoxChild": false,
                   "components": [],
-                  "path": [
-                    "947893",
-                    "View_947893_1",
-                    "Form_475914"
-                  ]
+                  "path": ["947893", "View_947893_1", "Form_475914"]
                 },
                 {
                   "id": "Input_user_name_047119",
@@ -3167,9 +3134,7 @@
                     "fieldName": "user_name",
                     "showMore": false,
                     "defaultValue": null,
-                    "attr": {
-                      
-                    },
+                    "attr": {},
                     "regexp": [],
                     "value": "$data.lcdp_domain_user.user_name$",
                     "formItemIndex": 1,
@@ -3177,22 +3142,16 @@
                       "theme": "outlined",
                       "fontAddress": "",
                       "isIconFont": false,
-                      "iconFileInfo": {
-                        
-                      }
+                      "iconFileInfo": {}
                     },
                     "prefixIcon": {
                       "theme": "outlined",
                       "fontAddress": "",
                       "isIconFont": false,
-                      "iconFileInfo": {
-                        
-                      }
+                      "iconFileInfo": {}
                     }
                   },
-                  "style": {
-                    
-                  },
+                  "style": {},
                   "isContainer": false,
                   "isBusiObjContainer": false,
                   "platform": "pc",
@@ -3201,11 +3160,7 @@
                   "busiObjectId": "1001",
                   "isLabelDropBoxChild": false,
                   "components": [],
-                  "path": [
-                    "947893",
-                    "View_947893_1",
-                    "Form_475914"
-                  ]
+                  "path": ["947893", "View_947893_1", "Form_475914"]
                 },
                 {
                   "id": "StdUpload_238057",
@@ -3261,14 +3216,10 @@
                       "theme": "outlined",
                       "fontAddress": "",
                       "isIconFont": false,
-                      "iconFileInfo": {
-                        
-                      }
+                      "iconFileInfo": {}
                     }
                   },
-                  "style": {
-                    
-                  },
+                  "style": {},
                   "isContainer": false,
                   "isBusiObjContainer": false,
                   "platform": "pc",
@@ -3383,15 +3334,11 @@
                                     "_id": "attrs.updated_time",
                                     "compType": "TimePicker",
                                     "serviceAttrId": "1013",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-0",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.updated_time",
                                     "dataKey": "05422874_attrs.updated_time"
                                   },
@@ -3465,15 +3412,11 @@
                                     "_id": "attrs.updated_time_end",
                                     "compType": "TimePicker",
                                     "serviceAttrId": "1013-end-virtual",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-1",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.updated_time_end",
                                     "dataKey": "05422874_attrs.updated_time_end"
                                   },
@@ -3548,15 +3491,11 @@
                                     "_id": "attrs.user_name",
                                     "compType": "Input",
                                     "serviceAttrId": "1002",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-2",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.user_name",
                                     "dataKey": "05422874_attrs.user_name"
                                   },
@@ -3631,15 +3570,11 @@
                                     "_id": "attrs.creator_id",
                                     "compType": "InputNumber",
                                     "serviceAttrId": "1008",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-3",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.creator_id",
                                     "dataKey": "05422874_attrs.creator_id"
                                   },
@@ -3714,15 +3649,11 @@
                                     "_id": "attrs.remark",
                                     "compType": "Input",
                                     "serviceAttrId": "1014",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-4",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.remark",
                                     "dataKey": "05422874_attrs.remark"
                                   },
@@ -3796,15 +3727,11 @@
                                     "_id": "attrs.status_time_begin",
                                     "compType": "TimePicker",
                                     "serviceAttrId": "1011-begin-virtual",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-5",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.status_time_begin",
                                     "dataKey": "05422874_attrs.status_time_begin"
                                   },
@@ -3878,15 +3805,11 @@
                                     "_id": "attrs.created_time_begin",
                                     "compType": "TimePicker",
                                     "serviceAttrId": "1009-begin-virtual",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-6",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.created_time_begin",
                                     "dataKey": "05422874_attrs.created_time_begin"
                                   },
@@ -3961,15 +3884,11 @@
                                     "_id": "attrs.user_id",
                                     "compType": "InputNumber",
                                     "serviceAttrId": "1001",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-7",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.user_id",
                                     "dataKey": "05422874_attrs.user_id"
                                   },
@@ -4044,15 +3963,11 @@
                                     "_id": "attrs.password",
                                     "compType": "Input",
                                     "serviceAttrId": "1006",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-8",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.password",
                                     "dataKey": "05422874_attrs.password"
                                   },
@@ -4127,15 +4042,11 @@
                                     "_id": "attrs.email",
                                     "compType": "Input",
                                     "serviceAttrId": "1005",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-9",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.email",
                                     "dataKey": "05422874_attrs.email"
                                   },
@@ -4209,15 +4120,11 @@
                                     "_id": "attrs.created_time_end",
                                     "compType": "TimePicker",
                                     "serviceAttrId": "1009-end-virtual",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-10",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.created_time_end",
                                     "dataKey": "05422874_attrs.created_time_end"
                                   },
@@ -4292,15 +4199,11 @@
                                     "_id": "attrs.org_id",
                                     "compType": "InputNumber",
                                     "serviceAttrId": "1007",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-11",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.org_id",
                                     "dataKey": "05422874_attrs.org_id"
                                   },
@@ -4374,15 +4277,11 @@
                                     "_id": "attrs.updated_time_begin",
                                     "compType": "TimePicker",
                                     "serviceAttrId": "1013-begin-virtual",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-12",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.updated_time_begin",
                                     "dataKey": "05422874_attrs.updated_time_begin"
                                   },
@@ -4457,15 +4356,11 @@
                                     "_id": "attrs.status_cd",
                                     "compType": "Input",
                                     "serviceAttrId": "1010",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-13",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.status_cd",
                                     "dataKey": "05422874_attrs.status_cd"
                                   },
@@ -4540,15 +4435,11 @@
                                     "_id": "attrs.phone_no",
                                     "compType": "Input",
                                     "serviceAttrId": "1004",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-14",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.phone_no",
                                     "dataKey": "05422874_attrs.phone_no"
                                   },
@@ -4622,15 +4513,11 @@
                                     "_id": "attrs.status_time_end",
                                     "compType": "TimePicker",
                                     "serviceAttrId": "1011-end-virtual",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-15",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.status_time_end",
                                     "dataKey": "05422874_attrs.status_time_end"
                                   },
@@ -4705,15 +4592,11 @@
                                     "_id": "attrs.updator_id",
                                     "compType": "InputNumber",
                                     "serviceAttrId": "1012",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-16",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.updator_id",
                                     "dataKey": "05422874_attrs.updator_id"
                                   },
@@ -4788,15 +4671,11 @@
                                     "_id": "attrs.created_time",
                                     "compType": "TimePicker",
                                     "serviceAttrId": "1009",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-17",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.created_time",
                                     "dataKey": "05422874_attrs.created_time"
                                   },
@@ -4871,15 +4750,11 @@
                                     "_id": "attrs.status_time",
                                     "compType": "TimePicker",
                                     "serviceAttrId": "1011",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-18",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.status_time",
                                     "dataKey": "05422874_attrs.status_time"
                                   },
@@ -4954,15 +4829,11 @@
                                     "_id": "attrs.real_name",
                                     "compType": "Input",
                                     "serviceAttrId": "1015",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-19",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.real_name",
                                     "dataKey": "05422874_attrs.real_name"
                                   },
@@ -5037,15 +4908,11 @@
                                     "_id": "attrs.user_type",
                                     "compType": "InputNumber",
                                     "serviceAttrId": "1003",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-20",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.user_type",
                                     "dataKey": "05422874_attrs.user_type"
                                   },
@@ -5059,15 +4926,11 @@
                                     "mainSourceId": "1001",
                                     "_id": "attrs.childNode",
                                     "compType": "Input",
-                                    "parents": [
-                                      "attrs"
-                                    ],
+                                    "parents": ["attrs"],
                                     "parentType": "object",
                                     "parentKey": "0",
                                     "key": "0-21",
-                                    "path": [
-                                      "0"
-                                    ],
+                                    "path": ["0"],
                                     "id": "attrs.childNode",
                                     "dataKey": "05422874_attrs.childNode"
                                   },
@@ -5077,9 +4940,7 @@
                                     "name": "正序列",
                                     "value": {
                                       "code": "",
-                                      "type": [
-                                        "customize"
-                                      ]
+                                      "type": ["customize"]
                                     }
                                   },
                                   {
@@ -5088,9 +4949,7 @@
                                     "name": "倒序列",
                                     "value": {
                                       "code": "",
-                                      "type": [
-                                        "customize"
-                                      ]
+                                      "type": ["customize"]
                                     }
                                   }
                                 ],
@@ -5116,7 +4975,7 @@
                               "dataName": "callback",
                               "dataId": 171567625647999100,
                               "value": "callback1",
-                              "path": [171567625076558980,171567625647916600],
+                              "path": [171567625076558980, 171567625647916600],
                               "params": [],
                               "elseIfs": [],
                               "children": [
@@ -5129,7 +4988,10 @@
                                     "isPreventDefault",
                                     "isStopPropagation"
                                   ],
-                                  "path": [171567625076558980,171567625647916600,171567625647999100],
+                                  "path": [
+                                    171567625076558980, 171567625647916600,
+                                    171567625647999100
+                                  ],
                                   "options": {
                                     "compId": "return",
                                     "compName": "system",
@@ -5150,7 +5012,7 @@
                               "dataName": "callback",
                               "dataId": 171567625647983460,
                               "value": "callback2",
-                              "path": [171567625076558980,171567625647916600],
+                              "path": [171567625076558980, 171567625647916600],
                               "params": [],
                               "elseIfs": [],
                               "children": []
@@ -5162,17 +5024,10 @@
                   ],
                   "isLabelDropBoxChild": false,
                   "components": [],
-                  "path": [
-                    "947893",
-                    "View_947893_1",
-                    "Form_475914"
-                  ]
+                  "path": ["947893", "View_947893_1", "Form_475914"]
                 }
               ],
-              "path": [
-                "947893",
-                "View_947893_1"
-              ]
+              "path": ["947893", "View_947893_1"]
             },
             {
               "id": "Button_670068",
@@ -5222,10 +5077,7 @@
                     {
                       "dataName": "action",
                       "dataId": 171586364336735100,
-                      "todoOptions": [
-                        "customFuncName",
-                        "customFuncParams"
-                      ],
+                      "todoOptions": ["customFuncName", "customFuncParams"],
                       "path": [171586363277728930],
                       "options": {
                         "compId": "callSelfFunc",
@@ -5249,24 +5101,23 @@
                           "dataName": "callback",
                           "dataId": 171586364336858240,
                           "value": "callback1",
-                          "path": [171586363277728930,171586364336735100],
+                          "path": [171586363277728930, 171586364336735100],
                           "params": [],
                           "children": [
                             {
                               "dataName": "action",
                               "dataId": 171593456934431040,
-                              "todoOptions": [
-                                "valueArray"
+                              "todoOptions": ["valueArray"],
+                              "path": [
+                                171586363277728930, 171586364336735100,
+                                171586364336858240
                               ],
-                              "path": [171586363277728930,171586364336735100,171586364336858240],
                               "options": {
                                 "compId": "console",
                                 "compName": "system",
                                 "id": "157915",
                                 "pageJsonId": "947893",
-                                "value": [
-                                  "$customFunc_279894$"
-                                ]
+                                "value": ["$customFunc_279894$"]
                               },
                               "actionObjId": "console",
                               "actionObjName": "system",
@@ -5281,7 +5132,7 @@
                           "dataName": "callback",
                           "dataId": 171586364336838880,
                           "value": "callback2",
-                          "path": [171586363277728930,171586364336735100],
+                          "path": [171586363277728930, 171586364336735100],
                           "params": [],
                           "children": [],
                           "elseIfs": []
@@ -5294,10 +5145,7 @@
               ],
               "isLabelDropBoxChild": false,
               "components": [],
-              "path": [
-                "947893",
-                "View_947893_1"
-              ]
+              "path": ["947893", "View_947893_1"]
             },
             {
               "id": "Button_925275",
@@ -5347,10 +5195,7 @@
                     {
                       "dataName": "action",
                       "dataId": 171566369839839040,
-                      "todoOptions": [
-                        "modalname",
-                        "compState"
-                      ],
+                      "todoOptions": ["modalname", "compState"],
                       "path": [171566369474364450],
                       "options": {
                         "compId": "showCustomModal",
@@ -5369,7 +5214,7 @@
                           "dataName": "callback",
                           "dataId": 171566369839854430,
                           "value": "callback1",
-                          "path": [171566369474364450,171566369839839040],
+                          "path": [171566369474364450, 171566369839839040],
                           "params": [
                             {
                               "title": "弹窗确认回调参数",
@@ -5382,18 +5227,17 @@
                             {
                               "dataName": "action",
                               "dataId": 171584432230546400,
-                              "todoOptions": [
-                                "valueArray"
+                              "todoOptions": ["valueArray"],
+                              "path": [
+                                171566369474364450, 171566369839839040,
+                                171566369839854430
                               ],
-                              "path": [171566369474364450,171566369839839040,171566369839854430],
                               "options": {
                                 "compId": "console",
                                 "compName": "system",
                                 "id": "309498",
                                 "pageJsonId": "947893",
-                                "value": [
-                                  "123213"
-                                ]
+                                "value": ["123213"]
                               },
                               "actionObjId": "console",
                               "actionObjName": "system",
@@ -5407,7 +5251,7 @@
                           "dataName": "callback",
                           "dataId": 171566369839857860,
                           "value": "callback2",
-                          "path": [171566369474364450,171566369839839040],
+                          "path": [171566369474364450, 171566369839839040],
                           "params": [],
                           "elseIfs": [],
                           "children": []
@@ -5419,15 +5263,10 @@
               ],
               "isLabelDropBoxChild": false,
               "components": [],
-              "path": [
-                "947893",
-                "View_947893_1"
-              ]
+              "path": ["947893", "View_947893_1"]
             }
           ],
-          "path": [
-            "947893"
-          ]
+          "path": ["947893"]
         }
       ],
       "path": []
@@ -5461,9 +5300,7 @@
           "code": "bizData"
         }
       ],
-      "style": {
-        
-      },
+      "style": {},
       "setEvents": [
         {
           "dataName": "event",
@@ -15073,7 +14910,7 @@
                           "dataName": "callback",
                           "dataId": 171576638788292350,
                           "value": "callback1",
-                          "path": [171576637580333440,171576638788232100],
+                          "path": [171576637580333440, 171576638788232100],
                           "params": [],
                           "elseIfs": [],
                           "children": []
@@ -15082,7 +14919,7 @@
                           "dataName": "callback",
                           "dataId": 171576638788210750,
                           "value": "callback2",
-                          "path": [171576637580333440,171576638788232100],
+                          "path": [171576637580333440, 171576638788232100],
                           "params": [],
                           "elseIfs": [],
                           "children": []
@@ -15094,10 +14931,7 @@
               ],
               "isLabelDropBoxChild": false,
               "components": [],
-              "path": [
-                "235387",
-                "View_235387_1"
-              ]
+              "path": ["235387", "View_235387_1"]
             },
             {
               "id": "Button_5726396",
@@ -15178,16 +15012,17 @@
                           "dataName": "callback",
                           "dataId": 171582131970617340,
                           "value": "callback1",
-                          "path": [171582131305052700,171582131970658720],
+                          "path": [171582131305052700, 171582131970658720],
                           "params": [],
                           "children": [
                             {
                               "dataName": "action",
                               "dataId": 171582334368731360,
-                              "todoOptions": [
-                                "valueArray"
+                              "todoOptions": ["valueArray"],
+                              "path": [
+                                171582131305052700, 171582131970658720,
+                                171582131970617340
                               ],
-                              "path": [171582131305052700,171582131970658720,171582131970617340],
                               "options": {
                                 "compId": "console",
                                 "compName": "system",
@@ -15211,7 +15046,7 @@
                           "dataName": "callback",
                           "dataId": 171582131970696420,
                           "value": "callback2",
-                          "path": [171582131305052700,171582131970658720],
+                          "path": [171582131305052700, 171582131970658720],
                           "params": [],
                           "children": [],
                           "elseIfs": []
@@ -15224,15 +15059,10 @@
               ],
               "isLabelDropBoxChild": false,
               "components": [],
-              "path": [
-                "235387",
-                "View_235387_1"
-              ]
+              "path": ["235387", "View_235387_1"]
             }
           ],
-          "path": [
-            "235387"
-          ]
+          "path": ["235387"]
         }
       ],
       "path": []

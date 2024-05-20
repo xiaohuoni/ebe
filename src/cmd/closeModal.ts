@@ -1,5 +1,4 @@
 import { CMDGeneratorPrames } from '../core/types';
-import { CMDGeneratorFunction } from '../core/utils/CMDGenerator';
 export function closeModal({
   value,
   platform,

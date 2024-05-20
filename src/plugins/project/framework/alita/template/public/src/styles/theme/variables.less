@@ -20,9 +20,9 @@
 // 背景
 @bg-default: #fff;
 @bg-gray: #f5f7f9;
-@bg-hover: rgba(65, 105, 225, .08);
-@box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .08);
-@box-hover-shadow: 0 12px 12px 0 rgba(0, 0, 0, .08);
+@bg-hover: rgba(65, 105, 225, 0.08);
+@box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+@box-hover-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.08);
 @bg-sider: #0f121f;
 
 // 间距
@@ -47,18 +47,18 @@
 // 文字颜色
 @base-color: #fff;
 @color-text-title: #1c242e; // 标题
-@color-text-base: rgba(28, 36, 46, .85); // 基本
-@color-text-paragraph: rgba(28, 36, 46, .65); // 段落
-@color-text-secondary: rgba(28, 36, 46, .45); // 辅助色
-@color-text-sub: rgba(28, 36, 46, .45); // 副标题色
+@color-text-base: rgba(28, 36, 46, 0.85); // 基本
+@color-text-paragraph: rgba(28, 36, 46, 0.65); // 段落
+@color-text-secondary: rgba(28, 36, 46, 0.45); // 辅助色
+@color-text-sub: rgba(28, 36, 46, 0.45); // 副标题色
 @color-text-base-inverse: #fff; // 基本 - 反色
 @color-text-strong: @danger-color; //价格、强调的数值，包含单位
 @color-link: @primary-color; // 链接
 @color-link-inverse: #f3af61; // 链接
 
 // 线条
-@border-color: rgba(28, 36, 46, .15);
-@dividing-color: rgba(28, 36, 46, .1);
+@border-color: rgba(28, 36, 46, 0.15);
+@dividing-color: rgba(28, 36, 46, 0.1);
 
 // 圆角
 @border-radius-base: 4px;
@@ -86,12 +86,11 @@
 
 @input-border-color: @gray-7;
 
-
 // 清除浮动
 .clearfix {
   &::before,
   &::after {
-    content: " ";
+    content: ' ';
     display: table;
   }
 

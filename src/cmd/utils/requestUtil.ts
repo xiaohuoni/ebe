@@ -1,4 +1,4 @@
-import { cloneDeep } from "lodash";
+import { cloneDeep } from 'lodash';
 
 export const SERVICE_SOURCE = {
   // 服务来源
@@ -22,7 +22,6 @@ export const SERVICE_SOURCE = {
   SUPER: 'super', // 动态查询通用服务
 };
 
-
 /**
  * 生成唯一id
  * @param prefix
@@ -38,12 +37,11 @@ export const createId = (prefix?: string, id?: string, slength: number = 8) => {
   return prefix ? `${prefix}_${uid}` : uid;
 };
 
-
 export const processCustomParams = (
   _options: Record<string, any>,
   extraData: Record<string, any>,
-  oParams: any // oParams是通过解析apiRequestSetParams得到的结果
-) => { 
+  oParams: any, // oParams是通过解析apiRequestSetParams得到的结果
+) => {
   const options = cloneDeep(_options);
   const {
     params,
@@ -63,7 +61,8 @@ export const processCustomParams = (
   } = options;
   const _p = params !== 'object' ? params : paramsObj;
   // 根节点赋值直接替换整个参数
-  const _params = (apiRequestSetParams?.length || rootValue ? oParams : _p) || {};
+  const _params =
+    (apiRequestSetParams?.length || rootValue ? oParams : _p) || {};
   switch (_source) {
     case SERVICE_SOURCE.ATOM:
       options.params = {
@@ -121,4 +120,4 @@ export const processCustomParams = (
       options.params = _params;
   }
   return options;
-}
+};

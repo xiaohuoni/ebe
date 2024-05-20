@@ -5,5 +5,5 @@ export function hideMessage({
   scope,
   config,
 }: CMDGeneratorPrames): string {
-    return `// 隐藏弹窗 \n   messageApi.destroy && messageApi.destroy()`;
+  return `// 隐藏弹窗 \n   messageApi.destroy && messageApi.destroy()`;
 }

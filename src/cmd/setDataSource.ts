@@ -81,7 +81,9 @@ const getArrayFilterCbCode = (item: any) => {
         break;
       }
       filterCode = `
-        (row: any, index: number) => row.${itemLocateKey} == ${parse2Var(itemLocateKeyValue)}
+        (row: any, index: number) => row.${itemLocateKey} == ${parse2Var(
+        itemLocateKeyValue,
+      )}
       `;
       break;
     case ITME_LOCAL_TYPE.custom:
@@ -132,16 +134,12 @@ const findNode = (list: any[], attrId: string) => {
 };
 
 export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
-  const {
-    value,
-    platform,
-    scope,
-    config,
-  } = generateParams;
+  const { value, platform, scope, config } = generateParams;
   const { options, callback1, callback2 } = value;
 
   // TODO: 全局数据源
-  if (options?.isGlobalData) return `//【设置全局数据源】全局数据源指令暂不支持`;
+  if (options?.isGlobalData)
+    return `//【设置全局数据源】全局数据源指令暂不支持`;
 
   // 检查数据源
   const dataSourceName = options?.dataSourceName;
@@ -259,7 +257,8 @@ export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
     config,
   );
 
-  return GeneratorCallbackWithThenCatch(`
+  return GeneratorCallbackWithThenCatch(
+    `
   // 更新数据源 ${dataSourceName}
   updateData({
     ${Object.keys(updateParams)
@@ -267,5 +266,7 @@ export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
       .map(
         (key) => `${key}: ${updateParams[key as keyof typeof updateParams]}`,
       )}
-  })`, generateParams);
+  })`,
+    generateParams,
+  );
 }

@@ -1,7 +1,6 @@
 import { CMDGeneratorPrames } from '../core/types';
 import { generateVarString, parse2Var } from '../core/utils/compositeType';
 import { isJSVar } from '../core/utils/deprecated';
-import { getImportFrom } from '../utils/depsHelper';
 
 // const eventDataresetCurrentForm: any = [
 //   {
@@ -40,12 +39,10 @@ const getVarStr = (str: string) => {
 // 同名的事件增加后缀
 const count = {} as any;
 
-export function getResetCurrentForm({
-  value,
-}: CMDGeneratorPrames): string {
+export function getResetCurrentForm({ value }: CMDGeneratorPrames): string {
   const { options } = value;
 
   return `
     resetForm(${parse2Var(options.compId)})
-  `
+  `;
 }

@@ -7,7 +7,6 @@ import {
 import {
   CUSTOM_ACTION_CHUNK_NAME,
   DATA_SOURCE_CHUNK_NAME,
-  MODAL_CHUNK_NAME,
   PAGE_TOOL_CHUNK_NAME,
   REACT_CHUNK_NAME,
 } from './const';
@@ -49,7 +48,8 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       return 'pageIdError';
     };
     if (next?.contextData?.options?.pageIdMapping[ir.pagePath]) {
-      pageId = ir.pagePath || next?.contextData?.options?.pageIdMapping[ir.pagePath];
+      pageId =
+        ir.pagePath || next?.contextData?.options?.pageIdMapping[ir.pagePath];
     } else {
       pageId = getBusiCompPageId(
         next?.contextData?.options?.busiCompMapping,
@@ -65,8 +65,9 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         const renderId = '${pageId}';
         const ${type} = React.forwardRef<unknown, PageProps>(({
           attrDataMap={},customActionMapRef,routerData,lcdpApi,
-          injectData, sandBoxContext, refs, functorsMap, state, componentItem, style, urlParam, ${isModal ? 'forwardedRef,' : ''
-        } 
+          injectData, sandBoxContext, refs, functorsMap, state, componentItem, style, urlParam, ${
+            isModal ? 'forwardedRef,' : ''
+          } 
           setComponentRef,
           ModalManagerRef,
           ExpSQLServiceModalRef,
@@ -231,13 +232,9 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       // import dataSource from './dataSource';
       hasDataSource = true;
     }
-    next.ir.deps.push(
-      getImportFrom('./useDataSource', 'useDataSource', false),
-    );
+    next.ir.deps.push(getImportFrom('./useDataSource', 'useDataSource', false));
 
-    next.ir.deps.push(
-      getImportFrom('@/utils/uid', 'getUid', true),
-    );
+    next.ir.deps.push(getImportFrom('@/utils/uid', 'getUid', true));
     // "customFuctions": [
     //   {
     //       "eventName": "选中节点",
@@ -252,10 +249,10 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       renderId,
       hasLogin: ${!!!ir.ignoreLogin},
       defaultState:${JSON.stringify(defaultState)},
-    })`
+    })`;
 
     if (ir.containerType === 'BusiComp') {
-      exportCode = `Hoc(${exportCode}, { type: "BOFramer" })`
+      exportCode = `Hoc(${exportCode}, { type: "BOFramer" })`;
     }
 
     next.chunks.push({

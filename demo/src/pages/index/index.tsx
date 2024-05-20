@@ -3,8 +3,8 @@ import {
   findAppPolymerizationInfo,
   findBusiCompById,
   getPageVersionById,
+  getThemeCss,
   qryPageCompAssetList,
-  getThemeCss
 } from '@/services/api';
 import { Button, Form, Input, message, Switch } from 'antd';
 import { useEffect, useState } from 'react';
@@ -14,13 +14,11 @@ import { generateCode, init, publishers } from 'ebe';
 const Item = Form.Item;
 
 const getPageDsls = (resultObjects: any[]) => {
-  return resultObjects
-    .filter(Boolean)
-    .map((i) => { 
-      const pageData = JSON.parse(i.resultObject.attrMappingJson);
-      pageData.pageId = i.resultObject?.pageId;
-      return pageData;
-    });
+  return resultObjects.filter(Boolean).map((i) => {
+    const pageData = JSON.parse(i.resultObject.attrMappingJson);
+    pageData.pageId = i.resultObject?.pageId;
+    return pageData;
+  });
 };
 function findAllItem<T = any>(
   target: T[],
@@ -100,14 +98,14 @@ const Page = () => {
       // operationType: 'publish',
     });
 
-      // 根据 appId 获取当前应用的全部页面
-      const themeCss = await getThemeCss({
-        appId: values.appId,
-        terminalType: values.platform ? 'APP' : 'PC',
-        // operationType: 'publish',
-      });
-      console.log(themeCss);
-      
+    // 根据 appId 获取当前应用的全部页面
+    const themeCss = await getThemeCss({
+      appId: values.appId,
+      terminalType: values.platform ? 'APP' : 'PC',
+      // operationType: 'publish',
+    });
+    console.log(themeCss);
+
     // 根据 appId 获取当前应用的使用的自定义组件
     const compAssetList = await qryPageCompAssetList({
       appId: values.appId,

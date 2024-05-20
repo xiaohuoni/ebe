@@ -2,7 +2,7 @@ import {
   getCondition,
   getConditionOption,
   getIfelse,
-  type Icondition
+  type Icondition,
 } from '../../src/cmd/ifelse';
 
 // mock config

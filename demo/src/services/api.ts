@@ -118,7 +118,6 @@ export async function getPageVersionById(params): Promise<any> {
   });
 }
 
-
 export async function getThemeCss(params): Promise<any> {
   // 本地 mock 数据
   if (useMock) {

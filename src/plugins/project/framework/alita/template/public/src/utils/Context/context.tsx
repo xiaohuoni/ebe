@@ -1,5 +1,5 @@
-import React from 'react';
 import { type ImperativeHandleReturn } from '@lingxiteam/types';
+import React from 'react';
 
 export const Context = React.createContext<{
   ModalManagerRef: React.MutableRefObject<any>;
@@ -31,7 +31,7 @@ export function mergeGetter<
         try {
           target[key] = o[key];
           // eslint-disable-next-line no-empty
-        } catch { }
+        } catch {}
       }
     });
   };
@@ -44,10 +44,10 @@ export function mergeGetter<
 
   return target as any;
 }
-interface componentRef extends ImperativeHandleReturn { }
+interface componentRef extends ImperativeHandleReturn {}
 
 export class RefsManager {
-  constructor() { }
+  constructor() {}
 
   /**
    * 页面级别Ref
@@ -55,8 +55,8 @@ export class RefsManager {
   private systemRef: Record<string, Record<string, any>> = {};
 
   /**
- * 页面级别Ref
- */
+   * 页面级别Ref
+   */
   private sysCustomActionMapRef: Record<string, Record<string, any>> = {};
 
   /**
@@ -71,12 +71,14 @@ export class RefsManager {
     }
   };
 
-
   /**
- * 页面级别的ref
- * @param ref
- */
-  private setSysCustomActionMapRef = (renderId: string, customActionMapRef: Record<string, any>) => {
+   * 页面级别的ref
+   * @param ref
+   */
+  private setSysCustomActionMapRef = (
+    renderId: string,
+    customActionMapRef: Record<string, any>,
+  ) => {
     if (this.sysCustomActionMapRef[renderId]) {
       mergeGetter(this.sysCustomActionMapRef[renderId], customActionMapRef);
     } else {
@@ -89,7 +91,7 @@ export class RefsManager {
 
   public getCustomActionMapRef = (renderId: string): Record<string, any> => {
     return this.sysCustomActionMapRef[renderId] || {};
-  }
+  };
   public get refs(): any {
     return this.systemRef;
   }

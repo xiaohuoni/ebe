@@ -1,5 +1,5 @@
-import React, { useState, forwardRef, FC, useEffect } from 'react';
 import { ConfigProvider, Progress } from 'antd';
+import React, { FC, forwardRef, useEffect, useState } from 'react';
 
 import './ProgressComp.less';
 
@@ -19,7 +19,13 @@ const ProgressComp: FC<any> = forwardRef((props, ref) => {
   return (
     <ConfigProvider prefixCls="pcfactory">
       <span className={`${prefix}-progress`}>
-        <Progress size="small" percent={percent} width={20} className={className} {...restProps} />
+        <Progress
+          size="small"
+          percent={percent}
+          width={20}
+          className={className}
+          {...restProps}
+        />
       </span>
     </ConfigProvider>
   );

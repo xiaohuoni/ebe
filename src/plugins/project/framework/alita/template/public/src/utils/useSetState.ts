@@ -1,5 +1,5 @@
-import { useCallback, useState } from 'react';
 import isFunction from 'lodash/isFunction';
+import { useCallback, useState } from 'react';
 
 export type SetState<S extends Record<string, any>> = <K extends keyof S>(
   state?:

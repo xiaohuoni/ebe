@@ -1,12 +1,12 @@
 import { PlatformType, ProcessFunctionType } from '@lingxiteam/types';
 import * as _ from 'lodash';
+import { LOOPCOMPONENTS, LoopMarkSymbol } from '../../constants';
 import { IProjectSchema, IPublicTypeNodeDataType } from '../../core';
 import { CodeGeneratorError } from '../../core/types/error';
 import { generateVarString, parse2Var } from '../../core/utils/compositeType';
 import { isJSVar, isNodeSchema } from '../../core/utils/deprecated';
 import assetHelper from './assets/assets';
 import { parseDsl } from './parseDsl';
-import { LOOPCOMPONENTS, LoopMarkSymbol } from '../../constants';
 
 const noop = () => undefined;
 
@@ -16,17 +16,17 @@ const handleChildrenDefaultOptions = {
 
 /**
  * 生成uid
- * @param schema 
- * @returns 
+ * @param schema
+ * @returns
  */
-export const generateUid = (schema: IProjectSchema) => { 
+export const generateUid = (schema: IProjectSchema) => {
   let uid = parse2Var(schema.id);
   // 如果在循环容器下
   if (schema[LoopMarkSymbol]?.parentLoopId) {
     uid = `getUid(props.compId, props.itemId, ${parse2Var(schema.id)})`;
   }
   return uid;
-}
+};
 
 const DEFAULT_MAX_DEPTH = 100000;
 
@@ -135,17 +135,19 @@ const preprocessComponentSchema = (
   // 业务组件和页面容器不需要预处理
   if (schema.compName && ['Pageview', 'BOFramer'].includes(schema.compName)) {
     if (schema.compName === 'BOFramer') {
-      schema.props.state= schema.props.busiCompStates;
+      schema.props.state = schema.props.busiCompStates;
       delete schema.props.busiCompStates;
     } else if (schema.compName === 'Pageview') {
-      schema.props.state= schema.props.pageViewCompState;
+      schema.props.state = schema.props.pageViewCompState;
       delete schema.props.pageViewCompState;
     }
-    
-      newSchema.props = {
-        ...newSchema.props,
-        $$componentItem: `##{{id: '${schema.id}',uid: ${generateUid(schema)}, type: '${schema.compName}',...componentItem}}##`,
-      };
+
+    newSchema.props = {
+      ...newSchema.props,
+      $$componentItem: `##{{id: '${schema.id}',uid: ${generateUid(
+        schema,
+      )}, type: '${schema.compName}',...componentItem}}##`,
+    };
     return newSchema;
   }
   const methods = assetHelper.comPreprocess.getComPreprocessMethods(
@@ -156,7 +158,7 @@ const preprocessComponentSchema = (
     newSchema = fc(newSchema, extraData);
   });
   const originProps = schema?.props || {};
-  
+
   const props = {
     ...originProps,
     // pageId: pageId,
@@ -165,7 +167,9 @@ const preprocessComponentSchema = (
     // TODO: fusionMode
     // fusionMode: schema?.fusionMode,
     uid: schema.id,
-    $$componentItem: `##{{id: '${schema.id}',uid: ${generateUid(schema)}, type: '${schema.compName}',...componentItem}}##`,
+    $$componentItem: `##{{id: '${schema.id}',uid: ${generateUid(
+      schema,
+    )}, type: '${schema.compName}',...componentItem}}##`,
   };
   // 执行组件预处理
   const methodsRun = assetHelper.comRunPreprocess.getRunComPreprocessMethods(
@@ -213,11 +217,15 @@ const preprocessComponentSchema = (
 
 /**
  * 标记循环容器组件
- * @param schema 
+ * @param schema
  */
-export const markerLoopComponent = (schema: IProjectSchema) => { 
-  const marker = (components: IProjectSchema[], parentLoopId = '', type: any = ''): IProjectSchema[] => { 
-    return components.map(item => { 
+export const markerLoopComponent = (schema: IProjectSchema) => {
+  const marker = (
+    components: IProjectSchema[],
+    parentLoopId = '',
+    type: any = '',
+  ): IProjectSchema[] => {
+    return components.map((item) => {
       let loopType = type;
       let loopId = parentLoopId;
       if (LOOPCOMPONENTS.includes(item.type)) {
@@ -228,15 +236,15 @@ export const markerLoopComponent = (schema: IProjectSchema) => {
         ...item,
         [LoopMarkSymbol]: {
           parentLoopId,
-          loopType
+          loopType,
         },
-        components: marker(item.components || [], loopId, loopType)
+        components: marker(item.components || [], loopId, loopType),
       };
-    })
-  }
+    });
+  };
 
   schema.components = marker(schema.components || [], '');
-}
+};
 
 // 解析schema数据
 export const parseSchema = (schema: IProjectSchema, isRoot: boolean) => {

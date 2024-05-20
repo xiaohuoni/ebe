@@ -20,7 +20,12 @@ export interface HistoryReplaceProps {
  * @param slength
  * @returns
  */
-const createId = (prefix?: string, separator: string = '##', id?: string, slength: number = 12) => {
+const createId = (
+  prefix?: string,
+  separator: string = '##',
+  id?: string,
+  slength: number = 12,
+) => {
   let uid = id;
   if (!uid) {
     uid = Math.random().toString().slice(slength);

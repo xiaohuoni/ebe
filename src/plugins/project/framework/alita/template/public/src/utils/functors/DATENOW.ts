@@ -1,5 +1,5 @@
-import { FunctorDefine } from './types';
 import dayjs from 'dayjs';
+import { FunctorDefine } from './types';
 import { getGreenText } from './utils/tools';
 
 export const DATENOW = FunctorDefine({
@@ -19,7 +19,9 @@ export const DATENOW = FunctorDefine({
   },
   example: {
     tips: [],
-    title: `('YYYY-MM-DD')，结果：'2022-07-24'; ${getGreenText('DATENOW')}()，结果: Thu Jul 14 2022 17:23:31 GMT+0800 (中国标准时间)`,
+    title: `('YYYY-MM-DD')，结果：'2022-07-24'; ${getGreenText(
+      'DATENOW',
+    )}()，结果: Thu Jul 14 2022 17:23:31 GMT+0800 (中国标准时间)`,
   },
   groupsName: ['日期函数', '常用函数'],
 });

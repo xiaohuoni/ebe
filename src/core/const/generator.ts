@@ -1,4 +1,4 @@
-import { MODAL_CHUNK_NAME } from "../../plugins/react/const";
+import { MODAL_CHUNK_NAME } from '../../plugins/react/const';
 
 export const COMMON_CHUNK_NAME = {
   ExternalDepsImport: 'CommonExternalDependencyImport',
@@ -116,7 +116,6 @@ export const DEFAULT_LINK_AFTER = {
     // MODAL_CHUNK_NAME.PageEndRequest,
     // MODAL_CHUNK_NAME.PageStateChange,
     // MODAL_CHUNK_NAME.PageWillUnmount
-    
   ],
   [COMMON_CHUNK_NAME.FileMainContent]: [
     COMMON_CHUNK_NAME.ExternalDepsImport,

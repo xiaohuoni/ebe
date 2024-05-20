@@ -9,19 +9,22 @@ export default function getFile(
     'withPageHOC',
     'tsx',
     `import { api as baseApi } from '@/services/api';
-${isMobile
-      ? `import {
+${
+  isMobile
+    ? `import {
   messageApi,
   Modal,
 } from '@lingxiteam/engine-app/es/components/MessageApi';`
-      : `import { message as messageApi, Modal } from 'antd';`
-    }
-import locales from '@lingxiteam/engine-${isMobile ? 'app' : 'pc'
+    : `import { message as messageApi, Modal } from 'antd';`
+}
+import locales from '@lingxiteam/engine-${
+      isMobile ? 'app' : 'pc'
     }/es/utils/locales';
-${isMobile
-      ? ''
-      : `import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';`
-    }
+${
+  isMobile
+    ? ''
+    : `import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';`
+}
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import { pageStaticData } from '@/components/Pageview';
 import ExpSQLServiceModal from "@/components/ExpSQLServiceModal/ExpSQLServiceModal";
@@ -293,16 +296,17 @@ export const withPageHOC = (
           functorsMap={functorsMap}
           state={state}
         />
-        ${isMobile
-      ? ''
-      : `<ExpBusiObjModal
+        ${
+          isMobile
+            ? ''
+            : `<ExpBusiObjModal
           ref={ExpBusiObjModalRef}
           key={\`ExpBusiObjModal-\${renderId}\`}
           api={baseApi}
           utils={{}}
           getLocale={getLocale}
         />`
-    }
+        }
         <ExpSQLServiceModal
         ref={ExpSQLServiceModalRef}
         key={\`ExpSQLServiceModal-\${renderId}\`}

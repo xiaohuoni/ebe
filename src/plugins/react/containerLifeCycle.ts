@@ -197,9 +197,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             },
             { ir },
           )} }`,
-          linkAfter: [
-            CLASS_DEFINE_CHUNK_NAME.ConstructorStart
-          ],
+          linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         });
         next.chunks.push({
           type: ChunkType.STRING,

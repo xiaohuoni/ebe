@@ -97,15 +97,17 @@ const generateParams = (
       );
     }
 
-    return parser.stringify({
-      ...dataItem,
-      initialData: {
-        value,
-      },
-      children: children,
-      code: name,
-      type: type || dataItem.type,
-    }) || 'null';
+    return (
+      parser.stringify({
+        ...dataItem,
+        initialData: {
+          value,
+        },
+        children: children,
+        code: name,
+        type: type || dataItem.type,
+      }) || 'null'
+    );
   };
 
   return `

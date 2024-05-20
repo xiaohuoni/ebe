@@ -1,28 +1,28 @@
-import http from "../service/commonFetch";
+import http from '../service/commonFetch';
 
 export const SERVICE_SOURCE = {
   // 服务来源
-  APP: "app",
+  APP: 'app',
   // 应用内部 & 模型生成
-  QUERY: "query",
+  QUERY: 'query',
   // 解析服务
-  STD: "std",
+  STD: 'std',
   // 编排服务
-  INNER: "inner",
+  INNER: 'inner',
   // 高代码服务
-  PLATFORM: "platform",
+  PLATFORM: 'platform',
   // 平台服务
-  ATOM: "atom",
+  ATOM: 'atom',
   // 外部服务(低代码运营平台的原子服务)
-  RHIN: "rhin",
+  RHIN: 'rhin',
   // 业务运营服务
-  SCENE: "scene",
+  SCENE: 'scene',
   // 业务运营场景服务
-  OBJECT: "object", // 业务对象生成服务
+  OBJECT: 'object', // 业务对象生成服务
 };
 
 export interface DataSourceFetchQuery {
-  method: "get" | "post";
+  method: 'get' | 'post';
   sceneCode?: string;
   busiObjectInstId?: number | string;
   actionId?: string | number;
@@ -39,7 +39,7 @@ export interface DataSourceFetchQueryService {
     _serviceId?: string;
     versionCode?: string;
     serviceCode?: string;
-    serviceMethod?: "get" | "post" | "put" | "delete";
+    serviceMethod?: 'get' | 'post' | 'put' | 'delete';
   };
   params?: any;
 }
@@ -56,22 +56,22 @@ export const fetchQueryObject = async (
     sceneCode,
     busiObjectId,
     attrs,
-  }: DataSourceFetchQuery
+  }: DataSourceFetchQuery,
 ) => {
   const requestConfig: any = {
     method,
   };
-  const _sceneCode = sceneCode || "";
+  const _sceneCode = sceneCode || '';
   // 组装对象服务入参
   const params = {
     actionId,
     busiObjectId,
     busiObjectInstId,
     attrs,
-    sceneCode: _sceneCode || "",
+    sceneCode: _sceneCode || '',
   };
   switch (method) {
-    case "get":
+    case 'get':
       requestConfig.params = params;
       break;
     default:
@@ -82,8 +82,8 @@ export const fetchQueryObject = async (
 };
 
 export const fetchQueryService = async (
-  service: DataSourceFetchQueryService["service"],
-  params: DataSourceFetchQueryService["params"]
+  service: DataSourceFetchQueryService['service'],
+  params: DataSourceFetchQueryService['params'],
 ) => {
   const {
     _capabilityCode,
@@ -97,7 +97,7 @@ export const fetchQueryService = async (
   } = service;
   let requestData: any = {};
   const url = api;
-  let method = "post" as "get" | "post" | "put" | "delete";
+  let method = 'post' as 'get' | 'post' | 'put' | 'delete';
   switch (_source) {
     case SERVICE_SOURCE.RHIN: {
       requestData = {
@@ -121,17 +121,17 @@ export const fetchQueryService = async (
         serviceCode,
         params,
       };
-      method = serviceMethod || "post";
+      method = serviceMethod || 'post';
       break;
     }
     case SERVICE_SOURCE.INNER:
     case SERVICE_SOURCE.PLATFORM: {
       requestData = params;
-      method = serviceMethod || "post";
-      if (Array.isArray(requestData) || typeof requestData !== "object") {
+      method = serviceMethod || 'post';
+      if (Array.isArray(requestData) || typeof requestData !== 'object') {
         if (Array.isArray(requestData)) {
           requestData = requestData.map((c) => {
-            if (!Array.isArray(c) || typeof c !== "object") {
+            if (!Array.isArray(c) || typeof c !== 'object') {
               return {
                 ...c,
               };
@@ -148,7 +148,7 @@ export const fetchQueryService = async (
   return http.commonFetch(method, url, requestData, {
     _source,
     maybeNotStdResp: [SERVICE_SOURCE.INNER, SERVICE_SOURCE.PLATFORM].includes(
-      _source || ""
+      _source || '',
     ),
   }) as Promise<any>;
 };

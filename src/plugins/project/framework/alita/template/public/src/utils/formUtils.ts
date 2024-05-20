@@ -30,7 +30,14 @@ export const getFormOfInLoopByLoopId = (options: {
   forms?: RefsType[];
   inLoop?: boolean;
 }) => {
-  const { loopId, routerId, engineRelation, forms = [], refs, inLoop = false } = options;
+  const {
+    loopId,
+    routerId,
+    engineRelation,
+    forms = [],
+    refs,
+    inLoop = false,
+  } = options;
   const uids = Object.keys(refs);
   for (let index = 0; index < uids.length; index += 1) {
     const uid = uids[index];
@@ -65,7 +72,6 @@ export const getFormOfInLoopByLoopId = (options: {
       });
     }
 
-
     // 不是表单 或者不在循环容器内
     if (refs[uid].compName !== 'Form' || !/[@@@|&&&]/.test(uid)) {
       continue;
@@ -84,7 +90,10 @@ export const getFormOfInLoopByLoopId = (options: {
  * @param getFieldsValue
  * @returns
  */
-export const getLoopForms = async (forms: RefsType[], getFieldsValue: (form: any) => void) => {
+export const getLoopForms = async (
+  forms: RefsType[],
+  getFieldsValue: (form: any) => void,
+) => {
   const fieldValues: any = {};
   let firstErrorInfo: any = null;
   for (let index = 0; index < forms.length; index += 1) {
@@ -206,8 +215,14 @@ export const getOwnFormValues = async (
         if (uidRefs) {
           await getRenderRefsFormValues(uidRefs);
         }
-      } else if (ref.compName === 'Form')  {
-        const { formCode, form, scrollToErrorField, compName, _innerDynamicDataContainer } = ref;
+      } else if (ref.compName === 'Form') {
+        const {
+          formCode,
+          form,
+          scrollToErrorField,
+          compName,
+          _innerDynamicDataContainer,
+        } = ref;
         if (!formCode) {
           continue;
         }
@@ -234,7 +249,7 @@ export const getOwnFormValues = async (
             }
 
             // 3. 给数组添加当前值
-            if ((formCodeTypes[formCode] === 'array')) {
+            if (formCodeTypes[formCode] === 'array') {
               values[formCode].push(value);
             }
           } else if (type === 'inLoop') {
@@ -244,7 +259,9 @@ export const getOwnFormValues = async (
             }
 
             formCodeTypes[formCode] = 'array';
-            values[formCode] = Array.isArray(values[formCode]) ? values[formCode] : [];
+            values[formCode] = Array.isArray(values[formCode])
+              ? values[formCode]
+              : [];
             values[formCode].push(value);
           }
         } catch (error) {
@@ -274,7 +291,7 @@ export const getOwnFormValues = async (
 export const getAllFormValues = (options: {
   currentRefs: RefsType;
   engineRelation: EngineRelationMethods;
-  routerId: string,
+  routerId: string;
 }) => {
   const { currentRefs, engineRelation, routerId } = options;
   const forms: RefsType[] = [];
@@ -306,7 +323,9 @@ export const getAllFormValues = (options: {
  * @param refs
  */
 export const getBOFramers = (compId: string, refs: RefsType = {}) => {
-  const boframerUids = Object.keys(refs).filter(id => refs[id].compId === compId);
+  const boframerUids = Object.keys(refs).filter(
+    (id) => refs[id].compId === compId,
+  );
   // 如果没找到组件，就返回null
   if (!boframerUids.length) {
     return null;
@@ -314,18 +333,21 @@ export const getBOFramers = (compId: string, refs: RefsType = {}) => {
 
   const boframerRefs: RefsType = {};
 
-  boframerUids.forEach(uid => {
+  boframerUids.forEach((uid) => {
     boframerRefs[uid] = refs[uid];
   });
 
   return boframerRefs;
 };
 
-export const getBOFramerOwnFormValues = async (options: {
-  refs: RefsType;
-  renderRefs: RefsManager;
-  compId: string
-}, getFieldsValue: (form: any) => void,) => {
+export const getBOFramerOwnFormValues = async (
+  options: {
+    refs: RefsType;
+    renderRefs: RefsManager;
+    compId: string;
+  },
+  getFieldsValue: (form: any) => void,
+) => {
   const { renderRefs, refs, compId } = options;
 
   // 2种情况 1只有单个业务组件 2 业务组件放在循环容器下
@@ -350,19 +372,23 @@ export const getBOFramerOwnFormValues = async (options: {
 };
 
 // 获取BOFramer下所有表单
-export const getBoframerOwnForms = (options: { currentRefs: RefsType; renderRefs: RefsManager, compId: string }) => {
+export const getBoframerOwnForms = (options: {
+  currentRefs: RefsType;
+  renderRefs: RefsManager;
+  compId: string;
+}) => {
   const { compId, currentRefs, renderRefs } = options;
   const boframers = getBOFramers(compId, currentRefs);
 
   const forms: RefsType[] = [];
   const getAllForms = (refs: RefsType | null) => {
-    Object.keys(refs || {}).forEach(uid => {
+    Object.keys(refs || {}).forEach((uid) => {
       // const engineRef = engineRelation.getEngineRefsByUid(uid, routerId);
       const renderId = uid;
       if (renderId) {
         const engineRefs = renderRefs.getComRefs(renderId);
         if (engineRefs) {
-          Object.keys(engineRefs).forEach(compUid => {
+          Object.keys(engineRefs).forEach((compUid) => {
             const r = engineRefs[compUid];
             getAllForms(r);
             if (r.compName === 'Form') {
@@ -370,9 +396,7 @@ export const getBoframerOwnForms = (options: { currentRefs: RefsType; renderRefs
             }
           });
         }
-        
       }
-      
     });
   };
 
