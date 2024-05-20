@@ -83,7 +83,7 @@ export class RefsManager {
       this.sysCustomActionMapRef[renderId] = customActionMapRef;
     }
   };
-  private getComRefs = (renderId: string) => {
+  public getComRefs = (renderId: string) => {
     return this.systemRef[renderId] || {};
   };
 

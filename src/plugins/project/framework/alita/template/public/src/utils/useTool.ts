@@ -1,3 +1,7 @@
+import { useContext } from 'react';
+import { Context } from './Context/context';
+import { getBOFramerOwnFormValues, getBoframerOwnForms, getFieldsValue, getFormByCompId } from "./formUtils";
+
 const toBool = (v: string | boolean) => { 
   if (v === 'true') {
     return true;
@@ -8,10 +12,9 @@ const toBool = (v: string | boolean) => {
   return v;
 }
 
-
-type RefsType = Record<string, any>;
-
 export const useTool = (refs: Record<string, any>) => {
+  const { refs: renderRefs } = useContext(Context);
+
   const getValue = (id: string, stateName?: string) => {
     if (stateName) {
       return refs?.[id]?.[stateName];
@@ -127,14 +130,84 @@ export const useTool = (refs: Record<string, any>) => {
 
   /**
    * 获取当前表单值
-   * TODO: 这里的逻辑缺失，缺少循环容器内嵌套表单的情况
    */
-  const getFormValue = (compId: string) => { 
-    // 这里逻辑肯定不对
-    if (refs[compId]) {
-      return refs[compId].getFieldsValue();
+  const getFormValue = async (compId: string) => { 
+    // 表单不存在 就返回null
+    if (!refs[compId]) return Promise.reject(new Error('组件不存在'));
+
+    // 表单的情况 可能是循环容器
+    if (refs[compId].compName === 'Form') {
+      const forms = getFormByCompId(compId, refs);
+      return getFieldsValue(forms, (form) => {
+        return form?.getFieldsValue?.();
+      });
     }
-    return null;
+
+    if (refs[compId].compName === 'BOFramer') {
+       return getBOFramerOwnFormValues(
+        {
+          refs,
+          renderRefs,
+          compId,
+        },
+        (form) => form?.getFieldsValue?.(),
+      );
+    }
+
+    return Promise.reject(new Error('该组件不支持使用getFormValues获取表单数据'))
+  }
+
+  /**
+   * 验证并取值
+   * @param compId 
+   */
+  const validateForm = async (compId: string) => { 
+    // 表单不存在 就返回null
+    if (!refs[compId]) return Promise.reject(new Error('组件不存在'));
+
+    // 表单的情况 可能是循环容器
+    if (refs[compId].compName === 'Form') {
+      const forms = getFormByCompId(compId, refs);
+      return getFieldsValue(forms, (form) => {
+        return form?.validateFormAndScroll?.();
+      });
+    }
+
+    if (refs[compId].compName === 'BOFramer') {
+        return getBOFramerOwnFormValues(
+        {
+          refs,
+          renderRefs,
+          compId,
+        },
+        (form) => form?.validateFormAndScroll?.(),
+      );
+    }
+    return Promise.reject(new Error('该组件不支持使用getFormValues获取表单数据'))
+  }
+
+  /**
+   * 重置表单值
+   * @param compId 
+   */
+  const resetForm = (compId: string) => { 
+    if (!refs[compId]) return;
+    const compName = refs[compId].compName;
+    if (compName === 'BOFramer') {
+      const forms = getBoframerOwnForms({
+        currentRefs: refs,
+        renderRefs,
+        compId,
+      });
+  
+      forms.forEach((form) => {
+        form?.resetFields?.();
+      });
+    } else {
+      const forms = getFormByCompId(compId, refs);
+      // 支持循环容器中的表单重置
+      (Array.isArray(forms) ? forms : [forms]).forEach((form) => form?.resetFields());
+    }
   }
 
   return {
@@ -148,5 +221,7 @@ export const useTool = (refs: Record<string, any>) => {
     setDisabled,
     getDisabled,
     getFormValue,
+    validateForm,
+    resetForm,
   };
 };

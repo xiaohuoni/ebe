@@ -25,6 +25,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       import { useAppData } from 'alita';
         import { parse } from 'qs';
         import React from 'react';
+        import { Hoc } from '../factory'
       `,
       linkAfter: [COMMON_CHUNK_NAME.ExternalDepsImport],
     });
@@ -89,9 +90,14 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         // 页面 src 可能是带参数的如 /a?b=1&c=2
         const [path, query] = parseSrc(props?.pageSrc);
         const Page = getPage(path, clientRoutes, routeComponents);
-        return <Page ref={ref} {...query} {...props} />;
+
+        useImperativeHandle(ref, () => ({
+          renderId: props.$$componentItem.uid,
+        }))
+
+        return <Page {...query} {...props} />;
       });
-      export default Pageview;
+      export default Hoc(Pageview, { type: 'Pageview' });
       `,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,

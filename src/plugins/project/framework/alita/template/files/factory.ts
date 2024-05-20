@@ -60,7 +60,7 @@ export default function getFile(
   };
   
   ${componentWillMount ? componentWillMount : ''}
-  const Hoc = (Component: any, config?:any) => {
+  export const Hoc = (Component: any, config?:any) => {
     const fieldPropsChange = () => {};
     const { type, fieldProps } = config;
     const { run } = preprocessMethods(type, {

@@ -168,19 +168,19 @@ export default function hackEngineApis(
       otherParams.push({ name: nodeItem?.props?.indexKey, item: false });
     }
 
-    const uidPiece = () => { 
-      if (nodeItem[LoopMarkSymbol]?.loopType === 'innerLayer') {
-        return `
-         itemId = item?.[props.itemKey] || i;
-        compId = getUid(compId, itemId, props.$$componentItem.id);
-        `;
-      }
+    // const uidPiece = () => { 
+    //   if (nodeItem[LoopMarkSymbol]?.loopType === 'innerLayer') {
+    //     return `
+    //      itemId = item?.[props.itemKey] || i;
+    //     compId = getUid(compId, itemId, props.$$componentItem.id);
+    //     `;
+    //   }
 
-      return `
-      let compId = '${nodeItem.id}';
-      let itemId = item?.[props.itemKey] || i;
-      `;
-    }
+    //   return `
+    //   let compId = props.compId;
+    //   let itemId = props.itemId;
+    //   `;
+    // }
 
     pieces.push({
       type: PIECE_TYPE.ATTR,
@@ -199,7 +199,6 @@ export default function hackEngineApis(
                 )
                 .filter(Boolean)
                 .join(' ')}
-              ${uidPiece()}
               return (<>${LoopchildrenStr}</>)
             },
           },

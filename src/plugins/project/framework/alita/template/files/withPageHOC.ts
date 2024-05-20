@@ -71,7 +71,7 @@ export const withPageHOC = (
   options: PageHOCOptions,
 ) => {
   return React.forwardRef((props: any, ref) => {
-    const renderId = props.renderId;
+    const renderId = props?.$$componentItem?.uid ?? options.renderId;
     const location = useLocation();
     const urlParam = parse((location?.search ?? '?')?.split('?')[1]);
     const refs = useRef<Record<string, any>>({}).current;
@@ -175,6 +175,7 @@ export const withPageHOC = (
       const injectData = {
         getEngineApis: () => {
           return {
+            stateListener: () => { },
             ...baseApi,
             // TODO: 这需要正确的请求
             downloadFileByFileCode: () => null,
@@ -274,6 +275,7 @@ export const withPageHOC = (
           {...props}
           urlParam={urlParam}
           forwardedRef={ref}
+          ref={ref}
           customActionMapRef={(ref: any) => {
             if (ref) {
               renerRefs.setSysCustomActionMapRef(renderId, ref);

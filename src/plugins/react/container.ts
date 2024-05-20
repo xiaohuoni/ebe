@@ -113,7 +113,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: PAGE_TOOL_CHUNK_NAME.PageTooL,
-      content: `const useTools = useTool(refs);\n const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled, getDisabled } = useTools`,
+      content: `const useTools = useTool(refs);\n const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled, getDisabled, validateForm, getFormValue, resetForm } = useTools`,
       linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
     });
 
@@ -191,6 +191,10 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       ],
     });
 
+    if (ir.pageContainerType === 'BusiComp') {
+      ir.deps?.push(getImportFrom('../factory', 'Hoc', true));
+    }
+
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,
@@ -243,15 +247,22 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     //       "eventCode": "select_node",
     //       "inParams": {},
     //       "setEvents
+
+    let exportCode = `withPageHOC(${type}, {
+      renderId,
+      hasLogin: ${!!!ir.ignoreLogin},
+      defaultState:${JSON.stringify(defaultState)},
+    })`
+
+    if (ir.containerType === 'BusiComp') {
+      exportCode = `Hoc(${exportCode}, { type: "BOFramer" })`
+    }
+
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.FileExport,
-      content: `export default withPageHOC(${type}, {
-        renderId,
-        hasLogin: ${!!!ir.ignoreLogin},
-        defaultState:${JSON.stringify(defaultState)},
-      });`,
+      content: `export default ${exportCode}`,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
         COMMON_CHUNK_NAME.InternalDepsImport,

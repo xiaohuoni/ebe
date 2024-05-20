@@ -30,3 +30,5 @@ export { exportSQLServiceData } from './exportSQLServiceData';
 export  { returnCmd as return }from './return';
 export { hideMessage } from './hideMessage';
 export { dropPageByCatch } from './dropPageByCatch';
+export { resetForm } from './resetForm';
+export { validateForm } from './validateForm';

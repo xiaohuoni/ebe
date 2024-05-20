@@ -23,7 +23,7 @@ export const generateUid = (schema: IProjectSchema) => {
   let uid = parse2Var(schema.id);
   // 如果在循环容器下
   if (schema[LoopMarkSymbol]?.parentLoopId) {
-    uid = `getUid(compId, itemId, ${parse2Var(schema.id)})`;
+    uid = `getUid(props.compId, props.itemId, ${parse2Var(schema.id)})`;
   }
   return uid;
 }
@@ -127,12 +127,13 @@ const preprocessComponentSchema = (
   const sandBoxContext = {};
   // 预处理事件
   newSchema = parseDsl(schema, isRoot);
+
+  if (isRoot) {
+    return newSchema;
+  }
+
   // 业务组件和页面容器不需要预处理
-  if (
-    isRoot ||
-    schema.compName === 'Pageview' ||
-    schema.compName === 'BOFramer'
-  ) {
+  if (schema.compName && ['Pageview', 'BOFramer'].includes(schema.compName)) {
     if (schema.compName === 'BOFramer') {
       schema.props.state= schema.props.busiCompStates;
       delete schema.props.busiCompStates;
@@ -141,6 +142,10 @@ const preprocessComponentSchema = (
       delete schema.props.pageViewCompState;
     }
     
+      newSchema.props = {
+        ...newSchema.props,
+        $$componentItem: `##{{id: '${schema.id}',uid: ${generateUid(schema)}, type: '${schema.compName}',...componentItem}}##`,
+      };
     return newSchema;
   }
   const methods = assetHelper.comPreprocess.getComPreprocessMethods(
@@ -152,11 +157,6 @@ const preprocessComponentSchema = (
   });
   const originProps = schema?.props || {};
   
-  let uid = parse2Var(schema.id);
-  // 如果在循环容器下
-  if (schema[LoopMarkSymbol]?.parentLoopId) {
-    uid = `getUid(compId, itemId, ${parse2Var(schema.id)})`;
-  }
   const props = {
     ...originProps,
     // pageId: pageId,

@@ -1,5 +1,5 @@
 import { CMDGeneratorPrames } from '../core/types';
-import { generateVarString } from '../core/utils/compositeType';
+import { generateVarString, parse2Var } from '../core/utils/compositeType';
 import { isJSVar } from '../core/utils/deprecated';
 import { getImportFrom } from '../utils/depsHelper';
 
@@ -42,26 +42,10 @@ const count = {} as any;
 
 export function getResetCurrentForm({
   value,
-  params,
-  platform,
-  scope,
-  config = {},
 }: CMDGeneratorPrames): string {
-  const { options, condition, callback1 = [] } = value;
-  config?.ir?.deps?.push(
-    getImportFrom(
-      '@lingxiteam/pcfactory/es/utils/formUtils/cmdHelper',
-      'getFormByCompId',
-    ),
-  );
-  let suffix = '';
-  if (count[value.type]) {
-    suffix = count[value.type];
-    count[value.type] += 1;
-  } else {
-    count[value.type] = 1;
-  }
-  return `const forms${suffix} = getFormByCompId('${options.compId}', refs);
-  // 支持循环容器中的表单重置
-  (Array.isArray(forms${suffix}) ? forms${suffix} : [forms${suffix}]).forEach(form => form?.resetFields());`;
+  const { options } = value;
+
+  return `
+    resetForm(${parse2Var(options.compId)})
+  `
 }
