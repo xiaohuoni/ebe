@@ -242,6 +242,30 @@ export const useTool = (refs: Record<string, any>) => {
     }
   };
 
+  /**
+   * 设置表单值
+   * @param compId 组件id
+   * @param formValues 表单值
+   */
+  const setFormValues = (compId: string, formValues: Record<string, any>) => { 
+    if (!refs[compId]) return;
+    const compName = refs[compId].compName;
+
+    if (compName === 'BOFramer') {
+      const forms = getBoframerOwnForms({
+        currentRefs: refs,
+        renderRefs,
+        compId,
+      });
+  
+      forms.forEach((form) => {
+        form?.setFieldsValue(formValues);
+      });
+    } else {
+      refs[compId]?.setFieldsValue?.(formValues);
+    }
+  }
+
   return {
     getValue,
     setValue,
@@ -256,5 +280,6 @@ export const useTool = (refs: Record<string, any>) => {
     validateForm,
     resetForm,
     clearValue,
+    setFormValues,
   };
 };

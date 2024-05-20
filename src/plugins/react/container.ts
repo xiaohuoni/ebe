@@ -64,10 +64,9 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         // 生成一个Id，用来记录当前页面所有的自定义事件
         const renderId = '${pageId}';
         const ${type} = React.forwardRef<unknown, PageProps>(({
-          attrDataMap={},customActionMapRef,routerData,lcdpApi,
-          injectData, sandBoxContext, refs, functorsMap, state, componentItem, style, urlParam, ${
-            isModal ? 'forwardedRef,' : ''
-          } 
+          attrDataMap={},customActionMapRef,routerData,lcdpApi, addActionTimer, clearActionTimer,
+          injectData, sandBoxContext, refs, functorsMap, state, componentItem, style, urlParam, ${isModal ? 'forwardedRef,' : ''
+        } 
           setComponentRef,
           ModalManagerRef,
           ExpSQLServiceModalRef,
@@ -114,7 +113,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: PAGE_TOOL_CHUNK_NAME.PageTooL,
-      content: `const useTools = useTool(refs);\n const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled, getDisabled, validateForm, getFormValue, resetForm, clearValue } = useTools`,
+      content: `const useTools = useTool(refs);\n const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled, getDisabled, validateForm, getFormValue, resetForm, clearValue, setFormValues } = useTools`,
       linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
     });
 

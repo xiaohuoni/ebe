@@ -84,6 +84,55 @@ export const withPageHOC = (
     const [loading, setLoading] = useState(true);
     const [state, setState] = useState(options?.defaultState);
     const sandBoxContext = useRef<Record<string, any>>({});
+
+    // 指令定时器存储
+    const actionTimerRef = useRef<Record<string, any>>({
+      timeout: {},
+      interval: {},
+    });
+
+    // 清除定时器
+    const clearActionTimer = (type: 'interval' | 'timeout' = 'timeout', timerName: string) => {
+      const actionTimer = actionTimerRef.current;
+      if (type === 'interval' && actionTimer.interval) {
+        if (actionTimer.interval?.[timerName]) {
+          clearInterval(actionTimer.interval[timerName]);
+          actionTimer.interval[timerName] = null;
+        }
+      }
+
+      if (type === 'timeout' && actionTimer.timeout) {
+        if (actionTimer.timeout?.[timerName]) {
+          clearTimeout(actionTimer.timeout[timerName]);
+          actionTimer.timeout[timerName] = null;
+        }
+      }
+    }
+
+   const addActionTimer = (type: 'interval' | 'timeout' = 'timeout', timerName: string, callback: () => void, time: number = 0) => {
+    const actionTimer = actionTimerRef.current;
+    clearActionTimer(type, timerName);
+
+    const delay = time > 0 ? +time : 0;
+
+    if (type === 'interval') {
+      actionTimer.interval[timerName] = setInterval(
+        () => {
+          callback?.();
+        },
+        delay
+      );
+    }
+    if (type === 'timeout') {
+      actionTimer.interval[timerName] = setTimeout(
+        () => {
+          callback?.();
+        },
+        delay
+      );
+    }
+
+   } 
     const setComponentRef = (r: any, comId: string) => {
       if (r) {
         // @ts-ignore
@@ -295,6 +344,8 @@ export const withPageHOC = (
           sandBoxContext={sandBoxContext}
           functorsMap={functorsMap}
           state={state}
+          addActionTimer={addActionTimer}
+          clearActionTimer={clearActionTimer}
         />
         ${
           isMobile
