@@ -32,3 +32,4 @@ export { hideMessage } from './hideMessage';
 export { dropPageByCatch } from './dropPageByCatch';
 export { resetForm } from './resetForm';
 export { validateForm } from './validateForm';
+export { clearValue } from './clearValue';

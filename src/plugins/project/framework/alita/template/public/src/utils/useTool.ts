@@ -111,6 +111,27 @@ export const useTool = (refs: Record<string, any>) => {
   };
 
   /**
+   * 清空值
+   */
+  const clearValue = (compId: string) => {
+    if (!refs[compId]) { 
+      console.warn(`当前组件ID=${compId}不存在，有可能已经删除或未初始化`);
+      return;
+    }
+
+    if (typeof refs[compId]?.clearValue === 'function') { 
+      refs[compId]?.clearValue();
+      return;
+    }
+
+    if (typeof refs[compId]?.setValue === 'function') {
+      refs[compId]?.setValue(null);
+      return;
+    } 
+    console.error(`当前组件ID=${compId}的clearValue方法不存在`);
+  }
+
+  /**
    * 调用控件的内部方法
    * @param comId  id
    * @param methodName 方法名
@@ -223,5 +244,6 @@ export const useTool = (refs: Record<string, any>) => {
     getFormValue,
     validateForm,
     resetForm,
+    clearValue,
   };
 };
