@@ -133,6 +133,10 @@ const preprocessComponentSchema = (
     schema.compName === 'Pageview' ||
     schema.compName === 'BOFramer'
   ) {
+    if (schema.compName === 'BOFramer') {
+      schema.props.state= schema.props.busiCompStates;
+      delete schema.props.busiCompStates;
+    }
     return newSchema;
   }
   const methods = assetHelper.comPreprocess.getComPreprocessMethods(

@@ -5,7 +5,6 @@ export default function getFile(
   config?: LXProjectOptions,
 ): [string[], ResultFile] {
   const isMobile = config?.platform === 'h5';
-  const { pageDidMount, pageWillUnmount } = config?.frontendHookMap;
   const file = createResultFile(
     'withPageHOC',
     'tsx',
@@ -80,6 +79,7 @@ export const withPageHOC = (
     const ExpBusiObjModalRef = React.useRef<any>();
     const ExpSQLServiceModalRef = React.useRef<any>();
     const [loading, setLoading] = useState(true);
+    const [state, setState] = useState(options?.defaultState);
     const sandBoxContext = useRef<Record<string, any>>({});
     const setComponentRef = (r: any, comId: string) => {
       if (r) {
@@ -248,23 +248,22 @@ export const withPageHOC = (
         sandBoxRun,
         attrDataMap,
         functorsMap,
+        state,
       }
       setLoading(false);
     };
-    ${pageDidMount ? pageDidMount : ''}
-    ${pageWillUnmount ? pageWillUnmount : ''}
     useEffect(() => {
-      ${pageDidMount ? `pageDidMount()` : ''}
       init();
-        ${
-          pageWillUnmount
-            ? `return ()=>{ 
-          pageWillUnmount()
-             }`
-            : ''
-        }
     }, []);
-
+    // 组件状态的处理
+    useEffect(() => {
+      if (props.state) {
+        setState({
+          ...state,
+          ...props.state,
+        })
+      }
+    }, [props.state]);
     // // 可以在这里加 loading
     if (loading === true) {
       return <div></div>;
@@ -290,6 +289,7 @@ export const withPageHOC = (
           ModalManagerRef={ModalManagerRef}
           sandBoxContext={sandBoxContext}
           functorsMap={functorsMap}
+          state={state}
         />
         ${isMobile
       ? ''
