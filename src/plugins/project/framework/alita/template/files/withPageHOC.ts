@@ -27,22 +27,10 @@ ${isMobile
 import { pageStaticData } from '@/components/Pageview';
 import ExpSQLServiceModal from "@/components/ExpSQLServiceModal/ExpSQLServiceModal";
 import { PLATFORM } from '@/constants';
-import assetHelper from '@lingxiteam/engine-assets';
-import { getRunningUtils } from '@lingxiteam/engine-platform';
-import AwaitHandleData from '@lingxiteam/engine-render-core/es/utils/AwaitHandleData';
-import EngineMapping from '@lingxiteam/engine-render/es/utils/EngineMapping';
 import Sandbox from '@lingxiteam/engine-sandbox';
 import {
-  copyText,
-  getStateListener,
   i18n,
-  LcdpTerminalType,
-  processCustomParams,
-  SERVICE_SOURCE,
-  SERVICE_SOURCE_PARAMS,
-  transformValueDefined,
 } from '@lingxiteam/engine-utils';
-import { SandBoxContext } from '@lingxiteam/types';
 import { useLocation } from 'alita';
 import { merge } from 'lodash';
 import { parse } from 'qs';
@@ -66,7 +54,7 @@ const getStaticDataSourceService = (
   }));
 };
 
-export interface PageProps extends SandBoxContext {
+export interface PageProps {
   CMDGenerator?: any;
   injectData?: any;
   state: any;
@@ -184,12 +172,6 @@ export const withPageHOC = (
       const attrDataMap = await getStaticAttrByKeys(
         pageStaticData[renderId] ?? [],
       );
-      const awaitHandleData = new AwaitHandleData();
-      const platformUtils = getRunningUtils({
-        appId: appId,
-        renderId: renderId,
-        language,
-      });
       const injectData = {
         getEngineApis: () => {
           return {
@@ -212,7 +194,6 @@ export const withPageHOC = (
               // @ts-ignore
               return refs.value?.[compId]?.visible;
             },
-            stateListener: getStateListener(renderId),
             sandBoxRun,
             sandBoxSafeRun: (
               code: string,
@@ -245,33 +226,13 @@ export const withPageHOC = (
         getValue,
         urlParam,
         lcdpApi: api,
-        transformValueDefined,
-        processCustomParams,
-        SERVICE_SOURCE,
-        SERVICE_SOURCE_PARAMS,
         getStaticDataSourceService,
-        copy: copyText,
-        LcdpTerminalType: {
-          ...LcdpTerminalType,
-          isH5: true,
-        },
         ModalManagerRef,
         ExpBusiObjModalRef,
         ExpSQLServiceModalRef,
-        addToAwaitQueue: (
-          compId: string,
-          functionName: string,
-          ...data: any
-        ) => {
-          awaitHandleData.addToAwaitQueue(compId, functionName, ...data);
-        },
-        runAwaitQueue: (comId: string) => {
-          awaitHandleData.runQueue(comId, refs);
-        },
         closeModal: (modalId: string) => {
           ModalManagerRef.current?.closeModal(modalId, renderId);
         },
-        utils: merge(platformUtils, engineApis),
       };
       const sandBoxRun = (
         code: string,
@@ -290,7 +251,6 @@ export const withPageHOC = (
         ...defaultContext,
         injectData,
         refs,
-        functorsMap: assetHelper.function.functorsMap,
         componentItem,
         attrDataMap,
       });
