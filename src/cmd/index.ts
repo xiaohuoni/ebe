@@ -39,3 +39,4 @@ export { getCurrentFormValues } from './getCurrentFormValues';
 export { setTimer } from './setTimer';
 export { historyGoBack } from './historyGoBack';
 export { setPageSrc } from './setPageSrc';
+export { clearOptions } from './clearOptions';

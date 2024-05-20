@@ -1,5 +1,4 @@
 import { CMDGeneratorPrames } from '../core/types';
-import { CMDGeneratorEvent } from '../core/utils/CMDGenerator';
 import { parse2Var } from '../core/utils/compositeType';
 
 export function setPageSrc(generateParams: CMDGeneratorPrames): string {
