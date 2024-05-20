@@ -11,7 +11,6 @@ import {
 } from '../../core/types';
 import { createReactNodeGenerator } from '../../core/utils/nodeToJSX';
 import { Scope } from '../../core/utils/Scope';
-import { getImportFrom, getImportsFrom } from '../../utils/depsHelper';
 import { REACT_CHUNK_NAME } from './const';
 
 export interface PluginConfig {
@@ -50,33 +49,12 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     const jsxContent = generator(ir, scope);
 
     // next.ir.deps.push(getImportFrom('react', 'useRef'));
-
-    next.ir.deps.push(
-      getImportFrom('@/utils/FormProvider', 'FormProvider', true),
-    );
-    
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: cfg.fileType,
-      name: REACT_CHUNK_NAME.RenderFormContextStart,
-      content: `<FormProvider>`,
-      linkAfter: [REACT_CHUNK_NAME.RenderStart, REACT_CHUNK_NAME.RenderPre],
-    });
-
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: cfg.fileType,
       name: REACT_CHUNK_NAME.RenderJSX,
       content: `${jsxContent}`,
-      linkAfter: [REACT_CHUNK_NAME.RenderFormContextStart, REACT_CHUNK_NAME.RenderStart, REACT_CHUNK_NAME.RenderPre],
-    });
-
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: cfg.fileType,
-      name: REACT_CHUNK_NAME.RenderFormContextEnd,
-      content: `</FormProvider>`,
-      linkAfter: [REACT_CHUNK_NAME.RenderJSX],
+      linkAfter: [REACT_CHUNK_NAME.RenderStart, REACT_CHUNK_NAME.RenderPre],
     });
 
     return next;

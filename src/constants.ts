@@ -29,3 +29,17 @@ export const SERVICE_SOURCE = {
   // 业务运营场景服务
   OBJECT: "object", // 业务对象生成服务
 };
+
+// 循环容器组件
+export const LOOPCOMPONENTS = [
+  'Loop',
+  'DynamicList',
+  'LoadMore',
+  'BlockSelect',
+  'DformList',
+  'LoopList',
+  'GridView'
+];
+
+// 循环容器标记属性的key字段
+export const LoopMarkSymbol = Symbol('LoopMarkSymbol');

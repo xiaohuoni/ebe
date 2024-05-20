@@ -1,3 +1,4 @@
+import { LOOPCOMPONENTS, LoopMarkSymbol } from '../../../../../constants';
 import {
   CodePiece,
   IProjectSchema,
@@ -8,6 +9,7 @@ import {
   PIECE_TYPE,
 } from '../../../../../core/types';
 import { getBusiCompName } from '../../../../../utils/schema/getBusiCompName';
+import { generateUid } from '../../../../../utils/schema/lxschema';
 
 export default function hackEngineApis(
   nodeItem: IProjectSchema,
@@ -30,7 +32,7 @@ export default function hackEngineApis(
     if (!['Popover'].includes(nodeTags)) {
       pieces.push({
         type: PIECE_TYPE.ATTR,
-        value: `ref={(r:any)=>setComponentRef(r,'${nodeItem.id}')}`,
+        value: `ref={(r:any)=>setComponentRef(r, ${generateUid(nodeItem)})}`,
       });
     }
     pieces.push({
@@ -131,17 +133,7 @@ export default function hackEngineApis(
   //   });
   // }
   // 循环容器 和 动态待办
-  if (
-    nodeTags === 'Loop' ||
-    nodeTags === 'DynamicList' ||
-    nodeTags === 'LoadMore' ||
-    nodeTags === 'BlockSelect' ||
-    nodeTags === 'DformList' ||
-    // PC
-    nodeTags === 'LoopList' ||
-    nodeTags === 'GridView'
-    // nodeTags === 'CollapsePanel'
-  ) {
+  if (LOOPCOMPONENTS.includes(nodeTags)) {
     // Loop 不需要孩子
     pieces = pieces.filter((i) => i.type !== 'NodeCodePieceChildren');
     let LoopchildrenStr = '';
@@ -176,6 +168,20 @@ export default function hackEngineApis(
       otherParams.push({ name: nodeItem?.props?.indexKey, item: false });
     }
 
+    const uidPiece = () => { 
+      if (nodeItem[LoopMarkSymbol]?.loopType === 'innerLayer') {
+        return `
+         itemId = item?.[props.itemKey] || i;
+        compId = getUid(compId, itemId, props.$$componentItem.id);
+        `;
+      }
+
+      return `
+      let compId = '${nodeItem.id}';
+      let itemId = item?.[props.itemKey] || i;
+      `;
+    }
+
     pieces.push({
       type: PIECE_TYPE.ATTR,
       value: `getEngineApis={() => {
@@ -193,6 +199,7 @@ export default function hackEngineApis(
                 )
                 .filter(Boolean)
                 .join(' ')}
+              ${uidPiece()}
               return (<>${LoopchildrenStr}</>)
             },
           },

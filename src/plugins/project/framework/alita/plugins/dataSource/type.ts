@@ -116,6 +116,7 @@ export const generatorDataType = (dataSource: any[]) => {
     );
   });
 
+
   return [
     `export interface DataSourceType {`,
 
@@ -126,7 +127,7 @@ export const generatorDataType = (dataSource: any[]) => {
       personInfo: Record<string, any>
     }`,
     code.join(';'),
-    '[key: string]: any',
+    '\n[key: string]: any',
     '}',
   ].join('');
 };

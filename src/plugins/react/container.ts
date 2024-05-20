@@ -212,7 +212,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         REACT_CHUNK_NAME.RenderStart,
         REACT_CHUNK_NAME.RenderPre,
         REACT_CHUNK_NAME.RenderJSX,
-        REACT_CHUNK_NAME.RenderFormContextEnd,
       ],
     });
 
@@ -229,6 +228,10 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     }
     next.ir.deps.push(
       getImportFrom('./useDataSource', 'useDataSource', false),
+    );
+
+    next.ir.deps.push(
+      getImportFrom('@/utils/uid', 'getUid', true),
     );
     // "customFuctions": [
     //   {

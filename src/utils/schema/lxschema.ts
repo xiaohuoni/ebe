@@ -2,16 +2,31 @@ import { PlatformType, ProcessFunctionType } from '@lingxiteam/types';
 import * as _ from 'lodash';
 import { IProjectSchema, IPublicTypeNodeDataType } from '../../core';
 import { CodeGeneratorError } from '../../core/types/error';
-import { generateVarString } from '../../core/utils/compositeType';
+import { generateVarString, parse2Var } from '../../core/utils/compositeType';
 import { isJSVar, isNodeSchema } from '../../core/utils/deprecated';
 import assetHelper from './assets/assets';
 import { parseDsl } from './parseDsl';
+import { LOOPCOMPONENTS, LoopMarkSymbol } from '../../constants';
 
 const noop = () => undefined;
 
 const handleChildrenDefaultOptions = {
   rerun: false,
 };
+
+/**
+ * 生成uid
+ * @param schema 
+ * @returns 
+ */
+export const generateUid = (schema: IProjectSchema) => { 
+  let uid = parse2Var(schema.id);
+  // 如果在循环容器下
+  if (schema[LoopMarkSymbol]?.parentLoopId) {
+    uid = `getUid(compId, itemId, ${parse2Var(schema.id)})`;
+  }
+  return uid;
+}
 
 const DEFAULT_MAX_DEPTH = 100000;
 
@@ -128,6 +143,12 @@ const preprocessComponentSchema = (
     newSchema = fc(newSchema, extraData);
   });
   const originProps = schema?.props || {};
+  
+  let uid = parse2Var(schema.id);
+  // 如果在循环容器下
+  if (schema[LoopMarkSymbol]?.parentLoopId) {
+    uid = `getUid(compId, itemId, ${parse2Var(schema.id)})`;
+  }
   const props = {
     ...originProps,
     // pageId: pageId,
@@ -136,7 +157,7 @@ const preprocessComponentSchema = (
     // TODO: fusionMode
     // fusionMode: schema?.fusionMode,
     uid: schema.id,
-    $$componentItem: `##{{id: '${schema.id}',uid: '${schema.id}',type: '${schema.compName}',...componentItem}}##`,
+    $$componentItem: `##{{id: '${schema.id}',uid: ${generateUid(schema)}, type: '${schema.compName}',...componentItem}}##`,
   };
   // 执行组件预处理
   const methodsRun = assetHelper.comRunPreprocess.getRunComPreprocessMethods(
@@ -181,6 +202,33 @@ const preprocessComponentSchema = (
   }
   return newSchema;
 };
+
+/**
+ * 标记循环容器组件
+ * @param schema 
+ */
+export const markerLoopComponent = (schema: IProjectSchema) => { 
+  const marker = (components: IProjectSchema[], parentLoopId = '', type: any = ''): IProjectSchema[] => { 
+    return components.map(item => { 
+      let loopType = type;
+      let loopId = parentLoopId;
+      if (LOOPCOMPONENTS.includes(item.type)) {
+        loopType = !type ? 'outerLayer' : 'innerLayer';
+        loopId = item.id!;
+      }
+      return {
+        ...item,
+        [LoopMarkSymbol]: {
+          parentLoopId,
+          loopType
+        },
+        components: marker(item.components || [], loopId, loopType)
+      };
+    })
+  }
+
+  schema.components = marker(schema.components || [], '');
+}
 
 // 解析schema数据
 export const parseSchema = (schema: IProjectSchema, isRoot: boolean) => {

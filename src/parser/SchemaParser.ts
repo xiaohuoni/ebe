@@ -14,7 +14,7 @@ import {
 } from '../core';
 import { uniqueArray } from '../core/utils/common';
 import { getBusiCompName } from '../utils/schema/getBusiCompName';
-import { handleSubNodes, parseSchema } from '../utils/schema/lxschema';
+import { handleSubNodes, markerLoopComponent, parseSchema } from '../utils/schema/lxschema';
 // @ts-ignore
 import enPreprocess from '@lingxiteam/factory/es/index.enPreprocess';
 // @ts-ignore
@@ -150,7 +150,10 @@ export class SchemaParser implements ISchemaParser {
     let dataSources: any[] = [];
     containers = schemaArr.map((schema) => {
       getComponentsMap(_.cloneDeep(schema), pageIdMapping[schema.pagePath]);
+      // 标记循环容器
+      markerLoopComponent(schema);
       const newSchema = parseSchema(schema, true);
+
       if (newSchema?.pageDynamicFlag && newSchema.pagePath) {
         keepalive.push(newSchema.pagePath);
       }
@@ -159,7 +162,9 @@ export class SchemaParser implements ISchemaParser {
       if (newSchema.pageContainerType === 'BusiComp') {
         moduleName = getBusiCompName(busiCompMapping, newSchema);
       }
-      if (newSchema.dataSource) {
+
+      // 这里不能做dataSource判断，不然数据无法执行数据源的插件，导致文件无法生成
+      // if (newSchema.dataSource) {
         dataSources.push({
           moduleName,
           abc: 1,
@@ -173,7 +178,7 @@ export class SchemaParser implements ISchemaParser {
           ),
         });
         // delete newSchema.dataSource;
-      }
+      // }
       return {
         ...newSchema,
         moduleName,

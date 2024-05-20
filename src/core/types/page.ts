@@ -4,6 +4,7 @@ import {
   JSONValue,
   PlatformType,
 } from '@lingxiteam/types';
+import { LoopMarkSymbol } from '../../constants';
 
 /**
  * 应用描述
@@ -45,6 +46,13 @@ export interface IProjectSchema extends Component {
   customFuctions?: any[];
   busiCompId?: string;
   pageId?: string;
+  [LoopMarkSymbol]?: {
+    /**
+     * 父循环容器的组件id
+     */
+    parentLoopId?: string, 
+    loopType?: 'outerLayer' /** 最外层循环容器 */ | 'innerLayer' /** 内层循环容器 */
+  };
 }
 
 export interface PackageJSON {

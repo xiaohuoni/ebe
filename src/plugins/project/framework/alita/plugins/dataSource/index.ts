@@ -15,17 +15,14 @@ const pluginDataSource: BuilderComponentPluginFactory<unknown> = () => {
     };
 
     const ir = next.ir as any;
-    if (!ir.dataSource) {
-      return next;
-    }
 
     const dataSource = JSON.parse(ir.dataSource);
 
-    if (dataSource.length === 0) {
-      return next;
-    }
+    // if (dataSource.length === 0) {
+    //   return next;
+    // }
 
-    const { code, type } = generate(dataSource);
+    const { code, type } = generate(dataSource || []);
 
     next.chunks.push({
       type: ChunkType.STRING,
