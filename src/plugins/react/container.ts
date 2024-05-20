@@ -65,7 +65,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         const renderId = '${pageId}';
         const ${type} = React.forwardRef<unknown, PageProps>(({
           attrDataMap={},customActionMapRef,routerData,lcdpApi,
-          injectData, refs, state, functorsMap, getStaticDataSourceService, updateGlobalDataSource, componentItem, style, urlParam, ${isModal ? 'forwardedRef,' : ''
+          injectData, sandBoxContext, refs, functorsMap, state, componentItem, style, urlParam, ${isModal ? 'forwardedRef,' : ''
         } 
           setComponentRef,
           ModalManagerRef,

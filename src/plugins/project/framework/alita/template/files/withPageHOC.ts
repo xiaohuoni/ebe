@@ -27,6 +27,7 @@ import React, { useContext, useEffect, useState, useRef } from 'react';
 import { pageStaticData } from '@/components/Pageview';
 import ExpSQLServiceModal from "@/components/ExpSQLServiceModal/ExpSQLServiceModal";
 import { PLATFORM } from '@/constants';
+import * as functorsMap from '@/utils/functors';
 import Sandbox from '@lingxiteam/engine-sandbox';
 import {
   i18n,
@@ -246,6 +247,7 @@ export const withPageHOC = (
         ...defaultContext,
         sandBoxRun,
         attrDataMap,
+        functorsMap,
       }
       setLoading(false);
     };
@@ -286,6 +288,8 @@ export const withPageHOC = (
           injectData={{getEngineApis: sandBoxContext.current.getEngineApis}}
           attrDataMap={sandBoxContext.current.attrDataMap}
           ModalManagerRef={ModalManagerRef}
+          sandBoxContext={sandBoxContext}
+          functorsMap={functorsMap}
         />
         ${isMobile
       ? ''
