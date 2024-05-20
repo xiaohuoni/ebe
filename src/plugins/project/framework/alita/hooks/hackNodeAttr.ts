@@ -219,7 +219,7 @@ export default function hackEngineApis(
   if (nodeTags === 'Pageview' || nodeTags === 'Popover') {
     pieces.push({
       type: PIECE_TYPE.ATTR,
-      value: `lcdpParentRenderId={parentEngineId}`,
+      value: `lcdpParentRenderId={renderId}`,
     });
   }
   // className='View_View_938709'
