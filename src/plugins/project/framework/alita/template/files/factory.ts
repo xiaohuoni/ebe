@@ -137,7 +137,7 @@ export default function getFile(
       }
   
       // 统一处理部分逻辑
-      return <Component {...compProps} {...(compProps?.extendProps || {})} ref= {componentRef}/>;
+      return <Component {...compProps} {...(compProps?.extendProps || {})} ref= {(ref: any) => componentRef.current = ref}/>;
     });
   
     return HOC;
