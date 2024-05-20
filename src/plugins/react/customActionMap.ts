@@ -58,7 +58,22 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         name: CUSTOM_ACTION_CHUNK_NAME.Map,
         subModule: 'customAction',
         content:
-          'const useCustomAction = (context: any) => {' +
+          `const useCustomAction = (context: any) => { const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled,
+            getDisabled, data,
+            updateData,
+            resetDataSource,
+            reloadCustomDataSource,
+            dataSnapshot,
+            reloadServiceDataSource,
+            reloadObjectDataSource,
+            ModalManagerRef,
+            functorsMap,
+            ExpBusiObjModalRef,
+            ExpSQLServiceModalRef,
+            lcdpApi,
+            urlParam,
+            state
+           } = context; ` +
           ir?.customFuctions
             .map((e) => {
               const value = e.setEvents?.map((event: any) => {
