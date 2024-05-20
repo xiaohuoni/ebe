@@ -37,7 +37,7 @@ import { parse } from 'qs';
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import { Context } from './Context/context';
 import { createId } from '../utils/historytool'
-
+import assetHelper from '@lingxiteam/engine-assets';
 const awaitKeys: Set<string> = new Set();
 const cacheKeys: Set<string> = new Set();
 const cacheAttrDataMap: any = {};
