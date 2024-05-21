@@ -1,5 +1,6 @@
 import { CMDGeneratorPrames } from '../core/types';
 import { CMDGeneratorFunction } from '../core/utils/CMDGenerator';
+import { GeneratorCallbackWithThenCatch } from './utils';
 export function getValue({
   value,
   platform,
@@ -9,9 +10,21 @@ export function getValue({
   const { options, callback1 } = value;
   if (options?.compId) {
     const { id, compId } = options;
-    return `// 获取组件的值 \n const value_${id} = getValue('${compId}');
-    ${CMDGeneratorFunction(callback1, {}, platform, scope, config)}
-    `;
+    return `// 获取组件的值 \n;
+    ${GeneratorCallbackWithThenCatch(
+      `getValue('${compId}')`,
+      {
+        value,
+        platform,
+        scope,
+        config, 
+      },
+      {
+        params: {
+          callback1: [`value_${id} `],
+        },
+      },
+    )};`;
   }
   return '';
 }

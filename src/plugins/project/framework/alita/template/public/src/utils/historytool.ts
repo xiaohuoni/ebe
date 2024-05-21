@@ -34,7 +34,7 @@ const createId = (
 };
 
 const historyFunc =
-  (type: 'replace' | 'push' | 'window' | 'portal') =>
+  (type: 'replace' | 'push' | 'window' | 'portal' | string) =>
   (params: HistoryReplaceProps) => {
     const { history, pathname, search, state } = params;
     if (type === 'window') {
