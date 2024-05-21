@@ -228,6 +228,7 @@ export const withPageHOC = (
       const injectData = {
         getEngineApis: () => {
           return {
+            BannerModal,
             stateListener: () => { },
             ...baseApi,
             // TODO: 这需要正确的请求

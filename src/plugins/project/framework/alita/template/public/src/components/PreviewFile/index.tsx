@@ -18,9 +18,9 @@ import { LocaleFunction } from '@lingxiteam/types';
 import { LOCAL_PREVIEW, CAN_SCALE, parseFileInfo, PREVIEW_MODE, isUrlFormat } from './utils';
 
 interface PreviewFileProps {
-  appId: string;
+  // appId: string;
   fileIdOrUrl: string;
-  pageId: string;
+  // pageId: string;
   file?: any;
   showDownLoad?: boolean;
   downloadClick?: (file: any) => void;
@@ -44,7 +44,7 @@ const prefix = 'lcdp-previewFile';
 const PreviewFile: React.FC<PreviewFileProps> = (props) => {
   const {
     fileIdOrUrl,
-    pageId,
+    // pageId,
     file,
     downloadClick,
     showDownLoad,
@@ -53,7 +53,7 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
     getLocale,
     language,
   } = props;
-  const { appId } = props;
+  // const { appId } = props;
   // const api = getApis({ appId, language, pageId });
   const [fileDataMap, setFileDataMap] = useState<any>({});
   const [loading, setLoading] = useState(false);
@@ -182,9 +182,9 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
       xhr.responseType = 'blob'; // 设置接受类型
 
       const headers: any = {
-        'X-B-TARGET-ID': pageId,
+        // 'X-B-TARGET-ID': pageId,
         'X-B-AUTH': '1',
-        'APP-ID': props?.appId,
+        // 'APP-ID': props?.appId,
       };
       Object.keys(headers).forEach(header => {
         xhr.setRequestHeader(header, headers[header]); // 设置请求头参数
@@ -342,7 +342,11 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
         const isUrl = isUrlFormat(id);
         // 当传入的fileIdOrUrl是合法的网络地址时，则视为外部地址，所有不支持浏览器直接预览
         if (!fileInfo && !isUrl) {
-          fileInfo = await api.viewFile({ fileId: id, appId, pageId });
+          fileInfo = await api.viewFile({
+            fileId: id,
+            // appId,
+            // pageId
+          });
         }
         return fileInfo;
       }

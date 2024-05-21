@@ -27,8 +27,8 @@ export default function getFile(): [string[], ResultFile] {
       fileObj?: any;
       fileList?: any[];
       fileIndex?: number;
-      appId?: any;
-      pageId?: any;
+      // appId?: any;
+      // pageId?: any;
       viewMode: 'newTab' | 'popUp' | 'window';
       modalWidth?: number | string;
       modalHeight?: number | string;
@@ -52,9 +52,9 @@ export default function getFile(): [string[], ResultFile] {
     });
     
     const BannerModal: BMFC<BannerModalProps> = (props) => {
-      const { fileList, onClose, fileIndex = 0, pageId, getLocale, language } = props;
+      const { fileList, onClose, fileIndex = 0, getLocale, language } = props;
       const [exist, setExist] = useState(false);
-      const { appId } = props;
+      // const { appId } = props;
       const [fileData, setFileData] = useState<any[]>([]);
       const [current, setCurrent] = useState(-1);
       // const { appInst } = useGetApp({ appId });
@@ -157,10 +157,10 @@ export default function getFile(): [string[], ResultFile] {
                   )}
                   {fileData?.length > 0 && current > -1 && fileData[current] && (
                     <PreviewFile
-                      appId={appId}
+                      // appId={appId}
                       {...fileData[current]}
                       windowWidth={window.innerWidth}
-                      pageId={pageId}
+                      // pageId={pageId}
                       fileIdOrUrl={
                         fileData[current]?.fileId ||
                         fileData[current]?.file?.previewUrl
@@ -202,8 +202,8 @@ export default function getFile(): [string[], ResultFile] {
         fileIndex = 0,
         modalWidth: width,
         modalHeight: height,
-        appId,
-        pageId,
+        // appId,
+        // pageId,
         localPreviewUrl,
         getLocale,
         language,
@@ -226,7 +226,7 @@ export default function getFile(): [string[], ResultFile] {
     
       // 新标签页'newTab' | 页面弹窗'popUp' | 新窗口'window'
       const openNewWindows = (params: any) => {
-        const { pageId, appId } = params;
+        // const { pageId, appId } = params;
         let { localPreviewUrl = '#/_preview' } = params || {};
         let features = 'noopener';
         if ((isNotEmpty(width) || isNotEmpty(height)) && viewMode === 'window') {
@@ -247,8 +247,7 @@ export default function getFile(): [string[], ResultFile] {
           });
           localPreviewUrl += \`\${
             localPreviewUrl.includes('?') ? '' : '?'
-          }fileIds=\${fileIds}&appId=\${appId}&pageId=\${
-            pageId || (window as any).pageId
+          }fileIds=\${fileIds}
           }&fileIndex=\${fileIndex}\`;
         }
         window.open(localPreviewUrl, viewMode, features);
@@ -283,7 +282,11 @@ export default function getFile(): [string[], ResultFile] {
               div
             );
           } else {
-            openNewWindows({ appId, pageId, localPreviewUrl });
+            openNewWindows({ 
+              // appId, 
+              // pageId, 
+              localPreviewUrl
+            });
           }
         }
       }
