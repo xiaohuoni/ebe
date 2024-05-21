@@ -50,7 +50,9 @@ import { api } from '@/services/api';
     next.ir.deps.push(
       ...getImportsFrom('@/utils/withPageHOC', ['PageProps', 'withPageHOC']),
     );
-    next.ir.deps.push(...getImportsFrom('@/utils/messageApi', ['messageApi', 'Spin']));
+    next.ir.deps.push(
+      ...getImportsFrom('@/utils/messageApi', ['messageApi', 'Spin']),
+    );
     next.ir.deps.push(...getImportsFrom('@/utils/useTool', ['useTool']));
     next.ir.deps.push(
       getImportFrom('@/utils/customFuncMapping', 'customFuncMapping', false),
