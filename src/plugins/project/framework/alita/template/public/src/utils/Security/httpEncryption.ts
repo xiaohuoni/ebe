@@ -12,6 +12,7 @@
 import merge from 'merge';
 import capabilities from './clientCapabilities';
 import config, { createDefaultConfig, setConfig } from './config';
+import { buildXSignUrl, createHttpSignStr } from './encipher/sign';
 import {
   conflict as conflictFetch,
   noConflict as noConflictFetch,
@@ -26,7 +27,6 @@ import {
 } from './requester/xhr';
 import type { configType } from './types';
 import { checkIsModeValue } from './utils/check';
-import { createHttpSignStr, buildXSignUrl } from './encipher/sign';
 import message from './utils/message';
 
 let isHttpEncryption = false;

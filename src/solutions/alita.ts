@@ -137,8 +137,8 @@ export default function createIceJsProjectBuilder(
             dayjs: '1.11.3',
             '@ant-design/icons': '^4.2.2',
             classnames: '^2.2.6',
-            "react-loadable": "^5.5.0",
-            "react-pdf": "4.2.0"
+            'react-loadable': '^5.5.0',
+            'react-pdf': '4.2.0',
           },
           dependencies: {
             '@lingxiteam/cli': '^0.4.6',

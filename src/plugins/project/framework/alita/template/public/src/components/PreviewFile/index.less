@@ -1,4 +1,4 @@
-@import (reference) "../../styles/index.less";
+@import (reference) '../../styles/index.less';
 
 @prefixCls: lcdp-previewFile;
 
@@ -186,7 +186,10 @@
       }
     }
 
-    .@{ant-prefix}-cascader-menus .@{ant-prefix}-cascader-menu-item-active:not(.@{ant-prefix}-cascader-menus .@{ant-prefix}-cascader-menu-item-disabled) {
+    .@{ant-prefix}-cascader-menus
+      .@{ant-prefix}-cascader-menu-item-active:not(
+        .@{ant-prefix}-cascader-menus .@{ant-prefix}-cascader-menu-item-disabled
+      ) {
       background-color: fade(@primary-color, 8%);
     }
   }

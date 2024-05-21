@@ -247,7 +247,7 @@ export const useTool = (refs: Record<string, any>) => {
    * @param compId 组件id
    * @param formValues 表单值
    */
-  const setFormValues = (compId: string, formValues: Record<string, any>) => { 
+  const setFormValues = (compId: string, formValues: Record<string, any>) => {
     if (!refs[compId]) return;
     const compName = refs[compId].compName;
 
@@ -257,14 +257,14 @@ export const useTool = (refs: Record<string, any>) => {
         renderRefs,
         compId,
       });
-  
+
       forms.forEach((form) => {
         form?.setFieldsValue(formValues);
       });
     } else {
       refs[compId]?.setFieldsValue?.(formValues);
     }
-  }
+  };
 
   return {
     getValue,

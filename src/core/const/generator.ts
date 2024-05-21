@@ -115,7 +115,7 @@ export const DEFAULT_LINK_AFTER = {
     MODAL_CHUNK_NAME.PageDidMount,
     MODAL_CHUNK_NAME.PageEndRequest,
     MODAL_CHUNK_NAME.PageStateChange,
-    MODAL_CHUNK_NAME.PageWillUnmount
+    MODAL_CHUNK_NAME.PageWillUnmount,
   ],
   [COMMON_CHUNK_NAME.FileMainContent]: [
     COMMON_CHUNK_NAME.ExternalDepsImport,

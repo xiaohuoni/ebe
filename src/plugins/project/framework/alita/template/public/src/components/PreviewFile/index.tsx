@@ -1,21 +1,37 @@
 import api from '@/services/api/file';
-import { RotateLeftOutlined, RotateRightOutlined, DownOutlined } from '@ant-design/icons';
+import {
+  DownOutlined,
+  RotateLeftOutlined,
+  RotateRightOutlined,
+} from '@ant-design/icons';
 import { Cascader, message, Spin } from 'antd';
 import classnames from 'classnames';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import pageIcon from '../../assets/pageicon';
-import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 // @ts-ignore
-import { Page, Document, pdfjs } from 'react-pdf';
+import { Document, Page, pdfjs } from 'react-pdf';
 // @ts-ignore
 import pdfworker from 'react-pdf/dist/pdf.worker.entry';
 import './index.less';
 // @ts-ignore
-import { useCreation, addFileUrlSign } from '@/utils/engine-utils';
+import { addFileUrlSign, useCreation } from '@/utils/engine-utils';
 
-import security from "@/utils/Security";
+import security from '@/utils/Security';
 
 import { LocaleFunction } from '@lingxiteam/types';
-import { LOCAL_PREVIEW, CAN_SCALE, parseFileInfo, PREVIEW_MODE, isUrlFormat } from './utils';
+import {
+  CAN_SCALE,
+  isUrlFormat,
+  LOCAL_PREVIEW,
+  parseFileInfo,
+  PREVIEW_MODE,
+} from './utils';
 
 interface PreviewFileProps {
   // appId: string;
@@ -26,7 +42,7 @@ interface PreviewFileProps {
   downloadClick?: (file: any) => void;
   showDelete?: boolean;
   deleteClick?: (url: string) => void;
-  windowWidth?: number,
+  windowWidth?: number;
   getLocale: LocaleFunction;
   language: string;
 }
@@ -59,7 +75,9 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
   const [loading, setLoading] = useState(false);
   // 预览失败信息
   const [resultInfo, setResultInfo] = useState<any>();
-  const [windowWidth, setWindowWidth] = useState<number>(props?.windowWidth || window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState<number>(
+    props?.windowWidth || window.innerWidth,
+  );
   const tip = getLocale('notSupportPreview', '该文件不支持当前窗口预览');
   const timeId = useRef<any>(null);
   const [curPreviewFile, setCurPreviewFile] = useState<fileItem>();
@@ -80,11 +98,22 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
   }, [file, fileIdOrUrl, fileDataMap, curPreviewFile]);
 
   // 是否支持放大缩小、旋转、切换页面
-  const pageSwitch = useMemo(() => CAN_SCALE.includes(currentFileData?.previewMode), [currentFileData?.previewMode]);
+  const pageSwitch = useMemo(
+    () => CAN_SCALE.includes(currentFileData?.previewMode),
+    [currentFileData?.previewMode],
+  );
 
   const fileCacheMap = useCreation(() => fileDataMap, [fileDataMap]);
 
-  const { pageNum, setPageNum, scale, setScale, rotation, setRotation, updateCurrentFileData } = useCreation(() => {
+  const {
+    pageNum,
+    setPageNum,
+    scale,
+    setScale,
+    rotation,
+    setRotation,
+    updateCurrentFileData,
+  } = useCreation(() => {
     const updateData = (key: string, newVal: any | ((preVal: any) => any)) => {
       const id = currentFileData?.fileId;
       setFileDataMap((pre: any) => ({
@@ -95,7 +124,7 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
         },
       }));
     };
-    return ({
+    return {
       // pdf/ppt/doc等文件会转成多张图片，切换文件页码
       pageNum: currentFileData?.pageNum || 1,
       setPageNum: (newVal: any) => updateData('pageNum', newVal || 1),
@@ -103,9 +132,13 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
       scale: currentFileData?.scale || 0.7,
       setScale: (newVal: any) => updateData('scale', newVal || 0.7),
       rotation: currentFileData?.rotation,
-      setRotation: (angle?: number) => updateData('rotation', (rotation: any) => ((rotation || 0) + angle) % 360),
+      setRotation: (angle?: number) =>
+        updateData(
+          'rotation',
+          (rotation: any) => ((rotation || 0) + angle) % 360,
+        ),
       updateCurrentFileData: updateData,
-    });
+    };
   }, [currentFileData]);
 
   const throttle = (fn: any) => (v?: any) => {
@@ -139,11 +172,15 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
     };
   }, []);
 
-  const getFilePreviewUrl = (id: string) => /^\d+$/.test(id) ? api.previewFileById(id) : id;
+  const getFilePreviewUrl = (id: string) =>
+    /^\d+$/.test(id) ? api.previewFileById(id) : id;
 
   // 签名每次会增加一个时间戳，需要缓存url
   const filePreviewUrl = useMemo(() => {
-    let url = currentFileData?.serverFileUrl || currentFileData?.data?.dataUrl || currentFileData?.data?.url;
+    let url =
+      currentFileData?.serverFileUrl ||
+      currentFileData?.data?.dataUrl ||
+      currentFileData?.data?.url;
 
     if (url) return url;
     if (currentFileData?.serverFileId) {
@@ -153,8 +190,7 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
       url = getFilePreviewUrl(currentFileData?.fileId);
     }
     return url;
-  },
-    [currentFileData?.fileId]);
+  }, [currentFileData?.fileId]);
 
   // 下载当前文件
   const mydownloadClick = () => {
@@ -164,13 +200,7 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
   };
 
   const renderIMG = (src: string) => {
-    return (
-      <img
-        width={windowWidth * 0.5 * scale}
-        src={src}
-        alt=""
-      />
-    );
+    return <img width={windowWidth * 0.5 * scale} src={src} alt="" />;
   };
 
   // 根据下载接口获取文件，判断文件类型是否可以预览
@@ -186,10 +216,18 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
         'X-B-AUTH': '1',
         // 'APP-ID': props?.appId,
       };
-      Object.keys(headers).forEach(header => {
+      Object.keys(headers).forEach((header) => {
         xhr.setRequestHeader(header, headers[header]); // 设置请求头参数
       });
-      xhr.setRequestHeader('X-SIGN', security.httpEncryption.createHttpSignStr(url, { method: 'GET', headers, body: '', search: '' }));
+      xhr.setRequestHeader(
+        'X-SIGN',
+        security.httpEncryption.createHttpSignStr(url, {
+          method: 'GET',
+          headers,
+          body: '',
+          search: '',
+        }),
+      );
       xhr.withCredentials = true;
       return new Promise((resolve, reject) => {
         xhr.onload = () => {
@@ -262,7 +300,7 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
     // 切换文件时优先从缓存取，若无则重新加载
     const fileData = fileCacheMap[fileInfo?.fileId!];
     let fileBlob: File & {
-      cors: boolean,
+      cors: boolean;
       name: string;
     } = fileData?.data;
     if (fileInfo?.fileId && !fileData) {
@@ -273,7 +311,12 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
       }
     }
     let target = LOCAL_PREVIEW.find((val) => {
-      if (val.suffix?.test(fileInfo?.name || fileBlob?.name || fileInfo?.fileId || '') || val.mimeTypeReg?.test(fileBlob?.type || '')) {
+      if (
+        val.suffix?.test(
+          fileInfo?.name || fileBlob?.name || fileInfo?.fileId || '',
+        ) ||
+        val.mimeTypeReg?.test(fileBlob?.type || '')
+      ) {
         fileInfo.previewMode = val.previewMode;
         if (fileBlob?.cors && !val.cors) {
           // 预览跨域文件地址且无法通过平台定制方式预览的，通过iframe展示
@@ -313,7 +356,10 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
   const getFileInfo = async (fileItem: fileItem) => {
     setLoading(true);
     try {
-      const target = await checkPreview({ fileId: fileItem.fileId, name: fileItem?.name });
+      const target = await checkPreview({
+        fileId: fileItem.fileId,
+        name: fileItem?.name,
+      });
       if (target) {
         setLoading(false);
         return;
@@ -331,7 +377,10 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
       case PREVIEW_MODE.ZIP: {
         const { zipSourceFileId, filePath } = fileItem || {};
         // 预览zip 子文件
-        const fileInfo = await api.viewZipFile({ filePath, sourceFileId: zipSourceFileId });
+        const fileInfo = await api.viewZipFile({
+          filePath,
+          sourceFileId: zipSourceFileId,
+        });
         return fileInfo;
       }
       default: {
@@ -508,13 +557,20 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
               title={currentFileData?.name}
               className="iframe"
             />
-          </div>);
+          </div>
+        );
       default: {
         let info = resultInfo;
         let tips = '';
         if (PREVIEW_MODE.ZIP === currentFileData?.previewMode) {
-          info = getLocale('zipPreviewTitle', '当前预览内容为压缩包，不支持直接预览');
-          tips = getLocale('zipPreviewTips', '请在下方选择压缩包内文件进行预览');
+          info = getLocale(
+            'zipPreviewTitle',
+            '当前预览内容为压缩包，不支持直接预览',
+          );
+          tips = getLocale(
+            'zipPreviewTips',
+            '请在下方选择压缩包内文件进行预览',
+          );
         }
         if (info) {
           return (
@@ -544,7 +600,7 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
       const fileItem: fileItem = {
         filePath,
         fullFilePath: val,
-        fullFilePathName: selectOptions.map(opt => (opt.fileName)),
+        fullFilePathName: selectOptions.map((opt) => opt.fileName),
         zipSourceFileId,
         // zip包内的文件部分后端转换后，不一定能返回fileId，根据zip的fileId和filePath临时生成一个用来渲染
         fileId: `${zipSourceFileId}_${filePath}`,
@@ -583,10 +639,17 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
             dropdownClassName={`${prefix}-dropdown`}
             options={fileData?.zipDir ? [fileData.zipDir] : []}
           >
-            <div className={classnames(`${prefix}-zip-select`, `${prefix}-group`)}>
+            <div
+              className={classnames(`${prefix}-zip-select`, `${prefix}-group`)}
+            >
               <span className={`${prefix}-zip-select-label`}>
-                {currentFileData?.fileId !== fileData?.fileId && currentFileData?.fullFilePathName ?
-                  currentFileData?.fullFilePathName?.join('/') : getLocale('zipPreviewPlaceholder', '请选择包内文件进行预览')}
+                {currentFileData?.fileId !== fileData?.fileId &&
+                currentFileData?.fullFilePathName
+                  ? currentFileData?.fullFilePathName?.join('/')
+                  : getLocale(
+                      'zipPreviewPlaceholder',
+                      '请选择包内文件进行预览',
+                    )}
               </span>
               <DownOutlined rev="" />
             </div>
@@ -603,11 +666,14 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
               >
                 <img src={pageIcon.leftIcon} alt="" />
               </div>
-              <div className="pdf-bt-text">{`${pageNum}/${currentFileData?.totalPage || 1}`}</div>
+              <div className="pdf-bt-text">{`${pageNum}/${
+                currentFileData?.totalPage || 1
+              }`}</div>
               <div
                 className="pdf-bt"
                 onClick={() => {
-                  if (pageNum < (currentFileData?.totalPage || 1)) setPageNum(pageNum + 1);
+                  if (pageNum < (currentFileData?.totalPage || 1))
+                    setPageNum(pageNum + 1);
                 }}
               >
                 <img src={pageIcon.rightIcon} alt="" />
@@ -681,24 +747,30 @@ const PreviewFile: React.FC<PreviewFileProps> = (props) => {
                 <img src={pageIcon.deleteIcon} alt="" />
               </div>
             )}
-          </div>)}
-      </div>);
+          </div>
+        )}
+      </div>
+    );
   };
-
 
   return (
     <div
       className={classnames(`${prefix}-wrap`, {
-        [`${prefix}-wrapPic`]: currentFileData?.previewMode === PREVIEW_MODE.IMG || loading,
+        [`${prefix}-wrapPic`]:
+          currentFileData?.previewMode === PREVIEW_MODE.IMG || loading,
       })}
     >
       <Spin size="large" spinning={loading} />
       <div
         className="content"
         onClick={(e) => e.stopPropagation()}
-        style={currentFileData?.previewMode ? {
-          transform: `rotate(${rotation || 0}deg)`,
-        } : undefined}
+        style={
+          currentFileData?.previewMode
+            ? {
+                transform: `rotate(${rotation || 0}deg)`,
+              }
+            : undefined
+        }
       >
         {!loading && render()}
       </div>

@@ -13,6 +13,8 @@ import layout from './files/layout';
 import modalindex from './files/modalindex';
 import modalmodal from './files/modalmodal';
 import modaltypes from './files/modaltypes';
+import pcbannermodal from './files/pcbannermodal';
+import pcbannermodalless from './files/pcbannermodalless';
 import pcexpsqlservicemodal from './files/pcexpsqlservicemodal';
 import pcexpsqlservicemodalless from './files/pcexpsqlservicemodalless';
 import pcmodalindex from './files/pcmodalindex';
@@ -20,8 +22,6 @@ import pcmodalmodal from './files/pcmodalmodal';
 import popover from './files/popover';
 import popoverwrapper from './files/popoverwrapper';
 import proxy from './files/proxy';
-import pcbannermodal from './files/pcbannermodal';
-import pcbannermodalless from './files/pcbannermodalless';
 import types from './files/types';
 import withPageHOC from './files/withPageHOC';
 
@@ -126,8 +126,18 @@ export function generateStaticFiles(
     parseResult?.staticFiles,
   );
   runFileGenerator(postProcessors, root, types, parseResult?.staticFiles);
-  runFileGenerator(postProcessors, root, pcbannermodal, parseResult?.staticFiles);
-  runFileGenerator(postProcessors, root, pcbannermodalless, parseResult?.staticFiles);
+  runFileGenerator(
+    postProcessors,
+    root,
+    pcbannermodal,
+    parseResult?.staticFiles,
+  );
+  runFileGenerator(
+    postProcessors,
+    root,
+    pcbannermodalless,
+    parseResult?.staticFiles,
+  );
 
   return root;
 }

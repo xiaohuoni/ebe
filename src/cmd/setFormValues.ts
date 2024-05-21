@@ -1,6 +1,5 @@
 import { CMDGeneratorPrames } from '../core/types';
 import { parse2Var } from '../core/utils/compositeType';
-import { isJSVar } from '../core/utils/deprecated';
 
 export function setFormValues({ value }: CMDGeneratorPrames): string {
   const { options } = value;

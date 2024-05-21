@@ -1,17 +1,16 @@
-
+import engineServices from '@/services/api/engine';
+import fileServices from '@/services/api/file';
 import {
   BatchDownloadFileByIdsType,
   ExportFileShowProgressType,
   LocaleFunction,
+  PreviewFileType,
   SaveBlobFileType,
-  PreviewFileType
 } from '@lingxiteam/types';
-import fileServices from '@/services/api/file';
-import { HTTPMehodFn } from '../type';
-import engineServices from '@/services/api/engine';
 import { isErrorStatus } from '../../service/defaultResponseInterceptor';
+import { HTTPMehodFn } from '../type';
 
-import security from "@/utils/Security";
+import security from '@/utils/Security';
 
 type ExportPathMapType = Record<'sql' | 'object' | 'multiExport', string>;
 type ExportApiMapType = Record<'sql' | 'object' | 'multiExport', HTTPMehodFn>;
@@ -41,7 +40,7 @@ const saveBlobFile: SaveBlobFileType = ({ data, fileName }) => {
     const format = typeof fileName === 'string' && fileName.split('.').pop();
     if (/(csv|xls)$/.test(format as string) && typeof data === 'string') {
       href = `data:text/${format};charset=utf-8,\ufeff${encodeURIComponent(
-        data
+        data,
       )}`;
     }
     link.href = href; // eslint-disable-line
@@ -69,7 +68,7 @@ const getFileName = (fileContentStr: string, newFileName?: string) => {
     fileName =
       fileContentStr.split('filename=').pop()?.replace(/\"/g, '') || '';
     const result = fileContentStr.match(
-      /(?:.*filename\*|filename)=(?:([^'"]*)''|("))([^;]+)\2(?:[;`\n]|$)/
+      /(?:.*filename\*|filename)=(?:([^'"]*)''|("))([^;]+)\2(?:[;`\n]|$)/,
     );
     if (result && result[3]) {
       fileName = result[3].replace(/['"]/g, '').replace(/[+]/g, '%20');
@@ -109,7 +108,7 @@ const downloadByXMLHttpRequest = (params: {
     getLocale = (
       key: string,
       placeholder: string,
-      kv?: Record<string, string>
+      kv?: Record<string, string>,
     ) => placeholder,
   } = params;
 
@@ -133,7 +132,7 @@ const downloadByXMLHttpRequest = (params: {
         headers,
         body: '',
         search: '',
-      })
+      }),
     );
     xhr.withCredentials = true;
     xhr.onprogress = (evt) => {
@@ -146,7 +145,7 @@ const downloadByXMLHttpRequest = (params: {
             newFileName,
             percentComplete,
             getLocale('download', '下载'),
-            { getLocale }
+            { getLocale },
           );
         }
       }
@@ -156,7 +155,7 @@ const downloadByXMLHttpRequest = (params: {
       if (xhr.status === 200) {
         const fileName: string = getFileName(
           xhr.getResponseHeader('Content-Disposition') || '',
-          newFileName
+          newFileName,
         );
         saveBlobFile({
           data,
@@ -204,7 +203,6 @@ const downloadByXMLHttpRequest = (params: {
   }
 };
 
-
 /**
  * 批量文件下载
  * @param appId
@@ -227,7 +225,7 @@ const batchDownloadFileByIds: BatchDownloadFileByIdsType = (params) => {
 
 // 异步导出文件并显示进度
 const exportFileShowProgressAsync: ExportFileShowProgressType = async (
-  exportParams
+  exportParams,
 ) => {
   const {
     fileOrigin,
@@ -262,7 +260,7 @@ const exportFileShowProgressAsync: ExportFileShowProgressType = async (
       const { fileId, statusCd, requestJson, responseJson, failReason } =
         await engineServices.getImportExportApply(
           { applyId },
-          { appId, pageId }
+          { appId, pageId },
         );
       // 点击取消时候刚好触发了下一次接口，接口未回调时
       if (isStop) return -1;
@@ -296,15 +294,16 @@ const exportFileShowProgressAsync: ExportFileShowProgressType = async (
           message: showLoading
             ? undefined
             : getLocale(
-              'exportFile.process.message',
-              `总记录${total}条，已生成数据${currentCount}条，剩余${total - currentCount
-              }条完成到处。`,
-              {
-                total: `${total}`,
-                currentCount: `${currentCount}`,
-                count: `${total - currentCount}`,
-              }
-            ),
+                'exportFile.process.message',
+                `总记录${total}条，已生成数据${currentCount}条，剩余${
+                  total - currentCount
+                }条完成到处。`,
+                {
+                  total: `${total}`,
+                  currentCount: `${currentCount}`,
+                  count: `${total - currentCount}`,
+                },
+              ),
           percent,
           showLoading,
           loadingText: getLocale(
@@ -313,7 +312,7 @@ const exportFileShowProgressAsync: ExportFileShowProgressType = async (
               : 'export.process.handling',
             percent === 100
               ? '正在等待下载，请稍后...'
-              : '正在处理中，请稍后...'
+              : '正在处理中，请稍后...',
           ),
           getLocale,
         });
@@ -383,7 +382,7 @@ const exportFileShowProgressAsync: ExportFileShowProgressType = async (
  * @param fileId
  * @param param1
  */
-const previewFile: PreviewFileType = params => {
+const previewFile: PreviewFileType = (params) => {
   const { fileId, appId, pageId } = params;
 
   const link = document.createElement('a');
@@ -402,7 +401,7 @@ const previewFile: PreviewFileType = params => {
 
 // 导出文件显示进度条
 const exportFileShowProgress: ExportFileShowProgressType = async (
-  exportParams
+  exportParams,
 ) => {
   const {
     fileOrigin,
@@ -445,11 +444,19 @@ const exportFileShowProgress: ExportFileShowProgressType = async (
     xhr.setRequestHeader(
       'X-SIGN',
       security.createHttpSignStr(methodPath, {
-        method: methodType as "GET" | "OPTIONS" | "HEAD" | "POST" | "PUT" | "DELETE" | "TRACE" | "CONNECT",
+        method: methodType as
+          | 'GET'
+          | 'OPTIONS'
+          | 'HEAD'
+          | 'POST'
+          | 'PUT'
+          | 'DELETE'
+          | 'TRACE'
+          | 'CONNECT',
         headers,
         body: JSON.stringify(params) || '',
         search: '',
-      })
+      }),
     );
     xhr.withCredentials = true;
     xhr.onprogress = (evt) => {
@@ -464,7 +471,7 @@ const exportFileShowProgress: ExportFileShowProgressType = async (
           fileName,
           percentComplete,
           getLocale('derive', '导出'),
-          { getLocale }
+          { getLocale },
         );
       }
     };
@@ -475,7 +482,7 @@ const exportFileShowProgress: ExportFileShowProgressType = async (
           data,
           fileName: getFileName(
             xhr.getResponseHeader('Content-Disposition') || '',
-            fileName
+            fileName,
           ),
         });
         if (typeof onSuccess === 'function') {
@@ -500,7 +507,4 @@ const exportFileShowProgress: ExportFileShowProgressType = async (
   }
 };
 
-export {
-  previewFile,
-  exportFileShowProgress
-};
+export { previewFile, exportFileShowProgress };

@@ -26,17 +26,25 @@ export function exportSQLServiceData({
   } else {
     attrs = parse2Var(busiObjectFilterParams);
   }
-  const onSuccessStr = Array.isArray(callback1) && callback1.length
-    ? // @ts-ignore
-    `onSuccess: ${CMDGeneratorEvent(callback1, { platform }, scope, config)},`
-    : '\n';
+  const onSuccessStr =
+    Array.isArray(callback1) && callback1.length
+      ? // @ts-ignore
+        `onSuccess: ${CMDGeneratorEvent(
+          callback1,
+          { platform },
+          scope,
+          config,
+        )},`
+      : '\n';
 
-  const onFailStr = Array.isArray(callback2) && callback2.length
-    ? // @ts-ignore
-    `onFail: ${CMDGeneratorEvent(callback2, { platform }, scope, config)},`
-    : '\n';
+  const onFailStr =
+    Array.isArray(callback2) && callback2.length
+      ? // @ts-ignore
+        `onFail: ${CMDGeneratorEvent(callback2, { platform }, scope, config)},`
+      : '\n';
 
-  return GeneratorCallbackWithThenCatch(`
+  return GeneratorCallbackWithThenCatch(
+    `
   // 导出SQL查询服务
     new Promise<any>((resolve, reject) => {
       ExpSQLServiceModalRef.current.openWithCustFields({
@@ -51,10 +59,12 @@ export function exportSQLServiceData({
         ${onFailStr}
       });
     })
-  `, {
-    value,
-    platform,
-    scope,
-    config
-  });
+  `,
+    {
+      value,
+      platform,
+      scope,
+      config,
+    },
+  );
 }

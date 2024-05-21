@@ -1,15 +1,9 @@
-
-import { parse2Var } from '../core/utils/compositeType';
 import { CMDGeneratorPrames } from '../core/types';
+import { parse2Var } from '../core/utils/compositeType';
 export function previewFile(generateParams: CMDGeneratorPrames): string {
   const { value, platform } = generateParams;
   console.log(generateParams);
-  const {
-    fileId: myFileId,
-    viewMode,
-    modalWidth,
-    modalHeight,
-  } = value.options;
+  const { fileId: myFileId, viewMode, modalWidth, modalHeight } = value.options;
   const fileId = parse2Var(myFileId);
   if (platform === 'h5') {
     return `// 文件预览 
@@ -42,5 +36,3 @@ export function previewFile(generateParams: CMDGeneratorPrames): string {
     }`;
   }
 }
-
-
