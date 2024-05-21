@@ -95,7 +95,7 @@ export const CMDGeneratorEvent = (
   options: CompositeValueGeneratorOptions = {},
   // TODO: 后续无用移除
   prefix: string = '',
-  funcTop: string = ''
+  funcTop: string = '',
 ) => {
   if (!value || !value.params) {
     console.log(value);

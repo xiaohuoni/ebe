@@ -290,7 +290,7 @@ export const getOwnFormValues = async (
 
 export const getAllForm = (options: {
   currentRefs: RefsType;
-  renderRefs: RefsManager
+  renderRefs: RefsManager;
 }) => {
   const { currentRefs, renderRefs } = options;
   const forms: RefsType[] = [];
