@@ -42,3 +42,8 @@ export { sysSetValue } from './sysSetValue';
 export { sysSetVisible } from './sysSetVisible';
 export { validateCurrentForm } from './validateCurrentForm';
 export { validateForm } from './validateForm';
+export { validateAllForm } from './validateAllForm';
+export { getAllFormValues } from './getAllFormValues';
+export { resetAllForm } from './resetAllForm';
+export { setCurrentFormValues } from './setCurrentFormValues'
+

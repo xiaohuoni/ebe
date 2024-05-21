@@ -18,6 +18,10 @@ const GeneratorCallbackWithThenCatch = (
       callback1?: string[];
       callback2?: string[];
     };
+    funcTops?: {
+      callback1?: string;
+      callback2?: string;
+    }
   },
 ) => {
   if (!code) return code;
@@ -36,12 +40,12 @@ const GeneratorCallbackWithThenCatch = (
 
   const callback1Code =
     Array.isArray(callback1) && callback1.length
-      ? CMDGeneratorEvent(callback1, { platform }, scope, config)
+      ? CMDGeneratorEvent(callback1, { platform }, scope, config, '', options?.funcTops?.callback1)
       : '';
 
   const callback2Code =
     Array.isArray(callback2) && callback2.length
-      ? CMDGeneratorEvent(callback2, { platform }, scope, config)
+      ? CMDGeneratorEvent(callback2, { platform }, scope, config, '', options?.funcTops?.callback2)
       : '';
 
   let cmdCode = [

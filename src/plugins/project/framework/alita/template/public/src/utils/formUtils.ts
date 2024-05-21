@@ -288,12 +288,11 @@ export const getOwnFormValues = async (
   return Promise.resolve(values);
 };
 
-export const getAllFormValues = (options: {
+export const getAllForm = (options: {
   currentRefs: RefsType;
-  engineRelation: EngineRelationMethods;
-  routerId: string;
+  renderRefs: RefsManager
 }) => {
-  const { currentRefs, engineRelation, routerId } = options;
+  const { currentRefs, renderRefs } = options;
   const forms: RefsType[] = [];
   const getRenderRefsFormValues = (refs: RefsType = {}) => {
     const uidArr = Object.keys(refs);
@@ -304,9 +303,9 @@ export const getAllFormValues = (options: {
       const ref = refs[uid];
       if (ref.compName !== 'Form') {
         // 需要处理BOFramer和PageView这种渲染逻辑
-        const uidRefs = engineRelation.getEngineRefsByUid(uid, routerId);
-        if (uidRefs) {
-          getRenderRefsFormValues(uidRefs.refs);
+        const refs = renderRefs.getComRefs(uid);
+        if (refs) {
+          getRenderRefsFormValues(refs);
         }
       } else if (ref.has) {
         forms.push(ref);

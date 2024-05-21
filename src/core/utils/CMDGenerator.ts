@@ -95,6 +95,7 @@ export const CMDGeneratorEvent = (
   options: CompositeValueGeneratorOptions = {},
   // TODO: 后续无用移除
   prefix: string = '',
+  funcTop: string = ''
 ) => {
   if (!value || !value.params) {
     console.log(value);
@@ -115,7 +116,9 @@ export const CMDGeneratorEvent = (
       return arr.findIndex((o) => o.name === obj.name) === index;
     })
     .map((i: { name: any }) => i.name + ': any')
-    .join(',')})=>{ ${cmdFunctionString}
+    .join(',')})=>{ 
+      ${funcTop}
+      ${cmdFunctionString}
     }`;
   return renderEvent;
 };
