@@ -1,25 +1,25 @@
-import React, {
-  useState,
-  useImperativeHandle,
-  forwardRef,
-  useMemo,
-} from 'react';
-import { Spin, Divider, Checkbox, message, Modal } from 'antd';
-import {
-  openProgressMsg,
-  closeProgressMsg,
-  showProgressNotification,
-  closeProgressNotification,
-} from '../ProgressComp';
-import './index.less';
-import { prefix } from '../../styles';
 import {
   BaseModalProps,
   ExpSQLServiceModalHooks,
   ExpSQLServiceModalOptions,
 } from '@/types';
-import { LocaleFunction } from '@lingxiteam/types';
 import { exportFileShowProgress } from '@/utils/platform/utils/fileUtils';
+import { LocaleFunction } from '@lingxiteam/types';
+import { Checkbox, Divider, message, Modal, Spin } from 'antd';
+import React, {
+  forwardRef,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from 'react';
+import { prefix } from '../../styles';
+import {
+  closeProgressMsg,
+  closeProgressNotification,
+  openProgressMsg,
+  showProgressNotification,
+} from '../ProgressComp';
+import './index.less';
 
 const expSQLServiceModal = `${prefix}_expSQLServiceModal`;
 
@@ -95,7 +95,7 @@ const ExpSQLServiceModal = forwardRef<
     onFail,
     async,
   }: any) => {
-    let hide = () => { };
+    let hide = () => {};
     try {
       hide = message.loading(
         getLocale('export.process.handling', '正在处理中，请稍后...'),

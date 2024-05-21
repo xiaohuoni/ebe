@@ -11,7 +11,8 @@ export default function getFile(
     `import React, { useContext, useEffect, useState, useRef, useMemo } from 'react';
     import { api as baseApi } from '@/services/api';
     import { messageApi } from '@/utils/messageApi';
-import locales from '@lingxiteam/engine-${isMobile ? 'app' : 'pc'
+import locales from '@lingxiteam/engine-${
+      isMobile ? 'app' : 'pc'
     }/es/utils/locales';
 import { pageStaticData } from '@/components/Pageview';
 import BannerModal from '@/components/BannerModal';
@@ -343,9 +344,10 @@ export const withPageHOC = (
           ImportBusiObjModalRef={ImportBusiObjModalRef}
           BannerModal={BannerModal}
         />
-        ${isMobile
-      ? ''
-      : `<ExpBusiObjModal
+        ${
+          isMobile
+            ? ''
+            : `<ExpBusiObjModal
           ref={ExpBusiObjModalRef}
           key={\`ExpBusiObjModal-\${renderId}\`}
           // api={baseApi}
@@ -353,10 +355,11 @@ export const withPageHOC = (
           // utils={{}}
           getLocale={getLocale}
         />`
-    }
-        ${isMobile
-      ? ''
-      : `<ImportBusiObjModal
+        }
+        ${
+          isMobile
+            ? ''
+            : `<ImportBusiObjModal
       ref={ImportBusiObjModalRef}
       key={\`ImportBusiObjModal-\${renderId}\`}
       // TODO: 控件内部还存在需要 appId 和 pageId 的场景
@@ -366,10 +369,11 @@ export const withPageHOC = (
       // utils={renderCtx.utils}
       getLocale={getLocale}
       />`
-    }
-    ${isMobile
-      ? ''
-      : `<ExpSQLServiceModal
+        }
+    ${
+      isMobile
+        ? ''
+        : `<ExpSQLServiceModal
       ref={ExpSQLServiceModalRef}
       key={\`ExpSQLServiceModal-\${renderId}\`}
       // TODO: 控件内部还存在需要 appId 的场景

@@ -13,6 +13,7 @@ export { getConsole as console } from './console';
 export { customActionCode } from './customActionCode';
 export { getDefault as defaultCmd } from './defaultCmd';
 export { dropPageByCatch } from './dropPageByCatch';
+export { exportCustomBusiObjectData } from './exportCustomBusiObjectData';
 export { exportSQLServiceData } from './exportSQLServiceData';
 export { getAllFormValues } from './getAllFormValues';
 export { getCurrentFormValues } from './getCurrentFormValues';
@@ -51,5 +52,3 @@ export { sysSetVisible } from './sysSetVisible';
 export { validateAllForm } from './validateAllForm';
 export { validateCurrentForm } from './validateCurrentForm';
 export { validateForm } from './validateForm';
-export { exportCustomBusiObjectData } from './exportCustomBusiObjectData';
-

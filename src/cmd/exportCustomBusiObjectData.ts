@@ -18,7 +18,7 @@ export function exportCustomBusiObjectData({
     tempParams,
     exportType,
     async,
-    custFileName
+    custFileName,
   } = value.options || {};
 
   let attrs: any;
@@ -69,6 +69,5 @@ export function exportCustomBusiObjectData({
     },
   );
 }
-
 
 export default exportCustomBusiObjectData;
