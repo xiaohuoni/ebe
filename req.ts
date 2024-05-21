@@ -5,7 +5,8 @@ import { copyStatic } from './scripts/copyStatic';
 import { createDiskPublisher } from './src/core/publisher/disk';
 import alita from './src/solutions/alita';
 (async () => {
-  const appId = '1089426139952508928';
+  const appId = '1089426139952508928'; // HJF
+  // const appId = '772790966277644288'; // 开发环境
   const schemaFile = `./demo/node_modules/.cache/${appId}/req.json`;
   // const schemaFile = `./req.json`;
   // 读取 Schema
@@ -16,7 +17,7 @@ import alita from './src/solutions/alita';
   const project = await projectBuilder.generateProject(
     schema.pages, // 编排搭建出来的 schema
   );
-  const projectSlug = 'n2';
+  const projectSlug = appId;
   // 写入到 zip 包
   await createDiskPublisher().publish({
     project, // 上一步生成的 project

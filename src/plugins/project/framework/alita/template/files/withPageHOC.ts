@@ -107,7 +107,7 @@ export const withPageHOC = (
 
    const addActionTimer = (type: 'interval' | 'timeout' = 'timeout', timerName: string, callback: () => void, time: number = 0) => {
     const actionTimer = actionTimerRef.current;
-    clearActionTimer(type, timerName);
+    clearActionTimer(type);
 
     const delay = time > 0 ? +time : 0;
 
@@ -225,6 +225,7 @@ export const withPageHOC = (
           return {
             BannerModal,
             stateListener: () => { },
+            sandBoxLoadModule: () => { },
             ...baseApi,
             // TODO: 这需要正确的请求
             downloadFileByFileCode: () => null,
