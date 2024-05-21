@@ -100,20 +100,17 @@ export const withPageHOC = (
     });
 
     // 清除定时器
-    const clearActionTimer = (type: 'interval' | 'timeout' = 'timeout', timerName: string) => {
+    const clearActionTimer = (timerName: string) => {
       const actionTimer = actionTimerRef.current;
-      if (type === 'interval' && actionTimer.interval) {
-        if (actionTimer.interval?.[timerName]) {
-          clearInterval(actionTimer.interval[timerName]);
-          actionTimer.interval[timerName] = null;
-        }
+      
+      if (actionTimer.interval?.[timerName]) {
+        clearInterval(actionTimer.interval[timerName]);
+        actionTimer.interval[timerName] = null;
       }
 
-      if (type === 'timeout' && actionTimer.timeout) {
-        if (actionTimer.timeout?.[timerName]) {
-          clearTimeout(actionTimer.timeout[timerName]);
-          actionTimer.timeout[timerName] = null;
-        }
+     if (actionTimer.timeout?.[timerName]) {
+        clearTimeout(actionTimer.timeout[timerName]);
+        actionTimer.timeout[timerName] = null;
       }
     }
 

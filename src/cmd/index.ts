@@ -45,5 +45,9 @@ export { validateForm } from './validateForm';
 export { validateAllForm } from './validateAllForm';
 export { getAllFormValues } from './getAllFormValues';
 export { resetAllForm } from './resetAllForm';
-export { setCurrentFormValues } from './setCurrentFormValues'
+export { setCurrentFormValues } from './setCurrentFormValues';
+export { setTimeout } from './setTimeout';
+export { clearTimer } from './clearTimer';
+export { setInterval } from './setInterval';
+
 
