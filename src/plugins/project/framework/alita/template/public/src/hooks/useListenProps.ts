@@ -1,5 +1,5 @@
-import useSafeState from "./useSafeState";
-import useUpdateEffect from "./useUpdateEffect";
+import useSafeState from './useSafeState';
+import useUpdateEffect from './useUpdateEffect';
 
 function useListenProps<T>(propsValue: T): [T, (data: T) => void] {
   const [value, setValue] = useSafeState(propsValue);

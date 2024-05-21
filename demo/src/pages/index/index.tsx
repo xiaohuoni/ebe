@@ -13,21 +13,25 @@ import { generateCode, init, publishers } from 'ebe';
 
 const Item = Form.Item;
 
-const treeForEach = (tree: any, callback: (item: any, root: boolean) => void, options = { children: 'components' }) => { 
+const treeForEach = (
+  tree: any,
+  callback: (item: any, root: boolean) => void,
+  options = { children: 'components' },
+) => {
   callback(tree, true);
 
-  const loop = (children: any[]) => { 
-    children?.forEach(item => { 
+  const loop = (children: any[]) => {
+    children?.forEach((item) => {
       callback(item, false);
       if (Array.isArray(item?.[options.children])) {
         loop(item?.[options.children]);
       }
-    })
-  }
+    });
+  };
 
-  const list = tree[options.children]
+  const list = tree[options.children];
   loop(list);
-}
+};
 
 const getPageDsls = (resultObjects: any[]) => {
   return resultObjects.filter(Boolean).map((i) => {
@@ -161,20 +165,27 @@ const Page = () => {
     // 收集页面中用到的页面id
     const pagesId: string[] = [];
     if (values.pageId) {
-      getPageDsls(data).forEach(p => { 
-        treeForEach(p, (item) => { 
+      getPageDsls(data).forEach((p) => {
+        treeForEach(p, (item) => {
           if (item.compName === 'Pageview') {
             if (item.props.pageId) {
               pagesId.push(item.props.pageId);
             }
           }
-          treeForEach({ children: item.setEvents }, (actionItem) => { 
-            if (['setPageSrc', 'showCustomModal'].includes(actionItem.value) && actionItem.options?.pageId) {
-              pagesId.push(actionItem.options?.pageId);
-            }
-          }, { children: 'children' })
-        }) 
-      })
+          treeForEach(
+            { children: item.setEvents },
+            (actionItem) => {
+              if (
+                ['setPageSrc', 'showCustomModal'].includes(actionItem.value) &&
+                actionItem.options?.pageId
+              ) {
+                pagesId.push(actionItem.options?.pageId);
+              }
+            },
+            { children: 'children' },
+          );
+        });
+      });
     }
 
     if (pagesId.length > 0) {
