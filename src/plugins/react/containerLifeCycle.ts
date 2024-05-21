@@ -105,7 +105,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           type: ChunkType.STRING,
           fileType: cfg.fileType,
           name: MODAL_CHUNK_NAME.ImperativeHandle,
-          content: `React.useImperativeHandle(forwardedRef, () => ({
+          content: `React.useImperativeHandle(ref, () => ({
             ${events?.onOk ? 'onOk,' : ''}
             ${events?.onCancel ? 'onCancel,' : ''}
           }));`,

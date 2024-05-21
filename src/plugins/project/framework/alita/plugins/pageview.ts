@@ -46,7 +46,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         ${ir.models
           ?.map(
             (modal: any) =>
-              ` '${modal.path || modal.pageId }':${JSON.stringify(modal)}`,
+              ` '${modal.path || modal.pageId}':${JSON.stringify(modal)}`,
           )
           .join(',')}
       }
@@ -111,6 +111,12 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         React.useImperativeHandle(ref, () => ({
           get customActionMap() {
             return pageRef.current?.customActionMap;
+          },
+          onOk: () => {
+            return pageRef.current?.onOk();
+          },
+          onCancel: () => {
+            return pageRef.current?.onCancel();
           },
         }));
         return <Page {...props} ref={pageRef} />;
