@@ -8,39 +8,24 @@ export default function getFile(
   const file = createResultFile(
     'withPageHOC',
     'tsx',
-    `import { api as baseApi } from '@/services/api';
-${
-  isMobile
-    ? `import {
-  messageApi,
-  Modal,
-} from '@lingxiteam/engine-app/es/components/MessageApi';`
-    : `import { message as messageApi, Modal } from 'antd';`
-}
+    `import React, { useContext, useEffect, useState, useRef, useMemo } from 'react';
+    import { api as baseApi } from '@/services/api';
+    import { messageApi } from '@/utils/messageApi';
 import locales from '@lingxiteam/engine-${
       isMobile ? 'app' : 'pc'
     }/es/utils/locales';
-${
-  isMobile
-    ? ''
-    : `import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';`
-}
-import React, { useContext, useEffect, useState, useRef, useMemo } from 'react';
 import { pageStaticData } from '@/components/Pageview';
 import BannerModal from '@/components/BannerModal';
 import ExpSQLServiceModal from "@/components/ExpSQLServiceModal/ExpSQLServiceModal";
-import { PLATFORM } from '@/constants';
 import * as functorsMap from '@/utils/functors';
 import Sandbox from '@lingxiteam/engine-sandbox';
 import {
   i18n,
 } from '@lingxiteam/engine-utils';
 import { useLocation } from 'alita';
-import { merge } from 'lodash';
 import { parse } from 'qs';
 import lcdpApi from '@/utils/lcdpApi';
 import { Context } from './Context/context';
-import { createId } from '../utils/historytool'
 import assetHelper from '@lingxiteam/engine-assets';
 const awaitKeys: Set<string> = new Set();
 const cacheKeys: Set<string> = new Set();
@@ -319,6 +304,7 @@ export const withPageHOC = (
         attrDataMap,
         functorsMap,
         state,
+        messageApi,
       }
       setLoading(false);
     };
@@ -351,17 +337,6 @@ export const withPageHOC = (
           ExpSQLServiceModalRef={ExpSQLServiceModalRef}
           BannerModal={BannerModal}
         />
-        ${
-          isMobile
-            ? ''
-            : `<ExpBusiObjModal
-          ref={ExpBusiObjModalRef}
-          key={\`ExpBusiObjModal-\${renderId}\`}
-          api={baseApi}
-          utils={{}}
-          getLocale={getLocale}
-        />`
-        }
         <ExpSQLServiceModal
         ref={ExpSQLServiceModalRef}
         key={\`ExpSQLServiceModal-\${renderId}\`}
