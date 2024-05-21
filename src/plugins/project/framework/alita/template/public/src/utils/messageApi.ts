@@ -1,5 +1,6 @@
 import { message } from 'antd';
 import React from 'react';
+import Spin from './LcdpSpin';
 
 const filterHtmlNode = (str: string) => {
   if (typeof str !== 'string' || !str) return str || '';
@@ -89,4 +90,4 @@ const messageApi = (
   }
 };
 
-export { messageApi };
+export { messageApi, Spin };

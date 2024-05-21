@@ -201,6 +201,20 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: REACT_CHUNK_NAME.RenderStart,
+      content: `if (!dataReadyComplete) {
+        return <Spin spinning/>
+      }`,
+      linkAfter: [
+        ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
+        REACT_CHUNK_NAME.DidMountEnd,
+        REACT_CHUNK_NAME.DidUpdateEnd,
+        REACT_CHUNK_NAME.WillUnmountEnd,
+      ],
+    });
+    next.chunks.push({
+      type: ChunkType.STRING,
+      fileType: FileType.TSX,
+      name: REACT_CHUNK_NAME.RenderStart,
       content: 'return (',
       linkAfter: [
         ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
