@@ -89,13 +89,17 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         const { clientRoutes, routeComponents } = useAppData();
         // 页面 src 可能是带参数的如 /a?b=1&c=2
         const [path, query] = parseSrc(props?.pageSrc);
+        const pageRef = React.useRef<any>();
         const Page = getPage(path, clientRoutes, routeComponents);
 
-        useImperativeHandle(ref, () => ({
+        React.useImperativeHandle(ref, () => ({
           renderId: props.$$componentItem.uid,
+          get customActionMap () {
+            return pageRef.current?.customActionMap || {};
+          }
         }))
 
-        return <Page {...query} {...props} />;
+        return <Page {...query} {...props} ref={pageRef} />;
       });
       export default Hoc(Pageview, { type: 'Pageview' });
       `,

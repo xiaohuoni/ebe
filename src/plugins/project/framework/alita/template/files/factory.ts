@@ -37,6 +37,7 @@ export default function getFile(
     `import { useComponentHoc } from '@lingxiteam/engine-render-core/es/hooks/useComponentHoc';
   import type { ImperativeHandleReturn } from '@lingxiteam/types';
   import { isEqual } from 'lodash';
+  import { mergeGetter } from '../utils/Context/context'
   import React, { useImperativeHandle, useMemo } from 'react';
   
   import {${Object.keys(formHash)
@@ -102,7 +103,7 @@ export default function getFile(
         };
       }, [state.value]);
   
-      useImperativeHandle(ref, () => ({
+      useImperativeHandle(ref, () => (mergeGetter({
         get compName() {
           return compProps.$$componentItem.type;
         },
@@ -126,8 +127,7 @@ export default function getFile(
           //   onChangeHandle(v);
           // }
         },
-        ...componentRef.current
-      }));
+      })));
       ${
         componentWillMount
           ? `if(componentWillMount(initialProps?.uid, config?.type, initialProps, {}) === false){

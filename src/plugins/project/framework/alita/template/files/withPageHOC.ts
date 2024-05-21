@@ -25,7 +25,7 @@ ${
     ? ''
     : `import { ExpBusiObjModal } from '@lingxiteam/engine-pc/es/components/ExpBusiObjModal';`
 }
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import React, { useContext, useEffect, useState, useRef, useMemo } from 'react';
 import { pageStaticData } from '@/components/Pageview';
 import BannerModal from '@/components/BannerModal';
 import ExpSQLServiceModal from "@/components/ExpSQLServiceModal/ExpSQLServiceModal";
@@ -83,9 +83,16 @@ export const withPageHOC = (
     const ExpBusiObjModalRef = React.useRef<any>();
     const ExpSQLServiceModalRef = React.useRef<any>();
     const [loading, setLoading] = useState(true);
-    const [state, setState] = useState(options?.defaultState);
     const sandBoxContext = useRef<Record<string, any>>({});
-
+    // 组件状态的处理
+    const state = useMemo(() => {
+      if (props.state) {
+        return {
+          ...state,
+          ...props.state,
+        }
+      }
+    }, [props.state]);
     // 指令定时器存储
     const actionTimerRef = useRef<Record<string, any>>({
       timeout: {},
@@ -315,15 +322,6 @@ export const withPageHOC = (
     useEffect(() => {
       init();
     }, []);
-    // 组件状态的处理
-    useEffect(() => {
-      if (props.state) {
-        setState({
-          ...state,
-          ...props.state,
-        })
-      }
-    }, [props.state]);
     // // 可以在这里加 loading
     if (loading === true) {
       return <div></div>;
@@ -333,13 +331,7 @@ export const withPageHOC = (
         <WrappedComponent
           {...props}
           urlParam={urlParam}
-          forwardedRef={ref}
           ref={ref}
-          customActionMapRef={(ref: any) => {
-            if (ref) {
-              renerRefs.setSysCustomActionMapRef(renderId, ref);
-            }
-          }}
           refs={refs}
           setComponentRef={setComponentRef}
           lcdpParentRenderId={props.lcdpParentRenderId}
