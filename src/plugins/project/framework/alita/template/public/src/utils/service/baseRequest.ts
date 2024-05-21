@@ -1,9 +1,5 @@
-import { request as baseRequest } from 'alita';
-// umi-request 是临时方案
-// alita 下一个版本会提供 RequestOptionsInit
+import { request as baseRequest, RequestOptionsInit } from 'alita';
 import merge from 'lodash/merge';
-import { RequestOptionsInit } from 'umi-request';
-
 export interface AppCtxType {
   appId: string;
   pageId?: string;

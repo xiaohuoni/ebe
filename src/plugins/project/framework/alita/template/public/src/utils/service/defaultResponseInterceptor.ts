@@ -1,4 +1,4 @@
-import { RequestOptionsInit, ResponseInterceptor } from 'umi-request';
+import { RequestOptionsInit, ResponseInterceptor } from 'alita';
 import { AppCtxType } from './baseRequest';
 
 export const isErrorStatus = (status: number) => {

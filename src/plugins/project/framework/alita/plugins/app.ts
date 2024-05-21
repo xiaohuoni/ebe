@@ -40,11 +40,14 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       name: COMMON_CHUNK_NAME.InternalDepsImport,
       content: `import { defaultResponense } from '@/utils/service/defaultResponseInterceptor';
       import { CryptoJS } from '@lingxiteam/engine-utils';
-      import type { Context } from 'alita';
-      import { RequestConfig } from 'alita';
+      import type {
+        RequestInterceptor,
+        ResponseInterceptor,
+        Context,
+        RequestConfig,
+      } from 'alita';
       import { message, Modal as modal, notification } from 'antd';
       import { isPlainObject, merge } from 'lodash';
-      import { RequestInterceptor, ResponseInterceptor } from 'umi-request';
 ${
   isMobile
     ? `const titleList = [

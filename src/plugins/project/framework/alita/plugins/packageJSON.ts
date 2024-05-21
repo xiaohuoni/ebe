@@ -49,7 +49,7 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
         'react-dom': '^17.0.2',
         '@alita/flow': '*',
         '@lingxiteam/types': LINGXI_TYPES_VERSION,
-        alita: '3.3.7',
+        alita: '3.4.0',
         ...(isMobile ? cfg?.dependencies : cfg?.dependenciesPc),
         // 其他组件库
         ...npmDeps.reduce<Record<string, string>>(

@@ -112,7 +112,6 @@ export default function createIceJsProjectBuilder(
             antd: '4.18.8',
             lodash: '^4.17.21',
             qs: '^6.11.2',
-            'umi-request': '^1.4.0',
             'copy-to-clipboard': '^3.3.1',
             // TODO: 这些插件都需要装在开发项目中吗？
             '@lingxiteam/assets': '3.3.1-alpha.13',
@@ -144,7 +143,6 @@ export default function createIceJsProjectBuilder(
           dependencies: {
             '@lingxiteam/cli': '^0.4.6',
             qs: '^6.11.2',
-            'umi-request': '^1.4.0',
             '@lingxiteam/engine-app': '3.2.1-alpha.44',
             '@lingxiteam/engine-plog': '3.2.1-alpha.44',
             '@lingxiteam/engine-assets': '3.2.1-alpha.44',
