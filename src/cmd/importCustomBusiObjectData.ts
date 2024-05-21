@@ -2,8 +2,12 @@ import { CMDGeneratorPrames } from '../core/types';
 import { CMDGeneratorEvent } from '../core/utils/CMDGenerator';
 import { parse2Var } from '../core/utils/compositeType';
 
-export function importCustomBusiObjectData({ value, config, platform, scope }: CMDGeneratorPrames): string {
-
+export function importCustomBusiObjectData({
+  value,
+  config,
+  platform,
+  scope,
+}: CMDGeneratorPrames): string {
   const { callback1, callback2 } = value;
   const {
     busiObjectId,
@@ -11,26 +15,28 @@ export function importCustomBusiObjectData({ value, config, platform, scope }: C
     showOnly,
     name,
     customGroup,
-    exception
+    exception,
   } = value.options || {};
 
-  const busiObjectFieldsStr = parse2Var(busiObjectFields?.map?.((field: any) => field));
+  const busiObjectFieldsStr = parse2Var(
+    busiObjectFields?.map?.((field: any) => field),
+  );
 
   const onSuccessStr =
     Array.isArray(callback1) && callback1.length
       ? // @ts-ignore
-      `onSuccess: ${CMDGeneratorEvent(
-        callback1,
-        { platform },
-        scope,
-        config,
-      )},`
+        `onSuccess: ${CMDGeneratorEvent(
+          callback1,
+          { platform },
+          scope,
+          config,
+        )},`
       : '\n';
 
   const onFailStr =
     Array.isArray(callback2) && callback2.length
       ? // @ts-ignore
-      `onFail: ${CMDGeneratorEvent(callback2, { platform }, scope, config)},`
+        `onFail: ${CMDGeneratorEvent(callback2, { platform }, scope, config)},`
       : '\n';
 
   return `// 自定义导入业务对象数据

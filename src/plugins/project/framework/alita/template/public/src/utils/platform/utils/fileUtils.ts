@@ -507,4 +507,9 @@ const exportFileShowProgress: ExportFileShowProgressType = async (
   }
 };
 
-export { previewFile, exportFileShowProgress, batchDownloadFileByIds, saveBlobFile };
+export {
+  previewFile,
+  exportFileShowProgress,
+  batchDownloadFileByIds,
+  saveBlobFile,
+};

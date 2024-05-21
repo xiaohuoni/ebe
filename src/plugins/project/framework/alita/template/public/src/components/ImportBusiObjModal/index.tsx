@@ -1,23 +1,37 @@
-import React, {
-  useState, useImperativeHandle, forwardRef, useMemo, useRef, useEffect,
-} from 'react';
-import {
-  Button, Checkbox, Card, Upload, Spin, Progress, message, Modal
-} from 'antd';
-import { openProgressMsg, closeProgressMsg } from '../ProgressComp';
-import pageIcon from '../../assets/pageicon';
-import security from "@/utils/Security";
-import { IconFont } from '../IconFont';
-import './index.less';
-import { prefix } from '../../styles';
-import { UploadProps } from 'antd/es/upload/interface';
-import { ImportBusiObjModalHooks, ImportBusiObjModalProps } from './types';
 import engineApi from '@/services/api/engine';
 import { getAppFileUrlByFileCode } from '@/services/api/getAppFileUrlByFileCode';
-import { handleParseGroups as parseGroupFunction } from '@/utils/engine-utils/exportCustomUtils';;
+import { handleParseGroups as parseGroupFunction } from '@/utils/engine-utils/exportCustomUtils';
+import {
+  batchDownloadFileByIds,
+  saveBlobFile,
+} from '@/utils/platform/utils/fileUtils';
+import security from '@/utils/Security';
 import resolveApiPath from '@/utils/service/resolveApiPath';
-import { batchDownloadFileByIds, saveBlobFile } from '@/utils/platform/utils/fileUtils';
-
+import {
+  Button,
+  Card,
+  Checkbox,
+  message,
+  Modal,
+  Progress,
+  Spin,
+  Upload,
+} from 'antd';
+import { UploadProps } from 'antd/es/upload/interface';
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import pageIcon from '../../assets/pageicon';
+import { prefix } from '../../styles';
+import { IconFont } from '../IconFont';
+import { closeProgressMsg, openProgressMsg } from '../ProgressComp';
+import './index.less';
+import { ImportBusiObjModalHooks, ImportBusiObjModalProps } from './types';
 const importBusiObjModal = `${prefix}-import-busi-obj-modal`;
 
 const { Dragger } = Upload;
@@ -27,7 +41,7 @@ const CheckboxGroup = Checkbox.Group;
 enum Status {
   done = 'done',
   init = 'init',
-  fail = 'fail'
+  fail = 'fail',
 }
 
 enum DownloadType {
@@ -59,7 +73,7 @@ export const handleParseGroups = (params: any) => {
   const finalGroup: any = {};
   // 实际层级数，包含列数据级
   let maxGroupLevel = 1;
-  keys.forEach(k => {
+  keys.forEach((k) => {
     let group = groupMap[k];
     // 兼容旧版的分组数据
     if (typeof group === 'string') {
@@ -102,7 +116,10 @@ export const handleParseGroups = (params: any) => {
 // TODO 记得删
 // const appId = '1089426139952508928';
 // const pageId = '1108371301173338112';
-const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModalProps>((props, ref) => {
+const ImportBusiObjModal = forwardRef<
+  ImportBusiObjModalHooks,
+  ImportBusiObjModalProps
+>((props, ref) => {
   const {
     // appId,
     // pageId,
@@ -123,7 +140,7 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
   const [fileList, setFileList] = useState<any[]>([]);
   const uploadAbortController = useRef<any>();
   // 上传进度和文件解析进度
-  const [progress, setProgress] = useState<{ upload: number, parse: number; }>({
+  const [progress, setProgress] = useState<{ upload: number; parse: number }>({
     upload: 0,
     parse: 0,
   });
@@ -135,18 +152,27 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
 
   const RESULT_INFO = {
     warn: {
-      title: getLocale('ExpBusiObjModal.partImportFailTitle', '部分数据导入失败'),
+      title: getLocale(
+        'ExpBusiObjModal.partImportFailTitle',
+        '部分数据导入失败',
+      ),
       icon: 'lcdp-icon-Warning',
     },
     success: {
       title: getLocale('ExpBusiObjModal.importSuccessTitle', '导入成功'),
       icon: 'lcdp-icon-Success',
-      tips: getLocale('ExpBusiObjModal.importSuccessMsg', '数据导入成功，请选择前往列表查看'),
+      tips: getLocale(
+        'ExpBusiObjModal.importSuccessMsg',
+        '数据导入成功，请选择前往列表查看',
+      ),
     },
     error: {
       title: getLocale('ExpBusiObjModal.importFailTitle', '导入失败'),
       icon: 'lcdp-icon-Error',
-      tips: getLocale('ExpBusiObjModal.importFailMsg', '数据导入失败，请核对以下信息后，再重新提交。'),
+      tips: getLocale(
+        'ExpBusiObjModal.importFailMsg',
+        '数据导入失败，请核对以下信息后，再重新提交。',
+      ),
     },
   };
 
@@ -161,7 +187,8 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
   }, []);
 
   const { successLen, failLen, fileId, isAsyncImport } = useMemo(() => {
-    const { isAsyncImport, fail, success, failCount, successCount } = importInfo || {};
+    const { isAsyncImport, fail, success, failCount, successCount } =
+      importInfo || {};
     return {
       ...importInfo,
       successLen: isAsyncImport ? successCount : success?.length,
@@ -170,7 +197,10 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
   }, [importInfo]);
 
   // 需要展示上传进度步骤和结果页的（自定义导入业务对象和导入业务对象数据动作）
-  const hasUploadProcess = useMemo(() => isCustom || (!isCustom && !isCustomService), [isCustom, isCustomService]);
+  const hasUploadProcess = useMemo(
+    () => isCustom || (!isCustom && !isCustomService),
+    [isCustom, isCustomService],
+  );
 
   const [selectedRows, colNameMap] = useMemo<[any[], any]>(() => {
     const { busiObjectFields, customGroup } = params;
@@ -180,20 +210,33 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
       const newFields: any = [];
       if (busiObjectFields?.length) {
         curDataSource.forEach((item) => {
-          const curField = busiObjectFields.find((field: any) => (item.attrCode === field?.code || item.attrCode === field));
+          const curField = busiObjectFields.find(
+            (field: any) =>
+              item.attrCode === field?.code || item.attrCode === field,
+          );
           if (curField) {
-            nameMap[typeof curField === 'string' ? curField : curField?.code] = item.attrName || item.attrCode;
-            newFields.push(curField?.code ? ({ ...item, ...(curField || {}) }) : item);
+            nameMap[typeof curField === 'string' ? curField : curField?.code] =
+              item.attrName || item.attrCode;
+            newFields.push(
+              curField?.code ? { ...item, ...(curField || {}) } : item,
+            );
           }
         });
       }
       if (customGroup) {
         // 存在表头分组时，需要记录下导出字段的名称和编码映射，组装分组时需要用到
-        curDataSource.forEach(c => { nameMap[c.attrCode] = c.attrName; });
+        curDataSource.forEach((c) => {
+          nameMap[c.attrCode] = c.attrName;
+        });
       }
       return [newFields, nameMap];
     }
-    return [selectedKeys.length ? curDataSource.filter((item) => selectedKeys.includes(item.attrCode)) : [], nameMap];
+    return [
+      selectedKeys.length
+        ? curDataSource.filter((item) => selectedKeys.includes(item.attrCode))
+        : [],
+      nameMap,
+    ];
   }, [selectedKeys, curDataSource, params, isCustom]);
 
   const uploadDisabled = useMemo(
@@ -206,20 +249,24 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
       (isCustom && params.busiObjectFields?.length === 0) ||
       // 自定义导入动作需要配置自定义导入地址
       (isCustomService && !params.custUrl),
-    [loading, uploading, selectedKeys, isCustom, isCustomService, params]
+    [loading, uploading, selectedKeys, isCustom, isCustomService, params],
   );
 
   // 获取对象字段
   const queryBusiObjectRowColumns = async ({ busiObjectId }: any) => {
     try {
       setLoading(true);
-      const resultList: any = await engineApi.queryBusiObjectRowColumns({ busiObjectId });
+      const resultList: any = await engineApi.queryBusiObjectRowColumns({
+        busiObjectId,
+      });
       setCurDataSource(resultList);
-      setObjOptions(resultList.map((item: any) => ({
-        value: item.attrCode,
-        label: item.attrName,
-        disabled: item.isRequired === 'T',
-      })));
+      setObjOptions(
+        resultList.map((item: any) => ({
+          value: item.attrCode,
+          label: item.attrName,
+          disabled: item.isRequired === 'T',
+        })),
+      );
       const rows = resultList.filter((item: any) => item.isRequired === 'T');
       setSelectedKeys(rows.map((item: any) => item.attrCode));
     } catch (error) {
@@ -233,7 +280,9 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
   const queryCustBusiObjectRowColumns = async ({ busiObjectId }: any) => {
     try {
       setLoading(true);
-      const resultList: any = await engineApi.queryBusiObjectRowColumns({ busiObjectId });
+      const resultList: any = await engineApi.queryBusiObjectRowColumns({
+        busiObjectId,
+      });
       setCurDataSource(resultList);
     } catch (error) {
       console.log(error);
@@ -243,12 +292,18 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
     }
   };
 
-  const getWorkBookTemplate = async (downloadType = DownloadType.downloadTemplate) => {
+  const getWorkBookTemplate = async (
+    downloadType = DownloadType.downloadTemplate,
+  ) => {
     if (isAsyncImport && downloadType === DownloadType.downloadFail && fileId) {
       // 异步导入如果存在失败原因，从文件服务器下载
       batchDownloadFileByIds({
         fileIds: fileId,
-        newFileName: getLocale('ExpBusiObjModal.importFailList', `导入失败列表-${new Date().getTime()}.xlsx`, { name: `${new Date().getTime()}` }),
+        newFileName: getLocale(
+          'ExpBusiObjModal.importFailList',
+          `导入失败列表-${new Date().getTime()}.xlsx`,
+          { name: `${new Date().getTime()}` },
+        ),
         messageApi: {
           ...message,
           openProgressMsg,
@@ -270,7 +325,9 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
       if (customGroup && typeof parseGroupFunction === 'function') {
         // 配置了表头分组规则的，进行头部分组组装
         obj.groups = parseGroupFunction({
-          list: selectedRows.sort((a, b) => +a?.sort - (+b?.sort)).map((row) => row.attrCode),
+          list: selectedRows
+            .sort((a, b) => +a?.sort - +b?.sort)
+            .map((row) => row.attrCode),
           groupMap: customGroup,
           nameMap: colNameMap,
         });
@@ -285,10 +342,16 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
             groups: obj.groups,
             insts: importList?.current || [],
           });
-          name = getLocale('ExpBusiObjModal.importFailList', `导入失败列表-${new Date().getTime()}.xlsx`, { name: `${new Date().getTime()}` });
+          name = getLocale(
+            'ExpBusiObjModal.importFailList',
+            `导入失败列表-${new Date().getTime()}.xlsx`,
+            { name: `${new Date().getTime()}` },
+          );
         }
       } else {
-        name = fileName ? `${fileName}.xlsx` : `tpl-${new Date().getTime()}.xlsx`;
+        name = fileName
+          ? `${fileName}.xlsx`
+          : `tpl-${new Date().getTime()}.xlsx`;
         resultList = await engineApi.getWorkBookTemplate(obj);
       }
       if (resultList) {
@@ -333,7 +396,10 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
     setFileList([]);
     setImportInfo(initInfo);
     // 关闭弹窗的时候如果请求还未结束则停止请求
-    if (uploadAbortController.current && typeof uploadAbortController.current?.abort === 'function') {
+    if (
+      uploadAbortController.current &&
+      typeof uploadAbortController.current?.abort === 'function'
+    ) {
       // 终止请求
       uploadAbortController.current.abort();
     }
@@ -347,10 +413,13 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
     if (e.target.checked) {
       setSelectedKeys(curDataSource.map((item) => item.attrCode));
     } else {
-      setSelectedKeys(curDataSource.filter((item) => item.isRequired === 'T').map((item) => item.attrCode));
+      setSelectedKeys(
+        curDataSource
+          .filter((item) => item.isRequired === 'T')
+          .map((item) => item.attrCode),
+      );
     }
   };
-
 
   // TODO: 待确认
   const uploadAction = useMemo(() => {
@@ -378,7 +447,7 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
     const obj: any = {};
     const { customGroup, exception = {} } = params || {};
     if (exception) {
-      Object.keys(exception).forEach(exp => {
+      Object.keys(exception).forEach((exp) => {
         obj[exp] = exception[exp];
       });
     }
@@ -386,24 +455,34 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
     if (customGroup && typeof parseGroupFunction === 'function') {
       // 配置了表头分组规则的，进行头部分组组装
       obj.groups = parseGroupFunction({
-        list: selectedRows.sort((a, b) => +a?.sort - (+b?.sort)).map(row => row.attrCode),
+        list: selectedRows
+          .sort((a, b) => +a?.sort - +b?.sort)
+          .map((row) => row.attrCode),
         groupMap: customGroup,
         nameMap: colNameMap,
       });
     }
     if (!isCustomService) {
       return {
-        query: new Blob([JSON.stringify({
-          pickRows: selectedRows,
-          showOnly: params.showOnly === 'T' ? 'T' : 'F',
-          busiObjectId: params.busiObjectId,
-          ...obj,
-        })], { type: 'application/json' }),
+        query: new Blob(
+          [
+            JSON.stringify({
+              pickRows: selectedRows,
+              showOnly: params.showOnly === 'T' ? 'T' : 'F',
+              busiObjectId: params.busiObjectId,
+              ...obj,
+            }),
+          ],
+          { type: 'application/json' },
+        ),
       };
     }
     const { _source, _serviceId } = params.custUrl || {};
     const customParams: any = {
-      param: new Blob([JSON.stringify({ ...(params.custParams || {}), ...obj })], { type: 'application/json' }),
+      param: new Blob(
+        [JSON.stringify({ ...(params.custParams || {}), ...obj })],
+        { type: 'application/json' },
+      ),
     };
     if (_source === 'std') {
       // 自定义导出勾选了编排类服务
@@ -441,17 +520,28 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
   };
 
   /**
- * @param responseParams 响应失败上下文参数
- */
+   * @param responseParams 响应失败上下文参数
+   */
   const handleFail = (responseParams: any) => {
     // 状态码非200的情况
     const { message } = responseParams || {};
     const { success, fail, isAsyncImport } = responseParams?.resultObject || {};
     const resultMsg = responseParams?.resultMsg || message;
     if (typeof params?.onFail === 'function') {
-      params.onFail(isAsyncImport ? undefined : fail || responseParams?.resultObject, resultMsg);
+      params.onFail(
+        isAsyncImport ? undefined : fail || responseParams?.resultObject,
+        resultMsg,
+      );
     }
-    setImportInfo({ ...responseParams?.resultObject, msg: resultMsg || getLocale('ExpBusiObjModal.uploadFail', '文件上传失败，请重试！', {}), status: Status.fail, fail, success });
+    setImportInfo({
+      ...responseParams?.resultObject,
+      msg:
+        resultMsg ||
+        getLocale('ExpBusiObjModal.uploadFail', '文件上传失败，请重试！', {}),
+      status: Status.fail,
+      fail,
+      success,
+    });
     if (isCustomService) {
       // 上传失败时重置列表
       setFileList([]);
@@ -464,15 +554,26 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
    * @param triggerCallback 是否触发回调和关闭弹窗
    */
   const handleSuccess = (responseParams: any, triggerCallback = false) => {
-    const { success, fail, successCount, failCount, isAsyncImport } = responseParams?.resultObject || {};
+    const { success, fail, successCount, failCount, isAsyncImport } =
+      responseParams?.resultObject || {};
     const successLen = isAsyncImport ? successCount : success?.length;
     const failLen = isAsyncImport ? failCount : fail?.length;
     // 全部导入失败时触发
     if (!successLen && failLen) {
-      handleFail({ ...responseParams, resultMsg: getLocale('ExpBusiObjModal.uploadFail', '文件上传失败，请重试！', {}) });
+      handleFail({
+        ...responseParams,
+        resultMsg: getLocale(
+          'ExpBusiObjModal.uploadFail',
+          '文件上传失败，请重试！',
+          {},
+        ),
+      });
     } else {
       if (typeof params?.onSuccess === 'function') {
-        params.onSuccess(isAsyncImport ? undefined : success || responseParams?.resultObject, responseParams?.resultMsg);
+        params.onSuccess(
+          isAsyncImport ? undefined : success || responseParams?.resultObject,
+          responseParams?.resultMsg,
+        );
       }
       // if (hasUploadProcess && !triggerCallback) {
       setImportInfo({
@@ -527,10 +628,14 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
         if (!isAsyncImport) {
           fail = (result || []).find((c: any) => c.failReason);
         }
-        resolve(isAsyncImport ? {
-          ...result,
-          isAsyncImport,
-        } : { success: fail ? [] : result, fail: fail ? result : [] });
+        resolve(
+          isAsyncImport
+            ? {
+                ...result,
+                isAsyncImport,
+              }
+            : { success: fail ? [] : result, fail: fail ? result : [] },
+        );
       } else {
         const res: any = {
           success: [],
@@ -574,7 +679,9 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
   const handleCustomUpload = async (res?: any, list?: any) => {
     const _fileList = fileList?.length > 0 ? fileList : list;
     if (!_fileList?.length) {
-      message.warn(getLocale('ExpBusiObjModal.noFile', '无上传文件，请先选择文件'));
+      message.warn(
+        getLocale('ExpBusiObjModal.noFile', '无上传文件，请先选择文件'),
+      );
       return;
     }
     let response = res;
@@ -587,24 +694,32 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
           const file = _fileList[0];
           formData.append(baseUploadProps.name || 'file', file);
           if (Object.keys(uploadPropsData)?.length) {
-            Object.keys(uploadPropsData).forEach(key => {
+            Object.keys(uploadPropsData).forEach((key) => {
               formData.append(key, uploadPropsData[key]);
             });
           }
           importList.current = [];
           xhr.open('post', baseUploadProps.action as string);
-          Object.keys(baseUploadProps.headers || {}).forEach(c => {
+          Object.keys(baseUploadProps.headers || {}).forEach((c) => {
             xhr.setRequestHeader(c, (baseUploadProps.headers || {})[c]);
           });
-          xhr.setRequestHeader('X-SIGN', security.httpEncryption.createHttpSignStr(
-            baseUploadProps.action as string,
-            { method: 'post', headers: baseUploadProps.headers, body: formData || '', search: '' }
-          ));
+          xhr.setRequestHeader(
+            'X-SIGN',
+            security.httpEncryption.createHttpSignStr(
+              baseUploadProps.action as string,
+              {
+                method: 'post',
+                headers: baseUploadProps.headers,
+                body: formData || '',
+                search: '',
+              },
+            ),
+          );
           xhr.withCredentials = true;
           // 后端解析结束触发回调，终止进度
           let finishFn: any;
           xhr.upload.onprogress = ({ loaded }) => {
-            setProgress(pre => ({
+            setProgress((pre) => ({
               ...pre,
               upload: +((loaded / file.size) * 100).toFixed(2),
             }));
@@ -618,7 +733,11 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
               let result = response?.resultObject;
               let isAsyncImport = false;
               if (hasUploadProcess) {
-                if (result && typeof result === 'object' && result?.failCount !== undefined) {
+                if (
+                  result &&
+                  typeof result === 'object' &&
+                  result?.failCount !== undefined
+                ) {
                   isAsyncImport = true;
                 } else if (Array.isArray(result || [])) {
                   // 只解析不入库的导入数据出参为数组格式，入库的数据调整成异步导入，返回对象格式
@@ -717,14 +836,27 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
         await handleCustomUpload(response);
       } else if (info.file.status === 'error') {
         setLoading(false);
-        message.error(getLocale('ExpBusiObjModal.uploadFail', `${info.file.name} 文件上传失败，请重试！`, { name: info.file.name }));
+        message.error(
+          getLocale(
+            'ExpBusiObjModal.uploadFail',
+            `${info.file.name} 文件上传失败，请重试！`,
+            { name: info.file.name },
+          ),
+        );
       } else if (info.file.status === 'removed') {
         setLoading(false);
       }
     },
     beforeUpload: (file, list) => {
-      if (!['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'].includes(file.type)) {
-        message.warn(getLocale('ExpBusiObjModal.validTable', '请上传合法的表格'));
+      if (
+        ![
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+          'application/vnd.ms-excel',
+        ].includes(file.type)
+      ) {
+        message.warn(
+          getLocale('ExpBusiObjModal.validTable', '请上传合法的表格'),
+        );
         return Promise.reject();
       }
       if (visible) {
@@ -738,7 +870,7 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
       return undefined;
     },
     itemRender: (_, file: any, __, { remove }) => {
-      return (renderFileItem(file, remove));
+      return renderFileItem(file, remove);
     },
   };
 
@@ -764,9 +896,7 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
             iconClass={resultInfo.icon}
           />
         </p>
-        <p className="title">
-          {resultInfo.title}
-        </p>
+        <p className="title">{resultInfo.title}</p>
         <p className="tips">{resultInfo.tips}</p>
       </div>
     );
@@ -791,7 +921,10 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
     if (uploading && fileList[0]) {
       // 上传中，展示进度
       return (
-        <Spin spinning={progress.upload >= 100 || true} tip={getLocale('ExpBusiObjModal.dataDealing', '数据处理中...')}>
+        <Spin
+          spinning={progress.upload >= 100 || true}
+          tip={getLocale('ExpBusiObjModal.dataDealing', '数据处理中...')}
+        >
           <div className="progress">
             {renderFileItem(fileList[0])}
             <div className="progress-item">
@@ -805,7 +938,8 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
           </div>
         </Spin>
       );
-    } if (importInfo?.status === Status.fail && !failLen) {
+    }
+    if (importInfo?.status === Status.fail && !failLen) {
       // 上传失败
       return (
         <>
@@ -823,17 +957,27 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
           </div>
         </>
       );
-    } if ([Status.done, Status.fail].includes(importInfo?.status) && failLen) {
+    }
+    if ([Status.done, Status.fail].includes(importInfo?.status) && failLen) {
       const successLength = successLen || 0;
       const failLength = failLen || 0;
       return (
         <>
           {/* 部分成功部分失败 */}
-          {params.exception?.partialImport === 'T' && successLength !== 0 && renderResultIcon('warn',
-            {
-              tips: getLocale('ImportBusiObjModal.tips',
-                `导入总记录数${successLength + failLength}条，其中${successLength}条成功，${failLength}条失败`,
-                { total: successLength + failLength, success: successLength, fail: failLen })
+          {params.exception?.partialImport === 'T' &&
+            successLength !== 0 &&
+            renderResultIcon('warn', {
+              tips: getLocale(
+                'ImportBusiObjModal.tips',
+                `导入总记录数${
+                  successLength + failLength
+                }条，其中${successLength}条成功，${failLength}条失败`,
+                {
+                  total: successLength + failLength,
+                  success: successLength,
+                  fail: failLen,
+                },
+              ),
             })}
           {/* 全部校验失败 */}
           {failLength && successLength === 0 && renderResultIcon('error')}
@@ -847,7 +991,10 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
               />
             </span>
             <div className="content">
-              {getLocale('ExpBusiObjModal.downloadFailReason', '下载导入失败数据，查看失败原因')}
+              {getLocale(
+                'ExpBusiObjModal.downloadFailReason',
+                '下载导入失败数据，查看失败原因',
+              )}
             </div>
             <a
               href="javascript:void(0);"
@@ -855,12 +1002,14 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
                 e.preventDefault();
                 getWorkBookTemplate(DownloadType.downloadFail);
               }}
-            >{getLocale('clickdownload', '点击下载')}
+            >
+              {getLocale('clickdownload', '点击下载')}
             </a>
           </div>
         </>
       );
-    } if (importInfo?.status === Status.done) {
+    }
+    if (importInfo?.status === Status.done) {
       // 导入成功
       return renderResultIcon('success');
     }
@@ -890,7 +1039,12 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
                   className={`${importBusiObjModal}-checkwrap`}
                   checked={selectedKeys.length === objOptions.length}
                 >
-                  <span>{getLocale('ExpBusiObjModal.validField', '指定导入的有效字段')}</span>
+                  <span>
+                    {getLocale(
+                      'ExpBusiObjModal.validField',
+                      '指定导入的有效字段',
+                    )}
+                  </span>
                 </Checkbox>
               </>
             }
@@ -903,12 +1057,20 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
                   if (selectedKeys.length) {
                     getWorkBookTemplate();
                   } else {
-                    message.error(getLocale('ExpBusiObjModal.exportFieldError', '请先选择要导出的字段'));
+                    message.error(
+                      getLocale(
+                        'ExpBusiObjModal.exportFieldError',
+                        '请先选择要导出的字段',
+                      ),
+                    );
                   }
                 }}
                 type="link"
               >
-                {getLocale('ExpBusiObjModal.downloadMutiTpl', '下载批量导入模版')}
+                {getLocale(
+                  'ExpBusiObjModal.downloadMutiTpl',
+                  '下载批量导入模版',
+                )}
               </Button>
             }
           >
@@ -925,7 +1087,11 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
           </Card>
         ) : null}
         <Card
-          title={isCustom || isCustomService ? '' : getLocale('fileUpload', '文件上传')}
+          title={
+            isCustom || isCustomService
+              ? ''
+              : getLocale('fileUpload', '文件上传')
+          }
           size="small"
           style={{
             width: '100%',
@@ -951,9 +1117,17 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
               />
             </p>
             <p className={`${importBusiObjModal}-text`}>
-              {getLocale('ExpBusiObjModal.dragView', '点击选择文件或拖动文件到此区域进行上传')}
+              {getLocale(
+                'ExpBusiObjModal.dragView',
+                '点击选择文件或拖动文件到此区域进行上传',
+              )}
             </p>
-            <p className={`${importBusiObjModal}-hint`}>{getLocale('ExpBusiObjModal.onlySingleUpload', '仅支持单个文件上传')}</p>
+            <p className={`${importBusiObjModal}-hint`}>
+              {getLocale(
+                'ExpBusiObjModal.onlySingleUpload',
+                '仅支持单个文件上传',
+              )}
+            </p>
           </Dragger>
         </Card>
       </>
@@ -965,15 +1139,18 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
       return (
         <Button
           className={`${importBusiObjModal}-downloadTempBtn`}
-          onClick={
-            () => {
-              if (selectedRows.length) {
-                getWorkBookTemplate();
-              } else {
-                message.error(getLocale('ExpSQLServiceModal.importFieldError', '请先选择要导入的字段'));
-              }
+          onClick={() => {
+            if (selectedRows.length) {
+              getWorkBookTemplate();
+            } else {
+              message.error(
+                getLocale(
+                  'ExpSQLServiceModal.importFieldError',
+                  '请先选择要导入的字段',
+                ),
+              );
             }
-          }
+          }}
           type="link"
         >
           {getLocale('ExpBusiObjModal.downloadMutiTpl', '下载批量导入模版')}
@@ -983,36 +1160,36 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
     if (isCustomService && (params.custTpl || params.custTplUrl)) {
       return (
         <Button
-          onClick={
-            () => {
-              const { fileCode } = params.custTpl || {};
-              // @ts-ignore
-              const downloadUrl = params.custTplUrl || (fileCode ? getAppFileUrlByFileCode(fileCode) : null);
-              if (!downloadUrl) {
-                return;
-              }
-              // 下载导入模板自定义名称无效处理
-              const xhr = new XMLHttpRequest();
-              xhr.open('GET', downloadUrl, true);
-              xhr.responseType = 'blob'; // 通过文件下载url拿到对应的blob对象
-              xhr.onload = () => {
-                if (xhr.status === 200) {
-                  const link = document.createElement('a');
-                  link.href = window.URL?.createObjectURL(xhr.response);
-                  if (params?.name) {
-                    link.download = `${params.name}.xlsx`;
-                  }
-                  if (params?.custTpl?.name) {
-                    link.download = params?.custTpl?.name;
-                  }
-                  link.click();
-                  link.remove();
-                  window.URL?.revokeObjectURL(link.href);
-                }
-              };
-              xhr.send();
+          onClick={() => {
+            const { fileCode } = params.custTpl || {};
+            // @ts-ignore
+            const downloadUrl =
+              params.custTplUrl ||
+              (fileCode ? getAppFileUrlByFileCode(fileCode) : null);
+            if (!downloadUrl) {
+              return;
             }
-          }
+            // 下载导入模板自定义名称无效处理
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', downloadUrl, true);
+            xhr.responseType = 'blob'; // 通过文件下载url拿到对应的blob对象
+            xhr.onload = () => {
+              if (xhr.status === 200) {
+                const link = document.createElement('a');
+                link.href = window.URL?.createObjectURL(xhr.response);
+                if (params?.name) {
+                  link.download = `${params.name}.xlsx`;
+                }
+                if (params?.custTpl?.name) {
+                  link.download = params?.custTpl?.name;
+                }
+                link.click();
+                link.remove();
+                window.URL?.revokeObjectURL(link.href);
+              }
+            };
+            xhr.send();
+          }}
           type="link"
           className={`${importBusiObjModal}-downloadTempBtn`}
         >
@@ -1026,14 +1203,14 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
   return (
     <Modal
       className={`${importBusiObjModal}-customModal`}
-      title={(
+      title={
         <>
-          <span className="title">{getLocale('ExpSQLServiceModal.importData', '导入数据')}</span>
-          {(isCustom || isCustomService) && (
-            renderCardExtra()
-          )}
+          <span className="title">
+            {getLocale('ExpSQLServiceModal.importData', '导入数据')}
+          </span>
+          {(isCustom || isCustomService) && renderCardExtra()}
         </>
-      )}
+      }
       visible={visible}
       destroyOnClose
       onCancel={close}
@@ -1043,7 +1220,10 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
             type="default"
             onClick={() => {
               if (uploading) {
-                if (uploadAbortController.current && typeof uploadAbortController.current?.abort === 'function') {
+                if (
+                  uploadAbortController.current &&
+                  typeof uploadAbortController.current?.abort === 'function'
+                ) {
                   // 终止请求
                   uploadAbortController.current.abort();
                 }
@@ -1052,42 +1232,53 @@ const ImportBusiObjModal = forwardRef<ImportBusiObjModalHooks, ImportBusiObjModa
               }
             }}
           >
-            {uploading ? getLocale('cancelUpload', '取消上传') : getLocale('close', '关闭')}
+            {uploading
+              ? getLocale('cancelUpload', '取消上传')
+              : getLocale('close', '关闭')}
           </Button>
           {/* 自定义导入 */}
-          {isCustomService && !uploading && importInfo?.status === Status.fail && (
-            <Button
-              type="primary"
-              onClick={() => {
-                setProgress({
-                  upload: 0,
-                  parse: 0,
-                });
-                setImportInfo(initInfo);
-              }}
-            >
-              {getLocale('reupload', '重新上传')}
-            </Button>
-          )}
-          {/* 自定义导入业务对象数据、导入业务对象数据 */}
-          {hasUploadProcess && !uploading && !(importInfo?.status === Status.done && (failLen || 0) === 0) && (
-            <Button
-              type="primary"
-              onClick={() => {
-                setProgress({
-                  upload: 0,
-                  parse: 0,
-                });
-                if (importInfo?.status === Status.fail || (failLen || 0) > 0) {
+          {isCustomService &&
+            !uploading &&
+            importInfo?.status === Status.fail && (
+              <Button
+                type="primary"
+                onClick={() => {
+                  setProgress({
+                    upload: 0,
+                    parse: 0,
+                  });
                   setImportInfo(initInfo);
-                } else {
-                  handleCustomUpload();
-                }
-              }}
-            >
-              {importInfo?.status === Status.fail || (failLen || 0) > 0 ? getLocale('reupload', '重新上传') : getLocale('upload', '上传')}
-            </Button>
-          )}
+                }}
+              >
+                {getLocale('reupload', '重新上传')}
+              </Button>
+            )}
+          {/* 自定义导入业务对象数据、导入业务对象数据 */}
+          {hasUploadProcess &&
+            !uploading &&
+            !(importInfo?.status === Status.done && (failLen || 0) === 0) && (
+              <Button
+                type="primary"
+                onClick={() => {
+                  setProgress({
+                    upload: 0,
+                    parse: 0,
+                  });
+                  if (
+                    importInfo?.status === Status.fail ||
+                    (failLen || 0) > 0
+                  ) {
+                    setImportInfo(initInfo);
+                  } else {
+                    handleCustomUpload();
+                  }
+                }}
+              >
+                {importInfo?.status === Status.fail || (failLen || 0) > 0
+                  ? getLocale('reupload', '重新上传')
+                  : getLocale('upload', '上传')}
+              </Button>
+            )}
         </>
       }
       width={588}

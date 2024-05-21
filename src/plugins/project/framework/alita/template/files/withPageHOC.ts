@@ -352,7 +352,7 @@ export const withPageHOC = (
           utils={{}}
           getLocale={getLocale}
         />`
-    }
+        }
         <ImportBusiObjModal
         ref={ImportBusiObjModalRef}
         key={\`ImportBusiObjModal-\${renderId}\`}

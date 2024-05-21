@@ -6,7 +6,7 @@ const appendColumnLevel = (columnParams: any) => {
   const { maxLen, lastLevel, column } = columnParams || {};
   const times = new Array(maxLen - lastLevel).fill('0');
   const newColumn = { ...column };
-  times.reduce(p => {
+  times.reduce((p) => {
     p.isRowSpan = 'T';
     const col = { ...column, isRowSpan: 'T' };
     // 非最后的导出列部分需要去掉key和index数据
@@ -27,7 +27,11 @@ export const handleMultiLevelHeader = (params: any) => {
   if (Array.isArray(group) && groupLen > 0) {
     // 标记右树从哪个节点开始至最后一个都为空(undefined/null/'')
     let groupEmptyStartIndex = groupLen - 1;
-    while (typeof group[groupEmptyStartIndex] === 'undefined' || group[groupEmptyStartIndex] === null || group[groupEmptyStartIndex] === '') {
+    while (
+      typeof group[groupEmptyStartIndex] === 'undefined' ||
+      group[groupEmptyStartIndex] === null ||
+      group[groupEmptyStartIndex] === ''
+    ) {
       // 当分组数据遍历完成 或 下一个已经不为空时，退出循环
       if (groupEmptyStartIndex - 1 < 0 || group[groupEmptyStartIndex - 1]) {
         break;
@@ -48,7 +52,10 @@ export const handleMultiLevelHeader = (params: any) => {
     // 从第一层开始，最后一层会接入列信息
     while (rightLevel <= groupLen) {
       // 从当前层到最后一层都为空时：直接接入列信息，并退出循环
-      if (rightLevel === groupEmptyStartIndex + 1 && !group[groupEmptyStartIndex]) {
+      if (
+        rightLevel === groupEmptyStartIndex + 1 &&
+        !group[groupEmptyStartIndex]
+      ) {
         let col = column;
         // 当最后一级时，为了拉平与其他分组的层级，需要补全列数据节点的层级
         if (rightLevel < maxGroupLen) {
@@ -70,7 +77,10 @@ export const handleMultiLevelHeader = (params: any) => {
         // parent: tempRightTree.title === treeRootName ? leftTree : tempRightTree,
       };
       // 当前层为第一层时，将parent指向左树的根节点，为后续合并做准备
-      parentTreeNode.set(rightTreeCurrLevelLast, tempRightTree.title === treeRootName ? leftTree : tempRightTree);
+      parentTreeNode.set(
+        rightTreeCurrLevelLast,
+        tempRightTree.title === treeRootName ? leftTree : tempRightTree,
+      );
       tempRightTree.children = [rightTreeCurrLevelLast];
       tempRightTree = rightTreeCurrLevelLast;
       rightTreeLevelMap[rightLevel] = rightTreeCurrLevelLast;
@@ -108,7 +118,8 @@ export const handleMultiLevelHeader = (params: any) => {
       leftLevel++;
       const leftTreeCurrLevelLastChildren = leftTreeCurrLevelLast.children;
       // 取左树当前层的最后一个
-      leftTreeCurrLevelLast = leftTreeCurrLevelLastChildren[leftTreeCurrLevelLastChildren.length - 1];
+      leftTreeCurrLevelLast =
+        leftTreeCurrLevelLastChildren[leftTreeCurrLevelLastChildren.length - 1];
       leftTreeLevelMap[leftLevel] = leftTreeCurrLevelLast;
     }
 
@@ -125,7 +136,11 @@ export const handleMultiLevelHeader = (params: any) => {
         const leftTreeNextLast = leftTreeLevelMap[i + 1]; // 左树第i层的最后一个
 
         // 如果相同 且 右树下一层非最后一层(即，有 children)，则continue，直接进行下一层处理
-        if (currentNext?.title === leftTreeNextLast?.title && currentNext?.children && Array.isArray(currentNext?.children)) {
+        if (
+          currentNext?.title === leftTreeNextLast?.title &&
+          currentNext?.children &&
+          Array.isArray(currentNext?.children)
+        ) {
           // eslint-disable-next-line no-continue
           continue;
         } else {
@@ -159,7 +174,7 @@ export const handleParseGroups = (params: any) => {
   const finalGroup: any = {};
   // 实际层级数，包含列数据级
   let maxGroupLevel = 1;
-  keys.forEach(k => {
+  keys.forEach((k) => {
     let group = groupMap[k];
     // 兼容旧版的分组数据
     if (typeof group === 'string') {

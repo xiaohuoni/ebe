@@ -1,7 +1,7 @@
 import http from '@/utils/service/baseRequest';
 import resolveApiPath from '@/utils/service/resolveApiPath';
-import { HTTPMehodFn, ReturnStringFn } from '../type';
 import urlHelper from '@/utils/service/urlHelper';
+import { HTTPMehodFn, ReturnStringFn } from '../type';
 
 interface ApiType {
   exportSqlDatasApiPath: ReturnStringFn;
@@ -14,13 +14,13 @@ interface ApiType {
   // 导出业务对象（异步）
   exportInstsByAsync: HTTPMehodFn;
   // 根据 busiObjectId 获取业务对象字段
-  queryBusiObjectRowColumns: HTTPMehodFn,
+  queryBusiObjectRowColumns: HTTPMehodFn;
   // 导出失败数据文件
-  getFailedWorkBook: HTTPMehodFn,
+  getFailedWorkBook: HTTPMehodFn;
   // 获取业务对象导入模板
-  getWorkBookTemplate: HTTPMehodFn,
+  getWorkBookTemplate: HTTPMehodFn;
   // 导入业务对象属性
-  importInsts: string,
+  importInsts: string;
 }
 
 const api: ApiType = {
@@ -38,11 +38,16 @@ const api: ApiType = {
   exportInstsByAsync: (params, appCtx) =>
     http.post('app/object/exportInstsByAsync', appCtx, params),
   // 根据 busiObjectId 获取业务对象字段
-  queryBusiObjectRowColumns: (params, appCtx) => urlHelper.get('app/object/queryBusiObjectRowColumns', params, appCtx),
+  queryBusiObjectRowColumns: (params, appCtx) =>
+    urlHelper.get('app/object/queryBusiObjectRowColumns', params, appCtx),
   // 导出失败数据文件
-  getFailedWorkBook: (params, appCtx) => http.post('app/object/getFailedWorkBook', appCtx, params),
+  getFailedWorkBook: (params, appCtx) =>
+    http.post('app/object/getFailedWorkBook', appCtx, params),
   // 获取业务对象导入模板
-  getWorkBookTemplate: (params, appCtx) => http.post('app/object/getWorkBookTemplate', appCtx, params, { responseType: 'blob' }),  // 导入业务对象属性
+  getWorkBookTemplate: (params, appCtx) =>
+    http.post('app/object/getWorkBookTemplate', appCtx, params, {
+      responseType: 'blob',
+    }), // 导入业务对象属性
   importInsts: resolveApiPath('app/object/importInsts'),
 };
 
