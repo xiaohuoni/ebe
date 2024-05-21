@@ -86,12 +86,10 @@ export const withPageHOC = (
     const sandBoxContext = useRef<Record<string, any>>({});
     // 组件状态的处理
     const state = useMemo(() => {
-      if (props.state) {
-        return {
-          ...state,
-          ...props.state,
-        }
-      }
+      return {
+        ...options.defaultState,
+        ...props.state,
+      };
     }, [props.state]);
     // 指令定时器存储
     const actionTimerRef = useRef<Record<string, any>>({
