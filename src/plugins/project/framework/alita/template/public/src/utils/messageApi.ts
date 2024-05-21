@@ -1,7 +1,10 @@
-import { message } from 'antd';
+import { message, Modal } from 'antd';
 import React from 'react';
 import Spin from './LcdpSpin';
 
+Modal.config({
+  rootPrefixCls: 'pcfactory',
+});
 const filterHtmlNode = (str: string) => {
   if (typeof str !== 'string' || !str) return str || '';
   const blacklist = ['script', 'style', 'iframe'];
@@ -90,4 +93,4 @@ const messageApi = (
   }
 };
 
-export { messageApi, Spin };
+export { messageApi, Spin, Modal };

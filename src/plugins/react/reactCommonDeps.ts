@@ -51,7 +51,7 @@ import { api } from '@/services/api';
       ...getImportsFrom('@/utils/withPageHOC', ['PageProps', 'withPageHOC']),
     );
     next.ir.deps.push(
-      ...getImportsFrom('@/utils/messageApi', ['messageApi', 'Spin']),
+      ...getImportsFrom('@/utils/messageApi', ['messageApi', 'Spin', 'Modal']),
     );
     next.ir.deps.push(...getImportsFrom('@/utils/useTool', ['useTool']));
     next.ir.deps.push(
