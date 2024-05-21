@@ -34,11 +34,10 @@ export default function getFile(
   const file = createResultFile(
     'factory',
     'tsx',
-    `import { useComponentHoc } from '@lingxiteam/engine-render-core/es/hooks/useComponentHoc';
-  import type { ImperativeHandleReturn } from '@lingxiteam/types';
-  import { isEqual } from 'lodash';
-  import { mergeGetter } from '../utils/Context/context'
-  import React, { useImperativeHandle, useMemo } from 'react';
+    `import React, { useImperativeHandle, useMemo } from 'react';
+    import { isEqual } from 'lodash';
+    import { mergeGetter } from '../utils/Context/context';
+    import { useComponentHoc } from '../utils/useComponentHoc';
   
   import {${Object.keys(formHash)
     .map((i) => i + ' as _' + i)
@@ -68,7 +67,7 @@ export default function getFile(
       extraData: {}
     });
 
-    const HOC = React.forwardRef<unknown, HOCProps>((initialProps, ref) => {
+    const HOC = React.forwardRef<unknown, any>((initialProps, ref) => {
       // 属性预处理
       const props = useMemo(() => run(initialProps), [initialProps]);
       // 自定义组件HOC hooks  保持visible逻辑
@@ -103,9 +102,10 @@ export default function getFile(
         };
       }, [state.value]);
   
-      useImperativeHandle(ref, () => (mergeGetter({
+    
+      let imperative: any = {
         get compName() {
-          return compProps.$$componentItem.type;
+          return config.type;
         },
         get visible() {
           return state.visible;
@@ -118,16 +118,26 @@ export default function getFile(
             visible: show === 'toggle' ? !state.visible : show,
           });
         },
-        get value() {
-          return state.value;
-        },
-        setValue(v: unknown) {
-          syncInputValue(v, state.value, (v) => setState({ value: v }));
-          // if (onChangeHandle) {
-          //   onChangeHandle(v);
-          // }
-        },
-      }, componentRef.current)));
+      };
+  
+      if (fieldProps) {
+        imperative = {
+          ...imperative,
+          get value() {
+            return compProps[fieldProps.valuePropName!];
+          },
+          setValue(v: unknown) {
+            syncInputValue(v, compProps[fieldProps.valuePropName!], (v) => setState({ value: v }));
+          },
+        };
+      }
+  
+      useImperativeHandle(ref, () =>
+        mergeGetter(
+          imperative,
+          componentRef.current,
+        ),
+      );
       ${
         componentWillMount
           ? `if(componentWillMount(initialProps?.uid, config?.type, initialProps, {}) === false){
