@@ -6,6 +6,7 @@ export { callParentCustomFunc } from './callParentCustomFunc';
 export { callSelfFunc } from './callSelfFunc';
 export { changeContent } from './changeContent';
 export { clearOptions } from './clearOptions';
+export { clearTimer } from './clearTimer';
 export { clearValue } from './clearValue';
 export { closeModal } from './closeModal';
 export { getConsole as console } from './console';
@@ -34,8 +35,10 @@ export { setCompState } from './setCompState';
 export { setCurrentFormValues } from './setCurrentFormValues';
 export { getSetDataSource as setDataSource } from './setDataSource';
 export { setFormValues } from './setFormValues';
+export { setInterval } from './setInterval';
 export { setLoading } from './setLoading';
 export { setPageSrc } from './setPageSrc';
+export { setTimeout } from './setTimeout';
 export { setTimer } from './setTimer';
 export { showCustomModal } from './showCustomModal';
 export { showMessage } from './showMessage';
@@ -46,8 +49,3 @@ export { sysSetVisible } from './sysSetVisible';
 export { validateAllForm } from './validateAllForm';
 export { validateCurrentForm } from './validateCurrentForm';
 export { validateForm } from './validateForm';
-export { setTimeout } from './setTimeout';
-export { clearTimer } from './clearTimer';
-export { setInterval } from './setInterval';
-
-
