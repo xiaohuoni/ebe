@@ -77,7 +77,6 @@ export const withPageHOC = (
   return React.forwardRef((props: any, ref) => {
     const renderId = props?.$$componentItem?.uid ?? options.renderId;
     const location = useLocation();
-    const urlParam = parse((location?.search ?? '?')?.split('?')[1]);
     const refs = useRef<Record<string, any>>({}).current;
     const { ModalManagerRef, refs: renerRefs, appId } = useContext(Context);
     const ExpBusiObjModalRef = React.useRef<any>();
@@ -91,6 +90,15 @@ export const withPageHOC = (
         ...props.state,
       };
     }, [props.state]);
+
+    const urlParam = useMemo(() => {
+      const queryParams = parse((location?.search ?? '?')?.split('?')[1]);
+      return ({
+        ...queryParams,
+        ...props.urlParam
+      })
+    }, [props.urlParam])
+
     // 指令定时器存储
     const actionTimerRef = useRef<Record<string, any>>({
       timeout: {},

@@ -25,6 +25,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       import { useAppData } from 'alita';
         import { parse } from 'qs';
         import React from 'react';
+        import useListenProps from '@/hooks/useListenProps';
         import { Hoc } from '../factory'
       `,
       linkAfter: [COMMON_CHUNK_NAME.ExternalDepsImport],
@@ -87,8 +88,11 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       // 页面容器
       const Pageview = React.forwardRef<any, any>((props, ref) => {
         const { clientRoutes, routeComponents } = useAppData();
+        const [pageState, setPageState] = useListenProps(props?.state);
+        const [pageSrc, setPageSrc] = useListenProps(props?.pageSrc);
+
         // 页面 src 可能是带参数的如 /a?b=1&c=2
-        const [path, query] = parseSrc(props?.pageSrc);
+        const [path, query] = parseSrc(pageSrc);
         const pageRef = React.useRef<any>();
         const Page = getPage(path, clientRoutes, routeComponents);
 
@@ -96,10 +100,18 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           renderId: props.$$componentItem.uid,
           get customActionMap () {
             return pageRef.current?.customActionMap || {};
+          },
+          setPageSrc(pathname?: string, state?: any){
+            if (pathname) {
+              setPageSrc(pathname);
+            }
+            if (state) {
+              setPageState(state);
+            }
           }
         }))
 
-        return <Page {...query} {...props} ref={pageRef} />;
+        return <Page {...props} extraUrlParam={query} state={{ ...pageState, ...query }} ref={pageRef} />;
       });
       // 普通页面
       export const PageComent = React.forwardRef<any, any>((props, ref) => {
