@@ -35,10 +35,15 @@ const treeForEach = (
 
 const getPageDsls = (resultObjects: any[]) => {
   return resultObjects.filter(Boolean).map((i) => {
-    const pageData = JSON.parse(i.resultObject.attrMappingJson);
-    pageData.pageId = i.resultObject?.pageId;
-    return pageData;
-  });
+    try {
+      const pageData = JSON.parse(i.resultObject.attrMappingJson);
+      pageData.pageId = i.resultObject?.pageId;
+      return pageData;
+    } catch (error) {
+      console.error(error, '该页面信息出错', i)
+      return null;
+    }
+  }).filter(Boolean);
 };
 function findAllItem<T = any>(
   target: T[],
