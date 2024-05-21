@@ -88,7 +88,7 @@ const ImportBusiObjModal = forwardRef<
   const [fileList, setFileList] = useState<any[]>([]);
   const uploadAbortController = useRef<any>();
   // 上传进度和文件解析进度
-  const [progress, setProgress] = useState<{ upload: number; parse: number; }>({
+  const [progress, setProgress] = useState<{ upload: number; parse: number }>({
     upload: 0,
     parse: 0,
   });
@@ -579,9 +579,9 @@ const ImportBusiObjModal = forwardRef<
         resolve(
           isAsyncImport
             ? {
-              ...result,
-              isAsyncImport,
-            }
+                ...result,
+                isAsyncImport,
+              }
             : { success: fail ? [] : result, fail: fail ? result : [] },
         );
       } else {
@@ -917,7 +917,8 @@ const ImportBusiObjModal = forwardRef<
             renderResultIcon('warn', {
               tips: getLocale(
                 'ImportBusiObjModal.tips',
-                `导入总记录数${successLength + failLength
+                `导入总记录数${
+                  successLength + failLength
                 }条，其中${successLength}条成功，${failLength}条失败`,
                 {
                   total: successLength + failLength,
