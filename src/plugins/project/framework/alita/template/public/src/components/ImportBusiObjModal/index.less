@@ -1,0 +1,263 @@
+@import '../../styles/index.less';
+@busiObjModal: import-busi-obj-modal;
+@prefix: engine;
+
+
+.@{prefix}-@{busiObjModal}-customModal {
+  .@{prefix}-@{busiObjModal}-downloadTempBtn {
+    color: @primary-color;
+  }
+
+  .title {
+    display: inline-block;
+  }
+
+  .title+.@{ant-prefix}-btn {
+    padding-top: 0;
+    padding-bottom: 0;
+    height: fit-content;
+  }
+
+  .@{ant-prefix}-modal-body {
+    padding: 20px;
+    min-height: 326px;
+    display: flex;
+    flex-direction: column;
+
+    .@{ant-prefix}-spin-nested-loading {
+      height: 100%;
+      flex: 1;
+
+      .@{ant-prefix}-spin-container {
+        height: 100%;
+      }
+    }
+
+    .result {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 40px;
+      margin-bottom: 20px;
+
+      p {
+        margin-bottom: 8px;
+      }
+
+      .title {
+        font-size: 16px;
+        margin-bottom: 4px;
+        color: rgba(28, 36, 46, 0.85);
+        font-weight: 500;
+      }
+
+      .tips {
+        color: rgba(28, 36, 46, 0.45);
+        font-size: 14px;
+      }
+    }
+
+    .result-sub {
+      padding: 8px 12px;
+      background-color: rgba(250, 250, 250, 1);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+
+      .title-icon {
+        margin-right: 4px;
+        display: flex;
+        align-items: center;
+      }
+
+      .content {
+        flex: 1;
+      }
+    }
+
+    .progress {
+      padding: @padding-xs 10px;
+
+      .upload-list-item {
+        background-color: #FFFFFF;
+        margin-bottom: @padding-s;
+        border: none;
+        margin-top: 0;
+
+        .title {
+          font-size: 16px;
+          font-weight: 600;
+        }
+      }
+
+      .progress-item {
+        margin: 0 62px;
+        width: 384px;
+        margin-bottom: @padding-s;
+
+        .@{ant-prefix}-progress-status-normal {
+          .@{ant-prefix}-progress-bg {
+            background-color: rgba(68, 119, 238, 1);
+          }
+        }
+
+        .@{ant-prefix}-progress-status-success {
+          .@{ant-prefix}-progress-bg {
+            background-color: rgba(65, 225, 155, 1);
+          }
+
+          .@{ant-prefix}-progress-text {
+            color: rgba(65, 225, 155, 1);
+          }
+        }
+      }
+    }
+
+    .upload-list-item {
+      height: fit-content;
+      display: flex;
+      margin-top: 20px;
+      background-color: rgba(250, 250, 250, 1);
+      padding: @padding-s 10px;
+      border: 1px solid rgba(229, 229, 229, 1);
+      border-radius: @border-radius-sm;
+      align-items: center;
+
+      .title,
+      .text {
+        font-size: @font-size-sm;
+        margin-bottom: 0;
+        line-height: 18px;
+      }
+
+      img {
+        width: 36px;
+        height: 36px;
+      }
+
+      .content {
+        flex: 1;
+        margin-left: @padding-s;
+      }
+
+      .delete {
+        fill: rgba(139, 143, 148, 1);
+        cursor: pointer;
+      }
+    }
+  }
+
+  .@{prefix}-@{busiObjModal}-customCard,
+  .@{prefix}-@{busiObjModal}-downloadcard {
+    .title {
+      margin-bottom: 8px;
+    }
+
+    &.@{ant-prefix}-card-bordered {
+      border: none;
+
+      .@{ant-prefix}-card-body {
+        padding: 0;
+      }
+    }
+
+    .@{ant-prefix}-card-head {
+      border-bottom: none;
+      padding: 0;
+
+      .@{ant-prefix}-card-head-wrapper {
+        margin-bottom: 12px;
+
+        .@{ant-prefix}-card-head-title {
+          padding: 6px 8px;
+          background: #F6F8FA;
+          font-weight: 600;
+          color: rgba(28, 36, 46, 0.85);
+        }
+
+        .@{ant-prefix}-card-extra {
+          padding: 2px 8px;
+          background: #F6F8FA;
+        }
+      }
+    }
+
+    .@{ant-prefix}-upload-drag {
+      min-height: 218px;
+      display: flex;
+      align-items: center;
+    }
+
+    .@{ant-prefix}-upload.@{ant-prefix}-upload-drag {
+      background-color: #FFFFFF;
+    }
+
+    .@{prefix}-@{busiObjModal}-text {
+      color: rgba(28, 36, 46, 0.75);
+      font-size: 14px;
+    }
+
+    .ant-tabs-icon {
+      fill: @primary-color;
+    }
+
+    .@{prefix}-@{busiObjModal}-hint {
+      color: rgba(28, 36, 46, 0.45);
+      font-size: 14px;
+    }
+  }
+
+  .@{prefix}-@{busiObjModal}-downloadcard {
+    margin: 0 0 12px;
+    border: none;
+
+    .@{prefix}-@{busiObjModal}-checkwrap {
+      line-height: 24px;
+
+      .@{ant-prefix}-checkbox-inner {
+        border-radius: 2px;
+      }
+    }
+
+    .@{prefix}-@{busiObjModal}-icon {
+      margin-right: 8px;
+
+      .@{ant-prefix}-tabs-icon {
+        margin-top: -2px;
+      }
+    }
+
+    .@{prefix}-@{busiObjModal}-checkbox {
+      display: flex !important;
+      flex-direction: row;
+      width: 100%;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 0 32px;
+
+      .@{ant-prefix}-checkbox-group-item {
+        margin-bottom: 2px;
+        flex: none;
+        width: 25%;
+        box-sizing: border-box;
+        padding-right: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: rgba(28, 36, 46, 0.85);
+        margin-right: 0;
+        display: flex;
+      }
+
+      .@{ant-prefix}-checkbox-inner {
+        border-radius: 2px;
+      }
+    }
+  }
+
+  .@{ant-prefix}-btn-link {
+    font-size: 12px;
+  }
+}

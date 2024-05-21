@@ -16,6 +16,7 @@ import locales from '@lingxiteam/engine-${
     }/es/utils/locales';
 import { pageStaticData } from '@/components/Pageview';
 import BannerModal from '@/components/BannerModal';
+import ImportBusiObjModal from '@/components/ImportBusiObjModal';
 import ExpSQLServiceModal from "@/components/ExpSQLServiceModal/ExpSQLServiceModal";
 import * as functorsMap from '@/utils/functors';
 import Sandbox from '@lingxiteam/engine-sandbox';
@@ -66,6 +67,7 @@ export const withPageHOC = (
     const { ModalManagerRef, refs: renerRefs, appId } = useContext(Context);
     const ExpBusiObjModalRef = React.useRef<any>();
     const ExpSQLServiceModalRef = React.useRef<any>();
+    const ImportBusiObjModalRef = React.useRef<any>();
     const [loading, setLoading] = useState(true);
     const sandBoxContext = useRef<Record<string, any>>({});
     // 组件状态的处理
@@ -285,6 +287,7 @@ export const withPageHOC = (
         ModalManagerRef,
         ExpBusiObjModalRef,
         ExpSQLServiceModalRef,
+        ImportBusiObjModalRef,
         closeModal: (modalId: string) => {
           ModalManagerRef.current?.closeModal(modalId, renderId);
         },
@@ -336,7 +339,29 @@ export const withPageHOC = (
           addActionTimer={addActionTimer}
           clearActionTimer={clearActionTimer}
           ExpSQLServiceModalRef={ExpSQLServiceModalRef}
+          ImportBusiObjModalRef={ImportBusiObjModalRef}
           BannerModal={BannerModal}
+        />
+        ${
+          isMobile
+            ? ''
+            : `<ExpBusiObjModal
+          ref={ExpBusiObjModalRef}
+          key={\`ExpBusiObjModal-\${renderId}\`}
+          api={baseApi}
+          utils={{}}
+          getLocale={getLocale}
+        />`
+    }
+        <ImportBusiObjModal
+        ref={ImportBusiObjModalRef}
+        key={\`ImportBusiObjModal-\${renderId}\`}
+        // TODO: 控件内部还存在需要 appId 和 pageId 的场景
+        // appId={appId}
+        // pageId={pageId}
+        // utils写内部了，看后面需不需要整合
+        // utils={renderCtx.utils}
+        getLocale={getLocale}
         />
         <ExpSQLServiceModal
         ref={ExpSQLServiceModalRef}
@@ -345,7 +370,8 @@ export const withPageHOC = (
         appId={appId}
         api={baseApi}
         pageId={renderId}
-        utils={{}}
+        // utils写内部了，看后面需不需要整合
+        // utils={{}}
         getLocale={getLocale}
       />
       </>

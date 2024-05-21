@@ -70,6 +70,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             functorsMap,
             ExpBusiObjModalRef,
             ExpSQLServiceModalRef,
+            ImportBusiObjModalRef,
             lcdpApi,
             urlParam,
             state

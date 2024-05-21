@@ -65,12 +65,12 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         const renderId = '${pageId}';
         const ${type} = React.forwardRef<unknown, PageProps>(({
           attrDataMap={},customActionMapRef,routerData,lcdpApi, addActionTimer, clearActionTimer,
-          injectData, sandBoxContext, refs, functorsMap, state, componentItem, style, urlParam, ${
-            isModal ? 'forwardedRef,' : ''
-          } 
+          injectData, sandBoxContext, refs, functorsMap, state, componentItem, style, urlParam, ${isModal ? 'forwardedRef,' : ''
+        } 
           setComponentRef,
           ModalManagerRef,
           ExpSQLServiceModalRef,
+          ImportBusiObjModalRef,
           BannerModal,
           lcdpParentRenderId,
           ${isModal ? 'onOk: fatherOnOk,' : ''}

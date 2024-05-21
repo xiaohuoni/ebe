@@ -247,8 +247,7 @@ export default function getFile(): [string[], ResultFile] {
           });
           localPreviewUrl += \`\${
             localPreviewUrl.includes('?') ? '' : '?'
-          }fileIds=\${fileIds}
-          }&fileIndex=\${fileIndex}\`;
+          }fileIds=\${fileIds}&fileIndex=\${fileIndex}\`;
         }
         window.open(localPreviewUrl, viewMode, features);
       };
