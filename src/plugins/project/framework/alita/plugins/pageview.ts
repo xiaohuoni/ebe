@@ -46,7 +46,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         ${ir.models
           ?.map(
             (modal: any) =>
-              ` '${modal.pageId || modal.path}':${JSON.stringify(modal)}`,
+              ` '${modal.path || modal.pageId }':${JSON.stringify(modal)}`,
           )
           .join(',')}
       }
@@ -84,7 +84,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         const arr = src?.split('?') as string[];
         return [arr[0], parse(arr[1])];
       }
-
+      // 页面容器
       const Pageview = React.forwardRef<any, any>((props, ref) => {
         const { clientRoutes, routeComponents } = useAppData();
         // 页面 src 可能是带参数的如 /a?b=1&c=2
@@ -100,6 +100,20 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         }))
 
         return <Page {...query} {...props} ref={pageRef} />;
+      });
+      // 普通页面
+      export const PageComent = React.forwardRef<any, any>((props, ref) => {
+        const { clientRoutes, routeComponents } = useAppData();
+        const pageRef = React.useRef<any>();
+        // 页面 src 可能是带参数的如 /a?b=1&c=2
+        const [path] = parseSrc(props?.pageSrc);
+        const Page = getPage(path, clientRoutes, routeComponents);
+        React.useImperativeHandle(ref, () => ({
+          get customActionMap() {
+            return pageRef.current?.customActionMap;
+          },
+        }));
+        return <Page {...props} ref={pageRef} />;
       });
       export default Hoc(Pageview, { type: 'Pageview' });
       `,

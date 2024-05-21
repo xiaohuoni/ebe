@@ -6,7 +6,7 @@ export default function getFile(): [string[], ResultFile] {
     'Modal',
     'tsx',
     `import react from 'react';
-    import Pageview, { RootProps } from '@/components/Pageview';
+    import { RootProps, PageComent } from '@/components/Pageview';
     import { Modal } from 'antd';
     import classnames from 'classnames';
     import React, { forwardRef, useEffect, useRef, useState } from 'react';
@@ -30,7 +30,7 @@ export default function getFile(): [string[], ResultFile] {
       const mRef = useRef<any>();
       // 设置弹窗抽屉属性
       useEffect(() => {
-        const pageInst = RootProps[pagePath || ''];
+        const pageInst = RootProps[pagePath || ''] || {};
         const mdProps: any = {
           title: pageInst.modalTitle || pageInst.pageName,
           width:
@@ -89,7 +89,7 @@ export default function getFile(): [string[], ResultFile] {
                     : { overflowX: 'auto' }
                 }
               >
-                <Pageview
+                <PageComent
                   pageSrc={pagePath}
                   state={params}
                   ref={mRef}
