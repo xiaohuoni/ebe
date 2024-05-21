@@ -15,9 +15,14 @@ interface ApiType {
   getZipFileNode: HTTPMehodFn;
   // 预览压缩包的文件
   viewZipFile: HTTPMehodFn;
+  // 预览文件接口
+  viewFile: HTTPMehodFn;
 }
 // TODO：记得删appID，测试时放着
 const api: ApiType = {
+  // 预览文件接口
+  viewFile: (params, appCtx) =>
+    urlHelper.get('app/filePreview/viewFile', params, appCtx),
   // 预览文件
   previewFileById: (fileId) =>
     resolveApiPath(
@@ -36,8 +41,7 @@ const api: ApiType = {
   // 批量下载文件
   batchDownloadFileByIds: (fileIds, config) =>
     resolveApiPath(
-      `/app/file/batchDownload?fileIds=${fileIds}${
-        config?.zip ? '&zip=true' : ''
+      `/app/file/batchDownload?fileIds=${fileIds}${config?.zip ? '&zip=true' : ''
       }`,
     ),
 };
