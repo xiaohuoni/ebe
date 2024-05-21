@@ -1,4 +1,4 @@
-import { useRef, useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 
 const usePersistFn = (fn: any) => {
   const ref = useRef(fn);

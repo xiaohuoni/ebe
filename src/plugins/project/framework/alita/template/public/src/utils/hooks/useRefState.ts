@@ -1,7 +1,6 @@
 import { useCallback, useRef } from 'react';
 import useUpdate from './useUpdate';
 
-
 /**
  * 通过ref的引用值更新组件，一般用于性能优化。
  */
@@ -14,7 +13,7 @@ const useRefState = <S extends Record<string, any>>(
 ): [S, SetRefState<S>] => {
   const stateRef = useRef<S>(initialState);
   const update = useUpdate();
-  
+
   const setState = useCallback((patch) => {
     stateRef.current = patch;
     update();

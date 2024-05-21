@@ -1,14 +1,14 @@
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
-export type MoveDirection = 'prev' | 'bottom'
+export type MoveDirection = 'prev' | 'bottom';
 
 interface MovableProps {
-  targetRef?:any;
-  splitterRef?:any;
-  direction?:MoveDirection;
-  movableLayoutRef?:any;
-  nextRef?:any;
-  type?:string,
+  targetRef?: any;
+  splitterRef?: any;
+  direction?: MoveDirection;
+  movableLayoutRef?: any;
+  nextRef?: any;
+  type?: string;
   min?: number | string; // 最小宽度
   max?: number | string; // 最大宽度
   clickWidth?: number | string; // 点击展开宽度，默认为最大宽度
@@ -35,10 +35,17 @@ const useMovable = (props: MovableProps) => {
   const getPrevSize = (size: any, baseSize?: any) => {
     let preSize = min;
     const temp: any = `${size}`.substring(0, size.length - 1);
-    if (typeof size === 'string' && size.charAt(size.length - 1) === '%' && !!(temp * 1)) {
+    if (
+      typeof size === 'string' &&
+      size.charAt(size.length - 1) === '%' &&
+      !!(temp * 1)
+    ) {
       // 百分比
       preSize = (baseSize * temp) / 100;
-    } else if ((typeof size === 'string' && !!((size as any) * 1)) || typeof size === 'number') {
+    } else if (
+      (typeof size === 'string' && !!((size as any) * 1)) ||
+      typeof size === 'number'
+    ) {
       // 数字字符串 或 纯数字
       preSize = (size as any) * 1;
     }
@@ -51,12 +58,14 @@ const useMovable = (props: MovableProps) => {
       // 水平布局
       prevLength.current = targetRef.current.style.width;
       targetRef.current.style.width = '0px';
-      splitterRef.current.style[direction === 'prev' ? 'left' : 'right'] = '0px';
+      splitterRef.current.style[direction === 'prev' ? 'left' : 'right'] =
+        '0px';
     } else if (type === 'vertical') {
       // 垂直布局
       prevLength.current = targetRef.current.style.height;
       targetRef.current.style.height = '0px';
-      splitterRef.current.style[direction === 'prev' ? 'top' : 'bottom'] = '0px';
+      splitterRef.current.style[direction === 'prev' ? 'top' : 'bottom'] =
+        '0px';
     }
   };
 
@@ -66,11 +75,13 @@ const useMovable = (props: MovableProps) => {
     if (type === 'horizontal') {
       // 水平布局
       targetRef.current.style.width = newPrevNum || prevNum;
-      splitterRef.current.style[direction === 'prev' ? 'left' : 'right'] = newPrevNum || prevNum;
+      splitterRef.current.style[direction === 'prev' ? 'left' : 'right'] =
+        newPrevNum || prevNum;
     } else if (type === 'vertical') {
       // 垂直布局
       targetRef.current.style.height = newPrevNum || prevNum;
-      splitterRef.current.style[direction === 'prev' ? 'top' : 'bottom'] = newPrevNum || prevNum;
+      splitterRef.current.style[direction === 'prev' ? 'top' : 'bottom'] =
+        newPrevNum || prevNum;
     }
   };
 
@@ -82,19 +93,28 @@ const useMovable = (props: MovableProps) => {
     if (!targetRef?.current || !splitterRef?.current) return;
     const target = targetRef.current; // 获取调整对象
     const splitter = splitterRef.current; // 获取分割线
-    if (kind === 'splitterClicked' && ((clickWidth && target.style.width >= `${clickWidth}px`) || target.style.width === `${max}px`)) {
+    if (
+      kind === 'splitterClicked' &&
+      ((clickWidth && target.style.width >= `${clickWidth}px`) ||
+        target.style.width === `${max}px`)
+    ) {
       target.style.width = `${min}px`;
       splitter.style[direction === 'prev' ? 'left' : 'right'] = `${min}px`;
       setWidth(min);
       return;
     }
     target.style.width = `${clickWidth ?? max}px`;
-    splitter.style[direction === 'prev' ? 'left' : 'right'] = `${clickWidth ?? max}px`;
+    splitter.style[direction === 'prev' ? 'left' : 'right'] = `${
+      clickWidth ?? max
+    }px`;
     setWidth(clickWidth ?? max);
   };
 
   const onClickSplitter = (e: any) => {
-    if (mouseDownPosition.clientX === e.clientX && mouseDownPosition.clientY === e.clientY) {
+    if (
+      mouseDownPosition.clientX === e.clientX &&
+      mouseDownPosition.clientY === e.clientY
+    ) {
       resetWidth('splitterClicked');
     }
   };
@@ -117,7 +137,8 @@ const useMovable = (props: MovableProps) => {
     const target = type === 'vertical' ? nextRef.current : targetRef.current; // 获取初始数据需要参考的对象
     setMouseData({
       ...mouseData,
-      coordinate: type === 'vertical' ? target.offsetHeight : target.offsetWidth, // 记录初始宽或初始高
+      coordinate:
+        type === 'vertical' ? target.offsetHeight : target.offsetWidth, // 记录初始宽或初始高
       clientX, // 记录鼠标初始x坐标
       clientY, // 记录鼠标初始y坐标
     });
@@ -129,22 +150,34 @@ const useMovable = (props: MovableProps) => {
 
   // 当鼠标坐标改变时，需要实时刷新dom尺寸
   useEffect(() => {
-    const onMouseMove = (e: { stopPropagation?: any; clientX?: any; clientY?: any }) => {
+    const onMouseMove = (e: {
+      stopPropagation?: any;
+      clientX?: any;
+      clientY?: any;
+    }) => {
       e.stopPropagation();
-      if (!targetRef?.current || !splitterRef?.current || !movableLayoutRef?.current) return;
+      if (
+        !targetRef?.current ||
+        !splitterRef?.current ||
+        !movableLayoutRef?.current
+      )
+        return;
       const { clientX, clientY } = e;
       const target = targetRef.current; // 获取调整对象
       const splitter = splitterRef.current; // 获取分割线
       const baseSize =
-        movableLayoutRef.current[type === 'vertical' ? 'clientHeight' : 'clientWidth'];
+        movableLayoutRef.current[
+          type === 'vertical' ? 'clientHeight' : 'clientWidth'
+        ];
       const pprevMin = getPrevSize(min, baseSize);
       const pprevMax = getPrevSize(max, baseSize);
 
       if (type === 'horizontal') {
         // 水平布局
-        const x = direction === 'prev' ?
-          mouseData.coordinate + clientX - mouseData.clientX :
-          mouseData.coordinate + (mouseData.clientX - clientX);
+        const x =
+          direction === 'prev'
+            ? mouseData.coordinate + clientX - mouseData.clientX
+            : mouseData.coordinate + (mouseData.clientX - clientX);
         if (x < pprevMin || x > pprevMax) {
           return;
         }
@@ -155,9 +188,10 @@ const useMovable = (props: MovableProps) => {
         setWidth(x);
       } else if (type === 'vertical') {
         // 垂直布局
-        const y = direction === 'prev' ?
-          mouseData.coordinate + clientY - mouseData.clientY :
-          mouseData.coordinate + (mouseData.clientY - clientY);
+        const y =
+          direction === 'prev'
+            ? mouseData.coordinate + clientY - mouseData.clientY
+            : mouseData.coordinate + (mouseData.clientY - clientY);
         if (y < pprevMin || y > pprevMax) {
           return;
         }

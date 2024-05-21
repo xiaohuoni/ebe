@@ -10,12 +10,12 @@ class StateListener {
     return this.inst.get(id) as StateListener;
   }
 
-  propsListener: Map<string, Set<((value: any) => void)>> = new Map();
+  propsListener: Map<string, Set<(value: any) => void>> = new Map();
 
   emit(compId: string, propsKey: string, value: string) {
     const cbList = this.propsListener.get(`${compId}_${propsKey}`);
     if (cbList) {
-      cbList.forEach(cb => {
+      cbList.forEach((cb) => {
         cb?.(value);
       });
     }
@@ -33,7 +33,12 @@ class StateListener {
   }
 }
 
-export const useStateListener = (pageId: string, compId: string, propsKey: string, value: any) => {
+export const useStateListener = (
+  pageId: string,
+  compId: string,
+  propsKey: string,
+  value: any,
+) => {
   const instance = StateListener.getInst(pageId);
 
   useEffect(() => {
@@ -41,7 +46,12 @@ export const useStateListener = (pageId: string, compId: string, propsKey: strin
   }, [value]);
 };
 
-export const useStateSubscribe = (pageId: string, compId: string, propsKey: string, cb: any) => {
+export const useStateSubscribe = (
+  pageId: string,
+  compId: string,
+  propsKey: string,
+  cb: any,
+) => {
   const instance = StateListener.getInst(pageId);
 
   useEffect(() => {
@@ -52,8 +62,8 @@ export const useStateSubscribe = (pageId: string, compId: string, propsKey: stri
   }, []);
 };
 
-
 export const getStateListener = (pageId: string) => {
   const instance = StateListener.getInst(pageId);
-  return (compId: string, propsKey: string, cb: any) => instance.addSubscribe(compId, propsKey, cb);
+  return (compId: string, propsKey: string, cb: any) =>
+    instance.addSubscribe(compId, propsKey, cb);
 };

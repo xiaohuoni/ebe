@@ -1,35 +1,35 @@
-import { useEffect } from 'react';
 import type { Component } from '@lingxiteam/types';
+import { get, isEqual, throttle } from 'lodash';
+import { useEffect } from 'react';
 import { useSetState, useUpdateEffect } from './hooks/index';
-import { throttle, isEqual, get } from 'lodash';
 import { useUpdateDeepEffect } from './hooks/useUpdateDeepEffect';
-import { useStateListener } from './StateListener'
+import { useStateListener } from './StateListener';
 
-
-
-const isFunction = (val: unknown): val is Function =>
-    typeof val === 'function';
+const isFunction = (val: unknown): val is Function => typeof val === 'function';
 /**
  * 同步inputValue数据
  * @param e 新值
  * @param preValue 旧值
  * @param setValue 同步函数
  */
- const syncInputValue = (e: unknown, preValue: unknown, setValue: (v: unknown) => void) => {
-    if (!isEqual(e, preValue)) {
-      setValue(e);
-      return true;
-    }
-    return false;
-  };
-  
+const syncInputValue = (
+  e: unknown,
+  preValue: unknown,
+  setValue: (v: unknown) => void,
+) => {
+  if (!isEqual(e, preValue)) {
+    setValue(e);
+    return true;
+  }
+  return false;
+};
 
 export const useComponentHoc = (
   componentProps: Record<string, any>,
   context: {
     config: Component;
     fieldPropsChange: () => void;
-  }
+  },
 ) => {
   const { config, fieldPropsChange } = context;
   const { fieldProps } = config;
@@ -38,11 +38,12 @@ export const useComponentHoc = (
   const propsValue = get(componentProps, fieldProps?.valuePropName || '');
   const propsTrigger = get(componentProps, fieldProps?.trigger || '');
 
-  const [state, setState] = useSetState<{ visible: boolean; value?: unknown }>(() => ({
-    visible,
-    value: propsValue,
-  }));
-
+  const [state, setState] = useSetState<{ visible: boolean; value?: unknown }>(
+    () => ({
+      visible,
+      value: propsValue,
+    }),
+  );
 
   const compValue = state.value;
 
@@ -52,7 +53,12 @@ export const useComponentHoc = (
     });
   }, [visible]);
 
-  useStateListener($$componentItem.pageId, $$componentItem.uid, 'visible', state.visible);
+  useStateListener(
+    $$componentItem.pageId,
+    $$componentItem.uid,
+    'visible',
+    state.visible,
+  );
 
   // 1. 赋默认值
   useUpdateDeepEffect(() => {
@@ -67,7 +73,9 @@ export const useComponentHoc = (
     }
     return throttle((v, ...resetProps) => {
       const val = v?.target?.[fieldProps?.valuePropName] ?? v;
-      const syncComplete = syncInputValue(val, state.value, (v) => setState({ value: v }));
+      const syncComplete = syncInputValue(val, state.value, (v) =>
+        setState({ value: v }),
+      );
       if (syncComplete) {
         if (isFunction(propsTrigger)) {
           propsTrigger(v, ...resetProps);
@@ -75,7 +83,7 @@ export const useComponentHoc = (
       }
     }, 20);
   })();
-  
+
   // 3. 每次value变化触发对应事件刷新
   useEffect(() => {
     if (fieldProps?.trigger) {
