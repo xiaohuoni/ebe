@@ -1,5 +1,4 @@
 import { CMDGeneratorPrames } from '../core/types';
-import { CMDGeneratorFunction } from '../core/utils/CMDGenerator';
 import { GeneratorCallbackWithThenCatch } from './utils';
 export function getValue({
   value,
@@ -17,7 +16,7 @@ export function getValue({
         value,
         platform,
         scope,
-        config, 
+        config,
       },
       {
         params: {
