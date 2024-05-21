@@ -1,9 +1,9 @@
+import { api } from '@/services/api';
 import {
   BaseModalProps,
   ExpSQLServiceModalHooks,
   ExpSQLServiceModalOptions,
 } from '@/types';
-import { api } from '@/services/api';
 import { exportFileShowProgress } from '@/utils/platform/utils/fileUtils';
 import { LocaleFunction } from '@lingxiteam/types';
 import { Checkbox, Divider, message, Modal, Spin } from 'antd';
@@ -96,7 +96,7 @@ const ExpSQLServiceModal = forwardRef<
     onFail,
     async,
   }: any) => {
-    let hide = () => { };
+    let hide = () => {};
     try {
       hide = message.loading(
         getLocale('export.process.handling', '正在处理中，请稍后...'),

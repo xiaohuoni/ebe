@@ -52,7 +52,8 @@ const api: ApiType = {
     }), // 导入业务对象属性
   importInsts: resolveApiPath('app/object/importInsts'),
   // 获取导出进度
-  getImportExportApply: (params, appCtx) => urlHelper.get('app/object/getImportExportApply', params, appCtx),
+  getImportExportApply: (params, appCtx) =>
+    urlHelper.get('app/object/getImportExportApply', params, appCtx),
 };
 
 export default api;

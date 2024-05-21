@@ -2,7 +2,7 @@ import { AppCtxType } from '@/utils/service/baseRequest';
 
 export type batchDownloadFileByIdsFn = (
   fileIds: string,
-  config: { zip?: boolean; },
+  config: { zip?: boolean },
 ) => string;
 export type ReturnStringFn<N = 0> = N extends 0
   ? () => string
