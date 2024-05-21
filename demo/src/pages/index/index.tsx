@@ -13,6 +13,22 @@ import { generateCode, init, publishers } from 'ebe';
 
 const Item = Form.Item;
 
+const treeForEach = (tree: any, callback: (item: any, root: boolean) => void, options = { children: 'components' }) => { 
+  callback(tree, true);
+
+  const loop = (children: any[]) => { 
+    children?.forEach(item => { 
+      callback(item, false);
+      if (Array.isArray(item?.[options.children])) {
+        loop(item?.[options.children]);
+      }
+    })
+  }
+
+  const list = tree[options.children]
+  loop(list);
+}
+
 const getPageDsls = (resultObjects: any[]) => {
   return resultObjects.filter(Boolean).map((i) => {
     const pageData = JSON.parse(i.resultObject.attrMappingJson);
@@ -141,13 +157,47 @@ const Page = () => {
       });
       data = [p];
     }
-    console.log(data);
+
+    // 收集页面中用到的页面id
+    const pagesId: string[] = [];
+    if (values.pageId) {
+      getPageDsls(data).forEach(p => { 
+        treeForEach(p, (item) => { 
+          if (item.compName === 'Pageview') {
+            if (item.props.pageId) {
+              pagesId.push(item.props.pageId);
+            }
+          }
+          treeForEach({ children: item.setEvents }, (actionItem) => { 
+            if (['setPageSrc', 'showCustomModal'].includes(actionItem.value) && actionItem.options?.pageId) {
+              pagesId.push(actionItem.options?.pageId);
+            }
+          }, { children: 'children' })
+        }) 
+      })
+    }
+
+    if (pagesId.length > 0) {
+      const pages = await Promise.all(
+        pagesId.map((i) => {
+          return getPageVersionById({
+            appId: values.appId,
+            pageId: i,
+            // actionType: 'publish',
+          });
+        }),
+      );
+
+      data.push(...pages);
+    }
+
     const pages = getPageDsls(data);
     console.log(pages);
     // busiCompId 过滤重复
     const itemHash: any = {};
     // 找到所有页面使用到的 业务组件
     findAllItem(pages, (item) => item.compName === 'BOFramer', itemHash);
+
     console.log(itemHash);
     const itemLists = Object.keys(itemHash);
     // 请求所有业务组件的 dsl
@@ -184,7 +234,6 @@ const Page = () => {
       baseUrl: process.env.BASE_URL,
       appConfig,
     };
-    console.log(options);
     let cleanedTree = cleanTree(pageDSLS, ['path']); // 清理字段'b'和字段'e'
     console.log('cleanedTree', cleanedTree);
     if (bower) {
