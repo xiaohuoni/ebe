@@ -1,0 +1,28 @@
+@import '../styles/index.less';
+@expBusiObjModal: expBusiObjModal;
+
+.@{prefix}-@{expBusiObjModal}-myCheckboxGroup {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .@{ant-prefix}-checkbox-group-item {
+    margin-bottom: 8px;
+    flex: none;
+    width: 25%;
+    box-sizing: border-box;
+    padding-right: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 0;
+    display: block;
+  }
+}
+
+.@{prefix}-@{expBusiObjModal}-myDivider {
+  margin: 8px 0;
+}

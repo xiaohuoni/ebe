@@ -11,13 +11,13 @@ export default function getFile(
     `import React, { useContext, useEffect, useState, useRef, useMemo } from 'react';
     import { api as baseApi } from '@/services/api';
     import { messageApi } from '@/utils/messageApi';
-import locales from '@lingxiteam/engine-${
-      isMobile ? 'app' : 'pc'
+import locales from '@lingxiteam/engine-${isMobile ? 'app' : 'pc'
     }/es/utils/locales';
 import { pageStaticData } from '@/components/Pageview';
 import BannerModal from '@/components/BannerModal';
+import ExpBusiObjModal from '@/components/ExpBusiObjModal';
 import ImportBusiObjModal from '@/components/ImportBusiObjModal';
-import ExpSQLServiceModal from "@/components/ExpSQLServiceModal/ExpSQLServiceModal";
+import ExpSQLServiceModal from "@/components/ExpSQLServiceModal";
 import * as functorsMap from '@/utils/functors';
 import Sandbox from '@lingxiteam/engine-sandbox';
 import {
@@ -339,41 +339,48 @@ export const withPageHOC = (
           addActionTimer={addActionTimer}
           clearActionTimer={clearActionTimer}
           ExpSQLServiceModalRef={ExpSQLServiceModalRef}
+          ExpBusiObjModalRef={ExpBusiObjModalRef}
           ImportBusiObjModalRef={ImportBusiObjModalRef}
           BannerModal={BannerModal}
         />
-        ${
-          isMobile
-            ? ''
-            : `<ExpBusiObjModal
+        ${isMobile
+      ? ''
+      : `<ExpBusiObjModal
           ref={ExpBusiObjModalRef}
           key={\`ExpBusiObjModal-\${renderId}\`}
-          api={baseApi}
-          utils={{}}
+          // api={baseApi}
+          // utils写内部了，看后面需不需要整合
+          // utils={{}}
           getLocale={getLocale}
         />`
-        }
-        <ImportBusiObjModal
-        ref={ImportBusiObjModalRef}
-        key={\`ImportBusiObjModal-\${renderId}\`}
-        // TODO: 控件内部还存在需要 appId 和 pageId 的场景
-        // appId={appId}
-        // pageId={pageId}
-        // utils写内部了，看后面需不需要整合
-        // utils={renderCtx.utils}
-        getLocale={getLocale}
-        />
-        <ExpSQLServiceModal
-        ref={ExpSQLServiceModalRef}
-        key={\`ExpSQLServiceModal-\${renderId}\`}
-        // TODO: 控件内部还存在需要 appId 的场景
-        appId={appId}
-        api={baseApi}
-        pageId={renderId}
-        // utils写内部了，看后面需不需要整合
-        // utils={{}}
-        getLocale={getLocale}
-      />
+    }
+        ${isMobile
+      ? ''
+      : `<ImportBusiObjModal
+      ref={ImportBusiObjModalRef}
+      key={\`ImportBusiObjModal-\${renderId}\`}
+      // TODO: 控件内部还存在需要 appId 和 pageId 的场景
+      // appId={appId}
+      // pageId={pageId}
+      // utils写内部了，看后面需不需要整合
+      // utils={renderCtx.utils}
+      getLocale={getLocale}
+      />`
+    }
+    ${isMobile
+      ? ''
+      : `<ExpSQLServiceModal
+      ref={ExpSQLServiceModalRef}
+      key={\`ExpSQLServiceModal-\${renderId}\`}
+      // TODO: 控件内部还存在需要 appId 的场景
+      // appId={appId}
+      // api={baseApi}
+      // pageId={renderId}
+      // utils写内部了，看后面需不需要整合
+      // utils={{}}
+      getLocale={getLocale}
+    />`
+    }
       </>
     );
   });

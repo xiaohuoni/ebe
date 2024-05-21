@@ -71,6 +71,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           setComponentRef,
           ModalManagerRef,
           ExpSQLServiceModalRef,
+          ExpBusiObjModalRef,
           ImportBusiObjModalRef,
           BannerModal,
           lcdpParentRenderId,

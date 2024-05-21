@@ -15,14 +15,11 @@ import modalmodal from './files/modalmodal';
 import modaltypes from './files/modaltypes';
 import pcbannermodal from './files/pcbannermodal';
 import pcbannermodalless from './files/pcbannermodalless';
-import pcexpsqlservicemodal from './files/pcexpsqlservicemodal';
-import pcexpsqlservicemodalless from './files/pcexpsqlservicemodalless';
 import pcmodalindex from './files/pcmodalindex';
 import pcmodalmodal from './files/pcmodalmodal';
 import popover from './files/popover';
 import popoverwrapper from './files/popoverwrapper';
 import proxy from './files/proxy';
-import types from './files/types';
 import withPageHOC from './files/withPageHOC';
 
 // TODO:为了标记无用文件，注释先保留着，后续清理
@@ -113,19 +110,6 @@ export function generateStaticFiles(
   }
   runFileGenerator(postProcessors, root, proxy, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, withPageHOC, parseResult?.staticFiles);
-  runFileGenerator(
-    postProcessors,
-    root,
-    pcexpsqlservicemodal,
-    parseResult?.staticFiles,
-  );
-  runFileGenerator(
-    postProcessors,
-    root,
-    pcexpsqlservicemodalless,
-    parseResult?.staticFiles,
-  );
-  runFileGenerator(postProcessors, root, types, parseResult?.staticFiles);
   runFileGenerator(
     postProcessors,
     root,
