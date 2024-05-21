@@ -131,15 +131,14 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
           ],
         });
-        next.chunks.push({
-          type: ChunkType.STRING,
-          fileType: cfg.fileType,
-          name: REACT_CHUNK_NAME.DidUpdateContent,
-          content: 'stateChange()',
-          linkAfter: [REACT_CHUNK_NAME.DidUpdateStart],
-        });
       }
-
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: cfg.fileType,
+        name: REACT_CHUNK_NAME.DidUpdateContent,
+        content: events?.stateChange ? 'stateChange()' : '',
+        linkAfter: [REACT_CHUNK_NAME.DidUpdateStart],
+      });
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: FileType.TSX,
@@ -176,14 +175,14 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
           ],
         });
-        next.chunks.push({
-          type: ChunkType.STRING,
-          fileType: cfg.fileType,
-          name: REACT_CHUNK_NAME.WillUnmountContent,
-          content: 'willUnmount()',
-          linkAfter: [REACT_CHUNK_NAME.WillUnmountStart],
-        });
       }
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: cfg.fileType,
+        name: REACT_CHUNK_NAME.WillUnmountContent,
+        content: events?.willUnmount ? 'willUnmount()' : '',
+        linkAfter: [REACT_CHUNK_NAME.WillUnmountStart],
+      });
 
       if (events?.useEffect) {
         next.chunks.push({
@@ -199,14 +198,14 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           )} }`,
           linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         });
-        next.chunks.push({
-          type: ChunkType.STRING,
-          fileType: cfg.fileType,
-          name: REACT_CHUNK_NAME.DidMountContent,
-          content: 'didMount()',
-          linkAfter: [REACT_CHUNK_NAME.DidMountStart],
-        });
       }
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: cfg.fileType,
+        name: REACT_CHUNK_NAME.DidMountContent,
+        content: events?.useEffect ? 'didMount()' : '',
+        linkAfter: [REACT_CHUNK_NAME.DidMountStart],
+      });
     }
     return next;
   };
