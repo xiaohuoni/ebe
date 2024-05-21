@@ -34,7 +34,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     if (ir?.busiComp) {
       Object.keys(ir.busiComp).forEach((key) => {
         const item = ir.busiComp[key];
-        const name = getBusiCompName({}, item);
+        const name = getBusiCompName(item, 'component');
         next.ir.deps.push(getImportFrom(`@/components/${name}`, name, false));
       });
     }

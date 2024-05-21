@@ -107,7 +107,7 @@ export class SchemaParser implements ISchemaParser {
             destructuring: false,
           };
         } else if (info.type === 'BOFramer' || info.type === 'BusiComp') {
-          const typeBOFramer = getBusiCompName(busiCompMapping, info);
+          const typeBOFramer = getBusiCompName(info, 'component');
           compDeps[typeBOFramer] = {
             package: `@/components/${typeBOFramer}`,
             dependencyType: DependencyType.External,
@@ -164,7 +164,7 @@ export class SchemaParser implements ISchemaParser {
       // 简写 业务组件没有 pagePath
       let moduleName = newSchema.pagePath;
       if (newSchema.pageContainerType === 'BusiComp') {
-        moduleName = getBusiCompName(busiCompMapping, newSchema);
+        moduleName = getBusiCompName(newSchema, 'page');
       }
 
       // 这里不能做dataSource判断，不然数据无法执行数据源的插件，导致文件无法生成
@@ -342,7 +342,7 @@ export class SchemaParser implements ISchemaParser {
       {
         node: (i: any) => {
           if (i.type === 'BOFramer' || i.type === 'BusiComp') {
-            const name = getBusiCompName(options?.busiCompMapping, i);
+            const name = getBusiCompName(i, 'component');
             return name;
           }
           return i.type;

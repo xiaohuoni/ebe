@@ -59,7 +59,7 @@ export default function hackEngineApis(
   }
   // 如果是业务组件要改名字
   if (nodeTags === 'BOFramer') {
-    pieces[0].value = getBusiCompName(busiCompMapping, nodeItem);
+    pieces[0].value = getBusiCompName(nodeItem, 'component');
     // 业务组件的 pageId 来自 页面
     pieces.unshift({
       type: PIECE_TYPE.ATTR,

@@ -186,7 +186,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: REACT_CHUNK_NAME.DidUpdateEnd,
-      content: '  });',
+      content: '  }, [state]);',
       linkAfter: [
         REACT_CHUNK_NAME.DidUpdateContent,
         REACT_CHUNK_NAME.DidUpdateStart,
