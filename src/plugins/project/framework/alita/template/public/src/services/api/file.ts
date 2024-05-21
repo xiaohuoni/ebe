@@ -41,7 +41,8 @@ const api: ApiType = {
   // 批量下载文件
   batchDownloadFileByIds: (fileIds, config) =>
     resolveApiPath(
-      `/app/file/batchDownload?fileIds=${fileIds}${config?.zip ? '&zip=true' : ''
+      `/app/file/batchDownload?fileIds=${fileIds}${
+        config?.zip ? '&zip=true' : ''
       }`,
     ),
 };
