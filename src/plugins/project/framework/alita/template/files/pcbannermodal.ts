@@ -15,7 +15,7 @@ export default function getFile(): [string[], ResultFile] {
     import Loadable from 'react-loadable';
     import pageIcon from '@/assets/pageicon';
     import { LoadingComponennt } from '@/components/LoaderHelper';
-    import Watermark from '@/components/WaterMark';
+    // import Watermark from '@/components/WaterMark';
     import './index.less';
     import { LocaleFunction } from '@lingxiteam/types';
     

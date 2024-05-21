@@ -21,6 +21,8 @@ interface ApiType {
   getWorkBookTemplate: HTTPMehodFn;
   // 导入业务对象属性
   importInsts: string;
+  // 获取导出进度
+  getImportExportApply: HTTPMehodFn;
 }
 
 const api: ApiType = {
@@ -49,6 +51,8 @@ const api: ApiType = {
       responseType: 'blob',
     }), // 导入业务对象属性
   importInsts: resolveApiPath('app/object/importInsts'),
+  // 获取导出进度
+  getImportExportApply: (params, appCtx) => urlHelper.get('app/object/getImportExportApply', params, appCtx),
 };
 
 export default api;
