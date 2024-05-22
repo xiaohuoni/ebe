@@ -52,3 +52,4 @@ export { sysSetVisible } from './sysSetVisible';
 export { validateAllForm } from './validateAllForm';
 export { validateCurrentForm } from './validateCurrentForm';
 export { validateForm } from './validateForm';
+export { reloadTableData } from './reloadTableData';

@@ -15,7 +15,7 @@ export const api = {
   batchGetAppStaticAttr: (params: any) =>
     urlHelper.get('app/appAttr/batchGetAppStaticAttr', params),
   uploadSingleFile: () => resolveApiPath('app/file/uploadSingleFile'),
-  getAppFileUrlById: (params: any, appCtx: any) => {
+  getAppFileUrlById: (params: any, appCtx = {} as any) => {
     const { pageId, appId, language } = appCtx;
 
     let url = `app/file/download?ZSMART-LOCALE=${language}&appId=${appId}`;
