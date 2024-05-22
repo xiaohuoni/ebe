@@ -1,11 +1,12 @@
 import {
   code,
-  findAppPolymerizationInfo,
   findBusiCompById,
-  getPageVersionById,
+  findPageInstByVersionId,
   getThemeCss,
   qryAttrSpecPage,
   qryPageCompAssetList,
+  qryPageInstListByAppId,
+  queryFrontendHookList,
 } from '@/services/api';
 import { Button, Form, Input, message, Switch } from 'antd';
 import { useEffect, useState } from 'react';
@@ -126,11 +127,15 @@ const Page = () => {
     });
 
     // 根据 appId 获取当前应用的全部页面
-    const { resultObject } = await findAppPolymerizationInfo({
+    const { resultObject = [] } = await qryPageInstListByAppId({
       appId: values.appId,
       terminalType: values.platform ? 'APP' : 'PC',
-      // operationType: 'publish',
     });
+    const { resultObject: frontendHookList = [] } = await queryFrontendHookList(
+      {
+        appId: values.appId,
+      },
+    );
 
     // 根据 appId 获取当前应用的全部页面
     const themeCss = await getThemeCss({
@@ -144,15 +149,11 @@ const Page = () => {
     const compAssetList = await qryPageCompAssetList({
       appId: values.appId,
     });
-    console.log(resultObject);
     const pageIdMapping: any = {};
-    const appPageList = resultObject?.appPageList.map((i) => {
+    const appPageList = resultObject?.map((i) => {
       pageIdMapping[i.pagePath] = i.pageId;
       return i;
     });
-    const appConfig = resultObject?.appConfig ?? {};
-    console.log(appPageList);
-    console.log(appConfig);
     let lastPageId: any = '';
     // 根据 pageId 获得 dsl
     let data = [];
@@ -160,7 +161,7 @@ const Page = () => {
       data = await Promise.all(
         appPageList.map((i) => {
           lastPageId = i.pageId;
-          return getPageVersionById({
+          return findPageInstByVersionId({
             appId: values.appId,
             pageId: i.pageId,
             // actionType: 'publish',
@@ -168,7 +169,7 @@ const Page = () => {
         }),
       );
     } else {
-      const p = await getPageVersionById({
+      const p = await findPageInstByVersionId({
         appId: values.appId,
         pageId: values.pageId,
         // actionType: 'publish',
@@ -205,7 +206,7 @@ const Page = () => {
     if (pagesId.length > 0) {
       const pages = await Promise.all(
         pagesId.map((i) => {
-          return getPageVersionById({
+          return findPageInstByVersionId({
             appId: values.appId,
             pageId: i,
             // actionType: 'publish',
@@ -257,7 +258,9 @@ const Page = () => {
       busiCompMapping,
       compAssetList: compAssetList?.resultObject || [],
       baseUrl: process.env.BASE_URL,
-      appConfig,
+      appConfig: {
+        frontendHookList,
+      },
       attrSpecPage: (attrSpecPage?.resultObject?.list || []).map(
         (i: any) => i.attrNbr,
       ),

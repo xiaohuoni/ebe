@@ -1,11 +1,5 @@
 import { security } from '@lingxiteam/assets';
 import { request } from 'alita';
-import appList from './a.json';
-import page1 from './b1.json';
-import page2 from './b2.json';
-import bu from './bu.json';
-
-const useMock = false;
 
 security.httpEncryption.start({
   mode: '1.0',
@@ -19,111 +13,78 @@ export async function code(data): Promise<any> {
   return request('/code', { method: 'POST', data });
 }
 
-export async function findBusiCompById(params): Promise<any> {
-  // busiCompId=1046689438983856129
-  // 本地 mock 数据
-  if (useMock) {
-    return new Promise((resolve) => {
-      resolve(bu);
-    });
-  }
+export async function qryPageInstListByAppId(params): Promise<any> {
   const headers: any = {
     'Content-Type': 'application/json',
     'APP-ID': params.appId,
     'X-B-AUTH': 1,
-    'X-B-TARGET-ID': params.pageId,
   };
-  return request('/app/manager/busiComp/findBusiCompById', {
-    params,
-    headers: {
-      ...headers,
-      // 'X-SIGN': security.httpEncryption.createHttpSignStr(
-      //   '/app/manager/busiComp/findBusiCompById',
-      //   { method: 'GET', headers, body: {}, search: params },
-      // ),
+
+  return request('/api/lcdp/pageConfig/qryPageInstListByAppId', {
+    headers,
+    method: 'post',
+    data: {
+      ...params,
+      orderType: 'DESC',
+      qryType: 'F',
+      sharedObjFilter: 'F',
     },
   });
 }
 
-export async function findAppPolymerizationInfo(params): Promise<any> {
-  // 本地 mock 数据
-  if (useMock) {
-    return new Promise((resolve) => {
-      resolve(appList);
-    });
-  }
+export async function queryFrontendHookList(params): Promise<any> {
   const headers: any = {
     'Content-Type': 'application/json',
     'APP-ID': params.appId,
+    'X-B-AUTH': 1,
   };
-  // app/appPage/findAppPolymerizationInfo
-  return request('/app/appPage/findAppPolymerizationInfo', {
+
+  return request('/api/lcdp/frontendHook/queryFrontendHookList', {
     params,
-    method: 'GET',
-    headers: {
-      ...headers,
-      // 'X-SIGN': security.httpEncryption.createHttpSignStr(
-      //   '/app/appPage/findAppPolymerizationInfo',
-      //   { method: 'GET', headers, body: {}, search: params },
-      // ),
-    },
+    headers,
+    method: 'get',
   });
 }
+export async function findPageInstByVersionId(params): Promise<any> {
+  const headers: any = {
+    'Content-Type': 'application/json',
+    'APP-ID': params.appId,
+    'X-B-AUTH': 1,
+  };
 
+  return request('/api/lcdp/pageConfig/findPageInstByPageId', {
+    params,
+    headers,
+    method: 'get',
+  });
+}
 export async function qryPageCompAssetList(params): Promise<any> {
-  // 本地 mock 数据
-  if (useMock) {
-    return new Promise((resolve) => {
-      resolve(appList);
-    });
-  }
-  const headers: any = {
-    'Content-Type': 'application/json',
-    'APP-ID': params.appId,
-  };
-  // app/appPage/qryPageCompAssetList
-  return request('/app/appPage/qryPageCompAssetList', {
-    params,
-    method: 'GET',
-    headers: {
-      ...headers,
-    },
-  });
-}
-
-export async function getPageVersionById(params): Promise<any> {
-  // 本地 mock 数据
-  if (useMock) {
-    return new Promise((resolve) => {
-      resolve(params?.pageId === '1024143466269171712' ? page1 : page2);
-    });
-  }
   const headers: any = {
     'Content-Type': 'application/json',
     'APP-ID': params.appId,
     'X-B-AUTH': 1,
-    'X-B-TARGET-ID': params.pageId,
   };
 
-  return request('/app/appPage/getPageVersionById', {
+  return request('/api/lcdp/appPage/qryPageCompAssetList', {
     params,
-    method: 'GET',
-    headers: {
-      ...headers,
-      // 'X-SIGN': security.httpEncryption.createHttpSignStr(
-      //   '/app/appPage/getPageVersionById',
-      //   { method: 'GET', headers, body: {}, search: params },
-      // ),
-    },
+    headers,
+    method: 'get',
   });
 }
+
+export async function findBusiCompById(params): Promise<any> {
+  const headers: any = {
+    'Content-Type': 'application/json',
+    'APP-ID': params.appId,
+  };
+
+  return request('/api/lcdp/manager/busiComp/findBusiCompById', {
+    params,
+    headers,
+  });
+}
+
 export async function qryAttrSpecPage(params): Promise<any> {
-  // 本地 mock 数据
-  if (useMock) {
-    return new Promise((resolve) => {
-      resolve(params?.pageId === '1024143466269171712' ? page1 : page2);
-    });
-  }
   const headers: any = {
     'Content-Type': 'application/json',
     'APP-ID': params.appId,
@@ -134,39 +95,20 @@ export async function qryAttrSpecPage(params): Promise<any> {
 
   return request('/api/lcdp/attr/qryAttrSpecPage', {
     method: 'post',
-    // credentials: 'omit',
     data: params,
-    headers: {
-      ...headers,
-      // 'X-SIGN': security.httpEncryption.createHttpSignStr(
-      //   '/app/appPage/getPageVersionById',
-      //   { method: 'GET', headers, body: {}, search: params },
-      // ),
-    },
+    headers,
   });
 }
 
 export async function getThemeCss(params): Promise<any> {
-  // 本地 mock 数据
-  if (useMock) {
-    return new Promise((resolve) => {
-      resolve(appList);
-    });
-  }
   const headers: any = {
     'Content-Type': 'application/json',
     'APP-ID': params.appId,
   };
-  // app/appPage/findAppPolymerizationInfo
-  return request('/app/appTheme/getThemeCss', {
+
+  return request('/api/lcdp/appTheme/getThemeCss', {
     params,
     method: 'GET',
-    headers: {
-      ...headers,
-      // 'X-SIGN': security.httpEncryption.createHttpSignStr(
-      //   '/app/appPage/findAppPolymerizationInfo',
-      //   { method: 'GET', headers, body: {}, search: params },
-      // ),
-    },
+    headers,
   });
 }

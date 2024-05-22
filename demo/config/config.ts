@@ -22,12 +22,6 @@ export default defineConfig({
   hash: false,
   npmClient: 'yarn',
   proxy: {
-    // 统一网关代理
-    '/app': {
-      target: DEV_URL,
-      changeOrigin: true,
-      // pathRewrite: { '^/app': '' },
-    },
     '/api': {
       target: EDITOR_URL,
       changeOrigin: false,
@@ -39,7 +33,7 @@ export default defineConfig({
       },
     },
   },
-  headScripts: [`/app/env/info.js`],
+  headScripts: [`/api/lcdp/env/info.js`],
   define: {
     'process.env.LCDP_HTTP_SECURITY_MODE': 1.0,
     'process.env.BASE_URL': BASE_URL,
