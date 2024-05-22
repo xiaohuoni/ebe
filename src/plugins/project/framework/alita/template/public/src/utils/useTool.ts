@@ -24,9 +24,11 @@ export const useTool = (refs: Record<string, any>) => {
 
   const getValue = (id: string, stateName?: string) => {
     if (stateName) {
-      return refs?.[id]?.[stateName];
+      return Promise.resolve(refs?.[id]?.[stateName]);
+      // return refs?.[id]?.[stateName];
     }
-    return refs?.[id]?.value;
+    // return refs?.[id]?.value;
+    return Promise.resolve(refs?.[id]?.value);
   };
 
   const setValue = (ids: Record<string, any> | string, value?: any) => {

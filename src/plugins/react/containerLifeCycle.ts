@@ -105,12 +105,26 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           type: ChunkType.STRING,
           fileType: cfg.fileType,
           name: MODAL_CHUNK_NAME.ImperativeHandle,
-          content: `React.useImperativeHandle(ref, () => ({
+          content: `useImperativeHandle(ref, () => ({
             ${events?.onOk ? 'onOk,' : ''}
             ${events?.onCancel ? 'onCancel,' : ''}
+            ${ir?.customFuctions?.length ? 'customActionMap' : ''}
           }));`,
           linkAfter: [MODAL_CHUNK_NAME.OnOk, MODAL_CHUNK_NAME.OnCancel],
         });
+      } else {
+        // 拼接useImperativeHandle
+        if (ir?.customFuctions && ir?.customFuctions.length > 0) {
+          next.chunks.push({
+            type: ChunkType.STRING,
+            fileType: cfg.fileType,
+            name: MODAL_CHUNK_NAME.ImperativeHandle,
+            content: `useImperativeHandle(ref, () => ({
+          customActionMap,
+        }));`,
+            linkAfter: [CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle],
+          });
+        }
       }
 
       // 页面生命周期

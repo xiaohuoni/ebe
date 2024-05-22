@@ -43,7 +43,7 @@ class customFuncMapping {
    * @param engineId 引擎id
    */
   remove(renderId: RenderId) {
-    if (!renderId) {
+    if (renderId) {
       this.mapping.delete(renderId);
       this.rennderIdMap = this.rennderIdMap.filter((i) => i !== renderId);
     } else {

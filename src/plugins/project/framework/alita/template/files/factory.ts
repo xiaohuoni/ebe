@@ -34,7 +34,7 @@ export default function getFile(
   const file = createResultFile(
     'factory',
     'tsx',
-    `import React, { useImperativeHandle, useMemo } from 'react';
+    `import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';;
     import { isEqual } from 'lodash';
     import { mergeGetter } from '../utils/Context/context';
     import { useComponentHoc } from '../utils/useComponentHoc';
@@ -80,7 +80,8 @@ export default function getFile(
   
       const compProps: any = { ...props, visible: state.visible };
   
-      const componentRef = React.useRef({});
+      const [componentRef, setComponentRef] = useState({});
+      const isDidComponentRef = useRef(false);
   
       if (onChangeHandle) {
         compProps[fieldProps?.trigger!] = onChangeHandle;
@@ -133,10 +134,8 @@ export default function getFile(
       }
   
       useImperativeHandle(ref, () =>
-        mergeGetter(
-          imperative,
-          componentRef.current,
-        ),
+        mergeGetter(imperative, componentRef),
+        [componentRef]
       );
       ${
         componentWillMount
@@ -147,7 +146,18 @@ export default function getFile(
       }
   
       // 统一处理部分逻辑
-      return <Component {...compProps} {...(compProps?.extendProps || {})} ref= {componentRef}/>;
+      return (
+        <Component
+          {...compProps}
+          {...(compProps?.extendProps || {})}
+          ref={(ref: any) => {
+            if (ref && isDidComponentRef.current === false) {
+              isDidComponentRef.current = true;
+              setComponentRef(ref);
+            }
+          }}
+        />
+      );
     });
   
     return HOC;

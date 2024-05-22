@@ -116,22 +116,22 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       // 普通页面
       export const PageComent = React.forwardRef<any, any>((props, ref) => {
         const { clientRoutes, routeComponents } = useAppData();
-        const pageRef = React.useRef<any>();
+        // const pageRef = React.useRef<any>();
         // 页面 src 可能是带参数的如 /a?b=1&c=2
         const [path] = parseSrc(props?.pageSrc);
         const Page = getPage(path, clientRoutes, routeComponents);
-        React.useImperativeHandle(ref, () => ({
-          get customActionMap() {
-            return pageRef.current?.customActionMap;
-          },
-          onOk: () => {
-            return pageRef.current?.onOk();
-          },
-          onCancel: () => {
-            return pageRef.current?.onCancel();
-          },
-        }));
-        return <Page {...props} ref={pageRef} />;
+        // React.useImperativeHandle(ref, () => ({
+        //   get customActionMap() {
+        //     return pageRef.current?.customActionMap;
+        //   },
+        //   onOk: () => {
+        //     return pageRef.current?.onOk();
+        //   },
+        //   onCancel: () => {
+        //     return pageRef.current?.onCancel();
+        //   },
+        // }));
+        return <Page {...props} ref={ref} />;
       });
       export default Hoc(Pageview, { type: 'Pageview' });
       `,

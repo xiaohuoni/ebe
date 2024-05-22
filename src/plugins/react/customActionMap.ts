@@ -69,7 +69,6 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             ModalManagerRef,
             functorsMap,
             ExpBusiObjModalRef,
-            ExpBusiObjModalRef,
             ExpSQLServiceModalRef,
             ImportBusiObjModalRef,
             lcdpApi,
@@ -134,7 +133,8 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.DidMount,
         content: `// 挂载自定义事件
-        customFuncMapping.add(createRenderId(renderId), customActionMap);`,
+        const customActionId = createRenderId(renderId);
+        customFuncMapping.add(customActionId, customActionMap);`,
         linkAfter: [
           REACT_CHUNK_NAME.DidMountStart,
           REACT_CHUNK_NAME.DidMountContent,
@@ -145,7 +145,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.WillUnmount,
         content: `// 页面销毁移除
-        customFuncMapping.remove(renderId);`,
+        customFuncMapping.remove(customActionId);`,
         linkAfter: [
           REACT_CHUNK_NAME.WillUnmountStart,
           REACT_CHUNK_NAME.WillUnmountContent,

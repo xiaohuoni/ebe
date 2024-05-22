@@ -60,6 +60,7 @@ export default function createIceJsProjectBuilder(
       components: [
         reactCommonDeps(),
         reactContainer(),
+        customActionMap(),
         containerLifeCycle(),
         reactJsx({
           nodePlugins: [alita.hooks.hackNodeAttr],
