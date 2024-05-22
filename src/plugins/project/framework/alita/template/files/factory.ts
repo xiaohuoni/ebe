@@ -133,10 +133,10 @@ export default function getFile(
         };
       }
   
-      useImperativeHandle(ref, () =>
-        mergeGetter(imperative, componentRef),
-        [componentRef]
-      );
+      useImperativeHandle(ref, () => mergeGetter(imperative, componentRef), [
+        componentRef,
+        state.visible
+      ]);
       ${
         componentWillMount
           ? `if(componentWillMount(initialProps?.uid, config?.type, initialProps, {}) === false){
