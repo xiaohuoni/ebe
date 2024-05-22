@@ -1,36 +1,38 @@
+import { setWith } from 'lodash';
 import type React from 'react';
 import type { CSSProperties } from 'react';
-import { setWith } from 'lodash';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 export interface AppViewProps {
-    style?: CSSProperties;
-    src?: string;
-    fileCode?: string;
-    backgroundType?: any;
+  style?: CSSProperties;
+  src?: string;
+  fileCode?: string;
+  backgroundType?: any;
 }
 
-const getImageSize = async (url: string): Promise<{ width: number; height: number }> => {
-    return new Promise((resolve, reject) => {
-      const image = new Image();
-      image.src = url;
-      image.onload = () => {
-        resolve({
-          width: image.width,
-          height: image.height,
-        });
-      };
-      image.onerror = (err) => {
-        reject(err);
-      };
-    });
-  };
-    
-  export { getImageSize };
-  
+const getImageSize = async (
+  url: string,
+): Promise<{ width: number; height: number }> => {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.src = url;
+    image.onload = () => {
+      resolve({
+        width: image.width,
+        height: image.height,
+      });
+    };
+    image.onerror = (err) => {
+      reject(err);
+    };
+  });
+};
+
+export { getImageSize };
+
 const useStyle = (
   props: AppViewProps,
-  ref: React.MutableRefObject<HTMLDivElement | null | undefined>
+  ref: React.MutableRefObject<HTMLDivElement | null | undefined>,
 ) => {
   const { src: imgSrc, style, backgroundType = {} } = props;
   const { mode, type, color, startColor, endColor } = backgroundType || {};

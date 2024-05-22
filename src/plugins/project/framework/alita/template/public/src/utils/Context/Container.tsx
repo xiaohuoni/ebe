@@ -1,4 +1,4 @@
-import React, { FC, createContext, useContext } from 'react';
+import React, { createContext, FC, useContext } from 'react';
 
 /* start 所有容器类组件封装 */
 const VisibleContext = createContext<boolean>(true);
@@ -30,14 +30,16 @@ export const useTopContainerHidden = () => {
  * @param props
  * @returns
  */
-const Container: FC<{ visible: boolean, children: any }> = props => {
+const Container: FC<{ visible: boolean; children: any }> = (props) => {
   const { children } = props;
   const visible = useVisible(props.visible);
-  return <VisibleContext.Provider value={visible}>{children}</VisibleContext.Provider>;
+  return (
+    <VisibleContext.Provider value={visible}>
+      {children}
+    </VisibleContext.Provider>
+  );
 };
 
 Container.displayName = 'Container';
 
-export {
-  Container,
-};
+export { Container };

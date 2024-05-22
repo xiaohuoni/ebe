@@ -30,7 +30,9 @@ export default function getFile(
       otherHash.push(c);
     }
   });
-  const containerType = Object.values(isMobile? pcconfig: appconfig).filter((i: any) => i?.isContainer === true).map((subi) => subi?.type);
+  const containerType = Object.values(isMobile ? pcconfig : appconfig)
+    .filter((i: any) => i?.isContainer === true)
+    .map((subi) => subi?.type);
   const factory = isMobile ? 'factory' : 'pcfactory';
   const file = createResultFile(
     'factory',

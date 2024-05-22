@@ -4,9 +4,9 @@ import useMovable from './useMovable';
 import usePersistFn from './usePersistFn';
 import useRefState from './useRefState';
 import useSetState from './useSetState';
+import useStyle from './useStyle';
 import useTrackedEffect from './useTrackedEffect';
 import useWhyDidYouUpdate from './useWhyDidYouUpdate';
-import useStyle from './useStyle';
 
 export * from './useUpdateEffect';
 export {
