@@ -1,6 +1,7 @@
 import { IParseResult, PostProcessor, ResultDir } from '../../../../../core';
 import { createResultDir } from '../../../../../core/utils/resultHelper';
 import { runFileGenerator } from '../../../../../core/utils/templateHelper';
+import attrSpecPage from './files/attrSpecPage';
 import constants from './files/constants';
 import customComponent from './files/customComponent';
 import env from './files/env';
@@ -46,6 +47,7 @@ export function generateStaticFiles(
   const hasIndex = !!parseResult?.staticFiles?.pageIdMapping?.['/index'];
   const isMobile = parseResult?.staticFiles?.platform === 'h5';
   runFileGenerator(postProcessors, root, constants, parseResult?.staticFiles);
+  runFileGenerator(postProcessors, root, attrSpecPage, parseResult?.staticFiles);
   runFileGenerator(
     postProcessors,
     root,

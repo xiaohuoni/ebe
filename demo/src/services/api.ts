@@ -117,6 +117,34 @@ export async function getPageVersionById(params): Promise<any> {
     },
   });
 }
+export async function qryAttrSpecPage(params): Promise<any> {
+  // 本地 mock 数据
+  if (useMock) {
+    return new Promise((resolve) => {
+      resolve(params?.pageId === '1024143466269171712' ? page1 : page2);
+    });
+  }
+  const headers: any = {
+    'Content-Type': 'application/json',
+    'APP-ID': params.appId,
+    'X-B-AUTH': 1,
+    'X-B-TARGET-ID': params.pageId,
+    'Xa-Type': '1.0',
+  };
+
+  return request('/api/lcdp/attr/qryAttrSpecPage', {
+    method: 'post',
+    // credentials: 'omit',
+    data: params,
+    headers: {
+      ...headers,
+      // 'X-SIGN': security.httpEncryption.createHttpSignStr(
+      //   '/app/appPage/getPageVersionById',
+      //   { method: 'GET', headers, body: {}, search: params },
+      // ),
+    },
+  });
+}
 
 export async function getThemeCss(params): Promise<any> {
   // 本地 mock 数据

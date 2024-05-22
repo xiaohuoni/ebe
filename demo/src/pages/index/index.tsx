@@ -4,6 +4,7 @@ import {
   findBusiCompById,
   getPageVersionById,
   getThemeCss,
+  qryAttrSpecPage,
   qryPageCompAssetList,
 } from '@/services/api';
 import { Button, Form, Input, message, Switch } from 'antd';
@@ -118,6 +119,11 @@ const Page = () => {
   const [form] = Form.useForm();
   const onFinish = async (values: any, bower: boolean = false) => {
     setLoading(true);
+
+    // 根据 appId 获取当前应用的全部页面
+    const attrSpecPage = await qryAttrSpecPage({
+      appId: values.appId,
+    });
 
     // 根据 appId 获取当前应用的全部页面
     const { resultObject } = await findAppPolymerizationInfo({
@@ -252,6 +258,9 @@ const Page = () => {
       compAssetList: compAssetList?.resultObject || [],
       baseUrl: process.env.BASE_URL,
       appConfig,
+      attrSpecPage: (attrSpecPage?.resultObject?.list || []).map(
+        (i: any) => i.attrNbr,
+      ),
     };
     let cleanedTree = cleanTree(pageDSLS, ['path']); // 清理字段'b'和字段'e'
     console.log('cleanedTree', cleanedTree);
@@ -296,8 +305,8 @@ const Page = () => {
         autoComplete="off"
         onFinish={onFinish}
         initialValues={{
-          appId: '1089426139952508928',
-          pageId: '1092740651769905152',
+          appId: '1107846612411265024',
+          pageId: '',
           platform: false,
         }}
       >
