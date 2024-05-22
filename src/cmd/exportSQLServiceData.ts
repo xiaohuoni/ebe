@@ -1,7 +1,6 @@
 import { CMDGeneratorPrames } from '../core/types';
 import { CMDGeneratorEvent } from '../core/utils/CMDGenerator';
 import { parse2Var } from '../core/utils/compositeType';
-import { GeneratorCallbackWithThenCatch } from './utils';
 
 export function exportSQLServiceData({
   value,
@@ -29,18 +28,18 @@ export function exportSQLServiceData({
   const onSuccessStr =
     Array.isArray(callback1) && callback1.length
       ? // @ts-ignore
-      `onSuccess: ${CMDGeneratorEvent(
-        callback1,
-        { platform },
-        scope,
-        config,
-      )},`
+        `onSuccess: ${CMDGeneratorEvent(
+          callback1,
+          { platform },
+          scope,
+          config,
+        )},`
       : '\n';
 
   const onFailStr =
     Array.isArray(callback2) && callback2.length
       ? // @ts-ignore
-      `onFail: ${CMDGeneratorEvent(callback2, { platform }, scope, config)},`
+        `onFail: ${CMDGeneratorEvent(callback2, { platform }, scope, config)},`
       : '\n';
 
   return `

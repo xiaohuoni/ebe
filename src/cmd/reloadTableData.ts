@@ -2,10 +2,7 @@ import { CMDGeneratorPrames } from '../core/types';
 import { parse2Var } from '../core/utils/compositeType';
 import { GeneratorCallbackWithThenCatch } from './utils';
 export function reloadTableData(generateParams: CMDGeneratorPrames): string {
-
-  const {
-    value,
-  } = generateParams;
+  const { value } = generateParams;
   const { options } = value;
   const { data, total, current, compId } = options;
 
@@ -17,10 +14,7 @@ export function reloadTableData(generateParams: CMDGeneratorPrames): string {
   })})
   `;
 
-  return GeneratorCallbackWithThenCatch(
-    code,
-    generateParams,
-  );
+  return GeneratorCallbackWithThenCatch(code, generateParams);
 }
 
 export default reloadTableData;

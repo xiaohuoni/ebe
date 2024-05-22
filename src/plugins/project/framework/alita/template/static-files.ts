@@ -47,7 +47,12 @@ export function generateStaticFiles(
   const hasIndex = !!parseResult?.staticFiles?.pageIdMapping?.['/index'];
   const isMobile = parseResult?.staticFiles?.platform === 'h5';
   runFileGenerator(postProcessors, root, constants, parseResult?.staticFiles);
-  runFileGenerator(postProcessors, root, attrSpecPage, parseResult?.staticFiles);
+  runFileGenerator(
+    postProcessors,
+    root,
+    attrSpecPage,
+    parseResult?.staticFiles,
+  );
   runFileGenerator(
     postProcessors,
     root,

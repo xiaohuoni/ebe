@@ -22,23 +22,29 @@ export function importCustomBusiObjectData({
     busiObjectFields?.map?.((field: any) => field),
   );
   // 指令添加上下文事件生成
-  callback1.params = [{ name: `resultObject_${options.id}` }, { name: `resultMsg_${options.id}` }];
-  callback2.params = [{ name: `resultObject_${options.id}` }, { name: `resultMsg_${options.id}` }];
+  callback1.params = [
+    { name: `resultObject_${options.id}` },
+    { name: `resultMsg_${options.id}` },
+  ];
+  callback2.params = [
+    { name: `resultObject_${options.id}` },
+    { name: `resultMsg_${options.id}` },
+  ];
   const onSuccessStr =
     Array.isArray(callback1) && callback1.length
       ? // @ts-ignore
-      `onSuccess: ${CMDGeneratorEvent(
-        callback1,
-        { platform },
-        scope,
-        config,
-      )},`
+        `onSuccess: ${CMDGeneratorEvent(
+          callback1,
+          { platform },
+          scope,
+          config,
+        )},`
       : '\n';
 
   const onFailStr =
     Array.isArray(callback2) && callback2.length
       ? // @ts-ignore
-      `onFail: ${CMDGeneratorEvent(callback2, { platform }, scope, config)},`
+        `onFail: ${CMDGeneratorEvent(callback2, { platform }, scope, config)},`
       : '\n';
 
   return `// 自定义导入业务对象数据

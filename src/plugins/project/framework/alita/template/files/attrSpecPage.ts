@@ -10,5 +10,5 @@ export default function getFile(
     `export const attrSpecPage = ${JSON.stringify(config?.attrSpecPage || [])}`,
   );
 
-  return [['src', 'utils'],file];
+  return [['src', 'utils'], file];
 }
