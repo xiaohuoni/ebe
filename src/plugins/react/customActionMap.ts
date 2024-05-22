@@ -133,7 +133,6 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.DidMount,
         content: `// 挂载自定义事件
-        const customActionId = createRenderId(renderId);
         customFuncMapping.add(customActionId, customActionMap);`,
         linkAfter: [
           REACT_CHUNK_NAME.DidMountStart,

@@ -17,6 +17,7 @@ import locales from '@lingxiteam/engine-${
 import { pageStaticData } from '@/components/Pageview';
 import BannerModal from '@/components/BannerModal';
 import ExpBusiObjModal from '@/components/ExpBusiObjModal';
+import { createRenderId } from '@/utils/customFuncMapping';
 import ImportBusiObjModal from '@/components/ImportBusiObjModal';
 import ExpSQLServiceModal from "@/components/ExpSQLServiceModal";
 import * as functorsMap from '@/utils/functors';
@@ -65,6 +66,8 @@ export const withPageHOC = (
     const renderId = props?.$$componentItem?.uid ?? options.renderId;
     const location = useLocation();
     const refs = useRef<Record<string, any>>({}).current;
+    // 挂载自定义事件
+    const customActionId = useRef<string>();
     const { ModalManagerRef, refs: renerRefs, appId } = useContext(Context);
     const ExpBusiObjModalRef = React.useRef<any>();
     const ExpSQLServiceModalRef = React.useRef<any>();
@@ -315,6 +318,7 @@ export const withPageHOC = (
     };
     useEffect(() => {
       init();
+      customActionId.current = createRenderId(renderId)
     }, []);
     // // 可以在这里加 loading
     if (loading === true) {
@@ -343,6 +347,7 @@ export const withPageHOC = (
           ExpBusiObjModalRef={ExpBusiObjModalRef}
           ImportBusiObjModalRef={ImportBusiObjModalRef}
           BannerModal={BannerModal}
+          customActionId={customActionId.current}
         />
         ${
           isMobile

@@ -63,7 +63,7 @@ export default function hackEngineApis(
     // 业务组件的 pageId 来自 页面
     pieces.unshift({
       type: PIECE_TYPE.ATTR,
-      value: `lcdpParentRenderId={renderId}`,
+      value: `lcdpParentRenderId={customActionId}`,
     });
   }
   if (nodeTags === 'TabPane' || nodeTags === 'CollapsePanel') {
@@ -218,7 +218,7 @@ export default function hackEngineApis(
   if (nodeTags === 'Pageview' || nodeTags === 'Popover') {
     pieces.push({
       type: PIECE_TYPE.ATTR,
-      value: `lcdpParentRenderId={renderId}`,
+      value: `lcdpParentRenderId={customActionId}`,
     });
   }
   // className='View_View_938709'

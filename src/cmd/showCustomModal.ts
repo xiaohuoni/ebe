@@ -24,7 +24,7 @@ export function showCustomModal({
       : '\n';
   return `ModalManagerRef?.current?.openModal({pagePath: '${
     params.pagePath
-  }', lcdpParentRenderId: renderId, params: ${parse2Var(
+  }', lcdpParentRenderId: customActionId, params: ${parse2Var(
     params.params,
   )}, ${onOkString}})`;
 }

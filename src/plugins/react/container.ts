@@ -74,6 +74,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           ExpBusiObjModalRef,
           ImportBusiObjModalRef,
           BannerModal,
+          customActionId,
           lcdpParentRenderId,
           ${isModal ? 'onOk: fatherOnOk,' : ''}
           ${isModal ? 'closeModal' : ''}
