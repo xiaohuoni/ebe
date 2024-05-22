@@ -1,24 +1,24 @@
-import { useEffect, DependencyList, useRef } from "react"
+import { DependencyList, useEffect, useRef } from 'react';
 
-interface LifeCycleOptions { 
+interface LifeCycleOptions {
   mountCond: () => boolean;
   monutDeps: DependencyList;
   stateDeps: DependencyList;
 }
 
-const useLifeCyle = (options: LifeCycleOptions) => { 
+const useLifeCyle = (options: LifeCycleOptions) => {
   const { mountCond = () => true, monutDeps, stateDeps } = options;
 
   const lifeCycleCbRef = useRef({
-    mount: () => { },
-    unmounted: () => { },
-    stateChange: () => { },
+    mount: () => {},
+    unmounted: () => {},
+    stateChange: () => {},
   });
 
-  const todoStateChanageRef = useRef(() => { });
+  const todoStateChanageRef = useRef(() => {});
 
   const didMountRef = useRef(false);
-  
+
   // 执行生命周期逻辑
   useEffect(() => {
     if (mountCond()) {
@@ -28,7 +28,6 @@ const useLifeCyle = (options: LifeCycleOptions) => {
 
         // 页面加载完成后 执行一次组件状态变更
         todoStateChanageRef.current();
-
       }
     }
   }, monutDeps);
@@ -44,32 +43,34 @@ const useLifeCyle = (options: LifeCycleOptions) => {
   }, stateDeps);
 
   // 页面卸载
-  useEffect(() => () => { 
-    lifeCycleCbRef.current.unmounted();
-  }, [])
+  useEffect(
+    () => () => {
+      lifeCycleCbRef.current.unmounted();
+    },
+    [],
+  );
 
   /**
    * 页面加载完成
-   * @param callback 
+   * @param callback
    */
-  const useMount = (callback: () => void) => { 
+  const useMount = (callback: () => void) => {
     lifeCycleCbRef.current.mount = callback;
-  }
+  };
 
-  const useUnmounted = (callback: () => void) => { 
+  const useUnmounted = (callback: () => void) => {
     lifeCycleCbRef.current.unmounted = callback;
-  }
+  };
 
-  const useStateChange = (callback: () => void) => { 
+  const useStateChange = (callback: () => void) => {
     lifeCycleCbRef.current.stateChange = callback;
-  }
-
+  };
 
   return {
     useMount,
     useUnmounted,
     useStateChange,
-  }
-}
+  };
+};
 
 export default useLifeCyle;
