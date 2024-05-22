@@ -85,10 +85,10 @@ export const mobileLayout = {
       export function getKeepAlive(keepalive: any) {
         return ${JSON.stringify(ir.keepalive)};
       }
-${fetchSuccess}
-${fetchSendBefore}
-${fetchFail}
-${fetchResponse}
+${fetchSuccess ?? ''}
+${fetchSendBefore ?? ''}
+${fetchFail ?? ''}
+${fetchResponse ?? ''}
  
 // 请求中间件 就是发起请求和响应之后需要统一操作数据就写这
 const middleware = async (ctx: Context, next: () => void) => {
