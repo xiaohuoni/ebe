@@ -6,6 +6,7 @@ import useRefState from './useRefState';
 import useSetState from './useSetState';
 import useTrackedEffect from './useTrackedEffect';
 import useWhyDidYouUpdate from './useWhyDidYouUpdate';
+import useStyle from './useStyle';
 
 export * from './useUpdateEffect';
 export {
@@ -17,4 +18,5 @@ export {
   useTrackedEffect,
   useRefState,
   useHiddenStyle,
+  useStyle,
 };

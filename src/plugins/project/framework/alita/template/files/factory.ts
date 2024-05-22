@@ -30,6 +30,7 @@ export default function getFile(
       otherHash.push(c);
     }
   });
+  const containerType = Object.values(isMobile? pcconfig: appconfig).filter((i: any) => i?.isContainer === true).map((subi) => subi?.type);
   const factory = isMobile ? 'factory' : 'pcfactory';
   const file = createResultFile(
     'factory',
@@ -37,6 +38,7 @@ export default function getFile(
     `import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';;
     import { isEqual } from 'lodash';
     import { mergeGetter } from '../utils/Context/context';
+    import { Container } from '../utils/Context/Container';
     import { useComponentHoc } from '../utils/useComponentHoc';
   
   import {${Object.keys(formHash)
@@ -58,7 +60,8 @@ export default function getFile(
     }
     return false;
   };
-  
+  // 容器类组件
+  const containerType = ${JSON.stringify(containerType)}
   ${componentWillMount ? componentWillMount : ''}
   export const Hoc = (Component: any, config?:any) => {
     const fieldPropsChange = () => {};
@@ -144,7 +147,22 @@ export default function getFile(
       }`
           : ''
       }
-  
+      if (containerType.includes(props.$$componentItem.type)) {
+        return (
+          <Container visible={state.visible}>
+            <Component
+              {...compProps}
+              {...(compProps?.extendProps || {})}
+              ref={(ref: any) => {
+                if (ref && isDidComponentRef.current === false) {
+                  isDidComponentRef.current = true;
+                  setComponentRef(ref);
+                }
+              }}
+            />
+          </Container>
+        );
+      }
       // 统一处理部分逻辑
       return (
         <Component

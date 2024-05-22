@@ -22,6 +22,7 @@ import ImportBusiObjModal from '@/components/ImportBusiObjModal';
 import ExpSQLServiceModal from "@/components/ExpSQLServiceModal";
 import * as functorsMap from '@/utils/functors';
 import Sandbox from '@lingxiteam/engine-sandbox';
+import { useTopContainerHidden } from './Context/Container';
 import {
   i18n,
 } from '@lingxiteam/engine-utils';
@@ -241,6 +242,7 @@ export const withPageHOC = (
             getLocaleEnv,
             locale,
             language,
+            useTopContainerHidden,
             // 打开弹窗能力
             openModal: (data: any) =>
               ModalManagerRef.current?.openModal({

@@ -22,7 +22,7 @@ export function showCustomModal({
       ? // @ts-ignore
         `onOk: ${CMDGeneratorEvent(callback1, { platform }, scope, config)}`
       : '\n';
-  return `ModalManagerRef?.current?.openModal({pagePath: '${
+  return `// 打开弹窗\n ModalManagerRef?.current?.openModal({pagePath: '${
     params.pagePath
   }', lcdpParentRenderId: customActionId, params: ${parse2Var(
     params.params,

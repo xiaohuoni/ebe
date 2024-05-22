@@ -22,11 +22,14 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.InternalDepsImport,
       content: `
+      import React, { useRef, useImperativeHandle } from 'react';
       import { useAppData } from 'alita';
         import { parse } from 'qs';
-        import React from 'react';
         import useListenProps from '@/hooks/useListenProps';
-        import { Hoc } from '../factory'
+        import { Hoc } from '../factory';
+        import { useTopContainerHidden } from '@/utils/Context/Container';
+        import { useHiddenStyle } from '@/utils/hooks';
+        import classNames from 'classnames';
       `,
       linkAfter: [COMMON_CHUNK_NAME.ExternalDepsImport],
     });
@@ -87,15 +90,20 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       }
       // 页面容器
       const Pageview = React.forwardRef<any, any>((props, ref) => {
+        const { className, visible, style } = props;
         const { clientRoutes, routeComponents } = useAppData();
         const [pageState, setPageState] = useListenProps(props?.state);
         const [pageSrc, setPageSrc] = useListenProps(props?.pageSrc);
 
         // 页面 src 可能是带参数的如 /a?b=1&c=2
         const [path, query] = parseSrc(pageSrc);
-        const pageRef = React.useRef<any>();
+        const pageRef = useRef<any>();
         const Page = getPage(path, clientRoutes, routeComponents);
-
+        const isDid = useRef(false);
+        // 获取上层容器是否被隐藏
+        // 获取上层容器是否被隐藏
+        const topHidden = useTopContainerHidden();
+        const hiddenStyle = useHiddenStyle(visible, style);
         React.useImperativeHandle(ref, () => ({
           renderId: props.$$componentItem.uid,
           get customActionMap () {
@@ -110,8 +118,26 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
             }
           }
         }))
-
-        return <Page {...props} extraUrlParam={query} state={{ ...pageState, ...query }} ref={pageRef} />;
+        if (isDid.current !== true) {
+          // 如果上层隐藏，就不要渲染，加载接口等
+          if (topHidden || !props.visible) {
+            return null;
+          }
+        }
+        isDid.current = true;
+        return (
+          <div
+          className={classNames('lcdp-pageview', \`\${className}\`)}
+          style={hiddenStyle}
+        >
+          <Page
+            {...props}
+            extraUrlParam={query}
+            state={{ ...pageState, ...query }}
+            ref={pageRef}
+          />
+          </div>
+        );
       });
       // 普通页面
       export const PageComent = React.forwardRef<any, any>((props, ref) => {
