@@ -71,7 +71,7 @@ function generateAttrValue(
   // 当是空字符串的时候，不进行赋值处理
   if (valueStr === '') {
     return [];
-  } 
+  }
   return [
     {
       type: PIECE_TYPE.ATTR,
