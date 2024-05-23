@@ -37,11 +37,13 @@ export default function getFile(
   const file = createResultFile(
     'factory',
     'tsx',
-    `import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';;
+    `import React, { useImperativeHandle, useMemo, useRef, useState, useEffect } from 'react';;
     import { isEqual } from 'lodash';
     import { mergeGetter } from '../utils/Context/context';
     import { Container } from '../utils/Context/Container';
     import { useComponentHoc } from '../utils/useComponentHoc';
+    import { usePageProvider } from '@/utils/Context/Container';
+
   
   import {${Object.keys(formHash)
     .map((i) => i + ' as _' + i)
@@ -82,11 +84,12 @@ export default function getFile(
         config: { fieldProps },
         fieldPropsChange,
       });
+
+      const { registerRefs } = usePageProvider();
   
       const compProps: any = { ...props, visible: state.visible };
   
-      const [componentRef, setComponentRef] = useState({});
-      const isDidComponentRef = useRef(false);
+      const compRef = useRef<Record<string, any>>({}); // 组件库的ref
   
       if (onChangeHandle) {
         compProps[fieldProps?.trigger!] = onChangeHandle;
@@ -138,10 +141,27 @@ export default function getFile(
         };
       }
   
-      useImperativeHandle(ref, () => mergeGetter(imperative, componentRef), [
-        componentRef,
-        state.visible
-      ]);
+      // 更新refs
+      const uploadRef = (refInstance?: Record<string, any>) => {
+        if (refInstance) {
+          compRef.current = refInstance;
+        }
+
+        const ref = mergeGetter(imperative, compRef.current);
+        if (props?.$$componentItem?.uid) {
+          registerRefs(ref, props?.$$componentItem?.uid)
+        }
+      }
+
+      useEffect(() => {
+        uploadRef();
+      });
+
+      useEffect(() => () => {
+        // 注销ref
+        registerRefs(null, props?.$$componentItem?.uid);
+      }, []);
+
       ${
         componentWillMount
           ? `if(componentWillMount(initialProps?.uid, config?.type, initialProps, {}) === false){
@@ -155,12 +175,7 @@ export default function getFile(
             <Component
               {...compProps}
               {...(compProps?.extendProps || {})}
-              ref={(ref: any) => {
-                if (ref && isDidComponentRef.current === false) {
-                  isDidComponentRef.current = true;
-                  setComponentRef(ref);
-                }
-              }}
+              ref={uploadRef}
             />
           </Container>
         );
@@ -170,12 +185,7 @@ export default function getFile(
         <Component
           {...compProps}
           {...(compProps?.extendProps || {})}
-          ref={(ref: any) => {
-            if (ref && isDidComponentRef.current === false) {
-              isDidComponentRef.current = true;
-              setComponentRef(ref);
-            }
-          }}
+          ref={uploadRef}
         />
       );
     });

@@ -20,6 +20,7 @@ import ExpBusiObjModal from '@/components/ExpBusiObjModal';
 import { createRenderId } from '@/utils/customFuncMapping';
 import ImportBusiObjModal from '@/components/ImportBusiObjModal';
 import ExpSQLServiceModal from "@/components/ExpSQLServiceModal";
+import { PageProvider } from '@/utils/Context/Container';
 import * as functorsMap from '@/utils/functors';
 import Sandbox from '@lingxiteam/engine-sandbox';
 import { useTopContainerHidden } from './Context/Container';
@@ -136,13 +137,13 @@ export const withPageHOC = (
     }
 
    } 
-    const setComponentRef = (r: any, comId: string) => {
-      if (r) {
-        // @ts-ignore
-        refs[comId] = r;
-      }
-      renerRefs.setSystemRef(renderId, refs);
-    }
+    // const setComponentRef = (r: any, comId: string) => {
+    //   if (r) {
+    //     // @ts-ignore
+    //     refs[comId] = r;
+    //   }
+    //   renerRefs.setSystemRef(renderId, refs);
+    // }
     const { getLocaleLanguage, getLocale, getLocaleEnv, locale, language } =
       i18n.useLocale(
         {
@@ -328,12 +329,20 @@ export const withPageHOC = (
     }
     return (
       <>
+      <PageProvider value={{
+        registerRefs: (ref, id) => {
+          if (ref) {
+            // @ts-ignore
+            refs[id] = ref;
+          }
+          renerRefs.setSystemRef(renderId, refs);
+        }
+      }}>
         <WrappedComponent
           {...props}
           urlParam={urlParam}
           ref={ref}
           refs={refs}
-          setComponentRef={setComponentRef}
           lcdpParentRenderId={props.lcdpParentRenderId}
           renerRefs={renerRefs}
           lcdpApi={lcdpApi}
@@ -351,6 +360,7 @@ export const withPageHOC = (
           BannerModal={BannerModal}
           customActionId={customActionId.current}
         />
+        </PageProvider>
         ${
           isMobile
             ? ''
