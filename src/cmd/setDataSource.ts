@@ -241,22 +241,6 @@ export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
     }
   }
 
-  const callback1Code = CMDGeneratorFunction(
-    callback1,
-    {},
-    platform,
-    scope,
-    config,
-  );
-
-  const callback2Code = CMDGeneratorFunction(
-    callback2,
-    {},
-    platform,
-    scope,
-    config,
-  );
-
   return GeneratorCallbackWithThenCatch(
     `
   // 更新数据源 ${dataSourceName}
