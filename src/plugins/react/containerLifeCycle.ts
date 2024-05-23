@@ -72,7 +72,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           fileType: cfg.fileType,
           name: MODAL_CHUNK_NAME.OnOk,
           content: events?.onOk
-            ? `const onOk = ()=>{ ${generateFunction(
+            ? `const onOk = async ()=>{ ${generateFunction(
                 events?.onOk,
                 {
                   name: ir.platform,
@@ -90,7 +90,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           fileType: cfg.fileType,
           name: MODAL_CHUNK_NAME.OnCancel,
           content: events?.onCancel
-            ? `const onCancel = ()=>{ ${generateFunction(
+            ? `const onCancel = async ()=>{ ${generateFunction(
                 events?.onCancel,
                 {
                   name: ir.platform,
