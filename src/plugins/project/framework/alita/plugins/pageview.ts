@@ -159,7 +159,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         // }));
         return <Page {...props} ref={ref} />;
       });
-      export default Hoc(Pageview, { type: 'Pageview' });
+      export default Hoc(Pageview, { type: 'Pageview', // 容器类组件标识 \n isContainer: true });
       `,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,

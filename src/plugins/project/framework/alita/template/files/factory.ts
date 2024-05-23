@@ -64,12 +64,10 @@ export default function getFile(
     }
     return false;
   };
-  // 容器类组件
-  const containerType = ${JSON.stringify(containerType)}
   ${componentWillMount ? componentWillMount : ''}
   export const Hoc = (Component: any, config?:any) => {
     const fieldPropsChange = () => {};
-    const { type, fieldProps } = config;
+    const { type, fieldProps, isContainer } = config;
     const { run } = preprocessMethods(type, {
       extraData: {}
     });
@@ -169,7 +167,8 @@ export default function getFile(
       }`
           : ''
       }
-      if (containerType.includes(props.$$componentItem.type)) {
+      // 容器类组件
+      if (isContainer === true) {
         return (
           <Container visible={state.visible}>
             <Component
@@ -195,18 +194,27 @@ export default function getFile(
   // 低代码组件中，表单组件，要根据 fieldProps 配置，操作 value 和 setValue
   ${Object.keys(formHash)
     .map(
-      (i) =>
-        `  export const ${i} = Hoc(_${i}, {
+      (i) =>{
+      const isContainer = containerType.includes(i) ? '// 容器类组件 \n isContainer : true,' : '';
+      return ` export const ${i} = Hoc(_${i}, {
           fieldProps: ${parse2Var(formHash[i])},
+          ${isContainer}
           type: ${parse2Var(i)}
-        });`,
+
+        });`
+      }
+      ,
     )
     .join('\n')}
     ${otherHash
       .map(
-        (i) => `  export const ${i} = Hoc(_${i}, {
-      type: ${parse2Var(i)}
-    });`,
+        (i) => {
+          const isContainer = containerType.includes(i) ? '// 容器类组件 \n isContainer : true,' : '';
+         return `  export const ${i} = Hoc(_${i}, {
+           ${isContainer}
+            type: ${parse2Var(i)}
+          });`
+        },
       )
       .join('\n')}
   `,
