@@ -6,7 +6,7 @@ import {
   LXProjectOptions,
 } from '../core';
 import esModule from '../core/plugins/common/esmodule';
-import { prettier } from '../core/postprocessor';
+import { babel, prettier } from '../core/postprocessor';
 import { SchemaParser } from '../parser/SchemaParser';
 import alita from '../plugins/project/framework/alita';
 import reactContainer from '../plugins/react/container';
@@ -172,7 +172,7 @@ export default function createIceJsProjectBuilder(
         }),
       ],
     },
-    postProcessors: [prettier()],
+    postProcessors: [babel(), prettier()],
     // postProcessors: [], //const i = props[props.indexKey] ?? props?.i;
   });
 }
