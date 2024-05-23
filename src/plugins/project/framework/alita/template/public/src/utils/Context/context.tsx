@@ -5,6 +5,7 @@ export const Context = React.createContext<{
   ModalManagerRef: React.MutableRefObject<any>;
   refs: any;
   appId: string;
+  attrDataMap: Record<string, any>
 }>({} as any);
 
 type objectType = Record<string, any>;
@@ -87,10 +88,6 @@ export class RefsManager {
   };
   public getComRefs = (renderId: string) => {
     return this.systemRef[renderId] || {};
-  };
-
-  public getCustomActionMapRef = (renderId: string): Record<string, any> => {
-    return this.sysCustomActionMapRef[renderId] || {};
   };
   public get refs(): any {
     return this.systemRef;
