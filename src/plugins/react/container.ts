@@ -375,7 +375,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     })`;
 
     if (ir.containerType === 'BusiComp') {
-      exportCode = `Hoc(${exportCode}, { type: "BOFramer" })`;
+      exportCode = `Hoc(${exportCode}, { type: "BOFramer", // 容器组件\n isContainer: true })`;
     }
 
     next.chunks.push({
