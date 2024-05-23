@@ -6,6 +6,7 @@ import {
 import { generateFunction } from '../../core/utils/jsExpression';
 import {
   CUSTOM_ACTION_CHUNK_NAME,
+  LIFE_CYCLE_CHUNK_NAME,
   MODAL_CHUNK_NAME,
   REACT_CHUNK_NAME,
 } from './const';
@@ -149,9 +150,9 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: cfg.fileType,
-        name: REACT_CHUNK_NAME.DidUpdateContent,
+        name: LIFE_CYCLE_CHUNK_NAME.UseStateUpdateContent,
         content: events?.stateChange ? 'stateChange()' : '',
-        linkAfter: [REACT_CHUNK_NAME.DidUpdateStart],
+        linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseStateUpdateStart],
       });
       next.chunks.push({
         type: ChunkType.STRING,
@@ -193,9 +194,9 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: cfg.fileType,
-        name: REACT_CHUNK_NAME.WillUnmountContent,
+        name: LIFE_CYCLE_CHUNK_NAME.UseUnMountContent,
         content: events?.willUnmount ? 'willUnmount()' : '',
-        linkAfter: [REACT_CHUNK_NAME.WillUnmountStart],
+        linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseUnMountStart],
       });
 
       if (events?.useEffect) {
@@ -216,9 +217,9 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: cfg.fileType,
-        name: REACT_CHUNK_NAME.DidMountContent,
+        name: LIFE_CYCLE_CHUNK_NAME.UseMountContent,
         content: events?.useEffect ? 'didMount()' : '',
-        linkAfter: [REACT_CHUNK_NAME.DidMountStart],
+        linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseMountStart],
       });
     }
     return next;

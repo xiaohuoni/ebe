@@ -7,6 +7,7 @@ import {
 import {
   CUSTOM_ACTION_CHUNK_NAME,
   DATA_SOURCE_CHUNK_NAME,
+  LIFE_CYCLE_CHUNK_NAME,
   PAGE_TOOL_CHUNK_NAME,
   REACT_CHUNK_NAME,
 } from './const';
@@ -196,6 +197,109 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       ],
     });
 
+    ir.deps?.push(getImportFrom('@/hooks/useLifeCycle', 'useLifeCycle', false));
+
+    // 生命周期引入
+    next.chunks.push({
+      type: ChunkType.STRING,
+      fileType: FileType.TSX,
+      name: LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks,
+      content: `
+      // 获取生命周期
+      const { useMount, useStateUpdate, useUnmounted } = useLifeCycle({
+        monutDeps: [dataReadyComplete],
+        stateDeps: [state],
+        mountCond: () => dataReadyComplete,
+      })
+      `,
+      linkAfter: [
+        REACT_CHUNK_NAME.DidUpdateEnd,
+        REACT_CHUNK_NAME.DidMountContent,
+        REACT_CHUNK_NAME.DidMountStart,
+        REACT_CHUNK_NAME.WillUnmountEnd,
+      ],
+    });
+
+    // 页面加载完成开始
+    next.chunks.push({
+      type: ChunkType.STRING,
+      fileType: FileType.TSX,
+      name: LIFE_CYCLE_CHUNK_NAME.UseMountStart,
+      content: `
+      // 页面加载完成
+      useMount(() => {\n`,
+      linkAfter: [
+        LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks,
+      ],
+    });
+
+    // 页面加载完成结束
+    next.chunks.push({
+      type: ChunkType.STRING,
+      fileType: FileType.TSX,
+      name: LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
+      content: `\n})`,
+      linkAfter: [
+        LIFE_CYCLE_CHUNK_NAME.UseMountContent,
+        LIFE_CYCLE_CHUNK_NAME.UseMountStart,
+      ],
+    });
+
+    // 页面状态变更开始
+    next.chunks.push({
+      type: ChunkType.STRING,
+      fileType: FileType.TSX,
+      name: LIFE_CYCLE_CHUNK_NAME.UseStateUpdateStart,
+      content: `
+      // 组件状态发生变化
+      useStateUpdate(() => {\n`,
+      linkAfter: [
+        LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
+        LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks,
+      ],
+    });
+
+    // 页面状态变更结束
+    next.chunks.push({
+      type: ChunkType.STRING,
+      fileType: FileType.TSX,
+      name: LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
+      content: `\n})`,
+      linkAfter: [
+        LIFE_CYCLE_CHUNK_NAME.UseStateUpdateContent,
+        LIFE_CYCLE_CHUNK_NAME.UseStateUpdateStart,
+      ],
+    });
+
+     // 页面卸载开始
+     next.chunks.push({
+      type: ChunkType.STRING,
+      fileType: FileType.TSX,
+      name: LIFE_CYCLE_CHUNK_NAME.UseUnMountStart,
+       content: `
+        // 页面将要卸载
+       useUnmounted(() => {\n`,
+      linkAfter: [
+        LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
+        LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
+        LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks,
+      ],
+     });
+    
+    // 页面卸载结束
+    next.chunks.push({
+      type: ChunkType.STRING,
+      fileType: FileType.TSX,
+      name: LIFE_CYCLE_CHUNK_NAME.UseUnMountEnd,
+      content: `\n})\n`,
+      linkAfter: [
+        LIFE_CYCLE_CHUNK_NAME.UseUnMountContent,
+        LIFE_CYCLE_CHUNK_NAME.UseUnMountStart,
+      ],
+    });
+
+
+
     if (ir.pageContainerType === 'BusiComp') {
       ir.deps?.push(getImportFrom('../factory', 'Hoc', true));
     }
@@ -209,6 +313,9 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       }`,
       linkAfter: [
         ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
+        LIFE_CYCLE_CHUNK_NAME.UseUnMountEnd,
+        LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
+        LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
         REACT_CHUNK_NAME.DidMountEnd,
         REACT_CHUNK_NAME.DidUpdateEnd,
         REACT_CHUNK_NAME.WillUnmountEnd,
@@ -221,6 +328,9 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       content: 'return (',
       linkAfter: [
         ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
+        LIFE_CYCLE_CHUNK_NAME.UseUnMountEnd,
+        LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
+        LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
         REACT_CHUNK_NAME.DidMountEnd,
         REACT_CHUNK_NAME.DidUpdateEnd,
         REACT_CHUNK_NAME.WillUnmountEnd,

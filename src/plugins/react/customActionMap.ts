@@ -14,7 +14,7 @@ import {
 import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
 import { getImportFrom } from '../../utils/depsHelper';
 import { getEvents } from '../../utils/schema/parseDsl';
-import { CUSTOM_ACTION_CHUNK_NAME, REACT_CHUNK_NAME } from './const';
+import { CUSTOM_ACTION_CHUNK_NAME, LIFE_CYCLE_CHUNK_NAME, REACT_CHUNK_NAME } from './const';
 
 const getSaleEventName = (eventName: any) => {
   const sale =
@@ -135,6 +135,8 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         content: `// 挂载自定义事件
         customFuncMapping.add(customActionId, customActionMap);`,
         linkAfter: [
+          LIFE_CYCLE_CHUNK_NAME.UseMountStart,
+          LIFE_CYCLE_CHUNK_NAME.UseMountContent,
           REACT_CHUNK_NAME.DidMountStart,
           REACT_CHUNK_NAME.DidMountContent,
         ],
@@ -146,6 +148,8 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         content: `// 页面销毁移除
         customFuncMapping.remove(customActionId);`,
         linkAfter: [
+          LIFE_CYCLE_CHUNK_NAME.UseUnMountStart,
+          LIFE_CYCLE_CHUNK_NAME.UseMountContent,
           REACT_CHUNK_NAME.WillUnmountStart,
           REACT_CHUNK_NAME.WillUnmountContent,
         ],

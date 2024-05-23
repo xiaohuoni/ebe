@@ -14,6 +14,20 @@ export const REACT_CHUNK_NAME = {
   WillUnmountContent: 'ReactComponentWillUnmountContent',
 };
 
+
+export const LIFE_CYCLE_CHUNK_NAME = {
+  CallLifeCycleHooks: 'CallLifeCycleHooks',
+  UseMountStart: 'UseMountStart',
+  UseMountEnd: 'UseMountEnd',
+  UseMountContent: 'UseMountContent',
+  UseUnMountStart: 'UseUnMountStart',
+  UseUnMountContent: 'UseUnMountContent',
+  UseUnMountEnd: 'UseUnMountEnd',
+  UseStateUpdateStart: 'UseStateUpdateStart',
+  UseStateUpdateContent: 'UseStateUpdateContent',
+  UseStateUpdateEnd: 'UseStateUpdateEnd',
+};
+
 export const MODAL_CHUNK_NAME = {
   OnOk: 'ModalEventOnOk',
   OnCancel: 'ModalEventOnCancel',

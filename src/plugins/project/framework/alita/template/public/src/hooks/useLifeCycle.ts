@@ -62,14 +62,14 @@ const useLifeCyle = (options: LifeCycleOptions) => {
     lifeCycleCbRef.current.unmounted = callback;
   };
 
-  const useStateChange = (callback: () => void) => {
+  const useStateUpdate = (callback: () => void) => {
     lifeCycleCbRef.current.stateChange = callback;
   };
 
   return {
     useMount,
     useUnmounted,
-    useStateChange,
+    useStateUpdate,
   };
 };
 
