@@ -32,9 +32,6 @@ import { parse } from 'qs';
 import lcdpApi from '@/utils/lcdpApi';
 import { Context } from './Context/context';
 import assetHelper from '@lingxiteam/engine-assets';
-const awaitKeys: Set<string> = new Set();
-const cacheKeys: Set<string> = new Set();
-const cacheAttrDataMap: any = {};
 const getStaticDataSourceService = (
   ds: any[],
   labelKey: string,
@@ -70,7 +67,7 @@ export const withPageHOC = (
     const refs = useRef<Record<string, any>>({}).current;
     // 挂载自定义事件
     const customActionId = useRef<string>();
-    const { ModalManagerRef, refs: renerRefs, appId } = useContext(Context);
+    const { ModalManagerRef, refs: renerRefs, appId, attrDataMap } = useContext(Context);
     const ExpBusiObjModalRef = React.useRef<any>();
     const ExpSQLServiceModalRef = React.useRef<any>();
     const ImportBusiObjModalRef = React.useRef<any>();
@@ -155,79 +152,6 @@ export const withPageHOC = (
         locales,
       );
     const init = async () => {
-      const getStaticAttrByKeys = async (attrNbrKeys: string[]) => {
-        const reqNbrKeys = attrNbrKeys.filter((key) => !cacheKeys.has(key));
-        if (reqNbrKeys.length) {
-          const params = {
-            attrCodes: reqNbrKeys,
-            appId,
-            renderId,
-          };
-          const res: any = await baseApi.batchGetAppStaticAttr(params);
-          reqNbrKeys.forEach((key) => {
-            const list = res[key];
-            if (list?.length > 0) {
-              cacheAttrDataMap[key] = (list || []).map((item: any) => {
-                // 记录子级静态数据与编码关系
-                const zattrNbrValueMap: Record<any, any[]> = {};
-                if (
-                  Array.isArray(item.relatedAttrSpecList) &&
-                  item.relatedAttrSpecList.length
-                ) {
-                  const children = item.relatedAttrSpecList
-                    .map((aItem: any) => {
-                      if (aItem.zrelatedAttrValueList) {
-                        // 记录子级编码
-                        const zattrValues = new Set();
-                        // 这级只做展示不做选择
-                        const zChildren = aItem.zrelatedAttrValueList.map(
-                          (zItem: any) => {
-                            zattrValues.add(zItem.zattrValue);
-                            return {
-                              label: zItem.zattrValueName,
-                              title: zItem.zattrValueName,
-                              value: zItem.zattrValue,
-                              isLeaf: false,
-                            };
-                          },
-                        );
-                        zattrNbrValueMap[aItem.zattrNbr] = [...zattrValues];
-                        return zChildren;
-                      }
-                      return undefined;
-                    })
-                    .filter(Boolean)
-                    .flat();
-                  if (children.length) {
-                    return {
-                      ...item,
-                      label: item.attrValueName,
-                      title: item.attrValueName,
-                      value: item.attrValue,
-                      relatedAttrSpecList: item.relatedAttrSpecList,
-                      children,
-                      zattrNbrValueMap,
-                    };
-                  }
-                }
-                return {
-                  ...item,
-                  label: item.attrValueName,
-                  title: item.attrValueName,
-                  value: item.attrValue,
-                  relatedAttrSpecList: item.relatedAttrSpecList,
-                };
-              });
-              cacheKeys.add(key);
-              awaitKeys.delete(key);
-            }
-          });
-        }
-        return Promise.resolve(cacheAttrDataMap);
-      };
-      const attrDataMap = await getStaticAttrByKeys(
-        pageStaticData[renderId] ?? [],
-      );
       const injectData = {
         getEngineApis: () => {
           return {
@@ -347,7 +271,7 @@ export const withPageHOC = (
           renerRefs={renerRefs}
           lcdpApi={lcdpApi}
           injectData={{getEngineApis: sandBoxContext.current.getEngineApis}}
-          attrDataMap={sandBoxContext.current.attrDataMap}
+          attrDataMap={attrDataMap}
           ModalManagerRef={ModalManagerRef}
           sandBoxContext={sandBoxContext}
           functorsMap={functorsMap}
