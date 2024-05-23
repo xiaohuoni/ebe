@@ -107,8 +107,10 @@ function checkJavaScriptSyntax(code: string): string {
     Function(`(${code})`);
     return code;
   } catch (error) {
-    // 捕获语法错误并返回空字符串
-    return '"TODO: 语法错误"';
+    // 返回空字符串，并且属性将不写入
+    return '';
+    // // 捕获语法错误并返回空字符串
+    // return '"TODO: 语法错误"';
   }
 }
 

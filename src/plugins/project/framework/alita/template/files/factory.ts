@@ -193,29 +193,28 @@ export default function getFile(
   };
   // 低代码组件中，表单组件，要根据 fieldProps 配置，操作 value 和 setValue
   ${Object.keys(formHash)
-    .map(
-      (i) =>{
-      const isContainer = containerType.includes(i) ? '// 容器类组件 \n isContainer : true,' : '';
+    .map((i) => {
+      const isContainer = containerType.includes(i)
+        ? '// 容器类组件 \n isContainer : true,'
+        : '';
       return ` export const ${i} = Hoc(_${i}, {
           fieldProps: ${parse2Var(formHash[i])},
           ${isContainer}
           type: ${parse2Var(i)}
 
-        });`
-      }
-      ,
-    )
+        });`;
+    })
     .join('\n')}
     ${otherHash
-      .map(
-        (i) => {
-          const isContainer = containerType.includes(i) ? '// 容器类组件 \n isContainer : true,' : '';
-         return `  export const ${i} = Hoc(_${i}, {
+      .map((i) => {
+        const isContainer = containerType.includes(i)
+          ? '// 容器类组件 \n isContainer : true,'
+          : '';
+        return `  export const ${i} = Hoc(_${i}, {
            ${isContainer}
             type: ${parse2Var(i)}
-          });`
-        },
-      )
+          });`;
+      })
       .join('\n')}
   `,
   );
