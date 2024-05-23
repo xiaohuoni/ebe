@@ -308,10 +308,10 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         return <Spin spinning/>
       }`,
       linkAfter: [
-        ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
         LIFE_CYCLE_CHUNK_NAME.UseUnMountEnd,
         LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
         LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
+        ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
         REACT_CHUNK_NAME.DidMountEnd,
         REACT_CHUNK_NAME.DidUpdateEnd,
         REACT_CHUNK_NAME.WillUnmountEnd,
@@ -323,10 +323,10 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       name: REACT_CHUNK_NAME.RenderStart,
       content: 'return (',
       linkAfter: [
-        ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
         LIFE_CYCLE_CHUNK_NAME.UseUnMountEnd,
         LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
         LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
+        ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
         REACT_CHUNK_NAME.DidMountEnd,
         REACT_CHUNK_NAME.DidUpdateEnd,
         REACT_CHUNK_NAME.WillUnmountEnd,

@@ -139,8 +139,6 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         content: `// 挂载自定义事件
         customFuncMapping.add(customActionId, customActionMap);`,
         linkAfter: [
-          LIFE_CYCLE_CHUNK_NAME.UseMountStart,
-          LIFE_CYCLE_CHUNK_NAME.UseMountContent,
           REACT_CHUNK_NAME.DidMountStart,
           REACT_CHUNK_NAME.DidMountContent,
         ],
@@ -152,8 +150,6 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         content: `// 页面销毁移除
         customFuncMapping.remove(customActionId);`,
         linkAfter: [
-          LIFE_CYCLE_CHUNK_NAME.UseUnMountStart,
-          LIFE_CYCLE_CHUNK_NAME.UseMountContent,
           REACT_CHUNK_NAME.WillUnmountStart,
           REACT_CHUNK_NAME.WillUnmountContent,
         ],

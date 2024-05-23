@@ -159,7 +159,10 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         fileType: FileType.TSX,
         name: REACT_CHUNK_NAME.WillUnmountStart,
         content: 'return () => {',
-        linkAfter: [REACT_CHUNK_NAME.DidMountContent],
+        linkAfter: [
+          REACT_CHUNK_NAME.DidMountContent,
+          REACT_CHUNK_NAME.DidMountStart
+        ],
       });
 
       next.chunks.push({
