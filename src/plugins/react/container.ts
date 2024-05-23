@@ -228,9 +228,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       content: `
       // 页面加载完成
       useMount(() => {\n`,
-      linkAfter: [
-        LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks,
-      ],
+      linkAfter: [LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks],
     });
 
     // 页面加载完成结束
@@ -271,12 +269,12 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       ],
     });
 
-     // 页面卸载开始
-     next.chunks.push({
+    // 页面卸载开始
+    next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: LIFE_CYCLE_CHUNK_NAME.UseUnMountStart,
-       content: `
+      content: `
         // 页面将要卸载
        useUnmounted(() => {\n`,
       linkAfter: [
@@ -284,8 +282,8 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
         LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks,
       ],
-     });
-    
+    });
+
     // 页面卸载结束
     next.chunks.push({
       type: ChunkType.STRING,
@@ -297,8 +295,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         LIFE_CYCLE_CHUNK_NAME.UseUnMountStart,
       ],
     });
-
-
 
     if (ir.pageContainerType === 'BusiComp') {
       ir.deps?.push(getImportFrom('../factory', 'Hoc', true));

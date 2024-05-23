@@ -14,7 +14,11 @@ import {
 import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
 import { getImportFrom } from '../../utils/depsHelper';
 import { getEvents } from '../../utils/schema/parseDsl';
-import { CUSTOM_ACTION_CHUNK_NAME, LIFE_CYCLE_CHUNK_NAME, REACT_CHUNK_NAME } from './const';
+import {
+  CUSTOM_ACTION_CHUNK_NAME,
+  LIFE_CYCLE_CHUNK_NAME,
+  REACT_CHUNK_NAME,
+} from './const';
 
 const getSaleEventName = (eventName: any) => {
   const sale =

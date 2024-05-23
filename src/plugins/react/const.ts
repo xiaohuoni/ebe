@@ -14,7 +14,6 @@ export const REACT_CHUNK_NAME = {
   WillUnmountContent: 'ReactComponentWillUnmountContent',
 };
 
-
 export const LIFE_CYCLE_CHUNK_NAME = {
   CallLifeCycleHooks: 'CallLifeCycleHooks',
   UseMountStart: 'UseMountStart',

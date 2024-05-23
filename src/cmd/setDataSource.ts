@@ -1,6 +1,5 @@
 import { last } from 'lodash';
 import { CMDGeneratorPrames } from '../core/types';
-import { CMDGeneratorFunction } from '../core/utils/CMDGenerator';
 import { parse2Var } from '../core/utils/compositeType';
 import {
   getDSFilterName,
