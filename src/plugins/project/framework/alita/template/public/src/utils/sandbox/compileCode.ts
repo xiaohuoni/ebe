@@ -3,11 +3,11 @@ import SandBoxRules from './sandboxrules';
 import { isNativeFn } from './utils';
 
 // 语法兼容函数，用于作为轻量的babel处理一些意料外的新运算符
-const fiterCodeFun = (code:string) => {
+const fiterCodeFun = (code: string) => {
   let filterCode = code;
   if (code !== '') {
     // 按照SandBoxRules的定义，依次执行
-    SandBoxRules.forEach(loader => {
+    SandBoxRules.forEach((loader) => {
       filterCode = loader(filterCode);
     });
     return filterCode;
@@ -16,8 +16,7 @@ const fiterCodeFun = (code:string) => {
   return '';
 };
 
-
-function checkSyntax(checkcode:string) {
+function checkSyntax(checkcode: string) {
   try {
     Function(`(${checkcode})`);
     // 如果沙盒接收到有ES6 import语句的，那么在跑import的时候就会脱离沙盒限制，变成可以访问道全局上下文，目前未存在此使用场景
@@ -56,7 +55,7 @@ const compile = {
       // 处理后再次检测
       checkResult = checkSyntax(filterCode);
     }
-    
+
     return {
       ...checkResult,
       filterCode,

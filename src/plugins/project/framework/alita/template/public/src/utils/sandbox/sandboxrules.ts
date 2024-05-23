@@ -7,10 +7,10 @@ import { browserCompatible } from '@lingxiteam/engine-utils';
 
 // 兼容参数，寻找原始字符串中所有的
 // 这个参数的返回值是String.matchAll的简化版本，没有匹配组的信息（因为没用到）
-const matchAllPolyFill = (str:String, pattern:RegExp) => {
-  const result:Array<any> = [];
+const matchAllPolyFill = (str: String, pattern: RegExp) => {
+  const result: Array<any> = [];
   const mystr = str;
-  mystr.replace(pattern, function() {
+  mystr.replace(pattern, function () {
     const index = arguments[arguments.length - 2];
     result.push({
       0: arguments[0],
@@ -23,11 +23,11 @@ const matchAllPolyFill = (str:String, pattern:RegExp) => {
 
 // 轻型的词法分析，使用贪心法得到字符串/正则表达式的范围
 const quotestr = ['`', "'", '"', '/'];
-const liteQuoteCheck = (str:String) => {
+const liteQuoteCheck = (str: String) => {
   const strarr = [...str];
-  const result:any[] = [];
-  let rangestart:any;
-  let lastrangechar:any;
+  const result: any[] = [];
+  let rangestart: any;
+  let lastrangechar: any;
   strarr.forEach((char, ind) => {
     if (char === lastrangechar) {
       // 贪心法到达结束为止
@@ -48,26 +48,33 @@ const liteQuoteCheck = (str:String) => {
 };
 
 // 可选链操作符?.
-const Optional_Chaining:(arg0:string) => string = (code) => {
+const Optional_Chaining: (arg0: string) => string = (code) => {
   // 浏览器能力检测，如果支持不需要再处理
   if (browserCompatible.optionalChainingOperator) {
     return code;
   }
   let filterCode = code;
-  let opchain = matchAllPolyFill(code, /[\$a-zA-Z_\[]+([0-9a-zA-Z\[\]\.]*|\[.+\])\?\.\[?/g);
+  let opchain = matchAllPolyFill(
+    code,
+    /[\$a-zA-Z_\[]+([0-9a-zA-Z\[\]\.]*|\[.+\])\?\.\[?/g,
+  );
   if (opchain.length > 0) {
     // 生产紧急兼容：code存在可选链操作符，进行转换
     const quoterange = liteQuoteCheck(code);
     if (quoterange.length > 0) {
       // 存在在正则表达式和字符串里的结果，这些结果应当忽略
-      opchain = opchain.filter((i:any) =>
-        !quoterange.find((o:any) => (o.start <= i.index) && ((o.end) >= (i.index + i[0].length))));
+      opchain = opchain.filter(
+        (i: any) =>
+          !quoterange.find(
+            (o: any) => o.start <= i.index && o.end >= i.index + i[0].length,
+          ),
+      );
     }
     // 进行替换，替换逻辑是： ?. → ||{}). ，然后在每“组”表达式的前面补充对应数量的左括号
-    const finalCodeArr:string[] = [];
+    const finalCodeArr: string[] = [];
     let nextind = 0;
     let chainflag = 0; // 临时记录是否出现了连续的?.表达式
-    opchain.forEach((c:any, cind) => {
+    opchain.forEach((c: any, cind) => {
       if (nextind === c.index) {
         chainflag += 1;
       } else {
@@ -77,7 +84,11 @@ const Optional_Chaining:(arg0:string) => string = (code) => {
           if (finalCodeArr.length - chainflag - 2 < 0) {
             finalCodeArr.unshift('('.repeat(chainflag));
           } else {
-            finalCodeArr.splice(finalCodeArr.length - chainflag - 2, 0, '('.repeat(chainflag));
+            finalCodeArr.splice(
+              finalCodeArr.length - chainflag - 2,
+              0,
+              '('.repeat(chainflag),
+            );
           }
         }
         finalCodeArr.push('(');
@@ -95,7 +106,11 @@ const Optional_Chaining:(arg0:string) => string = (code) => {
       if (finalCodeArr.length - chainflag - 2 < 0) {
         finalCodeArr.unshift('('.repeat(chainflag));
       } else {
-        finalCodeArr.splice(finalCodeArr.length - chainflag - 2, 0, '('.repeat(chainflag));
+        finalCodeArr.splice(
+          finalCodeArr.length - chainflag - 2,
+          0,
+          '('.repeat(chainflag),
+        );
       }
     }
     finalCodeArr.push(code.slice(nextind));
@@ -106,7 +121,7 @@ const Optional_Chaining:(arg0:string) => string = (code) => {
 };
 
 // 空值合并运算符??
-const NullishCoalescing:(arg0:string) => string = (code) => {
+const NullishCoalescing: (arg0: string) => string = (code) => {
   // 浏览器能力检测，如果支持不需要再处理
   if (browserCompatible.nullishCoalescingOperator) {
     return code;
@@ -118,11 +133,16 @@ const NullishCoalescing:(arg0:string) => string = (code) => {
     const quoterange = liteQuoteCheck(code);
     if (quoterange.length > 0) {
       // 存在在正则表达式里的结果，这些结果应当忽略
-      ncchain = ncchain.filter((i:any) => !quoterange.find((o:any) => (o.start <= i.index) && ((o.end) >= (i.index + i[0].length))));
+      ncchain = ncchain.filter(
+        (i: any) =>
+          !quoterange.find(
+            (o: any) => o.start <= i.index && o.end >= i.index + i[0].length,
+          ),
+      );
     }
-    const finalCodeArr:string[] = [];
+    const finalCodeArr: string[] = [];
     let nextind = 0;
-    ncchain.forEach((c:any, ind) => {
+    ncchain.forEach((c: any, ind) => {
       // 把每一个??替换成||
       finalCodeArr.push(code.slice(nextind, c.index));
       finalCodeArr.push(c[0].replace('??', '||'));
@@ -135,7 +155,7 @@ const NullishCoalescing:(arg0:string) => string = (code) => {
   return filterCode;
 };
 
-const isLastSemicolon = (code:string) => {
+const isLastSemicolon = (code: string) => {
   if (code.trim().charAt(code.length - 1) === ';') {
     return code.trim().substring(0, code.length - 1);
   }
@@ -144,7 +164,7 @@ const isLastSemicolon = (code:string) => {
 
 // 怀疑输入的内容是不是“一组”JS语句，如果是的话，那么把这些JS语句转为函数定义
 // 这个处理应该在最后面
-const isJSLine = (code:string) => {
+const isJSLine = (code: string) => {
   let filterCode = code;
   try {
     // 先检查是不是经过前面的修正后就通过语法检查了，是的话就不需要再处理了
@@ -162,11 +182,13 @@ const isJSLine = (code:string) => {
       if (code.trim().startsWith('var ')) {
         // 处理babel编译后的代码。例如：var _item; _item = 10;
         // 并不保证这一步能完全正确使用，但可兼容大部分情况
-        const splitCodes = code.split(/[;\n]/).filter(c => Boolean(c));
+        const splitCodes = code.split(/[;\n]/).filter((c) => Boolean(c));
         const lastCode = splitCodes[splitCodes.length - 1];
         const beforeCode = splitCodes.slice(0, splitCodes.length - 1);
 
-        filterCode = `(function(){${beforeCode.join(';')};return ${lastCode};})()`;
+        filterCode = `(function(){${beforeCode.join(
+          ';',
+        )};return ${lastCode};})()`;
       }
     } catch (e2) {
       // 这里的报错意味着源代码应该是完全不正确的语法，不需要处理

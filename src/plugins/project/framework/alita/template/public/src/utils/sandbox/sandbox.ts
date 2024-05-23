@@ -5,18 +5,21 @@ import { isNativeFn } from './utils';
 
 /* eslint-disable */
 const ESSandbox = (function () {
-  const run = (code: string, extendAllowMap: any, config?: { check: boolean }) => {
-    
+  const run = (
+    code: string,
+    extendAllowMap: any,
+    config?: { check: boolean },
+  ) => {
     if (!code || typeof code !== 'string') {
       // 如果输入的字符串是空字符串，或者非法值，直接原样输出
       return code;
     }
     try {
       const { err, result, filterCode } = compile.general(code, config);
-      
+
       if (result) {
         const handler = {
-          get(obj:any, prop:any) {
+          get(obj: any, prop: any) {
             // 先从目标对象读取prop是否存在
             let target = Reflect.has(obj, `${prop.toString()}__$`)
               ? obj[`${prop.toString()}__$`]
@@ -29,10 +32,10 @@ const ESSandbox = (function () {
             }
             return target;
           },
-          set(obj:any, prop:any, value:any) {
+          set(obj: any, prop: any, value: any) {
             return Reflect.set(obj, `${prop}__$`, value);
           },
-          has(obj:any, prop:any) {
+          has(obj: any, prop: any) {
             return (
               obj &&
               (Reflect.has(obj, `${prop.toString()}__$`) ||
@@ -41,16 +44,18 @@ const ESSandbox = (function () {
           },
         };
         const catchAllHandler = {
-          get(obj:any, prop:any) {
+          get(obj: any, prop: any) {
             return Reflect.get(obj, prop);
           },
-          set() { return true; },
+          set() {
+            return true;
+          },
           has() {
             return true;
           },
         };
 
-        const _console:any = {};
+        const _console: any = {};
 
         (function createMockConsole(_console) {
           const allowConsoleProps = [
@@ -102,7 +107,7 @@ const ESSandbox = (function () {
           Math__$: Math,
           RegExp__$: RegExp,
           Object__$: Object,
-          eval__$(ecode:string) {
+          eval__$(ecode: string) {
             return Sandbox.run(`return ${ecode}`, {});
           },
           window__$: window as Window & {
@@ -122,7 +127,8 @@ const ESSandbox = (function () {
           allowList.window__$.appId = extendAllowMap.appId;
           allowList.window__$.pageId = extendAllowMap.pageId;
           // allowList.window__$._ = extendAllowMap.lodash;
-          (allowList.window__$ as any).lcdpApi = extendAllowMap.lcdpApi || (window as any).lcdpApi;
+          (allowList.window__$ as any).lcdpApi =
+            extendAllowMap.lcdpApi || (window as any).lcdpApi;
         }
 
         if (extendAllowMap && typeof extendAllowMap === 'object') {
@@ -166,24 +172,28 @@ const ESSandbox = (function () {
     } catch (e) {
       throw e;
     }
-  }
+  };
   return { run };
 })();
 
 // IE兼容版Sandbox，这个版本的Sandbox基本移除了原本的proxy能力
 // IE兼容版Sandbox在表达式里出现未定义的变量时无法直接转换为undefined，只能正常抛出报错。
 const IESandbox = (function () {
-  const run = (code: string, extendAllowMap: any, config?: { check: boolean }) =>/*  @__HOT_UPDATE__ @alias Sandbox.run */ {
+  const run = (
+    code: string,
+    extendAllowMap: any,
+    config?: { check: boolean },
+  ) => /*  @__HOT_UPDATE__ @alias Sandbox.run */ {
     if (!code || typeof code !== 'string') {
       // 如果输入的字符串是空字符串，或者非法值，直接原样输出
       return code;
     }
-    
+
     try {
       const filterCode = compile.ie(code, config);
       if (true) {
         const handler = {
-          get(obj:any, prop:any) {
+          get(obj: any, prop: any) {
             // 先从目标对象读取prop是否存在
             let target = Reflect.has(obj, prop.toString())
               ? obj[prop.toString()]
@@ -196,7 +206,7 @@ const IESandbox = (function () {
             }
             return target;
           },
-          set(obj:any, prop:any, value:any) {
+          set(obj: any, prop: any, value: any) {
             return Reflect.set(obj, prop, value);
           },
         };
@@ -253,7 +263,7 @@ const IESandbox = (function () {
           Math: Math,
           RegExp: RegExp,
           Object: Object,
-          eval(ecode:string) {
+          eval(ecode: string) {
             return Sandbox.run(`return ${ecode}`, {});
           },
           window: window as Window & {
@@ -271,7 +281,8 @@ const IESandbox = (function () {
           allowList.window.appId = extendAllowMap.appId;
           allowList.window.pageId = extendAllowMap.pageId;
           // allowList.window._ = extendAllowMap.lodash;
-          (allowList.window as any).lcdpApi = extendAllowMap.lcdpApi || (window as any).lcdpApi;
+          (allowList.window as any).lcdpApi =
+            extendAllowMap.lcdpApi || (window as any).lcdpApi;
         }
 
         if (extendAllowMap && typeof extendAllowMap === 'object') {
@@ -297,7 +308,7 @@ const IESandbox = (function () {
     } catch (e) {
       throw e;
     }
-  }
+  };
   return { run };
 })();
 
