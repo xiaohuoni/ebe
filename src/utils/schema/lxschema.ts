@@ -146,7 +146,7 @@ const preprocessComponentSchema = (
       ...newSchema.props,
       $$componentItem: `##{{id: '${schema.id}',uid: ${generateUid(
         schema,
-      )}, type: '${schema.compName}',...componentItem}}##`,
+      )}, type: '${schema.compName}'}}##`,
     };
     return newSchema;
   }
@@ -166,11 +166,14 @@ const preprocessComponentSchema = (
     // platform: schema.platform,
     // TODO: fusionMode
     // fusionMode: schema?.fusionMode,
-    uid: schema.id,
-    $$componentItem: `##{{id: '${schema.id}',uid: ${generateUid(
-      schema,
-    )}, type: '${schema.compName}',...componentItem}}##`,
+    // uid: schema.id,
+    $$componentItem: `##{{id: '${schema.id}',uid: ${generateUid(schema)}}}##`,
   };
+
+  if (['CollapsePanel'].includes(schema.type)) {
+    props.uid = `$${generateUid(schema)}$`;
+  }
+
   // 执行组件预处理
   const methodsRun = assetHelper.comRunPreprocess.getRunComPreprocessMethods(
     schema.compName!,

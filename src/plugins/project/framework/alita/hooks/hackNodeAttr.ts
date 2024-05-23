@@ -9,7 +9,6 @@ import {
   PIECE_TYPE,
 } from '../../../../../core/types';
 import { getBusiCompName } from '../../../../../utils/schema/getBusiCompName';
-import { generateUid } from '../../../../../utils/schema/lxschema';
 
 export default function hackEngineApis(
   nodeItem: IProjectSchema,
