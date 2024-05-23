@@ -257,7 +257,7 @@ const Page = () => {
       pageIdMapping,
       busiCompMapping,
       compAssetList: compAssetList?.resultObject || [],
-      baseUrl: process.env.BASE_URL,
+      baseUrl: process.env.BASE_URL === 'http://10.10.179.140:8047/HJF/' ? 'http://10.10.179.140:8048/HJF/' : process.env.BASE_URL,
       appConfig: {
         frontendHookList,
       },
