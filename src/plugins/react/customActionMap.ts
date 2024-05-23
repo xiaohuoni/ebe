@@ -2,6 +2,7 @@ import {
   CLASS_DEFINE_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
+import { groupDepsByPack } from '../../core/plugins/common/esmodule';
 import {
   BuilderComponentPlugin,
   BuilderComponentPluginFactory,
@@ -50,16 +51,94 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     if (ir?.customFuctions && ir?.customFuctions.length > 0) {
       const customFuctionsIds: string[] = [];
       // 写到独立文件
-      // TODO: 会丢失上下文，后续测试需要重点关注
-      // 后续根据指令修改情况，需要补齐缺失的上下文，如ceshi:(options:any)=>ceshi(options,other),
+
+      const eventCodeString = ir?.customFuctions
+        .map((e) => {
+          const value = e.setEvents?.map((event: any) => {
+            const { eName, eValue } = getEvents(event);
+            return {
+              id: `${eName}`,
+              value: eValue,
+            };
+          });
+          const item = value?.[0];
+          const eventName = getSaleEventName(e.eventCode);
+          customFuctionsIds.push(eventName);
+          // TODO: setEvents 不存在，应该要执行 dynamicActionSource？
+          if (!item) {
+            if (!e.originDynamicActionSource) {
+              return `// 编排时为空
+          const ${eventName} = (options: any)=>{}`;
+            }
+            const startIndex = e.originDynamicActionSource.indexOf('try {');
+            const endIndex =
+              e.originDynamicActionSource.indexOf('} catch (err) {');
+            const extractedString = e.originDynamicActionSource.substring(
+              startIndex,
+              endIndex,
+            );
+            return `export const ${eventName} = (options: any)=>{${extractedString}} catch (err) {
+          console.log(err);
+        }}`;
+          }
+          // const { eName, eValue } = events;
+          // schema.events[eName] = {
+          //   id: `${eName}`,
+          //   value: eValue,
+          // };
+          return `const ${eventName} = ${CMDGeneratorEvent(
+            item?.value,
+            next?.contextData,
+            {} as IScope,
+            { ir },
+          )}`;
+        })
+        .join(';');
+      const deps = ir.deps;
+      const packs = groupDepsByPack(deps!);
+      // TODO: 命令的 import 来源，应该是固定的，现在是生成所有的，又通过 noused 方案去掉了
+      const importString = Object.keys(packs)
+        .map((pkg: string) => {
+          const ips = packs[pkg];
+          if (!ips || ips.length === 0) {
+            return '';
+          }
+          // TODO: 简单处理，应该判断 destructuring
+          return `import {${packs[pkg]
+            .map((i: any) => i.exportName)
+            .join(',')}} from '${pkg}';`;
+        })
+        .join('\n');
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.Map,
         subModule: 'customAction',
         content:
-          `const useCustomAction = (context: any) => { const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled,
-            getDisabled, data,
+          `${importString}
+
+          const useCustomAction = (context: any) => { const { 
+
+            getValue,
+    setValue,
+    getVisible,
+    setVisible,
+    getRequired,
+    setRequired,
+    callComponentMethod,
+    setDisabled,
+    getDisabled,
+    getFormValue,
+    validateForm,
+    resetForm,
+    clearValue,
+    setFormValues,
+    asyncCallComponentMethod,
+    validateAllForm,
+    getAllFormValues,
+    resetAllForm,
+    
+             data,
             updateData,
             resetDataSource,
             reloadCustomDataSource,
@@ -75,48 +154,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             urlParam,
             state
            } = context; ` +
-          ir?.customFuctions
-            .map((e) => {
-              const value = e.setEvents?.map((event: any) => {
-                const { eName, eValue } = getEvents(event);
-                return {
-                  id: `${eName}`,
-                  value: eValue,
-                };
-              });
-              const item = value?.[0];
-              const eventName = getSaleEventName(e.eventCode);
-              customFuctionsIds.push(eventName);
-              // TODO: setEvents 不存在，应该要执行 dynamicActionSource？
-              if (!item) {
-                if (!e.originDynamicActionSource) {
-                  return `// 编排时为空
-                const ${eventName} = (options: any)=>{}`;
-                }
-                const startIndex = e.originDynamicActionSource.indexOf('try {');
-                const endIndex =
-                  e.originDynamicActionSource.indexOf('} catch (err) {');
-                const extractedString = e.originDynamicActionSource.substring(
-                  startIndex,
-                  endIndex,
-                );
-                return `export const ${eventName} = (options: any)=>{${extractedString}} catch (err) {
-                console.log(err);
-              }}`;
-              }
-              // const { eName, eValue } = events;
-              // schema.events[eName] = {
-              //   id: `${eName}`,
-              //   value: eValue,
-              // };
-              return `const ${eventName} = ${CMDGeneratorEvent(
-                item?.value,
-                next?.contextData,
-                {} as IScope,
-                { ir },
-              )}`;
-            })
-            .join(';') +
+          eventCodeString +
           `\n return {\n${customFuctionsIds
             .map((i) => i)
             .join(',')} \n}}; export default useCustomAction;`,

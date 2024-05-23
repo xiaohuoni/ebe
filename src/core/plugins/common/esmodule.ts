@@ -23,7 +23,9 @@ import { isValidIdentifier } from '../../utils/validate';
 const DEP_MAIN_BLOCKLIST = ['lib', 'lib/index', 'es', 'es/index', 'main'];
 const DEFAULT_EXPORT_NAME = '__default__';
 
-function groupDepsByPack(deps: IDependency[]): Record<string, IDependency[]> {
+export function groupDepsByPack(
+  deps: IDependency[],
+): Record<string, IDependency[]> {
   const depMap: Record<string, IDependency[]> = {};
 
   const addDep = (pkg: string, dep: IDependency) => {
