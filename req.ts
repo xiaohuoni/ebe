@@ -5,7 +5,7 @@ import { copyStatic } from './scripts/copyStatic';
 import { createDiskPublisher } from './src/core/publisher/disk';
 import alita from './src/solutions/alita';
 (async () => {
-  const appId = '1089426139952508928'; // HJF
+  const appId = '1106842174504439808'; // HJF
   // const appId = '772790966277644288'; // 开发环境
   const schemaFile = `./demo/node_modules/.cache/${appId}/req.json`;
   // const schemaFile = `./req.json`;
