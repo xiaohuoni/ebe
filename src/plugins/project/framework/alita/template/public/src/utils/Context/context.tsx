@@ -5,7 +5,7 @@ export const Context = React.createContext<{
   ModalManagerRef: React.MutableRefObject<any>;
   refs: any;
   appId: string;
-  attrDataMap: Record<string, any>
+  attrDataMap: Record<string, any>;
 }>({} as any);
 
 type objectType = Record<string, any>;

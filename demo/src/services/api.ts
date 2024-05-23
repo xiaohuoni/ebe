@@ -88,9 +88,6 @@ export async function qryAttrSpecPage(params): Promise<any> {
   const headers: any = {
     'Content-Type': 'application/json',
     'APP-ID': params.appId,
-    'X-B-AUTH': 1,
-    'X-B-TARGET-ID': params.pageId,
-    'Xa-Type': '1.0',
   };
 
   return request('/api/lcdp/attr/qryAttrSpecPage', {

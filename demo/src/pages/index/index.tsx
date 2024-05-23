@@ -124,6 +124,8 @@ const Page = () => {
     // 根据 appId 获取当前应用的全部页面
     const attrSpecPage = await qryAttrSpecPage({
       appId: values.appId,
+      pageNum: 1,
+      pageSize: 999999,
     });
 
     // 根据 appId 获取当前应用的全部页面
