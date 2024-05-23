@@ -53,9 +53,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         fileType: FileType.CSS,
         name: COMMON_CHUNK_NAME.InternalDepsImport,
         content: normalizeCSS(customClass ?? ' ', classRoot),
-        linkAfter: [
-          COMMON_CHUNK_NAME.ExternalDepsImport
-        ],
+        linkAfter: [COMMON_CHUNK_NAME.ExternalDepsImport],
         subModule: 'customClass',
       });
       next.chunks.push({

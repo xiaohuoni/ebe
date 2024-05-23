@@ -1,6 +1,9 @@
 // 一个简易的浏览器能力检测，如需强大功能可考虑引入modernizr.js
 
-type BrowserCompatibleType = 'optionalChainingOperator' | 'nullishCoalescingOperator' | string;
+type BrowserCompatibleType =
+  | 'optionalChainingOperator'
+  | 'nullishCoalescingOperator'
+  | string;
 
 const testQueue: Record<BrowserCompatibleType, Function> = {};
 
@@ -16,7 +19,7 @@ export const browserCompatibleTest = {
     }
   },
   run: (keys?: BrowserCompatibleType[]) => {
-    (keys || Object.keys(testQueue)).forEach(key => {
+    (keys || Object.keys(testQueue)).forEach((key) => {
       if (typeof testQueue[key] === 'function') {
         browserCompatible[key] = testQueue[key]();
       }

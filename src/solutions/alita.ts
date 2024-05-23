@@ -141,7 +141,7 @@ export default function createIceJsProjectBuilder(
             classnames: '^2.2.6',
             'react-loadable': '^5.5.0',
             'react-pdf': '4.2.0',
-            "es6-proxy-polyfill": "^2.1.1",
+            'es6-proxy-polyfill': '^2.1.1',
           },
           dependencies: {
             '@lingxiteam/cli': '^0.4.6',
@@ -166,7 +166,7 @@ export default function createIceJsProjectBuilder(
             merge: '^2.1.1',
             uuid: '^9.0.1',
             dayjs: '1.11.3',
-            "es6-proxy-polyfill": "^2.1.1",
+            'es6-proxy-polyfill': '^2.1.1',
           },
           devDependencies: {
             '@types/qs': '^6.9.6',
