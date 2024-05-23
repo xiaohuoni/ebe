@@ -161,7 +161,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         content: 'return () => {',
         linkAfter: [
           REACT_CHUNK_NAME.DidMountContent,
-          REACT_CHUNK_NAME.DidMountStart
+          REACT_CHUNK_NAME.DidMountStart,
         ],
       });
 
