@@ -1,5 +1,6 @@
 import { isPlainObject, last } from 'lodash';
 import { createElement, Fragment } from 'react';
+import Sandbox from '@/utils/sandbox';
 
 const { hasOwnProperty } = Object.prototype;
 const hasOwn = (val: object, key: string | symbol): key is keyof typeof val =>

@@ -345,12 +345,12 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       ],
     });
 
-    const defaultState: any = {};
-    if (Array.isArray(ir?.compState)) {
-      ir?.compState?.forEach((item) => {
-        defaultState[item.code] = '';
-      });
-    }
+    // const defaultState: any = {};
+    // if (Array.isArray(ir?.compState)) {
+    //   ir?.compState?.forEach((item) => {
+    //     defaultState[item.code] = '';
+    //   });
+    // }
     let hasDataSource = false;
     if (ir.dataSource && ir.dataSource.length) {
       // import dataSource from './dataSource';
@@ -372,7 +372,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     let exportCode = `withPageHOC(${type}, {
       renderId,
       hasLogin: ${!!!ir.ignoreLogin},
-      defaultState:${JSON.stringify(defaultState)},
     })`;
 
     if (ir.containerType === 'BusiComp') {

@@ -22,7 +22,7 @@ import ImportBusiObjModal from '@/components/ImportBusiObjModal';
 import ExpSQLServiceModal from "@/components/ExpSQLServiceModal";
 import { PageProvider } from '@/utils/Context/Container';
 import * as functorsMap from '@/utils/functors';
-import Sandbox from '@lingxiteam/engine-sandbox';
+import Sandbox from '@/utils/sandbox';
 import { useTopContainerHidden } from './Context/Container';
 import {
   i18n,
@@ -32,6 +32,9 @@ import { parse } from 'qs';
 import lcdpApi from '@/utils/lcdpApi';
 import { Context } from './Context/context';
 import assetHelper from '@lingxiteam/engine-assets';
+import { sandBoxLoadModule } from './sandBoxLoadModule';
+
+
 const getStaticDataSourceService = (
   ds: any[],
   labelKey: string,
@@ -54,7 +57,6 @@ export interface PageProps {
 export interface PageHOCOptions {
   renderId: string;
   dataSource?: any[];
-  defaultState: any;
   hasLogin?: boolean;
 }
 export const withPageHOC = (
@@ -134,13 +136,7 @@ export const withPageHOC = (
     }
 
    } 
-    // const setComponentRef = (r: any, comId: string) => {
-    //   if (r) {
-    //     // @ts-ignore
-    //     refs[comId] = r;
-    //   }
-    //   renerRefs.setSystemRef(renderId, refs);
-    // }
+
     const { getLocaleLanguage, getLocale, getLocaleEnv, locale, language } =
       i18n.useLocale(
         {
@@ -157,7 +153,6 @@ export const withPageHOC = (
           return {
             BannerModal,
             stateListener: () => { },
-            sandBoxLoadModule: () => { },
             ...baseApi,
             // TODO: 这需要正确的请求
             downloadFileByFileCode: () => null,
@@ -177,6 +172,9 @@ export const withPageHOC = (
             getVisible: (compId: string) => {
               // @ts-ignore
               return refs.value?.[compId]?.visible;
+            },
+            sandBoxLoadModule: (code: string, options?: { dependencies?: Record<string, any>; allowMap?: Record<string, any> }) => {
+              return sandBoxLoadModule(code, sandBoxContext.current, undefined, options);
             },
             sandBoxRun,
             sandBoxSafeRun: (
@@ -241,6 +239,7 @@ export const withPageHOC = (
         state,
         messageApi,
       }
+
       setLoading(false);
     };
     useEffect(() => {

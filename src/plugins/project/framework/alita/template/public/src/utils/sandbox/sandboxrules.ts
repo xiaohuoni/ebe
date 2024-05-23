@@ -1,7 +1,7 @@
 /* eslint-disable prefer-rest-params */
 /* eslint-disable camelcase */
 /* eslint-disable no-new-func */
-import { browserCompatible } from '@lingxiteam/engine-utils';
+import { browserCompatible } from './browserCompatible';
 
 // 沙盒转换规则定义
 
@@ -24,6 +24,7 @@ const matchAllPolyFill = (str: String, pattern: RegExp) => {
 // 轻型的词法分析，使用贪心法得到字符串/正则表达式的范围
 const quotestr = ['`', "'", '"', '/'];
 const liteQuoteCheck = (str: String) => {
+  // @ts-ignore
   const strarr = [...str];
   const result: any[] = [];
   let rangestart: any;

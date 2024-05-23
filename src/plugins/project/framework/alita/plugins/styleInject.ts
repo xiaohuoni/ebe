@@ -32,11 +32,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     };
 
     const ir = next.ir as IContainerInfo;
-    const cfg = next.contextData.options;
-    // 只有在页面级别才生效
-    if (ir.type !== 'Page') {
-      return next;
-    }
+
     let customClass = '';
     const classRoot = `__CustomClass_${ir.id}__`;
     const getComponentsMap = (root: any) => {
@@ -50,13 +46,16 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       });
     };
     getComponentsMap(ir);
+
     if (customClass) {
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: FileType.CSS,
         name: COMMON_CHUNK_NAME.InternalDepsImport,
         content: normalizeCSS(customClass ?? ' ', classRoot),
-        linkAfter: [COMMON_CHUNK_NAME.ExternalDepsImport],
+        linkAfter: [
+          COMMON_CHUNK_NAME.ExternalDepsImport
+        ],
         subModule: 'customClass',
       });
       next.chunks.push({
