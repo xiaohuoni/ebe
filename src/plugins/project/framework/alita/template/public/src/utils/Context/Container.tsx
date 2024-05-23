@@ -44,9 +44,8 @@ Container.displayName = 'Container';
 
 export { Container };
 
-
 export const PageContext = createContext<{
-  registerRefs: (ref: any, id: string) => void
+  registerRefs: (ref: any, id: string) => void;
 }>({
   registerRefs() {
     console.warn(`上下文丢失`);
@@ -55,6 +54,6 @@ export const PageContext = createContext<{
 
 export const PageProvider = PageContext.Provider;
 
-export const usePageProvider = () => { 
+export const usePageProvider = () => {
   return useContext(PageContext);
-}
+};
