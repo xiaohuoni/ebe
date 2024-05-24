@@ -1,7 +1,15 @@
+import {
+  closeProgressMsg,
+  closeProgressNotification,
+  openProgressMsg,
+  showProgressNotification,
+} from '@/components/ProgressComp';
 import engineServices from '@/services/api/engine';
 import fileServices from '@/services/api/file';
+import { getAppFileUrlByFileCode } from '@/services/api/getAppFileUrlByFileCode';
 import {
   BatchDownloadFileByIdsType,
+  DownloadByFileCodeType,
   ExportFileShowProgressType,
   LocaleFunction,
   PreviewFileType,
@@ -163,8 +171,8 @@ const downloadByXMLHttpRequest = (params: {
         });
       } else if (isErrorStatus(xhr.status)) {
         // @ts-ignore
-        const errMessage = getServiceErrorStatusMsg(xhr.status, getLocale);
-        console.error(errMessage.resultMsg);
+        // const errMessage = getServiceErrorStatusMsg(xhr.status, getLocale);
+        console.error(xhr.status);
         // monitt.send({
         //   msg: errMessage.resultMsg,
         //   logLevel: 'errorMsg',
@@ -507,9 +515,27 @@ const exportFileShowProgress: ExportFileShowProgressType = async (
   }
 };
 
+// 根据fileCode下载文件
+const downloadByFileCode: DownloadByFileCodeType = (params) => {
+  const { appId, pageId, fileCode } = params;
+
+  downloadByXMLHttpRequest({
+    methodPath: getAppFileUrlByFileCode(fileCode),
+    downloadIndex: `${fileCode}_${Math.random()}`,
+    messageApi: {
+      openProgressMsg,
+      closeProgressMsg,
+      showProgressNotification,
+      closeProgressNotification,
+    },
+    ...params,
+  });
+};
+
 export {
   previewFile,
   exportFileShowProgress,
   batchDownloadFileByIds,
   saveBlobFile,
+  downloadByFileCode,
 };
