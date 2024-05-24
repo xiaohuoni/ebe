@@ -42,9 +42,9 @@ export function getConsole({ value }: CMDGeneratorPrames): string {
 
       // v可能是data.b + '222';
       // if (v.includes('\n')) {
-        // return `\`${v}\``;
+      // return `\`${v}\``;
       // } else {
-        return `\`${v}\``;
+      return `\`${v}\``;
       // }
     })
     .filter(Boolean)

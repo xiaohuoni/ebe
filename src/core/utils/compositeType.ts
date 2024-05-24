@@ -84,7 +84,9 @@ function generateObject(
         return '';
       }
       return `${propName}: ${v}`;
-    }).filter(Boolean).join(',\n');
+    })
+    .filter(Boolean)
+    .join(',\n');
   return `{${body}}`;
 }
 

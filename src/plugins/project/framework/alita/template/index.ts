@@ -27,7 +27,7 @@ const alitaTemplate: IProjectTemplate = {
     themeCss: {
       path: ['src'],
       fileName: 'themeCss',
-    }
+    },
   },
 
   generateTemplate(parseResult, postProcessors): ResultDir {

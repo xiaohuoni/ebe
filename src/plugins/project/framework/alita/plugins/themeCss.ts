@@ -16,7 +16,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       ...pre,
     };
 
-
     const themeCssText = next.contextData.options?.themeCss;
 
     if (!themeCssText) {

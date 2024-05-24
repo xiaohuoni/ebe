@@ -269,7 +269,7 @@ const Page = () => {
       attrSpecPage: (attrSpecPage?.resultObject?.list || []).map(
         (i: any) => i.attrNbr,
       ),
-      themeCss
+      themeCss,
     };
     let cleanedTree = cleanTree(pageDSLS, ['path']); // 清理字段'b'和字段'e'
     console.log('cleanedTree', cleanedTree);

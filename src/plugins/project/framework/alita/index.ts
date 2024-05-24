@@ -7,8 +7,8 @@ import mobileLayout from './plugins/mobileLayout';
 import packageJSON from './plugins/packageJSON';
 import pageview from './plugins/pageview';
 import styleInject from './plugins/styleInject';
-import template from './template';
 import themeCss from './plugins/themeCss';
+import template from './template';
 
 export default {
   template,
