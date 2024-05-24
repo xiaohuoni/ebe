@@ -20,10 +20,10 @@ import { CUSTOM_ACTION_CHUNK_NAME, REACT_CHUNK_NAME } from './const';
 
 /**
  * 导入依赖转成import生命代码
- * @param deps 
- * @returns 
+ * @param deps
+ * @returns
  */
-const depsToImportDeclarationCode = (deps: IDependency[] = []) => { 
+const depsToImportDeclarationCode = (deps: IDependency[] = []) => {
   const packs = groupDepsByPack(deps);
   // TODO: 命令的 import 来源，应该是固定的，现在是生成所有的，又通过 noused 方案去掉了
   const importString = Object.keys(packs)
@@ -34,32 +34,41 @@ const depsToImportDeclarationCode = (deps: IDependency[] = []) => {
       }
 
       // 取出需要importSpecifier的列表。
-      const importSpecifier = ips.filter(i => i.destructuring).map((i: any) => i.exportName);
+      const importSpecifier = ips
+        .filter((i) => i.destructuring)
+        .map((i: any) => i.exportName);
       // exportNames需要保证唯一
       const exportNames = new Set(importSpecifier);
 
       // 构造解构部分的导出字符串
-      const destructure = exportNames.size > 0 ? `{ ${[...exportNames].join(',')} }` : '';
+      const destructure =
+        exportNames.size > 0 ? `{ ${[...exportNames].join(',')} }` : '';
 
       // 默认导出
-      const defaultIpsName = ips.filter(i => !i.destructuring).map(it => it.exportName);
+      const defaultIpsName = ips
+        .filter((i) => !i.destructuring)
+        .map((it) => it.exportName);
 
       // 如果发现默认导出有多个不同的名称，需要抛出异常，以便更好的排查问题。
       if (new Set(defaultIpsName).size > 1) {
         const imparityDefaultNames = [...new Set(defaultIpsName)];
-        throw new Error(`默认导入存在多个不同的变量名，请排查${imparityDefaultNames}`);
+        throw new Error(
+          `默认导入存在多个不同的变量名，请排查${imparityDefaultNames}`,
+        );
       }
 
       const defaultExportName = defaultIpsName?.[0];
 
       // 导出的代码
-      const exportCode = [defaultExportName, destructure].filter(Boolean).join(',');
+      const exportCode = [defaultExportName, destructure]
+        .filter(Boolean)
+        .join(',');
 
       return `import ${exportCode} from '${pkg}';`;
     })
     .join('\n');
   return importString;
-}
+};
 
 const getSaleEventName = (eventName: any) => {
   const sale =
@@ -138,7 +147,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           )}`;
         })
         .join(';');
-      
+
       // 通过deps 生成 导入语句
       const importString = depsToImportDeclarationCode(ir.deps);
 
