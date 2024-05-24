@@ -79,6 +79,10 @@ function generateObject(
     .map((key) => {
       const propName = JSON.stringify(key);
       const v = generateUnknownType(value[key], scope, options);
+      // 如果是空绑定，则删除对应属性
+      if (v === '"$$"') {
+        return '';
+      }
       return `${propName}: ${v}`;
     })
     .join(',\n');

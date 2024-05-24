@@ -1,4 +1,4 @@
-const regex = /^[\s]*\$[^\x05]*\$[\s]*$/;
+const regex = /^\$.+\$$/;
 export function isJSVar(x: any) {
   return typeof x === 'string' && regex.test(x);
 }

@@ -68,10 +68,6 @@ function generateAttrValue(
     nodeGenerator: config?.self,
     ir: config?.ir,
   });
-  // 当是空字符串的时候，不进行赋值处理
-  if (valueStr === '') {
-    return [];
-  }
   return [
     {
       type: PIECE_TYPE.ATTR,
@@ -104,15 +100,26 @@ function generateAttr(
     // FIXME: 在经过 generateCompositeType 处理过之后，其实已经无法通过传入值的类型判断传出值是否为纯字面值字符串了（可能包裹了加工函数之类的）
     //        因此这个处理最好的方式是对传出值做语法分析，判断以哪种模版产出 Attr 值
     let newValue: string;
-    // TODO: "use strict";return ("共" + state?.phonelist_result?.total + "条")
-    // if (p.value && isPureString(p.value)) {
-    //   // 似乎多次一举，目前的诉求是处理多种引号类型字符串的 case，正确处理转义
-    //   const content = getStaticExprValue<string>(p.value);
-    //   newValue = JSON.stringify(encodeJsxStringNode(content));
-    // } else {
-    newValue = `{${p.value}}`;
-    // }
+    if (p.value === 'true') {
+      return {
+        value: `${p.name}`,
+        type: PIECE_TYPE.ATTR,
+      };
+    }
+    if (p.value && isPureString(p.value)) {
+      // 如果是字符串，就原样返回，不带 {}
+      newValue = p.value;
+    } else {
+      newValue = `{${p.value}}`;
+    }
 
+    // 如果是空绑定，则删除对应属性
+    if (p.value === '"$$"') {
+      return {
+        value: ``,
+        type: PIECE_TYPE.ATTR,
+      };
+    }
     return {
       value: `${p.name}=${newValue}`,
       type: PIECE_TYPE.ATTR,
@@ -147,7 +154,7 @@ function generateAttrs(
               generateAttr(propName, props[propName] as any, scope, config),
             );
           } else {
-            console.log(props[propName]);
+            console.log(propName);
           }
         }
       });

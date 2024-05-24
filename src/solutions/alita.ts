@@ -176,6 +176,6 @@ export default function createIceJsProjectBuilder(
       ],
     },
     postProcessors: [babel(), prettier()],
-    // postProcessors: [], //const i = props[props.indexKey] ?? props?.i;
+    // postProcessors: [],
   });
 }
