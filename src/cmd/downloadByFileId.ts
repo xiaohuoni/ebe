@@ -12,7 +12,6 @@ export function downloadByFileId({ value }: CMDGeneratorPrames): string {
   const fileName = parse2Var(myFileName);
   const fileResourceType = parse2Var(myFileResourceType);
   const fileCode = parse2Var(myFileCode);
-  console.log({ fileResourceType, fileId });
   // 文件资源资源,根据fileCode下载
   if (fileResourceType == '"file"' && fileCode) {
     return `// 文件下载
