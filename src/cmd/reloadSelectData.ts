@@ -1,10 +1,11 @@
 import { CMDGeneratorPrames } from '../core/types';
 import { parse2Var } from '../core/utils/compositeType';
-export function reloadSelectData({ value }: CMDGeneratorPrames): string {
+import { GeneratorCallbackWithThenCatch } from './utils';
+export function reloadSelectData(generateParams: CMDGeneratorPrames): string {
+  const { value } = generateParams;
   const { compId, data, labelKey, valueKey } = value.options;
 
-  return `
-  callComponentMethod(
+  const code = `asyncCallComponentMethod(
     ${parse2Var(compId)},
     ${parse2Var('setDataWithLabelAndValue')},
     ${parse2Var({
@@ -12,6 +13,7 @@ export function reloadSelectData({ value }: CMDGeneratorPrames): string {
       labelKey,
       valueKey,
     })}
-  )
-  `;
+  )`
+
+  return GeneratorCallbackWithThenCatch(code, generateParams);
 }

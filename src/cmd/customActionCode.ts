@@ -8,7 +8,7 @@ export function customActionCode(generateParams: CMDGeneratorPrames): string {
     id,
   } = generateParams.value?.options || {};
 
-  const code = `(async () => {
+  const code = `;(async () => {
     ${originCode}
     // 自定义代码块
     return new Promise((resolve, reject) => { 

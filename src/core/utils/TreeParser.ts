@@ -81,13 +81,15 @@ class TreeParser {
   }
 
   private getStopFn = () => {
-    let stopFlag = false;
+    const context = {
+      stopFlag: false
+    };
     const stop = () => {
-      stopFlag = true;
+      context.stopFlag = true;
     };
     return {
       stop,
-      isStop: stopFlag,
+      context
     };
   };
 
@@ -198,7 +200,11 @@ class TreeParser {
         keyVal = this.getFragment(val === undefined ? value : val, type);
 
         // 更新是否继续下钻
-        shouldNext = !stopParam.isStop;
+        shouldNext = !stopParam.context.stopFlag;
+
+        if (code === 'clue_info' && item.value) {
+          console.log(item.value, stopParam.context.stopFlag, 'item===========>=');
+        }
       } else if (!shouldNext) {
         // 不需要递归的情况下，直接赋值即可
         keyVal = this.getFragment(value, type);
