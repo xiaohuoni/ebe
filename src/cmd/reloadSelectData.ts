@@ -13,7 +13,7 @@ export function reloadSelectData(generateParams: CMDGeneratorPrames): string {
       labelKey,
       valueKey,
     })}
-  )`
+  )`;
 
   return GeneratorCallbackWithThenCatch(code, generateParams);
 }

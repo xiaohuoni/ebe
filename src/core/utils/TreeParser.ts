@@ -82,14 +82,14 @@ class TreeParser {
 
   private getStopFn = () => {
     const context = {
-      stopFlag: false
+      stopFlag: false,
     };
     const stop = () => {
       context.stopFlag = true;
     };
     return {
       stop,
-      context
+      context,
     };
   };
 
