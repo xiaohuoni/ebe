@@ -99,7 +99,7 @@ export async function qryAttrSpecPage(params): Promise<any> {
 
 export async function getThemeCss(params): Promise<any> {
   const headers: any = {
-    'Content-Type': 'application/json',
+    'Content-Type': 'text/css',
     'APP-ID': params.appId,
   };
 

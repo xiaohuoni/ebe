@@ -84,9 +84,7 @@ function generateObject(
         return '';
       }
       return `${propName}: ${v}`;
-    })
-    .join(',\n');
-
+    }).filter(Boolean).join(',\n');
   return `{${body}}`;
 }
 
@@ -112,7 +110,7 @@ function checkJavaScriptSyntax(code: string): string {
     return code;
   } catch (error) {
     // 返回空字符串，并且属性将不写入
-    return '';
+    return '""';
     // // 捕获语法错误并返回空字符串
     // return '"TODO: 语法错误"';
   }

@@ -173,7 +173,8 @@ export const useTool = (refs: Record<string, any>) => {
       if (refs?.[comId]) {
         resolve(refs?.[comId]?.[methodName]?.(...args));
       } else {
-        reject(new Error('组件' + comId + '不存在'));
+        resolve(undefined);
+        // reject(new Error('组件' + comId + '不存在'));
       }
     });
 

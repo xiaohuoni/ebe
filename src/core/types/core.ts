@@ -157,6 +157,7 @@ export interface LXProjectOptions {
   baseUrl?: string;
   appConfig?: any;
   attrSpecPage?: string[];
+  themeCss?: string;
 }
 export interface IProjectBuilderOptions {
   /** 是否处于严格模式 (默认：否) */

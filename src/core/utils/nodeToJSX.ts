@@ -154,7 +154,7 @@ function generateAttrs(
               generateAttr(propName, props[propName] as any, scope, config),
             );
           } else {
-            console.log(propName);
+            console.log(props[propName]);
           }
         }
       });

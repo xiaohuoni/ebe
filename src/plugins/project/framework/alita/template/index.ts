@@ -24,6 +24,10 @@ const alitaTemplate: IProjectTemplate = {
       path: ['src'],
       fileName: 'app',
     },
+    themeCss: {
+      path: ['src'],
+      fileName: 'themeCss',
+    }
   },
 
   generateTemplate(parseResult, postProcessors): ResultDir {

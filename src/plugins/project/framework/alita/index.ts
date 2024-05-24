@@ -8,6 +8,7 @@ import packageJSON from './plugins/packageJSON';
 import pageview from './plugins/pageview';
 import styleInject from './plugins/styleInject';
 import template from './template';
+import themeCss from './plugins/themeCss';
 
 export default {
   template,
@@ -20,6 +21,7 @@ export default {
     pageview,
     styleInject,
     dataSource,
+    themeCss,
   },
   hooks: {
     hackNodeAttr,

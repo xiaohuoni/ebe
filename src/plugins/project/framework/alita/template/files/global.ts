@@ -43,6 +43,8 @@ import { Toast as notification } from 'antd-mobile-5';`
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+${config?.themeCss ? 'import "./themeCss.css"' : ''}
+
 security.httpEncryption.start({
   mode: '1.0',
 });

@@ -269,6 +269,7 @@ const Page = () => {
       attrSpecPage: (attrSpecPage?.resultObject?.list || []).map(
         (i: any) => i.attrNbr,
       ),
+      themeCss
     };
     let cleanedTree = cleanTree(pageDSLS, ['path']); // 清理字段'b'和字段'e'
     console.log('cleanedTree', cleanedTree);
@@ -313,7 +314,7 @@ const Page = () => {
         autoComplete="off"
         onFinish={onFinish}
         initialValues={{
-          appId: '1106842174504439808',
+          appId: '1089426139952508928',
           pageId: '',
           platform: false,
         }}
