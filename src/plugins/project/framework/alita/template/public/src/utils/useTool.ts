@@ -9,14 +9,20 @@ import {
   getOwnFormValues,
 } from './formUtils';
 
-const toBool = (v: string | boolean) => {
-  if (v === 'true') {
+const toBool = (v: string | boolean, defaultValue?: any) => {
+  let val = v;
+  if ([null, undefined].includes(val) && defaultValue !== undefined) {
+    val = defaultValue;
+  }
+
+  if (val === 'true') {
     return true;
   }
-  if (v === 'false') {
+  if (val === 'false') {
     return false;
   }
-  return v;
+
+  return val;
 };
 
 export const useTool = (refs: Record<string, any>) => {
@@ -54,13 +60,13 @@ export const useTool = (refs: Record<string, any>) => {
   ) => {
     if (Object.prototype.toString.call(ids) === '[object Object]') {
       Object.keys(ids).forEach((id) => {
-        if (ids[id]) {
-          if (ids[id] === 'toggle') {
-            refs?.[id]?.setVisible(!getVisible(id));
-          } else {
-            refs?.[id]?.setVisible(ids[id]);
-          }
+        // if ([undefined, null].includes(ids[id])) {
+        if (ids[id] === 'toggle') {
+          refs?.[id]?.setVisible(!getVisible(id));
+        } else {
+          refs?.[id]?.setVisible(toBool(ids[id], true));
         }
+        // }
       });
     } else if (typeof ids === 'string' && value !== undefined) {
       refs?.[ids]?.setVisible(value);
@@ -79,13 +85,13 @@ export const useTool = (refs: Record<string, any>) => {
   ) => {
     if (Object.prototype.toString.call(ids) === '[object Object]') {
       Object.keys(ids).forEach((id) => {
-        if (ids[id]) {
-          if (ids[id] === 'toggle') {
-            refs?.[id]?.setRequired(!getRequired(id));
-          } else {
-            refs?.[id]?.setRequired(ids[id]);
-          }
+        // if (ids[id]) {
+        if (ids[id] === 'toggle') {
+          refs?.[id]?.setRequired(!getRequired(id));
+        } else {
+          refs?.[id]?.setRequired(toBool(ids[id], false));
         }
+        // }
       });
     } else if (typeof ids === 'string' && value !== undefined) {
       refs?.[ids]?.setRequired(value);
@@ -104,13 +110,13 @@ export const useTool = (refs: Record<string, any>) => {
   ) => {
     if (Object.prototype.toString.call(ids) === '[object Object]') {
       Object.keys(ids).forEach((id) => {
-        if (ids[id]) {
-          if (ids[id] === 'toggle') {
-            refs?.[id]?.setDisabled(!getDisabled(id));
-          } else {
-            refs?.[id]?.setDisabled(toBool(ids[id]));
-          }
+        // if (ids[id]) {
+        if (ids[id] === 'toggle') {
+          refs?.[id]?.setDisabled(!getDisabled(id));
+        } else {
+          refs?.[id]?.setDisabled(toBool(ids[id], false));
         }
+        // }
       });
     } else if (typeof ids === 'string' && value !== undefined) {
       refs?.[ids]?.setDisabled(value);
