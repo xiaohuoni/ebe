@@ -4,7 +4,6 @@ const isTrue = {
   rule: () => true,
 };
 const componentsRule: IRulesType = {
-    
   View: {
     rule: ({ value, diffraction }) => {
       if (value?.components) {

@@ -50,7 +50,9 @@ function transformFuncExpr2MethodMember(
       funcNode.async || undefined,
     );
 
-    const { code: resultCode } = generator.default(targetNode, { sourceMaps: false });
+    const { code: resultCode } = generator.default(targetNode, {
+      sourceMaps: false,
+    });
     return resultCode;
   }
 
@@ -66,7 +68,9 @@ function getArrowFunction(content: string) {
       funcNode.async || undefined,
     );
 
-    const { code: resultCode } = generator.default(targetNode, { sourceMaps: false });
+    const { code: resultCode } = generator.default(targetNode, {
+      sourceMaps: false,
+    });
     return resultCode;
   }
 
@@ -80,7 +84,9 @@ function getBodyStatements(content: string) {
 
     const targetNode = t.program(statements, undefined, 'module', undefined);
 
-    const { code: resultCode } = generator.default(targetNode, { sourceMaps: false });
+    const { code: resultCode } = generator.default(targetNode, {
+      sourceMaps: false,
+    });
     return resultCode;
   }
 
