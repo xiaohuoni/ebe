@@ -46,7 +46,9 @@ export { Container };
 
 export const PageContext = createContext<{
   registerRefs: (ref: any, id: string) => void;
+  renderId: string;
 }>({
+  renderId: '',
   registerRefs() {
     console.warn(`上下文丢失`);
   },

@@ -33,6 +33,7 @@ import lcdpApi from '@/utils/lcdpApi';
 import { Context } from './Context/context';
 import assetHelper from '@lingxiteam/engine-assets';
 import { sandBoxLoadModule } from './sandBoxLoadModule';
+import { getStateListener } from './StateListener';
 
 
 const getStaticDataSourceService = (
@@ -152,7 +153,7 @@ export const withPageHOC = (
         getEngineApis: () => {
           return {
             BannerModal,
-            stateListener: () => { },
+            stateListener: getStateListener(renderId),
             ...baseApi,
             // TODO: 这需要正确的请求
             downloadFileByFileCode: () => null,
@@ -171,7 +172,7 @@ export const withPageHOC = (
               }),
             getVisible: (compId: string) => {
               // @ts-ignore
-              return refs.value?.[compId]?.visible;
+              return refs?.[compId]?.visible;
             },
             sandBoxLoadModule: (code: string, options?: { dependencies?: Record<string, any>; allowMap?: Record<string, any> }) => {
               return sandBoxLoadModule(code, sandBoxContext.current, undefined, options);
@@ -197,10 +198,10 @@ export const withPageHOC = (
       const getValue = (id: string, stateName?: string) => {
         if (stateName) {
           // @ts-ignore
-          return refs.value?.[id]?.[stateName];
+          return refs?.[id]?.[stateName];
         }
         // @ts-ignore
-        return refs.value?.[id]?.value;
+        return refs?.[id]?.value;
       };
       // 设置默认属性
       BannerModal.defaultProps = {

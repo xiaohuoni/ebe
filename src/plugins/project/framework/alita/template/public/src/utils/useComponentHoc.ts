@@ -27,11 +27,12 @@ const syncInputValue = (
 export const useComponentHoc = (
   componentProps: Record<string, any>,
   context: {
+    renderId: string;
     config: Component;
     fieldPropsChange: () => void;
   },
 ) => {
-  const { config, fieldPropsChange } = context;
+  const { config, fieldPropsChange, renderId } = context;
   const { fieldProps } = config;
 
   const { visible = true, $$componentItem } = componentProps;
@@ -53,12 +54,7 @@ export const useComponentHoc = (
     });
   }, [visible]);
 
-  useStateListener(
-    $$componentItem.pageId,
-    $$componentItem.uid,
-    'visible',
-    state.visible,
-  );
+  useStateListener(renderId, $$componentItem.uid, 'visible', state.visible);
 
   // 1. 赋默认值
   useUpdateDeepEffect(() => {

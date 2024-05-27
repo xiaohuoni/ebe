@@ -75,16 +75,18 @@ export default function getFile(
     const HOC = React.forwardRef<unknown, any>((initialProps, ref) => {
       // 属性预处理
       const props = useMemo(() => run(initialProps), [initialProps]);
+
+      const { registerRefs, renderId } = usePageProvider();
+
       // 自定义组件HOC hooks  保持visible逻辑
       //@ts-ignore
       const { state, setState, onChangeHandle } = useComponentHoc(props, {
         // @ts-ignore
         config: { fieldProps },
         fieldPropsChange,
+        renderId,
       });
 
-      const { registerRefs } = usePageProvider();
-  
       const compProps: any = { ...props, visible: state.visible };
   
       const compRef = useRef<Record<string, any>>({}); // 组件库的ref
