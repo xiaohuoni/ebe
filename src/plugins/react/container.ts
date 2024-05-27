@@ -37,7 +37,9 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     );
 
     const isModal =
-      ir.containerType === 'MobileModal' || ir.containerType === 'Modal' || ir.containerType === 'Drawer';
+      ir.containerType === 'MobileModal' ||
+      ir.containerType === 'Modal' ||
+      ir.containerType === 'Drawer';
     let pageId = 'pageIdError';
     const getBusiCompPageId = (busiCompMapping: any[], id: string) => {
       const keys = Object.keys(busiCompMapping) as any;
