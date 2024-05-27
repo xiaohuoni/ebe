@@ -166,13 +166,13 @@ const preprocessComponentSchema = (
     // platform: schema.platform,
     // TODO: fusionMode
     // fusionMode: schema?.fusionMode,
-    // uid: schema.id,
+    uid: `$${generateUid(schema)}$`,
     $$componentItem: `##{{id: '${schema.id}',uid: ${generateUid(schema)}}}##`,
   };
 
-  if (['CollapsePanel'].includes(schema.type)) {
-    props.uid = `$${generateUid(schema)}$`;
-  }
+  // if (['CollapsePanel'].includes(schema.type)) {
+  //   props.uid = `$${generateUid(schema)}$`;
+  // }
 
   // 执行组件预处理
   const methodsRun = assetHelper.comRunPreprocess.getRunComPreprocessMethods(
