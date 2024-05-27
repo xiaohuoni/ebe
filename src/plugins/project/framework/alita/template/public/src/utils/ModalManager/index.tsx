@@ -1,7 +1,7 @@
-import React, { useState, useRef, useMemo, useImperativeHandle } from 'react';
 import { RootProps } from '@/components/Pageview';
-import Modal from './Modal';
+import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';
 import Drawer from './Drawer';
+import Modal from './Modal';
 interface ModalManagerProps {
   parseNodeBefore?: any;
   appId: string;
@@ -99,8 +99,9 @@ const ModalManager = React.forwardRef<ModalManagerHooks, ModalManagerProps>(
       params,
       lcdpParentRenderId,
     }: any) => {
-    const pageInst = RootProps[pagePath || ''] || {};
-    const type = pageInst?.pageContainerType === 'Drawer' ? 'Drawer' : 'Modal';
+      const pageInst = RootProps[pagePath || ''] || {};
+      const type =
+        pageInst?.pageContainerType === 'Drawer' ? 'Drawer' : 'Modal';
       const instData = type === 'Modal' ? ModalData : DrawerData;
       const instMethod = type === 'Modal' ? setModalData : setDrawerData;
       if (!pagePath) {
@@ -264,17 +265,15 @@ const ModalManager = React.forwardRef<ModalManagerHooks, ModalManagerProps>(
             setStatue={setStatue}
           />
         ))}
-        {
-                DrawerData.map((m) => (
-                  <Drawer
-                    {...m}
-                    managerRef={ref}
-                    modalInstId={m.modalInstId}
-                    key={m.modalInstId}
-                    setStatue={setStatue}
-                  />
-                ))
-              }
+        {DrawerData.map((m) => (
+          <Drawer
+            {...m}
+            managerRef={ref}
+            modalInstId={m.modalInstId}
+            key={m.modalInstId}
+            setStatue={setStatue}
+          />
+        ))}
       </div>
     );
   },

@@ -25,11 +25,11 @@ import enPreprocess from '@lingxiteam/factory/es/index.enPreprocess';
 import enRunPreprocess from '@lingxiteam/factory/es/index.enRunPreprocess';
 import * as _ from 'lodash';
 import { MODAL_TYPES, PAGE_TYPES } from '../constants';
+import { parse2Var } from '../core/utils/compositeType';
 import enPreprocessPC from '../utils/factory/pc/index.enPreprocess';
 import enRunPreprocessPC from '../utils/factory/pc/index.enRunPreprocess';
 import assetHelper from '../utils/schema/assets/assets';
 import { cleanDataSource } from '../utils/schema/cleanDataSource';
-import { parse2Var } from '../core/utils/compositeType';
 
 function getInternalDep(
   internalDeps: Record<string, IInternalDependency>,
@@ -40,7 +40,6 @@ function getInternalDep(
 }
 
 const CustomComponentName = 'CustomComponent';
-
 
 export class SchemaParser implements ISchemaParser {
   validate(): boolean {
@@ -243,7 +242,15 @@ export class SchemaParser implements ISchemaParser {
     const models: IRouterInfo['routes'] = containers
       .filter((container) => MODAL_TYPES.includes(container.containerType))
       .map((page) => {
-        const drawObject= _.some({ okText: page.okText, cancelText: page.cancelText, drawerTitle: parse2Var(page.drawerTitle), modalTitle: parse2Var(page.modalTitle )}, value => _.isNil(value) || value === '' || _.isUndefined(value));
+        const drawObject = _.some(
+          {
+            okText: page.okText,
+            cancelText: page.cancelText,
+            drawerTitle: parse2Var(page.drawerTitle),
+            modalTitle: parse2Var(page.modalTitle),
+          },
+          (value) => _.isNil(value) || value === '' || _.isUndefined(value),
+        );
         const pcDraw = _.mergeWith({}, drawObject);
         // position: 'top' | 'bottom' | 'right' | 'left';
         // mode: 'alert' | 'sliderLeft' | 'sliderRight' | 'dropdown' | 'popup' | '';

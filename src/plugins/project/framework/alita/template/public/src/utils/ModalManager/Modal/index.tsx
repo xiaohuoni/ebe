@@ -1,5 +1,4 @@
-import react from 'react';
-import { RootProps, PageComent } from '@/components/Pageview';
+import { PageComent, RootProps } from '@/components/Pageview';
 import { Modal } from 'antd';
 import classnames from 'classnames';
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
