@@ -1,5 +1,5 @@
-import generate from '@babel/generator';
-import { Expression } from '@babel/types';
+import * as generator from '@umijs/bundler-utils/compiled/babel/generator';
+import * as t from '@umijs/bundler-utils/compiled/babel/types';
 import { IScope } from '../../../types';
 import { parseExpressionConvertThis2Context } from '../../../utils/expressionParser';
 
@@ -8,12 +8,12 @@ import { parseExpressionConvertThis2Context } from '../../../utils/expressionPar
  * @param expr
  */
 export function transformThis2Context(
-  expr: string | Expression,
+  expr: string | t.Expression,
   scope: IScope,
   { ignoreRootScope = false } = {},
 ): string {
   if (ignoreRootScope && scope.parent == null) {
-    return typeof expr === 'string' ? expr : generate(expr).code;
+    return typeof expr === 'string' ? expr : generator.default(expr).code;
   }
 
   // 下面这种字符串替换的方式虽然简单直接，但是对于复杂场景会误匹配，故后期改成了解析 AST 然后修改 AST 最后再重新生成代码的方式

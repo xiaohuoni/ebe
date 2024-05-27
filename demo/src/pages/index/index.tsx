@@ -12,101 +12,15 @@ import { Button, Form, Input, message, Switch } from 'antd';
 import { useEffect, useState } from 'react';
 // @ts-ignore
 import { generateCode, init, publishers } from 'ebe';
+import {
+  cleanTree,
+  clearLXPagesDSL,
+  findAllItem,
+  getPageDsls,
+  treeForEach,
+} from 'ebe-utils';
 
 const Item = Form.Item;
-
-const treeForEach = (
-  tree: any,
-  callback: (item: any, root: boolean) => void,
-  options = { children: 'components' },
-) => {
-  callback(tree, true);
-
-  const loop = (children: any[]) => {
-    children?.forEach((item) => {
-      callback(item, false);
-      if (Array.isArray(item?.[options.children])) {
-        loop(item?.[options.children]);
-      }
-    });
-  };
-
-  const list = tree[options.children];
-  loop(list);
-};
-
-const getPageDsls = (resultObjects: any[]) => {
-  return resultObjects
-    .filter(Boolean)
-    .map((i) => {
-      try {
-        const pageData = JSON.parse(i.resultObject.attrMappingJson);
-        pageData.pageId = i.resultObject?.pageId;
-        return pageData;
-      } catch (error) {
-        console.error(error, '该页面信息出错', i);
-        return null;
-      }
-    })
-    .filter(Boolean);
-};
-function findAllItem<T = any>(
-  target: T[],
-  callback: (item: T, index: number, list: T[]) => boolean,
-  itemHash: any,
-) {
-  const list = target;
-  // Makes sures is always has an positive integer as length.
-  // eslint-disable-next-line
-  const length = list.length >>> 0;
-  // eslint-disable-next-line
-  const thisArg = arguments[1];
-  for (let i = 0; i < length; ) {
-    const element = list[i] as any;
-    if (callback.call(thisArg, element, i, list)) {
-      itemHash[element?.props?.busiCompId ?? ''] = 1;
-    }
-    i += 1;
-    if (element?.components) {
-      findAllItem(element?.components, callback, itemHash);
-    }
-  }
-}
-export function findItem<T = any>(
-  target: T[],
-  callback: (item: T, index: number, list: T[]) => boolean,
-) {
-  const list = target;
-  // Makes sures is always has an positive integer as length.
-  // eslint-disable-next-line
-  const length = list.length >>> 0;
-  // eslint-disable-next-line
-  const thisArg = arguments[1];
-  for (let i = 0; i < length; ) {
-    const element = list[i];
-    if (callback.call(thisArg, element, i, list)) {
-      return element;
-    }
-    i += 1;
-  }
-  return null;
-}
-function cleanTree(tree: any, fields) {
-  let fieldSet = new Set(fields); // 使用set结构可以提高查询速度
-
-  if (Array.isArray(tree)) {
-    return tree.map((item) => cleanTree(item, fields));
-  } else if (typeof tree === 'object' && tree !== null) {
-    return Object.entries(tree).reduce((newTree, [key, value]) => {
-      if (!fieldSet.has(key)) {
-        newTree[key] = cleanTree(value, fields);
-      }
-      return newTree;
-    }, {});
-  } else {
-    return tree;
-  }
-}
 
 const Page = () => {
   const ii = async () => {
@@ -272,6 +186,7 @@ const Page = () => {
       themeCss,
     };
     let cleanedTree = cleanTree(pageDSLS, ['path']); // 清理字段'b'和字段'e'
+    cleanedTree = clearLXPagesDSL(cleanedTree);
     console.log('cleanedTree', cleanedTree);
     if (bower) {
       const result = await generateCode({

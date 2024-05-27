@@ -20,9 +20,9 @@ const countCMD = (value: any | any[]) => {
 
 const types = new Set();
 
-setTimeout(() => {
-  console.log('当前源码缺少的指令: ', [...types]);
-}, 5000);
+// setTimeout(() => {
+//   console.log('当前源码缺少的指令: ', [...types]);
+// }, 5000);
 
 const CMDGenerator = (prames: CMDGeneratorPrames) => {
   if (!prames?.value?.type) {
