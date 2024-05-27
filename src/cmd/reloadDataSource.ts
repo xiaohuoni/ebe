@@ -25,7 +25,7 @@ export function reloadDataSource(generateParams: CMDGeneratorPrames): string {
     [item.name, getDSFilterName(item.name)].includes(dataSourceName),
   );
   if (!dsConfig)
-    return `//【刷新数据源 数据源${dataSourceName}不存在，请检查配置`;
+    return `//【刷新数据源 数据源${dataSourceName}不存在，请检查配置\n`;
 
   const { source, id } = dsConfig;
   const { dataSourceReloadFilter } = options;
