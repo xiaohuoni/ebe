@@ -9,7 +9,7 @@ export default function getFile(
   const file = createResultFile(
     'index',
     'tsx',
-    `import ModalView from '@/components/Modal';
+    `import ModalView from '@/utils/ModalManager';
     import { Context, RefsManager } from '@/utils/Context/context';
     import React, { useEffect, useRef, useState } from 'react';
     import { APPID } from '@/constants';

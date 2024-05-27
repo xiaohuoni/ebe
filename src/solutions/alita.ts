@@ -92,6 +92,7 @@ export default function createIceJsProjectBuilder(
             MobileModal: 'div',
             MobilePopover: 'div',
             Modal: 'div',
+            Drawer: 'div',
           },
         }),
         // 最前面的代码，其实是最后生成的
@@ -111,7 +112,7 @@ export default function createIceJsProjectBuilder(
       packageJSON: [
         alita.plugins.packageJSON({
           dependenciesPc: {
-            antd: '4.18.8',
+            antd: "4.24.13",
             lodash: '^4.17.21',
             qs: '^6.11.2',
             'copy-to-clipboard': '^3.3.1',
@@ -128,7 +129,7 @@ export default function createIceJsProjectBuilder(
             '@lingxiteam/engine-sandbox': '3.3.1-alpha.14',
             '@lingxiteam/engine-utils': '3.3.1-alpha.14',
             '@lingxiteam/icons': '0.0.3',
-            '@lingxiteam/pcfactory': '3.7.1-alpha.12',
+            "@lingxiteam/pcfactory": "^3.7.1-alpha.14",
             '@paciolan/remote-component': '2.13.0',
             '@lingxiteam/sys-action': '3.3.1-alpha.14',
             '@lingxiteam/types': '3.3.1-alpha.14',

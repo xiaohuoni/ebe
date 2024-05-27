@@ -29,6 +29,7 @@ import enPreprocessPC from '../utils/factory/pc/index.enPreprocess';
 import enRunPreprocessPC from '../utils/factory/pc/index.enRunPreprocess';
 import assetHelper from '../utils/schema/assets/assets';
 import { cleanDataSource } from '../utils/schema/cleanDataSource';
+import { parse2Var } from '../core/utils/compositeType';
 
 function getInternalDep(
   internalDeps: Record<string, IInternalDependency>,
@@ -39,6 +40,7 @@ function getInternalDep(
 }
 
 const CustomComponentName = 'CustomComponent';
+
 
 export class SchemaParser implements ISchemaParser {
   validate(): boolean {
@@ -241,6 +243,8 @@ export class SchemaParser implements ISchemaParser {
     const models: IRouterInfo['routes'] = containers
       .filter((container) => MODAL_TYPES.includes(container.containerType))
       .map((page) => {
+        const drawObject= _.some({ okText: page.okText, cancelText: page.cancelText, drawerTitle: parse2Var(page.drawerTitle), modalTitle: parse2Var(page.modalTitle )}, value => _.isNil(value) || value === '' || _.isUndefined(value));
+        const pcDraw = _.mergeWith({}, drawObject);
         // position: 'top' | 'bottom' | 'right' | 'left';
         // mode: 'alert' | 'sliderLeft' | 'sliderRight' | 'dropdown' | 'popup' | '';
         // closeOnMaskClick: boolean;
@@ -262,9 +266,12 @@ export class SchemaParser implements ISchemaParser {
           destroyOnClose: page.destroyOnClose,
           showCloseButton: page.showCloseButton,
           // pc model 需要的参数
+          pageContainerType: page.containerType,
           pageName: page.pageName,
           customWidth: page.customWidth,
           customHeight: page.customHeight,
+          okText: page.okText,
+          ...pcDraw,
         };
       });
 

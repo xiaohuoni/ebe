@@ -5,9 +5,10 @@ export const PAGE_TYPES = [
   'MobileModal',
   'MobilePopover',
   'Modal',
+  'Drawer',
   'Popover',
 ];
-export const MODAL_TYPES = ['MobileModal', 'Modal'];
+export const MODAL_TYPES = ['MobileModal', 'Modal','Drawer'];
 
 export const SERVICE_SOURCE = {
   // 服务来源

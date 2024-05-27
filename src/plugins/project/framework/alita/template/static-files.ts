@@ -16,8 +16,6 @@ import modalmodal from './files/modalmodal';
 import modaltypes from './files/modaltypes';
 import pcbannermodal from './files/pcbannermodal';
 import pcbannermodalless from './files/pcbannermodalless';
-import pcmodalindex from './files/pcmodalindex';
-import pcmodalmodal from './files/pcmodalmodal';
 import popover from './files/popover';
 import popoverwrapper from './files/popoverwrapper';
 import proxy from './files/proxy';
@@ -102,18 +100,6 @@ export function generateStaticFiles(
       parseResult?.staticFiles,
     );
   } else {
-    runFileGenerator(
-      postProcessors,
-      root,
-      pcmodalindex,
-      parseResult?.staticFiles,
-    );
-    runFileGenerator(
-      postProcessors,
-      root,
-      pcmodalmodal,
-      parseResult?.staticFiles,
-    );
   }
   runFileGenerator(postProcessors, root, proxy, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, withPageHOC, parseResult?.staticFiles);
