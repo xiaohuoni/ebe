@@ -260,7 +260,7 @@ export interface CompositeValueGeneratorOptions {
   ir?: IContainerInfo;
   // 事件调用的时候需要修改是否是 async 函数
   parentIsAsync?: boolean;
-  // 顶层已经有new Promise  
+  // 顶层已经有new Promise
   isTopHasPromise?: boolean;
   // 自定义事件
   isCustomEvent?: boolean;

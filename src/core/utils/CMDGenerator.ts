@@ -92,11 +92,15 @@ const checkIfCMDHasReturn = (cmddata: any[]) => {
         // 仅处理同步指令
 
         // 分析具体的退出事件：仅 存在配置了值的，退出事件，才列入检查范围，空退出事件不考虑
-        if (item.type === 'return' && !item.shielding && item.options.returnValue) {
+        if (
+          item.type === 'return' &&
+          !item.shielding &&
+          item.options.returnValue
+        ) {
           result = true;
           return;
         }
-        callbackCheck.forEach(k => {
+        callbackCheck.forEach((k) => {
           if (item[k]) {
             recursiveFind(item[k]);
           }
@@ -128,11 +132,11 @@ export const CMDGeneratorEvent = (
     return '()=>{ console.log("这里找不到参数/？")}';
   }
   const isHasReturn = checkIfCMDHasReturn(value);
-  let returnStartString  = '';
-  let returnEndString  = '';
-  if (isHasReturn && options.isTopHasPromise !== true ) {
+  let returnStartString = '';
+  let returnEndString = '';
+  if (isHasReturn && options.isTopHasPromise !== true) {
     returnStartString = `new Promise((resolve, reject) =>`;
-    returnEndString= ')';
+    returnEndString = ')';
     // 如果顶层有退出事件，后续的事件不需要增加return
     options.isTopHasPromise = true;
   }
@@ -145,13 +149,11 @@ export const CMDGeneratorEvent = (
   );
   let eventTop = '';
   if (options.isCustomEvent === true && !isHasReturn) {
-    eventTop = 'async'
+    eventTop = 'async';
   } else if (options?.parentIsAsync) {
-    eventTop = 'async'
+    eventTop = 'async';
   }
-  const renderEvent = `${
-    eventTop
-  }(${prefix}${value.params
+  const renderEvent = `${eventTop}(${prefix}${value.params
     .filter((obj: { name: any }, index: any, arr: any[]) => {
       // 删掉 name 重复的对象，如 Tree {title: '节点key(单选)',name: 'selectedKeys',value: '$selectedKeys[0]$',},{title: '节点keys(多选)',name: 'selectedKeys',value: '$selectedKeys$', },
       return arr.findIndex((o) => o.name === obj.name) === index;
