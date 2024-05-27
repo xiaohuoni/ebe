@@ -111,6 +111,25 @@ export default (api: IApi) => {
               message: `${appId} 应用数据生成完成`,
             },
           });
+          try {
+            // 调试需要，将 page 拆出来
+            const { pages } = req.body;
+
+            pages.forEach((p: any) => {
+              const pagePath = p.pagePath ? p.pagePath : `BusiComp${p.id}`;
+
+              let tmpPagePath = join(
+                api.paths.absNodeModulesPath,
+                '.cache',
+                appId,
+                `${pagePath}.json`,
+              );
+              writeFileSync(tmpPagePath, JSON.stringify(p));
+            });
+          } catch (error) {
+          } finally {
+            console.log('缓存文件写入完成');
+          }
         }
       } else if (req.path.startsWith('/download')) {
         if (!req.query.appId && !req.query.appid) {
