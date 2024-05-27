@@ -1,6 +1,6 @@
-import * as generator from '@umijs/bundler-utils/compiled/babel/generator';
-import * as traverse from '@umijs/bundler-utils/compiled/babel/traverse';
-import * as t from '@umijs/bundler-utils/compiled/babel/types';
+import generator from '@babel/generator';
+import traverse from '@babel/traverse';
+import * as t from '@babel/types';
 import { PostProcessor, PostProcessorFactory } from '../../types';
 import { parse } from './parse';
 
@@ -192,8 +192,8 @@ const factory: PostProcessorFactory<ProcessorConfig> = (
         },
       };
 
-      traverse.default(ast, visitor);
-      return generator.default(ast, {
+      traverse(ast, visitor);
+      return generator(ast, {
         retainLines: false,
         sourceMaps: false,
         decoratorsBeforeExport: true,
