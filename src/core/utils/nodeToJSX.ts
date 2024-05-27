@@ -53,8 +53,8 @@ function mergeNodeGeneratorConfig(
 export function isPureString(v: string) {
   // FIXME: 目前的方式不够严谨
   return (
-    (v[0] === "'" && v[v.length - 1] === "'") ||
-    (v[0] === '"' && v[v.length - 1] === '"')
+    (v[0] === "'" && v[v.length - 1] === "'" && !v.includes('\\’')) ||
+    (v[0] === '"' && v[v.length - 1] === '"' && !v.includes('\\"'))
   );
 }
 
