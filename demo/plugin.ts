@@ -113,7 +113,7 @@ export default (api: IApi) => {
           });
           try {
             // 调试需要，将 page 拆出来
-            const { pages } = req.body;
+            const { pages, options } = req.body;
 
             pages.forEach((p: any) => {
               const pagePath = p.pagePath ? p.pagePath : `BusiComp${p.id}`;
@@ -126,6 +126,13 @@ export default (api: IApi) => {
               );
               writeFileSync(tmpPagePath, JSON.stringify(p));
             });
+            let tmpOptionsPath = join(
+              api.paths.absNodeModulesPath,
+              '.cache',
+              appId,
+              `__options.json`,
+            );
+            writeFileSync(tmpOptionsPath, JSON.stringify(options));
           } catch (error) {
           } finally {
             console.log('缓存文件写入完成');
