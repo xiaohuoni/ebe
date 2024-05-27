@@ -154,7 +154,8 @@ function generateAttrs(
               generateAttr(propName, props[propName] as any, scope, config),
             );
           } else {
-            console.log(props[propName]);
+            // TODO: 属性值为空，没必要打日志
+            // console.log(props[propName]);
           }
         }
       });

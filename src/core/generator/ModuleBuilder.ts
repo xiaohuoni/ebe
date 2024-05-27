@@ -74,7 +74,7 @@ export function createModuleBuilder(
             // 尝试使用格式化
             content = processer(content, type, name);
           } catch (error) {
-            console.log(error);
+            console.log('[尝试使用格式化失败]', error);
           }
         });
 

@@ -234,7 +234,7 @@ export default DynamicPopover;
           }
           return {};
         }, [page, popoverOptions, update]);
-      console.log(options);
+
         useEffect(() => {
           const ref = {
             close: () => setVisible(false),

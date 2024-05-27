@@ -21,7 +21,9 @@ import {
   ProjectPreProcessor,
 } from '../types/core';
 import { CodeGeneratorError } from '../types/error';
+import { printCmdList } from '../utils/debug';
 import { createModuleBuilder } from './ModuleBuilder';
+
 interface IModuleInfo {
   moduleName?: string;
   path: string[];
@@ -387,6 +389,7 @@ export class ProjectBuilder implements IProjectBuilder {
       );
     }
 
+    printCmdList();
     return finalResult;
   }
 
