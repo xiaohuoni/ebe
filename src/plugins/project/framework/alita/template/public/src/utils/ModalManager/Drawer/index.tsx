@@ -16,20 +16,21 @@ const DM = forwardRef((props: any, ref) => {
     className = '',
     lcdpParentRenderId,
     getLocale,
+    onOk,
     ...restProp
   } = props;
   const [mProps, setMDProps] = useSetState<any>({ title: '' });
   const mRef = useRef<any>();
   const handleOk = () => {
-    if (mRef.current && typeof mRef.current.onMDOK === 'function') {
-      mRef.current.onMDOK();
+    if (mRef.current && typeof mRef.current.onOk === 'function') {
+      mRef.current.onOk();
     }
   };
   const handleClose = () => {
     let cancelResult;
-    if (mRef.current && typeof mRef.current.onMDCancel === 'function') {
+    if (mRef.current && typeof mRef.current.onCancel === 'function') {
       // 返回false阻止默认推拉门关闭动作
-      cancelResult = mRef.current.onMDCancel();
+      cancelResult = mRef.current.onCancel();
     }
 
     // onCancel为内置取消处理函数，用于关闭推拉门
@@ -92,7 +93,9 @@ const DM = forwardRef((props: any, ref) => {
           pageSrc={pagePath}
           state={params}
           ref={mRef}
+          onOk={onOk}
           lcdpParentRenderId={lcdpParentRenderId}
+          closeModal={onCancel}
         />
       </Drawer>
     </>
