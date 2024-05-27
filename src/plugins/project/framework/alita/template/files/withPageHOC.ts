@@ -195,21 +195,12 @@ export const withPageHOC = (
           };
         },
       };
-      const getValue = (id: string, stateName?: string) => {
-        if (stateName) {
-          // @ts-ignore
-          return refs?.[id]?.[stateName];
-        }
-        // @ts-ignore
-        return refs?.[id]?.value;
-      };
       // 设置默认属性
       BannerModal.defaultProps = {
         // @ts-ignore
         api: baseApi,
       };
       const defaultContext = {
-        getValue,
         urlParam,
         // TODO 需要将lcdpApi移动过来
         lcdpApi,

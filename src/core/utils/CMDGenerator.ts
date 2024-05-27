@@ -79,6 +79,41 @@ export const CMDGeneratorFunction = (
 
   return renderEvent.join('\n');
 };
+const asyncCMD = [''];
+const callbackCheck = ['callback1', 'callback2', 'callback3', 'children'];
+// 判断是否有退出事件
+const checkIfCMDHasReturn = (cmddata: any[]) => {
+  let result = false;
+
+  const recursiveFind = (data: any[] | undefined) => {
+    if (!data) return;
+    data.forEach((item: any) => {
+      if (!asyncCMD.includes(item.type)) {
+        // 仅处理同步指令
+
+        // 分析具体的退出事件：仅 存在配置了值的，退出事件，才列入检查范围，空退出事件不考虑
+        if (item.type === 'return' && !item.shielding && item.options.returnValue) {
+          result = true;
+          return;
+        }
+        callbackCheck.forEach(k => {
+          if (item[k]) {
+            recursiveFind(item[k]);
+          }
+        });
+        // 条件判断分支单独处理
+        if (item.elseIfs) {
+          item.elseIfs.forEach((k: any) => {
+            recursiveFind(k.callback);
+          });
+        }
+      }
+    });
+  };
+  recursiveFind(cmddata);
+
+  return result;
+};
 
 export const CMDGeneratorEvent = (
   value: any,
@@ -92,6 +127,15 @@ export const CMDGeneratorEvent = (
   if (!value || !value.params) {
     return '()=>{ console.log("这里找不到参数/？")}';
   }
+  const isHasReturn = checkIfCMDHasReturn(value);
+  let returnStartString  = '';
+  let returnEndString  = '';
+  if (isHasReturn && options.isTopHasPromise !== true ) {
+    returnStartString = `new Promise((resolve, reject) =>`;
+    returnEndString= ')';
+    // 如果顶层有退出事件，后续的事件不需要增加return
+    options.isTopHasPromise = true;
+  }
   const cmdFunctionString = CMDGeneratorFunction(
     value,
     value.params,
@@ -99,17 +143,23 @@ export const CMDGeneratorEvent = (
     scope,
     options,
   );
+  let eventTop = '';
+  if (options.isCustomEvent === true && !isHasReturn) {
+    eventTop = 'async'
+  } else if (options?.parentIsAsync) {
+    eventTop = 'async'
+  }
   const renderEvent = `${
-    options?.parentIsAsync ? 'async ' : ''
+    eventTop
   }(${prefix}${value.params
     .filter((obj: { name: any }, index: any, arr: any[]) => {
       // 删掉 name 重复的对象，如 Tree {title: '节点key(单选)',name: 'selectedKeys',value: '$selectedKeys[0]$',},{title: '节点keys(多选)',name: 'selectedKeys',value: '$selectedKeys$', },
       return arr.findIndex((o) => o.name === obj.name) === index;
     })
     .map((i: { name: any }) => i.name + ': any')
-    .join(',')})=>{ 
+    .join(',')})=>${returnStartString}{ 
       ${funcTop}
       ${cmdFunctionString}
-    }`;
+    }${returnEndString}`;
   return renderEvent;
 };

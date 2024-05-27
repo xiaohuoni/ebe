@@ -143,7 +143,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             item?.value,
             next?.contextData,
             {} as IScope,
-            { ir },
+            { ir, isCustomEvent: true },
           )}`;
         })
         .join(';');
