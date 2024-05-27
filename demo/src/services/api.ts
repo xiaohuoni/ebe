@@ -12,7 +12,9 @@ export async function code(data): Promise<any> {
   console.log(data);
   return request('/code', { method: 'POST', data });
 }
-
+export async function localgenerate(data): Promise<any> {
+  return request('/localgenerate', { params: data });
+}
 export async function qryPageInstListByAppId(params): Promise<any> {
   const headers: any = {
     'Content-Type': 'application/json',

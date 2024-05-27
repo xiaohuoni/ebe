@@ -6,12 +6,34 @@ import compression from 'compression';
 // @ts-ignore
 import archiver from 'archiver';
 // @ts-ignore
-import { fsExtra } from '@umijs/utils';
+import { crossSpawn, fsExtra } from '@umijs/utils';
 // @ts-ignore
 // import { publishers, solutions } from 'ebe';
+import * as child_process from 'child_process';
 import { existsSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
-
+async function spawnSync(
+  command: string,
+  args: string[] = [],
+  options: child_process.SpawnSyncOptions = {},
+) {
+  return new Promise((resolve, reject) => {
+    const child = crossSpawn(command, args, { stdio: 'inherit', ...options });
+    child
+      .on('close', (code) => {
+        if (code !== 0) {
+          reject({
+            command: `${command} ${args.join(' ')}`,
+          });
+          return;
+        }
+        resolve(0);
+      })
+      .on('error', (err) => {
+        console.error('error', err);
+      });
+  });
+}
 const generateZip = async ({ options, pages, appId, outputPath }) => {
   const ebe = require('ebe');
   const projectBuilder = ebe.solutions?.alita({ options });
@@ -86,7 +108,7 @@ export default (api: IApi) => {
             resultCode: '0',
             resultMsg: 'success',
             resultObject: {
-              message: `${appId} 应用源码生成完成`,
+              message: `${appId} 应用数据生成完成`,
             },
           });
         }
@@ -124,6 +146,24 @@ export default (api: IApi) => {
         }
 
         archive.finalize();
+      } else if (req.path.startsWith('/localgenerate')) {
+        if (!req.query.appId && !req.query.appid) {
+          console.log(req);
+          res.send({ error: 'appId 错误啦' });
+        }
+        const filePath = req.query.appId || req.query.appid || ('' as string);
+        try {
+          await spawnSync('pnpm', ['gggg', filePath as string]);
+          res.send({
+            resultCode: '0',
+            resultMsg: 'success',
+            resultObject: {
+              message: '生成成功',
+            },
+          });
+        } catch (error) {
+          res.send({ error: '本地构建错误，请手动执行生成' });
+        }
       } else {
         next();
       }

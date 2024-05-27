@@ -3,6 +3,7 @@ import {
   findBusiCompById,
   findPageInstByVersionId,
   getThemeCss,
+  localgenerate,
   qryAttrSpecPage,
   qryPageCompAssetList,
   qryPageInstListByAppId,
@@ -32,7 +33,11 @@ const Page = () => {
   const [loading, setLoading] = useState(false);
 
   const [form] = Form.useForm();
-  const onFinish = async (values: any, bower: boolean = false) => {
+  const onFinish = async (
+    values: any,
+    bower: boolean = false,
+    localGenerete: boolean = false,
+  ) => {
     setLoading(true);
 
     // 根据 appId 获取当前应用的全部页面
@@ -212,6 +217,17 @@ const Page = () => {
     console.log(res);
     if (res.resultCode === '0') {
       message.success(res.resultObject.message);
+      if (localGenerete) {
+        const lgRes = await localgenerate({
+          appId: values.appId,
+        });
+        console.log(res);
+        if (lgRes.resultCode === '0') {
+          message.success(lgRes.resultObject.message);
+        } else {
+          message.error(lgRes.resultObject.message);
+        }
+      }
       // window.open(`/download?appId=${values.appId}`);
     } else {
       message.error(res.resultObject.message);
@@ -229,7 +245,7 @@ const Page = () => {
         autoComplete="off"
         onFinish={onFinish}
         initialValues={{
-          appId: '1089426139952508928',
+          appId: '1107148717246517248',
           pageId: '',
           platform: false,
         }}
@@ -245,15 +261,23 @@ const Page = () => {
         </Item>
         <Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit" loading={loading}>
-            生成json
+            仅生成json（缓存目录中）
           </Button>
-          <Button
+          {/* <Button
             loading={loading}
             onClick={async () => {
               onFinish(form.getFieldsValue(), true);
             }}
           >
             浏览器出码
+          </Button> */}
+          <Button
+            loading={loading}
+            onClick={async () => {
+              onFinish(form.getFieldsValue(), false, true);
+            }}
+          >
+            生成本地项目（仅开发可用）
           </Button>
         </Item>
       </Form>

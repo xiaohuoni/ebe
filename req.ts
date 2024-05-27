@@ -5,10 +5,14 @@ import { copyStatic } from './scripts/copyStatic';
 import { createDiskPublisher } from './src/core/publisher/disk';
 import alita from './src/solutions/alita';
 (async () => {
-  const appId = '1089426139952508928'; // HJF
+  // 支持命令中指定 appId 如 pnpm req appId
+  const appId = process.argv.slice(2)[0] || '11'; // HJF
   // const appId = '772790966277644288'; // 开发环境
-  // const schemaFile = `./demo/node_modules/.cache/${appId}/req.json`;
-  const schemaFile = `./req.json`;
+  const schemaFile = join(
+    __dirname,
+    `./demo/node_modules/.cache/${appId}/req.json`,
+  );
+  // const schemaFile = `./req.json`;
   // 读取 Schema
   const schema = await loadSchemaFile(schemaFile);
 
@@ -21,12 +25,12 @@ import alita from './src/solutions/alita';
   // 写入到 zip 包
   await createDiskPublisher().publish({
     project, // 上一步生成的 project
-    outputPath: './templates/', // 输出目录
+    outputPath: join(__dirname, './templates/'), // 输出目录
     projectSlug,
   });
   copyStatic(
-    './src/plugins/project/framework/alita/template/public',
-    join('./templates/', projectSlug),
+    join(__dirname, './src/plugins/project/framework/alita/template/public'),
+    join(__dirname, './templates/', projectSlug),
   );
   async function loadSchemaFile(schemaFile: string): Promise<any> {
     if (!schemaFile) {
