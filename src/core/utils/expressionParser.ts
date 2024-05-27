@@ -1,7 +1,8 @@
-import * as generator from '@umijs/bundler-utils/compiled/babel/generator';
-import * as parser from '@umijs/bundler-utils/compiled/babel/parser';
-import * as traverse from '@umijs/bundler-utils/compiled/babel/traverse';
-import * as t from '@umijs/bundler-utils/compiled/babel/types';
+import generate from '@babel/generator';
+import * as parser from '@babel/parser';
+import traverse, { NodePath } from '@babel/traverse';
+import * as t from '@babel/types';
+import { isIdentifier, Node } from '@babel/types';
 
 import { IScope } from '../types';
 import { OrderedSet } from './OrderedSet';
@@ -14,7 +15,7 @@ export class ParseError extends Error {
   constructor(expr: string | t.Expression, detail: unknown) {
     super(
       `Failed to parse expression "${
-        typeof expr === 'string' ? expr : generator.default(expr)
+        typeof expr === 'string' ? expr : generate(expr)
       }"`,
     );
     this.expr = expr;
@@ -24,9 +25,9 @@ export class ParseError extends Error {
 }
 
 const MAYBE_EXPRESSIONS: {
-  [k in t.Node['type']]?: {
+  [k in Node['type']]?: {
     // fields: Array<keyof (Node & { type: k })>
-    fields: string[] | ((node: t.Node) => string[]);
+    fields: string[] | ((node: Node) => string[]);
   };
 } = {
   ArrayExpression: { fields: ['elements'] },
@@ -140,7 +141,7 @@ export interface ParseExpressionGetGlobalVariablesOptions {
 }
 
 const CROSS_THIS_SCOPE_TYPE_NODE: {
-  [k in t.Node['type']]?: boolean;
+  [k in Node['type']]?: boolean;
 } = {
   ArrowFunctionExpression: false, // 箭头函数不跨越 this 的 scope
   FunctionExpression: true,
@@ -174,17 +175,17 @@ export function parseExpressionGetKeywords(
       plugins: ['jsx'],
     });
 
-    const addIdentifierIfNeeded = (x: t.Node | null | undefined) => {
+    const addIdentifierIfNeeded = (x: Node | null | undefined) => {
       if (
         typeof x === 'object' &&
-        t.isIdentifier(x) &&
+        isIdentifier(x) &&
         JS_KEYWORDS.includes(x.name)
       ) {
         keywordVars.add(x.name);
       }
     };
 
-    traverse.default(ast, {
+    traverse(ast, {
       enter(path) {
         const { node } = path;
         const expressionFields = MAYBE_EXPRESSIONS[node.type]?.fields;
@@ -228,19 +229,19 @@ export function parseExpressionGetGlobalVariables(
     const ast = parser.parse(`!(${expr});`);
 
     const addUndeclaredIdentifierIfNeeded = (
-      x: t.Node | null | undefined,
-      path: traverse.NodePath<t.Node>,
+      x: Node | null | undefined,
+      path: NodePath<Node>,
     ) => {
       if (
         typeof x === 'object' &&
-        t.isIdentifier(x) &&
+        isIdentifier(x) &&
         !path.scope.hasBinding(x.name)
       ) {
         undeclaredVars.add(x.name);
       }
     };
 
-    traverse.default(ast, {
+    traverse(ast, {
       enter(path) {
         const { node } = path;
         const expressionFields = MAYBE_EXPRESSIONS[node.type]?.fields;
@@ -288,7 +289,7 @@ export function parseExpressionConvertThis2Context(
     const localVariablesSet = new Set(localVariables);
 
     let thisScopeLevel = CROSS_THIS_SCOPE_TYPE_NODE[exprAst.type] ? -1 : 0;
-    traverse.default(fileAst, {
+    traverse(fileAst, {
       enter(path) {
         if (CROSS_THIS_SCOPE_TYPE_NODE[path.node.type]) {
           thisScopeLevel++;
@@ -339,9 +340,7 @@ export function parseExpressionConvertThis2Context(
       },
     });
 
-    const { code } = generator.default(exprWrapAst.expression, {
-      sourceMaps: false,
-    });
+    const { code } = generate(exprWrapAst.expression, { sourceMaps: false });
     return code;
   } catch (e) {
     throw new ParseError(expr, e);
@@ -371,7 +370,7 @@ export function transformExpressionLocalRef(expr: string, scope: IScope) {
     const exprWrapAst = t.expressionStatement(exprAst);
     const fileAst = t.file(t.program([exprWrapAst]));
 
-    traverse.default(fileAst, {
+    traverse(fileAst, {
       MemberExpression(path) {
         if (!path.isMemberExpression()) {
           return;
@@ -400,9 +399,7 @@ export function transformExpressionLocalRef(expr: string, scope: IScope) {
       },
     });
 
-    const { code } = generator.default(exprWrapAst.expression, {
-      sourceMaps: false,
-    });
+    const { code } = generate(exprWrapAst.expression, { sourceMaps: false });
     return code;
   } catch (e) {
     throw new ParseError(expr, e);

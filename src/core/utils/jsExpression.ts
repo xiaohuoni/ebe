@@ -1,7 +1,7 @@
-import * as generator from '@umijs/bundler-utils/compiled/babel/generator';
-import * as parser from '@umijs/bundler-utils/compiled/babel/parser';
-import * as traverse from '@umijs/bundler-utils/compiled/babel/traverse';
-import * as t from '@umijs/bundler-utils/compiled/babel/types';
+import generate from '@babel/generator';
+import * as parser from '@babel/parser';
+import traverse from '@babel/traverse';
+import * as t from '@babel/types';
 import {
   CodeGeneratorError,
   CompositeValueGeneratorOptions,
@@ -19,7 +19,7 @@ function parseFunction(content: string): t.FunctionExpression | null {
     });
 
     let resultNode: t.FunctionExpression | null = null;
-    traverse.default(ast, {
+    traverse(ast, {
       FunctionExpression(path) {
         resultNode = path.node;
         path.stop();
@@ -50,9 +50,7 @@ function transformFuncExpr2MethodMember(
       funcNode.async || undefined,
     );
 
-    const { code: resultCode } = generator.default(targetNode, {
-      sourceMaps: false,
-    });
+    const { code: resultCode } = generate(targetNode, { sourceMaps: false });
     return resultCode;
   }
 
@@ -68,9 +66,7 @@ function getArrowFunction(content: string) {
       funcNode.async || undefined,
     );
 
-    const { code: resultCode } = generator.default(targetNode, {
-      sourceMaps: false,
-    });
+    const { code: resultCode } = generate(targetNode, { sourceMaps: false });
     return resultCode;
   }
 
@@ -84,9 +80,7 @@ function getBodyStatements(content: string) {
 
     const targetNode = t.program(statements, undefined, 'module', undefined);
 
-    const { code: resultCode } = generator.default(targetNode, {
-      sourceMaps: false,
-    });
+    const { code: resultCode } = generate(targetNode, { sourceMaps: false });
     return resultCode;
   }
 
