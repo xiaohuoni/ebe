@@ -11,9 +11,6 @@ export default function getFile(
     `import React, { useContext, useEffect, useState, useRef, useMemo } from 'react';
     import { api as baseApi } from '@/services/api';
     import { messageApi } from '@/utils/messageApi';
-import locales from '@lingxiteam/engine-${
-      isMobile ? 'app' : 'pc'
-    }/es/utils/locales';
 import { pageStaticData } from '@/components/Pageview';
 import BannerModal from '@/components/BannerModal';
 import ExpBusiObjModal from '@/components/ExpBusiObjModal';
@@ -24,14 +21,12 @@ import { PageProvider } from '@/utils/Context/Container';
 import * as functorsMap from '@/utils/functors';
 import Sandbox from '@/utils/sandbox';
 import { useTopContainerHidden } from './Context/Container';
-import {
-  i18n,
-} from '@lingxiteam/engine-utils';
+import locales from '@/utils/i18n/locales';
+import { i18n } from '@/utils/i18n';
 import { useLocation } from 'alita';
 import { parse } from 'qs';
 import lcdpApi from '@/utils/lcdpApi';
 import { Context } from './Context/context';
-import assetHelper from '@lingxiteam/engine-assets';
 import { sandBoxLoadModule } from './sandBoxLoadModule';
 import { getStateListener } from './StateListener';
 
@@ -79,7 +74,6 @@ export const withPageHOC = (
     // 组件状态的处理
     const state = useMemo(() => {
       return {
-        ...options.defaultState,
         ...props.state,
       };
     }, [props.state]);
@@ -144,7 +138,7 @@ export const withPageHOC = (
           locale: props.i18n?.locale!,
           remoteLocale: props.i18n?.remoteLocale,
           language: props.i18n?.language!,
-          configLocale: assetHelper.locale.locales,
+          configLocale: {},
         },
         locales,
       );
