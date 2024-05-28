@@ -21,7 +21,26 @@ const componentsRule: IRulesType = {
       return diffraction?.({ props: { size: 'default', type: 'default' } });
     },
   },
+  Table: {
+    rule: ({ value }) => {
+      return {
+        ...value,
+        props: removeObjectByRules(value.props, {
+          columns: {
+            loopRule: (item) => 'item',
+            loop: {
+              item: {
+                customRendering: isTrue,
+                editContent: isTrue,
+              } as IRulesType,
+            },
+          },
+        }),
+      };
+    },
+  },
 };
+
 export const lingxiDslRules: IRulesType = {
   editorVersion: isTrue,
   createdEditorVersion: isTrue,

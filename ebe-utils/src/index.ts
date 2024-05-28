@@ -34,14 +34,15 @@ export const getNewDataByRules = (
   } else {
     // 只支持两层
     Object.keys(newValue).forEach((newKey) => {
-      if (
-        rule?.({
-          paths: [...path, newKey],
-          value: newValue[newKey],
-          key: newKey,
-        })
-      ) {
+      const res = rule?.({
+        paths: [...path, newKey],
+        value: newValue[newKey],
+        key: newKey,
+      });
+      if (res === true) {
         delete newValue[newKey];
+      } else if (res) {
+        newValue[newKey] = res;
       }
     });
     newData = newValue;
@@ -73,6 +74,9 @@ export const removeObjectByRules = (
         newData[key] = value.map((item: any) => {
           const loopKey = loopRule(item);
           const loopRuleObj = loop[loopKey];
+          if (loopKey === 'item') {
+            return removeObjectByRules(item, loopRuleObj as any, path);
+          }
           if (loopRuleObj && loopRuleObj?.rule) {
             return getNewDataByRules(item, loopRuleObj?.rule, path);
           }

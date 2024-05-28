@@ -186,6 +186,34 @@
           ],
           "isLabelDropBoxChild": false,
           "components": []
+        },
+        {
+          "id": "Table_096226",
+          "label": "表格",
+          "compName": "Table",
+          "type": "Table",
+          "compType": 1,
+          "compLib": "comm",
+          "props": {
+            "name": "表格",
+            "columns": [
+              {
+                "id": "1",
+                "customRendering": "need remove",
+                "editContent": {
+                  "edittype": "need remove"
+                }
+              },
+              {
+                "id": "2",
+                "title": "123",
+                "customRendering": "need remove",
+                "editContent": {
+                  "edittype": "need remove"
+                }
+              }
+            ]
+          }
         }
       ]
     }

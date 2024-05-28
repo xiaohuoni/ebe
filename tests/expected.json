@@ -1,185 +1,205 @@
 [
-  {
-    "id": "542158",
-    "platform": "pc",
-    "appId": "1106394452819316736",
-    "pageId": "1106394609220718592",
-    "components": [
-      {
-        "id": "View_542158_1",
-        "label": "普通容器",
-        "compName": "View",
-        "compType": 0,
-        "compLib": "custom",
-        "props": {
-          "name": "页面",
-          "basicStatus": 1,
-          "backgroundType": {
-            "type": "cleanColor",
-            "color": "rgba(255, 255, 255, 1)"
-          }
-        },
-        "style": {
-          "minHeight": "100%",
-          "display": "flex",
-          "padding": "20px 20px 20px 20px",
-          "flexDirection": "column",
-          "overflowY": "auto",
-          "width": "auto",
-          "height": "auto"
-        },
-        "isContainer": true,
-        "isBusiObjContainer": false,
-        "platform": "pc",
-        "setEvents": [],
-        "type": "View",
-        "isLabelDropBoxChild": false,
-        "components": [
-          {
-            "id": "Button_096226",
-            "label": "按钮",
-            "compName": "Button",
-            "type": "Button",
-            "compType": 1,
-            "compLib": "comm",
-            "props": {
-              "name": "按钮",
-              "basicStatus": 1,
-              "classification": "default",
-              "autoProcessFlow": false,
-              "flowProcessResult": "common",
-              "iconPosition": "left",
-              "ghost": false,
-              "block": false,
-              "btnIcon": "none",
-              "hasIcon": false,
-              "shape": "default",
-              "loading": false,
-              "btnText": "按钮"
-            },
-            "style": {
-              "textAlign": "center"
-            },
-            "isContainer": false,
-            "isBusiObjContainer": false,
-            "platform": "pc",
-            "isInlineBlock": true,
-            "setEvents": [
-              {
-                "dataName": "event",
-                "dataId": 171573860914746140,
-                "value": "onClick",
-                "params": [
-                  {
-                    "title": "事件对象",
-                    "value": "$e$",
-                    "name": "e"
-                  }
-                ],
-                "children": [
-                  {
-                    "dataName": "condition",
-                    "dataId": 171574149702936580,
-                    "elseIfs": [
-                      {
-                        "dataName": "elseIf",
-                        "dataId": 171576763139135300,
-                        "condition": [
-                          {
-                            "options": {},
-                            "condId": "250352",
-                            "conditionType": "notVisible",
-                            "objType": "Input",
-                            "objId": "Input_1814256"
-                          }
-                        ],
-                        "value": "elseIf",
-                        "elseIfs": [],
-                        "children": [
-                          {
-                            "dataName": "action",
-                            "dataId": 171576765418323900,
-                            "todoOptions": ["valueArray"],
-                            "options": {
-                              "compId": "console",
-                              "compName": "system",
-                              "id": "442761",
-                              "pageJsonId": "542158",
-                              "value": ["2222"]
-                            },
-                            "actionObjId": "console",
-                            "actionObjName": "system",
-                            "value": "console",
-                            "elseIfs": [],
-                            "children": []
-                          }
-                        ]
+{
+  "id": "542158",
+  "platform": "pc",
+  "appId": "1106394452819316736",
+  "pageId": "1106394609220718592",
+  "components": [
+    {
+      "id": "View_542158_1",
+      "label": "普通容器",
+      "compName": "View",
+      "compType": 0,
+      "compLib": "custom",
+      "props": {
+        "name": "页面",
+        "basicStatus": 1,
+        "backgroundType": {
+          "type": "cleanColor",
+          "color": "rgba(255, 255, 255, 1)"
+        }
+      },
+      "style": {
+        "minHeight": "100%",
+        "display": "flex",
+        "padding": "20px 20px 20px 20px",
+        "flexDirection": "column",
+        "overflowY": "auto",
+        "width": "auto",
+        "height": "auto"
+      },
+      "isContainer": true,
+      "isBusiObjContainer": false,
+      "platform": "pc",
+      "setEvents": [],
+      "type": "View",
+      "isLabelDropBoxChild": false,
+      "components": [
+        {
+          "id": "Button_096226",
+          "label": "按钮",
+          "compName": "Button",
+          "type": "Button",
+          "compType": 1,
+          "compLib": "comm",
+          "props": {
+            "name": "按钮",
+            "basicStatus": 1,
+            "classification": "default",
+            "autoProcessFlow": false,
+            "flowProcessResult": "common",
+            "iconPosition": "left",
+            "ghost": false,
+            "block": false,
+            "btnIcon": "none",
+            "hasIcon": false,
+            "shape": "default",
+            "loading": false,
+            "btnText": "按钮"
+          },
+          "style": {
+            "textAlign": "center"
+          },
+          "isContainer": false,
+          "isBusiObjContainer": false,
+          "platform": "pc",
+          "isInlineBlock": true,
+          "setEvents": [
+            {
+              "dataName": "event",
+              "dataId": 171573860914746140,
+              "value": "onClick",
+              "params": [
+                {
+                  "title": "事件对象",
+                  "value": "$e$",
+                  "name": "e"
+                }
+              ],
+              "children": [
+                {
+                  "dataName": "condition",
+                  "dataId": 171574149702936580,
+                  "elseIfs": [
+                    {
+                      "dataName": "elseIf",
+                      "dataId": 171576763139135300,
+                      "condition": [
+                        {
+                          "options": {},
+                          "condId": "250352",
+                          "conditionType": "notVisible",
+                          "objType": "Input",
+                          "objId": "Input_1814256"
+                        }
+                      ],
+                      "value": "elseIf",
+                      "elseIfs": [],
+                      "children": [
+                        {
+                          "dataName": "action",
+                          "dataId": 171576765418323900,
+                          "todoOptions": ["valueArray"],
+                          "options": {
+                            "compId": "console",
+                            "compName": "system",
+                            "id": "442761",
+                            "pageJsonId": "542158",
+                            "value": ["2222"]
+                          },
+                          "actionObjId": "console",
+                          "actionObjName": "system",
+                          "value": "console",
+                          "elseIfs": [],
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "dataName": "elseIf",
+                      "dataId": 171577179754159780,
+                      "condition": [],
+                      "value": "elseIf",
+                      "elseIfs": [],
+                      "children": [
+                        {
+                          "dataName": "action",
+                          "dataId": 171577180618680400,
+                          "todoOptions": ["valueArray"],
+                          "options": {
+                            "compId": "console",
+                            "compName": "system",
+                            "id": "880927",
+                            "pageJsonId": "542158",
+                            "value": ["333333"]
+                          },
+                          "actionObjId": "console",
+                          "actionObjName": "system",
+                          "value": "console",
+                          "elseIfs": [],
+                          "children": []
+                        }
+                      ]
+                    }
+                  ],
+                  "condition": [
+                    {
+                      "options": {},
+                      "condId": "58469",
+                      "conditionType": "isVisible",
+                      "objType": "Input",
+                      "objId": "Input_347757"
+                    }
+                  ],
+                  "value": "condition",
+                  "children": [
+                    {
+                      "dataName": "action",
+                      "dataId": 171576713163522750,
+                      "todoOptions": ["valueArray"],
+                      "options": {
+                        "compId": "console",
+                        "compName": "system",
+                        "id": "179761",
+                        "pageJsonId": "542158",
+                        "value": ["123"]
                       },
-                      {
-                        "dataName": "elseIf",
-                        "dataId": 171577179754159780,
-                        "condition": [],
-                        "value": "elseIf",
-                        "elseIfs": [],
-                        "children": [
-                          {
-                            "dataName": "action",
-                            "dataId": 171577180618680400,
-                            "todoOptions": ["valueArray"],
-                            "options": {
-                              "compId": "console",
-                              "compName": "system",
-                              "id": "880927",
-                              "pageJsonId": "542158",
-                              "value": ["333333"]
-                            },
-                            "actionObjId": "console",
-                            "actionObjName": "system",
-                            "value": "console",
-                            "elseIfs": [],
-                            "children": []
-                          }
-                        ]
-                      }
-                    ],
-                    "condition": [
-                      {
-                        "options": {},
-                        "condId": "58469",
-                        "conditionType": "isVisible",
-                        "objType": "Input",
-                        "objId": "Input_347757"
-                      }
-                    ],
-                    "value": "condition",
-                    "children": [
-                      {
-                        "dataName": "action",
-                        "dataId": 171576713163522750,
-                        "todoOptions": ["valueArray"],
-                        "options": {
-                          "compId": "console",
-                          "compName": "system",
-                          "id": "179761",
-                          "pageJsonId": "542158",
-                          "value": ["123"]
-                        },
-                        "actionObjId": "console",
-                        "actionObjName": "system",
-                        "value": "console",
-                        "elseIfs": [],
-                        "children": []
-                      }
-                    ]
-                  }
-                ]
+                      "actionObjId": "console",
+                      "actionObjName": "system",
+                      "value": "console",
+                      "elseIfs": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "isLabelDropBoxChild": false,
+          "components": []
+        },
+        {
+          "id": "Table_096226",
+          "label": "表格",
+          "compName": "Table",
+          "type": "Table",
+          "compType": 1,
+          "compLib": "comm",
+          "props": {
+            "name": "表格",
+            "columns": [
+              {
+                "id": "1"
+              },
+              {
+                "id": "2",
+                "title": "123"
               }
-            ],
-            "isLabelDropBoxChild": false,
-            "components": []
+            ]
           }
-        ]
-      }
-    ]
-  }
+        }
+      ]
+    }
+  ]
+}
 ]
