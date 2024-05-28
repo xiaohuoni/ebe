@@ -197,9 +197,9 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             state
            } = context; ` +
           eventCodeString +
-          `\n return {\n${customFuctionsIds
+          `\n const customActionMap =  {\n${customFuctionsIds
             .map((i) => i)
-            .join(',')} \n}}; export default useCustomAction;`,
+            .join(',')} \n} \nreturn customActionMap; \n} \n export default useCustomAction;`,
         linkAfter: [
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         ],
@@ -235,6 +235,18 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
         content: `\n //定义页面的自定义事件 \n  const customActionMap = useCustomAction({ ...useTools, ...useDataSourceTool, ...sandBoxContext.current})`,
+        linkAfter: [
+          ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
+        ],
+      });
+    } else {
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: cfg.fileType,
+        name: CUSTOM_ACTION_CHUNK_NAME.Map,
+        subModule: 'customAction',
+        content:
+          `const useCustomAction = (context: any) => { return {}; } export default useCustomAction;`,
         linkAfter: [
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         ],

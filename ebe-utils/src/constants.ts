@@ -11,6 +11,27 @@ const componentsRule: IRulesType = {
       }
     },
   },
+  TabPane: {
+    rule: ({ value, diffraction }) => {
+      if (value?.components) {
+        return removeObjectByRules(value, lingxiDslRules);
+      }
+    },
+  },
+  Tabs:{
+    rule: ({ value, diffraction }) => {
+      if (value?.components) {
+        return removeObjectByRules(value, lingxiDslRules);
+      }
+    },
+  },
+  Card: {
+    rule: ({ value, diffraction }) => {
+      if (value?.components) {
+        return removeObjectByRules(value, lingxiDslRules);
+      }
+    },
+  },
   Icon: {
     rule: ({ diffraction }) => {
       return diffraction?.({ props: { name: '图标' } });
@@ -22,21 +43,33 @@ const componentsRule: IRulesType = {
     },
   },
   Table: {
-    rule: ({ value }) => {
-      return {
-        ...value,
-        props: removeObjectByRules(value.props, {
-          columns: {
-            loopRule: (item) => 'item',
-            loop: {
-              item: {
-                customRendering: isTrue,
-                editContent: isTrue,
-              } as IRulesType,
-            },
-          },
-        }),
-      };
+    // rule: ({ value }) => {
+    //   return {
+    //     ...value,
+    //     props: removeObjectByRules(value.props, {
+    //       columns: {
+    //         loopRule: (item) => 'item',
+    //         loop: {
+    //           item: {
+    //             customRendering: {
+    //               rule: ({ value }: any) => {
+    //                 return value === 'undefined';
+    //               },
+    //             },
+    //             editContent:{
+    //               rule: ({ value }: any) => {
+    //                 return value.edittype === 'remove';
+    //               },
+    //             },
+    //           } as IRulesType,
+    //         },
+    //       },
+    //     }),
+    //   };
+    // },
+    rule: ({ diffraction }) => {
+      const value = diffraction?.({ props: { showHead: false, showSizeChanger: false, showQuickJumper: false, dataSourceLoading: false, headExtends: '[]'} });
+      return value
     },
   },
 };
