@@ -33,9 +33,9 @@ const DM = forwardRef((props: any, ref) => {
       cancelResult = mRef.current.onCancel();
     } else {
       // onCancel为内置取消处理函数，用于关闭推拉门
-    if (cancelResult !== false && onCancel) {
-      onCancel();
-    }
+      if (cancelResult !== false && onCancel) {
+        onCancel();
+      }
     }
   };
 
