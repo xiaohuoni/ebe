@@ -13,7 +13,7 @@ export function addTableRowData(generateParams: CMDGeneratorPrames): string {
   )} : ${parse2Var(params)};
     if (typeof obj !== 'object') {
       console.error("数据类型不正确")
-    }else if (refs[${parse2Var(compId)}].addTableRowData) {
+    } else if (refs[${parse2Var(compId)}].addTableRowData) {
       refs[${parse2Var(compId)}].addTableRowData(obj);
     }
   `;
