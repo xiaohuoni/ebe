@@ -195,24 +195,7 @@
           "compType": 1,
           "compLib": "comm",
           "props": {
-            "name": "表格",
-            "columns": [
-              {
-                "id": "1",
-                "customRendering": "undefined",
-                "editContent": {
-                  "edittype": "need remove"
-                }
-              },
-              {
-                "id": "2",
-                "title": "123",
-                "customRendering": "no remove",
-                "editContent": {
-                  "edittype": "need remove"
-                }
-              }
-            ]
+            "name": "表格"
           }
         }
       ]

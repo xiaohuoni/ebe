@@ -8,6 +8,8 @@ export const clearProps = (data: any, diff: any) => {
   Object.keys(diff).forEach((key) => {
     if (typeof diff[key] === 'object' && !isArray(diff[key])) {
       clearedProps[key] = clearProps(clearedProps[key], diff[key]);
+    } else if (isArray(diff[key]) && isArray(clearedProps[key])) {
+      delete clearedProps[key];
     } else if (diff[key] === clearedProps[key]) {
       delete clearedProps[key];
     }

@@ -186,16 +186,7 @@
             "compType": 1,
             "compLib": "comm",
             "props": {
-              "name": "表格",
-              "columns": [
-                {
-                  "id": "1"
-                },
-                {
-                  "id": "2",
-                  "title": "123"
-                }
-              ]
+              "name": "表格"
             }
           }
         ]
