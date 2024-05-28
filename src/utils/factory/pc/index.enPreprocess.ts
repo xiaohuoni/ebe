@@ -88,7 +88,7 @@ const pc: { [key: string]: ProcessFunctionType } = {
     compDSL,
     extraData,
   ) => {
-    const { props: originProps = {} } = compDSL;
+    const { props: originProps = {}, compName } = compDSL;
     handleStaticData(originProps);
     if (originProps.staticData?.type === 'static') {
       // 上报静态数据关联关系
@@ -98,7 +98,7 @@ const pc: { [key: string]: ProcessFunctionType } = {
         originProps?.staticData?.data?.childKeys,
       );
       originProps.dataSource = staticVar;
-      if (originProps.type === 'Cascader') {
+      if (compName === 'Cascader') {
         originProps.onClickStaticOption = async (zattrNbrValueMap: any) => {
           const zattrNbrs = Object.keys(zattrNbrValueMap);
           if (zattrNbrs.length) {
@@ -319,7 +319,7 @@ const pc: { [key: string]: ProcessFunctionType } = {
     return compDSL;
   },
   'Select|MultipleSelect': (compDSL) => {
-    const { props: originProps = {} } = compDSL;
+    const { props: originProps = {}, functors = {} } = compDSL;
 
     // JSX渲染
     if (originProps?.customRenderLabel?.jsx) {
@@ -334,8 +334,11 @@ const pc: { [key: string]: ProcessFunctionType } = {
       );
     } else if (originProps?.customRenderLabel) {
       originProps.customRenderLabel = removeExpressWrapper(
-        originProps.customRenderLabel,
+        functors?.customRenderOption?.value || originProps.customRenderLabel,
       );
+      if (functors?.customRenderOption) {
+        delete functors.customRenderLabel;
+      }
     }
 
     // JSX渲染
@@ -352,14 +355,17 @@ const pc: { [key: string]: ProcessFunctionType } = {
       );
     } else if (originProps?.customRenderOption) {
       originProps.customRenderOption = removeExpressWrapper(
-        originProps.customRenderOption,
+        functors?.customRenderOption?.value || originProps.customRenderOption,
       );
+      if (functors?.customRenderOption) {
+        delete functors.customRenderOption;
+      }
     }
 
     return compDSL;
   },
   TabPane: (compDSL) => {
-    const { props: originProps = {} } = compDSL;
+    const { props: originProps = {}, functors = {} } = compDSL;
     if (
       isObject(originProps?.badgeRendering) &&
       originProps?.badgeRendering?.jsx
@@ -371,14 +377,17 @@ const pc: { [key: string]: ProcessFunctionType } = {
       };
     } else if (originProps?.badgeRendering) {
       originProps.badgeRendering = removeExpressWrapper(
-        originProps.badgeRendering,
+        functors?.badgeRendering?.value || originProps.badgeRendering,
       );
+      if (functors?.badgeRendering) {
+        delete functors.badgeRendering;
+      }
     }
 
     return compDSL;
   },
   Tree: (compDSL) => {
-    const { props: originProps = {} } = compDSL;
+    const { props: originProps = {}, functors = {} } = compDSL;
 
     if (
       typeof originProps?.customRenderCode === 'object' &&
@@ -398,14 +407,17 @@ const pc: { [key: string]: ProcessFunctionType } = {
       );
     } else if (originProps?.customRenderCode) {
       originProps.customRenderCode = removeExpressWrapper(
-        originProps.customRenderCode,
+        functors?.customRenderCode?.value || originProps.customRenderCode,
       );
+      if (functors?.customRenderCode) {
+        delete functors.customRenderCode;
+      }
     }
 
     return compDSL;
   },
   'Table|TreeTable': (compDSL, extraData) => {
-    const { props: originProps = {}, style } = compDSL;
+    const { props: originProps = {}, style, functors = {} } = compDSL;
 
     // 覆盖rowActions/extend内的rule表达式配置
     if (originProps.extend) {
@@ -478,28 +490,33 @@ const pc: { [key: string]: ProcessFunctionType } = {
          * 1、兼容存量没有 editContent 情况：默认改为 -> 提示方式为默认提示 -> 提示内容为初始数据
          * 2、false 假值表示：提示方式为无
          */
-        if (!col?.editContent && typeof col?.editContent !== 'boolean') {
-          col.editContent = {
-            edittype: 'title',
-            title: {
-              code: '$function main(text, row, index) { return text;}$',
-              originCode: [
-                '/**',
-                ' * 计算绑定的内容',
-                ' * @param {String} text 行数据中数据字段翻译后的内容',
-                ' * @param {Object} row 行数据对象',
-                ' * @param {Number} index 行索引',
-                ' * @returns {Boolean} 实际值',
-                ' * 例：return row.id，表示当行主键为id时，返回内容为row.id实际的值',
-                ' */',
-                'function main(text, row, index) {',
-                '    return text;',
-                '}',
-              ],
-            },
-          };
+        // if (
+        //   !col?.editContent &&
+        //   typeof col?.editContent !== 'boolean'
+        // ) {
+        //   col.editContent = {
+        //     edittype: 'title',
+        //     title: {
+        //       code: '$function main(text, row, index) { return text;}$',
+        //       originCode: [
+        //         '/**',
+        //         ' * 计算绑定的内容',
+        //         ' * @param {String} text 行数据中数据字段翻译后的内容',
+        //         ' * @param {Object} row 行数据对象',
+        //         ' * @param {Number} index 行索引',
+        //         ' * @returns {Boolean} 实际值',
+        //         ' * 例：return row.id，表示当行主键为id时，返回内容为row.id实际的值',
+        //         ' */',
+        //         'function main(text, row, index) {',
+        //         '    return text;',
+        //         '}',
+        //       ],
+        //     },
+        //   };
+        // }
+        if (col.customRendering === undefined) {
+          delete col.customRendering;
         }
-
         // 编辑格式（下拉选项）配置
         if (col?.editoption?.selectoption?.attr?.attrNbr) {
           // 静态编码
@@ -629,22 +646,32 @@ const pc: { [key: string]: ProcessFunctionType } = {
     // 处理行禁用规则
     if (typeof originProps.rowSelectionDisabled === 'string') {
       originProps.rowSelectionDisabled = removeExpressWrapper(
-        originProps.rowSelectionDisabled,
+        functors?.rowSelectionDisabled?.value ||
+          originProps.rowSelectionDisabled,
       );
+      if (functors.rowSelectionDisabled) {
+        delete functors.rowSelectionDisabled;
+      }
     }
 
     // 处理行编辑规则
     if (typeof originProps.rowEditableRule === 'string') {
       originProps.rowEditableRule = removeExpressWrapper(
-        originProps.rowEditableRule,
+        functors?.rowEditableRule?.value || originProps.rowEditableRule,
       );
+      if (functors.rowEditableRule) {
+        delete functors.rowEditableRule;
+      }
     }
 
     // 处理行展开扩展内容生效规则
     if (typeof originProps.rowExpandable === 'string') {
       originProps.rowExpandable = removeExpressWrapper(
-        originProps.rowExpandable,
+        functors?.rowExpandable?.value || originProps.rowExpandable,
       );
+      if (functors.rowExpandable) {
+        delete functors.rowExpandable;
+      }
     }
 
     // 处理行展开扩展内容业务组件的状态
@@ -681,18 +708,28 @@ const pc: { [key: string]: ProcessFunctionType } = {
     return compDSL;
   },
   'ChartLine|ChartBar': (compDSL) => {
-    const { props: originProps = {} } = compDSL;
+    const { props: originProps = {}, functors = {} } = compDSL;
 
     if (typeof originProps?.lineBarMap === 'string') {
-      originProps.lineBarMap = removeExpressWrapper(originProps.lineBarMap);
+      originProps.lineBarMap = removeExpressWrapper(
+        functors?.lineBarMap?.value || originProps.lineBarMap,
+      );
+      if (functors?.lineBarMap) {
+        delete functors.lineBarMap;
+      }
     }
     return compDSL;
   },
   ChartBar: (compDSL) => {
-    const { props: originProps = {} } = compDSL;
+    const { props: originProps = {}, functors = {} } = compDSL;
 
     if (typeof originProps?.stacked === 'string') {
-      originProps.stacked = removeExpressWrapper(originProps.stacked);
+      originProps.stacked = removeExpressWrapper(
+        functors?.stacked?.value || originProps.stacked,
+      );
+      if (functors?.stacked) {
+        delete functors.stacked;
+      }
     }
     return compDSL;
   },
@@ -715,6 +752,27 @@ const pc: { [key: string]: ProcessFunctionType } = {
         }
         return col;
       });
+    }
+    return compDSL;
+  },
+  DynamicTabs: (compDSL) => {
+    const { props: originProps = {} } = compDSL;
+    // 将标签页的自定义渲染的 badgeRendering中的$$去掉，防止被提前转换
+    if (Array.isArray(originProps.tabItems)) {
+      originProps.tabItems = originProps.tabItems.map(
+        (tab: {
+          badgeRendering: string;
+          jsx: { key: string };
+          originCustomRendering: string;
+        }) => {
+          tab.badgeRendering = removeExpressWrapper(tab.badgeRendering);
+          if (tab?.jsx) {
+            // 运行态渲染jsx不需要原代码，清除后可加速属性转化速度
+            tab.originCustomRendering = '';
+          }
+          return tab;
+        },
+      );
     }
     return compDSL;
   },

@@ -18,7 +18,7 @@ const componentsRule: IRulesType = {
       }
     },
   },
-  Tabs:{
+  Tabs: {
     rule: ({ value, diffraction }) => {
       if (value?.components) {
         return removeObjectByRules(value, lingxiDslRules);
@@ -68,8 +68,16 @@ const componentsRule: IRulesType = {
     //   };
     // },
     rule: ({ diffraction }) => {
-      const value = diffraction?.({ props: { showHead: false, showSizeChanger: false, showQuickJumper: false, dataSourceLoading: false, headExtends: '[]'} });
-      return value
+      const value = diffraction?.({
+        props: {
+          showHead: false,
+          showSizeChanger: false,
+          showQuickJumper: false,
+          dataSourceLoading: false,
+          headExtends: '[]',
+        },
+      });
+      return value;
     },
   },
 };
