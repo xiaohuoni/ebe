@@ -9,10 +9,12 @@ export function customActionCode(generateParams: CMDGeneratorPrames): string {
   } = generateParams.value?.options || {};
 
   const code = `;(async () => {
-    ${originCode}
+       ${originCode}
     // 自定义代码块
     return new Promise((resolve, reject) => { 
-      main(data, state, resolve, reject);
+      try {
+        main(data, state, resolve, reject);
+      } catch (error) {}
     })
   })()`;
 
