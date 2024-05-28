@@ -13,6 +13,7 @@ import {
   CompositeValueGeneratorOptions,
   IScope,
 } from '../types';
+import addOperationChain from './addOperationChain';
 import { executeFunctionStack } from './aopHelper';
 import { isJSExpressionFn } from './common';
 import { parseExpressionGetKeywords } from './expressionParser';
@@ -130,11 +131,13 @@ export function generateVarString(value: any): string {
   if (!isJSVar(value)) {
     return value;
   }
-  const code = value
-    .replace(/^\$|\$$/g, '')
-    .replace(/;$/, '')
-    .replace(/(?<!\d)\.(?!\d)/g, '?.')
-    .replace(/\?\?\./g, '?.');
+  let code = value.replace(/^\$|\$$/g, '').replace(/;$/, '');
+  // .replace(/(?<!\d)\.(?!\d)/g, '?.')
+  // .replace(/\?\?\./g, '?.');
+
+  // 将代码增加(?.)操作链语法
+  code = addOperationChain(code);
+
   return checkJavaScriptSyntax(code);
 }
 
