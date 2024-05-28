@@ -60,9 +60,9 @@ export function apiRequest(generateParams: CMDGeneratorPrames): string {
     return GeneratorCallbackWithThenCatch(
       `api.batchInsert(
         ${parse2Var(options._source || '')},
-        ${parse2Var(options.method || 'post')}, 
-        ${parse2Var(options.url)}, 
-        ${param}, 
+        ${parse2Var(options.method || 'post')},
+        ${parse2Var(options.url)},
+        ${param},
         ${extparam}
       )`,
       generateParams,
@@ -77,9 +77,9 @@ export function apiRequest(generateParams: CMDGeneratorPrames): string {
 
   return GeneratorCallbackWithThenCatch(
     `api.commonFetch(
-      ${parse2Var(options.method || 'post')}, 
-      ${parse2Var(options.url)}, 
-      ${param}, 
+      ${parse2Var(options.method || 'post')},
+      ${parse2Var(options.url)},
+      ${param},
       ${extparam}
     )`,
     generateParams,

@@ -365,10 +365,10 @@ describe('getIfelse', () => {
 
     const expected = `if (getVisible('Input_347757')) {
       // 打印日志
-      console.log('123');
+      console.log(\`123\`);
     } else {
       // 打印日志
-      console.log('2222');
+      console.log(\`2222\`);
     }`;
     const result = getIfelse({ value: action, config });
     expect(result.replace(/\s/g, '')).toEqual(expected.replace(/\s/g, ''));
@@ -517,13 +517,13 @@ describe('getIfelse', () => {
 
     const expected = `if (getVisible('Input_347757')) {
       // 打印日志
-      console.log('123');
+      console.log(\`123\`);
     } else if (!getVisible('Input_1814256')) {
       // 打印日志
-      console.log('2222');
+      console.log(\`2222\`);
     } else {
       // 打印日志
-      console.log('333333');
+      console.log(\`333333\`);
     }`;
     const result = getIfelse({ value: action, config });
     expect(result.replace(/\s/g, '')).toEqual(expected.replace(/\s/g, ''));

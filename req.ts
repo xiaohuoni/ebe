@@ -6,7 +6,7 @@ import { createDiskPublisher } from './src/core/publisher/disk';
 import alita from './src/solutions/alita';
 (async () => {
   // 支持命令中指定 appId 如 pnpm req appId
-  const appId = process.argv.slice(2)[0] || '11'; // HJF
+  const appId = process.argv.slice(2)[0] || '1106842174504439808'; // HJF
   // const appId = '772790966277644288'; // 开发环境
   const schemaFile = join(
     __dirname,

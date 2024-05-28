@@ -16,7 +16,7 @@ export function callCurrentFunc(generateParams: CMDGeneratorPrames): string {
   const params = customFuncParams === 'object' ? paramsObj : customFuncParams;
 
   return GeneratorCallbackWithThenCatch(
-    `// 调用组件${compId}的自定义事件 \n refs?.['${compId}']?.customActionMap?.${getSaleEventName(
+    `// 调用组件${compId}的自定义事件\n  refs?.['${compId}']?.customActionMap?.${getSaleEventName(
       customFuncName,
     )}(${params ? parse2Var(params) : ''})`,
     generateParams,

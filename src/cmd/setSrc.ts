@@ -4,10 +4,10 @@ import { GeneratorCallbackWithThenCatch } from './utils';
 export function setSrc(generateParams: CMDGeneratorPrames): string {
   const { value, compId } = generateParams.value.options;
 
-  const code = `
-  // 设置资源地址
-   asyncCallComponentMethod(${parse2Var(compId)}, 'setSrc', ${parse2Var(value)})
-  `;
+  const code = `// 设置资源地址
+  asyncCallComponentMethod(${parse2Var(compId)}, 'setSrc', ${parse2Var(
+    value,
+  )})`;
 
   return GeneratorCallbackWithThenCatch(code, generateParams);
 }

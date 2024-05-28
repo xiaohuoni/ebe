@@ -30,7 +30,7 @@
     "resolveJsonModule": true,
     // skip type checking of declaration files
     "skipLibCheck": true,
-    "baseUrl": "./packages",
+    "baseUrl": "./",
     "useDefineForClassFields": true,
     "paths": {
       "@alilc/lowcode-*": ["./*/src"]

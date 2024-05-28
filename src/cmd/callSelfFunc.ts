@@ -15,7 +15,7 @@ export function callSelfFunc(generateParams: CMDGeneratorPrames): string {
   const params = customFuncParams === 'object' ? paramsObj : customFuncParams;
 
   return GeneratorCallbackWithThenCatch(
-    `// 调用当前页面自定义事件 \n customActionMap?.${getSaleEventName(
+    `// 调用当前页面自定义事件\n  customActionMap?.${getSaleEventName(
       customFuncName,
     )}(${params ? parse2Var(params) : ''})`,
     generateParams,

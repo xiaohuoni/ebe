@@ -5,5 +5,5 @@ export function closeModal({
   scope,
   config,
 }: CMDGeneratorPrames): string {
-  return `// 关闭当前弹窗 \n closeModal && closeModal(); `;
+  return `// 关闭当前弹窗\n  closeModal && closeModal();`;
 }

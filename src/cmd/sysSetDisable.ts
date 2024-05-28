@@ -8,7 +8,7 @@ export function sysSetDisable({ value }: CMDGeneratorPrames): string {
   let compId = Array.isArray(tempCompId) ? tempCompId : [];
   if (typeof tempCompId === 'string' && temValue?.[tempCompId]) {
     compId = [tempCompId];
-    return `// 设置控件必填 \n setDisabled('${compId}', ${parse2Var(
+    return `// 设置控件必填\n  setDisabled('${compId}', ${parse2Var(
       toBool(temValue?.[tempCompId]),
     )})`;
   } else if (Array.isArray(tempCompId)) {
@@ -19,11 +19,11 @@ export function sysSetDisable({ value }: CMDGeneratorPrames): string {
       }
     });
     if (Object.keys(valueList).length === 1) {
-      return `// 设置控件必填  \n setDisabled('${
+      return `// 设置控件必填\n  setDisabled('${
         Object.keys(valueList)[0]
       }', ${parse2Var(valueList[Object.keys(valueList)[0]])})`;
     }
-    return `// 批量设置控件必填  \n setDisabled(${parse2Var(valueList)})`;
+    return `// 批量设置控件必填\n  setDisabled(${parse2Var(valueList)})`;
   } else {
     return '';
   }

@@ -51,7 +51,7 @@ export function reloadDataSource(generateParams: CMDGeneratorPrames): string {
       serviceMethod,
     } = dsConfig.config?.options?.service || {};
     callMethodCode = `reloadServiceDataSource(
-        ${parse2Var(dataSourceName)}, 
+        ${parse2Var(dataSourceName)},
         ${parse2Var(
           filterObjectEmptyField({
             _capabilityCode,

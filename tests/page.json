@@ -199,7 +199,7 @@
             "columns": [
               {
                 "id": "1",
-                "customRendering": "need remove",
+                "customRendering": "undefined",
                 "editContent": {
                   "edittype": "need remove"
                 }
@@ -207,7 +207,7 @@
               {
                 "id": "2",
                 "title": "123",
-                "customRendering": "need remove",
+                "customRendering": "no remove",
                 "editContent": {
                   "edittype": "need remove"
                 }

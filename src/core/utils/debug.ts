@@ -1,6 +1,6 @@
 import * as cmd from '../../cmd';
 interface AllDebugDataProps {
-  cmdHash?: typeof cmd;
+  cmdHash?: any;
 }
 const allDebugData: AllDebugDataProps = {};
 

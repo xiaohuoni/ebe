@@ -28,7 +28,7 @@ export function changeContent({ value }: CMDGeneratorPrames): string {
     ),
   };
 
-  return `// 按钮更改内容 \n callComponentMethod('${compId}', 'changeContent', ${parse2Var(
+  return `// 按钮更改内容\n callComponentMethod('${compId}', 'changeContent', ${parse2Var(
     param,
   )})`;
 }

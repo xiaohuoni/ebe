@@ -10,7 +10,7 @@ describe('getConsole', () => {
       dataId: '123',
     };
     const expected = `// 打印日志
- console.log('option1','option2');`;
+ console.log(\`option1\`,\`option2\`);`;
     const result = getConsole({ value });
     expect(result).toEqual(expected);
   });
@@ -24,7 +24,7 @@ describe('getConsole', () => {
       dataId: '123',
     };
     const expected = `// 打印日志
- console.log('option1','option2',var1,'var2');`;
+ console.log(\`option1\`,\`option2\`,var1,\`var2\`);`;
     const result = getConsole({ value });
     expect(result).toEqual(expected);
   });

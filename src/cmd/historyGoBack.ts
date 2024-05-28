@@ -9,6 +9,6 @@ export function historyGoBack({ value, config }: CMDGeneratorPrames): string {
   config?.ir?.deps?.push(getImportFrom('alita', 'history'));
   return `// 页面返回
   lcdpApi.setPageCallBackData(${parse2Var(custParams)});
-   history.go(-1);
+  history.go(-1);
   `;
 }

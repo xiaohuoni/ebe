@@ -38,4 +38,5 @@ export function downloadByFileId({ value }: CMDGeneratorPrames): string {
     })
     `;
   }
+  return '// 文件下载:[错误数据]';
 }

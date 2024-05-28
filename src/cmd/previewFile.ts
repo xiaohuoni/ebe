@@ -5,14 +5,14 @@ export function previewFile(generateParams: CMDGeneratorPrames): string {
   const { fileId: myFileId, viewMode, modalWidth, modalHeight } = value.options;
   const fileId = parse2Var(myFileId);
   if (platform === 'h5') {
-    return `// 文件预览 
+    return `// 文件预览
     BannerModal.open({
       // appId,
       // pageId,
       fileId:${fileId}
     })`;
   } else {
-    return `// 文件预览 
+    return `// 文件预览
     if (typeof BannerModal?.open === 'function') {
       BannerModal.open({
         fileIndex: 0,

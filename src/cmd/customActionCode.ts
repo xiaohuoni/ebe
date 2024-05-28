@@ -6,7 +6,7 @@ export function customActionCode(generateParams: CMDGeneratorPrames): string {
     code: tCode,
     originCode = tCode,
     id,
-  } = generateParams.value?.options || {};
+  } = generateParams.value?.options || ({} as any);
 
   const code = `;(async () => {
        ${originCode}

@@ -60,7 +60,7 @@ const in = {
 const diff = {
     size:'m',
 }
-const out = diffraction(in,diff);
+const out = diffraction(diff);
 
 此时 out 为
 
@@ -76,10 +76,10 @@ const in = {
 
 ```ts
 const ruleObj = {
-  rule: ({ value, diffraction }) => {
+  rule: ({ diffraction }) => {
     // 当对象中的某个字为xxx的时候 delete value.xxx
     const diff = {};
-    return diffraction(value, diff);
+    return diffraction(diff);
   },
 };
 ```

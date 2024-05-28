@@ -18,9 +18,9 @@ export function sysSetValue({
       : '';
   if (typeof tempCompId === 'string' && temValue?.[tempCompId]) {
     compId = [tempCompId];
-    return `// 设置控件的值 \n setValue('${compId}', ${parse2Var(
+    return `// 设置控件的值\n  setValue('${compId}', ${parse2Var(
       toBool(temValue?.[tempCompId]),
-    )})${callback} `;
+    )})${callback}`;
   } else if (Array.isArray(tempCompId)) {
     let valueList: any = {};
     compId.map((id: string) => {
@@ -28,9 +28,9 @@ export function sysSetValue({
         valueList[id] = toBool(temValue[id]);
       }
     });
-    return `// 批量设置控件的值 \n setValue(${parse2Var(
+    return `// 批量设置控件的值\n  setValue(${parse2Var(
       valueList,
-    )})${callback} `;
+    )})${callback}`;
   } else {
     return '';
   }
