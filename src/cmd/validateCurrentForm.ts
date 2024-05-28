@@ -18,6 +18,8 @@ export function validateCurrentForm(
           callback1: [compId],
           callback2: ['err'],
         },
+        alwayCatch: true,
+        sync: true,
       },
     )};
   `;

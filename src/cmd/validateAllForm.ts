@@ -16,6 +16,8 @@ export function validateAllForm(generateParams: CMDGeneratorPrames): string {
         callback1: `const allFormValues = allFormValues_${compId}`,
         callback2: `const allFormValues = error_${compId}`,
       },
+      alwayCatch: true,
+      sync: true
     })};
   `;
 }

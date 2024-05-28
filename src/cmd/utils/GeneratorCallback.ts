@@ -10,18 +10,36 @@ import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
  * @returns 拼接完成的字符串
  */
 const GeneratorCallbackWithThenCatch = (
+  /**
+   * promise代码
+   */
   code: string,
   generateParams: CMDGeneratorPrames,
   options?: {
+    /**
+     * 是否增加await 
+     */
     sync?: boolean;
+    /**
+     * 变量参数
+     */
     params?: {
       callback1?: string[];
       callback2?: string[];
     };
+
+    /**
+     * 函数的顶层内容，可以自定义一些变量
+     */
     funcTops?: {
       callback1?: string;
       callback2?: string;
     };
+
+    /**
+     * 是否总是有catch
+     */
+    alwayCatch?: boolean;
   },
 ) => {
   if (!code) return code;
@@ -65,12 +83,7 @@ const GeneratorCallbackWithThenCatch = (
   let cmdCode = [
     code,
     callback1Code ? `then(${callback1Code})` : '',
-
-    callback2Code ? `catch(${callback2Code})` : '',
-    //     ? `catch((${callback2Params.join(',')}) => {
-    //   ${callback2Code}
-    // })`
-    //     : '',
+    (callback2Code || options?.alwayCatch) ? `catch(${callback2Code || '() => {}'})` : '',
   ]
     .filter(Boolean)
     .join('.');

@@ -16,6 +16,8 @@ export function getFormValue(generateParams: CMDGeneratorPrames): string {
           callback1: ['formValues'],
           callback2: ['errorMsg'],
         },
+        alwayCatch: true,
+        sync: true
       },
     )};
   `;
