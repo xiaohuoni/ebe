@@ -5,7 +5,7 @@ export const HISTORYTYPES = {
   push: 'push',
   window: 'window',
   portal: 'portal',
-};
+} as const;
 export interface HistoryReplaceProps {
   history: any;
   pathname: string;
