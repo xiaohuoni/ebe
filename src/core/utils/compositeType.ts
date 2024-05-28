@@ -13,10 +13,10 @@ import {
   CompositeValueGeneratorOptions,
   IScope,
 } from '../types';
-import addOperationChain from './addOperationChain';
 import { executeFunctionStack } from './aopHelper';
 import { isJSExpressionFn } from './common';
 import { parseExpressionGetKeywords } from './expressionParser';
+import fixSyntaxError from './fixSyntaxError';
 import { generateExpression, generateFunction } from './jsExpression';
 import { generateJsSlot } from './jsSlot';
 
@@ -135,8 +135,8 @@ export function generateVarString(value: any): string {
   // .replace(/(?<!\d)\.(?!\d)/g, '?.')
   // .replace(/\?\?\./g, '?.');
 
-  // 将代码增加(?.)操作链语法
-  code = addOperationChain(code);
+  // 修正语法错误导致的项目无法正常运行
+  code = fixSyntaxError(code);
 
   return checkJavaScriptSyntax(code);
 }
