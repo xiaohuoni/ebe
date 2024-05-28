@@ -1,7 +1,6 @@
 import merge from 'lodash/merge';
 import { baseEnUS } from '../base';
 
-
 export default merge(baseEnUS, {
   'Calendar.end': 'end',
   'Calendar.start': 'start',
@@ -23,10 +22,14 @@ export default merge(baseEnUS, {
   'DatePicker.minuteTip': 'Select Date and Time',
   'BannerModal.scaleMax': 'Scaled to maximum',
   'BannerModal.scaleMin': 'Scaled to minimum',
-  'NoPermission.description': 'You do not have access permission, please contact the administrator~',
-  'NotFound.description': 'Sorry, the page you are trying to access does not exist.',
-  'Modal.missParams': 'Modal operation failed: Missing page instance ID or page path.',
-  'DformRangePicker.startLessEnd': 'The start time should not be greater than the end time.',
+  'NoPermission.description':
+    'You do not have access permission, please contact the administrator~',
+  'NotFound.description':
+    'Sorry, the page you are trying to access does not exist.',
+  'Modal.missParams':
+    'Modal operation failed: Missing page instance ID or page path.',
+  'DformRangePicker.startLessEnd':
+    'The start time should not be greater than the end time.',
   'DformRangePicker.yearTip': 'Select Year',
   'DformRangePicker.monthTip': 'Please Select Time',
   'DformRangePicker.timeTip': 'Please Select Time',
@@ -51,7 +54,8 @@ export default merge(baseEnUS, {
   'DynamicList.dataError': 'Dynamic list data format error!',
   'DynamicList.clickToMore': 'click to load more',
   'DynamicList.noMore': 'no more available',
-  'Carousel.switchEmpty': 'The carousel component has no content and cannot be switched',
+  'Carousel.switchEmpty':
+    'The carousel component has no content and cannot be switched',
   'Carousel.isLast': 'It is the last item',
   'Carousel.isFirst': 'Already the first item',
   'Carousel.noExist': 'The carousel component does not have this item',
@@ -64,7 +68,8 @@ export default merge(baseEnUS, {
   'DformFile.somePicFailed': 'Some pictures failed to upload',
   'DformFile.noUrl': 'The current data has no url/fileId',
   'DformFile.updateTime': 'Upload time',
-  'DformPicker.searchPlaceholder': 'Please enter the options you want to search for',
+  'DformPicker.searchPlaceholder':
+    'Please enter the options you want to search for',
   'DynamicTable.more': 'more',
   'DynamicTable.total': 'total',
   uploading: 'uploading',

@@ -14,19 +14,24 @@ export default {
   hour: '@{hour}hour',
   minute: '@{minute}minute',
   second: '@{second}second',
-  'command.stopCMD.undefined': 'Error throwing exit command: return content __undefined__',
+  'command.stopCMD.undefined':
+    'Error throwing exit command: return content __undefined__',
   'command.stopCMD': 'The thrown value of the exit command error is: @{value}',
-  'command.gainErrorPrefix': 'An exception occurred on component "@{name}" (@{id})@{eventName}@{lineNumberText} on page "@{pageName}":\n@{msg}',
+  'command.gainErrorPrefix':
+    'An exception occurred on component "@{name}" (@{id})@{eventName}@{lineNumberText} on page "@{pageName}":\n@{msg}',
   'command.lineNumber': 'Line @{lineNumber}',
   'command.eventName': 'withinthe @{eventName} event',
   'command.debugger.msg': 'Trigger the debugging tool breakpoint',
   'command.starteval': 'The instruction starts executing',
   'command.error': 'Instruction error：@{errmsg}',
   'command.exception': 'Script runtime exception！@{errmsg}',
-  'command.sandboxErr': 'Sandbox execution error! The expression obtained is: @{expr}',
-  'command.sandboxException': 'An exception occurred while executing the sandbox expression: @{expr}!',
+  'command.sandboxErr':
+    'Sandbox execution error! The expression obtained is: @{expr}',
+  'command.sandboxException':
+    'An exception occurred while executing the sandbox expression: @{expr}!',
   'command.illegal': '@{action} is an illegal value!',
-  'errorMessage.05-03-1-304-020004': 'Failed to find a reference to component@{compId} !',
+  'errorMessage.05-03-1-304-020004':
+    'Failed to find a reference to component@{compId} !',
   'errorMessage.05-03-1-304-020002':
     'Error message: Instruction error - The received value does not match. Current value: @{field}. Expected: a number or a string.',
   reset: 'reset',
@@ -36,7 +41,8 @@ export default {
   notEmpty: '@{name} cannot be empty',
   actionCacheError:
     'The current component ID = @{compId} does not exist or is not initialized first event caching, the action will be executed after the component is initialized.',
-  notFountParentFn: 'The specified parent page method @{funcName} was not found',
+  notFountParentFn:
+    'The specified parent page method @{funcName} was not found',
   all: 'all',
   add: 'add',
   delete: 'delete',
@@ -44,15 +50,19 @@ export default {
   deleteConfirm: 'Confirm deletion?',
   title: 'title',
   functionWarning: 'Must be an expression declared for a function',
-  stringError: 'The input format of this action should be a string, but accepts a non-string value.',
-  validateAction: 'The current component ID @{compId} does not expose the [@{action}] method.',
-  callActionError: 'Reference to the current component ID @{compId} failed to be invoked.',
+  stringError:
+    'The input format of this action should be a string, but accepts a non-string value.',
+  validateAction:
+    'The current component ID @{compId} does not expose the [@{action}] method.',
+  callActionError:
+    'Reference to the current component ID @{compId} failed to be invoked.',
   nodeRule: 'Node rules are incorrect, configure using [node.] field name',
   'errorMessage.01-00-2-000-001001':
     'No business component instance data found for ID: @{busiCompId}. The page will not be rendered! Please check the configuration or confirm if the page has permission to access',
   'errorMessage.01-00-2-000-000001':
     'No instance data found for ID: @{pageId}. The page will not be rendered! Please check the configuration or confirm if the page has access rights.',
-  'errorMessage.05-03-1-304-012008': 'Error executing page custom function: @{error}',
+  'errorMessage.05-03-1-304-012008':
+    'Error executing page custom function: @{error}',
   'errorMessage.05-03-1-304-020005': 'An error occurred in @{action}: @{error}',
   understood: 'Understood',
   fileNotExist: 'File resource does not exist.',
@@ -70,22 +80,32 @@ export default {
   download: 'Download',
   derive: 'Export',
   'Meta.array.typeError': 'Replacement data is not an array',
-  'Meta.provide.initError': 'Provide data cannot use the following keys: @{keys}',
+  'Meta.provide.initError':
+    'Provide data cannot use the following keys: @{keys}',
   'Meta.provide.setError': 'Provide data cannot use: @{key}',
   'Meta.base.initError': 'Please call the init method and return data',
-  'Meta.dataSource.initFail': 'Failed to initialize data source (@{name}): @{errMsg}',
+  'Meta.dataSource.initFail':
+    'Failed to initialize data source (@{name}): @{errMsg}',
   'Meta.dataSource.updateFail': 'Failed to set page data source',
-  'Meta.dataSource.notFound': 'Data source @{name} not found，Please delete configuration',
-  'Meta.dataSource.reloadFail': 'Failed to refresh page data source, @{name} not found，Please delete configuration',
-  'Meta.dataSource.reloadFailMsg': 'Page data source refresh failed (@{name}): @{errMsg}',
+  'Meta.dataSource.notFound':
+    'Data source @{name} not found，Please delete configuration',
+  'Meta.dataSource.reloadFail':
+    'Failed to refresh page data source, @{name} not found，Please delete configuration',
+  'Meta.dataSource.reloadFailMsg':
+    'Page data source refresh failed (@{name}): @{errMsg}',
   'Meta.dataSource.clearFailMsg': 'Failed to clear page data source',
-  'Meta.globalData.initFail': 'Failed to initialize global data source (@{name}): @{errMsg}',
+  'Meta.globalData.initFail':
+    'Failed to initialize global data source (@{name}): @{errMsg}',
   'Meta.globalData.updateFail': 'Failed to set global data source',
-  'Meta.globalData.notFound': 'Global data source @{name} not found，Please delete configuration',
-  'Meta.globalData.reloadFail': 'Failed to refresh global data source, @{name} not found，Please delete configuration',
-  'Meta.globalData.reloadFailMsg': 'Global data source refresh failed (@{name}): @{errMsg}',
+  'Meta.globalData.notFound':
+    'Global data source @{name} not found，Please delete configuration',
+  'Meta.globalData.reloadFail':
+    'Failed to refresh global data source, @{name} not found，Please delete configuration',
+  'Meta.globalData.reloadFailMsg':
+    'Global data source refresh failed (@{name}): @{errMsg}',
   'Meta.globalData.clearFailMsg': 'Failed to clear global data source',
-  'exportFile.process.message': 'Total records: @{total} | Data generated: @{currentCount} | Remaining: @{count} to export.',
+  'exportFile.process.message':
+    'Total records: @{total} | Data generated: @{currentCount} | Remaining: @{count} to export.',
   'export.process.downloading': 'Waiting for download, please wait...',
   'export.process.handling': 'Processing, please wait...',
   'exportFile.fail': 'Export failed, please retry later.',
@@ -99,39 +119,51 @@ export default {
   createNew: 'new',
   selectPlaceholder: 'please select @{title}',
   'sysAction.location.registerFail': '@{name} registration failed',
-  'sysAction.sysSetValue.valueList': 'No value assignment configuration, unable to assign!',
+  'sysAction.sysSetValue.valueList':
+    'No value assignment configuration, unable to assign!',
   'sysAction.common.waring': 'Command warning: @{message}',
-  'sysAction.setDownloadResopnse.configurationError': 'downloadUrl configuration error',
-  'sysAction.setDownloadResopnse.fileEmpty': 'No download URL configured, operation failed!',
+  'sysAction.setDownloadResopnse.configurationError':
+    'downloadUrl configuration error',
+  'sysAction.setDownloadResopnse.fileEmpty':
+    'No download URL configured, operation failed!',
   'sysAction.exportCustomData.deriving': 'Exporting, please wait...',
   'service.failMsg': 'Network busy, please try again later',
-  'service.notExist': 'Unable to find the specified service @{url}, cannot initiate request!',
+  'service.notExist':
+    'Unable to find the specified service @{url}, cannot initiate request!',
   'service.errorMsg': 'Sending request error: @{message}',
   'sysAction.customPrintOrExport.exporting': 'Exporting',
   'sysAction.customPrintOrExport.printing': 'Printing',
-  'sysAction.customActionCode.timeout': 'Exceeded specified timeout of @{timeout}ms',
+  'sysAction.customActionCode.timeout':
+    'Exceeded specified timeout of @{timeout}ms',
   notExistMethod: 'The specified method @{functionCode} was not found',
-  'sysAction.callParentCustomFunc.fail': 'Failed to call parent page event: @{msg}',
-  'sysAction.callSelfFunc.notFound': 'Custom event method [@{customFuncName}] not found',
-  'sysAction.callSelfFunc.error': 'An error occurred while calling the custom event: @{error}',
+  'sysAction.callParentCustomFunc.fail':
+    'Failed to call parent page event: @{msg}',
+  'sysAction.callSelfFunc.notFound':
+    'Custom event method [@{customFuncName}] not found',
+  'sysAction.callSelfFunc.error':
+    'An error occurred while calling the custom event: @{error}',
   'sysAction.callCustomPageFunc.notFound':
     'Error executing call to any page event, the current page does not have the custom event: @{customFuncName}. Please check if the page is cached or if the custom event is configured!',
-  'sysAction.callCustomPageFunc.error': 'Error executing call to any page event: @{name}, error: @{error}',
+  'sysAction.callCustomPageFunc.error':
+    'Error executing call to any page event: @{name}, error: @{error}',
   'sysAction.callCurrentFunc.notFound':
     'Error executing call to custom event, the current page does not have the custom event: @{customFuncName}. Please check if the page is cached or if the custom event is configured!',
-  'sysAction.callCurrentFunc.error': 'Error executing call to custom event: @{name}, error: @{error}',
+  'sysAction.callCurrentFunc.error':
+    'Error executing call to custom event: @{name}, error: @{error}',
   'lcdpApi.router.urlEmpty': 'Page jump address is missing, please check.',
   'lcdpApi.router.openFail': 'Failed to open a new page, missing @{type}.',
   'lcdpApi.router.notSupport': 'Unsupported page type: @{type}.',
   'lcdpApi.router.notFound': 'Data for the jump page cannot be found.',
-  'service.errorHandler.badRequestError': 'Current request error: Error code @{status}, please contact the service provider for assistance.',
+  'service.errorHandler.badRequestError':
+    'Current request error: Error code @{status}, please contact the service provider for assistance.',
   'service.errorHandler.unauthorizedError':
     'Current request lacks authorization: Error code @{status}, please confirm whether you have permission or contact the administrator.',
   'service.errorHandler.forbiddenError':
     'The request is denied by the server: Error code @{status}, usually due to permissions issues, please ensure you have the necessary access.',
   'service.errorHandler.notFoundError':
     'The requested resource does not exist: Error code @{status}, please check the environment and corresponding resources.',
-  'service.errorHandler.internalServerError': 'Internal server error: Error code @{status}, please contact the service provider for assistance.',
+  'service.errorHandler.internalServerError':
+    'Internal server error: Error code @{status}, please contact the service provider for assistance.',
   'service.errorHandler.notImplementedError':
     'The request server does not support the requested functionality: Error code @{status}, please contact the service provider for assistance.',
   'service.errorHandler.badGatewayError':
@@ -139,18 +171,40 @@ export default {
   'service.errorHandler.serviceUnavailableError':
     'The server is temporarily unavailable, typically due to overload or maintenance: Error code @{status}, please contact the service provider for assistance.',
   'service.errorHandler.url': 'Request address: @{path}',
-  'service.errorHandler.requestEntityTooLargeError': 'The request entity is too large:  Error code @{status}, please modify the client_max_body_size size of the nginx configuration file and the configuration item of the cloud application # Upload file size limit spring.servlet.multipart.max-file-size=300MB spring.servlet.multipart.max-request-size= 300MB',
-  'service.hooks.fetchSendBeforeError': 'Error executing fetchSendBefore/request sending before event: @{message}',
-  'service.hooks.fetchResponseError': 'Error executing fetchResponse/request response event: @{message}',
-  'service.hooks.fetchSuccessError': 'Error executing fetchSuccess/request success event: @{message}',
-  'service.hooks.fetchFailError': 'Error executing fetchFail/request failure event: @{message}',
+  'service.errorHandler.requestEntityTooLargeError':
+    'The request entity is too large:  Error code @{status}, please modify the client_max_body_size size of the nginx configuration file and the configuration item of the cloud application # Upload file size limit spring.servlet.multipart.max-file-size=300MB spring.servlet.multipart.max-request-size= 300MB',
+  'service.hooks.fetchSendBeforeError':
+    'Error executing fetchSendBefore/request sending before event: @{message}',
+  'service.hooks.fetchResponseError':
+    'Error executing fetchResponse/request response event: @{message}',
+  'service.hooks.fetchSuccessError':
+    'Error executing fetchSuccess/request success event: @{message}',
+  'service.hooks.fetchFailError':
+    'Error executing fetchFail/request failure event: @{message}',
   'service.config.timeoutMsg': 'Request failed, no response due to timeout.',
   relogin: 'Please log in again.',
-  'appManager.createAppFail': 'Not created/fetched successfully. If you need to create, please pass createOnAbsent: true.',
-  'NoPermission.description': 'You do not have access permission, please contact the administrator~',
-  'NotFound.description': 'Sorry, the page you are trying to access does not exist.',
-  'Modal.missParams': 'Modal operation failed: Missing page instance ID or page path.',
-  months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  'appManager.createAppFail':
+    'Not created/fetched successfully. If you need to create, please pass createOnAbsent: true.',
+  'NoPermission.description':
+    'You do not have access permission, please contact the administrator~',
+  'NotFound.description':
+    'Sorry, the page you are trying to access does not exist.',
+  'Modal.missParams':
+    'Modal operation failed: Missing page instance ID or page path.',
+  months: [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ],
   selectAll: 'Select All',
   selectNumber: '@{num} selected',
   reupload: 'Reupload',
@@ -160,7 +214,8 @@ export default {
   'Upload.success': 'Upload success',
   minRule: 'Below the minimum option limit [at least @{min} selections].',
   maxRule: 'Maximum option limit exceeded [up to @{max} selections].',
-  minAndMaxRule: 'Options must be greater than or equal to @{min} and less than or equal to @{max}',
+  minAndMaxRule:
+    'Options must be greater than or equal to @{min} and less than or equal to @{max}',
   cancelUpload: 'Cancel Upload',
   close: 'Close',
   fileUpload: 'File Upload',
@@ -202,7 +257,8 @@ export default {
     '08': 'Server processing exception',
   },
   noData: 'No data available',
-  'ErrorMsg.no-information': 'No matching information, please contact the platform administrator',
+  'ErrorMsg.no-information':
+    'No matching information, please contact the platform administrator',
   'ErrorMsg.solution': 'solution',
   'ErrorMsg.errorMsgMatch': 'Error Message',
   'ErrorMsg.articleMap': {
@@ -262,7 +318,8 @@ export default {
     },
     // Request 404
     '01-00-2-000-000404': {
-      title: 'Service request failed, the requested resource does not exist (404)',
+      title:
+        'Service request failed, the requested resource does not exist (404)',
       content: `<dl>
      <dt>Possible reasons for request failure:</dt>
      <dd>
@@ -285,7 +342,8 @@ export default {
     },
     // Request 413
     '01-00-2-000-000413': {
-      title: 'Service request failed, the request message body exceeds the gateway limit',
+      title:
+        'Service request failed, the request message body exceeds the gateway limit',
       content: `<dl>
      <dt>Reason for request failure:</dt>
      <dd>
@@ -305,7 +363,8 @@ export default {
     },
     // Gateway error
     '06-00-3-000-000502': {
-      title: 'Service request failed, please try again later or contact the system administrator',
+      title:
+        'Service request failed, please try again later or contact the system administrator',
       content: `<dl>
      <dt>Possible reasons for request failure:</dt>
      <dd>
@@ -332,7 +391,8 @@ export default {
     },
     // Gateway timeout
     '06-00-3-000-000504': {
-      title: 'Service request failed, please try again later or contact the system administrator',
+      title:
+        'Service request failed, please try again later or contact the system administrator',
       content: `<dl>
      <dt>Possible reasons for request failure:</dt>
      <dd>
@@ -377,9 +437,13 @@ export default {
   '100b': 'hundred billion',
   t: 'trillion',
   '10t': 'ten trillion',
-  cancelConfirm: 'Changes will not be saved after canceling, confirm canceling?',
-  zipPreviewPlaceholder: 'Please select the files in the zip package to preview them.',
-  zipPreviewTitle: 'The current preview is a zip file, direct preview is not supported.',
+  cancelConfirm:
+    'Changes will not be saved after canceling, confirm canceling?',
+  zipPreviewPlaceholder:
+    'Please select the files in the zip package to preview them.',
+  zipPreviewTitle:
+    'The current preview is a zip file, direct preview is not supported.',
   zipPreviewTips: 'Please select the files in the zip below to preview!',
-  PageNotInPortal: 'The current page is not within the Lingxi platform portal, and portal redirection is not possible. Please modify the page redirection type.',
+  PageNotInPortal:
+    'The current page is not within the Lingxi platform portal, and portal redirection is not possible. Please modify the page redirection type.',
 };

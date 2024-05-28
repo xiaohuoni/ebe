@@ -6,7 +6,8 @@ export default {
   more: '更多',
   end: '結束',
   start: '開始',
-  'PageView.getAppError': '獲取應用@{appId}信息失敗，請檢查是否擁有該應用權限。',
+  'PageView.getAppError':
+    '獲取應用@{appId}信息失敗，請檢查是否擁有該應用權限。',
   year: '@{year}年',
   month: '@{month}月',
   day: '@{day}日',
@@ -15,7 +16,8 @@ export default {
   second: '@{second}秒',
   'command.stopCMD.undefined': '退出指令錯誤的拋出: 返回內容__undefined__',
   'command.stopCMD': '退出指令錯誤的拋出值為：@{value}',
-  'command.gainErrorPrefix': '頁面【@{pageName}】上的組件【@{name}】(@{id})@{eventName}@{lineNumberText}發生了異常：\n@{msg}',
+  'command.gainErrorPrefix':
+    '頁面【@{pageName}】上的組件【@{name}】(@{id})@{eventName}@{lineNumberText}發生了異常：\n@{msg}',
   'command.lineNumber': '第@{lineNumber}行',
   'command.eventName': '的@{eventName}事件內',
   'command.debugger.msg': '觸發調試工具斷點',
@@ -30,7 +32,8 @@ export default {
   noListData: '暫無列表數據',
   warnFormat: '格式不正確',
   notEmpty: '@{name}不能為空',
-  actionCacheError: '當前組件ID=@{compId}不存在或者未進行初始化先進行事件緩存，組件初始化後執行',
+  actionCacheError:
+    '當前組件ID=@{compId}不存在或者未進行初始化先進行事件緩存，組件初始化後執行',
   notFountParentFn: '沒有找到指定的父頁面方法@{funcName}',
   all: '全選',
   add: '添加',
@@ -43,12 +46,15 @@ export default {
   validateAction: '當前控件ID@{compId} 沒有暴露【@{action}】方法',
   callActionError: '當前控件ID@{compId}的引用，調用失敗',
   nodeRule: '節點規則不正確，請使用node.字段名進行配置',
-  'errorMessage.01-00-2-000-001001': '沒有查詢到ID：@{busiCompId}的業務組件實例數據，該頁面將不會渲染！請檢查配置或者確認該頁面是否有訪問權限',
-  'errorMessage.01-00-2-000-000001': '未找到ID：@{pageId}的頁面實例數據，該頁面將不會被渲染！請檢查配置或確認該頁面是否有訪問權限。',
+  'errorMessage.01-00-2-000-001001':
+    '沒有查詢到ID：@{busiCompId}的業務組件實例數據，該頁面將不會渲染！請檢查配置或者確認該頁面是否有訪問權限',
+  'errorMessage.01-00-2-000-000001':
+    '未找到ID：@{pageId}的頁面實例數據，該頁面將不會被渲染！請檢查配置或確認該頁面是否有訪問權限。',
   'errorMessage.05-03-1-304-012008': '執行頁面自定義函數錯誤：@{error}',
   'errorMessage.05-03-1-304-020004': '沒有找到組件@{compId}的引用，操作失敗！',
   'errorMessage.05-03-1-304-020005': '在@{action}中發生錯誤：@{error}',
-  'errorMessage.05-03-1-304-020002': '錯誤消息：指令錯誤 - 接收的值不匹配。當前值：@{field}。期望值：數字或字符串。',
+  'errorMessage.05-03-1-304-020002':
+    '錯誤消息：指令錯誤 - 接收的值不匹配。當前值：@{field}。期望值：數字或字符串。',
   understood: '知道了',
   fileNotExist: '文件資源不存在.',
   fileNotSupportPreview: '當前文件不支持在線預覽.',
@@ -81,7 +87,8 @@ export default {
   'Meta.globalData.reloadFail': '刷新全局數據源失敗，@{name}不存在，請刪除配置',
   'Meta.globalData.reloadFailMsg': '全局數據源刷新失敗(@{name}): @{errMsg}',
   'Meta.globalData.clearFailMsg': '清空全局數據源失敗',
-  'exportFile.process.message': '總記錄@{total}條，已生成數據@{currentCount}條，剩餘@{count}條完成導出。',
+  'exportFile.process.message':
+    '總記錄@{total}條，已生成數據@{currentCount}條，剩餘@{count}條完成導出。',
   'export.process.downloading': '正在等待下載，請稍後...',
   'export.process.handling': '正在處理中，請稍後...',
   'exportFile.fail': '導出失敗，請稍後重試。',
@@ -112,31 +119,46 @@ export default {
   'sysAction.callSelfFunc.error': '在調用自定義事件中發生錯誤：@{error}',
   'sysAction.callCustomPageFunc.notFound':
     '執行調用任意頁面事件錯誤，當前頁面未找到自定義事件：@{customFuncName}，請排查該頁面是否緩存或是否配置了該自定義事件！',
-  'sysAction.callCustomPageFunc.error': '執行調用任意頁面事件：@{name}發生錯誤：@{error}',
+  'sysAction.callCustomPageFunc.error':
+    '執行調用任意頁面事件：@{name}發生錯誤：@{error}',
   'sysAction.callCurrentFunc.notFound':
     '執行調用自定義事件錯誤，當前頁面未找到自定義事件：@{customFuncName}，請排查該頁面是否緩存或是否配置了該自定義事件！',
-  'sysAction.callCurrentFunc.error': '執行調用自定義事件：@{name}發生錯誤：@{error}',
+  'sysAction.callCurrentFunc.error':
+    '執行調用自定義事件：@{name}發生錯誤：@{error}',
   'lcdpApi.router.urlEmpty': '頁面跳轉地址缺失，請檢查。',
   'lcdpApi.router.openFail': '無法打開新頁面，缺失@{type}。',
   'lcdpApi.router.notSupport': '不支持的頁面類型：@{type}。',
   'lcdpApi.router.notFound': '無法找到跳轉頁面的數據。',
-  'service.errorHandler.badRequestError': '當前請求錯誤：錯誤代碼@{status}，請聯繫服務提供商協助處理。',
-  'service.errorHandler.unauthorizedError': '當前請求未授權：錯誤代碼@{status}，請確認您是否有權限或聯繫管理員。',
-  'service.errorHandler.forbiddenError': '服務器拒絕了請求：錯誤代碼@{status}，通常是權限問題，請確保您有必要的訪問權限。',
-  'service.errorHandler.notFoundError': '請求的資源不存在：錯誤代碼@{status}，請檢查環境和相關資源。',
-  'service.errorHandler.internalServerError': '內部服務器錯誤：錯誤代碼@{status}，請聯繫服務提供商協助處理。',
-  'service.errorHandler.notImplementedError': '請求的服務器不支持所請求的功能：錯誤代碼@{status}，請聯繫服務提供商協助處理。',
-  'service.errorHandler.badGatewayError': '作為網關或代理的服務器從上游服務器接收到無效的響應：錯誤代碼@{status}，請聯繫服務提供商協助處理。',
-  'service.errorHandler.serviceUnavailableError': '服務器暫時不可用，通常是因為超載或維護：錯誤代碼@{status}，請聯繫服務提供商協助處理。',
-  'service.errorHandler.requestEntityTooLargeError': '請求實體過大:錯誤編碼@{status}，請通過修改 nginx 配置文件的 client_max_body_size 大小和後端應用的配置項#上傳文件大小限制spring.servlet.multipart.max-file-size=300MB spring.servlet.multipart.max-request-size=300MB',
+  'service.errorHandler.badRequestError':
+    '當前請求錯誤：錯誤代碼@{status}，請聯繫服務提供商協助處理。',
+  'service.errorHandler.unauthorizedError':
+    '當前請求未授權：錯誤代碼@{status}，請確認您是否有權限或聯繫管理員。',
+  'service.errorHandler.forbiddenError':
+    '服務器拒絕了請求：錯誤代碼@{status}，通常是權限問題，請確保您有必要的訪問權限。',
+  'service.errorHandler.notFoundError':
+    '請求的資源不存在：錯誤代碼@{status}，請檢查環境和相關資源。',
+  'service.errorHandler.internalServerError':
+    '內部服務器錯誤：錯誤代碼@{status}，請聯繫服務提供商協助處理。',
+  'service.errorHandler.notImplementedError':
+    '請求的服務器不支持所請求的功能：錯誤代碼@{status}，請聯繫服務提供商協助處理。',
+  'service.errorHandler.badGatewayError':
+    '作為網關或代理的服務器從上游服務器接收到無效的響應：錯誤代碼@{status}，請聯繫服務提供商協助處理。',
+  'service.errorHandler.serviceUnavailableError':
+    '服務器暫時不可用，通常是因為超載或維護：錯誤代碼@{status}，請聯繫服務提供商協助處理。',
+  'service.errorHandler.requestEntityTooLargeError':
+    '請求實體過大:錯誤編碼@{status}，請通過修改 nginx 配置文件的 client_max_body_size 大小和後端應用的配置項#上傳文件大小限制spring.servlet.multipart.max-file-size=300MB spring.servlet.multipart.max-request-size=300MB',
   'service.errorHandler.url': '請求地址：@{path}',
-  'service.hooks.fetchSendBeforeError': '執行 fetchSendBefore/請求發送前事件出錯：@{message}',
-  'service.hooks.fetchResponseError': '執行 fetchResponse/請求響應事件出錯：@{message}',
-  'service.hooks.fetchSuccessError': '執行 fetchSuccess/請求成功事件出錯：@{message}',
+  'service.hooks.fetchSendBeforeError':
+    '執行 fetchSendBefore/請求發送前事件出錯：@{message}',
+  'service.hooks.fetchResponseError':
+    '執行 fetchResponse/請求響應事件出錯：@{message}',
+  'service.hooks.fetchSuccessError':
+    '執行 fetchSuccess/請求成功事件出錯：@{message}',
   'service.hooks.fetchFailError': '執行 fetchFail/請求失敗事件出錯@{message}',
   'service.config.timeoutMsg': '請求失敗，因超時未收到響應。',
   relogin: '請重新登錄。',
-  'appManager.createAppFail': '未成功創建/獲取。如果需要創建，請傳遞 createOnAbsent: true。',
+  'appManager.createAppFail':
+    '未成功創建/獲取。如果需要創建，請傳遞 createOnAbsent: true。',
   'NoPermission.description': '您還沒有訪問權限，請聯繫管理員～',
   'NotFound.description': '抱歉，您訪問的頁面不存在',
   'Modal.missParams': '彈窗操作失敗：缺少頁面實例ID或頁面路徑。',
@@ -168,7 +190,20 @@ export default {
   scaleMin: '已縮放至最小',
   preview: '預覽',
   notSupportPreview: '該文件不支持當前窗口預覽',
-  months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+  months: [
+    '一月',
+    '二月',
+    '三月',
+    '四月',
+    '五月',
+    '六月',
+    '七月',
+    '八月',
+    '九月',
+    '十月',
+    '十一月',
+    '十二月',
+  ],
   untitled: '未命名',
   pageName: '頁面名稱',
   pageType: '頁面類型',
@@ -371,5 +406,6 @@ export default {
   zipPreviewPlaceholder: '請選擇zip包內文件進行預覽',
   zipPreviewTitle: '當前預覽內容為壓縮包，不支持直接預覽',
   zipPreviewTips: '請在下方選擇壓縮包內文件進行預覽',
-  PageNotInPortal: '當前不在靈犀平台門戶內，無法進行門戶跳轉，請修改頁面跳轉類型。',
+  PageNotInPortal:
+    '當前不在靈犀平台門戶內，無法進行門戶跳轉，請修改頁面跳轉類型。',
 };

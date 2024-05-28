@@ -1,4 +1,3 @@
-
 import merge from 'lodash/merge';
 import { baseZHHK } from '../base';
 
@@ -7,7 +6,8 @@ export default merge(baseZHHK, {
   'Quill.imageSizeLimit': '每張圖片不能大於3000KB',
   'Quill.selectZh': '請先選中文字，再點擊鏈接',
   'Table.pageNotEmptyWarning': '當前頁碼為空',
-  'Tree.appendTreeNodeWarning': '加載樹的子節點數據必須有key鍵值，沒有key不能操作',
+  'Tree.appendTreeNodeWarning':
+    '加載樹的子節點數據必須有key鍵值，沒有key不能操作',
   'Tree.appendMenuNodeWarning': '加載菜單節點必須有key鍵值，沒有key不能操作',
   'Tree.editingWarn': '沒有正在操作的樹節點',
   'Audio.cannotPlay': '音頻節點被移除,無法播放',
@@ -44,7 +44,8 @@ export default merge(baseZHHK, {
   'Table.needObj': '添加行數據的格式應該為對象，但接受到非對象的值',
   'VerificationCode.text': '發送驗證碼',
   'VerificationCode.refresh': '重新獲取',
-  'Img.fileIdError': '指令錯誤：接收的值不匹配，當前值為:@{field}, 期望為數字或字符串',
+  'Img.fileIdError':
+    '指令錯誤：接收的值不匹配，當前值為:@{field}, 期望為數字或字符串',
   'Form.actionWarning': '該組件不支持使用getFormValues指令',
   'Transfer.unit': '@{num}項',
   'Transfer.min': '@{name}最少需要選@{min}條數據',
@@ -78,19 +79,22 @@ export default merge(baseZHHK, {
   'ExpBusiObjModal.importSuccessTitle': '導入成功',
   'ExpBusiObjModal.importSuccessMsg': '數據導入成功，請選擇前往列表查看',
   'ExpBusiObjModal.importFailTitle': '導入失敗',
-  'ExpBusiObjModal.importFailMsg': '數據導入失敗，請核對以下信息後，再重新提交。',
+  'ExpBusiObjModal.importFailMsg':
+    '數據導入失敗，請核對以下信息後，再重新提交。',
   'AccountDivideModal.setAccount': '設置分賬',
   'AccountDivideModal.edit': '變更計劃',
   'AccountDivideModal.detail': '計劃詳情',
   'AccountDivideModal.disableAutoFill': '不符合自動填充條件',
-  'AccountDivideModal.fillFail': '自動填充失敗，請至少先手動填入一項依據數據然後重試',
+  'AccountDivideModal.fillFail':
+    '自動填充失敗，請至少先手動填入一項依據數據然後重試',
   'AccountDivideModal.AccountNoFinish': '分賬未完成，請仔細檢查',
   'AccountDivideModal.validDate': '請選擇有效的開始日期',
   'AccountDivideModal.startDatePlaceholder': '請選擇有效的開始日期',
   'AccountDivideModal.accountMode': '出賬方式',
   'ProgressComp.cancelMessage': '取消將無法獲得下載結果，請確認是否需要取消',
   'ProgressComp.progressMsg': '@{fileName} 正在@{text}：',
-  'ImportBusiObjModal.tips': '導入總記錄數@{total}條，其中@{success}條成功，@{fail}條失敗',
+  'ImportBusiObjModal.tips':
+    '導入總記錄數@{total}條，其中@{success}條成功，@{fail}條失敗',
   'AccountDivideDetail.subject': '科目：',
   'AccountDivideDetail.plan': '當前計劃',
   'AccountDivideDetail.aleterAfter': '變更後計劃',

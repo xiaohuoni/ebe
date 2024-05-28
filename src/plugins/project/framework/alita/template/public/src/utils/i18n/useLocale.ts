@@ -1,13 +1,16 @@
-import { useCallback, useRef, useEffect, useState } from 'react';
+import merge from 'lodash/merge';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { localeMonitor } from './localeMonitor';
 import { replaceMessage } from './replaceMessage';
 import { LanguageKeys } from './types';
-import merge from 'lodash/merge';
-import { localeMonitor } from './localeMonitor';
 
-type LocaleReturnType = { antd: Record<string, any>, lowcode: Record<string, any> };
+type LocaleReturnType = {
+  antd: Record<string, any>;
+  lowcode: Record<string, any>;
+};
 
 export interface I18nOptions {
-  language: LanguageKeys,
+  language: LanguageKeys;
   remoteLocale?: Record<string, string>;
   locale: () => Promise<LocaleReturnType>;
 
@@ -17,9 +20,15 @@ export interface I18nOptions {
   configLocale: Record<string, Record<string, any>>;
 }
 
-export const useLocale = (i18n: I18nOptions, defaultLocales: Record<LanguageKeys, () => Promise<LocaleReturnType>>) => {
+export const useLocale = (
+  i18n: I18nOptions,
+  defaultLocales: Record<LanguageKeys, () => Promise<LocaleReturnType>>,
+) => {
   const { locale: loca, language = 'zh-CN', configLocale } = i18n || {};
-  const [locale, setLocale] = useState<{ antd: Record<string, any>; lowcode: Record<string, any>; }>({
+  const [locale, setLocale] = useState<{
+    antd: Record<string, any>;
+    lowcode: Record<string, any>;
+  }>({
     antd: {},
     lowcode: {},
   });
@@ -52,7 +61,6 @@ export const useLocale = (i18n: I18nOptions, defaultLocales: Record<LanguageKeys
     setLocalFn();
   }, [setLocalFn]);
 
-  
   // fix: 由于闭包问题引起的数据不同步，导致getLocale访问错误。
   localeInfo.language = language;
   localeInfo.remoteLocale = i18n.remoteLocale;
@@ -65,7 +73,11 @@ export const useLocale = (i18n: I18nOptions, defaultLocales: Record<LanguageKeys
    * @param kv 替换的动态模板，语言模板可以是 "${year}年${month}月"   kv: { year: '2003', month: 12 }; 则结果为 '2003年12月';
    * @returns
    */
-  const getLocale = (key: string, placeholder?: string, kv?: Record<string, string>) => {
+  const getLocale = (
+    key: string,
+    placeholder?: string,
+    kv?: Record<string, string>,
+  ) => {
     const obj: any = localeInfo.locale.lowcode;
     if (obj?.[key] || obj?.[key] === '') {
       return replaceMessage(obj?.[key], placeholder, kv);
@@ -85,7 +97,11 @@ export const useLocale = (i18n: I18nOptions, defaultLocales: Record<LanguageKeys
    * @param kv 替换的动态模板，语言模板可以是 "${year}年${month}月"   kv: { year: '2003', month: 12 }; 则结果为 '2003年12月';
    * @param id
    */
-  const getLocaleLanguage = (id: string, placeholder?: string, kv?: Record<string, string>) => {
+  const getLocaleLanguage = (
+    id: string,
+    placeholder?: string,
+    kv?: Record<string, string>,
+  ) => {
     const { remoteLocale } = localeInfo;
     if (!id || !remoteLocale) {
       return placeholder;

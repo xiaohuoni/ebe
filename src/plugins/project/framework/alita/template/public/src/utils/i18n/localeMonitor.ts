@@ -15,7 +15,7 @@ export type ListenerCallback = (opts: ListenerParams) => void;
  */
 class LocaleMonitor {
   protected listenerCallbacks: ListenerCallback[] = [];
-  
+
   protected onceCallbacks: ListenerCallback[] = [];
 
   /**
@@ -30,7 +30,9 @@ class LocaleMonitor {
    * @param callback
    */
   public removeListener = (callback: ListenerCallback) => {
-    this.listenerCallbacks = this.listenerCallbacks.filter(fn => fn !== callback);
+    this.listenerCallbacks = this.listenerCallbacks.filter(
+      (fn) => fn !== callback,
+    );
   };
 
   /**
@@ -46,7 +48,7 @@ class LocaleMonitor {
    * @param params
    */
   protected emitOnce = (params: ListenerParams) => {
-    this.onceCallbacks.forEach(callback => {
+    this.onceCallbacks.forEach((callback) => {
       callback(params);
     });
     // 清空
@@ -58,7 +60,7 @@ class LocaleMonitor {
    */
   public emit = (params: ListenerParams) => {
     this.emitOnce(params);
-    this.listenerCallbacks.forEach(cb => {
+    this.listenerCallbacks.forEach((cb) => {
       cb(params);
     });
   };

@@ -9,7 +9,7 @@ import { isUndefined } from 'lodash';
 export function replaceMessage(
   template?: string,
   placeholder?: string,
-  kv?: Record<string, string>
+  kv?: Record<string, string>,
 ): string {
   if (isUndefined(template)) {
     return placeholder ?? '';
