@@ -8,7 +8,7 @@ export function showCustomModal({
   config,
 }: CMDGeneratorPrames): string {
   const { paramsObj, modalname, pageId } = value.options;
-  const { callback1 } = value;
+  const { callback1, callback2} = value;
   const temParams = {
     ...paramsObj,
     // className: `dynamic_page_${pageId}, dynamic_pageView_${pageId}`
@@ -20,11 +20,17 @@ export function showCustomModal({
   const onOkString =
     Array.isArray(callback1) && callback1.length
       ? // @ts-ignore
-        `onOk: ${CMDGeneratorEvent(callback1, { platform }, scope, config)}`
+        `onOk: ${CMDGeneratorEvent(callback1, { platform }, scope, config)},`
       : '\n';
+
+      const onCancelString =
+      Array.isArray(callback2) && callback2.length
+        ? // @ts-ignore
+          `onCancel: ${CMDGeneratorEvent(callback2, { platform }, scope, config)}`
+        : '\n';
   return `// 打开弹窗\n ModalManagerRef?.current?.openModal({pagePath: '${
     params.pagePath
   }', lcdpParentRenderId: customActionId, params: ${parse2Var(
     params.params,
-  )}, ${onOkString}})`;
+  )}, ${onOkString}${onCancelString}})`;
 }

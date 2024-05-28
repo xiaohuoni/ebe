@@ -31,11 +31,11 @@ const DM = forwardRef((props: any, ref) => {
     if (mRef.current && typeof mRef.current.onCancel === 'function') {
       // 返回false阻止默认推拉门关闭动作
       cancelResult = mRef.current.onCancel();
-    }
-
-    // onCancel为内置取消处理函数，用于关闭推拉门
+    } else {
+      // onCancel为内置取消处理函数，用于关闭推拉门
     if (cancelResult !== false && onCancel) {
       onCancel();
+    }
     }
   };
 
