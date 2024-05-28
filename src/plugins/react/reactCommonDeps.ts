@@ -71,19 +71,6 @@ import { api } from '@/services/api';
     next.ir.deps.push(
       ...getImportsFrom('@/utils/historytool', ['historytool', 'HISTORYTYPES']),
     );
-
-    // next.ir.deps.push(
-    //   getImportFrom('@lingxiteam/engine-sandbox', 'Sandbox', false),
-    // );
-    // next.ir.deps.push(
-    //   getImportFrom('@lingxiteam/engine-utils', 'transformValueDefined'),
-    // );
-    // next.ir.deps.push(
-    //   ...getImportsFrom('@lingxiteam/types', [
-    //     'SandBoxContext',
-    //     '$$compDefine',
-    //   ]),
-    // );
     return next;
   };
   return plugin;

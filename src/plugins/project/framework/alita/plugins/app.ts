@@ -39,7 +39,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.InternalDepsImport,
       content: `import { defaultResponense } from '@/utils/service/defaultResponseInterceptor';
-      import { CryptoJS } from '@lingxiteam/engine-utils';
+      import { default as CryptoJS } from 'crypto-js';
       import type {
         RequestInterceptor,
         ResponseInterceptor,

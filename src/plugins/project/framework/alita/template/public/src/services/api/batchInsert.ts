@@ -1,6 +1,6 @@
 import service from '@/utils/service/commonFetch';
-import { SERVICE_SOURCE_PARAMS } from '@lingxiteam/engine-utils';
 import { RequestOptions } from '../../utils/service/baseRequest';
+import { SERVICE_SOURCE_PARAMS } from '../type';
 
 export default (
   _source: string,

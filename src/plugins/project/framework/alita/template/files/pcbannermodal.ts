@@ -7,8 +7,6 @@ export default function getFile(): [string[], ResultFile] {
     'tsx',
     `import React, { FC, useEffect, useMemo, useState } from 'react';
     // @ts-ignore
-    // TODO：水印注释
-    // import { useGetApp, getAppInst } from '@lingxiteam/engine-platform';
     import { antPrefix as clsPrefix } from '@lingxiteam/pcfactory/es/variables';
     import { ConfigProvider } from 'antd';
     import * as ReactDOM from 'react-dom';

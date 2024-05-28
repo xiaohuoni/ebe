@@ -168,10 +168,11 @@ const DynamicPopover: FC<DynamicPopoverProps> = (props) => {
 
 export default DynamicPopover;
 `
-      : `import { lcdpApi } from '@lingxiteam/engine-platform';
+      : `
       import { Popover } from 'antd';
       import classnames from 'classnames';
       import React, { FC, useEffect, useMemo, useState } from 'react';
+      import lcdpApi from '@/utils/lcdpApi';
       import Pageview from '../Pageview';
       
       export interface DynamicPopoverProps {
