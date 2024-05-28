@@ -6,14 +6,13 @@ export function addTableRowData(generateParams: CMDGeneratorPrames): string {
   const { options } = value;
   const { paramsObj, params, compId } = options;
 
-  const obj = params === 'object' ? paramsObj : params;
-  const newRowData = parse2Var(obj);
   const code = `
     // 表格·新增一行数据
-    if (typeof ${newRowData} !== 'object') {
+    const obj = ${parse2Var(params)} === 'object' ? ${parse2Var(paramsObj)} : ${parse2Var(params)};
+    if (typeof obj !== 'object') {
       console.error("数据类型不正确")
     }else if (refs[${parse2Var(compId)}].addTableRowData) {
-      refs[${parse2Var(compId)}].addTableRowData(${newRowData});
+      refs[${parse2Var(compId)}].addTableRowData(obj);
     }
   `;
   return code;
