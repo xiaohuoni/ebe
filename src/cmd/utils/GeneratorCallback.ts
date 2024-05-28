@@ -17,7 +17,7 @@ const GeneratorCallbackWithThenCatch = (
   generateParams: CMDGeneratorPrames,
   options?: {
     /**
-     * 是否增加await 
+     * 是否增加await
      */
     sync?: boolean;
     /**
@@ -83,7 +83,9 @@ const GeneratorCallbackWithThenCatch = (
   let cmdCode = [
     code,
     callback1Code ? `then(${callback1Code})` : '',
-    (callback2Code || options?.alwayCatch) ? `catch(${callback2Code || '() => {}'})` : '',
+    callback2Code || options?.alwayCatch
+      ? `catch(${callback2Code || '() => {}'})`
+      : '',
   ]
     .filter(Boolean)
     .join('.');

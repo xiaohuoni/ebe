@@ -19,7 +19,7 @@ export function getCurrentFormValues(
           callback2: ['errorMsg'],
         },
         alwayCatch: true,
-        sync: true
+        sync: true,
       },
     )};
   `;

@@ -17,7 +17,7 @@ export function validateForm(generateParams: CMDGeneratorPrames): string {
           callback2: ['err'],
         },
         alwayCatch: true,
-        sync: true
+        sync: true,
       },
     )};
   `;
