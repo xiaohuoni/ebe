@@ -1,6 +1,6 @@
 import serviceApi from '@/utils/service/commonFetch';
 import resolveApiPath from '@/utils/service/resolveApiPath';
-import { security } from '@lingxiteam/assets';
+import security from '@/utils/Security';
 import urlHelper from '../../utils/service/urlHelper';
 import batchInsert from './batchInsert';
 import { getAppFileUrlByFileCode } from './getAppFileUrlByFileCode';
