@@ -135,7 +135,7 @@ export const CMDGeneratorEvent = (
   let returnStartString = '';
   let returnEndString = '';
   if (isHasReturn && options.isTopHasPromise !== true) {
-    returnStartString = `new Promise((resolve, reject) =>`;
+    returnStartString = `new Promise(async (resolve, reject) =>`;
     returnEndString = ')';
     // 如果顶层有退出事件，后续的事件不需要增加return
     options.isTopHasPromise = true;

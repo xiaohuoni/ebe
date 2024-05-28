@@ -86,16 +86,16 @@ const pc: { [key: string]: PatchPropsFunctionType } = {
     return originProps;
   },
   'BOFramer|Pageview|RemoteComponent': (instance, originProps, Sandbox) => {
-    originProps.appId = Sandbox.appId;
-    originProps.lcdpParentRenderId = Sandbox.renderId;
+    // originProps.appId = Sandbox.appId;
+    // originProps.lcdpParentRenderId = Sandbox.renderId;
     return originProps;
   },
-  BOFramer: (instance, originProps, Sandbox) => {
-    originProps.appId = Sandbox.appId;
-    originProps.pageId = Sandbox.pageId;
-    originProps.lcdpParentRenderId = Sandbox.renderId;
-    return originProps;
-  },
+  // BOFramer: (instance, originProps, Sandbox) => {
+  //   originProps.appId = Sandbox.appId;
+  //   originProps.pageId = Sandbox.pageId;
+  //   originProps.lcdpParentRenderId = Sandbox.renderId;
+  //   return originProps;
+  // },
   'Table|TreeTable': (instance, originProps) => {
     if (originProps.rowSelection) {
       // 新配置格式

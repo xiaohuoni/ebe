@@ -51,7 +51,7 @@ export const useTool = (refs: Record<string, any>) => {
     }
   };
   const getVisible = (id: string) => {
-    return refs?.[id]?.visible || true;
+    return refs?.[id]?.visible ?? true;
   };
 
   const setVisible = (

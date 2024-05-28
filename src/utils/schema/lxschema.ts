@@ -142,21 +142,23 @@ const preprocessComponentSchema = (
       delete schema.props.pageViewCompState;
     }
 
-    newSchema.props = {
-      ...newSchema.props,
-      $$componentItem: `##{{id: '${schema.id}',uid: ${generateUid(
-        schema,
-      )}, type: '${schema.compName}'}}##`,
-    };
-    return newSchema;
+    // newSchema.props = {
+    //   ...newSchema.props,
+    //   $$componentItem: `##{{id: '${schema.id}',uid: ${generateUid(
+    //     schema,
+    //   )}, type: '${schema.compName}'}}##`,
+    // };
+    // return newSchema;
   }
   const methods = assetHelper.comPreprocess.getComPreprocessMethods(
     schema.compName!,
     schema.platform as PlatformType,
   );
+
   methods?.forEach((fc: ProcessFunctionType) => {
     newSchema = fc(newSchema, extraData);
   });
+
   const originProps = schema?.props || {};
 
   const props = {
@@ -179,6 +181,7 @@ const preprocessComponentSchema = (
     schema.compName!,
     schema.platform as PlatformType,
   );
+
   methodsRun?.forEach((fc: ProcessFunctionType) => {
     // @ts-ignore
     const aprops = fc(newSchema, props, sandBoxContext, extraData);
@@ -208,6 +211,7 @@ const preprocessComponentSchema = (
     newSchema.props.visible = `$\`\${${basicStatusStr}}\` !== '2'$`;
     newSchema.props.readOnly = `$\`\${${basicStatusStr}}\` === '4'$`;
   }
+
   if (newSchema?.props?.basicStatus) {
     delete newSchema.props.basicStatus;
   }
