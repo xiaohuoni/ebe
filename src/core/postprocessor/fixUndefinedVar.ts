@@ -8,14 +8,7 @@ export interface ProcessorConfig {
   customFileTypeParser: Record<string, string>;
 }
 
-const factory: PostProcessorFactory<ProcessorConfig> = (
-  config?: ProcessorConfig,
-) => {
-  const cfg: ProcessorConfig = {
-    customFileTypeParser: {},
-    ...config,
-  };
-
+const factory: PostProcessorFactory<ProcessorConfig> = () => {
   const fixUndefinedVar: PostProcessor = (
     content: string,
     fileType: string,
