@@ -8,7 +8,9 @@ export function addTableRowData(generateParams: CMDGeneratorPrames): string {
 
   const code = `
     // 表格·新增一行数据
-    const obj = ${parse2Var(params)} === 'object' ? ${parse2Var(paramsObj)} : ${parse2Var(params)};
+    const obj = ${parse2Var(params)} === 'object' ? ${parse2Var(
+    paramsObj,
+  )} : ${parse2Var(params)};
     if (typeof obj !== 'object') {
       console.error("数据类型不正确")
     }else if (refs[${parse2Var(compId)}].addTableRowData) {

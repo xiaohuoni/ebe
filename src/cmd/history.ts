@@ -1,5 +1,5 @@
 import { CMDGeneratorPrames } from '../core/types';
-import { generateVarString } from '../core/utils/compositeType';
+import { generateVarString, parse2Var } from '../core/utils/compositeType';
 import { getImportFrom } from '../utils/depsHelper';
 
 export function history({ value, config }: CMDGeneratorPrames): string {
@@ -13,7 +13,7 @@ export function history({ value, config }: CMDGeneratorPrames): string {
   return `// 路由跳转 \n  historytool(HISTORYTYPES.${type}, {
     history,
     pathname:'${pathname}',
-    search:${JSON.stringify(paramsObj)},
-    state:${JSON.stringify(routerData || {})},
+    search:${parse2Var(paramsObj)},
+    state:${parse2Var(routerData || {})},
   });`;
 }
