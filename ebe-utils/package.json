@@ -1,6 +1,6 @@
 {
   "name": "ebe-utils",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "",
   "keywords": [],
   "author": "",
@@ -9,10 +9,19 @@
   "bin": {
     "ebe": "bin/ebe.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "npx father build"
+    "build": "npx father build",
+    "dev": "npx father dev",
+    "test": "npx ebe move ./test/index.ts --o node_modules/.cache/outDir"
   },
   "dependencies": {
-    "cac": "^6.7.14"
+    "@babel/parser": "^7.12.12",
+    "@babel/traverse": "^7.12.12",
+    "@babel/types": "^7.12.12",
+    "cac": "^6.7.14",
+    "fs-extra": "9.x"
   }
 }

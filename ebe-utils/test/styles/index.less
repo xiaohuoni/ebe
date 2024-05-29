@@ -1,0 +1,10 @@
+/**
+ * 组件样式统一入口
+ */
+@root-entry-name: default; // 由于入口变更，所以需要单独声明此变量，否则样式文件路径会异常
+@import '~antd/lib/style/core/motion.less'; // 解决零代码无法关闭
+@import '~antd/lib/style/components.less'; // 只引入antd原生控件样式（里面包含了 主题变量themes/共用方法mixins）
+// @import '~@ant-design/compatible/assets/index.less'; // 兼容 antd 3.x Form 组件样式
+// @import './compatible.less';
+
+@import './index.ued.less';
