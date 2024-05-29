@@ -69,7 +69,7 @@ export const withPageHOC = (
     const ExpBusiObjModalRef = React.useRef<any>();
     const ExpSQLServiceModalRef = React.useRef<any>();
     const ImportBusiObjModalRef = React.useRef<any>();
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     const sandBoxContext = useRef<Record<string, any>>({});
     // 组件状态的处理
     const state = useMemo(() => {
@@ -226,19 +226,20 @@ export const withPageHOC = (
         messageApi,
       }
 
-      setLoading(false);
+      // setLoading(false);
     };
     useEffect(() => {
       init();
       customActionId.current = createRenderId(renderId)
     }, []);
     // // 可以在这里加 loading
-    if (loading === true) {
-      return <div></div>;
-    }
+    // if (loading === true) {
+    //   return <div></div>;
+    // }
     return (
       <>
       <PageProvider value={{
+        renderId,
         registerRefs: (ref, id) => {
           if (ref) {
             // @ts-ignore

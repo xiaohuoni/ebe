@@ -23,6 +23,10 @@ import {
 import { ensureValidClassName } from '../../core/utils/validate';
 import { getImportFrom } from '../../utils/depsHelper';
 
+const isBOFramer = (ir: IContainerInfo) => {
+  return ir.containerType === 'BusiComp';
+};
+
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
     const next: ICodeStruct = {
@@ -66,22 +70,30 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       content: `
         // 生成一个Id，用来记录当前页面所有的自定义事件
         const renderId = '${pageId}';
-        const ${type} = React.forwardRef<unknown, PageProps>(({
-          attrDataMap={},customActionMapRef,routerData,lcdpApi, addActionTimer, clearActionTimer,
-          injectData, sandBoxContext, refs, functorsMap, state, style, urlParam, ${
-            isModal ? 'forwardedRef,' : ''
-          } 
-          setComponentRef,
-          ModalManagerRef,
-          ExpSQLServiceModalRef,
-          ExpBusiObjModalRef,
-          ImportBusiObjModalRef,
-          BannerModal,
-          customActionId,
-          lcdpParentRenderId,
-          ${isModal ? 'onOk: fatherOnOk,' : ''}
-          ${isModal ? 'closeModal' : ''}
-      }, ref) => {`,
+        const ${type} = React.forwardRef<unknown, PageProps>((props, ref) => {
+          const {
+            attrDataMap={},customActionMapRef,routerData,lcdpApi, addActionTimer, clearActionTimer,
+            injectData, sandBoxContext, refs, functorsMap,
+            ${isBOFramer(ir) ? '' : 'state,'}
+            style, urlParam, ${isModal ? 'forwardedRef,' : ''} 
+            setComponentRef,
+            ModalManagerRef,
+            ExpSQLServiceModalRef,
+            ExpBusiObjModalRef,
+            ImportBusiObjModalRef,
+            BannerModal,
+            customActionId,
+            lcdpParentRenderId,
+            ${isModal ? 'onOk: fatherOnOk,' : ''}
+            ${isModal ? 'closeModal' : ''}
+        } = props;
+
+        ${
+          isBOFramer(ir)
+            ? 'const [state, setState] = useListenProps(props.state)'
+            : ''
+        }
+          `,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
         COMMON_CHUNK_NAME.InternalDepsImport,
@@ -90,6 +102,12 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         COMMON_CHUNK_NAME.FileUtilDefine,
       ],
     });
+
+    if (isBOFramer(ir)) {
+      ir.deps?.push(
+        getImportFrom('@/hooks/useListenProps', 'useListenProps', false),
+      );
+    }
 
     next.chunks.push({
       type: ChunkType.STRING,
@@ -298,6 +316,31 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       ],
     });
 
+    next.chunks.push({
+      type: ChunkType.STRING,
+      fileType: FileType.TSX,
+      name: LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleStart,
+      content: `useImperativeHandle(ref, () => ({\n`,
+      linkAfter: [
+        LIFE_CYCLE_CHUNK_NAME.UseUnMountEnd,
+        LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
+        LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
+        LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks,
+        REACT_CHUNK_NAME.DidUpdateEnd,
+      ],
+    });
+
+    next.chunks.push({
+      type: ChunkType.STRING,
+      fileType: FileType.TSX,
+      name: LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleEnd,
+      content: `\n}));`,
+      linkAfter: [
+        LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleContent,
+        LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleStart,
+      ],
+    });
+
     if (ir.pageContainerType === 'BusiComp') {
       ir.deps?.push(getImportFrom('../factory', 'Hoc', true));
     }
@@ -305,11 +348,12 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,
-      name: REACT_CHUNK_NAME.RenderStart,
+      name: REACT_CHUNK_NAME.RenderLoading,
       content: `if (!dataReadyComplete) {
         return <Spin spinning/>
       }`,
       linkAfter: [
+        LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleEnd,
         LIFE_CYCLE_CHUNK_NAME.UseUnMountEnd,
         LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
         LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
@@ -325,6 +369,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       name: REACT_CHUNK_NAME.RenderStart,
       content: 'return (',
       linkAfter: [
+        REACT_CHUNK_NAME.RenderLoading,
         LIFE_CYCLE_CHUNK_NAME.UseUnMountEnd,
         LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
         LIFE_CYCLE_CHUNK_NAME.UseMountEnd,

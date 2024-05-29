@@ -66,6 +66,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       //   onCancel,
       // }));
       // ConstructorStart
+
       if (events?.onOk || events?.onCancel) {
         next.chunks.push({
           type: ChunkType.STRING,
@@ -105,13 +106,15 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         next.chunks.push({
           type: ChunkType.STRING,
           fileType: cfg.fileType,
-          name: MODAL_CHUNK_NAME.ImperativeHandle,
-          content: `useImperativeHandle(ref, () => ({
-            ${events?.onOk ? 'onOk,' : ''}
-            ${events?.onCancel ? 'onCancel,' : ''}
-            ${ir?.customFuctions?.length ? 'customActionMap' : ''}
-          }));`,
-          linkAfter: [MODAL_CHUNK_NAME.OnOk, MODAL_CHUNK_NAME.OnCancel],
+          name: LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleContent,
+          content: [
+            events?.onOk ? 'onOk' : '',
+            events?.onCancel ? 'onCancel' : '',
+            ir?.customFuctions?.length ? 'customActionMap' : '',
+          ]
+            .filter(Boolean)
+            .join(','),
+          linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleStart],
         });
       } else {
         // 拼接useImperativeHandle
@@ -119,11 +122,11 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           next.chunks.push({
             type: ChunkType.STRING,
             fileType: cfg.fileType,
-            name: MODAL_CHUNK_NAME.ImperativeHandle,
-            content: `useImperativeHandle(ref, () => ({
-          customActionMap,
-        }));`,
-            linkAfter: [CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle],
+            name: LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleContent,
+            content: `
+              customActionMap,
+            `,
+            linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleStart],
           });
         }
       }

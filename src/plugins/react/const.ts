@@ -12,6 +12,7 @@ export const REACT_CHUNK_NAME = {
   WillUnmountStart: 'ReactComponentWillUnmountStart',
   WillUnmountEnd: 'ReactComponentWillUnmountEnd',
   WillUnmountContent: 'ReactComponentWillUnmountContent',
+  RenderLoading: 'ReactComponentRenderLoading',
 };
 
 export const LIFE_CYCLE_CHUNK_NAME = {
@@ -25,6 +26,9 @@ export const LIFE_CYCLE_CHUNK_NAME = {
   UseStateUpdateStart: 'UseStateUpdateStart',
   UseStateUpdateContent: 'UseStateUpdateContent',
   UseStateUpdateEnd: 'UseStateUpdateEnd',
+  UseImperativeHandleStart: 'UseImperativeHandleStart',
+  UseImperativeHandleContent: 'UseImperativeHandleContent',
+  UseImperativeHandleEnd: 'UseImperativeHandleEnd',
 };
 
 export const MODAL_CHUNK_NAME = {
