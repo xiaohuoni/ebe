@@ -1,8 +1,8 @@
 import generator from '@babel/generator';
 import traverse from '@babel/traverse';
 import * as t from '@babel/types';
-import { PostProcessor, PostProcessorFactory } from '../types';
-import { parse } from './babel/parse';
+import { PostProcessor, PostProcessorFactory } from '../../types';
+import { parse } from '../babel/parse';
 
 export interface ProcessorConfig {
   customFileTypeParser: Record<string, string>;
