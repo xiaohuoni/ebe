@@ -247,7 +247,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.Map,
         subModule: 'customAction',
-        content: `const useCustomAction = (context: any) => { return {}; } export default useCustomAction;`,
+        content: `const useCustomAction = (context: any) => { return {}; }\n export default useCustomAction;`,
         linkAfter: [
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         ],

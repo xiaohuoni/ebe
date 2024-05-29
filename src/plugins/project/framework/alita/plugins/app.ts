@@ -48,6 +48,8 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       } from 'alita';
       import { message, Modal as modal, notification } from 'antd';
       import { isPlainObject, merge } from 'lodash';
+      import user from './utils/User';
+
 ${
   isMobile
     ? `const titleList = [
@@ -225,16 +227,31 @@ export const request: RequestConfig = {
   }defaultResponense],
 };
       
-${
-  appDidInit
-    ? `
-${appDidInit}
-export async function render(oldRender: () => void) {
-  appDidInit({info:'TODO: 出码之后的应用信息'});
-  oldRender();
+${appDidInit ? appDidInit : ''}
+
+/**
+ * 渲染前的钩子
+ */
+const renderBefore = async () => { 
+  ${
+    appDidInit
+      ? `
+    try {
+      appDidInit({
+        info: 'TODO: 出码之后的应用信息',
+      });
+    } catch (error) { console.error(error) }
+  `
+      : ''
+  }
+  
+  await user.init();
 }
-`
-    : ''
+
+export async function render(oldRender: () => void) {
+  renderBefore().finally(() => {
+    oldRender();
+  });
 }`,
       linkAfter: [COMMON_CHUNK_NAME.ExternalDepsImport],
     });
