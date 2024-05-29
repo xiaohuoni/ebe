@@ -1,6 +1,7 @@
 import * as fs from 'fs-extra';
 import { jsonc } from 'jsonc';
 import { join } from 'path';
+import { clearLXPagesDSL } from './ebe-utils/src/index';
 import { copyStatic } from './scripts/copyStatic';
 import { createDiskPublisher } from './src/core/publisher/disk';
 import alita from './src/solutions/alita';
@@ -19,7 +20,8 @@ import alita from './src/solutions/alita';
   const projectBuilder = alita({ options: schema.options });
 
   const project = await projectBuilder.generateProject(
-    schema.pages, // 编排搭建出来的 schema
+    // @ts-ignore
+    clearLXPagesDSL(schema.pages), // 编排搭建出来的 schema
   );
   const projectSlug = appId;
   // 写入到 zip 包
