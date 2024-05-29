@@ -49,12 +49,7 @@
               "autoProcessFlow": false,
               "flowProcessResult": "common",
               "iconPosition": "left",
-              "ghost": false,
-              "block": false,
               "btnIcon": "none",
-              "hasIcon": false,
-              "shape": "default",
-              "loading": false,
               "btnText": "按钮"
             },
             "style": {

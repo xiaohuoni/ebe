@@ -121,7 +121,7 @@ const createUrl = (isPortal: boolean, params: HistoryReplaceProps) => {
 const historyPush = historyFunc('push');
 const historyReplace = historyFunc('replace');
 const historytool = (
-  type: 'replace' | 'push' | 'window' | 'portal',
+  type: 'replace' | 'push' | 'window' | 'portal' | string,
   historyParmas: HistoryReplaceProps,
 ) => {
   if (historyParmas.state) {

@@ -32,6 +32,20 @@ const componentsRule: IRulesType = {
       }
     },
   },
+  Condition: {
+    rule: ({ value, diffraction }) => {
+      if (value?.components) {
+        return removeObjectByRules(value, lingxiDslRules);
+      }
+    },
+  },
+  Layout: {
+    rule: ({ value, diffraction }) => {
+      if (value?.components) {
+        return removeObjectByRules(value, lingxiDslRules);
+      }
+    },
+  },
   Icon: {
     rule: ({ diffraction }) => {
       return diffraction?.({ props: { name: '图标' } });
@@ -39,7 +53,26 @@ const componentsRule: IRulesType = {
   },
   Button: {
     rule: ({ diffraction }) => {
-      return diffraction?.({ props: { size: 'default', type: 'default' } });
+      return diffraction?.({
+        props: {
+          size: 'default',
+          type: 'default',
+          shape: 'default',
+          loading: false,
+          ghost: false,
+          block: false,
+          hasIcon: false,
+        },
+      });
+    },
+  },
+  Text: {
+    rule: ({ diffraction }) => {
+      return diffraction?.({
+        props: {
+          showHtml: false,
+        },
+      });
     },
   },
   Table: {
