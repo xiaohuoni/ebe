@@ -12,10 +12,7 @@ describe('给代码片段增加操作链', () => {
       'from a["b"]() to a?.["b"]?.()',
       { code: 'a["b"]()', expected: 'a?.["b"]?.()' },
     ],
-    [
-      'from a[0]() to a?.[0]?.()',
-      { code: 'a[0]()', expected: 'a?.[0]?.()' },
-    ],
+    ['from a[0]() to a?.[0]?.()', { code: 'a[0]()', expected: 'a?.[0]?.()' }],
   ])('%s', (name, { code, expected }) => {
     expectValue(expected, fixSyntaxError(code));
   });
