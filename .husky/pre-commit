@@ -1,2 +1,2 @@
 pnpm format
-npx bun run test
+pnpm test
