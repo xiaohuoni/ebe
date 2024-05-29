@@ -41,6 +41,10 @@ export const MODAL_CHUNK_NAME = {
   PageEndRequest: 'PageEndRequest',
 };
 
+export const BOFRAMER_CHUNK_NAME = {
+  SetMapState: 'BOFramerSetState',
+};
+
 export const CUSTOM_ACTION_CHUNK_NAME = {
   Map: 'CustomActionMap',
   ImperativeHandle: 'CustomActionMapUseImperativeHandle',

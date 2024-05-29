@@ -63,13 +63,11 @@ export const withPageHOC = (
     const renderId = props?.$$componentItem?.uid ?? options.renderId;
     const location = useLocation();
     const refs = useRef<Record<string, any>>({}).current;
-    // 挂载自定义事件
-    const customActionId = useRef<string>();
+
     const { ModalManagerRef, refs: renerRefs, appId, attrDataMap } = useContext(Context);
     const ExpBusiObjModalRef = React.useRef<any>();
     const ExpSQLServiceModalRef = React.useRef<any>();
     const ImportBusiObjModalRef = React.useRef<any>();
-    // const [loading, setLoading] = useState(true);
     const sandBoxContext = useRef<Record<string, any>>({});
     // 组件状态的处理
     const state = useMemo(() => {
@@ -142,7 +140,7 @@ export const withPageHOC = (
         },
         locales,
       );
-    const init = async () => {
+    sandBoxContext.current = useMemo(() => {
       const injectData = {
         getEngineApis: () => {
           return {
@@ -216,7 +214,7 @@ export const withPageHOC = (
           ...extendAllowMap,
         });
       };
-      sandBoxContext.current= {
+      return {
         ...injectData,
         ...defaultContext,
         sandBoxRun,
@@ -224,18 +222,11 @@ export const withPageHOC = (
         functorsMap,
         state,
         messageApi,
-      }
-
-      // setLoading(false);
-    };
-    useEffect(() => {
-      init();
-      customActionId.current = createRenderId(renderId)
+      };
     }, []);
-    // // 可以在这里加 loading
-    // if (loading === true) {
-    //   return <div></div>;
-    // }
+
+    const customActionId = useMemo(() => createRenderId(renderId), []);
+
     return (
       <>
       <PageProvider value={{
@@ -268,7 +259,7 @@ export const withPageHOC = (
           ExpBusiObjModalRef={ExpBusiObjModalRef}
           ImportBusiObjModalRef={ImportBusiObjModalRef}
           BannerModal={BannerModal}
-          customActionId={customActionId.current}
+          customActionId={customActionId}
         />
         </PageProvider>
         ${

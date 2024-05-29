@@ -5,6 +5,7 @@ import {
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
 import {
+  BOFRAMER_CHUNK_NAME,
   CUSTOM_ACTION_CHUNK_NAME,
   DATA_SOURCE_CHUNK_NAME,
   LIFE_CYCLE_CHUNK_NAME,
@@ -336,13 +337,29 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       name: LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleEnd,
       content: `\n}));`,
       linkAfter: [
+        BOFRAMER_CHUNK_NAME.SetMapState,
         LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleContent,
         LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleStart,
       ],
     });
 
-    if (ir.pageContainerType === 'BusiComp') {
+    if (isBOFramer(ir)) {
       ir.deps?.push(getImportFrom('../factory', 'Hoc', true));
+
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: FileType.TSX,
+        name: BOFRAMER_CHUNK_NAME.SetMapState,
+        content: `
+          setCompPropMapState: setState,
+          // 兼容setCompPropMapState("boframeId","params", {})
+          setParams: setState,
+        `,
+        linkAfter: [
+          LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleContent,
+          LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleStart,
+        ],
+      });
     }
 
     next.chunks.push({
