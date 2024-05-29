@@ -1,0 +1,264 @@
+@import (reference) '../theme/variables/antdVariables.less';
+@form-prefix-cls: ~'@{ant-prefix}-form';
+@form-item-prefix-cls: ~'@{form-prefix-cls}-item';
+
+.ued-legacy-form-wrap {
+  background-color: white;
+
+  .form-tips .@{form-prefix-cls}-item-with-help {
+    margin-bottom: 14px;
+  }
+
+  .@{form-prefix-cls}-item {
+    // height: 100%;
+    margin-bottom: 0;
+    div.@{form-prefix-cls}-item {
+      height: auto;
+    }
+    &-label {
+      line-height: 32px;
+
+      & > .@{form-prefix-cls}-item-required::before {
+        margin-right: 2px;
+        font-size: @font-size-sm;
+      }
+    }
+
+    &-control {
+      display: block;
+      // height: 100%;
+      line-height: 0;
+
+      &-wrapper:first-child {
+        height: 100%;
+      }
+
+      &.has-error {
+        .@{form-prefix-cls}-explain {
+          position: absolute;
+          height: @form-explain-height;
+          margin-top: 0;
+          font-size: @form-explain-font-size;
+          line-height: @form-explain-height;
+        }
+
+        .@{ant-prefix}-picker {
+          border-color: @error-color;
+        }
+      }
+
+      .ued-rateContainer {
+        line-height: 22px;
+      }
+    }
+  }
+
+  &.@{form-prefix-cls}-vertical {
+    .@{form-prefix-cls}-item {
+      // fix：在垂直布局时，渲染效果并没有更改，原因是表单上一直都有 labelCol和wrapperCol，导致垂直布局失效
+      // 强制改为 column
+      display: block;
+      padding-bottom: 0;
+      // 用于当表单内是布局容器，布局容器内表单控件的隐藏（因为存量数据有个block !important ）
+      .@{form-prefix-cls}-item-hidden {
+        display: none !important;
+      }
+      .@{form-prefix-cls}-item-visibility {
+        visibility: hidden;
+        transform: opacity 0.3s ease;
+        opacity: 0;
+      }
+      &-label {
+        flex: 1;
+        padding: 0;
+      }
+
+      &-control-wrapper {
+        flex: 1;
+      }
+    }
+  }
+}
+
+// ================================================================
+// =                             Item                             =
+// ================================================================
+.@{form-item-prefix-cls} {
+  .reset-component();
+
+  // margin-bottom: @form-item-margin-bottom;
+  vertical-align: top;
+  // We delay one frame (0.017s) here to let CSSMotion goes
+  transition: margin-bottom @animation-duration-slow 0.017s linear;
+
+  &-with-help {
+    margin-bottom: 0;
+    transition: none;
+  }
+
+  &-hidden,
+  &-hidden.@{ant-prefix}-row {
+    // https://github.com/ant-design/ant-design/issues/26141
+    display: none;
+  }
+
+  // ==============================================================
+  // =                            Label                           =
+  // ==============================================================
+  &-label {
+    display: inline-block;
+    flex-grow: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: right;
+    vertical-align: middle;
+
+    &-left {
+      text-align: left;
+    }
+
+    &-wrap {
+      overflow: visible;
+      line-height: (@line-height-base - 0.25em);
+      white-space: normal;
+    }
+
+    > label {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      max-width: 100%;
+      height: @form-item-label-height;
+      color: @label-color;
+      font-size: @form-item-label-font-size;
+
+      > .@{iconfont-css-prefix} {
+        font-size: @form-item-label-font-size;
+        vertical-align: top;
+      }
+
+      // Required mark
+      &.@{form-item-prefix-cls}-required:not(
+          .@{form-item-prefix-cls}-required-mark-optional
+        )::before {
+        display: inline-block;
+        margin-right: 4px;
+        color: @label-required-color;
+        font-size: @form-item-label-font-size;
+        font-family: SimSun, sans-serif;
+        line-height: 1;
+        content: '*';
+
+        .@{form-prefix-cls}-hide-required-mark & {
+          display: none;
+        }
+      }
+
+      // Optional mark
+      .@{form-item-prefix-cls}-optional {
+        display: inline-block;
+        margin-left: @margin-xss;
+        color: @text-color-secondary;
+
+        .@{form-prefix-cls}-hide-required-mark & {
+          display: none;
+        }
+      }
+
+      // Optional mark
+      .@{form-item-prefix-cls}-tooltip {
+        color: @text-color-secondary;
+        cursor: help;
+        writing-mode: horizontal-tb;
+        margin-inline-start: @margin-xss;
+      }
+
+      &::after {
+        & when (@form-item-trailing-colon=true) {
+          content: ':';
+        }
+        & when not (@form-item-trailing-colon=true) {
+          content: ' ';
+        }
+
+        position: relative;
+        top: -0.5px;
+        margin: 0 @form-item-label-colon-margin-right 0
+          @form-item-label-colon-margin-left;
+      }
+
+      &.@{form-item-prefix-cls}-no-colon::after {
+        content: ' ';
+      }
+    }
+  }
+
+  // ==============================================================
+  // =                            Input                           =
+  // ==============================================================
+  &-control {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    &:first-child:not([class^=~"'@{ant-prefix}-col-'"]):not(
+        [class*=~"' @{ant-prefix}-col-'"]
+      ) {
+      width: 100%;
+    }
+
+    &.has-error {
+      .@{ant-prefix}-select-selector {
+        background-color: #fff;
+        border-color: @error-color;
+      }
+    }
+  }
+
+  &-control-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: @input-height-base;
+
+    &-content {
+      flex: auto;
+      max-width: 100%;
+    }
+  }
+
+  // ==============================================================
+  // =                           Explain                          =
+  // ==============================================================
+  &-explain,
+  &-extra {
+    clear: both;
+    color: @text-color-secondary;
+    font-size: @font-size-base;
+    line-height: @line-height-base;
+    transition: color 0.3s @ease-out; // sync input color transition
+    .explainAndExtraDistance((@form-item-margin-bottom - @form-font-height) / 2);
+  }
+
+  &-explain-connected {
+    height: 0;
+    min-height: 0;
+    opacity: 0;
+  }
+
+  &-extra {
+    min-height: @form-item-margin-bottom;
+  }
+
+  .@{ant-prefix}-input-textarea-show-count {
+    &::after {
+      margin-bottom: -22px;
+    }
+  }
+
+  &-with-help &-explain {
+    height: auto;
+    min-height: @form-item-margin-bottom;
+    opacity: 1;
+  }
+}

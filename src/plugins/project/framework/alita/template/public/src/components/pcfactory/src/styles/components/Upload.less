@@ -1,0 +1,26 @@
+@import (reference) '../theme/variables/antdVariables.less';
+@upload-prefix-cls: ~'@{ant-prefix}-upload';
+
+.ued-upload-wrap {
+  &-hidden {
+    .@{upload-prefix-cls}.@{upload-prefix-cls}-select,
+    .anticon-delete {
+      display: none;
+    }
+  }
+
+  // 控制下载进度图标一直展示
+  .@{upload-prefix-cls}-list-item-card-actions-btn {
+    visibility: hidden;
+    opacity: 1 !important;
+  }
+  .@{upload-prefix-cls}-list-item:hover {
+    .@{upload-prefix-cls}-list-item-card-actions-btn {
+      a,
+      span,
+      div {
+        visibility: visible !important;
+      }
+    }
+  }
+}

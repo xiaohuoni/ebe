@@ -1,0 +1,163 @@
+@import (reference) '../theme/variables/antdVariables.less';
+@input-prefix-cls: ~'@{ant-prefix}-input';
+
+.ued-input-wrap {
+  &.@{input-prefix-cls} {
+    line-height: 22px;
+  }
+
+  &.greyStyle {
+    .@{input-prefix-cls}-group-addon:first-child {
+      background: #fafafa;
+    }
+  }
+  &.blueStyle {
+    .@{input-prefix-cls}-group-addon:first-child {
+      color: #fff;
+      background: @primary-color;
+      border: 1px solid @primary-color !important;
+    }
+  }
+  &.whiteStyle {
+    .@{input-prefix-cls}-group-addon:first-child {
+      background: #fff;
+    }
+  }
+
+  &.postfixGreyStyle {
+    .@{input-prefix-cls}-group-addon:last-child {
+      background: #fafafa;
+    }
+    .@{input-prefix-cls}-group-addon-disabled {
+      background-color: @disabled-bg !important;
+      color: @disabled-color;
+    }
+    &:hover {
+      .@{input-prefix-cls}-group-addon:last-child {
+        border-color: @primary-color !important;
+      }
+      .@{input-prefix-cls}-group-addon-disabled {
+        background-color: @disabled-bg !important;
+        color: @disabled-color;
+        border-color: @border-color-base !important;
+      }
+    }
+  }
+
+  &.postfixBlueStyle {
+    .@{input-prefix-cls}-group-addon:last-child {
+      color: #fff;
+      background: @primary-color;
+      border: 1px solid @primary-color !important;
+    }
+    .@{input-prefix-cls}-group-addon-disabled {
+      background-color: @disabled-bg !important;
+      color: @disabled-color;
+      border-color: @border-color-base !important;
+    }
+    &:hover {
+      .@{input-prefix-cls}-group-addon:last-child {
+        border-color: @primary-color !important;
+      }
+      .@{input-prefix-cls}-group-addon-disabled {
+        background-color: @disabled-bg !important;
+        color: @disabled-color;
+        border-color: @border-color-base !important;
+      }
+    }
+  }
+
+  &.postfixWhiteStyle {
+    .@{input-prefix-cls}-group-addon:last-child {
+      background: #fff;
+    }
+    .@{input-prefix-cls}-group-addon-disabled {
+      background-color: @disabled-bg !important;
+      color: @disabled-color;
+    }
+    &:hover {
+      .@{input-prefix-cls}-group-addon:last-child {
+        border-color: @primary-color !important;
+      }
+      .@{input-prefix-cls}-group-addon-disabled {
+        background-color: @disabled-bg !important;
+        color: @disabled-color;
+        border-color: @border-color-base !important;
+      }
+    }
+  }
+  &.postfixNoBorderStyle {
+    .@{input-prefix-cls} {
+      border-right: none;
+    }
+
+    .@{input-prefix-cls}-group-addon:last-child {
+      background: #fff;
+    }
+    .@{input-prefix-cls}-group-addon-disabled {
+      background-color: @disabled-bg !important;
+      color: @disabled-color;
+    }
+    &:hover {
+      .@{input-prefix-cls}-group-addon:last-child {
+        border-color: @primary-color !important;
+      }
+      .@{input-prefix-cls}-group-addon-disabled {
+        background-color: @disabled-bg !important;
+        color: @disabled-color;
+        border-color: @border-color-base !important;
+      }
+    }
+  }
+
+  &.greyStyle,
+  &.blueStyle,
+  &.whiteStyle {
+    .@{input-prefix-cls}-group-addon:first-child {
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+  }
+
+  &.postfixGreyStyle,
+  &.postfixBlueStyle,
+  &.postfixWhiteStyle,
+  &.postfixNoBorderStyle,
+  &.nonePostfixStyle {
+    .@{input-prefix-cls}-group-addon:last-child {
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+  }
+
+  .disabled {
+    cursor: not-allowed;
+  }
+
+  .@{input-prefix-cls}-wrapper.@{input-prefix-cls}-group {
+    display: flex;
+    .@{input-prefix-cls}-group-addon {
+      width: auto;
+      line-height: 30px;
+    }
+  }
+
+  .@{input-prefix-cls}-show-count-suffix {
+    font-size: 12px;
+  }
+}
+
+// 带前后缀图标的输入框通用样式
+.@{input-prefix-cls}-affix-wrapper {
+  .@{input-prefix-cls}:not(:first-child) {
+    padding-left: @input-affix-padding;
+  }
+
+  .@{input-prefix-cls}:not(:last-child) {
+    padding-right: @input-affix-padding;
+  }
+}
+
+.@{input-prefix-cls}-affix-wrapper-sm {
+  padding: 0 @padding-xs !important;
+}

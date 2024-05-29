@@ -1,0 +1,64 @@
+/**
+ * 控件（组件）样式文件
+ * 各组件基本遵循最外层被以 “ued-xxx-wrap" 为样式名的容器包裹，模拟局部css作用域
+ *
+ * 为什么不直接在组件内部以 css module 的方式引入样式？
+ * 答：1. 因为在打包构建时，各模块包裹容器的样式名会加上hash编码
+ * 2. 今后如果想实现动态主题变更，就需要在线编译less样式，而编译时需要有一份基准数据
+ * 3. 如果是以组件内部的样式文件内容作为基准数据，里面的样式名是没有进行hash编码过的，会与构建后的文件匹配不上，就算生成新的css，也不会生效
+ * 4. 所以基准数据大概率会包含此文件内容（入口文件还会含有 antd 库中原生样式内容），通过less，替换里面的less变量，生成新的css，插入到html中，做到样式变更
+ * 优点：每个组件模块的样式名都是约定的，不会在构建过程中加上hash编码
+ */
+
+// 以下为自定义变量和组件样式
+@import './common.less';
+@import './theme/variables/index.less';
+@import './components/Card.less';
+@import './components/Collapse.less';
+@import './components/Table.less';
+@import './components/Drawer.less';
+@import './components/Description.less';
+@import './components/Dropdown.less';
+@import './components/Tree.less';
+@import './components/Tabs.less';
+@import './components//Button.less';
+@import './components/Input.less';
+@import './components/InputNumber.less';
+@import './components/InputPassword.less';
+@import './components/LoopList.less';
+@import './components/ModalSelect.less';
+@import './components/Select.less';
+@import './components/DatePicker.less';
+@import './components/TextArea.less';
+@import './components/Form.less';
+@import './components/Gantt.less';
+@import './components/GridView.less';
+@import './components/TreeSelect.less';
+@import './components/Cascader.less';
+@import './components/SuperSelect.less';
+@import './components/Result.less';
+@import './components/Progress.less';
+@import './components/Checkbox.less';
+@import './components/Radio.less';
+@import './components/Switch.less';
+@import './components/Transfer.less';
+@import './components/Tag.less';
+@import './components/Swiper.less';
+@import './components/StdUpload.less';
+@import './components/Upload.less';
+@import './components/Popconfirm.less';
+@import './components/Menu.less';
+@import './components/Slider.less';
+@import './components/Link.less';
+@import './components/Rate.less';
+@import './components/Alert.less';
+@import './components/TooltipView.less';
+@import './components/Audio.less';
+@import './components/Divider.less';
+@import './components/Icon.less';
+@import './components/QuillEditor.less';
+@import './components/VerificationCode.less';
+@import './components/Webview.less';
+@import './components/Step.less';
+@import './components/DynamicTabs.less';
+@import './components/FormGroup.less';

@@ -1,0 +1,84 @@
+@import (reference) '~antd/lib/style/themes/default.less';
+@import './common.less';
+/**
+ * 此文件定义 antd 原生变量
+ */
+
+// 通用变量
+@ant-prefix: pcfactory;
+@primary-color: #4477ee;
+@success-color: #41e19b;
+@error-color: #ff7474;
+@info-color: @primary-color;
+@warning-color: #ff9d49;
+@text-color: @custom-black-10;
+@border-color-base: #e5e5e5;
+@border-radius-base: 2px;
+@border-color-split: @border-color-base;
+@heading-color: @text-color;
+@item-hover-bg: fade(@text-color, 4%);
+@item-active-bg: fade(@primary-color, 6%);
+@disabled-bg: #f7f8fa;
+@disabled-color: @custom-black-2;
+// vertical padding for all form controls
+@control-padding-horizontal: 8px;
+@control-padding-horizontal-sm: @control-padding-horizontal;
+
+// 表格
+@table-header-bg: #fafafa;
+@table-header-bg-sm: @table-header-bg;
+@table-padding-horizontal: 8px;
+@table-padding-horizontal-md: @table-padding-horizontal;
+@table-padding-horizontal-sm: @table-padding-horizontal-md;
+@table-padding-vertical: 10px;
+@table-padding-vertical-md: @table-padding-vertical - 2px;
+@table-padding-vertical-sm: @table-padding-vertical-md - 2px;
+@table-row-hover-bg: rgb(251, 251, 251);
+@table-selected-row-bg: #f0f6ff;
+
+// 表单
+@form-explain-font-size: 12px;
+@form-explain-height: 16px;
+
+// 卡片
+@card-head-color: @heading-color;
+
+// 按钮
+@btn-default-color: @text-color;
+
+// 输入框
+@input-hover-border-color: @primary-color;
+@input-height-sm: 28px;
+@input-height-base: 32px;
+@input-height-lg: 36px;
+@input-padding-horizontal-base: @control-padding-horizontal;
+@input-padding-horizontal-sm: @input-padding-horizontal-base;
+@input-padding-horizontal-lg: @input-padding-horizontal-base;
+@input-padding-vertical-sm: 4px;
+@input-padding-vertical-base: 4px;
+@input-padding-vertical-lg: 6px;
+
+// 下拉框
+@select-item-selected-font-weight: 500;
+@select-item-selected-bg: #fff;
+@select-item-active-bg: @select-item-selected-bg;
+
+// 警告提示
+@alert-message-color: @custom-black-8;
+@alert-success-border-color: fade(@success-color, 80%);
+@alert-success-bg-color: fade(@success-color, 10%);
+@alert-success-icon-color: @success-color;
+@alert-info-border-color: fade(@info-color, 80%);
+@alert-info-bg-color: fade(@info-color, 10%);
+@alert-info-icon-color: @info-color;
+@alert-warning-border-color: fade(@warning-color, 80%);
+@alert-warning-bg-color: fade(@warning-color, 10%);
+@alert-warning-icon-color: @warning-color;
+@alert-error-border-color: fade(@error-color, 80%);
+@alert-error-bg-color: fade(@error-color, 10%);
+@alert-error-icon-color: @error-color;
+
+// 折叠面板
+@collapse-background-color: @component-background;
+@collapse-background-gray-color: fade(@text-color, 4%);
+@collapse-header-line-height: 24px;

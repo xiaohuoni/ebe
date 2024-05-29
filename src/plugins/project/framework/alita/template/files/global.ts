@@ -19,7 +19,8 @@ import {
 } from '@lingxiteam/engine-app/es/components/MessageApi';`
     : `import { message, Modal, notification } from 'antd';
 // 直接引入 pcfactory 打包好的 css，不需要主工程再单独构建了
-import '@lingxiteam/pcfactory/dist/index.component.min.css';`
+// TODO: 组件移到项目中，这个文件从哪来？
+// import '@lingxiteam/pcfactory/dist/index.component.min.css';`
 }
 import {
   setPlatformConfig,

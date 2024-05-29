@@ -1,0 +1,225 @@
+@import (reference) '../theme/variables/antdVariables.less';
+@stdupload-prefix-cls: ~'@{ant-prefix}-upload';
+
+.ued-stdupload-wrap {
+  // 只读样式
+  &-readOnly {
+    .@{stdupload-prefix-cls} {
+      display: none !important;
+    }
+  }
+
+  //点击上传样式
+  .@{stdupload-prefix-cls}.@{stdupload-prefix-cls}-select.@{stdupload-prefix-cls}-select-text {
+    button {
+      height: 32px;
+      border: 1px solid @border-color-base;
+      border-radius: 2px;
+    }
+    &.@{stdupload-prefix-cls}-disabled {
+      display: block !important;
+      .@{ant-prefix}-btn {
+        cursor: not-allowed;
+        background-color: #f5f8fa;
+        color: rgba(28, 36, 46, 0.45);
+      }
+    }
+  }
+
+  //卡片上传样式
+  .@{stdupload-prefix-cls}.@{stdupload-prefix-cls}-select.@{stdupload-prefix-cls}-select-picture-card {
+    position: relative;
+    margin: 0;
+    border: 1px dashed @border-color-base;
+    border-radius: 2px;
+    &.@{stdupload-prefix-cls}-disabled {
+      display: inline-block !important;
+      cursor: not-allowed;
+    }
+  }
+
+  //拖拽上传样式
+  .@{stdupload-prefix-cls}.@{stdupload-prefix-cls}-drag {
+    height: 192px;
+    border: 1px dashed @border-color-base;
+    border-radius: 2px;
+
+    &.@{stdupload-prefix-cls}-disabled {
+      display: block !important;
+      cursor: not-allowed;
+    }
+  }
+
+  //文字列表样式
+  .@{stdupload-prefix-cls}-list-item-info {
+    a {
+      color: rgba(0, 0, 0, 0.65);
+    }
+    &:hover {
+      background: rgba(28, 36, 46, 0.04);
+      a {
+        color: @primary-color;
+      }
+    }
+  }
+
+  //图片列表样式
+  .@{stdupload-prefix-cls}-list-item.@{stdupload-prefix-cls}-list-item-list-type-picture {
+    height: 56px;
+    border: 1px solid @border-color-base;
+    border-radius: 2px;
+    a {
+      color: rgba(0, 0, 0, 0.65);
+    }
+    .@{stdupload-prefix-cls}-list-item-card-actions.picture {
+      //  display: none;
+    }
+    &:hover {
+      background: rgba(28, 36, 46, 0.04);
+      a {
+        color: @primary-color;
+      }
+      .@{stdupload-prefix-cls}-list-item-card-actions.picture {
+        //  display: block;
+      }
+    }
+  }
+
+  //卡片列表样式
+  .@{stdupload-prefix-cls}-list-item.@{stdupload-prefix-cls}-list-item-list-type-picture-card {
+    border: 1px solid @border-color-base;
+    border-radius: 2px;
+  }
+
+  // 控制下载进度图标一直展示
+  .@{stdupload-prefix-cls}-list-item-card-actions,
+  .@{stdupload-prefix-cls}-list-item-actions,
+  .@{stdupload-prefix-cls}-list-item-card-actions-btn {
+    visibility: hidden;
+    opacity: 1 !important;
+  }
+  .@{stdupload-prefix-cls}-list-item-list-type-picture-card:hover,
+  .@{stdupload-prefix-cls}-list-item-info:hover {
+    .@{stdupload-prefix-cls}-list-item-actions,
+    .@{stdupload-prefix-cls}-list-item-card-actions-btn {
+      a,
+      span,
+      div {
+        visibility: visible !important;
+      }
+    }
+  }
+
+  .ued-stdUpload-item {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    padding: 0 4px;
+    color: rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+
+    &-loading {
+      min-height: 0 !important;
+      font-size: 14px;
+      .@{ant-prefix}-spin-dot {
+        font-size: 14px;
+      }
+    }
+
+    &-icon {
+      width: 14px;
+      height: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &.ued-stdUpload-item-error {
+      color: @error-color;
+      .ued-stdUpload-item-info {
+        a {
+          color: @error-color;
+        }
+        &:hover {
+          a {
+            color: @error-color;
+          }
+        }
+      }
+    }
+
+    &.ued-stdUpload-item-text.ued-stdUpload-item-uploading {
+      line-height: 10px;
+    }
+    // 图片缩略图方式
+    &.ued-stdUpload-item-picture {
+      border: 1px solid #e5e5e5;
+      border-radius: 2px;
+      padding: 3px 8px;
+      .ued-stdUpload-item-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 26px;
+      }
+      .ued-stdUpload-item-loading {
+        .@{ant-prefix}-spin-dot {
+          font-size: 26px;
+        }
+      }
+    }
+
+    img {
+      width: 48px;
+      height: 48px;
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    &-action {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      .ued-stdUpload-item-action-icon {
+        font-size: 14px;
+        visibility: hidden;
+        opacity: 1;
+        width: 24px;
+        display: inline-block;
+        display: flex;
+        align-items: center;
+        justify-self: center;
+      }
+    }
+
+    &-info {
+      padding: 0 8px;
+      flex: 1;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      a {
+        color: rgba(0, 0, 0, 0.65);
+      }
+      &:hover {
+        a {
+          color: @primary-color;
+        }
+      }
+      .ued-stdUpload-item-progress {
+        line-height: 2px;
+      }
+    }
+
+    &:hover {
+      background-color: rgba(28, 36, 46, 0.04);
+      a {
+        color: @primary-color;
+      }
+      .ued-stdUpload-item-action-icon {
+        visibility: visible;
+      }
+    }
+  }
+}

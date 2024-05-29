@@ -1,0 +1,214 @@
+@import (reference) '../theme/variables/antdVariables.less';
+@collapse-prefix-cls: ~'@{ant-prefix}-collapse';
+@border-color-collapse: @border-color-base;
+.ued-collapse-wrap {
+  .@{collapse-prefix-cls} {
+    border-color: @border-color-collapse;
+    // 默认边框型
+    > .@{collapse-prefix-cls}-item {
+      border-color: @border-color-collapse;
+
+      > .@{collapse-prefix-cls}-header {
+        position: relative;
+        padding: 0;
+        font-weight: @font-weight-bold;
+        font-size: @font-size-lg;
+        line-height: @collapse-header-line-height;
+        background-color: @collapse-background-color;
+        border-color: @border-color-collapse;
+        border-radius: @border-radius-base;
+
+        .ued-collapse-panel-header,
+        .ued-collapse-panel-header-default {
+          flex: 1;
+          padding: @padding-sm @padding-20;
+          padding-left: @padding-20 * 2;
+          border-radius: @border-radius-base;
+        }
+
+        .@{collapse-prefix-cls}-arrow {
+          position: absolute;
+          top: 50%;
+          left: @padding-20;
+          line-height: 0;
+          transform: translateY(-50%);
+        }
+      }
+
+      > .@{collapse-prefix-cls}-content {
+        > .@{collapse-prefix-cls}-content-box {
+          padding: 0;
+
+          .ued-collapse-pane-content {
+            padding: @padding-20;
+          }
+        }
+
+        border-color: @border-color-collapse;
+      }
+    }
+
+    &.ued-collapse-large {
+      > .@{collapse-prefix-cls}-item {
+        > .@{collapse-prefix-cls}-header {
+          .ued-collapse-panel-header,
+          .ued-collapse-panel-header-default {
+            padding-top: @padding-md;
+            padding-bottom: @padding-md;
+          }
+        }
+      }
+    }
+
+    &.ued-collapse-small {
+      > .@{collapse-prefix-cls}-item {
+        > .@{collapse-prefix-cls}-header {
+          .ued-collapse-panel-header,
+          .ued-collapse-panel-header-default {
+            padding-top: @padding-xs;
+            padding-bottom: @padding-xs;
+          }
+        }
+      }
+    }
+
+    // 默认分割线
+    &.@{collapse-prefix-cls}-borderless:not(.ued-collapse-simple) {
+      background-color: @component-background;
+      border: 0;
+
+      > .@{collapse-prefix-cls}-item {
+        border: 0;
+
+        > .@{collapse-prefix-cls}-header {
+          border-bottom: 1px solid @border-color-collapse;
+          border-radius: 0;
+        }
+
+        > .@{collapse-prefix-cls}-content {
+          border-top: none;
+
+          > .@{collapse-prefix-cls}-content-box {
+            padding: 0;
+
+            .ued-collapse-pane-content {
+              padding: @padding-20;
+            }
+          }
+        }
+      }
+    }
+
+    // 简洁型
+    &.ued-collapse-simple {
+      background-color: transparent;
+      border: none;
+
+      > .@{collapse-prefix-cls}-item {
+        margin-bottom: 20px;
+        border-bottom: none;
+        border-radius: @border-radius-base @border-color-collapse 0 0;
+
+        & .@{collapse-prefix-cls}-item-active {
+          border-radius: @border-color-base;
+        }
+
+        > .@{collapse-prefix-cls}-header {
+          background-color: #fafafa;
+        }
+
+        .@{collapse-prefix-cls}-content {
+          border-top: none;
+
+          &-box {
+            // 内边距放到组件中处理
+            padding: 0;
+
+            .ued-collapse-pane-content {
+              padding: @padding-20;
+            }
+          }
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+          > .@{collapse-prefix-cls}-header {
+            margin-bottom: 0;
+          }
+
+          .@{collapse-prefix-cls}-content-box {
+            padding: 0;
+          }
+        }
+      }
+    }
+
+    &.@{collapse-prefix-cls}-icon-position-end
+      > .@{collapse-prefix-cls}-item
+      > .@{collapse-prefix-cls}-header {
+      .ued-collapse-panel-header,
+      .ued-collapse-panel-header-default {
+        padding-right: @padding-20 * 2;
+        padding-left: @padding-20;
+      }
+
+      .@{collapse-prefix-cls}-arrow {
+        right: @padding-20;
+        left: auto;
+      }
+    }
+  }
+
+  .ued-collapse-panel-header {
+    display: flex;
+    align-items: center;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: @padding-xs;
+      width: @padding-xxs;
+      height: @font-size-lg;
+      margin-right: @padding-xs;
+      background: @primary-color;
+      border-radius: @padding-xxs / 2;
+      transform: translateY(-50%);
+      content: '';
+    }
+
+    &-icon-left {
+      &::before {
+        left: 0;
+        width: @padding-sm;
+        height: @padding-sm;
+        border-radius: 0 (@padding-sm / 2) (@padding-sm / 2) 0;
+      }
+    }
+
+    &-icon-auto {
+      &::before {
+        content: none;
+      }
+
+      > i,
+      span {
+        margin-right: @padding-xs;
+        color: @primary-color;
+      }
+    }
+  }
+
+  .ued-collapse-expand-icon-arrow {
+    svg {
+      transform: rotate(-90deg);
+      fill: currentColor;
+    }
+
+    &.active {
+      svg {
+        transform: rotate(0);
+        fill: currentColor;
+      }
+    }
+  }
+}

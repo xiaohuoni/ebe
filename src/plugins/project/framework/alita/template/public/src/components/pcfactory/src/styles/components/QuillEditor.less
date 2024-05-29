@@ -1,0 +1,14 @@
+@import (reference) '../theme/variables/index.less';
+
+@quillEditorPrefix: ~'ued-quill-editor';
+
+.@{quillEditorPrefix} {
+  display: flex;
+  flex-direction: column;
+  overflow: auto; //兼容ie的maxHeight
+  background-color: #fff;
+  .ql-container {
+    flex: 1 1 auto;
+    overflow-y: auto;
+  }
+}

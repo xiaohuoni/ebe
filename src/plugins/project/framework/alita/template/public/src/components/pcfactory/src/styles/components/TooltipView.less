@@ -1,0 +1,43 @@
+@import (reference) '../theme/variables/index.less';
+
+@toolTipPrefix: ~'@{ant-prefix}-tooltip';
+
+.ued-tooltip-view {
+  .@{toolTipPrefix}-content {
+    .@{toolTipPrefix}-inner {
+      max-width: 240px;
+      max-height: 70px;
+      overflow-y: scroll;
+      padding: 2px 8px;
+      min-height: 26px;
+
+      &::-webkit-scrollbar {
+        display: none;
+        height: 0;
+        width: 0;
+        background: transparent;
+      }
+
+      // &::-webkit-scrollbar-track,
+      // &::-webkit-scrollbar-track-piece {
+      //   background: rgba(0, 0, 0, 0.65)
+      // }
+    }
+  }
+
+  &-icon {
+    cursor: pointer;
+
+    svg {
+      fill: @label-color;
+    }
+
+    &:first-child:not(:last-child) {
+      margin-right: @padding-xxs;
+    }
+
+    &:last-child:not(:first-child) {
+      margin-left: @padding-xxs;
+    }
+  }
+}

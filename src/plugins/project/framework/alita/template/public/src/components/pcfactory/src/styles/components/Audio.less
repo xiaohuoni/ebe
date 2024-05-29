@@ -1,0 +1,196 @@
+@import (reference) '../theme/variables/index.less';
+
+@alert-prefix-cls: ~'@{ant-prefix}-alert';
+
+.AWSSoundPlayer {
+  display: flex;
+  align-items: center;
+
+  .sb-soundplayer-btn {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    flex: none;
+    height: auto;
+    vertical-align: middle;
+    background-color: transparent;
+    border: 1px solid transparent;
+  }
+
+  .sb-soundplayer-play-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: @primary-color;
+    border-radius: 100%;
+
+    & > .sb-soundplayer-icon {
+      position: relative;
+      width: 8px;
+      height: 8px;
+      vertical-align: middle;
+      color: #fff;
+    }
+  }
+
+  .sb-soundplayer-progress-container {
+    width: 100%;
+    height: 4px;
+    overflow: hidden;
+    background-color: rgba(68, 119, 238, 0.2);
+    cursor: pointer;
+    border-radius: 25px;
+  }
+
+  .sb-soundplayer-progress-inner {
+    height: 100%;
+    background-color: @primary-color;
+    transition: width 0.2s ease-in;
+    border-radius: 25px;
+
+    &::-webkit-slider-thumb {
+      width: 1em;
+      height: 1em;
+      margin-top: -0.4em;
+      background: @primary-color;
+      border-radius: 1em;
+      cursor: pointer;
+      -webkit-appearance: none;
+    }
+  }
+
+  .sb-soundplayer-volume {
+    display: flex;
+    align-items: center;
+    margin-top: -3px;
+  }
+
+  // .sb-soundplayer-volume:hover div {
+  //   width: 80px;
+  // }
+  .sb-soundplayer-volume div {
+    position: relative;
+    width: 80px;
+    overflow: hidden;
+    // transition: width 0.2s ease-out;
+  }
+
+  .sb-soundplayer-volume-range {
+    width: 98%;
+    vertical-align: middle;
+    -webkit-appearance: none;
+  }
+
+  .sb-soundplayer-volume-range:focus {
+    outline: none;
+  }
+
+  .sb-soundplayer-volume-range::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    background: rgba(68, 119, 238, 0.2);
+    border-radius: 1.3px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .sb-soundplayer-volume-range::-moz-range-track {
+    width: 100%;
+    height: 4px;
+    background: rgba(68, 119, 238, 0.2);
+    border-radius: 1.3px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .sb-soundplayer-volume-range::-ms-track {
+    width: 100%;
+    height: 4px;
+    background: rgba(68, 119, 238, 0.2);
+    border-radius: 1.3px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .sb-soundplayer-volume-range::-moz-range-thumb {
+    width: 1em;
+    height: 1em;
+    margin-top: -0.4em;
+    background: @primary-color;
+    border-radius: 1em;
+    cursor: pointer;
+    -webkit-appearance: none;
+  }
+
+  .sb-soundplayer-volume-range::-webkit-slider-thumb {
+    width: 1em;
+    height: 1em;
+    margin-top: -0.4em;
+    background: @primary-color;
+    border-radius: 1em;
+    cursor: pointer;
+    -webkit-appearance: none;
+  }
+
+  .sb-soundplayer-volume-range::-ms-thumb {
+    width: 1em;
+    height: 1em;
+    margin-top: -0.4em;
+    background: @primary-color;
+    border-radius: 1em;
+    cursor: pointer;
+    -webkit-appearance: none;
+  }
+
+  .sb-soundplayer-volume-range::-ms-fill-lower {
+    background: @primary-color;
+  }
+
+  .sb-soundplayer-volume-btn {
+    & > .sb-soundplayer-icon {
+      position: relative;
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+      color: @primary-color;
+    }
+  }
+
+  &-audioTitle {
+    flex: 1;
+    overflow: hidden;
+    color: #1c242e;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.2em;
+    white-space: nowrap;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+  }
+
+  &-audioContent {
+    flex: 6;
+    display: flex;
+    align-items: center;
+
+    .playBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background-color: @primary-color;
+      border-radius: 100%;
+    }
+  }
+
+  &-audioTimer {
+    flex: none;
+    margin: 0 8px;
+    font-size: 14px;
+    font-weight: 400;
+    color: @primary-color;
+  }
+}

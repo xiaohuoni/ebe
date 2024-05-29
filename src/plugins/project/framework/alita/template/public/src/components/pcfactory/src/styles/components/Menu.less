@@ -1,0 +1,54 @@
+@import (reference) '../theme/variables/antdVariables.less';
+@menu-prefix-cls: ~'@{ant-prefix}-menu';
+
+.ued-menu {
+  .@{menu-prefix-cls} {
+    .@{menu-prefix-cls}-submenu {
+      color: @text-color;
+
+      &.@{menu-prefix-cls}-submenu-active,
+      &.@{menu-prefix-cls}-submenu-selected {
+        color: @primary-color;
+        background-color: @item-hover-bg;
+      }
+
+      .ued-icon {
+        svg {
+          font-size: @font-size-base;
+          width: @font-size-base;
+          height: @font-size-base;
+          vertical-align: baseline;
+        }
+
+        &.fill-primary {
+          color: @primary-color;
+          fill: @primary-color;
+        }
+      }
+
+      .@{menu-prefix-cls}-sub {
+        .@{menu-prefix-cls}-item-active {
+          color: @primary-color;
+        }
+        .@{menu-prefix-cls}-item-selected {
+          background-color: @item-active-bg;
+          color: @primary-color;
+
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  &.menu_inline_colloaps {
+    .@{ant-prefix}-menu-root {
+      width: 256px;
+    }
+  }
+
+  .menu_icon {
+    display: inline-flex;
+  }
+}

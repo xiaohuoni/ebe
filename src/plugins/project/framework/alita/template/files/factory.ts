@@ -49,7 +49,7 @@ export default function getFile(
     .map((i) => i + ' as _' + i)
     .join(',')},${otherHash
       .map((i) => i + ' as _' + i)
-      .join(',')}} from '@lingxiteam/${factory}/es/index.component';
+      .join(',')}} from './${factory}/src/index.component';
   import { preprocessMethods } from '@/utils/preprocess';
   ${config?.themeCss ? 'import "../themeCss.css"' : ''}
   export { CustomComponent } from './CustomComponent';

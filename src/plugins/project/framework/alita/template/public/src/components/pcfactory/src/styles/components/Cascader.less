@@ -1,0 +1,54 @@
+@import (reference) '../theme/variables/antdVariables.less';
+@cascader-prefix-cls: ~'@{ant-prefix}-cascader';
+
+.cascader-dropdown {
+  .@{cascader-prefix-cls}-menu-item {
+    min-width: 100%;
+    width: fit-content !important;
+  }
+}
+
+.ued-cascader-wrap {
+  .PICKER(@height) {
+    .@{ant-prefix}-input {
+      height: @height;
+      padding-right: @input-affix-padding;
+      line-height: @height;
+    }
+
+    .@{cascader-prefix-cls}-picker-label {
+      height: @height;
+      margin-top: 0;
+      padding: 0 @control-padding-horizontal;
+      line-height: @height;
+      transform: translateY(-50%);
+    }
+  }
+
+  .@{cascader-prefix-cls}-picker {
+    &.@{cascader-prefix-cls}-picker-lg {
+      .PICKER(@input-height-lg);
+    }
+
+    &.@{cascader-prefix-cls}-picker-base {
+      .PICKER(@input-height-base);
+    }
+
+    &.@{cascader-prefix-cls}-picker-small {
+      .PICKER(@input-height-sm);
+    }
+  }
+}
+
+.@{cascader-prefix-cls}-menus {
+  .@{cascader-prefix-cls}-menu {
+    &-item {
+      &-active:not(&-disabled) {
+        &,
+        &:hover {
+          background-color: @item-active-bg;
+        }
+      }
+    }
+  }
+}

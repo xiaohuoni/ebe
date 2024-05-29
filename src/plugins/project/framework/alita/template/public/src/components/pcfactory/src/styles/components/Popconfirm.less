@@ -1,0 +1,7 @@
+@import (reference) '../theme/variables/antdVariables.less';
+// fix: 经常点击不到 popconfirm button 问题
+.@{ant-prefix}-popconfirm .@{ant-prefix}-popover-buttons {
+  pointer-events: all;
+  display: flex;
+  flex-direction: row;
+}

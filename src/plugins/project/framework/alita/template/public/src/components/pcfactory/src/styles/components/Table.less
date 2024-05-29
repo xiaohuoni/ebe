@@ -1,0 +1,1234 @@
+@import (reference) '../theme/variables/antdVariables.less';
+/* --- 扩展组件: Table改造 --- */
+@table-prefix-cls: ~'@{ant-prefix}-table';
+@select-prefix-cls: ~'@{ant-prefix}-select';
+@switch-prefix-cls: ~'@{ant-prefix}-switch';
+@calendar-prefix-cls: ~'@{ant-prefix}-calendar';
+@tableHead-prefix-cls: ~'table-head';
+@form-prefix-cls: ~'@{ant-prefix}-form';
+@form-item-prefix-cls: ~'@{form-prefix-cls}-item';
+@cascader-prefix-cls: ~'@{ant-prefix}-cascader';
+@table-selection-column: ~'@{table-prefix-cls}-selection-column';
+
+.ued-table-filters,
+.ued-table-wrap {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+
+  .@{ant-prefix}-table-expanded-row-fixed:has(.@{ant-prefix}-empty-normal) {
+    width: 100% !important;
+  }
+
+  .table-head-default,
+  .table-head-middle {
+    margin-bottom: 16px;
+    font-size: @font-size-lg;
+  }
+
+  .table-head-small {
+    margin-bottom: 12px;
+    font-size: @font-size-base;
+  }
+
+  .ued-table {
+    flex: 1 1 auto;
+
+    .@{table-prefix-cls} {
+      line-height: @table-data-input-height;
+
+      .@{ant-prefix}-skeleton-element {
+        width: 100%;
+
+        .@{ant-prefix}-skeleton-input {
+          border-radius: 3px;
+        }
+      }
+
+      // 覆盖原生样式颜色（跟随@link-color），改为跟随主题色
+      &-row-expand-icon {
+        &:focus,
+        &:hover {
+          color: color(~`colorPalette('@{primary-color}', 5) `);
+        }
+
+        &:active {
+          color: color(~`colorPalette('@{primary-color}', 7) `);
+        }
+      }
+
+      // 动态计算图展开列宽度
+      &-expand-icon-col {
+        width: (@table-padding-horizontal + ceil(@font-size-sm * 1.4));
+      }
+
+      table {
+        border-radius: 0;
+        .@{table-prefix-cls}-thead {
+          th {
+            background: tint(@primary-color, 90%);
+          }
+        }
+        tr {
+          td,
+          th {
+            &.@{table-selection-column} {
+              label.@{checkbox-prefix-cls}-wrapper,
+              label.@{radio-prefix-cls}-wrapper {
+                line-height: @table-data-input-height - 2px;
+              }
+            }
+          }
+        }
+
+        tr > td {
+          position: relative;
+          height: auto;
+          min-height: @table-td-height;
+
+          &:empty {
+            height: @table-td-height;
+          }
+
+          .@{ant-prefix}-input:not(textarea),
+          .@{ant-prefix}-input-number,
+          .@{calendar-prefix-cls}-picker,
+          .@{select-prefix-cls},
+          .modalSelect {
+            width: 100%;
+          }
+
+          .@{ant-prefix}-input:not(textarea),
+          .@{ant-prefix}-input-number,
+          .@{ant-prefix}-input-number-input,
+          .@{calendar-prefix-cls}-picker,
+          .@{switch-prefix-cls},
+          .@{select-prefix-cls},
+          .@{select-prefix-cls} .@{select-prefix-cls}-selector,
+          .@{select-prefix-cls}
+            .@{select-prefix-cls}-selector
+            .@{select-prefix-cls}-selection-search
+            input {
+            height: @table-data-input-height;
+            line-height: @table-data-input-height;
+          }
+
+          .@{ant-prefix}-input:not(textarea) {
+            padding: 4px 8px;
+          }
+
+          textarea.@{ant-prefix}-input {
+            margin: 0 auto;
+          }
+
+          .@{select-prefix-cls} {
+            .@{select-prefix-cls}-selector {
+              .@{select-prefix-cls}-selection-item,
+              .@{select-prefix-cls}-selection-placeholder {
+                line-height: @table-data-input-height - 2px;
+              }
+            }
+
+            &.@{select-prefix-cls}-multiple {
+              .@{select-prefix-cls}-selector {
+                padding-top: 0;
+                padding-bottom: 0;
+
+                &::after {
+                  margin: 0;
+                }
+              }
+
+              .@{select-prefix-cls}-selector
+                .@{select-prefix-cls}-selection-search
+                input {
+                height: @table-data-input-height - 2px;
+                line-height: @table-data-input-height - 2px;
+              }
+            }
+          }
+
+          .@{switch-prefix-cls} {
+            margin: 0;
+
+            @switch-handle-input-height: @table-data-input-height - 4px;
+            min-width: @switch-handle-input-height * 2;
+
+            &-handle {
+              &::before {
+                border-radius: 50%;
+              }
+
+              width: @switch-handle-input-height;
+              height: @switch-handle-input-height;
+            }
+
+            &.@{switch-prefix-cls}-checked {
+              .@{switch-prefix-cls}-handle {
+                left: calc(~'100%' - @switch-handle-input-height - 2px);
+              }
+            }
+          }
+
+          .modalSelect {
+            .@{select-prefix-cls} {
+              position: relative;
+              top: 0;
+              margin-top: 0;
+              width: 100%;
+            }
+
+            .@{ant-prefix}-input-group-addon,
+            &.@{ant-prefix}-input-group {
+              line-height: @table-data-input-height - 2px;
+            }
+          }
+
+          .@{form-item-prefix-cls} {
+            height: 0;
+            line-height: @table-data-input-height - 2px;
+
+            .@{ant-prefix}-input:not(textarea),
+            .@{ant-prefix}-input-number,
+            .@{calendar-prefix-cls}-picker,
+            .@{select-prefix-cls},
+            .modalSelect {
+              width: 100%;
+            }
+
+            &-children {
+              display: flex;
+              align-items: center;
+              // height: 0px !important;
+            }
+
+            .has-error {
+              .@{form-prefix-cls}-explain {
+                position: relative;
+                top: 4px;
+                z-index: 1;
+              }
+
+              .@{ant-prefix}-picker {
+                border-color: @error-color;
+              }
+
+              .@{ant-prefix}-input:not(textarea),
+              .@{ant-prefix}-input-number,
+              .@{calendar-prefix-cls}-picker,
+              .@{select-prefix-cls},
+              .modalSelect {
+                position: relative;
+                top: 0;
+                margin-top: 0;
+              }
+
+              .@{form-item-prefix-cls}-children {
+                height: auto !important;
+              }
+            }
+          }
+        }
+      }
+
+      &:not(.@{table-prefix-cls}-bordered) {
+        .@{table-prefix-cls}-thead {
+          tr {
+            th.@{table-prefix-cls}-cell {
+              &::before {
+                display: none;
+              }
+
+              &.divider {
+                &::before {
+                  position: absolute;
+                  top: 50%;
+                  left: 0;
+                  display: block;
+                  width: 1px;
+                  height: 1.6em;
+                  background-color: rgba(0, 0, 0, 0.06);
+                  transform: translateY(-50%);
+                  transition: background-color 0.3s;
+                  content: '';
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &-thead {
+        > tr > th {
+          background: @table-header-bg;
+          border-bottom: @border-width-base @border-style-base
+            @table-border-color;
+        }
+
+        > tr:first-child {
+          > th:first-child,
+          > th:last-child {
+            border-radius: 0;
+          }
+        }
+      }
+
+      &-tbody {
+        > tr > td {
+          border-bottom: @border-width-base @border-style-base
+            @table-border-color;
+        }
+
+        // 修补嵌套子表格的样式
+        // ========================= Nest Table ===========================
+        .@{table-prefix-cls}-wrapper:only-child,
+        .@{table-prefix-cls}-expanded-row-fixed
+          > .@{table-prefix-cls}-wrapper:only-child {
+          .@{table-prefix-cls} {
+            margin: -@table-padding-vertical -@table-padding-horizontal -@table-padding-vertical
+              (@table-padding-horizontal + ceil(@font-size-sm * 1.4));
+
+            &-tbody > tr:last-child > td {
+              border-bottom: 0;
+
+              &:first-child,
+              &:last-child {
+                border-radius: 0;
+              }
+            }
+          }
+        }
+      }
+
+      &-small {
+        font-size: @font-size-sm;
+        line-height: @small-table-data-input-line-height;
+        border: none;
+
+        .@{table-prefix-cls}-container {
+          .@{table-prefix-cls}-body,
+          .@{table-prefix-cls}-content {
+            .@{table-prefix-cls}-row:last-child td {
+              border-bottom: @border-width-base @border-style-base
+                @table-border-color;
+            }
+
+            .ued-table-actions {
+              .ued-table-actions-extendBtn {
+                height: 16px;
+                font-size: @font-size-sm;
+
+                .anticon {
+                  font-size: @font-size-sm;
+                }
+              }
+            }
+
+            .@{table-prefix-cls}-body {
+              margin: 0;
+            }
+          }
+        }
+
+        table {
+          tr {
+            td,
+            th {
+              &.@{table-selection-column} {
+                label.@{checkbox-prefix-cls}-wrapper,
+                label.@{radio-prefix-cls}-wrapper {
+                  line-height: @small-table-data-input-height - 2px;
+
+                  .@{checkbox-prefix-cls}-inner {
+                    width: 14px;
+                    height: 14px;
+                  }
+
+                  .@{checkbox-prefix-cls}-indeterminate {
+                    .@{checkbox-prefix-cls}-inner {
+                      &::after {
+                        width: 7px;
+                        height: 7px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          tr > td {
+            min-height: @table-small-td-height;
+
+            &:empty {
+              height: @table-small-td-height;
+            }
+
+            .@{ant-prefix}-input:not(textarea),
+            .@{ant-prefix}-input-number,
+            .@{ant-prefix}-input-number-input,
+            .@{calendar-prefix-cls}-picker,
+            .@{switch-prefix-cls},
+            .@{select-prefix-cls},
+            .@{select-prefix-cls} .@{select-prefix-cls}-selector,
+            .@{select-prefix-cls}
+              .@{select-prefix-cls}-selector
+              .@{select-prefix-cls}-selection-search
+              input {
+              height: @small-table-data-input-height;
+              font-size: @font-size-sm;
+              line-height: @small-table-data-input-line-height;
+            }
+
+            .@{ant-prefix}-input:not(textarea) {
+              padding: 0 8px;
+            }
+
+            .@{calendar-prefix-cls}-picker
+              .@{calendar-prefix-cls}-picker-input
+              input {
+              font-size: @font-size-sm;
+            }
+
+            .@{select-prefix-cls} {
+              .@{select-prefix-cls}-selector {
+                .@{select-prefix-cls}-selection-item,
+                .@{select-prefix-cls}-selection-placeholder {
+                  line-height: @small-table-data-input-line-height - 2px;
+                }
+              }
+
+              &.@{select-prefix-cls}-multiple {
+                .@{select-prefix-cls}-selector
+                  .@{select-prefix-cls}-selection-search
+                  input {
+                  height: @small-table-data-input-height - 2px;
+                  line-height: @small-table-data-input-line-height - 2px;
+                }
+              }
+            }
+
+            .@{switch-prefix-cls} {
+              @small-switch-handle-input-height: @small-table-data-input-line-height -
+                4px;
+              min-width: @small-switch-handle-input-height * 2;
+
+              &-handle {
+                &::before {
+                  border-radius: 50%;
+                }
+
+                width: @small-switch-handle-input-height;
+                height: @small-switch-handle-input-height;
+              }
+
+              &.@{switch-prefix-cls}-checked {
+                .@{switch-prefix-cls}-handle {
+                  left: calc(~'100%' - @small-switch-handle-input-height - 2px);
+                }
+              }
+            }
+
+            .modalSelect {
+              .@{ant-prefix}-input-group-addon {
+                font-size: @font-size-sm;
+                line-height: @small-table-data-input-line-height - 2px;
+              }
+
+              &.@{ant-prefix}-input-group {
+                line-height: @small-table-data-input-line-height - 2px;
+              }
+            }
+
+            .@{form-item-prefix-cls} {
+              line-height: @small-table-data-input-line-height - 2px;
+
+              .has-error {
+                .@{form-prefix-cls}-explain {
+                  top: 2px;
+                }
+              }
+            }
+          }
+
+          .@{table-prefix-cls}-column-sorter
+            .@{table-prefix-cls}-column-sorter-inner {
+            .@{table-prefix-cls}-column-sorter-up,
+            .@{table-prefix-cls}-column-sorter-down {
+              font-size: 9px;
+            }
+          }
+        }
+      }
+
+      &-middle {
+        line-height: 24px;
+
+        table {
+          tr {
+            td,
+            th {
+              &.@{table-selection-column} {
+                label.@{checkbox-prefix-cls}-wrapper,
+                label.@{radio-prefix-cls}-wrapper {
+                  line-height: @middle-table-data-input-height - 2px;
+                }
+              }
+            }
+          }
+
+          tr > td {
+            min-height: @table-middle-td-height;
+
+            &:empty {
+              height: @table-middle-td-height;
+            }
+
+            .@{ant-prefix}-input:not(textarea),
+            .@{ant-prefix}-input-number,
+            .@{ant-prefix}-input-number-input,
+            .@{calendar-prefix-cls}-picker,
+            .@{switch-prefix-cls},
+            .@{select-prefix-cls},
+            .@{select-prefix-cls} .@{select-prefix-cls}-selector,
+            .@{select-prefix-cls}
+              .@{select-prefix-cls}-selector
+              .@{select-prefix-cls}-selection-search
+              input {
+              height: @middle-table-data-input-height;
+              line-height: @middle-table-data-input-height;
+            }
+
+            .@{ant-prefix}-input:not(textarea) {
+              padding: 2px 8px;
+            }
+
+            .@{select-prefix-cls} {
+              .@{select-prefix-cls}-selector {
+                .@{select-prefix-cls}-selection-item,
+                .@{select-prefix-cls}-selection-placeholder {
+                  line-height: @middle-table-data-input-height - 2px;
+                }
+              }
+
+              &.@{select-prefix-cls}-multiple {
+                .@{select-prefix-cls}-selector
+                  .@{select-prefix-cls}-selection-search
+                  input {
+                  height: @middle-table-data-input-height - 2px;
+                  line-height: @middle-table-data-input-height - 2px;
+                }
+              }
+            }
+
+            .@{switch-prefix-cls} {
+              @middle-switch-handle-input-height: @middle-table-data-input-height -
+                4px;
+              min-width: @middle-switch-handle-input-height * 2;
+
+              &-handle {
+                &::before {
+                  border-radius: 50%;
+                }
+
+                width: @middle-switch-handle-input-height;
+                height: @middle-switch-handle-input-height;
+              }
+
+              &.@{switch-prefix-cls}-checked {
+                .@{switch-prefix-cls}-handle {
+                  left: calc(
+                    ~'100%' - @middle-switch-handle-input-height - 2px
+                  );
+                }
+              }
+            }
+
+            .modalSelect {
+              .@{ant-prefix}-input-group-addon,
+              &.@{ant-prefix}-input-group {
+                line-height: @middle-table-data-input-height - 2px;
+              }
+            }
+
+            .@{form-item-prefix-cls} {
+              line-height: @middle-table-data-input-height - 2px;
+            }
+          }
+        }
+      }
+    }
+
+    // 移除 webkit 内核下，固定头时，额外添加的滚动条边框线
+    .@{table-prefix-cls}-fixed-header
+      .@{table-prefix-cls}-scroll
+      .@{table-prefix-cls}-header {
+      &::-webkit-scrollbar {
+        border: none;
+      }
+    }
+
+    .@{table-prefix-cls}-bordered.@{table-prefix-cls}-fixed-header
+      .@{table-prefix-cls}-scroll
+      .@{table-prefix-cls}-header {
+      &::-webkit-scrollbar {
+        border: none;
+      }
+    }
+
+    // 表格线（边框线模式）
+    .@{table-prefix-cls}-bordered {
+      border: @border-width-base @border-style-base @table-border-color;
+      // // 注：右边框比较特殊，需要移除，然后交右 th与td单元格的右边框控制
+      // border-right: none;
+
+      .@{table-prefix-cls}-container {
+        // 注：左边框比较特殊，需要移除，然后交最外层border控制
+        border-left: none;
+
+        // 表格开启 scroll.y 时的情况处理
+        .@{table-prefix-cls}-header {
+          table {
+            // 注：上边框比较特殊，需要移除，然后交最外层border控制
+            border-top: none;
+
+            thead > tr > th:last-child {
+              // 注：右边框比较特殊，表头最后一个单元格需要移除，然后交最外层border控制
+              border-right: none;
+            }
+          }
+        }
+
+        .@{table-prefix-cls}-body {
+          table {
+            tbody > tr > td:last-child {
+              border-right: none;
+            }
+          }
+        }
+
+        // 表格没有开启 scroll.y 时的情况处理
+        .@{table-prefix-cls}-content {
+          table {
+            // 注：上边框比较特殊，需要移除，然后交最外层border控制
+            border-top: none;
+
+            thead > tr > th:last-child {
+              // 注：右边框比较特殊，表头最后一个单元格需要移除，然后交最外层border控制
+              border-right: none;
+            }
+
+            tbody > tr > td:last-child {
+              border-right: none;
+            }
+          }
+        }
+      }
+
+      // 固定右列时
+      .@{table-prefix-cls}-fixed-right {
+        table {
+          // 覆盖原生边框线颜色
+          border-left: @border-width-base @border-style-base @table-border-color;
+        }
+      }
+
+      &.@{table-prefix-cls}-empty {
+        .@{table-prefix-cls}-placeholder {
+          border-bottom: none;
+          border-left: none;
+        }
+      }
+
+      // 内容滚动时
+      .@{table-prefix-cls}-content {
+        // 去除左部线，交给最外层border
+        & > .@{table-prefix-cls}-header > table,
+        & > .@{table-prefix-cls}-body > table,
+        & > .@{table-prefix-cls}-scroll .@{table-prefix-cls}-header > table,
+        & > .@{table-prefix-cls}-scroll .@{table-prefix-cls}-body > table,
+        & > .@{table-prefix-cls}-fixed-left table {
+          border-left: none;
+        }
+
+        // 去除顶部线，交给最外层 border
+        & > .@{table-prefix-cls}-body > table,
+        & > .@{table-prefix-cls}-scroll .@{table-prefix-cls}-body > table,
+        & > .@{table-prefix-cls}-fixed-left table,
+        & > .@{table-prefix-cls}-fixed-right table,
+        .@{table-prefix-cls}-header > table {
+          border-top: none;
+        }
+      }
+
+      // 去除底部线，交给最外层border
+      .@{table-prefix-cls}-tbody {
+        .@{table-prefix-cls}-row {
+          .last-td {
+            border-bottom: none;
+          }
+        }
+
+        tr:last-child {
+          td {
+            border-bottom: none;
+          }
+        }
+      }
+
+      &.@{table-prefix-cls}-small {
+        // 小尺寸-边框模式-固定左列下，固定内容右边框，颜色覆盖
+        .@{table-prefix-cls}-fixed-left {
+          .@{table-prefix-cls}-thead > tr > th,
+          .@{table-prefix-cls}-tbody > tr > td {
+            &:last-child {
+              border-right: @border-width-base @border-style-base
+                @table-border-color;
+            }
+          }
+        }
+
+        // 小尺寸-边框模式-固定右侧栏下，固定内容不需要左右板框，右边框交给最外层
+        .@{table-prefix-cls}-fixed-right {
+          border-right: 0;
+          border-left: 0;
+        }
+
+        > .@{table-prefix-cls}-content {
+          border-right: none;
+          // 小尺寸-边框模式下，底部不需要线，底线交给最外层
+          .@{table-prefix-cls}-row:last-child td {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+
+    // 表头标题提示
+    &-header-cell-title-tip-wrapper {
+      display: flex;
+      align-items: center;
+
+      &-icon {
+        &:hover {
+          svg {
+            fill: @primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  .ued-table-ed {
+    .@{ant-prefix}-table-fixed {
+      width: auto;
+    }
+
+    // 编辑器的表格内置分页组件中，为了显示快速跳转，会人为的让页数变为 2页，所以要写死隐藏 第2页的跳转标识
+    .@{ant-prefix}-pagination-item-2 {
+      display: none;
+    }
+  }
+
+  // 斑马纹
+  .ued-table-zebra-stripe {
+    .@{table-prefix-cls}-row {
+      &:nth-child(2n) {
+        background: @table-zebra-stripe-bg;
+      }
+    }
+  }
+
+  .ued-table-page {
+    @pagination-prefix-cls: ~'@{ant-prefix}-pagination';
+    @normal-pagination-height: 24px;
+
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    &-default {
+      &.@{pagination-prefix-cls} {
+        margin: 16px 0 0 0;
+      }
+    }
+
+    &-middle,
+    &-small {
+      &.@{pagination-prefix-cls} {
+        margin: 12px 0 0 0;
+      }
+    }
+
+    .@{pagination-prefix-cls}-prev,
+    .@{pagination-prefix-cls}-item,
+    .@{pagination-prefix-cls}-next,
+    .@{pagination-prefix-cls}-jump-prev,
+    .@{pagination-prefix-cls}-jump-next {
+      min-width: @normal-pagination-height;
+      height: @normal-pagination-height;
+      line-height: @normal-pagination-height;
+    }
+
+    .@{pagination-prefix-cls}-item-link {
+      color: @custom-black-8;
+      font-size: @font-size-sm - 1px;
+    }
+
+    .@{pagination-prefix-cls}-item-active {
+      background: @primary-color;
+
+      & a {
+        color: #fff;
+      }
+    }
+
+    .@{pagination-prefix-cls}-total-text {
+      height: auto;
+      margin-right: 16px;
+      line-height: @normal-pagination-height;
+    }
+
+    .@{pagination-prefix-cls}-options {
+      margin-left: 16px;
+      &-quick-jumper {
+        height: @normal-pagination-height;
+        margin-left: 12px;
+        line-height: @normal-pagination-height;
+
+        input {
+          width: 36px;
+          height: @normal-pagination-height;
+          color: @custom-black-8;
+        }
+      }
+
+      &-size-changer {
+        color: @custom-black-8;
+        .@{ant-prefix}-select-selector {
+          height: @normal-pagination-height;
+
+          .@{ant-prefix}-select-selection {
+            &-search-input {
+              height: @normal-pagination-height;
+            }
+
+            &-item {
+              padding-right: 0;
+              line-height: @normal-pagination-height - 1px;
+            }
+          }
+        }
+
+        .@{ant-prefix}-select-arrow {
+          display: none;
+        }
+      }
+
+      .@{ant-prefix}-select-dropdown {
+        .@{ant-prefix}-select-item-option {
+          min-height: @normal-pagination-height;
+          padding: 6px 8px;
+          line-height: @normal-pagination-height;
+        }
+      }
+    }
+
+    &-small {
+      font-size: @font-size-sm;
+      @small-pagination-height: 20px;
+
+      .@{pagination-prefix-cls}-prev,
+      .@{pagination-prefix-cls}-item,
+      .@{pagination-prefix-cls}-next,
+      .@{pagination-prefix-cls}-jump-prev,
+      .@{pagination-prefix-cls}-jump-next {
+        min-width: @small-pagination-height;
+        height: @small-pagination-height;
+        margin-right: 4px;
+        line-height: @small-pagination-height - 1px;
+      }
+
+      .@{pagination-prefix-cls}-total-text {
+        line-height: @small-pagination-height;
+      }
+
+      .@{pagination-prefix-cls}-options {
+        margin-left: 0;
+        &-quick-jumper {
+          height: @small-pagination-height;
+          margin-left: 8px;
+          line-height: @small-pagination-height;
+
+          input {
+            height: @small-pagination-height;
+            font-size: @font-size-sm;
+          }
+        }
+
+        &-size-changer {
+          .@{ant-prefix}-select-selector {
+            height: @small-pagination-height;
+            font-size: @font-size-sm;
+
+            .@{ant-prefix}-select-selection {
+              &-search-input {
+                height: @small-pagination-height;
+              }
+
+              &-item {
+                line-height: @small-pagination-height - 1px;
+              }
+            }
+          }
+        }
+
+        .@{ant-prefix}-select-dropdown {
+          .@{ant-prefix}-select-item-option {
+            min-height: @small-pagination-height;
+            padding: 4px 7px;
+            font-size: @font-size-sm;
+            line-height: @small-pagination-height;
+          }
+        }
+      }
+    }
+  }
+
+  .ued-table-actions {
+    display: flex;
+    align-items: center;
+
+    :global(.@{ant-prefix}-btn + .@{ant-prefix}-btn),
+    .ued-table-actions-extendBtn + .ued-table-actions-extendBtn {
+      margin-left: @padding-sm;
+    }
+
+    .@{ant-prefix}-divider {
+      &-vertical {
+        background: @table-border-color;
+      }
+    }
+
+    .ued-table-actions-antBtn {
+      height: auto;
+      padding: 0;
+      color: @primary-color;
+      border: 0;
+
+      &:disabled {
+        color: @custom-black-2;
+      }
+      > button {
+        height: auto;
+        padding: 0;
+        color: @primary-color;
+        border: 0;
+
+        &:disabled {
+          color: @custom-black-2;
+        }
+      }
+    }
+
+    .ued-table-actions-extendBtn {
+      // display: inline-block;
+      display: flex;
+      align-items: center;
+      // color: @primary-color;
+      cursor: pointer;
+
+      & + & {
+        margin-left: @padding-sm;
+      }
+
+      &:hover {
+        color: @link-color;
+      }
+
+      .anticon {
+        font-size: @font-size-base;
+
+        &.actIcon-left {
+          margin-right: 4px;
+        }
+
+        &.actIcon-right {
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+
+  .ued-table-cell-ghostTag {
+    display: inline-block;
+    height: 18px;
+    font-size: 10px;
+    line-height: 16px;
+    border-radius: 14px;
+    border: 1px solid transparent;
+    padding: 0 6px;
+  }
+
+  .ued-table-cell-pointTag {
+    display: inline-flex;
+    align-items: center;
+
+    &-point {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      margin-right: 4px;
+    }
+
+    &-text {
+      font-size: @font-size-sm;
+      color: @text-color;
+    }
+  }
+
+  .ued-table-cell-pureColourTag,
+  .ued-table-cell-fadeColourTag {
+    display: inline-block;
+    border-radius: 2px;
+    height: 18px;
+    font-size: 10px;
+    line-height: 18px;
+    padding: 0 6px;
+  }
+
+  .ued-table-cell-pureColourFill {
+    color: #fff;
+    text-align: center;
+  }
+
+  .ued-table-cell-hyperlink {
+    color: @primary-color;
+    text-decoration: underline;
+  }
+
+  .ued-table-cell-pointTag-click,
+  .ued-table-cell-pureColourTag-click,
+  .ued-table-cell-fadeColourTag-click,
+  .ued-table-cell-pureColourFill-click,
+  .ued-table-cell-hyperlink-click {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .ued-table-row-expand-custom-icon {
+    border: none;
+    &::after {
+      display: none;
+    }
+  }
+}
+
+.ued-table-ed-box {
+  height: 100%;
+}
+
+// 表格头部样式
+.@{tableHead-prefix-cls} {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &-btn-default,
+  &-btn-middle {
+    height: 32px;
+    font-size: 14px;
+  }
+
+  &-btn-small {
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .title {
+    // TODO: 不建议用 css module，统一移入 styles 管理，使用变量
+    color: #1c242e;
+    font-weight: 600;
+  }
+
+  .extend {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: right;
+
+    i {
+      margin-left: 8px; /** TODO: $padding-s **/
+      cursor: pointer;
+    }
+
+    .btn {
+      margin-left: 8px; /** TODO: $padding-s **/
+
+      i {
+        margin-left: 0;
+      }
+    }
+
+    .iconBtn {
+      height: auto;
+      padding: 0;
+      color: inherit;
+      > button {
+        height: auto;
+        padding: 0;
+        color: inherit;
+      }
+    }
+  }
+
+  &-popContent {
+    min-width: 224px;
+
+    .popHead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .extend {
+        display: flex;
+        flex: 1 1 auto;
+        align-items: center;
+        justify-content: flex-end;
+        text-align: right;
+      }
+    }
+
+    .tips {
+      margin-top: 2px;
+      color: rgba(28, 36, 46, 0.25);
+      font-size: 12px;
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      fill: #c6c8cb;
+    }
+
+    .@{ant-prefix}-tree-switcher-noop {
+      display: none;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+
+      .checkbox {
+        margin-right: 8px;
+        line-height: 20px;
+      }
+    }
+
+    .@{ant-prefix}-popover-arrow {
+      display: none;
+    }
+
+    .@{ant-prefix}-popover-title {
+      padding: 8px 12px;
+    }
+    .@{ant-prefix}-popover-inner-content {
+      max-height: 270px;
+      padding: 12px;
+      overflow-y: auto;
+
+      .@{ant-prefix}-tree li {
+        span.@{ant-prefix}-tree-node-content-wrapper {
+          display: inline-block;
+          width: 100%;
+        }
+
+        span.@{ant-prefix}-tree-switcher.@{ant-prefix}-tree-switcher-noop {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &-tooltip {
+    .@{ant-prefix}-tooltip-content {
+      font-size: 12px;
+
+      .@{ant-prefix}-tooltip-inner {
+        min-height: fit-content;
+        padding: 4px;
+        background-color: rgba(0, 0, 0, 0.65);
+        border-radius: 2px;
+      }
+
+      .@{ant-prefix}-tooltip-arrow::before {
+        background-color: rgba(0, 0, 0, 0.65);
+      }
+    }
+  }
+}
+
+.ued-table-edit-space-block {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+.ued-table-more-pop {
+  .@{ant-prefix}-popover-inner-content {
+    padding: 0;
+  }
+}
+
+.ued-table-filters {
+  max-height: 250px;
+  min-width: 120px;
+  overflow: hidden;
+  display: flex;
+  border-radius: 4px;
+  flex-direction: column;
+  &-content {
+    padding: 4px;
+    overflow-y: auto;
+    flex: 1;
+    .ued-table-filters-item {
+      cursor: pointer;
+      padding: 4px 8px;
+      .@{ant-prefix}-checkbox-wrapper {
+        display: flex;
+        line-height: 28px;
+        .@{ant-prefix}-checkbox + span {
+          padding-right: 0;
+          flex: 1;
+        }
+      }
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+      }
+      .ued-table-filters-dom {
+        width: 100%;
+      }
+    }
+  }
+  &-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 8px;
+  }
+  &-hidden {
+    display: none;
+  }
+}
+
+.ued-table-actions-overlay {
+  .@{ant-prefix}-popover-inner-content {
+    max-width: 240px;
+  }
+}

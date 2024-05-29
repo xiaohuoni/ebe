@@ -1,0 +1,57 @@
+@import (reference) '../theme/variables/antdVariables.less';
+@progress-prefix-cls: ~'@{ant-prefix}-progress';
+
+.ued-progress-wrapper {
+  display: flex;
+  align-items: center;
+  .ued-progress-title {
+    max-width: 25%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 7px;
+  }
+  .ued-progress-value {
+    padding-left: 7px;
+  }
+}
+.ued-progress-wrapper-vertical {
+  display: block;
+  .ued-progress-context {
+    padding-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .ued-progress-title {
+      flex: 12;
+      max-width: initial;
+    }
+    .ued-progress-value {
+      flex: 1;
+      text-align: right;
+    }
+  }
+}
+
+.@{progress-prefix-cls} {
+  flex: 1;
+  &-text {
+    color: @custom-black-4;
+  }
+
+  &-status-exception &-inner:not(.@{progress-prefix-cls}-circle-gradient) {
+    .@{progress-prefix-cls}-circle-path {
+      stroke: @error-color !important;
+    }
+  }
+
+  &-status-success &-inner:not(.@{progress-prefix-cls}-circle-gradient) {
+    .@{progress-prefix-cls}-circle-path {
+      stroke: @success-color !important;
+    }
+  }
+
+  &-circle &-inner &-text {
+    color: @custom-black-6;
+  }
+}

@@ -1,17 +1,15 @@
-import { getAppFileUrlByFileCode } from '@/services/api/getAppFileUrlByFileCode';
-import { RemoteComponentMap } from '@lingxiteam/pcfactory/es/RemoteComponent/constant';
-import { useListenProps } from '@lingxiteam/pcfactory/es/utils';
-import { useDeepCompareEffect } from '@lingxiteam/pcfactory/es/utils/ahooks';
 import { LingxiForwardRef } from '@lingxiteam/types';
 import { createRequires } from '@paciolan/remote-component/dist/createRequires';
 import { createUseRemoteComponent } from '@paciolan/remote-component/dist/hooks/useRemoteComponent';
 import React, { useImperativeHandle, useState } from 'react';
+import { useListenProps } from '../utils';
+import { useDeepCompareEffect } from '../utils/ahooks';
+import { RemoteComponentMap } from './constant';
 
 export const getUseRemoteComponent = (config: any) => {
   const requires = createRequires(() => config.resolve);
   return createUseRemoteComponent({ requires });
 };
-
 export interface MyRemoteComponentProps {
   url?: string;
   fileCode?: string;
@@ -22,24 +20,20 @@ export interface MyRemoteComponentProps {
   type?: 'React' | 'Vue' | 'Fish';
 }
 
-export const RemoteComponent = LingxiForwardRef<any, MyRemoteComponentProps>(
+const RemoteComponent = LingxiForwardRef<any, MyRemoteComponentProps>(
   (props, ref) => {
     const {
       url,
       customProps: myProps,
       fileCode,
       associatedType = 'file',
+      getEngineApis,
       visible = true,
       type = 'React',
       ...restProps
     } = props;
 
-    // mock locale
-    const getEngineApis: any = () => {
-      return {
-        getLocale: () => '远程组件加载失败',
-      };
-    };
+    const engineApis = getEngineApis?.() || {};
 
     const [remoteUrl, setRemoteUrl] = useState<string>(url || '');
 
@@ -54,14 +48,14 @@ export const RemoteComponent = LingxiForwardRef<any, MyRemoteComponentProps>(
           setRemoteUrl(src);
         } else {
           // 怀疑是文件id
-          setRemoteUrl(getAppFileUrlByFileCode(src));
+          setRemoteUrl(engineApis?.getAppFileUrlByFileCode(src));
         }
       },
     }));
     useDeepCompareEffect(() => {
       // 如果是远程服务组件
       if (fileCode && associatedType === 'file') {
-        setRemoteUrl(getAppFileUrlByFileCode(fileCode));
+        setRemoteUrl(engineApis?.getAppFileUrlByFileCode(fileCode));
       } else if (url && associatedType === 'url') {
         setRemoteUrl(url);
       }
@@ -84,3 +78,5 @@ export const RemoteComponent = LingxiForwardRef<any, MyRemoteComponentProps>(
     );
   },
 );
+
+export default RemoteComponent;

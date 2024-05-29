@@ -1,5 +1,4 @@
 import { CloseCircleFilled } from '@ant-design/icons';
-import { antPrefix } from '@lingxiteam/pcfactory/lib/variables';
 import { LocaleFunction } from '@lingxiteam/types';
 import {
   Button,
@@ -11,6 +10,7 @@ import {
 } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import React from 'react';
+import { antPrefix } from '../pcfactory/src/variables';
 import ProgressComp from './ProgressComp';
 
 const openProgress = (percent: number, restProps?: any) => (

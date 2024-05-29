@@ -1,0 +1,287 @@
+@import (reference) '../theme/variables/antdVariables.less';
+@tab-prefix-cls: ~'@{ant-prefix}-tabs';
+@border-color-container: #f0f0f0;
+
+.ued-tabs-wrap {
+  // 存量样式错误福建沙盘洞察圈选页面
+  // padding: 20px;
+  // background-color: #fff;
+
+  .DEFAULT_TAB(@marginRight: 0) {
+    .@{tab-prefix-cls}-tab {
+      height: auto;
+      margin: 0;
+      // margin-right: @marginRight;
+      padding: @padding-sm @padding-20;
+      font-weight: 400;
+      font-size: @font-size-lg;
+      line-height: @padding-lg - 2px;
+    }
+  }
+
+  .RESET_NAV_MARGIN {
+    .@{tab-prefix-cls}-nav-container {
+      height: auto;
+      margin: 0;
+    }
+
+    .@{tab-prefix-cls}-nav-wrap {
+      margin: 0;
+    }
+  }
+
+  // .DIFF_SIZE_BAR_TAB(@param) {
+  //   .@{param}.@{tab-prefix-cls}-large-bar {
+  //     .@{tab-prefix-cls}-tab {
+  //       padding: @padding-md @padding-20;
+  //     }
+  //   }
+
+  //   .@{param}.@{tab-prefix-cls}-small-bar {
+  //     .@{tab-prefix-cls}-tab {
+  //       padding: @padding-xs @padding-20;
+  //     }
+  //   }
+  // }
+
+  .INK_BAR(@param) {
+    .@{tab-prefix-cls}-ink-bar {
+      @{param}: 0;
+    }
+  }
+
+  .CARD_TAB_BORDER(@param, @borderRadius) {
+    .@{tab-prefix-cls}-tab {
+      border-@{param}: 1px solid @border-color-container;
+      margin-@{param}: 0;
+      padding-right: @padding-20;
+      padding-left: @padding-20;
+      border-radius: @borderRadius;
+
+      &.@{tab-prefix-cls}-tab-active {
+        border-@{param}-color: @component-background;
+      }
+    }
+  }
+
+  .@{tab-prefix-cls} {
+    color: fade(@text-color, 75%);
+    background-color: white;
+
+    &-nav {
+      .DEFAULT_TAB();
+
+      .@{tab-prefix-cls}-tab {
+        border: 1px solid transparent;
+      }
+    }
+
+    &.@{tab-prefix-cls}-card {
+      .@{tab-prefix-cls}-bar {
+        .DEFAULT_TAB(@padding-xxs);
+
+        .@{tab-prefix-cls}-tab {
+          background: @component-background;
+          border-color: @border-color-container;
+        }
+      }
+
+      .@{tab-prefix-cls}-tab {
+        margin-right: 4px;
+        background: #fff;
+        border: 1px solid #f0f0f0;
+        transform: translateY(1px);
+      }
+
+      .@{tab-prefix-cls}-tab-active {
+        border-bottom: 1px solid #fff;
+      }
+
+      .@{tab-prefix-cls}-nav-wrap {
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      &.@{tab-prefix-cls}-large {
+        .@{tab-prefix-cls}-tab {
+          padding: @padding-md @padding-20;
+        }
+      }
+
+      &.@{tab-prefix-cls}-small {
+        .@{tab-prefix-cls}-tab {
+          padding: @padding-xs @padding-20;
+        }
+      }
+    }
+
+    &:not(.@{tab-prefix-cls}-card) {
+      &.@{tab-prefix-cls}-large {
+        .@{tab-prefix-cls}-tab {
+          padding: @padding-md @padding-20;
+        }
+      }
+
+      &.@{tab-prefix-cls}-small {
+        .@{tab-prefix-cls}-tab {
+          padding: @padding-xs @padding-20;
+        }
+      }
+      // .DIFF_SIZE_BAR_TAB(~'@{tab-prefix-cls}-bar');
+    }
+
+    .@{tab-prefix-cls}-bar {
+      margin: 0;
+      // border: none;
+
+      &.@{tab-prefix-cls}-top-bar {
+        box-shadow: 0 -1px 0 @border-color-container inset;
+        .RESET_NAV_MARGIN;
+        .INK_BAR(~'bottom');
+
+        &.@{tab-prefix-cls}-card-bar {
+          .CARD_TAB_BORDER(~'bottom', ~'4px 4px 0 0');
+        }
+      }
+
+      &.@{tab-prefix-cls}-bottom-bar {
+        box-shadow: 0 1px 0 @border-color-container inset;
+        .RESET_NAV_MARGIN;
+        .INK_BAR(~'top');
+
+        &.@{tab-prefix-cls}-card-bar {
+          .CARD_TAB_BORDER(~'top', ~'0 0 4px 4px');
+        }
+      }
+
+      &.@{tab-prefix-cls}-left-bar {
+        box-shadow: -1px 0 0 @border-color-container inset;
+        .RESET_NAV_MARGIN;
+        .INK_BAR(~'right');
+
+        &.@{tab-prefix-cls}-card-bar {
+          .CARD_TAB_BORDER(~'right', ~'4px 0 0 4px');
+
+          .@{tab-prefix-cls}-tab {
+            &:not(:last-child) {
+              margin-bottom: @padding-xxs;
+            }
+          }
+        }
+      }
+
+      &.@{tab-prefix-cls}-right-bar {
+        box-shadow: 1px 0 0 @border-color-container inset;
+        .RESET_NAV_MARGIN;
+        .INK_BAR(~'left');
+
+        &.@{tab-prefix-cls}-card-bar {
+          .CARD_TAB_BORDER(~'left', ~'0 4px 4px 0');
+
+          .@{tab-prefix-cls}-tab {
+            margin-right: 0;
+
+            &:not(:last-child) {
+              margin-bottom: @padding-xxs;
+            }
+          }
+        }
+      }
+    }
+
+    &-tabpane-active {
+      padding: 0;
+
+      .ued-tabs-tabpane-content {
+        padding: @padding-20;
+      }
+    }
+
+    &-top-content,
+    &-bottom-conten {
+      > .@{tab-prefix-cls}-tabpane {
+        transition: none;
+      }
+    }
+
+    &-left-content {
+      padding-left: 0;
+      border: none;
+      box-shadow: -1px 0 0 @border-color-container;
+    }
+
+    &-right-content {
+      padding-right: 0;
+      border: none;
+      box-shadow: 1px 0 0 @border-color-container;
+    }
+  }
+
+  .@{tab-prefix-cls}-card {
+    &.@{tab-prefix-cls}-left {
+      .@{tab-prefix-cls}-tab-active {
+        border-right: 1px solid #fff !important;
+        border-bottom: 1px solid @border-color-base !important;
+        background-color: #fff !important;
+      }
+
+      .@{tab-prefix-cls}-tab {
+        margin-right: 0px;
+        // background: @tabs-card-head-background;
+        border: 1px solid #f0f0f0;
+        border-radius: 4px 0px 0px 4px;
+      }
+      .@{tab-prefix-cls}-nav-wrap {
+        border-bottom: none !important;
+      }
+
+      .@{tab-prefix-cls}-content-holder {
+        border-left: 1px solid #f0f0f0;
+      }
+    }
+    &.@{tab-prefix-cls}-right {
+      .@{tab-prefix-cls}-tab-active {
+        border-left: 1px solid #fff !important;
+        border-bottom: 1px solid @border-color-base !important;
+        background-color: #fff !important;
+      }
+
+      .@{tab-prefix-cls}-tab {
+        border: 1px solid #f0f0f0;
+        border-radius: 0px 4px 4px 0px;
+      }
+      .@{tab-prefix-cls}-nav-wrap {
+        border-bottom: none !important;
+      }
+
+      .@{tab-prefix-cls}-content-holder {
+        border-right: 1px solid #f0f0f0;
+      }
+    }
+    &.@{tab-prefix-cls}-bottom {
+      .@{tab-prefix-cls}-nav {
+        // margin-top: 0!important;
+
+        &-list {
+          margin-top: -1px;
+        }
+
+        &::before {
+          border-bottom: 1px solid #f0f0f0;
+        }
+
+        &-wrap {
+          border-bottom: 1px solid #fff;
+        }
+      }
+      .@{tab-prefix-cls}-tab {
+        margin-right: 0px;
+        border: 1px solid #f0f0f0;
+        border-radius: 0px 0px 4px 4px;
+        &.@{tab-prefix-cls}-tab-active {
+          border-top: 1px solid #fff !important;
+          background-color: #fff !important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+export interface MyReactEChartsProps {
+  onChartClick?: (e: any) => void;
+  visible?: boolean;
+  type: string;
+  option?: any;
+  title?: string;
+  subTitle?: string;
+  fontSize?: React.CSSProperties;
+  titleColor?: React.CSSProperties;
+  titleX?: string;
+  titleY?: string;
+  customOption?: any;
+  legend?: any;
+  xAxis?: any[];
+  stack?: boolean;
+  areaStyle?: any;
+  dataSource?: any;
+  chartDataSource?: any;
+  smooth?: boolean;
+  showSymbol?: boolean;
+  radius?: any[];
+  label?: boolean;
+  grid?: any;
+  yAxis?: any;
+  tooltip?: any;
+  style?: React.CSSProperties;
+  className?: any;
+  relateDataType: string;
+  data: any;
+  yAxisNum: any;
+  dataMapColumns: any[];
+  isDataMap: boolean;
+  seriesNum: any;
+  chartColor?: any;
+  getEngineApis?: any;
+  refDataReload?: any[];
+}

@@ -1,0 +1,89 @@
+@import (reference) '../theme/variables/antdVariables.less';
+
+.ued-step-wrap {
+  &-iconItem-small,
+  &-iconItem-default {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-iconItem-default {
+    width: 32px;
+    height: 32px;
+  }
+
+  &-iconItem-small {
+    width: 24px;
+    height: 24px;
+  }
+
+  &-finish {
+    border: 1px solid @primary-color; // FIXME:换主题色
+    color: @primary-color; // FIXME:换主题色
+  }
+
+  &-process {
+    border: 1px solid @primary-color; // FIXME:换主题色
+    background-color: @primary-color; // FIXME:换主题色
+    color: #fff; // FIXME:换主题色
+  }
+
+  &-wait {
+    border: 1px solid #e5e5e5; // FIXME:换主题色
+    color: rgba(28, 36, 46, 0.85);
+  }
+
+  &-error {
+    border: 1px solid @error-color; // FIXME:换主题色
+    color: @error-color; // FIXME:换主题色
+  }
+
+  &-numberBox {
+    border-radius: 50%;
+  }
+
+  &-numberBox-default {
+    width: 32px;
+    height: 32px;
+    line-height: 30px;
+    font-size: 16px;
+  }
+
+  &-numberBox-small {
+    width: 24px;
+    height: 24px;
+    line-height: 22px;
+    font-size: 12px;
+  }
+
+  // 点类型样式
+  &-dot {
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+    border-radius: 50%;
+  }
+
+  // 点类型迷你样式
+  &-dot-small {
+    width: 8px;
+    height: 8px;
+  }
+
+  &-dot-finish {
+    background-color: @primary-color; // FIXME:换主题色
+  }
+
+  &-dot-process {
+    background-color: @primary-color; // FIXME:换主题色
+  }
+
+  &-dot-wait {
+    background-color: #e5e5e5; // FIXME:换主题色
+  }
+
+  &-dot-error {
+    background-color: @error-color; // FIXME:换主题色
+  }
+}

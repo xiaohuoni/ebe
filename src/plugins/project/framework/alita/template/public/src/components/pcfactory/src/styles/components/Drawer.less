@@ -1,0 +1,54 @@
+@import (reference) '../theme/variables/antdVariables.less';
+/* --- 扩展组件: 抽屉改造 --- */
+.ued-drawer {
+  & > .@{ant-prefix}-drawer-content-wrapper {
+    overflow: hidden;
+
+    & > .@{ant-prefix}-drawer-content {
+      overflow: hidden;
+
+      & > .@{ant-prefix}-drawer-wrapper-body {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+
+        & > .@{ant-prefix}-drawer-header {
+          padding: @padding-sm @padding-md;
+
+          .@{ant-prefix}-drawer-close {
+            width: 43px;
+            height: 43px;
+            line-height: 43px;
+          }
+        }
+
+        & > .@{ant-prefix}-drawer-body {
+          display: flex;
+          flex: 1 1 auto;
+          flex-direction: column;
+          padding: 0;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  .ued-drawer-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: @padding-md @padding-lg;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .ued-drawer-footer {
+    padding: @padding-xs @padding-sm;
+    text-align: right;
+    background: @component-background;
+    border-top: 1px solid @border-color-base;
+
+    .@{ant-prefix}-btn + .@{ant-prefix}-btn {
+      margin-left: @padding-xs;
+    }
+  }
+}

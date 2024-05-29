@@ -1,0 +1,36 @@
+@import './common.less';
+/**
+ * 此文件定义 自定义变量
+ */
+
+// 来自于涛哥自定义的变量，边距字号相关
+@padding-xxs: 4px;
+@padding-20: 20px;
+@font-weight-default: 400;
+@font-weight-bold: 500;
+@font-weight-bolder: 600;
+
+// 表格相关
+@table-border-color: #f0f0f0;
+@table-zebra-stripe-bg: @table-row-hover-bg;
+@table-td-height: 48px;
+@table-middle-td-height: 40px;
+@table-small-td-height: 32px;
+@table-data-input-height: @table-td-height - @table-padding-vertical * 2;
+@middle-table-data-input-height: @table-middle-td-height -
+  @table-padding-vertical-md * 2;
+@small-table-data-input-height: 20px;
+@small-table-data-input-line-height: @table-small-td-height -
+  @table-padding-vertical-sm * 2;
+
+// 滚动条颜色相关
+@scrollbar-thumb-color: #d8d8d8;
+
+// 输入框相关
+@input-affix-padding: @input-padding-horizontal-base * 2 + 14px;
+
+// 来自于涛哥自定义的变量，暂时只发现在树选择中使用到，之后根据使用场景，再进行划分
+@icon-btn-light-color: @custom-black-2;
+@icon-btn-default-color: @custom-black-4;
+@icon-btn-hover-color: @custom-black-7;
+@select-tree-tag-background-color: #f5f5f5;

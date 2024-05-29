@@ -1,0 +1,64 @@
+@import (reference) '../theme/variables/antdVariables.less';
+
+/* --- 扩展组件: 描述组件 start --- */
+.ued-description {
+  .ued-description-cell {
+    position: relative;
+    display: flex;
+
+    &.ued-description-vertical-cell {
+      flex-direction: column;
+      .ued-description-label.bg {
+        border-right: 0;
+        border-bottom: 1px solid @border-color-base;
+      }
+      .ued-description-cont {
+        min-height: 37px;
+      }
+    }
+
+    &.ued-description-horizontal-cell {
+      .ued-description-label,
+      .ued-description-cont {
+        box-sizing: border-box;
+        min-width: auto;
+      }
+    }
+
+    .ued-description-label {
+      // min-width: 100px;
+      padding: @padding-xs @padding-md;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      &.bg {
+        background: @descriptions-bg;
+        border-right: 1px solid @border-color-base;
+      }
+
+      &.minWidth {
+        min-width: auto !important;
+      }
+    }
+
+    .ued-description-cont {
+      flex: 1;
+      padding: @padding-xs @padding-md;
+    }
+
+    &.border {
+      border-right: 1px solid @border-color-base;
+      border-bottom: 1px solid @border-color-base;
+    }
+  }
+
+  &.border {
+    border-top: 1px solid @border-color-base;
+    border-left: 1px solid @border-color-base;
+  }
+
+  &.border:not(:first-child) {
+    border-top: 0;
+  }
+}

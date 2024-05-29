@@ -1,0 +1,528 @@
+@import (reference) '../theme/variables/antdVariables.less';
+
+@custom-divider-prefix-cls: ~'ued-divider';
+
+.@{custom-divider-prefix-cls} {
+  &-solid {
+    display: flex;
+    align-items: center;
+    height: auto;
+
+    .@{custom-divider-prefix-cls}-line {
+      background-color: @primary-color;
+    }
+  }
+
+  &-dashed {
+    display: flex;
+    align-items: center;
+    height: auto;
+
+    .@{custom-divider-prefix-cls}-defautl-bg {
+      background-color: @primary-color;
+    }
+  }
+
+  &-title {
+    white-space: nowrap;
+    padding: 0 8px;
+    max-width: 50%;
+    // overflow: hidden;
+    text-overflow: ellipsis;
+    color: @heading-color;
+    line-height: initial;
+  }
+
+  &-text {
+    padding: 0 8px;
+    white-space: nowrap;
+  }
+
+  &-leftTop {
+    &-text {
+      max-width: 80%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      color: @heading-color;
+      line-height: initial;
+    }
+
+    &-line {
+      position: relative;
+      height: 8px;
+
+      &-bg-wrapper {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding-left: 8px;
+
+        &-bg {
+          width: 100%;
+          height: 0;
+          border-bottom: 4px solid;
+          border-color: @primary-color;
+          opacity: 0.2;
+        }
+      }
+
+      &-label {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        min-width: 8%;
+        max-width: 80%;
+        border-radius: 0 8px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        line-height: 32px;
+        background-color: @primary-color;
+        color: @heading-color;
+
+        & > span {
+          visibility: hidden;
+        }
+      }
+    }
+  }
+
+  &-leftTab {
+    position: relative;
+    height: 32px;
+
+    &-bg-wrapper {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      &-bg {
+        width: 100%;
+        height: 100%;
+        background-color: @primary-color;
+        border-radius: 20px 0 0 0;
+        opacity: 0.2;
+      }
+    }
+
+    &-lable {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box;
+      min-width: 6%;
+      max-width: 80%;
+      padding: 0 20px;
+      border-radius: 20px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      background-color: @primary-color;
+      line-height: 32px;
+      color: @heading-color;
+    }
+  }
+
+  &-leftLine {
+    position: relative;
+    display: flex;
+    height: 32px;
+
+    &-label {
+      -webkit-box-flex: 0;
+      -ms-flex: none;
+      flex: none;
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box;
+      min-width: 7%;
+      max-width: 80%;
+      padding: 0 10px;
+      height: 100%;
+      line-height: 32px;
+      background-color: @primary-color;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      color: @heading-color;
+    }
+
+    &-right {
+      position: relative;
+      -webkit-box-flex: 1;
+      -ms-flex: auto;
+      flex: auto;
+
+      &-triangle {
+        width: 0;
+        height: 0;
+        border-right: 14px solid transparent;
+        border-bottom: 32px solid @primary-color;
+      }
+
+      &-line {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 0;
+        border-bottom: 5px solid @primary-color;
+      }
+
+      &-parallelogram1 {
+        position: absolute;
+        top: 0;
+        left: 18px;
+        width: 8px;
+        height: 22px;
+        background-color: @primary-color;
+        -webkit-transform: skew(26deg) translateX(-50%);
+        transform: skew(26deg) translateX(-50%);
+        opacity: 0.8;
+      }
+
+      &-parallelogram2 {
+        position: absolute;
+        top: 0;
+        left: 30px;
+        width: 8px;
+        height: 22px;
+        background-color: @primary-color;
+        -webkit-transform: skew(26deg) translateX(-50%);
+        transform: skew(26deg) translateX(-50%);
+        opacity: 0.5;
+      }
+
+      &-parallelogram3 {
+        position: absolute;
+        top: 0;
+        left: 42px;
+        width: 8px;
+        height: 22px;
+        background-color: @primary-color;
+        -webkit-transform: skew(26deg) translateX(-50%);
+        transform: skew(26deg) translateX(-50%);
+        opacity: 0.2;
+      }
+    }
+  }
+
+  &-leftCard {
+    position: relative;
+    display: flex;
+    height: 32px;
+    align-items: center;
+
+    &-lable {
+      min-width: 7%;
+      height: 100%;
+      max-width: 80%;
+      line-height: 32px;
+      background-color: @primary-color;
+      transform: skewX(-20deg);
+      color: @heading-color;
+
+      &-text {
+        padding: 0 10px;
+        height: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        transform: skewX(20deg);
+      }
+    }
+
+    &-parallelogram1 {
+      margin-left: 9px;
+      width: 10px;
+      height: 100%;
+      background-color: @primary-color;
+      transform: skewX(-20deg);
+    }
+
+    &-triangle {
+      margin-left: 2px;
+      width: 0;
+      height: 0;
+      border-left: 11px solid transparent;
+      border-bottom: 32px solid @primary-color;
+      opacity: 0.2;
+    }
+
+    &-parallelogram2 {
+      flex: 1;
+      height: 100%;
+      background-color: @primary-color;
+      opacity: 0.2;
+    }
+  }
+
+  &-centerTab {
+    position: relative;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 32px;
+
+    &-bg {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 20px;
+      border-radius: 0 0 16px 16px;
+      background-color: @primary-color;
+      opacity: 0.2;
+    }
+
+    &-center {
+      position: relative;
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box;
+      min-width: 7%;
+      max-width: 60%;
+      padding: 0 38px;
+      overflow: hidden;
+
+      &-label {
+        height: 100%;
+        padding: 0 1px;
+        line-height: 32px;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        background-color: @primary-color;
+        opacity: 0.9;
+        color: @heading-color;
+      }
+
+      &-left-triangle {
+        position: absolute;
+        top: 0;
+        left: 12px;
+        width: 5px;
+        height: 12px;
+        background-color: @primary-color;
+      }
+
+      &-left-border {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 17px;
+        width: 21px;
+        border-radius: 0 0 0 50px;
+        background-color: @primary-color;
+        opacity: 0.9;
+      }
+
+      &-rigth-triangle {
+        position: absolute;
+        top: 0;
+        right: 12px;
+        width: 5px;
+        height: 12px;
+        background-color: @primary-color;
+      }
+
+      &-rigth-border {
+        position: absolute;
+        top: 0;
+        right: 17px;
+        bottom: 0;
+        width: 21px;
+        border-radius: 0 0 50px;
+        background-color: @primary-color;
+        opacity: 0.9;
+      }
+    }
+  }
+
+  &-centerLine {
+    position: relative;
+    display: flex;
+    height: 32px;
+    align-items: center;
+
+    &-hexagon {
+      position: relative;
+      min-width: 15%;
+      max-width: 80%;
+      margin: 0 16px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      &-left {
+        text-align: right;
+        width: 36px;
+        height: 100%;
+
+        &-top {
+          display: flex;
+          justify-content: end;
+          position: relative;
+          padding-right: 7px;
+          height: 16px;
+
+          &-rectangle1 {
+            width: 10px;
+            height: 100%;
+            transform: skewX(-45deg);
+            background-color: @primary-color;
+            opacity: 0.3;
+          }
+
+          &-rectangle2 {
+            width: 10px;
+            height: 100%;
+            transform: skewX(-45deg);
+            background-color: @primary-color;
+            opacity: 0.5;
+          }
+
+          &-triangle {
+            position: absolute;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-left: 16px solid transparent;
+            border-bottom: 16px solid @primary-color;
+          }
+        }
+
+        &-bottom {
+          display: flex;
+          justify-content: end;
+          position: relative;
+          padding-right: 7px;
+          height: 16px;
+
+          &-rectangle1 {
+            width: 10px;
+            height: 100%;
+            transform: skewX(45deg);
+            background-color: @primary-color;
+            opacity: 0.3;
+          }
+
+          &-rectangle2 {
+            width: 10px;
+            height: 100%;
+            transform: skewX(45deg);
+            background-color: @primary-color;
+            opacity: 0.5;
+          }
+
+          &-triangle {
+            position: absolute;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-top: 16px solid @primary-color;
+            border-left: 16px solid transparent;
+          }
+        }
+      }
+
+      &-lable {
+        height: 100%;
+        flex: 1;
+        line-height: 32px;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        background-color: @primary-color;
+        color: @heading-color;
+      }
+
+      &-right {
+        text-align: left;
+        width: 36px;
+        height: 100%;
+
+        &-top {
+          display: flex;
+          justify-content: start;
+          position: relative;
+          padding-left: 7px;
+          height: 16px;
+
+          &-rectangle1 {
+            width: 10px;
+            height: 100%;
+            transform: skewX(45deg);
+            background-color: @primary-color;
+            opacity: 0.5;
+          }
+
+          &-rectangle2 {
+            width: 10px;
+            height: 100%;
+            transform: skewX(45deg);
+            background-color: @primary-color;
+            opacity: 0.3;
+          }
+
+          &-triangle {
+            position: absolute;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-top: 16px solid transparent;
+            border-left: 16px solid @primary-color;
+          }
+        }
+
+        &-bottom {
+          display: flex;
+          justify-content: start;
+          position: relative;
+          padding-left: 7px;
+          height: 16px;
+
+          &-rectangle1 {
+            width: 10px;
+            height: 100%;
+            transform: skewX(-45deg);
+            background-color: @primary-color;
+            opacity: 0.5;
+          }
+
+          &-rectangle2 {
+            width: 10px;
+            height: 100%;
+            transform: skewX(-45deg);
+            background-color: @primary-color;
+            opacity: 0.3;
+          }
+
+          &-triangle {
+            position: absolute;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-bottom: 16px solid transparent;
+            border-left: 16px solid @primary-color;
+          }
+        }
+      }
+    }
+
+    &-line {
+      flex: 1;
+      height: 5px;
+      opacity: 0.2;
+      background-color: @primary-color;
+    }
+  }
+}

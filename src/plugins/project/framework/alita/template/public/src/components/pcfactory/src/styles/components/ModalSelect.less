@@ -1,0 +1,39 @@
+@import (reference) '../theme/variables/antdVariables.less';
+
+@prefixCls: modalSelect;
+
+.@{prefixCls} {
+  .@{ant-prefix}-select {
+    width: 100%;
+  }
+
+  .@{ant-prefix}-select:not(.pcfactory-select-customize-input) {
+    .@{ant-prefix}-select-selector {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      padding-left: 8px;
+    }
+  }
+
+  &.postfixNoBorderStyle {
+    .@{ant-prefix}-input-affix-wrapper {
+      border-right: 0;
+    }
+  }
+}
+
+.@{ant-prefix}-form-item-control-input-content {
+  .@{prefixCls} {
+    .@{ant-prefix}-input-wrapper {
+      .@{ant-prefix}-select {
+        width: 100%;
+
+        .@{ant-prefix}-select-selector {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          padding-left: 8px;
+        }
+      }
+    }
+  }
+}

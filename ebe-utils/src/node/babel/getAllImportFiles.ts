@@ -47,10 +47,31 @@ export const getAllImportFiles = (target: string, allImportFiles: any = {}) => {
   }
   let ast = parse(content);
   const visitor = {
+    Import(path: any) {
+      const source = path.parentPath;
+      const args = source.get('arguments');
+      if (args[0].node) {
+        const importName = args[0].node.value;
+        getNextImport(importName);
+      }
+    },
     ImportDeclaration(path: any) {
       const source = path.get('source');
       const importName = source.node.value;
       getNextImport(importName);
+    },
+    ExportAllDeclaration(path: any) {
+      const source = path.get('source');
+      const importName = source.node.value;
+      getNextImport(importName);
+    },
+    ExportNamedDeclaration(path: any) {
+      const source = path.get('source');
+      // export 不一定是 from 来源，可能是上下文变量
+      if (source.node) {
+        const importName = source.node.value;
+        getNextImport(importName);
+      }
     },
   };
 

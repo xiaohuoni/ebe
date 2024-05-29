@@ -1,0 +1,107 @@
+@import (reference) './theme/variables/antdVariables.less';
+// 容器内容为空占位box
+.ued-empty-box {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 60px;
+  color: rgba(28, 36, 46, 0.45);
+  font-size: 16px;
+  background: #f2f3f5;
+  border: 1px dotted rgba(0, 0, 0, 0.15);
+}
+
+.ued-m-empty-box {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  color: rgba(28, 36, 46, 0.45);
+  font-size: 16px;
+  background: #f2f3f5;
+  border: 1px dotted rgba(0, 0, 0, 0.15);
+}
+
+.TEXT_ELLIPSIS {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.@{ant-prefix}-spin-nested-loading > div > .@{ant-prefix}-spin {
+  min-height: 50px;
+}
+
+.@{ant-prefix}-message {
+  z-index: 1050;
+}
+
+// 图标使用主题色统一样式
+.fill-primary {
+  color: @primary-color;
+  fill: @primary-color;
+}
+
+.ued-input-readonly {
+  border: none !important;
+  line-height: 22px;
+  display: inline-block;
+  width: 100%;
+  word-break: break-all;
+  white-space: pre-line;
+
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.ued-control-line-number {
+  display: inline-block; // 兼容IE
+  display: -webkit-box; // webkit 内核专用
+  overflow: hidden;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+}
+
+.react-resizable-handle {
+  position: absolute;
+  right: -5px;
+  bottom: 0;
+  z-index: 1;
+  width: 10px;
+  height: 100%;
+  cursor: col-resize;
+}
+
+.@{ant-prefix}-picker-today-btn {
+  color: @primary-color;
+  &:hover {
+    color: @primary-color;
+  }
+}
+
+.@{ant-prefix}-picker-now-btn {
+  color: @primary-color;
+  &:hover {
+    color: @primary-color;
+  }
+}
+
+.ued-print-container {
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}

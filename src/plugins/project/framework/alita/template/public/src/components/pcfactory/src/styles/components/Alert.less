@@ -1,0 +1,25 @@
+@import (reference) '../theme/variables/antdVariables.less';
+@alert-prefix-cls: ~'@{ant-prefix}-alert';
+
+.ued-alert{
+  .@{alert-prefix-cls}-info {
+    .@{alert-prefix-cls}-content{
+      color: @info-color;
+    }
+  }
+  .@{alert-prefix-cls}-success {
+    .@{alert-prefix-cls}-content{
+      color: @success-color;
+    }
+  }
+  .@{alert-prefix-cls}-error {
+    .@{alert-prefix-cls}-content{
+      color: @error-color;
+    }
+  }
+  .@{alert-prefix-cls}-warning {
+    .@{alert-prefix-cls}-content{
+      color: @warning-color;
+    }
+  }
+}

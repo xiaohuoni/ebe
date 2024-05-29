@@ -1,0 +1,153 @@
+@import (reference) '../theme/variables/antdVariables.less';
+@transfer-prefix-cls: ~'@{ant-prefix}-transfer';
+@transfer-btn-prefix-cls: ~'@{ant-prefix}-btn';
+@transfer-icon-prefix-cls: ~'@{ant-prefix}icon';
+@transfer-lazyLoad-prefix-cls: ~'LazyLoad';
+
+.ued-transfer-wrap {
+  background-color: #fff;
+  &-table-hideBorder {
+    td {
+      border: 0 !important;
+    }
+  }
+
+  &-small {
+    .@{ant-prefix}-tree-switcher,
+    .@{transfer-prefix-cls}-list-content-item {
+      line-height: 32px;
+    }
+
+    .@{ant-prefix}-tree-treenode {
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center !important;
+      line-height: 32px;
+    }
+
+    .@{ant-prefix}-table-cell {
+      padding: 0 !important;
+      // line-height: 32px; // 处理穿梭框表格且有子项模式下，展开收起样式错误
+    }
+  }
+
+  &-large {
+    .@{ant-prefix}-tree-switcher,
+    .@{transfer-prefix-cls}-list-content-item {
+      line-height: 40px;
+    }
+
+    .@{ant-prefix}-tree-treenode {
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center !important;
+      line-height: 40px;
+    }
+
+    .@{ant-prefix}-table-cell {
+      padding: 0 !important;
+      line-height: 40px;
+    }
+  }
+
+  .@{transfer-prefix-cls} {
+    &-list {
+      min-width: 1px;
+      &-body {
+        overflow-y: auto !important;
+
+        &::-webkit-scrollbar {
+          width: 0;
+          height: 0;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: transparent;
+          border-radius: 2px;
+        }
+
+        .@{ant-prefix}-table-body {
+          &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+          }
+
+          &::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 2px;
+          }
+        }
+      }
+
+      &-header {
+        display: flex;
+        height: @padding-xxs * 10;
+        padding: @padding-xxs @padding-sm;
+        border: none;
+        box-shadow: 0 -1px 0 @border-color-base inset;
+
+        &-selected {
+          display: flex;
+          flex: 1 1 auto;
+          align-items: center;
+          justify-content: space-between;
+          height: 100%;
+          overflow: hidden;
+        }
+
+        &-selected span:not(&-title) {
+          flex: 0 0 auto;
+        }
+
+        &-title {
+          position: static;
+          flex: 1 1 auto;
+          margin-left: @padding-sm;
+          text-align: right;
+
+          .TEXT_ELLIPSIS();
+        }
+      }
+
+      &-content {
+        &-item {
+          padding: 0 @padding-sm;
+        }
+
+        .@{transfer-lazyLoad-prefix-cls} {
+          animation: none;
+        }
+      }
+
+      &-search {
+        height: @padding-md * 2;
+
+        &-action {
+          top: 50%;
+          bottom: auto;
+          transform: translateY(-50%);
+        }
+      }
+
+      &-body-search-wrapper {
+        padding: @padding-xs @padding-sm;
+      }
+
+      &-body-with-search {
+        padding-top: 0 !important;
+      }
+    }
+
+    &-operation {
+      .@{transfer-btn-prefix-cls}-icon-only {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .@{transfer-icon-prefix-cls} {
+          display: inline-flex;
+        }
+      }
+    }
+  }
+}

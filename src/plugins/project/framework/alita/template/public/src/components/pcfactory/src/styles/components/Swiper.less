@@ -1,0 +1,106 @@
+.ued-swiper-wrap {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background: #f5f5f5;
+
+  .ued-swiper-icon {
+    position: absolute;
+    // top: 50%;
+    z-index: 10;
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    line-height: 0;
+    border: none;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    cursor: pointer;
+
+    i > svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    &.notAlways {
+      display: none;
+    }
+  }
+
+  &:hover {
+    .ued-swiper-icon.notAlways {
+      display: block;
+    }
+  }
+
+  .left {
+    top: 50%;
+    left: 25px;
+  }
+
+  .right {
+    top: 50%;
+    right: 25px;
+  }
+
+  .up {
+    top: 25px;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    &.small {
+      top: 5px;
+    }
+  }
+
+  .down {
+    top: 85%;
+    bottom: 25px;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    &.small {
+      top: auto;
+      bottom: 0px;
+    }
+  }
+
+  .ued-swiper-dots {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 1px;
+    &.left {
+      top: 50%;
+      left: 12px;
+      width: 3px;
+      height: 24px;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+    &.right {
+      top: 50%;
+      right: 12px;
+      width: 3px;
+      height: 24px;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+    &.top {
+      top: 12px;
+      left: 50%;
+      width: 24px;
+      height: 3px;
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+    &.bottom {
+      bottom: 12px;
+      left: 50%;
+      width: 24px;
+      height: 3px;
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+  }
+}

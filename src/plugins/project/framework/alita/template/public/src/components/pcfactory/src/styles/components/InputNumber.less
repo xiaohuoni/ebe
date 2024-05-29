@@ -1,0 +1,124 @@
+@import (reference) '../theme/variables/antdVariables.less';
+@input-number-prefix-cls: ~'@{ant-prefix}-input-number';
+@tootip-prefix-cls: ~'@{ant-prefix}-tooltip';
+
+// 表单校验
+.@{ant-prefix}-form-item-has-error {
+  .ued-inputNumber-wrap {
+    &.@{input-number-prefix-cls} {
+      border-color: @error-color;
+    }
+    &.@{input-number-prefix-cls}-group-wrapper {
+      .@{input-number-prefix-cls}-wrapper.@{input-number-prefix-cls}-group {
+        border-color: @error-color;
+      }
+    }
+  }
+}
+.ued-inputNumber-wrap {
+  width: 100%;
+  &.@{input-number-prefix-cls} {
+    width: 100%;
+
+    .@{input-number-prefix-cls}-input {
+      padding: @input-padding-vertical-base @input-padding-horizontal-base;
+      line-height: 22px;
+    }
+
+    .@{input-number-prefix-cls}-handler-wrap:hover
+      .@{input-number-prefix-cls}-handler {
+      height: 50%;
+    }
+
+    .@{input-number-prefix-cls}-handler:hover {
+      .@{input-number-prefix-cls}-handler-down-inner,
+      .@{input-number-prefix-cls}-handler-up-inner {
+        color: @text-color-secondary;
+      }
+    }
+
+    .@{input-number-prefix-cls}-handler-up {
+      &:hover {
+        height: 50% !important;
+        background-color: @item-hover-bg;
+      }
+    }
+
+    .@{input-number-prefix-cls}-handler-down {
+      &:hover {
+        height: 50% !important;
+        background-color: @item-hover-bg;
+      }
+    }
+  }
+
+  &.@{input-number-prefix-cls}-lg {
+    input {
+      padding: @input-padding-vertical-lg @input-padding-horizontal-base;
+      font-size: 14px;
+    }
+  }
+
+  &.@{input-number-prefix-cls}-sm {
+    input {
+      padding: @input-padding-vertical-sm @input-padding-horizontal-base;
+      font-size: @font-size-sm;
+      line-height: 18px;
+    }
+  }
+
+  &.@{input-number-prefix-cls}-group-wrapper {
+    .@{input-number-prefix-cls}-wrapper.@{input-number-prefix-cls}-group {
+      font-weight: 400;
+      font-size: 14px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      border: 1px solid @border-color-base;
+      border-radius: 2px;
+      .@{input-number-prefix-cls}-group-addon {
+        padding: 0 8px;
+        color: @custom-black-10;
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+      }
+      .@{input-number-prefix-cls}.ued-inputNumber-wrap {
+        color: @custom-black-7;
+        border: none;
+      }
+    }
+  }
+  &.@{input-number-prefix-cls} {
+    border: 1px solid @border-color-base;
+    border-radius: 2px;
+  }
+}
+
+.ued-inputNumber-tooltip-wrap {
+  .@{tootip-prefix-cls}-content {
+    position: absolute;
+    top: 35px;
+    .@{tootip-prefix-cls}-arrow {
+      top: 16px;
+      left: 6px;
+      .@{tootip-prefix-cls}-arrow-content {
+        background-color: rgba(0, 0, 0, 0.45);
+      }
+    }
+    .@{tootip-prefix-cls}-inner {
+      width: max-content;
+      min-width: 0;
+      height: 16px;
+      min-height: 0;
+      padding: 0 2px;
+      color: rgba(255, 255, 255, 1);
+      font-size: 12px;
+      line-height: 16px;
+      background-color: rgba(0, 0, 0, 0.45);
+      border-radius: 0;
+    }
+  }
+  &.no-form {
+    .@{tootip-prefix-cls}-content {
+      top: 3px;
+    }
+  }
+}

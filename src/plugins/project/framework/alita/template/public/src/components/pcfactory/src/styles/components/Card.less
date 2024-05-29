@@ -1,0 +1,154 @@
+@import (reference) '../theme/variables/antdVariables.less';
+/* --- 扩展组件: Card改造 --- */
+.ued-card {
+  display: flex;
+  flex-direction: column;
+  // height: 100%;  ie下样式出错
+  // overflow-y: hidden;
+
+  &.@{ant-prefix}-card-large {
+    .@{ant-prefix}-card-head {
+      & > .@{ant-prefix}-card-head-wrapper > .@{ant-prefix}-card-head-title {
+        padding: @padding-md 0;
+      }
+    }
+  }
+
+  .ued-card-title {
+    display: flex;
+    align-items: center;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: @padding-xs;
+      width: @padding-xxs;
+      height: @font-size-lg;
+      margin-right: @margin-xs;
+      background: @primary-color;
+      border-radius: @padding-xxs / 2;
+      transform: translateY(-50%);
+      content: '';
+    }
+
+    &-icon-left {
+      &::before {
+        left: 0;
+        width: @padding-sm;
+        height: @padding-sm;
+        border-radius: 0 (@padding-sm / 2) (@padding-sm / 2) 0;
+      }
+    }
+
+    &-icon-auto {
+      &::before {
+        content: none;
+      }
+
+      > i,
+      span {
+        margin-right: @padding-xs;
+        color: @primary-color;
+      }
+    }
+  }
+  .ued-card-children-skeleton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    z-index: 1000;
+  }
+  .ued-card-extend {
+    flex: 1 1 auto;
+    text-align: right;
+
+    .anticon {
+      margin-left: 0 !important;
+      cursor: pointer;
+    }
+
+    .ued-card-extend-btn {
+      margin-left: @padding-sm;
+      i {
+        margin-left: 0;
+      }
+    }
+
+    .ued-card-extend-iconBtn {
+      height: auto;
+      padding: 0;
+      color: inherit;
+      margin-left: @padding-sm;
+      > button {
+        height: auto;
+        padding: 0;
+        color: inherit;
+      }
+    }
+  }
+
+  .@{ant-prefix}-card-body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .@{ant-prefix}-card-head {
+    position: relative;
+    padding: 0 @padding-20;
+    border-color: #f0f0f0;
+
+    & > .@{ant-prefix}-card-head-wrapper {
+      & > .@{ant-prefix}-card-head-title {
+        padding: @padding-sm 0;
+        font-weight: @font-weight-bold;
+        font-size: @font-size-lg;
+        line-height: 1.5;
+      }
+
+      & > .@{ant-prefix}-card-extra {
+        padding: 0;
+      }
+    }
+  }
+
+  &.@{ant-prefix}-card-small {
+    .@{ant-prefix}-card-head {
+      padding: 0 @padding-20;
+
+      & > .@{ant-prefix}-card-head-wrapper {
+        & > .@{ant-prefix}-card-head-title {
+          padding: @padding-xs 0;
+        }
+
+        & > .@{ant-prefix}-card-extra {
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  &.@{ant-prefix}-card-bordered {
+    border-color: @border-color-base;
+
+    .@{ant-prefix}-card-head {
+      border-color: @border-color-base;
+    }
+  }
+}
+
+.ued-card-ed-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.ued-card-simple {
+  // 简约格式 头部不带分割线
+  .@{ant-prefix}-card-head {
+    border: none;
+  }
+}
