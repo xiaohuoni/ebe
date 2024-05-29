@@ -118,7 +118,7 @@ export default function createIceJsProjectBuilder(
             'copy-to-clipboard': '^3.3.1',
             '@lingxiteam/engine-platform': '3.3.1-alpha.14',
             '@lingxiteam/icons': '0.0.3',
-            '@lingxiteam/pcfactory': '^3.7.1-alpha.14',
+            '@lingxiteam/pcfactory': '^3.8.1-alpha.1',
             '@paciolan/remote-component': '2.13.0',
             '@lingxiteam/types': '3.3.1-alpha.14',
             'crypto-js': '^4.2.0',

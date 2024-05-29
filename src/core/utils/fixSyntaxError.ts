@@ -10,13 +10,15 @@ import * as t from '@babel/types';
 const memberExprOperationChain = (path: NodePath<t.MemberExpression>) => {
   // a.b -> a?.b
   // a['c'] -> a?.['c']
+  // a[0] -> a?.[0];
   const objectNode = path.get('object').node;
   const propertyNode = path.get('property').node;
   const computed = path.node.computed;
   const isPropIdentifier = t.isIdentifier(propertyNode);
   const isPropStringLiteral = t.isStringLiteral(propertyNode);
+  const isPropNumericLiteral = t.isNumericLiteral(propertyNode);
 
-  if (isPropIdentifier || isPropStringLiteral) {
+  if (isPropIdentifier || isPropStringLiteral || isPropNumericLiteral) {
     path.replaceWith(
       t.optionalMemberExpression(objectNode, propertyNode, computed, true),
     );
