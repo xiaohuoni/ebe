@@ -1,20 +1,12 @@
-import {
-  DatePicker,
-  Form,
-  Input,
-  InputNumber,
-  Radio,
-  Select,
-  Switch,
-} from 'antd';
-import { cloneDeep } from 'lodash';
+import { DatePicker, Input, InputNumber, Select, Radio, Switch, Form } from 'antd';
 import moment, { Moment } from 'moment';
 import React, { useCallback, useMemo, useState } from 'react';
-import ModalSelect from '../../ModalSelect';
 import ComSelect from '../../SuperSelect/ComSelect';
-import { getRegExp, initMomentLocale } from '../../utils/common';
-import { useLocale } from '../../utils/hooks/useLocale';
+import ModalSelect from '../../ModalSelect';
+import { initMomentLocale, getRegExp } from '../../utils/common';
 import { ExpressionRenderingParams } from '../../utils/PropsType';
+import { cloneDeep } from 'lodash';
+import { useLocale } from '../../utils/hooks/useLocale';
 import { EDIT_COMPONENT_STOP_PROPAGATION_CLS } from '../constant';
 
 export interface MyEditComponent {
@@ -22,6 +14,7 @@ export interface MyEditComponent {
   c?: any;
   disabled: boolean;
   currentRowKey: any;
+  rowId?: string | number;
   rowData?: any;
   form: any;
   compId: any;
@@ -40,25 +33,8 @@ export interface MyEditComponent {
   appId?: any;
 }
 
-type LimitRangeType =
-  | ''
-  | 'no'
-  | 'afterToday'
-  | 'beforeToday'
-  | 'period'
-  | 'custom';
-const supportEditComponents = [
-  'Select',
-  'Radio',
-  'TimePicker',
-  'DatePicker',
-  'Switch',
-  'InputNumber',
-  'TextArea',
-  'Input',
-  'SuperSelect',
-  'ModalSelect',
-];
+type LimitRangeType = '' | 'no' | 'afterToday' | 'beforeToday' | 'period' | 'custom';
+const supportEditComponents = ['Select', 'Radio', 'TimePicker', 'DatePicker', 'Switch', 'InputNumber', 'TextArea', 'Input', 'SuperSelect', 'ModalSelect'];
 
 const EditComponent: React.FC<MyEditComponent> = (props) => {
   const {
@@ -66,6 +42,7 @@ const EditComponent: React.FC<MyEditComponent> = (props) => {
     inlineVChange,
     c,
     currentRowKey,
+    rowId, // 编辑空白行数据时，rowData为空，需要使用临时行id
     rowData,
     compId,
     editoption,
@@ -98,7 +75,7 @@ const EditComponent: React.FC<MyEditComponent> = (props) => {
     startTime: Moment;
     endTime: Moment;
   } = useMemo(() => {
-    const res: { startTime: Moment; endTime: Moment } = {
+    const res: { startTime: Moment; endTime: Moment; } = {
       startTime: moment(),
       endTime: moment(),
     };
@@ -135,21 +112,16 @@ const EditComponent: React.FC<MyEditComponent> = (props) => {
       case 'ModalSelect':
         return initValue;
       case 'TimePicker': {
-        const value = initValue
-          ? moment(initValue, format || 'YYYY-MM-DD HH:mm:ss')
-          : null;
+        const value = initValue ? moment(initValue, format || 'YYYY-MM-DD HH:mm:ss') : null;
         return value;
       }
       case 'DatePicker': {
-        const value = initValue
-          ? moment(initValue, format || 'YYYY-MM-DD')
-          : null;
+        const value = initValue ? moment(initValue, format || 'YYYY-MM-DD') : null;
         return value;
       }
       case 'Switch': {
         const checked =
-          typeof initValue === 'string' &&
-          ['null', 'undefined', 'false', '0'].includes(initValue)
+          typeof initValue === 'string' && ['null', 'undefined', 'false', '0'].includes(initValue)
             ? false
             : !!initValue;
         return checked;
@@ -164,9 +136,7 @@ const EditComponent: React.FC<MyEditComponent> = (props) => {
   const validateDateCustomExpress = useMemo<any>(() => {
     if (customExpression && customExpression.code && sandBoxSafeRun) {
       const res = sandBoxSafeRun(customExpression.code);
-      const errorMsg = customExpressionErrorMsg.code
-        ? String(sandBoxSafeRun(customExpressionErrorMsg.code))
-        : customExpressionErrorMsg.value;
+      const errorMsg = customExpressionErrorMsg.code ? String(sandBoxSafeRun(customExpressionErrorMsg.code)) : customExpressionErrorMsg.value;
       const transform = (source: any) => {
         const _tmp = cloneDeep(source);
         if (typeof _tmp === 'object' && _tmp.format) {
@@ -180,8 +150,7 @@ const EditComponent: React.FC<MyEditComponent> = (props) => {
           message: errorMsg,
           transform,
         };
-      }
-      if (typeof res === 'string') {
+      } if (typeof res === 'string') {
         return {
           pattern: getRegExp(res),
           message: errorMsg,
@@ -196,11 +165,7 @@ const EditComponent: React.FC<MyEditComponent> = (props) => {
     let res: any[] = [];
     if (rules?.length > 0) {
       res = rules.map((rule: any, idx: number) => {
-        if (
-          !Array.isArray(rule) &&
-          typeof rule !== 'function' &&
-          typeof rule === 'object'
-        ) {
+        if (!Array.isArray(rule) && typeof rule !== 'function' && typeof rule === 'object') {
           const { pattern } = rule || {};
           if (pattern && typeof pattern === 'string') {
             rule.pattern = getRegExp(pattern);
@@ -217,7 +182,7 @@ const EditComponent: React.FC<MyEditComponent> = (props) => {
     }
     // 移除规则中干扰字段
     const getRules = (res: any[]) => {
-      return cloneDeep(res).map((item) => {
+      return cloneDeep(res).map(item => {
         delete item.type;
         delete item.id;
         delete item.title;
@@ -237,61 +202,43 @@ const EditComponent: React.FC<MyEditComponent> = (props) => {
     return res?.length > 0 ? res : null;
   }, [initialValueType, rules, validateDateCustomExpress]);
 
-  const getDisabledDate = useCallback(
-    (current: Moment) => {
-      // custom 自定义规则通过form表单进行校验
-      if (!limitRange || limitRange === 'no' || limitRange === 'custom') {
-        return false;
-      }
-      switch (limitRange) {
-        case 'beforeToday':
-          return (
-            current >
-            moment(new Date().setHours(0, 0, 0, 0) + 24 * 60 * 60 * 1000 - 1)
-          );
-        case 'afterToday':
-          return current < moment(new Date().setHours(0, 0, 0, 0));
-        case 'period':
-          if (!startTime && !endTime) {
+  const getDisabledDate = useCallback((current: Moment) => {
+    // custom 自定义规则通过form表单进行校验
+    if (!limitRange || limitRange === 'no' || limitRange === 'custom') {
+      return false;
+    }
+    switch (limitRange) {
+      case 'beforeToday':
+        return current > moment(new Date().setHours(0, 0, 0, 0) + 24 * 60 * 60 * 1000 - 1);
+      case 'afterToday':
+        return current < moment(new Date().setHours(0, 0, 0, 0));
+      case 'period':
+        if (!startTime && !endTime) {
+          return false;
+        }
+        if (startTime && endTime && limitRangeTime.startTime <= limitRangeTime.endTime) {
+          if (current >= limitRangeTime.startTime && current <= limitRangeTime.endTime) {
             return false;
           }
-          if (
-            startTime &&
-            endTime &&
-            limitRangeTime.startTime <= limitRangeTime.endTime
-          ) {
-            if (
-              current >= limitRangeTime.startTime &&
-              current <= limitRangeTime.endTime
-            ) {
-              return false;
-            }
-            return true;
-          }
-          if (startTime && current > limitRangeTime.startTime) {
-            return false;
-          }
-          if (endTime && current < limitRangeTime.endTime) {
-            return false;
-          }
-          break;
-        default:
           return true;
-      }
-      return undefined;
-    },
-    [limitRange, format, limitRangeTime],
-  );
+        }
+        if (startTime && current > limitRangeTime.startTime) {
+          return false;
+        }
+        if (endTime && current < limitRangeTime.endTime) {
+          return false;
+        }
+        break;
+      default:
+        return true;
+    }
+    return undefined;
+  }, [limitRange, format, limitRangeTime]);
 
   initMomentLocale();
 
   const renderComponent = (isFormItem = false) => {
-    const commonProps: any = isFormItem
-      ? {}
-      : {
-          value: tempInputValue ?? initialValue,
-          className: EDIT_COMPONENT_STOP_PROPAGATION_CLS,
-        };
+    const commonProps: any = isFormItem ? {} : { value: tempInputValue ?? initialValue, className: EDIT_COMPONENT_STOP_PROPAGATION_CLS };
     switch (edittype) {
       case 'Select':
         // eslint-disable-next-line no-case-declarations
@@ -360,12 +307,7 @@ const EditComponent: React.FC<MyEditComponent> = (props) => {
             format={format || 'YYYY-MM-DD HH:mm:ss'}
             disabledDate={getDisabledDate}
             onChange={(date, dateString) => {
-              inlineVChange(
-                date
-                  ? moment(date).format(format || 'YYYY-MM-DD HH:mm:ss')
-                  : date,
-                {},
-              );
+              inlineVChange(date ? moment(date).format(format || 'YYYY-MM-DD HH:mm:ss') : date, {});
             }}
             onClick={(e) => {
               e.stopPropagation();
@@ -384,10 +326,7 @@ const EditComponent: React.FC<MyEditComponent> = (props) => {
             disabledDate={getDisabledDate}
             picker={__mode__ || timeMode}
             onChange={(date, dateString) => {
-              inlineVChange(
-                date ? moment(date).format(format || 'YYYY-MM-DD') : date,
-                {},
-              );
+              inlineVChange(date ? moment(date).format(format || 'YYYY-MM-DD') : date, {});
             }}
             onClick={(e) => {
               e.stopPropagation();
@@ -397,15 +336,13 @@ const EditComponent: React.FC<MyEditComponent> = (props) => {
         );
       }
       case 'Switch': {
-        return (
-          <Switch
-            disabled={disabled}
-            checked={initialValue}
-            onChange={(v) => {
-              inlineVChange(v, {});
-            }}
-          />
-        );
+        return <Switch
+          disabled={disabled}
+          checked={initialValue}
+          onChange={(v) => {
+            inlineVChange(v, {});
+          }}
+        />;
       }
       case 'InputNumber':
         return (
@@ -482,7 +419,7 @@ const EditComponent: React.FC<MyEditComponent> = (props) => {
             label={c.title}
             value={initialValue}
             engineApis={engineApis}
-            getEngineApis={() => {}}
+            getEngineApis={() => { }}
             onChange={(e: any, _label: any) => {
               inlineVChange(e, {
                 [`${c.dataIndex}_introduce`]: _label,
@@ -514,7 +451,7 @@ const EditComponent: React.FC<MyEditComponent> = (props) => {
             postfixStyle={c?.editoption?.postfixStyle}
             size="sm"
             engineApis={engineApis}
-            getEngineApis={() => {}}
+            getEngineApis={() => { }}
             onChange={(val: any, options: any) => {
               const labels = (options || [])?.map((v: any) => v.label);
               inlineVChange(val, {
@@ -529,7 +466,7 @@ const EditComponent: React.FC<MyEditComponent> = (props) => {
   };
 
   if (supportEditComponents.includes(edittype) && validateRules) {
-    const fieldName = `${compId}_${currentRowKey}_${rowData[currentRowKey]}_${dataIndex}`;
+    const fieldName = `${compId}_${currentRowKey}_${rowData[currentRowKey] || rowId}_${dataIndex}`;
     return (
       <Form.Item
         style={{ height: 'auto' }}

@@ -1,8 +1,8 @@
+import React, { useState, useMemo, useEffect } from 'react';
 import { RightOutlined } from '@ant-design/icons';
 import { useDebounceFn } from 'ahooks';
 import { Popover } from 'antd';
 import classNames from 'classnames';
-import React, { useEffect, useMemo, useState } from 'react';
 
 const List = (props: any) => {
   const { data, keyList, handleOnClick } = props;
@@ -23,72 +23,57 @@ const List = (props: any) => {
     wait: 100,
   });
 
-  const comp = useMemo(
-    () => (
-      <>
-        <ul className="tree-menu-list">
-          {data?.map((d: any, i: any) => (
-            <li
-              className={classNames(
-                'tree-menu-item',
-                child?.key === d.key && 'hover',
-              )}
-              onClick={(e) => {
-                e.stopPropagation();
-                if (typeof handleOnClick === 'function') {
-                  const keys = keyList.split(',');
-                  handleOnClick(d, [...keys, d.key]);
-                }
-              }}
-              onMouseEnter={() => {
-                run(d.key || i, d.children);
-              }}
-              key={d.key || i}
-            >
-              {d.title}
-              {d?.children?.length > 0 && <RightOutlined rev="" />}
-            </li>
-          ))}
-        </ul>
-        {child?.childrenList?.length > 0 && (
-          <List
-            data={child?.childrenList}
-            keyList={`${keyList},${child?.key}`}
-            handleOnClick={handleOnClick}
-          />
-        )}
-      </>
-    ),
-    [data, child, keyList],
-  );
+  const comp = useMemo(() => (
+    <>
+      <ul className="tree-menu-list">
+        {data?.map((d: any, i: any) => (
+          <li
+            className={classNames('tree-menu-item', (child?.key === d.key) && 'hover')}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (typeof handleOnClick === 'function') {
+                const keys = keyList.split(',');
+                handleOnClick(d, [...keys, d.key]);
+              }
+            }}
+            onMouseEnter={() => {
+              run(d.key || i, d.children);
+            }}
+            key={d.key || i}
+          >
+            {d.title}
+            {d?.children?.length > 0 && <RightOutlined rev="" />}
+          </li>))}
+      </ul>
+      {child?.childrenList?.length > 0 && <List
+        data={child?.childrenList}
+        keyList={`${keyList},${child?.key}`}
+        handleOnClick={handleOnClick}
+      />}
+    </>
+  ), [data, child, keyList]);
   return comp;
 };
 
 const TreeNodeMenu = (props: any) => {
-  const { children, menuData, visible, onVisibleChange, onClickMenuItem } =
-    props;
+  const { children, menuData, visible, onVisibleChange, onClickMenuItem } = props;
 
   const renderMenu = (arr: any) => (
     <div className="tree-menu-box">
       <List
         data={arr}
-        handleOnClick={(data: any, keys: any[]) => {
+        handleOnClick={(data:any, keys:any[]) => {
           if (typeof onClickMenuItem === 'function') {
-            onClickMenuItem(
-              data?.key,
-              { ...data, ...(data?.data || {}) },
-              keys,
-            );
+            onClickMenuItem(data?.key, { ...data, ...(data?.data || {}) }, keys);
           }
         }}
         keyList="first"
       />
-    </div>
-  );
+    </div>);
   return (
     <Popover
       trigger={['contextMenu']}
-      content={renderMenu(menuData)}
+      content={(renderMenu(menuData))}
       placement="rightTop"
       overlayClassName="ued-tree-menu"
       visible={visible}

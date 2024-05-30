@@ -1,6 +1,6 @@
-import { Select } from 'antd';
-import classnames from 'classnames';
 import React from 'react';
+import classnames from 'classnames';
+import { Select } from 'antd';
 
 const BaseModalSelect = (props: any) => {
   const {
@@ -27,13 +27,14 @@ const BaseModalSelect = (props: any) => {
     <span
       className={classnames(className, {
         'pcfactory-input-group-wrapper': true,
-        [`pcfactory-input-affix-wrapper-${
-          restProps?.size === 'large' ? 'lg' : 'sm'
-        }`]: ['large', 'small'].includes(restProps?.size),
+        [`pcfactory-input-affix-wrapper-${restProps?.size === 'large' ? 'lg' : 'sm'}`]: [
+          'large',
+          'small',
+        ].includes(restProps?.size),
         [`${postfixStyleClsName}`]: postfixStyleClsName,
       })}
       style={restProps?.style}
-      onChange={(val) => {
+      onChange={val => {
         propsOnChange?.(val);
       }}
     >
@@ -49,14 +50,14 @@ const BaseModalSelect = (props: any) => {
           size={restProps?.size}
           mode={mode}
           value={value}
-          onChange={(e) => handleChangeVal(e)}
+          onChange={e => handleChangeVal(e)}
           allowClear={allowClear}
           maxTagTextLength={InputNumber}
           clearIcon={ClearIcon()}
           showArrow={false}
           open={false}
           options={options}
-          tagRender={(item) => {
+          tagRender={item => {
             return (
               <span>
                 {item?.label}
@@ -64,7 +65,7 @@ const BaseModalSelect = (props: any) => {
               </span>
             );
           }}
-          onClick={(e) => {
+          onClick={e => {
             !disabled && handleClickVisible();
             e.stopPropagation();
           }}
@@ -78,7 +79,7 @@ const BaseModalSelect = (props: any) => {
               'pcfactory-input-group-addon': true,
               'pcfactory-input-group-addon-disabled': disabled,
             })}
-            onClick={(e) => {
+            onClick={e => {
               e.stopPropagation();
               if (!onIconClick && !disabled) {
                 handleClickVisible();

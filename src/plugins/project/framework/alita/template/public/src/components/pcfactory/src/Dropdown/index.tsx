@@ -1,9 +1,9 @@
-import { DownOutlined } from '@ant-design/icons';
-import { LingxiForwardRef } from '@lingxiteam/types';
-import { Dropdown as AntdDropdown, Menu, Space } from 'antd';
-import classnames from 'classnames';
 import React, { useImperativeHandle, useMemo, useState } from 'react';
+import { DownOutlined } from '@ant-design/icons';
+import { Menu, Dropdown as AntdDropdown, Space } from 'antd';
+import classnames from 'classnames';
 import Icon from '../Icon';
+import { LingxiForwardRef } from '@lingxiteam/types';
 import { useListenProps } from '../utils';
 import { useLocale } from '../utils/hooks/useLocale';
 
@@ -101,9 +101,7 @@ const Dropdown = LingxiForwardRef<any, MyDropdownProps>((props, ref) => {
       // eslint-disable-next-line no-new-func
       return new Function(
         'node',
-        `try { return ${rule};} catch(e) { console.warn("${rule}${getLocale?.(
-          'nodeRule',
-        )}");}`,
+        `try { return ${rule};} catch(e) { console.warn("${rule}${getLocale?.('nodeRule')}");}`,
       );
     }
     return () => {};
@@ -174,11 +172,9 @@ const Dropdown = LingxiForwardRef<any, MyDropdownProps>((props, ref) => {
       }
       if (info) {
         return renderIconFont(info);
-      }
-      if (menuExpandedKeys.includes(key)) {
+      } if (menuExpandedKeys.includes(key)) {
         return renderIconFont(iconInfo.expanded);
-      }
-      if (children?.length) {
+      } if (children?.length) {
         return renderIconFont(iconInfo.closed);
       }
       return renderIconFont(iconInfo.leaf);
@@ -187,8 +183,8 @@ const Dropdown = LingxiForwardRef<any, MyDropdownProps>((props, ref) => {
     const iconType = menuExpandedKeys.includes(key)
       ? expandedIcon
       : item?.children?.length
-      ? closedIcon
-      : closedIcon || expandedIcon;
+        ? closedIcon
+        : closedIcon || expandedIcon;
     return renderIconFont(iconType);
   };
 
@@ -198,17 +194,11 @@ const Dropdown = LingxiForwardRef<any, MyDropdownProps>((props, ref) => {
       const itemIcon = getIcon(opt);
       if (opt.children?.length) {
         return (
-          <Menu.SubMenu
-            disabled={opt.disabled}
-            key={opt.key}
-            title={opt.title}
-            icon={itemIcon}
-          >
+          <Menu.SubMenu disabled={opt.disabled} key={opt.key} title={opt.title} icon={itemIcon}>
             {renderSubMenu(opt.children)}
           </Menu.SubMenu>
         );
-      }
-      if (key) {
+      } if (key) {
         return (
           <Menu.Item
             disabled={disabled}
@@ -257,10 +247,9 @@ const Dropdown = LingxiForwardRef<any, MyDropdownProps>((props, ref) => {
     const { key, title, children, selectable, url } = service || {};
     const getTreeData = (arr: any[]) => {
       if (Array.isArray(arr)) {
-        return arr.map((c) => {
+        return arr.map(c => {
           // _isReload 标识节点数据是通过加载子节点动作设置的,此时取该动作配置好的key/title/selectable
-          const serviceSelectable =
-            c[selectable] !== undefined ? c[selectable] : true;
+          const serviceSelectable = c[selectable] !== undefined ? c[selectable] : true;
           const params = {
             key: c._isReload ? c.key : c[key] || c.key,
             title: c._isReload ? c.title : c[title] || c.title,
@@ -294,8 +283,7 @@ const Dropdown = LingxiForwardRef<any, MyDropdownProps>((props, ref) => {
       // 动态获取回来的服务数据
       const dataAttrs: any = loadData(dataSource, treeService);
       return [...(dataAttrs || [])];
-    }
-    if (Array.isArray(treeData) && treeData?.length) {
+    } if (Array.isArray(treeData) && treeData?.length) {
       // 项目设置配置的静态数据
       return [...treeData];
     }
@@ -321,8 +309,7 @@ const Dropdown = LingxiForwardRef<any, MyDropdownProps>((props, ref) => {
     return null;
   }
   if (menuType === 'button') {
-    const { fontSize, fontWeight, letterSpacing, lineHeight, ...restStyle } =
-      style || {};
+    const { fontSize, fontWeight, letterSpacing, lineHeight, ...restStyle } = style || {};
     return (
       <AntdDropdown.Button
         {...options}

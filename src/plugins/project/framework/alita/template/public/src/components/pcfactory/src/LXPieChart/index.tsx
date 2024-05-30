@@ -1,5 +1,5 @@
-import { LingxiForwardRef } from '@lingxiteam/types';
 import React, { useImperativeHandle } from 'react';
+import { LingxiForwardRef } from '@lingxiteam/types';
 import LXPieChartLoader from './loader';
 import LXPieChartProps from './PropsType';
 

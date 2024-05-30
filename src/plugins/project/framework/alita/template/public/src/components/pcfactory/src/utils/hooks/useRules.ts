@@ -7,11 +7,11 @@ import { getRegExp } from '../common';
  * 通用规则获取
  * @param regexp 规则列表
  */
-export const getRegexpRules = (regexp: any[] | any, getLocale?: any): any[] => {
+export const getRegexpRules = (regexp: any[] | any, getLocale?: any,): any[] => {
   const _rules = [];
   if (regexp) {
     if (Array.isArray(regexp)) {
-      regexp?.forEach((exp) => {
+      regexp?.forEach(exp => {
         const { pattern, message: newMsg } = exp;
         if (pattern && newMsg) {
           _rules.push({
@@ -30,34 +30,44 @@ export const getRegexpRules = (regexp: any[] | any, getLocale?: any): any[] => {
   return _rules;
 };
 
+
+export interface RuleInterface {
+  pattern?: RegExp,
+  required?: boolean,
+  message: string,
+}
+
 /**
  * 输入型控件通用规则
  * @param param0
  * @returns
  */
-const useRules = (
-  {
-    required,
-    regexp,
-    rules,
-    message,
-    name,
-  }: {
-    required: boolean;
-    regexp: any[] | any;
-    rules: any[];
-    message?: string;
-    name: string;
-  },
-  getLocale?: any,
-  lang?: string,
-): [Rule[], (data: any[]) => void] => {
-  const [extendRules, setExtendRules] = useState<Rule[]>([]);
-  const finalRules = useCreation<{ rules: Rule[] }>(() => {
-    let _rules: Rule[] = [
-      { required, message: getLocale?.('notEmpty', { name }) },
-      ...getRegexpRules(regexp),
-    ];
+const useRules = ({
+  required,
+  regexp,
+  rules,
+  message,
+  name,
+}: {
+  required: boolean;
+  regexp: any[] | any;
+  rules: any[];
+  message?: string;
+  name: string;
+}, getLocale?: any, lang?: string): [Rule[], (rules: RuleInterface[], isAppendLastTime: boolean) => void] => {
+  const [extendRules, temSetExtendRules] = useState<Rule[]>([]);
+
+  const setExtendRules = (rules: RuleInterface[], isAppendLastTime: boolean) => {
+    if (Array.isArray(rules)) {
+      if (isAppendLastTime === true) {
+        temSetExtendRules([...extendRules, ...(rules || [])]);
+      } else {
+        temSetExtendRules(rules);
+      }
+    }
+  };
+  const finalRules = useCreation<{ rules: RuleInterface[] }>(() => {
+    let _rules: RuleInterface[] = [{ required, message: getLocale?.('notEmpty', { name }) }, ...getRegexpRules(regexp)];
     _rules = [..._rules, ...(rules || []), ...extendRules];
     return {
       rules: _rules,

@@ -1,6 +1,6 @@
-import classNames from 'classnames';
 import { useEffect, useMemo, useState } from 'react';
 import { useListenProps } from '../../utils';
+import classNames from 'classnames';
 import { useLocale } from '../../utils/hooks/useLocale';
 
 const usePagination = (props: any) => {
@@ -48,12 +48,10 @@ const usePagination = (props: any) => {
   const paginationCurrent = (current ? +current : current) || 1;
   const paginationPageSize = (pageSize ? +pageSize : pageSize) || 10;
   const pagination = {
-    showTotal: showTotal
-      ? (total: number) => getLocale('Pagination.showTotal', { tol: total })
-      : undefined,
+    showTotal: showTotal ? (total: number) => getLocale('Pagination.showTotal', { tol: total }) : undefined,
     // TODO: 这里目前存在一个问题，若配置了空的分页事件，自动认为是后端分页，实际上
-    current: hasPageChangeEvent ? paginationCurrent : currentPage,
-    pageSize: hasPageChangeEvent ? paginationPageSize : currentPageSize,
+    current: (hasPageChangeEvent ? paginationCurrent : currentPage),
+    pageSize: (hasPageChangeEvent ? paginationPageSize : currentPageSize),
     total: Number(total) || undefined,
     showQuickJumper,
     showSizeChanger,
@@ -69,6 +67,7 @@ const usePagination = (props: any) => {
     //   setCurrentPageSize(newPageSize);
     // },
   };
+
 
   useEffect(() => {
     // 前端分页时，若传入的分页信息有变更且有效，需要更新内部维护的分页数据
@@ -87,7 +86,10 @@ const usePagination = (props: any) => {
         setCurrentPageSize(Number(pageSize));
       }
     }
-  }, [current, pageSize]);
+  }, [
+    current,
+    pageSize,
+  ]);
 
   return {
     pagination,

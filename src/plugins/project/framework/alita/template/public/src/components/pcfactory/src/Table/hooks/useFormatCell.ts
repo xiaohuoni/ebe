@@ -1,15 +1,15 @@
 import { message } from 'antd';
-import type { FuncExpExeCuteType } from '../../utils/hooks/useFuncExpExecute';
 import {
-  CUSTOM,
-  DOWNLOAD_FILE,
-  OPEN_MODAL,
   PAGE_JUMP,
+  DOWNLOAD_FILE,
   PREVIEW_FILE,
+  CUSTOM,
   ROUTE_PUSH,
   ROUTE_REPLACE,
+  OPEN_MODAL,
 } from '../constant';
 import type { ContentClick, FuncCode } from '../types/contentStyle';
+import type { FuncExpExeCuteType } from '../../utils/hooks/useFuncExpExecute';
 
 interface useFormatCellProps extends ContentClick {
   appId: string;
@@ -59,28 +59,25 @@ const useFormatCell = (props: useFormatCellProps) => {
     return content;
   };
 
-  const handlePageJump = async (
-    row: any,
-    rowId: string | number,
-    rowIndex: number,
-  ) => {
+  const handlePageJump = async (row: any, rowId: string | number, rowIndex: number) => {
     if (page) {
-      const { pagePath, searchParams = {} } = page;
+      const {
+        pagePath,
+        searchParams = {},
+      } = page;
       const newSearchParams: any = {};
-
-      Object.keys(searchParams).forEach((key) => {
+  
+      Object.keys(searchParams).forEach(key => {
         if (typeof searchParams[key] === 'string') {
           const exp = searchParams[key];
-          searchParams[key] = (
-            row: any,
-            rowId: string | number,
-            index: number,
-          ) =>
-            engineApis?.sandBoxSafeRun(exp, {
+          searchParams[key] = (row: any, rowId: string | number, index: number) => engineApis?.sandBoxSafeRun(
+            exp,
+            {
               row,
               rowId,
               index,
-            });
+            }
+          );
         }
 
         if (typeof searchParams[key] === 'function') {
@@ -93,11 +90,9 @@ const useFormatCell = (props: useFormatCellProps) => {
       });
 
       let newPath = pagePath || '';
-      Object.keys(newSearchParams).forEach((key) => {
+      Object.keys(newSearchParams).forEach(key => {
         if (!newPath.includes(`${key}=`)) {
-          newPath += `${newPath.includes('?') ? '&' : '?'}${key}=${
-            newSearchParams[key]
-          }`;
+          newPath += `${newPath.includes('?') ? '&' : '?'}${key}=${newSearchParams[key]}`;
         }
       });
 
@@ -118,24 +113,25 @@ const useFormatCell = (props: useFormatCellProps) => {
     }
   };
 
-  const handleOpenModal = async (
-    row: any,
-    rowId: string | number,
-    rowIndex: number,
-  ) => {
+  const handleOpenModal = async (row: any, rowId: string | number, rowIndex: number) => {
     if (modal) {
-      const { pageId, compStates = {} } = modal;
+      const {
+        pageId,
+        compStates = {},
+      } = modal;
 
       const newCompStates: any = {};
-      Object.keys(compStates).forEach((key) => {
+      Object.keys(compStates).forEach(key => {
         if (typeof compStates[key] === 'string') {
           const exp = compStates[key];
-          compStates[key] = (row: any, rowId: string | number, index: number) =>
-            engineApis?.sandBoxSafeRun(exp, {
+          compStates[key] = (row: any, rowId: string | number, index: number) => engineApis?.sandBoxSafeRun(
+            exp,
+            {
               row,
               rowId,
               index,
-            });
+            }
+          );
         }
 
         if (typeof compStates[key] === 'function') {
@@ -162,6 +158,7 @@ const useFormatCell = (props: useFormatCellProps) => {
         let realFilename = filename;
         let realFileIds = fileIds;
 
+
         if ((filename as FuncCode)?.code && funcExpExecute) {
           realFilename = funcExpExecute((filename as FuncCode).code, [
             {
@@ -187,7 +184,7 @@ const useFormatCell = (props: useFormatCellProps) => {
             },
           ]);
         }
-
+        
         realFileIds = Array.isArray(realFileIds) ? realFileIds[0] : realFileIds;
 
         engineApis.batchDownloadFileByIds({
@@ -218,11 +215,10 @@ const useFormatCell = (props: useFormatCellProps) => {
         },
       ]);
     }
-
+    
     if (typeof engineApis?.BannerModal?.open === 'function') {
       // 弹窗预览
-      realFileIds =
-        typeof realFileIds === 'string' ? [realFileIds] : realFileIds;
+      realFileIds = typeof realFileIds === 'string' ? [realFileIds] : realFileIds;
       const fileList = realFileIds.map((fileId: string | number) => {
         return {
           fileId,
@@ -247,22 +243,14 @@ const useFormatCell = (props: useFormatCellProps) => {
       // 新窗口预览
       realFileIds = Array.isArray(realFileIds) ? realFileIds[0] : realFileIds;
       try {
-        engineApis.previewFile({
-          fileId: realFileIds,
-          appId: realAppId,
-          pageId: realPageId,
-        });
+        engineApis.previewFile({ fileId: realFileIds, appId: realAppId, pageId: realPageId });
       } catch (e) {
         console.error(e);
       }
     }
   };
-
-  const onCellClick = async (
-    row: any,
-    rowId: string | number,
-    rowIndex: number,
-  ) => {
+  
+  const onCellClick = async (row: any, rowId: string | number, rowIndex: number) => {
     switch (clickType) {
       case PAGE_JUMP:
         handlePageJump(row, rowId, rowIndex);
@@ -293,13 +281,12 @@ const useFormatCell = (props: useFormatCellProps) => {
         }
 
         window.open(realDownloadUrl, openType);
-        break;
-      }
+        break; }
       default:
         break;
     }
   };
-
+  
   return {
     onCellClick,
     handleCellContent,

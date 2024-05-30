@@ -1,15 +1,15 @@
 import React, {
   FC,
-  forwardRef,
-  ForwardRefExoticComponent,
-  FunctionComponent,
-  useCallback,
   useRef,
   useState,
+  useCallback,
+  FunctionComponent,
+  ForwardRefExoticComponent,
+  forwardRef,
 } from 'react';
 // TODO: 替换成自定义hooks 待处理
 import { useDeepCompareEffect } from 'ahooks';
-import { get, isEqual, set } from 'lodash';
+import { get, isEqualWith, set } from 'lodash';
 
 // 通道容器，解决父子组件之间值的传递和获取。
 
@@ -35,19 +35,19 @@ export interface ChannelContainerProps {
  */
 const Container: FC<ChannelContainerProps> = (props) => {
   const { children } = props;
-  const childrenProps = useRef({}).current;
+  const childrenProps = useRef<Record<string, any>>({}).current;
   const [, forceUpdate] = useState({});
-  const uploadChannelProps = useCallback(
-    (props: Record<string, any>, key: string) => {
-      // @ts-ignore
-      if (!isEqual(props, childrenProps[key])) {
-        // @ts-ignore
-        childrenProps[key] = props;
-        forceUpdate({});
+  const uploadChannelProps = useCallback((props: Record<string, any>, key: string) => {
+    childrenProps[key] = props;
+    if (!isEqualWith(props, childrenProps[key], (v1, v2) => {
+      if (typeof v1 === 'function' && typeof v2 === 'function') {
+        return true;
       }
-    },
-    [],
-  );
+      return undefined;
+    })) {
+      forceUpdate({});
+    }
+  }, []);
   // @ts-ignore
   const getProps = useCallback((c) => childrenProps[c.key] || {}, []);
 
@@ -80,11 +80,7 @@ Item.defaultProps = {
 Item.displayName = 'ChannelContainerItem';
 
 export interface useRuntimePropsType {
-  (
-    props: Record<string, any>,
-    keyPath: string[],
-    uploadChannelProps: (props: Record<string, any>) => void,
-  ): void;
+  (props: Record<string, any>, keyPath: string[], uploadChannelProps: (props: Record<string, any>) => void): void;
 }
 
 /**
@@ -95,15 +91,9 @@ export interface useRuntimePropsType {
  * @param props 字段对应的数据值
  * @param depthKey 需要上报的字段
  */
-const useChannelProps: useRuntimePropsType = (
-  props,
-  depthKey = [],
-  uploadChannelProps,
-) => {
+const useChannelProps: useRuntimePropsType = (props, depthKey = [], uploadChannelProps) => {
   const target = {};
-  depthKey.forEach((key) =>
-    set(target, key.split('.'), get(props, key.split('.'))),
-  );
+  depthKey.forEach((key) => set(target, key.split('.'), get(props, key.split('.'))));
   useDeepCompareEffect(() => {
     if (uploadChannelProps) {
       uploadChannelProps(target);

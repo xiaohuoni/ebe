@@ -1,21 +1,16 @@
-import { LingxiForwardRef } from '@lingxiteam/types';
-import { useThrottleFn } from 'ahooks';
 import { Table, Transfer, Tree } from 'antd';
 import type { FormItemProps } from 'antd/lib/form';
 import { TableRowSelection } from 'antd/lib/table/interface';
 import { TransferDirection, TransferItem } from 'antd/lib/transfer';
 import { difference } from 'lodash';
 import React, { CSSProperties, useMemo, useRef, useState } from 'react';
-import {
-  FormFields,
-  getFieldsProps,
-  useCommonImperativeHandle,
-  useListenProps,
-} from '../utils';
-import CustomModule from '../utils/CustomModule';
-import { customLocale } from '../utils/Empty/customLocale';
+import { useThrottleFn } from 'ahooks';
 import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
+import { FormFields, getFieldsProps, useCommonImperativeHandle, useListenProps } from '../utils';
+import { LingxiForwardRef } from '@lingxiteam/types';
+import { customLocale } from '../utils/Empty/customLocale';
 import { useLocale } from '../utils/hooks/useLocale';
+import CustomModule from '../utils/CustomModule';
 
 export interface WrapperTransferProps {
   children: JSX.Element;
@@ -23,20 +18,14 @@ export interface WrapperTransferProps {
 }
 const WrapperTransfer = ({ children, className }: WrapperTransferProps) =>
   React.cloneElement(children, {
-    className: `ued-transfer-wrap ${className} ${
-      children.props.className || ''
-    }`,
+    className: `ued-transfer-wrap ${className} ${children.props.className || ''}`,
   });
 
 const prefixCls = 'ued-transfer-wrap';
 export interface MyTransferProps extends FormItemProps {
   value?: any;
   visible?: boolean;
-  onTransferChange?: (
-    targetKeys: string[],
-    direction: TransferDirection,
-    moveKeys: string[],
-  ) => void;
+  onTransferChange?: (targetKeys: string[], direction: TransferDirection, moveKeys: string[]) => void;
   onValueRelease?: (e: any) => void;
   getCompPropMapState?: (id: string, type: string) => any;
   compId?: string;
@@ -131,19 +120,18 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
     ...restProps
   } = props;
 
-  const { sandBoxSafeRun, sandBoxLoadModule } = getEngineApis() || {};
+  const {
+    sandBoxSafeRun,
+    sandBoxLoadModule,
+  } = getEngineApis() || {};
 
   const { getLocale, lang } = useLocale(getEngineApis());
 
   const funcExpExecute = useFuncExpExecute(sandBoxSafeRun, getLocale);
 
   const [_dataSource, setDataSource] = useListenProps(props.dataSource);
-  const [transferLeftTitle, setTransferLeftTitle] = useListenProps(
-    props.transferLeftTitle,
-  );
-  const [transferRightTitle, setTransferRightTitle] = useListenProps(
-    props.transferRightTitle,
-  );
+  const [transferLeftTitle, setTransferLeftTitle] = useListenProps(props.transferLeftTitle);
+  const [transferRightTitle, setTransferRightTitle] = useListenProps(props.transferRightTitle);
 
   const dataSource = useMemo(() => {
     return _dataSource ?? [];
@@ -153,28 +141,28 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
     return value ?? [];
   }, [value]);
 
-  const { formFieldsRef, readOnly, required, disabled } =
-    useCommonImperativeHandle(ref, props, {
-      value: compValue,
-      clearValue: [],
-      setDataSource(_list: any[]) {
-        if (Array.isArray(_list)) {
-          setDataSource(_list);
-        }
-      },
-      // 设置右侧标题
-      setTransferRightTitle(_title: string) {
-        setTransferRightTitle(_title);
-      },
-      // 设置左侧
-      setTransferLeftTitle(_title: string) {
-        setTransferLeftTitle(_title);
-      },
-    });
+  const { formFieldsRef, readOnly, required, disabled } = useCommonImperativeHandle(ref, props, {
+    value: compValue,
+    clearValue: [],
+    setDataSource(_list: any[]) {
+      if (Array.isArray(_list)) {
+        setDataSource(_list);
+      }
+    },
+    // 设置右侧标题
+    setTransferRightTitle(_title: string) {
+      setTransferRightTitle(_title);
+    },
+    // 设置左侧
+    setTransferLeftTitle(_title: string) {
+      setTransferLeftTitle(_title);
+    },
+  });
 
   const [currentPage, setCurrentPage] = useState(props.current || 1); // 当前页码
   const [currentPageSize, setCurrentPageSize] = useState(props.pageSize); // 当前每页数量
   // const [rightData, setRigthData] = useState<any>([]);
+
 
   const currentSearchDirection = useRef<'left' | 'right'>('left');
   const searchVal = useRef<string>('');
@@ -228,8 +216,7 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
         res.pageSizeOptions = parsedPageSizeOptions;
       }
       if (props?.showTotal) {
-        res.showTotal = (total: any) =>
-          getLocale?.('Pagination.showTotal', { tol: total });
+        res.showTotal = (total: any) => getLocale?.('Pagination.showTotal', { tol: total });
       }
       // if(props.onPageChange) {
       //   res.onChange = (pageNo: number, pageSize: number) => {
@@ -304,22 +291,18 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
     render: (item: any) => item[labelCode],
     filterOption: (val: any, item: any) => {
       // 开启了搜索并且配置了搜索事件，左侧不触发本地过滤
-      if (
-        props.showSearch &&
-        currentSearchDirection.current === 'left' &&
-        props.onSearch
-      ) {
+      if (props.showSearch && currentSearchDirection.current === 'left' && props.onSearch) {
         return true;
       }
       const isTable = displayStyle === 'table';
       if (isTable) {
         let flag = false;
         try {
-          columns?.forEach((col) => {
+          columns?.forEach(col => {
             // 原先写法indexof item[col.dataIndex]? 如果字段为null或者undefined，则返回void 0 === undefined，导致还是会进入该判断
             if (item[col.dataIndex] && item[col.dataIndex]?.indexOf(val) > -1) {
               flag = true;
-              throw Error(); // 异常跳出循环
+              throw Error();// 异常跳出循环
             }
           });
         } catch (error) {
@@ -330,11 +313,7 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
       return item?.[labelCode] && `${item?.[labelCode]}`.indexOf(val) > -1; // 同上的原因
     },
     rowKey: (record: any) => record[uid],
-    onChange: (
-      targetKeys: string[],
-      direction: TransferDirection,
-      moveKeys: string[],
-    ) => {
+    onChange: (targetKeys: string[], direction: TransferDirection, moveKeys: string[]) => {
       // if (direction === 'left') {
       //   removeRigthDataSource(moveKeys);
       // } else {
@@ -345,17 +324,13 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
         onTransferChange(targetKeys, direction, moveKeys);
       }
     },
-    selectAllLabels: [
-      null,
-      () => {
-        // 自定义右侧
-        return getLocale?.('Transfer.unit', { num: compValue.length });
-      },
-    ],
+    selectAllLabels: [null, () => { // 自定义右侧
+      return getLocale?.('Transfer.unit', { num: compValue.length });
+    }],
   };
   const finalColumns = useMemo(() => {
     if (displayStyle === 'table') {
-      return columns?.map((col) => {
+      return columns?.map(col => {
         // 自定义渲染函数-
         if (col.jsx) {
           col.render = (text: any, row: any, index: any) => {
@@ -401,31 +376,24 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
               props: {},
             };
           };
-        } else if (
-          col.lineNum &&
-          typeof col.lineNum === 'number' &&
-          col.lineNum > 0
-        ) {
-          // 自定义可以单行或者多行溢出
+        } else if (col.lineNum && typeof col.lineNum === 'number' && col.lineNum > 0) { // 自定义可以单行或者多行溢出
           const controllLineStyle = {
             WebkitLineClamp: col.lineNum,
           };
           return {
             ...col,
             render: (text: any) => (
-              <span
-                className="ued-control-line-number"
-                style={controllLineStyle}
-              >
+              <span className="ued-control-line-number" style={controllLineStyle}>
                 {text}
-              </span>
-            ),
+              </span>),
           };
         }
         return col;
       });
     }
-    return [{ title: getLocale?.('title'), dataIndex: labelCode }];
+    return [
+      { title: getLocale?.('title'), dataIndex: labelCode },
+    ];
   }, [displayStyle]);
 
   const renderTransferTable = (isTable: boolean = false) => {
@@ -435,9 +403,7 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
         return {
           ...item,
           key: item[uid],
-          children: generateData(
-            childrenColumnName ? item[childrenColumnName] : item.children,
-          ),
+          children: generateData(childrenColumnName ? item[childrenColumnName] : item.children),
         };
       });
     };
@@ -445,147 +411,127 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
     // 穿梭框数据
     const transferDataSource: any[] = [];
     function flatten(list: any[] = []) {
-      list.forEach((item) => {
+      list.forEach(item => {
         transferDataSource.push(item);
         flatten(item.children);
       });
     }
     flatten(dataSource);
     return (
-      <Transfer {...commonProps} dataSource={transferDataSource}>
-        {({
-          direction,
-          filteredItems,
-          disabled: listDisabled,
-          selectedKeys: listSelectedKeys,
-          onItemSelectAll,
-          onItemSelect,
-        }) => {
-          const rowSelection: TableRowSelection<TransferItem> = {
-            getCheckboxProps: (item: any) => {
-              return {
-                disabled:
-                  listDisabled ||
-                  item.disabled ||
-                  (direction === 'left' && compValue.includes?.(item.key)),
-              };
-            },
-            onSelectAll(selected, selectedRows) {
-              const treeSelectedKeys = selectedRows
-                .filter((item) => !item?.disabled)
-                .map(({ key }) => key);
-              const diffKeys = selected
-                ? difference(treeSelectedKeys, listSelectedKeys)
-                : difference(listSelectedKeys, treeSelectedKeys);
-              onItemSelectAll(diffKeys as string[], selected);
-            },
-            onSelect({ key }, selected) {
-              onItemSelect(key as string, selected);
-            },
-            selectedRowKeys:
-              direction === 'left'
-                ? [...listSelectedKeys, ...compValue]
-                : listSelectedKeys,
-          };
-          const tSize = size === 'large' ? 40 : 32;
-          const scrollY =
-            transferHeight -
-            40 -
-            44 -
-            (isTable ? tSize : 0) -
-            (props.showSearch ? 50 : 0);
-          const scroll: any = { y: scrollY };
-          if (!props.page) {
-            scroll.y += 40;
-          }
-          let currentDataSource: any[] = [];
-          if (direction === 'left') {
-            const filterKeys: string[] = [];
-            // 过滤表格数据
-            const filterTableData = (obj: any) => {
-              if (obj) {
-                if (Array.isArray(obj)) {
-                  obj.forEach((item) => {
-                    filterKeys.push(item.key);
-                    filterTableData(item.children);
-                  });
-                } else {
-                  filterKeys.push(obj?.key);
-                  filterTableData(obj?.children);
-                }
-              }
-            };
-            if (searchVal.current) {
-              const targetFilterData = generateData(filteredItems);
-              if (
-                targetFilterData &&
-                Array.isArray(targetFilterData) &&
-                targetFilterData.length
-              ) {
-                // 如果搜索父级里面和子级含有相同的文字，会导致数据有问题，所以条件搜索的情况直接将数据按照一级展示
-                targetFilterData.forEach((item) => {
-                  if (!filterKeys.includes(item.key)) {
-                    // 过滤会将子级也过滤进来 eg [{key:1,label:1,children:[{key:2,label:2},{key:3,label:3}]},{key:2,label:2}],需要将子级{key:2,label:2}过滤
-                    currentDataSource.push(item);
-                  }
-                  filterTableData(item);
-                });
-              }
-            } else {
-              currentDataSource = generateData([...dataSource]);
-            }
-          }
-          // 有选中数据的时候，左侧数据发生改变，则会导致右侧是数据被重新渲染。
-          // 这里如果是渲染右侧数据，则取之前保存的数据进行渲染
-          if (direction === 'right') {
-            currentDataSource = [...filteredItems];
-            // 删除children字段, 由于原先字段默认值配置的是false，这里就保持一致
-            currentDataSource.forEach((row) => {
-              if (row[childrenColumnName || 'false']) {
-                delete row[childrenColumnName || 'false'];
-              }
-            });
-          }
-          return (
-            <Table
-              locale={customLocale}
-              columns={finalColumns}
-              dataSource={currentDataSource}
-              rowKey={`${uid}`}
-              showHeader={isTable}
-              rowSelection={rowSelection}
-              className={!isTable ? `${prefixCls}-table-hideBorder` : ''}
-              childrenColumnName={childrenColumnName || 'false'}
-              scroll={scroll}
-              onRow={({ key, disabled: itemDisabled }: any) => ({
-                onClick: () => {
-                  if (
-                    itemDisabled ||
+      <Transfer
+        {...commonProps}
+        dataSource={transferDataSource}
+      >
+        {
+          ({
+            direction,
+            filteredItems,
+            disabled: listDisabled,
+            selectedKeys: listSelectedKeys,
+            onItemSelectAll,
+            onItemSelect,
+          }) => {
+            const rowSelection: TableRowSelection<TransferItem> = {
+              getCheckboxProps: (item: any) => {
+                return {
+                  disabled:
                     listDisabled ||
-                    (direction === 'left' && compValue.includes(key))
-                  )
-                    return;
-                  onItemSelect(
-                    key as string,
-                    !listSelectedKeys.includes(key as string),
-                  );
-                },
-              })}
-              size={size === 'large' ? 'middle' : 'small'}
-              pagination={direction === 'left' ? pagination : !!props.page}
-            />
-          );
-        }}
+                    item.disabled ||
+                    (direction === 'left' && compValue.includes?.(item.key)),
+                };
+              },
+              onSelectAll(selected, selectedRows) {
+                const treeSelectedKeys = selectedRows
+                  .filter(item => !item?.disabled)
+                  .map(({ key }) => key);
+                const diffKeys = selected
+                  ? difference(treeSelectedKeys, listSelectedKeys)
+                  : difference(listSelectedKeys, treeSelectedKeys);
+                onItemSelectAll(diffKeys as string[], selected);
+              },
+              onSelect({ key }, selected) {
+                onItemSelect(key as string, selected);
+              },
+              selectedRowKeys: direction === 'left' ? [...listSelectedKeys, ...compValue] : listSelectedKeys,
+            };
+            const tSize = (size === 'large' ? 40 : 32);
+            const scrollY = transferHeight - 40 - 44 - (isTable ? tSize : 0) - (props.showSearch ? 50 : 0);
+            const scroll: any = { y: scrollY };
+            if (!props.page) {
+              scroll.y += 40;
+            }
+            let currentDataSource: any[] = [];
+            if (direction === 'left') {
+              const filterKeys: string[] = [];
+              // 过滤表格数据
+              const filterTableData = (obj: any) => {
+                if (obj) {
+                  if (Array.isArray(obj)) {
+                    obj.forEach(item => {
+                      filterKeys.push(item.key);
+                      filterTableData(item.children);
+                    });
+                  } else {
+                    filterKeys.push(obj?.key);
+                    filterTableData(obj?.children);
+                  }
+                }
+              };
+              if (searchVal.current) {
+                const targetFilterData = generateData(filteredItems);
+                if (targetFilterData && Array.isArray(targetFilterData) && targetFilterData.length) { // 如果搜索父级里面和子级含有相同的文字，会导致数据有问题，所以条件搜索的情况直接将数据按照一级展示
+                  targetFilterData.forEach((item) => {
+                    if (!filterKeys.includes(item.key)) { // 过滤会将子级也过滤进来 eg [{key:1,label:1,children:[{key:2,label:2},{key:3,label:3}]},{key:2,label:2}],需要将子级{key:2,label:2}过滤
+                      currentDataSource.push(item);
+                    }
+                    filterTableData(item);
+                  });
+                }
+              } else {
+                currentDataSource = generateData([...dataSource]);
+              }
+            }
+            // 有选中数据的时候，左侧数据发生改变，则会导致右侧是数据被重新渲染。
+            // 这里如果是渲染右侧数据，则取之前保存的数据进行渲染
+            if (direction === 'right') {
+              currentDataSource = [...filteredItems];
+              // 删除children字段, 由于原先字段默认值配置的是false，这里就保持一致
+              currentDataSource.forEach((row) => {
+                if (row[childrenColumnName || 'false']) {
+                  delete row[childrenColumnName || 'false'];
+                }
+              });
+            }
+            return (
+              <Table
+                locale={customLocale}
+                columns={finalColumns}
+                dataSource={currentDataSource}
+                rowKey={`${uid}`}
+                showHeader={isTable}
+                rowSelection={rowSelection}
+                className={!isTable ? `${prefixCls}-table-hideBorder` : ''}
+                childrenColumnName={childrenColumnName || 'false'}
+                scroll={scroll}
+                onRow={({ key, disabled: itemDisabled }: any) => ({
+                  onClick: () => {
+                    if (itemDisabled || listDisabled || (direction === 'left' && compValue.includes(key))) return;
+                    onItemSelect(key as string, !listSelectedKeys.includes(key as string));
+                  },
+                })}
+                size={size === 'large' ? 'middle' : 'small'}
+                pagination={direction === 'left' ? pagination : !!props.page}
+              />
+            );
+          }
+        }
       </Transfer>
     );
   };
   // 展开 dataSource
   const renderTransferTree = () => {
     // 是否选中
-    const isChecked = (
-      selectedKeys: (string | number)[],
-      eventKey: string | number,
-    ) => selectedKeys.includes(eventKey);
+    const isChecked = (selectedKeys: (string | number)[], eventKey: string | number) => selectedKeys.includes(eventKey);
     // 格式化数据
     const generateData = (list: any[]): any[] => {
       return list?.map((item: any) => {
@@ -594,31 +540,31 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
           key: item[uid],
           title: item[labelCode],
           disabled: compValue?.includes(item[uid]),
-          children: generateData(
-            childrenColumnName ? item[childrenColumnName] : item.children,
-          ),
+          children: generateData(childrenColumnName ? item[childrenColumnName] : item.children),
         };
       });
     };
     const transferDataSource: any[] = [];
     function flatten(list: any[] = []) {
-      list.forEach((item) => {
+      list.forEach(item => {
         transferDataSource.push(item);
         flatten(item.children);
       });
     }
     flatten(dataSource);
     return (
-      <Transfer {...commonProps} dataSource={transferDataSource}>
+      <Transfer
+        {...commonProps}
+        dataSource={transferDataSource}
+      >
         {({ direction, onItemSelect, selectedKeys, filteredItems }) => {
           if (direction === 'left') {
             const targetKeysData: any = [];
             // eslint-disable-next-line no-inner-declarations
-            function flattenTreeData(obj: any) {
-              // 将过滤的所有数据id存储，用于后面对比
+            function flattenTreeData(obj: any) { // 将过滤的所有数据id存储，用于后面对比
               if (obj) {
                 if (Array.isArray(obj)) {
-                  obj.forEach((item) => {
+                  obj.forEach(item => {
                     targetKeysData.push(item.key);
                     flattenTreeData(item.children);
                   });
@@ -632,15 +578,9 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
             let curTreeData: any[] = [];
             if (searchVal.current) {
               const targetFilterData = generateData(filteredItems);
-              if (
-                targetFilterData &&
-                Array.isArray(targetFilterData) &&
-                targetFilterData.length
-              ) {
-                // 如果搜索父级里面和子级含有相同的文字，会导致数据有问题，所以条件搜索的情况直接将数据按照一级展示
+              if (targetFilterData && Array.isArray(targetFilterData) && targetFilterData.length) { // 如果搜索父级里面和子级含有相同的文字，会导致数据有问题，所以条件搜索的情况直接将数据按照一级展示
                 targetFilterData.forEach((item) => {
-                  if (!targetKeysData.includes(item.key)) {
-                    // 过滤会将子级也过滤进来 eg [{key:1,label:1,children:[{key:2,label:2},{key:3,label:3}]},{key:2,label:2}],需要将子级{key:2,label:2}过滤
+                  if (!targetKeysData.includes(item.key)) { // 过滤会将子级也过滤进来 eg [{key:1,label:1,children:[{key:2,label:2},{key:3,label:3}]},{key:2,label:2}],需要将子级{key:2,label:2}过滤
                     curTreeData.push(item);
                   }
                   flattenTreeData(item);
@@ -691,22 +631,14 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
         break;
     }
     return resComp;
-  }, [
-    props,
-    compValue,
-    pagination,
-    dataSource,
-    transferLeftTitle,
-    transferRightTitle,
-  ]);
+  }, [props, compValue, pagination, dataSource, transferLeftTitle, transferRightTitle]);
+
 
   const finalRules = useMemo(() => {
-    const rules: any[] = [
-      {
-        required,
-        message: getLocale?.('notEmpty', { name }),
-      },
-    ];
+    const rules: any[] = [{
+      required,
+      message: getLocale?.('notEmpty', { name }),
+    }];
 
     if (min && +min >= 0) {
       const rule: any = {
@@ -732,9 +664,7 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
   return (
     <FormFields
       {...getFieldsProps(props)}
-      wrapperClassName={`${prefixCls} ${prefixCls}-${
-        size === 'large' ? 'large' : 'small'
-      }`}
+      wrapperClassName={`${prefixCls} ${prefixCls}-${size === 'large' ? 'large' : 'small'}`}
       disabled={disabled}
       readOnly={readOnly}
       required={required}
@@ -745,8 +675,7 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
       defaultValue={[]}
     >
       {renderTransferContent}
-    </FormFields>
-  );
+    </FormFields>);
 });
 
 export default MyTransfer;

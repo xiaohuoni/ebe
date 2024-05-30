@@ -13,6 +13,7 @@
         border-color: @error-color;
       }
     }
+
   }
 }
 .ued-inputNumber-wrap {
@@ -25,8 +26,7 @@
       line-height: 22px;
     }
 
-    .@{input-number-prefix-cls}-handler-wrap:hover
-      .@{input-number-prefix-cls}-handler {
+    .@{input-number-prefix-cls}-handler-wrap:hover .@{input-number-prefix-cls}-handler {
       height: 50%;
     }
 
@@ -88,7 +88,7 @@
   }
   &.@{input-number-prefix-cls} {
     border: 1px solid @border-color-base;
-    border-radius: 2px;
+    border-radius: @border-radius-base;
   }
 }
 

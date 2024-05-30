@@ -2,17 +2,12 @@ import { useCallback } from 'react';
 
 export type FuncExpExeCuteType = (
   str: string,
-  params: { key: string; value: any }[],
+  params: ({ key: string; value: any })[],
   execute?: Function,
-  getLocale?: Function,
+  getLocale?: Function
 ) => any;
 
-const funcExpExeCute: FuncExpExeCuteType = (
-  str,
-  params,
-  execute,
-  getLocale?: Function,
-) => {
+const funcExpExeCute: FuncExpExeCuteType = (str, params, execute, getLocale?: Function) => {
   if (!str) return '';
 
   let codeStr = str;
@@ -20,20 +15,18 @@ const funcExpExeCute: FuncExpExeCuteType = (
   try {
     if (params && Array.isArray(params)) {
       const isArrowFunc = codeStr.indexOf('=>') !== -1;
-
+      
       if (isArrowFunc) {
         const [funcDefine, funcBody] = codeStr.split('=>');
         codeStr = `function ${funcDefine} ${funcBody}`;
       }
-
+  
       const codeFunc = execute?.(codeStr);
 
       if (typeof codeFunc !== 'function') {
-        throw new Error(
-          getLocale?.('functionWarning') || '必须为函数声明的表达式',
-        );
+        throw new Error(getLocale?.('functionWarning') || '必须为函数声明的表达式');
       }
-
+  
       let funcParams: any = [];
 
       /**
@@ -43,21 +36,21 @@ const funcExpExeCute: FuncExpExeCuteType = (
        * 所以，需要兼容两种参数格式解析，在这边临时处理强行弥补
        */
       if (!str.match(/function.*\(renderParams\)/g)) {
-        funcParams = params.map((param) => param.value);
+        funcParams = params.map(param => param.value);
       } else {
         const objParam: any = {};
-
-        params.forEach((param) => {
+  
+        params.forEach(param => {
           objParam[param.key] = param.value;
         });
-
+  
         funcParams = objParam;
       }
-
+  
       if (funcParams && Array.isArray(funcParams)) {
         return codeFunc(...funcParams);
       }
-
+  
       return codeFunc(funcParams);
     }
   } catch (error) {
@@ -77,10 +70,7 @@ export const useFuncExpExecute = (executor: Function, getLocale?: any) => {
    * @param {function} execute
    * @returns
    */
-  return useCallback(
-    (str, params) => {
-      return funcExpExeCute(str, params, executor, getLocale);
-    },
-    [executor],
-  );
+  return useCallback((str, params) => {
+    return funcExpExeCute(str, params, executor, getLocale);
+  }, [executor]);
 };

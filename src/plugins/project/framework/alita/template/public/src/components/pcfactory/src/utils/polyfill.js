@@ -11,9 +11,7 @@
  * closest polyfill
  */
 if (!Element.prototype.matches) {
-  Element.prototype.matches =
-    Element.prototype.msMatchesSelector ||
-    Element.prototype.webkitMatchesSelector;
+  Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 }
 
 if (!Element.prototype.closest) {
@@ -39,10 +37,7 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 /**
  * resize polyfill
  */
-if (
-  typeof window.getComputedStyle(document.body).resize === 'undefined' &&
-  window.HTMLTextAreaElement
-) {
+if (typeof window.getComputedStyle(document.body).resize === 'undefined' && window.HTMLTextAreaElement) {
   HTMLTextAreaElement.prototype.setResize = function () {
     // 鍏冪礌
     const textarea = this;
@@ -53,17 +48,13 @@ if (
     // 鏂囨湰鍩熺殑id
     let { id } = textarea;
     if (!id) {
-      id = `r${Math.random()}`.replace('0.', '');
+      id = (`r${Math.random()}`).replace('0.', '');
       textarea.id = id;
     }
     // 鑾峰彇resize灞炴€у€�
     let attrResize = textarea.getAttribute('resize');
 
-    if (
-      typeof attrResize === 'string' &&
-      attrResize !== 'vertical' &&
-      attrResize !== 'horizontal'
-    ) {
+    if (typeof attrResize === 'string' && attrResize !== 'vertical' && attrResize !== 'horizontal') {
       attrResize = 'both';
     }
     if (typeof attrResize !== 'string') {
@@ -78,14 +69,12 @@ if (
       target.appendChild(resize);
       // 涓€浜涘浐瀹氱殑鏍峰紡璁剧疆
       target.style.position = 'relative';
-      target.style.verticalAlign =
-        window.getComputedStyle(textarea).verticalAlign;
+      target.style.verticalAlign = window.getComputedStyle(textarea).verticalAlign;
 
       resize.style.position = 'absolute';
       resize.style.width = '17px';
       resize.style.height = '17px';
-      resize.style.background =
-        "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M765.558 510.004a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0zM765.558 821.46a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0zM422.15700000000004 821.46a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0zM422.15700000000004 510.004a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0zM765.558 202.54a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0zM66.77700000000002 821.46a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0z' fill='%23BFBFBF'/%3E%3C/svg%3E\") no-repeat center";
+      resize.style.background = "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M765.558 510.004a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0zM765.558 821.46a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0zM422.15700000000004 821.46a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0zM422.15700000000004 510.004a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0zM765.558 202.54a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0zM66.77700000000002 821.46a93.65 93.65 0 1 0 191.665 0 93.65 93.65 0 1 0-191.665 0z' fill='%23BFBFBF'/%3E%3C/svg%3E\") no-repeat center";
       resize.style.bottom = '0';
       resize.style.right = '0';
       resize.style.backgroundSize = '12px 12px';
@@ -96,7 +85,7 @@ if (
 
       // 浜嬩欢
       const store = {};
-      resize.addEventListener('mousedown', (event) => {
+      resize.addEventListener('mousedown', event => {
         store.resizing = true;
         store.startX = event.pageX;
         store.startY = event.pageY;
@@ -107,7 +96,7 @@ if (
         event.preventDefault();
       });
 
-      document.addEventListener('mousemove', (event) => {
+      document.addEventListener('mousemove', event => {
         if (!store.resizing) {
           return;
         }
@@ -166,30 +155,22 @@ if (
     this.setResize();
 
     // 鏇存柊涓庡鐞�
-    this.addEventListener(
-      'DOMAttrModified',
-      function () {
-        this.setResize();
-      },
-      false,
-    );
+    this.addEventListener('DOMAttrModified', function () {
+      this.setResize();
+    }, false);
   };
 
   window.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('textarea[resize]').forEach((textarea) => {
+    document.querySelectorAll('textarea[resize]').forEach(textarea => {
       textarea.initResize();
     });
 
     // 鎻掑叆鍐呭鏃跺€欑殑鑷姩鍒濆鍖�
-    document.body.addEventListener('DOMNodeInserted', (event) => {
+    document.body.addEventListener('DOMNodeInserted', event => {
       // 鎻掑叆鐨勫厓绱�
       const { target } = event;
 
-      if (
-        typeof target.matches === 'function' &&
-        target.matches('textarea[resize]') &&
-        (!target.store || !target.store.resize)
-      ) {
+      if (typeof target.matches === 'function' && target.matches('textarea[resize]') && (!target.store || !target.store.resize)) {
         target.initResize();
       }
     });
@@ -205,7 +186,7 @@ if (
   if (typeof exports === 'object') {
     // For Node.js.
     module.exports = factory(root);
-    // eslint-disable-next-line no-undef
+  // eslint-disable-next-line no-undef
   } else if (typeof define === 'function' && define.amd) {
     // For AMD. Register as an anonymous module.
     // eslint-disable-next-line no-undef
@@ -214,7 +195,7 @@ if (
     // For browser globals (not exposing the function separately).
     factory(root);
   }
-})(typeof global !== 'undefined' ? global : this, (root) => {
+}(typeof global !== 'undefined' ? global : this, root => {
   if (root.CSS && root.CSS.escape) {
     return root.CSS.escape;
   }
@@ -232,10 +213,10 @@ if (
     const firstCodeUnit = string.charCodeAt(0);
 
     if (
-      // If the character is the first character and is a `-` (U+002D), and
-      // there is no second character, […]
+    // If the character is the first character and is a `-` (U+002D), and
+    // there is no second character, […]
       length === 1 &&
-      firstCodeUnit === 0x002d
+			firstCodeUnit === 0x002D
     ) {
       return `\\${string}`;
     }
@@ -253,19 +234,19 @@ if (
       }
 
       if (
-        // If the character is in the range [\1-\1F] (U+0001 to U+001F) or is
-        // U+007F, […]
-        (codeUnit >= 0x0001 && codeUnit <= 0x001f) ||
-        codeUnit == 0x007f ||
-        // If the character is the first character and is in the range [0-9]
-        // (U+0030 to U+0039), […]
-        (index == 0 && codeUnit >= 0x0030 && codeUnit <= 0x0039) ||
-        // If the character is the second character and is in the range [0-9]
-        // (U+0030 to U+0039) and the first character is a `-` (U+002D), […]
-        (index == 1 &&
-          codeUnit >= 0x0030 &&
-          codeUnit <= 0x0039 &&
-          firstCodeUnit == 0x002d)
+      // If the character is in the range [\1-\1F] (U+0001 to U+001F) or is
+      // U+007F, […]
+        (codeUnit >= 0x0001 && codeUnit <= 0x001F) || codeUnit == 0x007F ||
+				// If the character is the first character and is in the range [0-9]
+				// (U+0030 to U+0039), […]
+				(index == 0 && codeUnit >= 0x0030 && codeUnit <= 0x0039) ||
+				// If the character is the second character and is in the range [0-9]
+				// (U+0030 to U+0039) and the first character is a `-` (U+002D), […]
+				(
+				  index == 1 &&
+					codeUnit >= 0x0030 && codeUnit <= 0x0039 &&
+					firstCodeUnit == 0x002D
+				)
       ) {
         // https://drafts.csswg.org/cssom/#escape-a-character-as-code-point
         result += `\\${codeUnit.toString(16)} `;
@@ -278,11 +259,11 @@ if (
       // U+005A), or [a-z] (U+0061 to U+007A), […]
       if (
         codeUnit >= 0x0080 ||
-        codeUnit == 0x002d ||
-        codeUnit == 0x005f ||
-        (codeUnit >= 0x0030 && codeUnit <= 0x0039) ||
-        (codeUnit >= 0x0041 && codeUnit <= 0x005a) ||
-        (codeUnit >= 0x0061 && codeUnit <= 0x007a)
+				codeUnit == 0x002D ||
+				codeUnit == 0x005F ||
+				codeUnit >= 0x0030 && codeUnit <= 0x0039 ||
+				codeUnit >= 0x0041 && codeUnit <= 0x005A ||
+				codeUnit >= 0x0061 && codeUnit <= 0x007A
       ) {
         // the character itself
         result += string.charAt(index);
@@ -302,4 +283,4 @@ if (
 
   root.CSS.escape = cssEscape;
   return cssEscape;
-});
+}));

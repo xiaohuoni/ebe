@@ -1,5 +1,5 @@
-import FishRender from './components/FishRender';
 import ReactRender from './components/ReactRender';
+import FishRender from './components/FishRender';
 import VueRender from './components/VueRender';
 
 export const RemoteComponentMap = {

@@ -1,12 +1,8 @@
-import { InputNumber, Slider as AntdSlider } from 'antd';
-import classNames from 'classnames';
 import React, { CSSProperties, useMemo } from 'react';
+import { Slider as AntdSlider, InputNumber } from 'antd';
+import { FormFields, getFieldsProps, useCommonImperativeHandle } from '../utils';
 import CommonIcon from '../Icon';
-import {
-  FormFields,
-  getFieldsProps,
-  useCommonImperativeHandle,
-} from '../utils';
+import classNames from 'classnames';
 
 interface BaseSliderPropsType {
   step: any;
@@ -24,14 +20,14 @@ interface BaseSliderPropsType {
   style: CSSProperties;
   showInput: any;
   getEngineApis?: any;
-  value?: any;
+  value?: any,
   onChange?: (value: any) => void;
   onMouseEnter: any;
   onMouseLeave: any;
   onClick: any;
 }
 
-export interface MySliderProps extends Omit<BaseSliderPropsType, 'options'> {
+export interface MySliderProps extends Omit<BaseSliderPropsType, 'options'>{
   defaultValue: any;
   showMarks: any;
   marks: any;
@@ -95,9 +91,8 @@ const BaseSlider = (props: BaseSliderPropsType) => {
 
   const curValue = useMemo(() => {
     // 单滑动时，设置了默认值，防止滑动到0时，会跳动到默认值上
-    let newVal = typeof value === 'number' && value === 0 ? 0 : value || 0;
-    if (range) {
-      // 双滑块
+    let newVal = (typeof value === 'number' && value === 0) ? 0 : (value || 0);
+    if (range) { // 双滑块
       newVal = Array.isArray(newVal) ? newVal : [newVal, newVal];
     } else if (!range && Array.isArray(newVal)) {
       newVal = newVal[1];
@@ -132,8 +127,7 @@ const BaseSlider = (props: BaseSliderPropsType) => {
             }}
             getEngineApis={getEngineApis}
           />
-        </div>
-      );
+        </div>);
     }
     return undefined;
   };
@@ -145,8 +139,7 @@ const BaseSlider = (props: BaseSliderPropsType) => {
         [`${prefixCls}_wrap`]: true,
         [`${prefixCls}_wrap_vertical ${className}`]: options?.vertical,
         [`${prefixCls}_wrap_icon ${className}`]: !!minIcon || !!maxIcon,
-        [`${prefixCls}_wrap_vertical_icon ${className}`]:
-          (!!minIcon || !!maxIcon) && options?.vertical,
+        [`${prefixCls}_wrap_vertical_icon ${className}`]: (!!minIcon || !!maxIcon) && options?.vertical,
       })}
       style={style}
       {...restProps}
@@ -180,23 +173,25 @@ const BaseSlider = (props: BaseSliderPropsType) => {
               }
             }}
           />
-          {range && (
-            <>
-              <span className={`${prefixCls}_line`} />
-              <InputNumber
-                min={curValue[0]}
-                max={max}
-                step={step}
-                value={curValue[1]}
-                disabled={disabled}
-                onChange={(e: any) => {
-                  if (onChange) {
-                    onChange(range ? [curValue[0], e] : e);
-                  }
-                }}
-              />
-            </>
-          )}
+          {
+            range && (
+              <>
+                <span className={`${prefixCls}_line`} />
+                <InputNumber
+                  min={curValue[0]}
+                  max={max}
+                  step={step}
+                  value={curValue[1]}
+                  disabled={disabled}
+                  onChange={(e: any) => {
+                    if (onChange) {
+                      onChange(range ? [curValue[0], e] : e);
+                    }
+                  }}
+                />
+              </>
+            )
+          }
         </div>
       )}
       {maxIcon && renderIconFont(maxIcon, isMaxIconHL)}
@@ -206,56 +201,18 @@ const BaseSlider = (props: BaseSliderPropsType) => {
 
 const Slider = React.forwardRef<any, MySliderProps>((props, ref) => {
   const {
-    showMarks,
-    marks,
-    stepNull,
-    included,
-    className,
-    style,
-    range = false,
-    defaultValue,
-    direction,
-    step,
-    value,
-    minIcon,
-    maxIcon,
-    max,
-    min,
-    wrapperContainer: WrapperContainer,
-    showInput,
-    showLabel,
-    labelPlacement,
-    draggableTrack,
-    onChange,
-    showWrapperContainer,
-    selfSpan,
-    colSpan,
-    label,
-    tipContent,
-    regexp,
-    message,
-    hidden,
-    compId,
-    tipIcon,
-    tipLocation,
-    titleTip,
-    tipPlacement,
-    labelCol,
-    wrapperCol,
-    colon,
-    fieldName: rawFieldName,
-    onValueRelease,
-    getCompPropMapState,
-    isFormChild,
-    getEngineApis,
+    showMarks, marks, stepNull, included, className, style,
+    range = false, defaultValue, direction, step, value, minIcon, maxIcon, max, min, wrapperContainer: WrapperContainer,
+    showInput, showLabel, labelPlacement, draggableTrack, onChange, showWrapperContainer,
+    selfSpan, colSpan, label, tipContent, regexp, message, hidden, compId, tipIcon, tipLocation, titleTip, tipPlacement,
+    labelCol, wrapperCol, colon, fieldName: rawFieldName, onValueRelease, getCompPropMapState, isFormChild, getEngineApis,
     tipSize,
     tipWidth,
     tipHeight,
     ...restProps
   } = props;
 
-  const { disabled, required, readOnly, formFieldsRef, finalRules } =
-    useCommonImperativeHandle(ref, props);
+  const { disabled, required, readOnly, formFieldsRef, finalRules } = useCommonImperativeHandle(ref, props);
 
   const options = useMemo(() => {
     const params: any = {
@@ -265,8 +222,7 @@ const Slider = React.forwardRef<any, MySliderProps>((props, ref) => {
       reverse: direction === 'reverse',
     };
     const marksAttr = marks?.filter((mark: any) => mark.checked);
-    if (showMarks && marks?.length) {
-      // 显示刻度
+    if (showMarks && marks?.length) { // 显示刻度
       const marksObj: any = {};
       marksAttr.forEach((mark: any) => {
         const { key, unit, fontFamily } = mark || {};
@@ -295,6 +251,7 @@ const Slider = React.forwardRef<any, MySliderProps>((props, ref) => {
     return params;
   }, [range, step, direction, marks, stepNull, draggableTrack]);
 
+
   return (
     <FormFields
       {...getFieldsProps(props)}
@@ -303,20 +260,14 @@ const Slider = React.forwardRef<any, MySliderProps>((props, ref) => {
       disabled={disabled as any}
       readOnly={readOnly}
       rules={finalRules}
-      handleFormValue={(val) => {
+      handleFormValue={val => {
         if (val !== undefined) {
           // 绑定内容有可能返回number类型或者是array类型，全部转换为string类型处理
-          const valueArr = (
-            typeof val === 'number' || val ? val.toString() : val
-          )
-            ?.replace(/\[|]/g, '')
-            ?.split(',')
-            ?.filter((v: any) => !!v);
-          const _valueArr = valueArr?.map((v: any) => (v && Number(v)) || 0);
-          const _value =
-            range && Array.isArray(_valueArr) && _valueArr?.length > 1
-              ? _valueArr.sort((a, b) => a - b)
-              : (_valueArr && _valueArr[0]) || 0;
+          const valueArr = (typeof val === 'number' || val ? val.toString() : val)?.replace(/\[|]/g, '')?.split(',')?.filter((v: any) => !!v);
+          const _valueArr = valueArr?.map((v: any) => ((v && Number(v)) || 0));
+          const _value = range && Array.isArray(_valueArr) && _valueArr?.length > 1
+            ? _valueArr.sort((a, b) => (a - b))
+            : ((_valueArr && _valueArr[0]) || 0);
 
           return _value;
         }

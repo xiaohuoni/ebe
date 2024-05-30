@@ -1,5 +1,5 @@
-import classnames from 'classnames';
 import React, { useMemo } from 'react';
+import classnames from 'classnames';
 
 interface LeftTabDividerProps {
   showTitle?: boolean;
@@ -54,6 +54,7 @@ const LeftTabDivider: React.FC<LeftTabDividerProps> = (props) => {
       >
         {showTitle && dividerText ? <span>{dividerText}</span> : null}
       </div>
+
     </div>
   );
 };

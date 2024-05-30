@@ -1,5 +1,5 @@
-import { useToolTipView } from '../hooks';
 import { TooltiProps } from '../PropsType';
+import { useToolTipView } from '../hooks';
 
 const TooltipViewED: React.FC<TooltiProps> = (props) => {
   const ToolTipViewComp = useToolTipView(props);

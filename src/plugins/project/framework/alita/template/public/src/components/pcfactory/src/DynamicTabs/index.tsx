@@ -1,11 +1,11 @@
-import { LingxiForwardRef } from '@lingxiteam/types';
+import React, { useState, useEffect, useImperativeHandle } from 'react';
 import { Badge, Tabs } from 'antd';
-import classNames from 'classnames';
-import React, { useEffect, useImperativeHandle, useState } from 'react';
-import { useHiddenStyle } from '../utils';
-import CustomModule from '../utils/CustomModule';
 import { DynamicTabsProps, TabsItemProps } from './PropsType';
+import CustomModule from '../utils/CustomModule';
+import classNames from 'classnames';
 import TabPage from './TabPage';
+import { useHiddenStyle } from '../utils';
+import { LingxiForwardRef } from '@lingxiteam/types';
 
 const MyDynamicTabs = LingxiForwardRef<any, DynamicTabsProps>((props, ref) => {
   const {
@@ -38,6 +38,7 @@ const MyDynamicTabs = LingxiForwardRef<any, DynamicTabsProps>((props, ref) => {
 
   const finalStyle = useHiddenStyle(visible, { margin, width, height });
 
+
   useImperativeHandle(ref, () => ({
     // 设置面板选中
     setActiveKey: (key: any) => {
@@ -49,17 +50,15 @@ const MyDynamicTabs = LingxiForwardRef<any, DynamicTabsProps>((props, ref) => {
         let array = myTabItems.concat(tabs);
         // 查询一下新增的面板key是否与旧的相同
         const seen: any = {};
-        array = array.filter((item) => {
-          return seen.hasOwnProperty(item.key)
-            ? false
-            : (seen[item.key] = true);
+        array = array.filter(item => {
+          return seen.hasOwnProperty(item.key) ? false : (seen[item.key] = true);
         });
         setMyTabItems(array);
       }
     },
     // 关闭某些面板
     closeTabs: (tabsKey: any[]) => {
-      const array = myTabItems.filter((item) => !tabsKey?.includes(item.key));
+      const array = myTabItems.filter(item => !tabsKey?.includes(item.key));
       setMyTabItems(array);
     },
     // 重载面板页面
@@ -68,20 +67,17 @@ const MyDynamicTabs = LingxiForwardRef<any, DynamicTabsProps>((props, ref) => {
     },
   }));
 
+
   const getTabItems = (tabsData: any[]) => {
     const items: any[] = [];
     if (Array.isArray(tabsData)) {
       tabsData.forEach((item: TabsItemProps, index) => {
         const { label, key, pagePath, badge, badgeRendering, disabled } = item;
-        let itemChildren = (
-          <div style={{ padding: pagePadding }}>
-            面板未配置页面，请到面板设置中进行配置
-          </div>
-        );
+        let itemChildren = <div style={{ padding: pagePadding }}>面板未配置页面，请到面板设置中进行配置</div>;
         let itemLabel: any = label;
 
         if (pagePath?.length) {
-          itemChildren = (
+          itemChildren =
             <div style={{ padding: pagePadding }}>
               <TabPage
                 getEngineApis={getEngineApis}
@@ -92,8 +88,7 @@ const MyDynamicTabs = LingxiForwardRef<any, DynamicTabsProps>((props, ref) => {
                 index={index}
                 reloadPageKey={reloadPageKey}
               />
-            </div>
-          );
+            </div>;
         }
 
         if (badgeRendering && typeof (item as any)?.jsx === 'object') {
@@ -151,17 +146,14 @@ const MyDynamicTabs = LingxiForwardRef<any, DynamicTabsProps>((props, ref) => {
     const items = getTabItems(myTabItems);
     setFinallyTabItems(items);
   }, [myTabItems, pagePadding, activeKey, reloadPageKey]);
-
+  
   // 设置默认选中项
   useEffect(() => {
     if (defaultActiveKey) {
       setActiveKey(defaultActiveKey);
     } else {
       const activeItem = tabItems?.find((c: TabsItemProps) => {
-        if (
-          (!c.hasOwnProperty('isShow') || c.isShow !== false) &&
-          !c.disabled
-        ) {
+        if ((!c.hasOwnProperty('isShow') || c.isShow !== false) && !c.disabled) {
           return true;
         }
         return false;
@@ -172,11 +164,7 @@ const MyDynamicTabs = LingxiForwardRef<any, DynamicTabsProps>((props, ref) => {
 
   return (
     <div
-      className={classNames(
-        'ued-dynamic-tabs-wrap',
-        'ued-tabs-wrap',
-        className,
-      )}
+      className={classNames('ued-dynamic-tabs-wrap', 'ued-tabs-wrap', className)}
       style={finalStyle}
     >
       <Tabs
@@ -191,15 +179,13 @@ const MyDynamicTabs = LingxiForwardRef<any, DynamicTabsProps>((props, ref) => {
         onChange={(key: string) => {
           setActiveKey(key);
           if (onTabChange) {
-            const item = myTabItems?.find((item) => item.key === String(key));
+            const item = myTabItems?.find(item => item.key === String(key));
             onTabChange(key, item);
           }
         }}
         onEdit={(key: any, action: string) => {
           if (action === 'remove') {
-            const items = myTabItems?.filter(
-              (item) => item.key !== String(key),
-            );
+            const items = myTabItems?.filter(item => item.key !== String(key));
             setMyTabItems(items);
             if (type === 'editable-card' && onTabDeleteChange) {
               onTabDeleteChange(key);

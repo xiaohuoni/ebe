@@ -3,25 +3,25 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
-import { Form, Table } from 'antd';
+import { Table, Form } from 'antd';
 import classnames from 'classnames';
 import React, { useMemo, useRef } from 'react';
 import BodyCell from '../Table/BodyCell';
 import HeaderCell from '../Table/HeaderCell';
+import TableHead from '../Table/TableHead';
+import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
 import {
   useColumns,
-  useCommon,
+  useSelection,
   useDataSource,
   useRowEdit,
+  useCommon,
   useScroll,
-  useSelection,
 } from '../Table/hooks';
-import TableHead from '../Table/TableHead';
+import { useCMDAction, useExpandable } from './hooks';
 import type { MyTableProps } from '../Table/types/prop';
 import { customLocale } from '../utils/Empty/customLocale';
-import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
 import { useLocale } from '../utils/hooks/useLocale';
-import { useCMDAction, useExpandable } from './hooks';
 
 const components = {
   body: {
@@ -48,7 +48,9 @@ const TreeTable = React.forwardRef<any, MyTableProps>((props, ref) => {
   const [form] = Form.useForm();
 
   const engineApis = getEngineApis?.();
-  const { sandBoxSafeRun } = engineApis || {};
+  const {
+    sandBoxSafeRun,
+  } = engineApis || {};
 
   const { getLocale } = useLocale(engineApis);
 
@@ -57,7 +59,11 @@ const TreeTable = React.forwardRef<any, MyTableProps>((props, ref) => {
   const appId = props?.appId || $$componentItem?.appId;
   const pageId = props?.pageId || $$componentItem?.pageId;
 
-  const { currentRowKey, isBordered, innerClassName } = useCommon(props);
+  const {
+    currentRowKey,
+    isBordered,
+    innerClassName,
+  } = useCommon(props);
 
   const {
     innerDataSource,
@@ -122,7 +128,10 @@ const TreeTable = React.forwardRef<any, MyTableProps>((props, ref) => {
     isTree: true,
   });
 
-  const { loading, colServiceData } = useCMDAction({
+  const {
+    loading,
+    colServiceData,
+  } = useCMDAction({
     ref,
     currentRowKey,
     childrenColumnName,
@@ -138,6 +147,7 @@ const TreeTable = React.forwardRef<any, MyTableProps>((props, ref) => {
     onRowSelected,
     setMode,
   });
+
 
   const {
     tableRef,
@@ -166,14 +176,18 @@ const TreeTable = React.forwardRef<any, MyTableProps>((props, ref) => {
     getLocale,
   });
 
-  const { scroll, tableWrapRef, initTableWrapWidthRef, getTableWrapWidth } =
-    useScroll({
-      ...props,
-      initLoadColWidth,
-      finalcolumns,
-      columnWidth,
-      setColumnWidth,
-    });
+  const {
+    scroll,
+    tableWrapRef,
+    initTableWrapWidthRef,
+    getTableWrapWidth,
+  } = useScroll({
+    ...props,
+    initLoadColWidth,
+    finalcolumns,
+    columnWidth,
+    setColumnWidth,
+  });
 
   const superSelectTranslationMapRef: any = useRef(); // 防止state更新不及时，导致翻译无法获取翻译数据
   if (!superSelectTranslationMapRef.current) {
@@ -202,10 +216,7 @@ const TreeTable = React.forwardRef<any, MyTableProps>((props, ref) => {
     const tmpStyle = { ...styles };
     const tableWidth = getTableWrapWidth();
     if (tableWrapRef.current && tableWidth) {
-      const realTableWidth =
-        tableWidth >= initTableWrapWidthRef.current - 10
-          ? initTableWrapWidthRef.current - 9
-          : tableWidth;
+      const realTableWidth = tableWidth >= initTableWrapWidthRef.current - 10 ? initTableWrapWidthRef.current - 9 : tableWidth;
       tmpStyle.width = `${realTableWidth}px`;
     }
     return tmpStyle;
@@ -218,7 +229,10 @@ const TreeTable = React.forwardRef<any, MyTableProps>((props, ref) => {
         // pageId={pageId} // TODO:先注释，不知道什么场景用到
         data-compid={(props as any)?.['data-compid']}
         style={finalStyles}
-        className={classnames('ued-table-wrap', className)}
+        className={classnames(
+          'ued-table-wrap',
+          className,
+        )}
         ref={tableWrapRef}
       >
         <TableHead
@@ -247,7 +261,7 @@ const TreeTable = React.forwardRef<any, MyTableProps>((props, ref) => {
           scroll={scroll}
           onChange={handleTableChange}
           onRow={(record, index?: number) => {
-            return {
+            return ({
               onClick: (event) => {
                 const hasOnRowClick = onRowClick(event, record, index);
                 !hasOnRowClick && onRowSelectClick(record, index);
@@ -255,10 +269,10 @@ const TreeTable = React.forwardRef<any, MyTableProps>((props, ref) => {
               onDoubleClick: (event) => {
                 onRowDoubleClick(event, record, index);
               },
-              onContextMenu: (event) => {},
-              onMouseEnter: (event) => {}, // 鼠标移入行
-              onMouseLeave: (event) => {},
-            };
+              onContextMenu: (event) => { },
+              onMouseEnter: (event) => { }, // 鼠标移入行
+              onMouseLeave: (event) => { },
+            });
           }}
           rowSelection={rowSelection}
           dataSource={innerDataSource}

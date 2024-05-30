@@ -1,5 +1,6 @@
 import { CSSProperties, useMemo } from 'react';
 
+
 /**
  *
  * @param visible 是否显示
@@ -7,11 +8,7 @@ import { CSSProperties, useMemo } from 'react';
  * @param visibility 是否隐藏占位
  * @returns
  */
-const useHiddenStyle = (
-  visible: boolean,
-  style?: CSSProperties,
-  visibility?: boolean,
-) => {
+const useHiddenStyle = (visible: boolean, style?: CSSProperties, visibility?: boolean) => {
   const finalStyle = useMemo<CSSProperties>(() => {
     if (!visible) {
       if (style) {
@@ -26,18 +23,16 @@ const useHiddenStyle = (
         return _style;
       }
       if (visibility) {
-        return {
-          visibility: 'hidden',
-          transform: 'opacity 0.3s ease',
-          opacity: 0,
-        };
+        return { visibility: 'hidden', transform: 'opacity 0.3s ease', opacity: 0 };
       }
       return { display: 'none' };
     }
     return style || {};
   }, [visible, visibility]);
 
+
   return finalStyle;
 };
+
 
 export default useHiddenStyle;

@@ -9,9 +9,9 @@ const useDummyFormContext = () => {
 // 以下是用于嵌套fieldName写法的东西
 const CHECK_ARR = ['[', ']', '.'];
 // 判断当前索引是否在引号的字符串引用范围内
-const inRange = (ind: number, rangearr: any[]) => {
+const inRange = (ind:number, rangearr:any[]) => {
   let result = false;
-  rangearr.find((r) => {
+  rangearr.find(r => {
     if (ind > r.end || ind < r.start) {
       // 如果索引已经超过了区间的范围，那么根本不用考虑
       return false;
@@ -26,13 +26,13 @@ const inRange = (ind: number, rangearr: any[]) => {
   return result;
 };
 // 检查路径。这个方法返回被切分好的标识符数组，空数组代表这个路径是不合法的
-const pathSplit = (str: string) => {
+const pathSplit = (str:string) => {
   const result = [];
 
-  let lastchar: string;
-  let rangestartind: number;
-  let quotechar: string;
-  const quoterange: any[] = [];
+  let lastchar:string;
+  let rangestartind:number;
+  let quotechar:string;
+  const quoterange:any[] = [];
   const strarr = [...str];
   // 第一次遍历，进行简易的词法分析，本次仅额外处理形如[""]的完整字符串强调形式
   strarr.forEach((c, ind) => {
@@ -75,20 +75,16 @@ const pathSplit = (str: string) => {
   return result;
 };
 
-const getObjByPath = (obj: any, path: string) => {
+const getObjByPath = (obj:any, path:string) => {
   if (!obj) return undefined;
   const sp = pathSplit(path);
   // chained: 表示这个值取自一个链式写法 notcompletechain:表示途径属性链不完整，比如一个对象里的a字段对象里没有b字段，但取它的a.b，虽然不会报错（得到undefined），但这属性链条不完整
-  const finalresult = {
-    chained: false,
-    notcompletechain: false,
-    value: undefined,
-  };
+  const finalresult = { chained: false, notcompletechain: false, value: undefined };
 
   let temp = obj;
   if (sp.length > 0) {
     finalresult.chained = true;
-    sp.forEach((k) => {
+    sp.forEach(k => {
       if (!temp || !(k in temp)) {
         finalresult.notcompletechain = true;
       }
@@ -102,7 +98,7 @@ const getObjByPath = (obj: any, path: string) => {
   return finalresult;
 };
 
-const setObjByPath = (obj: any, path: string, val: any) => {
+const setObjByPath = (obj:any, path:string, val:any) => {
   if (!obj) return;
 
   const sp = pathSplit(path);
@@ -114,9 +110,7 @@ const setObjByPath = (obj: any, path: string, val: any) => {
       if (ind < sp.length - 1) {
         if (lastkey && /^\d+$/g.test(k)) {
           // 如果有全数字，只要不是第一层，优先尝试给它处理成数组
-          lastResult[lastkey] = Array.isArray(lastResult[lastkey])
-            ? lastResult[lastkey]
-            : [];
+          lastResult[lastkey] = Array.isArray(lastResult[lastkey]) ? lastResult[lastkey] : [];
           result = lastResult[lastkey]; // 把上一层改为数组
           result[k] = result[k] || {};
           result = result[k];

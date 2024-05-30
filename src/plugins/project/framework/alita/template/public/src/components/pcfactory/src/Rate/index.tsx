@@ -1,13 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { LingxiForwardRef } from '@lingxiteam/types';
-import { Rate as AntdRate } from 'antd';
+import React, { useMemo, useCallback } from 'react';
 import type { RateProps } from 'antd/lib/rate';
-import React, { useCallback, useMemo } from 'react';
-import {
-  FormFields,
-  getFieldsProps,
-  useCommonImperativeHandle,
-} from '../utils';
+import { Rate as AntdRate } from 'antd';
+import { FormFields, getFieldsProps, useCommonImperativeHandle } from '../utils';
+import { LingxiForwardRef } from '@lingxiteam/types';
 import { useLocale } from '../utils/hooks/useLocale';
 
 export interface MyRateProps {
@@ -74,20 +70,27 @@ const BaseRate = (props: BaseRatePropsType) => {
       onChange(newValue);
     }
   };
-  const rendeRrightTool = useCallback(() => {
-    switch (tooltipType) {
-      case 'number':
-        return value;
-      case 'none':
-        return null;
-      // 没有tooltipType代表存量数据，按照自定义展示，向上取整
-      case 'custom':
-      default:
-        return value && tooltips && tooltips.length > value - 1
-          ? tooltips[Math.ceil(+value) - 1]
-          : '';
-    }
-  }, [value, tooltips, tooltipType]);
+  const rendeRrightTool = useCallback(
+    () => {
+      switch (tooltipType) {
+        case 'number':
+          return value;
+        case 'none':
+          return null;
+        // 没有tooltipType代表存量数据，按照自定义展示，向上取整
+        case 'custom':
+        default:
+          return value &&
+            tooltips &&
+            tooltips.length > value - 1 ? (
+              tooltips[Math.ceil(+value) - 1]
+            ) : (
+              ''
+            );
+      }
+    },
+    [value, tooltips, tooltipType],
+  );
   const myTooltips = useMemo(() => {
     switch (tooltipType) {
       case 'number':
@@ -150,17 +153,15 @@ const Rate = LingxiForwardRef<any, MyRateProps>((props, ref) => {
 
   const { getLocale, lang } = useLocale(getEngineApis());
 
-  const { disabled, required, readOnly, formFieldsRef } =
-    useCommonImperativeHandle(ref, props);
+  const { disabled, required, readOnly, formFieldsRef } = useCommonImperativeHandle(ref, props);
 
-  const finalRules = useMemo(
-    () => [
-      {
-        required,
-        message: getLocale?.('notEmpty', { name }),
-      },
-    ],
-    [required, name, lang],
+  const finalRules = useMemo(() => [
+    {
+      required,
+      message: getLocale?.('notEmpty', { name }),
+    },
+  ],
+  [required, name, lang],
   );
 
   return (
@@ -172,14 +173,18 @@ const Rate = LingxiForwardRef<any, MyRateProps>((props, ref) => {
       disabled={disabled}
       readOnly={readOnly}
       rules={finalRules}
-      handleFormValue={(val) => {
+      handleFormValue={val => {
         if (val !== undefined) {
           return Number(val);
         }
         return val;
       }}
     >
-      <BaseRate tooltips={tooltips} onChange={onChange} {...restProps} />
+      <BaseRate
+        tooltips={tooltips}
+        onChange={onChange}
+        {...restProps}
+      />
     </FormFields>
   );
 });

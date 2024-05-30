@@ -1,41 +1,35 @@
-import React, { useRef } from 'react';
-import { useCommonImperativeHandle } from '../utils';
-import RichTextEditorLoad from './loader';
-
+import React from 'react';
+import LcdpUeditorMain from './LcdpUeditorMain';
+import RichTextEditorMain from './RichTextEditorMain';
 import { LingxiForwardRef } from '@lingxiteam/types';
 
-export interface RichTextEditorProps {
-  height: number;
+
+class RichTextEditor extends React.Component<any, {}> {
+  state = {
+    isError: false,
+  };
+
+  constructor(props: any) {
+    super(props);
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
+    this.setState({
+      isError: true,
+    });
+  }
+
+  render(): React.ReactNode {
+    if (this.state.isError) {
+      // @ts-ignore
+      return <RichTextEditorMain {...this.props} />;
+    }
+    // @ts-ignore
+    return <LcdpUeditorMain {...this.props} />;
+  }
 }
 
-const RichTextEditor = LingxiForwardRef<unknown, RichTextEditorProps>(
-  (props, ref) => {
-    const gridViewRef = useRef<any>(null);
-    const richTextRef = useRef<any>(null);
-    const { disabled, required, readOnly, formFieldsRef } =
-      useCommonImperativeHandle(ref, props, {
-        setValue: (val: string) => {
-          if (richTextRef.current) {
-            richTextRef.current.setHTML(val);
-          }
-        },
-      });
 
-    const language = props.getEngineApis().getLocaleEnv();
-
-    return (
-      <RichTextEditorLoad
-        {...props}
-        disabled={disabled}
-        language={language}
-        required={required}
-        readOnly={readOnly}
-        formFieldsRef={formFieldsRef}
-        ref={gridViewRef}
-        richTextRef={richTextRef}
-      />
-    );
-  },
-);
-
-export default RichTextEditor;
+export default LingxiForwardRef<any, any>((props, ref) => {
+  return <RichTextEditor {...props} rootRef={ref} />;
+});

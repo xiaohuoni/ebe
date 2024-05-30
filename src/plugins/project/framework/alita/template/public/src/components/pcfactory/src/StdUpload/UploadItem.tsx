@@ -1,22 +1,18 @@
-import {
-  FileOutlined,
-  LoadingOutlined,
-  PaperClipOutlined,
-} from '@ant-design/icons';
 import React, { Progress, Spin } from 'antd';
+import { LoadingOutlined, PaperClipOutlined, FileOutlined } from '@ant-design/icons';
 import { UploadFile } from 'antd/lib/upload/interface';
-import classNames from 'classnames';
 import { ReactElement, ReactNode } from 'react';
+import classNames from 'classnames';
 // import fileIcon from './assets/fileName.png';
-import defaultIcon from './assets/default.png';
-import pptIcon from './assets/ppt.png';
 import wordIcon from './assets/word.png';
+import pptIcon from './assets/ppt.png';
 import xlsIcon from './assets/xls.png';
+import defaultIcon from './assets/default.png';
 // import imgIcon from './assets/img.png';
-import jsIcon from './assets/js.png';
-import pdfIcon from './assets/pdf.png';
-import txtIcon from './assets/txt.png';
 import zipIcon from './assets/zip.png';
+import pdfIcon from './assets/pdf.png';
+import jsIcon from './assets/js.png';
+import txtIcon from './assets/txt.png';
 import './uploadItem.less';
 
 interface UploadItemProps {
@@ -53,28 +49,12 @@ const iconMap: any = {
   pdf: pdfIcon,
 };
 
-const imageFormat = [
-  'jpeg',
-  'jpg',
-  'svg',
-  'png',
-  'gif',
-  'webp',
-  'avif',
-  'apng',
-];
+const imageFormat = ['jpeg', 'jpg', 'svg', 'png', 'gif', 'webp', 'avif', 'apng'];
 
 const prefix = 'ued-stdUpload-item';
 // 目前只有卡片式图片（picture-card）上传会展示预览图标，重写上传项样式，展示预览图标
 const UploadItem = (props: UploadItemProps) => {
-  const {
-    file,
-    actions,
-    showUploadList,
-    listType,
-    originNode,
-    onFileNameClick,
-  } = props || {};
+  const { file, actions, showUploadList, listType, originNode, onFileNameClick } = props || {};
   const { status, percent, fileName = '', originFileObj } = file || {};
   const {
     showDownloadIcon,
@@ -87,15 +67,15 @@ const UploadItem = (props: UploadItemProps) => {
 
   const renderIcon = () => {
     if (status === 'error') {
-      return listType === 'picture' ? (
-        <FileOutlined rev="" />
-      ) : (
-        <PaperClipOutlined rev="" />
-      );
+      return listType === 'picture' ? <FileOutlined rev="" /> : <PaperClipOutlined rev="" />;
     }
     if (status !== 'uploading') {
+      let imgSource = defaultIcon;
+      if (/\.(jpg|jpeg|png|gif|bmp|GIF|JPG|PNG)$/.test(file.name)) {
+        imgSource = file.thumbUrl || file.url;
+      }
       return listType === 'picture' ? (
-        <img src={file.thumbUrl || file.url} alt={file.name} />
+        <img src={imgSource} alt={file.name} />
       ) : (
         <PaperClipOutlined rev="" />
       );
@@ -105,13 +85,7 @@ const UploadItem = (props: UploadItemProps) => {
 
   const renderItem = () => {
     return (
-      <div
-        className={classNames(
-          prefix,
-          `${prefix}-${listType}`,
-          `${prefix}-${status}`,
-        )}
-      >
+      <div className={classNames(prefix, `${prefix}-${listType}`, `${prefix}-${status}`)}>
         <Spin
           indicator={<LoadingOutlined spin rev="" />}
           className={`${prefix}-loading`}
@@ -126,10 +100,7 @@ const UploadItem = (props: UploadItemProps) => {
               e?.preventDefault();
               if (typeof onFileNameClick === 'function') {
                 onFileNameClick(file);
-              } else if (
-                showPreviewIcon &&
-                typeof actions?.preview === 'function'
-              ) {
+              } else if (showPreviewIcon && typeof actions?.preview === 'function') {
                 actions.preview();
               }
             }}
@@ -150,30 +121,17 @@ const UploadItem = (props: UploadItemProps) => {
         </div>
         <div className={`${prefix}-action`}>
           {showPreviewIcon && status === 'done' && (
-            <span
-              className={`${prefix}-action-icon`}
-              onClick={actions.preview as any}
-            >
-              {typeof previewIcon === 'function'
-                ? previewIcon(file)
-                : previewIcon}
+            <span className={`${prefix}-action-icon`} onClick={actions.preview as any}>
+              {typeof previewIcon === 'function' ? previewIcon(file) : previewIcon}
             </span>
           )}
           {showDownloadIcon && status === 'done' && (
-            <span
-              className={`${prefix}-action-icon`}
-              onClick={actions.download as any}
-            >
-              {typeof downloadIcon === 'function'
-                ? downloadIcon(file)
-                : downloadIcon}
+            <span className={`${prefix}-action-icon`} onClick={actions.download as any}>
+              {typeof downloadIcon === 'function' ? downloadIcon(file) : downloadIcon}
             </span>
           )}
           {showRemoveIcon && (
-            <span
-              className={`${prefix}-action-icon`}
-              onClick={actions.remove as any}
-            >
+            <span className={`${prefix}-action-icon`} onClick={actions.remove as any}>
               {typeof removeIcon === 'function' ? removeIcon(file) : removeIcon}
             </span>
           )}
@@ -210,35 +168,18 @@ const UploadItem = (props: UploadItemProps) => {
           <img src={icon} alt="" className="std-upload-item-info-icon" />
           <span className="std-upload-item-info-actions">
             {showPreviewIcon && (
-              <a
-                className={`${prefix}-action-icon`}
-                onClick={actions.preview as any}
-              >
-                {typeof previewIcon === 'function'
-                  ? previewIcon(file)
-                  : previewIcon}
+              <a className={`${prefix}-action-icon`} onClick={actions.preview as any}>
+                {typeof previewIcon === 'function' ? previewIcon(file) : previewIcon}
               </a>
             )}
             {showDownloadIcon && (
-              <span
-                className={`${prefix}-action-icon`}
-                style={{ color: 'hsla(0,0%,100%,.85)' }}
-                onClick={actions.download as any}
-              >
-                {typeof downloadIcon === 'function'
-                  ? downloadIcon(file)
-                  : downloadIcon}
+              <span className={`${prefix}-action-icon`} style={{ color: 'hsla(0,0%,100%,.85)' }} onClick={actions.download as any}>
+                {typeof downloadIcon === 'function' ? downloadIcon(file) : downloadIcon}
               </span>
             )}
             {showRemoveIcon && (
-              <span
-                className={`${prefix}-action-icon`}
-                style={{ color: 'hsla(0,0%,100%,.85)' }}
-                onClick={actions.remove as any}
-              >
-                {typeof removeIcon === 'function'
-                  ? removeIcon(file)
-                  : removeIcon}
+              <span className={`${prefix}-action-icon`} style={{ color: 'hsla(0,0%,100%,.85)' }} onClick={actions.remove as any}>
+                {typeof removeIcon === 'function' ? removeIcon(file) : removeIcon}
               </span>
             )}
           </span>

@@ -1,5 +1,5 @@
-import { Col } from 'antd';
 import React, { CSSProperties, FC } from 'react';
+import { Col } from 'antd';
 import { getTestHelperProps } from '../hooks/useTestHelper';
 
 export interface WrapperContainerProps {
@@ -17,7 +17,7 @@ export interface WrapperContainerProps {
   disabled: boolean;
 }
 
-const WrapperContainer: FC<WrapperContainerProps> = (props) => {
+const WrapperContainer: FC<WrapperContainerProps> = props => {
   const {
     labelAlign,
     colon,
@@ -34,16 +34,13 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
   // 配合测试的属性
   const testProps = getTestHelperProps({ fieldName, disabled });
 
+
   if (!showWrapperContainer && !isFormRootChild) {
     return <>{children}</>;
   }
 
   if (!showWrapperContainer && isFormRootChild) {
-    return (
-      <Col {...testProps} {...props.colProps}>
-        {children}
-      </Col>
-    );
+    return <Col {...testProps} {...props.colProps}>{children}</Col>;
   }
 
   if (isFormRootChild) {
@@ -66,16 +63,10 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
             {props.label && (
               <span>
                 {required && (
-                  <span
-                    style={{ fontSize: 12, marginRight: 4, color: '#ff4d4f' }}
-                  >
-                    *
-                  </span>
+                  <span style={{ fontSize: 12, marginRight: 4, color: '#ff4d4f' }}>*</span>
                 )}
                 {props.label}
-                <span style={{ marginLeft: 2, marginRight: 8 }}>
-                  {colon ? ':' : ''}
-                </span>
+                <span style={{ marginLeft: 2, marginRight: 8 }}>{colon ? ':' : ''}</span>
               </span>
             )}
           </div>
@@ -103,15 +94,9 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
       >
         {props.label && (
           <span>
-            {required && (
-              <span style={{ fontSize: 12, marginRight: 4, color: '#ff4d4f' }}>
-                *
-              </span>
-            )}
+            {required && <span style={{ fontSize: 12, marginRight: 4, color: '#ff4d4f' }}>*</span>}
             {props.label}
-            <span style={{ marginLeft: 2, marginRight: 8 }}>
-              {colon ? ':' : ''}
-            </span>
+            <span style={{ marginLeft: 2, marginRight: 8 }}>{colon ? ':' : ''}</span>
           </span>
         )}
       </div>

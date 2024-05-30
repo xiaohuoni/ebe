@@ -1,16 +1,9 @@
-import { LingxiForwardRef } from '@lingxiteam/types';
-import { Spin } from 'antd';
-import React, {
-  CSSProperties,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
-import { useHiddenStyle, useListenProps } from '../utils';
-import { useLocale } from '../utils/hooks/useLocale';
+import React, { CSSProperties, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import useBackgroundStyle from './useBackgroundStyle';
+import { Spin } from 'antd';
+import { useHiddenStyle, useListenProps } from '../utils';
+import { LingxiForwardRef } from '@lingxiteam/types';
+import { useLocale } from '../utils/hooks/useLocale';
 
 export interface MyViewProps {
   style: React.CSSProperties;
@@ -23,7 +16,8 @@ export interface MyViewProps {
   visibility?: boolean;
 }
 
-const View = LingxiForwardRef<any, MyViewProps>((props: any, ref) => {
+
+const View = LingxiForwardRef<any, MyViewProps>((props:any, ref) => {
   const {
     children,
     style,
@@ -41,15 +35,10 @@ const View = LingxiForwardRef<any, MyViewProps>((props: any, ref) => {
 
   const { getLocale, lang } = useLocale(engineApis);
 
-  const { backgroundStyle } = useBackgroundStyle({
-    engineApis,
-    backgroundType,
-    appId: restProps?.appId,
-    mode: 'engine',
-  });
+  const { backgroundStyle } = useBackgroundStyle({ engineApis, backgroundType, appId: restProps?.appId, mode: 'engine' });
 
   const finalStyle = useHiddenStyle(visible, style, visibility);
-
+  
   const containerRef = useRef<any>();
   const loadingRef = useRef<any>();
 
@@ -129,20 +118,16 @@ const View = LingxiForwardRef<any, MyViewProps>((props: any, ref) => {
     >
       {children}
       {/* loading 定位元素 */}
-      {loading && (
-        <div
-          style={{
-            width: 0,
-            height: 0,
-            position: 'relative',
-            backgroundColor: 'transparent',
-            visibility: loading ? 'visible' : 'hidden',
-          }}
-          ref={loadingRef}
-        >
-          {renderLoadingComp}
-        </div>
-      )}
+      {
+        loading && (
+          <div
+            style={{ width: 0, height: 0, position: 'relative', backgroundColor: 'transparent', visibility: loading ? 'visible' : 'hidden' }}
+            ref={loadingRef}
+          >
+            {renderLoadingComp}
+          </div>
+        )
+      }
     </div>
   );
 });

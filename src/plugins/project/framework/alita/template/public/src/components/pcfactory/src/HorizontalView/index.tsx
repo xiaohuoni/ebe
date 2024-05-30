@@ -2,14 +2,11 @@ import React from 'react';
 import { useHiddenStyle } from '../utils';
 
 export interface HorizontalViewProps
-  extends React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
-  > {
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   visible?: boolean;
 }
 
-const HorizontalView: React.FC<HorizontalViewProps> = (props) => {
+const HorizontalView: React.FC<HorizontalViewProps> = props => {
   const { children, style, className, visible = true } = props;
 
   const finalStyle = useHiddenStyle(visible, style);
@@ -19,11 +16,7 @@ const HorizontalView: React.FC<HorizontalViewProps> = (props) => {
   // }
   return (
     // @ts-ignore
-    <div
-      style={finalStyle}
-      className={className}
-      data-compid={props?.['data-compid']}
-    >
+    <div style={finalStyle} className={className} data-compid={props?.['data-compid']}>
       {children}
     </div>
   );

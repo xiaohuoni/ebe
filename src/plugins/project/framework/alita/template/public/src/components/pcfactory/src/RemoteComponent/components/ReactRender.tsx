@@ -1,9 +1,10 @@
-import { LingXiFC } from '@lingxiteam/types';
-import { createRequires } from '@paciolan/remote-component/dist/createRequires';
-import { createUseRemoteComponent } from '@paciolan/remote-component/dist/hooks/useRemoteComponent';
-import { Empty, Spin } from 'antd';
 import React from 'react';
+import { Empty, Spin } from 'antd';
+import { createUseRemoteComponent } from '@paciolan/remote-component/dist/hooks/useRemoteComponent';
+import { createRequires } from '@paciolan/remote-component/dist/createRequires';
 import RemoteCompConfig from '../remote-component.config';
+import { LingXiFC } from '@lingxiteam/types';
+import { useDynamicData } from '../../utils';
 
 export const getUseRemoteComponent = (config: any) => {
   const requires = createRequires(() => config.resolve);
@@ -18,11 +19,18 @@ export interface MyRemoteComponentProps {
 
 // const prefixCls = 'remoteComponent';
 const RemoteComponent: LingXiFC<MyRemoteComponentProps> = (props) => {
-  const { url, customProps, getEngineApis, ...restProps } = props;
+  const {
+    url,
+    customProps,
+    getEngineApis,
+    ...restProps
+  } = props;
 
   const engineApis = getEngineApis?.() || {};
 
   const useRemoteComponentInst = props.useRemoteComponent || useRemoteComponent;
+
+  const dynamicDataContext = useDynamicData();
 
   const [loading, err, Component] = useRemoteComponentInst(url);
 
@@ -34,14 +42,9 @@ const RemoteComponent: LingXiFC<MyRemoteComponentProps> = (props) => {
     if (err) {
       console.warn('自定义组件报错:', err);
     }
-    return (
-      <Empty
-        description={engineApis?.getLocale?.('RemoteComponent.fail')}
-        image={Empty.PRESENTED_IMAGE_SIMPLE}
-      />
-    );
+    return <Empty description={engineApis?.getLocale?.('RemoteComponent.fail')} image={Empty.PRESENTED_IMAGE_SIMPLE} />;
   }
-  return <Component {...restProps} {...customProps} />;
+  return <Component {...restProps} {...customProps} $lxApi={{ form: dynamicDataContext.form }} />;
 };
 
 export default RemoteComponent;

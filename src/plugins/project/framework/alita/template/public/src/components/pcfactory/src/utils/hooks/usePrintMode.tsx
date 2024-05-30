@@ -1,12 +1,9 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import { useCreation, useMemoizedFn, useUpdateEffect } from '../ahooks';
 
 const CSS_SELECTOR_KEY = 'data-print-compid';
 
-export const PrintContainer = (props: {
-  children: any;
-  containerProps: any;
-}) => {
+export const PrintContainer = (props: { children: any; containerProps: any }) => {
   const { children, containerProps } = props;
 
   return (
@@ -30,7 +27,7 @@ export const usePrintMode = (id: string) => {
     };
   }, []);
 
-  const resolveFunc = useRef<{ resolve?: Function; reject?: Function }>();
+  const resolveFunc = useRef<{ resolve?: Function, reject?: Function }>();
 
   const afterPrint = useMemoizedFn(() => {
     setShowPrintContainer(false);
@@ -51,11 +48,7 @@ export const usePrintMode = (id: string) => {
   };
 
   useUpdateEffect(() => {
-    if (
-      showPrintContainer &&
-      resolveFunc.current?.resolve &&
-      typeof resolveFunc.current.resolve === 'function'
-    ) {
+    if (showPrintContainer && resolveFunc.current?.resolve && typeof resolveFunc.current.resolve === 'function') {
       const { resolve } = resolveFunc.current;
       // 返回当前打印控件对应选择器
       resolve({

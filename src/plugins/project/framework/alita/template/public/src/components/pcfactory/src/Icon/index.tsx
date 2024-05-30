@@ -1,7 +1,8 @@
-import { LingxiForwardRef } from '@lingxiteam/types';
 import { useImperativeHandle, useMemo, useState } from 'react';
 import { useIcon } from './hooks';
 import type { IconProps } from './PropsType';
+import { LingxiForwardRef } from '@lingxiteam/types';
+
 
 const MyIcon = LingxiForwardRef<any, IconProps>((props, ref) => {
   const {
@@ -21,9 +22,9 @@ const MyIcon = LingxiForwardRef<any, IconProps>((props, ref) => {
 
   const myClassName = useMemo(() => {
     if ($$componentItem?.type === 'Icon') {
-      /**
-       * 用于主题，如果是单独使用的是，在className 增加一个变量，防止在主题设置图标的时候，影响影响引用图标的其他控件
-       */
+    /**
+    * 用于主题，如果是单独使用的是，在className 增加一个变量，防止在主题设置图标的时候，影响影响引用图标的其他控件
+   */
       return `pcFactory-icon ${className || ''}`;
     }
     return className;
@@ -37,8 +38,7 @@ const MyIcon = LingxiForwardRef<any, IconProps>((props, ref) => {
 
   const getFileIconUrl = () => {
     return {
-      getFileIconUrlByCode: (fileCode: string) =>
-        engineApis?.service?.getAppFileUrlByFileCode(fileCode, { appId }),
+      getFileIconUrlByCode: (fileCode: string) => engineApis?.service?.getAppFileUrlByFileCode(fileCode, { appId }),
     };
   };
 

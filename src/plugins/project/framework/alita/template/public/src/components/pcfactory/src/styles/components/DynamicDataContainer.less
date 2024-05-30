@@ -1,0 +1,16 @@
+@import (reference) '../theme/variables/antdVariables.less';
+
+.ued-dynamic-data-card {
+  border-radius: 8px;
+  overflow: hidden;
+  &.ued-card.@{ant-prefix}-card-bordered {
+      border: 1px solid fade(@primary-color, 20%);
+      border-color: fade(@primary-color, 20%);
+      padding: 0;
+    }
+    &.@{ant-prefix}-card-bordered .@{ant-prefix}-card-head {
+      border-color: fade(@primary-color, 20%);
+      border-bottom: 1px solid fade(@primary-color, 20%);
+      background-color: fade(@primary-color, 8%);
+    }
+  }

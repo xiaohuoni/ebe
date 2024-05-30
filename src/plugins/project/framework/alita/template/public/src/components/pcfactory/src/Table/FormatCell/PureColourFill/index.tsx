@@ -11,13 +11,19 @@ export interface PureColourFillProps {
 const pureColourFillClassName = 'ued-table-cell-pureColourFill';
 
 const PureColourFill: React.FC<PureColourFillProps> = (props) => {
-  const { fontColor, backgroundColor, content, onClick } = props;
+  const {
+    fontColor,
+    backgroundColor,
+    content,
+    onClick,
+  } = props;
 
   return (
     <div
-      className={classNames(pureColourFillClassName, {
-        [`${pureColourFillClassName}-click`]: !!onClick,
-      })}
+      className={classNames(
+        pureColourFillClassName,
+        { [`${pureColourFillClassName}-click`]: !!onClick }
+      )}
       style={{
         backgroundColor,
         color: fontColor,

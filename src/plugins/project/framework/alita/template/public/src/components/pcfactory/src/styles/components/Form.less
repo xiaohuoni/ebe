@@ -8,7 +8,7 @@
   .form-tips .@{form-prefix-cls}-item-with-help {
     margin-bottom: 14px;
   }
-
+  
   .@{form-prefix-cls}-item {
     // height: 100%;
     margin-bottom: 0;
@@ -78,6 +78,12 @@
       }
     }
   }
+
+  .@{ant-prefix}-form-item-noLabel {
+    & > .@{ant-prefix}-col-16 {
+      max-width: initial;
+    }
+  }
 }
 
 // ================================================================
@@ -138,9 +144,7 @@
       }
 
       // Required mark
-      &.@{form-item-prefix-cls}-required:not(
-          .@{form-item-prefix-cls}-required-mark-optional
-        )::before {
+      &.@{form-item-prefix-cls}-required:not(.@{form-item-prefix-cls}-required-mark-optional)::before {
         display: inline-block;
         margin-right: 4px;
         color: @label-required-color;
@@ -183,8 +187,7 @@
 
         position: relative;
         top: -0.5px;
-        margin: 0 @form-item-label-colon-margin-right 0
-          @form-item-label-colon-margin-left;
+        margin: 0 @form-item-label-colon-margin-right 0 @form-item-label-colon-margin-left;
       }
 
       &.@{form-item-prefix-cls}-no-colon::after {
@@ -201,9 +204,7 @@
     flex-direction: column;
     flex-grow: 1;
 
-    &:first-child:not([class^=~"'@{ant-prefix}-col-'"]):not(
-        [class*=~"' @{ant-prefix}-col-'"]
-      ) {
+    &:first-child:not([class^=~"'@{ant-prefix}-col-'"]):not([class*=~"' @{ant-prefix}-col-'"]) {
       width: 100%;
     }
 

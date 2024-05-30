@@ -3,10 +3,7 @@ import { LoadingComponennt } from '../utils/LoaderHelper';
 
 const UploadLoader = Loadable({
   // eslint-disable-next-line func-call-spacing
-  loader: async () =>
-    (await import(
-      /* webpackChunkName: factory-Upload */ './Upload'
-    )) as unknown as React.ComponentType<any>,
+  loader: async () => (await import /* webpackChunkName: 'factory-Upload' */('./Upload')) as unknown as React.ComponentType<any>,
   loading: LoadingComponennt,
 });
 

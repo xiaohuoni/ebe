@@ -1,13 +1,13 @@
 /* eslint-disable no-eval */
-import type { ComponentItemType, EngineApisType } from '@lingxiteam/types';
 import { Col, Popover, Row } from 'antd';
 import classnames from 'classnames';
 import React, { useImperativeHandle, useMemo } from 'react';
-import { useListenProps } from '../utils';
-import CustomModule from '../utils/CustomModule';
 import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
-import { useLocale } from '../utils/hooks/useLocale';
+import { useListenProps } from '../utils';
 import getLabelSizeMode from './utils/getLabelSizeMode';
+import type { ComponentItemType, EngineApisType } from '@lingxiteam/types';
+import { useLocale } from '../utils/hooks/useLocale';
+import CustomModule from '../utils/CustomModule';
 
 export interface MyDescriptionProps {
   visible?: boolean;
@@ -25,7 +25,7 @@ export interface MyDescriptionProps {
   appId?: string;
   $$componentItem: ComponentItemType;
   getEngineApis: () => EngineApisType;
-  layout?: 'horizontal' | 'vertical';
+  layout?: 'horizontal' | 'vertical',
   labelSize?: any;
 }
 
@@ -51,9 +51,7 @@ const Description = React.forwardRef<any, MyDescriptionProps>((props, ref) => {
   } = props;
 
   const [dataSource, setDataSource] = useListenProps(props.dataSource || {});
-  const [colServiceData, setColServiceData] = useListenProps(
-    props.colServiceData,
-  );
+  const [colServiceData, setColServiceData] = useListenProps(props.colServiceData);
 
   useImperativeHandle(ref, () => ({
     clearData() {
@@ -72,7 +70,11 @@ const Description = React.forwardRef<any, MyDescriptionProps>((props, ref) => {
 
   const engineApis = getEngineApis?.() || {};
   const { getLocale } = useLocale(engineApis);
-  const { sandBoxSafeRun, renderPopover, sandBoxLoadModule } = engineApis;
+  const {
+    sandBoxSafeRun,
+    renderPopover,
+    sandBoxLoadModule,
+  } = engineApis;
 
   const funcExpExecute = useFuncExpExecute(sandBoxSafeRun, getLocale);
 
@@ -147,12 +149,7 @@ const Description = React.forwardRef<any, MyDescriptionProps>((props, ref) => {
     const columnRows: any[] = [[]];
     let currentRows = columnRows[0];
     newColumns.forEach((c, i) => {
-      const {
-        staticDataSource,
-        staticService,
-        editContent,
-        tagLayout = layout,
-      } = c;
+      const { staticDataSource, staticService, editContent, tagLayout = layout } = c;
       // 布局方式前后列不同时，换行展示
       if (preLayout !== tagLayout && preLayout) {
         const newRows: any[] = [];
@@ -192,9 +189,7 @@ const Description = React.forwardRef<any, MyDescriptionProps>((props, ref) => {
                 .map((n) => {
                   // 弱等保证 Number 与 String 可比较
                   // eslint-disable-next-line eqeqeq
-                  const obj = colServiceData[needtranskey].find(
-                    (o: any) => o[valueKey] == n,
-                  );
+                  const obj = colServiceData[needtranskey].find((o: any) => o[valueKey] == n);
                   return obj ? obj[labelKey] : n;
                 })
                 .join(',');
@@ -204,9 +199,7 @@ const Description = React.forwardRef<any, MyDescriptionProps>((props, ref) => {
 
         // 如果配置了换行符则根据换行符进行切割
         if (lineBreak && typeof text === 'string') {
-          return content
-            .split(lineBreak)
-            .map((_c: any, _i: any) => <div key={_i}>{_c}</div>);
+          return content.split(lineBreak).map((_c: any, _i: any) => <div key={_i}>{_c}</div>);
         }
         // 自定义渲染函数
         if (c.jsx) {
@@ -260,8 +253,10 @@ const Description = React.forwardRef<any, MyDescriptionProps>((props, ref) => {
                 const pageRule = page.rule;
                 if (pageRule) {
                   if (typeof pageRule === 'string') {
-                    page.rule = (list: any) =>
-                      sandBoxSafeRun(pageRule, { list });
+                    page.rule = (list: any) => sandBoxSafeRun(
+                      pageRule,
+                      { list }
+                    );
                   }
 
                   if (typeof page?.rule === 'function') {
@@ -278,8 +273,10 @@ const Description = React.forwardRef<any, MyDescriptionProps>((props, ref) => {
                     const stateParamRule = _c?.stateParam;
                     if (stateParamRule) {
                       if (typeof stateParamRule === 'string') {
-                        _c.stateParam = (list: any) =>
-                          sandBoxSafeRun(stateParamRule, { list });
+                        _c.stateParam = (list: any) => sandBoxSafeRun(
+                          stateParamRule,
+                          { list }
+                        );
                       }
 
                       if (typeof _c.stateParam === 'function') {
@@ -303,19 +300,16 @@ const Description = React.forwardRef<any, MyDescriptionProps>((props, ref) => {
               });
             } else if (options.content) {
               // 自定义
-              const {
-                maxWidth,
-                content: popContent,
-                rule: popRule,
-                ...resOptions
-              } = options;
+              const { maxWidth, content: popContent, rule: popRule, ...resOptions } = options;
 
               // 隐藏规则
               try {
                 if (popRule) {
                   if (typeof popRule === 'string') {
-                    options.rule = (list: any) =>
-                      sandBoxSafeRun(popRule, { list });
+                    options.rule = (list: any) => sandBoxSafeRun(
+                      popRule,
+                      { list }
+                    );
                   }
 
                   if (
@@ -333,8 +327,10 @@ const Description = React.forwardRef<any, MyDescriptionProps>((props, ref) => {
               try {
                 if (popContent) {
                   if (typeof popContent === 'string') {
-                    options.content = (list: any) =>
-                      sandBoxSafeRun(popContent, { list });
+                    options.content = (list: any) => sandBoxSafeRun(
+                      popContent,
+                      { list }
+                    );
                   }
 
                   if (typeof options.content === 'function') {
@@ -347,10 +343,7 @@ const Description = React.forwardRef<any, MyDescriptionProps>((props, ref) => {
 
               content = (
                 <Popover
-                  overlayStyle={{
-                    maxWidth: maxWidth || 'none',
-                    wordBreak: 'break-word',
-                  }}
+                  overlayStyle={{ maxWidth: maxWidth || 'none', wordBreak: 'break-word' }}
                   content={newPopContent}
                   {...resOptions}
                   arrowPointAtCenter
@@ -366,15 +359,7 @@ const Description = React.forwardRef<any, MyDescriptionProps>((props, ref) => {
       preLayout = tagLayout;
     });
     return columnRows;
-  }, [
-    columns,
-    colServiceData,
-    lineBreak,
-    _dataSource,
-    layout,
-    labelWidth,
-    labelSize,
-  ]);
+  }, [columns, colServiceData, lineBreak, _dataSource, layout, labelWidth, labelSize]);
 
   return visible ? (
     <div
@@ -384,25 +369,13 @@ const Description = React.forwardRef<any, MyDescriptionProps>((props, ref) => {
       {finalColumnsRows.map((cols: any) => (
         <Row
           // type="flex"
-          className={classnames(
-            descriptionPrefixWrapper,
-            bordered ? 'border' : '',
-          )}
+          className={classnames(descriptionPrefixWrapper, bordered ? 'border' : '')}
         >
           {cols.map((c: any) => {
             // tagSize表示多单位的标签宽度，目前包括px，栅格和以当前列数为基准的占比，修改时旧的tagWidth会被清空
-            const {
-              key,
-              dataIndex,
-              render,
-              span,
-              label,
-              tagWidth,
-              tagLayout = layout,
-            } = c;
+            const { key, dataIndex, render, span, label, tagWidth, tagLayout = layout } = c;
             const value = _dataSource[dataIndex];
-            const { width = 'auto', contentWidth } =
-              getLabelSizeMode({ ...c, labelSize, labelWidth, colSpan }) || {};
+            const { width = 'auto', contentWidth } = getLabelSizeMode({ ...c, labelSize, labelWidth, colSpan }) || {};
             return (
               <Col
                 className={classnames(

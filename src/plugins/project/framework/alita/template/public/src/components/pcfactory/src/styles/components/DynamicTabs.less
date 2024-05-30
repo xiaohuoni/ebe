@@ -1,6 +1,7 @@
 @import (reference) '../theme/variables/antdVariables.less';
 @tab-prefix-cls: ~'@{ant-prefix}-tabs';
 
+
 .ued-dynamic-tabs-wrap {
   height: 100%;
 
@@ -16,7 +17,7 @@
       display: flex;
       flex: none;
       align-items: center;
-
+  
       .@{tab-prefix-cls}-nav-wrap {
         position: relative;
         display: inline-block;
@@ -26,7 +27,7 @@
         overflow: hidden;
         white-space: nowrap;
         transform: translate(0); // Fix chrome render bug
-
+  
         // >>>>> Ping shadow
         &::before,
         &::after {
@@ -38,31 +39,31 @@
           pointer-events: none;
         }
       }
-
+  
       .@{tab-prefix-cls}-nav-list {
         position: relative;
         display: flex;
         transition: transform @animation-duration-slow;
       }
-
+  
       // >>>>>>>> Operations
       .@{tab-prefix-cls}-nav-operations {
         display: flex;
         align-self: stretch;
-
+  
         &-hidden {
           position: absolute;
           visibility: hidden;
           pointer-events: none;
         }
       }
-
+  
       .@{tab-prefix-cls}-nav-more {
         position: relative;
         padding: @tabs-card-horizontal-padding;
         background: transparent;
         border: 0;
-
+  
         &::after {
           position: absolute;
           right: 0;
@@ -73,7 +74,7 @@
           content: '';
         }
       }
-
+  
       .@{tab-prefix-cls}-nav-add {
         min-width: @tabs-card-height;
         margin-left: @tabs-card-gutter;
@@ -84,22 +85,22 @@
         outline: none;
         cursor: pointer;
         transition: all @animation-duration-slow @ease-in-out;
-
+  
         &:hover {
           color: @tabs-hover-color;
         }
-
+  
         &:active,
         &:focus {
           color: @tabs-active-color;
         }
       }
     }
-
+  
     &-extra-content {
       flex: none;
     }
-
+  
     &-centered {
       > .@{tab-prefix-cls}-nav,
       > div > .@{tab-prefix-cls}-nav {
@@ -110,14 +111,14 @@
         }
       }
     }
-
+  
     // ============================ InkBar ============================
     &-ink-bar {
       position: absolute;
       background: @tabs-ink-bar-color;
       pointer-events: none;
     }
-
+  
     // ============================= Tabs =============================
     &-tab {
       position: relative;
@@ -129,7 +130,7 @@
       border: 0;
       outline: none;
       cursor: pointer;
-
+  
       &-btn,
       &-remove {
         &:focus,
@@ -137,12 +138,12 @@
           color: @tabs-active-color;
         }
       }
-
+  
       &-btn {
         outline: none;
         transition: all 0.3s;
       }
-
+  
       &-remove {
         flex: none;
         margin-right: -@margin-xss;
@@ -154,26 +155,26 @@
         outline: none;
         cursor: pointer;
         transition: all @animation-duration-slow;
-
+  
         &:hover {
           color: @heading-color;
         }
       }
-
+  
       &:hover {
         color: @tabs-hover-color;
       }
-
+  
       &&-active &-btn {
         color: @tabs-highlight-color;
         text-shadow: 0 0 0.25px currentcolor;
       }
-
+  
       &&-disabled {
         color: @disabled-color;
         cursor: not-allowed;
       }
-
+  
       &&-disabled &-btn,
       &&-disabled &-remove {
         &:focus,
@@ -181,20 +182,20 @@
           color: @disabled-color;
         }
       }
-
+  
       & &-remove .@{iconfont-css-prefix} {
         margin: 0;
       }
-
+  
       .@{iconfont-css-prefix} {
         margin-right: @margin-sm;
       }
     }
-
+  
     &-tab + &-tab {
       margin: @tabs-horizontal-margin;
     }
-
+  
     // =========================== TabPanes ===========================
     &-content {
       &-holder {
@@ -202,49 +203,52 @@
         min-width: 0;
         min-height: 0;
       }
-
+  
       position: relative;
       width: 100%;
     }
-
+  
     &-tabpane {
       outline: none;
-
+  
       &-hidden {
         display: none;
       }
     }
-
+  
     // Motion
     &-switch {
       &-appear,
       &-enter {
         transition: none;
-
+  
         &-start {
           opacity: 0;
         }
-
+  
         &-active {
           opacity: 1;
           transition: opacity @animation-duration-slow;
         }
       }
-
+  
       &-leave {
         position: absolute;
         transition: none;
         inset: 0;
-
+  
         &-start {
           opacity: 1;
         }
-
+  
         &-active {
           opacity: 0;
           transition: opacity @animation-duration-slow;
         }
       }
     }
+
   }
+
 }
+

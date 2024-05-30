@@ -1,10 +1,11 @@
-import { Icon as LegacyIcon } from '@lingxiteam/icons';
 import { LingxiForwardRef } from '@lingxiteam/types';
+import { Icon as LegacyIcon } from '@lingxiteam/icons';
 import { Carousel } from 'antd';
 import classnames from 'classnames';
 import React, { useEffect, useImperativeHandle, useRef } from 'react';
 
 export interface MySwiperProps {
+
   /** 数据源 */
   data?: any[];
   itemType?: string;
@@ -63,9 +64,7 @@ const Swiper = LingxiForwardRef<any, MySwiperProps>((props, ref) => {
     const c = document.getElementsByClassName('ued-swiper-wrap')[0];
     const cHeight = c?.clientHeight;
     if (cHeight) {
-      (
-        document.getElementsByClassName('slick-slider')[0] as any
-      ).style.height = `${cHeight}px`;
+      (document.getElementsByClassName('slick-slider')[0] as any).style.height = `${cHeight}px`;
     }
   }, []);
 
@@ -154,10 +153,10 @@ const Swiper = LingxiForwardRef<any, MySwiperProps>((props, ref) => {
       >
         {Array.isArray(data)
           ? data.map((item, index) => (
-              <div key={index} className={subclassName}>
-                {renderItem(item)}
-              </div>
-            ))
+            <div key={index} className={subclassName}>
+              {renderItem(item)}
+            </div>
+          ))
           : null}
       </Carousel>
       {arrows && (

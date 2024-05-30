@@ -4,7 +4,6 @@
 /* eslint-disable @typescript-eslint/no-for-in-array */
 /* eslint-disable no-underscore-dangle */
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useLocale } from '../utils/hooks/useLocale';
 import type { ReactChartHookType } from './RadarChartType';
 import {
   defaultDataSource,
@@ -12,6 +11,7 @@ import {
   defaultIndicatorDataSource,
   defaultRadarLevelHint,
 } from './radarDefaultConfig';
+import { useLocale } from '../utils/hooks/useLocale';
 
 export const useRadarChartHook = (props: ReactChartHookType) => {
   const chartNode = useRef();
@@ -38,8 +38,7 @@ export const useRadarChartHook = (props: ReactChartHookType) => {
   const { getLocale } = useLocale(getEngineApis?.());
 
   const isDynamicData =
-    typeof indicatorDataSource === 'string' ||
-    typeof radarDataSource === 'string';
+    typeof indicatorDataSource === 'string' || typeof radarDataSource === 'string';
   const getCurString = (propsString: string, defaultString: string) => {
     if (isDynamicData) {
       return defaultString;
@@ -157,10 +156,7 @@ export const useRadarChartHook = (props: ReactChartHookType) => {
   }, [hint, hintName, hintWidth, isRunningState]);
 
   const chartOption = useMemo(() => {
-    const radarGetLevelFunc = (
-      val: number,
-      hintArr: ReactChartHookType['radarLevelHint'],
-    ) => {
+    const radarGetLevelFunc = (val: number, hintArr: ReactChartHookType['radarLevelHint']) => {
       let _hintStr = '';
       hintArr.forEach((item) => {
         const max = item[radarMax];
@@ -181,8 +177,7 @@ export const useRadarChartHook = (props: ReactChartHookType) => {
     const level = radarGetLevelFunc(total, _radarLevelData);
     const hintText = `${hintNameValue}${level ?? ''}`;
     const levelArr = _radarLevelData.map(
-      (item) =>
-        `${item[radarDescription]}：${item[radarMin]} < x < ${item[radarMax]}`,
+      (item) => `${item[radarDescription]}：${item[radarMin]} < x < ${item[radarMax]}`,
     );
     if (indicator.length === 0) {
       return null;
@@ -420,8 +415,7 @@ export const useRadarChartHook = (props: ReactChartHookType) => {
           Object.entries(params.selected).forEach(([key, value]) => {
             if (value && curData.length === 0) {
               const _data = chartInst.getOption().series[0].data;
-              curData =
-                _data.filter((item: any) => item.name === key)[0]?.value || [];
+              curData = _data.filter((item: any) => item.name === key)[0]?.value || [];
             }
           });
           if (curData.length > 0) {

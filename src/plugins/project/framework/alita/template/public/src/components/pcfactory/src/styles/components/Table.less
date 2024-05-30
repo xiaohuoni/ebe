@@ -15,11 +15,15 @@
   display: flex;
   flex-direction: column;
   background-color: #fff;
-
+  
   .@{ant-prefix}-table-expanded-row-fixed:has(.@{ant-prefix}-empty-normal) {
-    width: 100% !important;
+    width: 100%!important;
   }
 
+  .@{ant-prefix}-table-summary {
+    background: transparent;
+  }
+  
   .table-head-default,
   .table-head-middle {
     margin-bottom: 16px;
@@ -36,7 +40,7 @@
 
     .@{table-prefix-cls} {
       line-height: @table-data-input-height;
-
+      
       .@{ant-prefix}-skeleton-element {
         width: 100%;
 
@@ -51,7 +55,7 @@
         &:hover {
           color: color(~`colorPalette('@{primary-color}', 5) `);
         }
-
+      
         &:active {
           color: color(~`colorPalette('@{primary-color}', 7) `);
         }
@@ -59,16 +63,16 @@
 
       // 动态计算图展开列宽度
       &-expand-icon-col {
-        width: (@table-padding-horizontal + ceil(@font-size-sm * 1.4));
+        width: (@table-padding-horizontal + ceil(@font-size-sm * 1.4))
       }
 
       table {
         border-radius: 0;
         .@{table-prefix-cls}-thead {
           th {
-            background: tint(@primary-color, 90%);
+            background: tint(@primary-color, 90%); 
           }
-        }
+        } 
         tr {
           td,
           th {
@@ -105,10 +109,7 @@
           .@{switch-prefix-cls},
           .@{select-prefix-cls},
           .@{select-prefix-cls} .@{select-prefix-cls}-selector,
-          .@{select-prefix-cls}
-            .@{select-prefix-cls}-selector
-            .@{select-prefix-cls}-selection-search
-            input {
+          .@{select-prefix-cls} .@{select-prefix-cls}-selector .@{select-prefix-cls}-selection-search input {
             height: @table-data-input-height;
             line-height: @table-data-input-height;
           }
@@ -139,9 +140,7 @@
                 }
               }
 
-              .@{select-prefix-cls}-selector
-                .@{select-prefix-cls}-selection-search
-                input {
+              .@{select-prefix-cls}-selector .@{select-prefix-cls}-selection-search input {
                 height: @table-data-input-height - 2px;
                 line-height: @table-data-input-height - 2px;
               }
@@ -261,8 +260,7 @@
       &-thead {
         > tr > th {
           background: @table-header-bg;
-          border-bottom: @border-width-base @border-style-base
-            @table-border-color;
+          border-bottom: @border-width-base @border-style-base @table-border-color;
         }
 
         > tr:first-child {
@@ -275,18 +273,16 @@
 
       &-tbody {
         > tr > td {
-          border-bottom: @border-width-base @border-style-base
-            @table-border-color;
+          border-bottom: @border-width-base @border-style-base @table-border-color;
         }
 
         // 修补嵌套子表格的样式
         // ========================= Nest Table ===========================
         .@{table-prefix-cls}-wrapper:only-child,
-        .@{table-prefix-cls}-expanded-row-fixed
-          > .@{table-prefix-cls}-wrapper:only-child {
+        .@{table-prefix-cls}-expanded-row-fixed > .@{table-prefix-cls}-wrapper:only-child {
           .@{table-prefix-cls} {
-            margin: -@table-padding-vertical -@table-padding-horizontal -@table-padding-vertical
-              (@table-padding-horizontal + ceil(@font-size-sm * 1.4));
+            margin: -@table-padding-vertical -@table-padding-horizontal -@table-padding-vertical (@table-padding-horizontal +
+                  ceil(@font-size-sm * 1.4));
 
             &-tbody > tr:last-child > td {
               border-bottom: 0;
@@ -309,8 +305,7 @@
           .@{table-prefix-cls}-body,
           .@{table-prefix-cls}-content {
             .@{table-prefix-cls}-row:last-child td {
-              border-bottom: @border-width-base @border-style-base
-                @table-border-color;
+              border-bottom: @border-width-base @border-style-base @table-border-color;
             }
 
             .ued-table-actions {
@@ -363,7 +358,7 @@
             &:empty {
               height: @table-small-td-height;
             }
-
+  
             .@{ant-prefix}-input:not(textarea),
             .@{ant-prefix}-input-number,
             .@{ant-prefix}-input-number-input,
@@ -371,10 +366,7 @@
             .@{switch-prefix-cls},
             .@{select-prefix-cls},
             .@{select-prefix-cls} .@{select-prefix-cls}-selector,
-            .@{select-prefix-cls}
-              .@{select-prefix-cls}-selector
-              .@{select-prefix-cls}-selection-search
-              input {
+            .@{select-prefix-cls} .@{select-prefix-cls}-selector .@{select-prefix-cls}-selection-search input {
               height: @small-table-data-input-height;
               font-size: @font-size-sm;
               line-height: @small-table-data-input-line-height;
@@ -384,9 +376,7 @@
               padding: 0 8px;
             }
 
-            .@{calendar-prefix-cls}-picker
-              .@{calendar-prefix-cls}-picker-input
-              input {
+            .@{calendar-prefix-cls}-picker .@{calendar-prefix-cls}-picker-input input {
               font-size: @font-size-sm;
             }
 
@@ -399,9 +389,7 @@
               }
 
               &.@{select-prefix-cls}-multiple {
-                .@{select-prefix-cls}-selector
-                  .@{select-prefix-cls}-selection-search
-                  input {
+                .@{select-prefix-cls}-selector .@{select-prefix-cls}-selection-search input {
                   height: @small-table-data-input-height - 2px;
                   line-height: @small-table-data-input-line-height - 2px;
                 }
@@ -409,10 +397,9 @@
             }
 
             .@{switch-prefix-cls} {
-              @small-switch-handle-input-height: @small-table-data-input-line-height -
-                4px;
+              @small-switch-handle-input-height: @small-table-data-input-line-height - 4px;
               min-width: @small-switch-handle-input-height * 2;
-
+              
               &-handle {
                 &::before {
                   border-radius: 50%;
@@ -443,16 +430,15 @@
             .@{form-item-prefix-cls} {
               line-height: @small-table-data-input-line-height - 2px;
 
-              .has-error {
+              .has-error  {
                 .@{form-prefix-cls}-explain {
                   top: 2px;
                 }
-              }
+              } 
             }
           }
 
-          .@{table-prefix-cls}-column-sorter
-            .@{table-prefix-cls}-column-sorter-inner {
+          .@{table-prefix-cls}-column-sorter .@{table-prefix-cls}-column-sorter-inner {
             .@{table-prefix-cls}-column-sorter-up,
             .@{table-prefix-cls}-column-sorter-down {
               font-size: 9px;
@@ -483,7 +469,7 @@
             &:empty {
               height: @table-middle-td-height;
             }
-
+  
             .@{ant-prefix}-input:not(textarea),
             .@{ant-prefix}-input-number,
             .@{ant-prefix}-input-number-input,
@@ -491,10 +477,7 @@
             .@{switch-prefix-cls},
             .@{select-prefix-cls},
             .@{select-prefix-cls} .@{select-prefix-cls}-selector,
-            .@{select-prefix-cls}
-              .@{select-prefix-cls}-selector
-              .@{select-prefix-cls}-selection-search
-              input {
+            .@{select-prefix-cls} .@{select-prefix-cls}-selector .@{select-prefix-cls}-selection-search input {
               height: @middle-table-data-input-height;
               line-height: @middle-table-data-input-height;
             }
@@ -512,9 +495,7 @@
               }
 
               &.@{select-prefix-cls}-multiple {
-                .@{select-prefix-cls}-selector
-                  .@{select-prefix-cls}-selection-search
-                  input {
+                .@{select-prefix-cls}-selector .@{select-prefix-cls}-selection-search input {
                   height: @middle-table-data-input-height - 2px;
                   line-height: @middle-table-data-input-height - 2px;
                 }
@@ -522,8 +503,7 @@
             }
 
             .@{switch-prefix-cls} {
-              @middle-switch-handle-input-height: @middle-table-data-input-height -
-                4px;
+              @middle-switch-handle-input-height: @middle-table-data-input-height - 4px;
               min-width: @middle-switch-handle-input-height * 2;
 
               &-handle {
@@ -537,9 +517,7 @@
 
               &.@{switch-prefix-cls}-checked {
                 .@{switch-prefix-cls}-handle {
-                  left: calc(
-                    ~'100%' - @middle-switch-handle-input-height - 2px
-                  );
+                  left: calc(~'100%' - @middle-switch-handle-input-height - 2px);
                 }
               }
             }
@@ -560,9 +538,7 @@
     }
 
     // 移除 webkit 内核下，固定头时，额外添加的滚动条边框线
-    .@{table-prefix-cls}-fixed-header
-      .@{table-prefix-cls}-scroll
-      .@{table-prefix-cls}-header {
+    .@{table-prefix-cls}-fixed-header .@{table-prefix-cls}-scroll .@{table-prefix-cls}-header {
       &::-webkit-scrollbar {
         border: none;
       }
@@ -625,6 +601,26 @@
         }
       }
 
+      .@{ant-prefix}-table-summary {
+        tr:first-child {
+          & > td {
+            border-top: 1px solid @table-border-color;
+          }
+        }
+        tr:last-child {
+          & > td {
+            border-bottom: none;
+          }
+        }
+        .@{ant-prefix}-table-summary {
+          tr:first-child {
+            & > td {
+              border-top: none;
+            }
+          }
+        }
+      }
+
       // 固定右列时
       .@{table-prefix-cls}-fixed-right {
         table {
@@ -682,8 +678,7 @@
           .@{table-prefix-cls}-thead > tr > th,
           .@{table-prefix-cls}-tbody > tr > td {
             &:last-child {
-              border-right: @border-width-base @border-style-base
-                @table-border-color;
+              border-right: @border-width-base @border-style-base @table-border-color;
             }
           }
         }
@@ -723,7 +718,7 @@
     .@{ant-prefix}-table-fixed {
       width: auto;
     }
-
+  
     // 编辑器的表格内置分页组件中，为了显示快速跳转，会人为的让页数变为 2页，所以要写死隐藏 第2页的跳转标识
     .@{ant-prefix}-pagination-item-2 {
       display: none;
@@ -972,7 +967,7 @@
   .ued-table-cell-pointTag {
     display: inline-flex;
     align-items: center;
-
+  
     &-point {
       display: inline-block;
       width: 4px;
@@ -980,7 +975,7 @@
       border-radius: 50%;
       margin-right: 4px;
     }
-
+  
     &-text {
       font-size: @font-size-sm;
       color: @text-color;
@@ -1219,7 +1214,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-top: 1px solid rgba(0,0,0,.06);
     padding: 8px;
   }
   &-hidden {

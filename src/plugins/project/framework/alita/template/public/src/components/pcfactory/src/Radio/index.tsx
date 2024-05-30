@@ -1,12 +1,7 @@
-import { LingxiForwardRef } from '@lingxiteam/types';
 import { Radio as AntdRadio } from 'antd';
-import React, { useEffect, useMemo, useState } from 'react';
-import {
-  FormFields,
-  getFieldsProps,
-  useCommonImperativeHandle,
-} from '../utils';
-import { useLocale } from '../utils/hooks/useLocale';
+import React, { useEffect, useState } from 'react';
+import { FormFields, getFieldsProps, useCommonImperativeHandle } from '../utils';
+import { LingxiForwardRef } from '@lingxiteam/types';
 import renderReadOnly from '../utils/renderReadOnly';
 
 export interface RadioProps {
@@ -74,6 +69,7 @@ const typeFn: any = {
   boolean: Boolean,
 };
 
+
 /**
  * 处理数据
  * @param dataSource 数据源
@@ -81,11 +77,7 @@ const typeFn: any = {
  * @param labelKey
  * @returns
  */
-export const handleDataSource = (
-  dataSource: any[],
-  valueKey?: string,
-  labelKey?: string,
-) => {
+export const handleDataSource = (dataSource: any[], valueKey?: string, labelKey?: string,) => {
   const valueKeys: any = [];
   const newDataSoure: any[] = [];
   if (Array.isArray(dataSource)) {
@@ -137,7 +129,6 @@ const Radio = LingxiForwardRef<any, RadioProps>((props, ref) => {
     tipLocation,
     tipContent,
     tipPlacement,
-    rules: externalRules = [],
     isFormChild,
     tipSize,
     tipWidth,
@@ -146,29 +137,24 @@ const Radio = LingxiForwardRef<any, RadioProps>((props, ref) => {
     dataSource: newDataSoure,
     ...restProps
   } = props;
-  const { getLocale, lang } = useLocale(getEngineApis());
   const [dataSource, setDataSource] = useState<any[]>([]);
-  const { formFieldsRef, disabled, readOnly, required } =
-    useCommonImperativeHandle(ref, props, {
-      clearValue: undefined,
-      // 清空选项
-      clearOptions() {
-        setDataSource([]);
-      },
-      setDataWithLabelAndValue(data: any) {
-        setLKey(data.labelKey);
-        setVKey(data.valueKey);
-        const newData = handleDataSource(
-          data.dataSource,
-          data.valueKey,
-          data.labelKey,
-        );
-        setDataSource(newData);
-      },
-    });
+  const { formFieldsRef, disabled, readOnly, required, finalRules } = useCommonImperativeHandle(ref, props, {
+    clearValue: undefined,
+    // 清空选项
+    clearOptions() {
+      setDataSource([]);
+    },
+    setDataWithLabelAndValue(data: any) {
+      setLKey(data.labelKey);
+      setVKey(data.valueKey);
+      const newData = handleDataSource(data.dataSource, data.valueKey, data.labelKey);
+      setDataSource(newData);
+    },
+  });
 
   const [lKey, setLKey] = useState(labelKey);
   const [vKey, setVKey] = useState(valueKey);
+
 
   const transformValueType = (v: any, curVal: any) => {
     const realValueType = typeof (curVal ?? '');
@@ -182,26 +168,26 @@ const Radio = LingxiForwardRef<any, RadioProps>((props, ref) => {
     return v;
   };
 
+
   // 处理列表数据
   useEffect(() => {
-    const newData = Array.isArray(newDataSoure)
-      ? handleDataSource(newDataSoure, vKey, lKey)
-      : [];
-    setDataSource([...(defaultOptions || []), ...newData]);
+    const newData = Array.isArray(newDataSoure) ? handleDataSource(newDataSoure, vKey, lKey) : [];
+    const valueArray = newData.map(it => it?.value);
+    const targetDefault: { value: string; label:string}[] = [];
+    // 自定义数据中若存在和预置数据中相同的value ，则取自定义数据
+    if (defaultOptions && defaultOptions.length) {
+      defaultOptions.forEach((item:{value:string, label:string}) => {
+        if (!valueArray.includes(item?.value)) {
+          targetDefault.push(item);
+        }
+      });
+    }
+    setDataSource([...(targetDefault || []), ...newData]);
   }, [JSON.stringify(defaultOptions), JSON.stringify(newDataSoure)]);
 
   // 需要判断自己是否处于表单内，处于表单内的话不能用value
 
   const Opt = radioType === 'Radio' ? AntdRadio : Button;
-
-  const finalRules = useMemo(() => {
-    const rules = [{ required, message: getLocale?.('notEmpty', { name }) }];
-
-    if (Array.isArray(externalRules)) {
-      rules.push(...externalRules);
-    }
-    return rules;
-  }, [required, lang]);
 
   return (
     <FormFields
@@ -239,16 +225,10 @@ const Radio = LingxiForwardRef<any, RadioProps>((props, ref) => {
           <Opt
             value={transformValueType(c.value, value)}
             key={c.value}
-            disabled={
-              rangeLimit &&
-              rangeLimit.length > 0 &&
-              !rangeLimit.includes(+c.value)
-            }
+            disabled={rangeLimit && rangeLimit.length > 0 && !rangeLimit.includes(+c.value)}
             style={{
               marginRight:
-                radioType === 'Radio.Button' && optionMarginRight
-                  ? optionMarginRight
-                  : '',
+                radioType === 'Radio.Button' && optionMarginRight ? optionMarginRight : '',
             }}
           >
             {c.label}

@@ -1,7 +1,7 @@
-import { LingxiForwardRef } from '@lingxiteam/types';
 import React, { useImperativeHandle } from 'react';
-import ChartLineProps from '../ChartLine/PropsType';
+import { LingxiForwardRef } from '@lingxiteam/types';
 import CharBarLoader from './loader';
+import ChartLineProps from '../ChartLine/PropsType';
 
 const ChartBar = LingxiForwardRef<unknown, ChartLineProps>((props, ref) => {
   useImperativeHandle(ref, () => ({

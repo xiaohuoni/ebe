@@ -1,14 +1,14 @@
+import React, { useState, useMemo } from 'react';
 import { Pagination } from 'antd';
-import React, { useMemo, useState } from 'react';
 
 export interface MyPaginationProps {
-  size: any;
+  size: any,
   style?: any;
   className?: any;
-  visible: boolean;
-  disabled: boolean;
-  simple: boolean;
-  pageSize: number;
+  visible: boolean,
+  disabled: boolean,
+  simple: boolean,
+  pageSize: number,
   total?: number;
   current?: number;
   pagination?: any;
@@ -21,20 +21,10 @@ export interface MyPaginationProps {
 
 // const prefixCls = 'pagination';
 
-const MyPagination: React.FC<MyPaginationProps> = (props) => {
+const MyPagination: React.FC<MyPaginationProps> = props => {
   const {
-    visible,
-    size,
-    disabled,
-    simple,
-    style,
-    className,
-    current,
-    pageSize,
-    total,
-    showQuickJumper,
-    showSizeChanger,
-    pageSizeOptions,
+    visible, size, disabled, simple, style, className,
+    current, pageSize, total, showQuickJumper, showSizeChanger, pageSizeOptions,
     onPageChange,
     getEngineApis,
   } = props;
@@ -45,7 +35,7 @@ const MyPagination: React.FC<MyPaginationProps> = (props) => {
   const hasPageChangeEvent = typeof onPageChange === 'function'; // 是否配置页码改变回调事件（是：后端分页，否：前端分页）
   const realCurrent = (hasPageChangeEvent ? current : currentPage) || 1;
   const realPageSize = (hasPageChangeEvent ? pageSize : currentPageSize) || 10;
-
+  
   // 解析分页选择器配置
   const parsedPageSizeOptions = useMemo(() => {
     if (pageSizeOptions) {
@@ -72,10 +62,7 @@ const MyPagination: React.FC<MyPaginationProps> = (props) => {
     showQuickJumper,
     showSizeChanger,
     pageSizeOptions: parsedPageSizeOptions,
-    showTotal: (tol: any) =>
-      getEngineApis?.()?.getLocale?.('Pagination.showTotal', undefined, {
-        tol,
-      }),
+    showTotal: (tol: any) => getEngineApis?.()?.getLocale?.('Pagination.showTotal', undefined, { tol }),
     onShowSizeChange: (newCurrent: number, newPageSize: number) => {
       if (hasPageChangeEvent) {
         onPageChange(newCurrent, newPageSize);
@@ -84,10 +71,7 @@ const MyPagination: React.FC<MyPaginationProps> = (props) => {
       setCurrentPage(newCurrent);
       setCurrentPageSize(newPageSize);
     },
-    onChange: (
-      newCurrent: React.SetStateAction<number>,
-      newPageSize: number,
-    ) => {
+    onChange: (newCurrent: React.SetStateAction<number>, newPageSize: number) => {
       if (hasPageChangeEvent) {
         onPageChange(newCurrent, newPageSize);
         return;
@@ -97,8 +81,13 @@ const MyPagination: React.FC<MyPaginationProps> = (props) => {
   };
 
   return visible ? (
-    <Pagination {...paginationProps} style={style} className={className} />
+    <Pagination
+      {...paginationProps}
+      style={style}
+      className={className}
+    />
   ) : null;
 };
+
 
 export default MyPagination;

@@ -1,12 +1,10 @@
 import { LingxiForwardRef } from '@lingxiteam/types';
 import { Tabs } from 'antd';
-import type { TabsProps } from 'antd/es/tabs';
 import classnames from 'classnames';
+import type { TabsProps } from 'antd/es/tabs';
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { basicStatusTransfer } from '../utils';
-import ChannelContainer, {
-  ChannelContainerOptions,
-} from '../utils/ChannelContainer';
+import ChannelContainer, { ChannelContainerOptions } from '../utils/ChannelContainer';
 
 /**
  * 修改原因：
@@ -21,17 +19,7 @@ export interface MyTabsProps extends TabsProps {
 const { TabPane } = Tabs;
 
 const MyTabs = LingxiForwardRef<any, MyTabsProps>((props, ref) => {
-  const {
-    value,
-    visible = true,
-    children,
-    onChange,
-    defaultActiveKey,
-    style,
-    getEngineApis,
-    className,
-    ...restProps
-  } = props;
+  const { value, visible = true, children, onChange, defaultActiveKey, style, getEngineApis, className, ...restProps } = props;
 
   const childKeys = useRef<string[]>([]);
 
@@ -39,9 +27,7 @@ const MyTabs = LingxiForwardRef<any, MyTabsProps>((props, ref) => {
 
   const [activeKey, setActiveKey] = useState(() => props.defaultActiveKey);
   const memoActiveKeys = useRef<string[]>([]).current;
-  const hiddenTabsKeyMap = useRef<
-    Record<string, { visible: string; index: number; key: string }>
-  >({}).current; // 隐藏的tabs
+  const hiddenTabsKeyMap = useRef<Record<string, { visible: string, index: number, key: string }>>({}).current; // 隐藏的tabs
   // 缓存下来key 标识当前TabPanel已经渲染
   if (activeKey && !memoActiveKeys.includes(activeKey)) {
     memoActiveKeys.push(activeKey);
@@ -94,15 +80,8 @@ const MyTabs = LingxiForwardRef<any, MyTabsProps>((props, ref) => {
 
   useEffect(() => {
     // 如果页面渲染完成的时候activeKey不存在，那么默认设置第一个
-    if (
-      (activeKey &&
-        !memoActiveKeys.includes(activeKey) &&
-        !hiddenTabsKeyMap[activeKey]) ||
-      !activeKey
-    ) {
-      const fistKey = Object.values(hiddenTabsKeyMap).filter(
-        (i) => i.index === 0,
-      );
+    if ((activeKey && !memoActiveKeys.includes(activeKey) && !hiddenTabsKeyMap[activeKey]) || !activeKey) {
+      const fistKey = Object.values(hiddenTabsKeyMap).filter(i => i.index === 0);
       setActiveKey(fistKey?.[0].key);
     }
   }, []);
@@ -129,11 +108,7 @@ const MyTabs = LingxiForwardRef<any, MyTabsProps>((props, ref) => {
           Object.assign(c.props.schema.style, { padding });
         }
 
-        const {
-          visible = true,
-          forceRender = false,
-          ...extendProps
-        } = getProps(c);
+        const { visible = true, forceRender = false, ...extendProps } = getProps(c);
 
         hiddenTabsKeyMap[key] = {
           visible,
@@ -142,12 +117,7 @@ const MyTabs = LingxiForwardRef<any, MyTabsProps>((props, ref) => {
         };
 
         return (
-          <TabPane
-            forceRender
-            {...(c?.props.schema?.props || {})}
-            key={key}
-            {...extendProps}
-          >
+          <TabPane forceRender {...(c?.props.schema?.props || {})} key={key} {...extendProps}>
             <ChannelContainer.Item
               extendProps={{
                 // TabPane是否应该渲染子节点
@@ -173,13 +143,13 @@ const MyTabs = LingxiForwardRef<any, MyTabsProps>((props, ref) => {
   return (
     <div className={classnames('ued-tabs-wrap', className)}>
       <ChannelContainer>
-        {(options) => (
+        {options => (
           <Tabs
             activeKey={activeKey}
             defaultActiveKey={defaultActiveKey}
             {...restProps}
             style={restStyle}
-            onChange={(activeKey) => {
+            onChange={activeKey => {
               if (onChange) {
                 onChange(activeKey);
               }
@@ -188,7 +158,7 @@ const MyTabs = LingxiForwardRef<any, MyTabsProps>((props, ref) => {
             renderTabBar={(props, DefaultTabBar) => {
               return (
                 <DefaultTabBar {...props}>
-                  {(node) => {
+                  {node => {
                     if (node.key && !hiddenTabsKeyMap[node.key]?.visible) {
                       return <React.Fragment key={node.key} />;
                     }

@@ -1,6 +1,6 @@
 @import (reference) '../theme/variables/antdVariables.less';
 .ued-form-group {
-  .@{ant-prefix}-collapse {
+   .@{ant-prefix}-collapse {
     border: none;
     background-color: transparent;
     border-radius: 0;
@@ -26,10 +26,7 @@
       display: flex;
       align-items: center;
     }
-    &.@{ant-prefix}-collapse-icon-position-end
-      > .@{ant-prefix}-collapse-item
-      > .@{ant-prefix}-collapse-header
-      .@{ant-prefix}-collapse-arrow {
+    &.@{ant-prefix}-collapse-icon-position-end > .@{ant-prefix}-collapse-item > .@{ant-prefix}-collapse-header .@{ant-prefix}-collapse-arrow {
       position: static;
       transform: none;
     }
@@ -85,7 +82,7 @@
       }
     }
   }
-
+  
   &-fold {
     font-size: 12px;
     color: rgba(100, 103, 122, 1);

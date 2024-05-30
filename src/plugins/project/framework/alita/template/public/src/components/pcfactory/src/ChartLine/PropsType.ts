@@ -84,5 +84,5 @@ export default interface ChartLineProps {
   barGap?: number; // 组内间距
   getEngineApis?: any; // 运行态api
   funcExpExecute?: any;
-  // eslint-disable-next-line no-extra-semi
-}
+// eslint-disable-next-line no-extra-semi
+};

@@ -1,17 +1,13 @@
+
 // @ts-ignore
-import { EngineApisType, LingxiForwardRef } from '@lingxiteam/types';
 import type { ValidationRule } from 'antd/es/form';
 import React, { useEffect, useMemo, useState } from 'react';
 import CommIcon from '../Icon';
 import { handleIsValidIconCfg } from '../Icon/hooks';
-import {
-  FormFields,
-  getFieldsProps,
-  getRegexpRules,
-  useCommonImperativeHandle,
-} from '../utils';
-import { useLocale } from '../utils/hooks/useLocale';
+import { EngineApisType, LingxiForwardRef } from '@lingxiteam/types';
+import { FormFields, getFieldsProps, useCommonImperativeHandle } from '../utils';
 import BaseModalSelect from './BaseModalSelect';
+import { useLocale } from '../utils/hooks/useLocale';
 
 export interface MyModalSelectProps {
   value?: any;
@@ -88,9 +84,7 @@ export interface WrapperModalSelectProps {
 const MODALSELECT_WRAPPER_CLASSNAME = 'ued-input-wrap modalSelect';
 const WrapperModalSelect: React.FC<WrapperModalSelectProps> = ({ children }) =>
   React.cloneElement(children, {
-    className: `${MODALSELECT_WRAPPER_CLASSNAME} ${
-      children.props.className || ''
-    }`,
+    className: `${MODALSELECT_WRAPPER_CLASSNAME} ${children.props.className || ''}`,
   });
 
 const ModalSelect = LingxiForwardRef<any, MyModalSelectProps>((props, ref) => {
@@ -139,7 +133,6 @@ const ModalSelect = LingxiForwardRef<any, MyModalSelectProps>((props, ref) => {
     tipPlacement,
     minLength,
     maxLength,
-    rules: externalRules = [],
     modalInfo,
     clearIcon,
     mode,
@@ -156,7 +149,7 @@ const ModalSelect = LingxiForwardRef<any, MyModalSelectProps>((props, ref) => {
   const { openModal } = engineApis;
 
   const { getLocale } = useLocale(engineApis);
-
+  
   const [options, setOptions] = useState([]);
   const [postfixStyleClsName, setPostfixStyleClsName] = useState<string>('');
 
@@ -173,23 +166,17 @@ const ModalSelect = LingxiForwardRef<any, MyModalSelectProps>((props, ref) => {
       return false;
     }
   };
-
+  
   const getValueOptions = (datas: any) => {
     const { conField, valField } = modalInfo || {};
     let valArray: any = [];
     const optionParams: any = [];
     let flag = true;
-    const valueObj: any =
-      typeof datas === 'string' && isJsonString(datas)
-        ? JSON.parse(datas)
-        : datas;
+    const valueObj: any = typeof datas === 'string' && isJsonString(datas) ? JSON.parse(datas) : datas;
     if (valueObj instanceof Array) {
       valueObj.forEach((va: any) => {
         if (va[valField] || va.value) {
-          const obj = {
-            label: va[conField] || va.label,
-            value: va[valField] || va.value,
-          };
+          const obj = { label: va[conField] || va.label, value: va[valField] || va.value };
           valArray.push(obj.value);
           optionParams.push(obj);
         } else if (va) {
@@ -201,10 +188,7 @@ const ModalSelect = LingxiForwardRef<any, MyModalSelectProps>((props, ref) => {
       if (Array.isArray(valArray) && valArray.length && mode === 'normal') {
         valArray = valArray[0];
       }
-    } else if (
-      valueObj instanceof Object &&
-      (valueObj[valField] || valueObj.value)
-    ) {
+    } else if (valueObj instanceof Object && (valueObj[valField] || valueObj.value)) {
       const obj = {
         label: valueObj[conField] || valueObj.label,
         value: valueObj[valField] || valueObj.value,
@@ -234,13 +218,12 @@ const ModalSelect = LingxiForwardRef<any, MyModalSelectProps>((props, ref) => {
     return handleFormValue(originValue);
   }, [JSON.stringify(originValue)]);
 
-  const { formFieldsRef, disabled, readOnly, required } =
-    useCommonImperativeHandle(ref, props, {
-      clearValue: [],
-      get value() {
-        return value;
-      },
-    });
+  const { formFieldsRef, disabled, readOnly, required, finalRules: temRules } = useCommonImperativeHandle(ref, props, {
+    clearValue: [],
+    get value() {
+      return value;
+    },
+  });
 
   // 设置前后缀样式
   useEffect(() => {
@@ -264,6 +247,7 @@ const ModalSelect = LingxiForwardRef<any, MyModalSelectProps>((props, ref) => {
     }
   }, [postfixStyle]);
 
+
   const getAddonAfterBtn = () => {
     const { disabled } = restProps;
     let after = null;
@@ -284,10 +268,7 @@ const ModalSelect = LingxiForwardRef<any, MyModalSelectProps>((props, ref) => {
       switch (postfixIconPosition) {
         case 'after':
           after = (
-            <span
-              className="postfix"
-              onClick={disabled ? null : onIconClick || undefined}
-            >
+            <span className="postfix" onClick={disabled ? null : onIconClick || undefined}>
               {postfix}
               {after}
             </span>
@@ -296,10 +277,7 @@ const ModalSelect = LingxiForwardRef<any, MyModalSelectProps>((props, ref) => {
         case 'before':
         default:
           after = (
-            <span
-              className="postfix"
-              onClick={disabled ? null : onIconClick || undefined}
-            >
+            <span className="postfix" onClick={disabled ? null : onIconClick || undefined}>
               {after}
               {postfix}
             </span>
@@ -345,10 +323,7 @@ const ModalSelect = LingxiForwardRef<any, MyModalSelectProps>((props, ref) => {
   // 弹框回调
   const handleModalOk = (res: any) => {
     const { valArray, optionParams } = getValueOptions(res);
-    const modeOpts =
-      mode === 'multiple'
-        ? optionParams
-        : optionParams.filter((v: any) => v?.value === valArray);
+    const modeOpts = mode === 'multiple' ? optionParams : optionParams.filter((v: any) => v?.value === valArray);
     if (onChange) {
       onChange(valArray, modeOpts);
     }
@@ -378,21 +353,11 @@ const ModalSelect = LingxiForwardRef<any, MyModalSelectProps>((props, ref) => {
   }, [options]);
 
   const finalRules = useMemo(() => {
-    const rules: ValidationRule[] = [
-      {
-        required: required || (checkNumber(minLength) && minLength !== 0),
-        message: getLocale?.('notEmpty', { name }),
-      },
-      ...getRegexpRules(regexp, getLocale),
-    ];
+    const rules: ValidationRule[] = [];
     let lengthRule;
     if (minLength === 0 && maxLength === 0) {
       lengthRule = undefined;
-    } else if (
-      checkNumber(minLength) &&
-      checkNumber(maxLength) &&
-      minLength < maxLength
-    ) {
+    } else if (checkNumber(minLength) && checkNumber(maxLength) && minLength < maxLength) {
       lengthRule = {
         pattern: new RegExp(`^.{${minLength},${maxLength}}$`),
         message: getLocale?.('Input.lenRule', { minLength, maxLength }),
@@ -412,11 +377,11 @@ const ModalSelect = LingxiForwardRef<any, MyModalSelectProps>((props, ref) => {
       rules.push(lengthRule);
     }
 
-    if (Array.isArray(externalRules)) {
-      rules.push(...externalRules);
+    if (Array.isArray(temRules)) {
+      rules.push(...temRules);
     }
     return rules;
-  }, [required, minLength, name, regexp, maxLength, externalRules]);
+  }, [required, minLength, name, regexp, maxLength, temRules]);
 
   return (
     <FormFields

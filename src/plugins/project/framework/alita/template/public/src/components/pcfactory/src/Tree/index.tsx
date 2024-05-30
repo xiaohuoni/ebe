@@ -2,30 +2,25 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable no-param-reassign */
 import { EllipsisOutlined } from '@ant-design/icons';
-import { LingxiForwardRef } from '@lingxiteam/types';
 import { Dropdown, Input, Menu, Popconfirm, Tooltip, Tree } from 'antd';
 import classnames from 'classnames';
+import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { uniq } from 'lodash';
-import React, {
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
 import Icon from '../Icon';
-import { useListenProps } from '../utils';
-import CustomModule from '../utils/CustomModule';
-import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
-import { useLocale } from '../utils/hooks/useLocale';
 import TreeNodeMenu from './TreeNodeMenu';
+import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
+import { LingxiForwardRef } from '@lingxiteam/types';
+import { useListenProps } from '../utils';
+import { useLocale } from '../utils/hooks/useLocale';
+import CustomModule from '../utils/CustomModule';
 
 const SERVICE_SOURCE = {
   // 服务来源
   APP: 'app', // 应用内部 & 模型生成
   QUERY: 'query', // 解析服务
   STD: 'std', // 编排服务
-  INNER: 'inner', // 请求层服务
+  INNER: 'inner', // 高代码服务
+  PLATFORM: 'platform', // 平台服务
   ATOM: 'atom', // 外部服务(低代码运营平台的原子服务)
   RHIN: 'rhin', // 业务运营服务
   SCENE: 'scene', // 业务运营场景服务
@@ -55,34 +50,14 @@ export interface MyTreeProps {
   asyncService?: any;
   treeService?: any;
   dataSource?: any;
-  onSelect?: (
-    key: any,
-    data: any,
-    parentNodeKey: any,
-    parentNodeData: any,
-  ) => void;
+  onSelect?: (key: any, data: any, parentNodeKey: any, parentNodeData: any) => void;
   onCheck?: (checked: any) => void;
   onDataSourceRelease?: (e: any) => void;
   onSelectedKeysRelease?: (e: any) => void;
   nodeIcons?: any[];
-  onNodeAdd?: (
-    key: any,
-    data: any,
-    parentNodeKey: any,
-    parentNodeData: any,
-  ) => void;
-  onNodeEdit?: (
-    key: any,
-    data: any,
-    parentNodeKey: any,
-    parentNodeData: any,
-  ) => void;
-  onNodeDelete?: (
-    key: any,
-    data: any,
-    parentNodeKey: any,
-    parentNodeData: any,
-  ) => void;
+  onNodeAdd?: (key: any, data: any, parentNodeKey: any, parentNodeData: any) => void;
+  onNodeEdit?: (key: any, data: any, parentNodeKey: any, parentNodeData: any) => void;
+  onNodeDelete?: (key: any, data: any, parentNodeKey: any, parentNodeData: any) => void;
   onEditingKeyRelease?: (e: any) => void;
   onSelectedDataRelease?: (e: any) => void;
   onCheckedKeysRelease?: (e: any) => void;
@@ -99,13 +74,7 @@ export interface MyTreeProps {
   isSelectAll?: boolean;
   checkable?: boolean;
   rightMenuInfo?: any;
-  onRightClickNode?: (
-    key: any,
-    data: any,
-    isLoaded: boolean,
-    parentNodeKey: any,
-    parentNodeData: any,
-  ) => void;
+  onRightClickNode?: (key: any, data: any, isLoaded: boolean, parentNodeKey: any, parentNodeData: any,) => void;
   onClickMenuItem?: (key: string, menuData: any, path: any[]) => void;
   customRenderCode?: any;
   expandedKey?: any;
@@ -143,9 +112,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
     ...resetProps
   } = props;
 
-  const [closeExpandedKey, setCloseExpandedKey] = useListenProps(
-    props.closeExpandedKey,
-  );
+  const [closeExpandedKey, setCloseExpandedKey] = useListenProps(props.closeExpandedKey);
   const [expandedKey, setExpandedKey] = useListenProps(props.expandedKey);
 
   // 加载数据字段映射
@@ -155,7 +122,10 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
 
   const engineApis = getEngineApis?.() || {};
 
-  const { sandBoxSafeRun, sandBoxLoadModule } = engineApis;
+  const {
+    sandBoxSafeRun,
+    sandBoxLoadModule,
+  } = engineApis;
 
   const { getLocale } = useLocale(engineApis);
 
@@ -171,15 +141,11 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
 
   const [checkedKeys, setCheckedKeys] = useState<any[]>([]);
   const [loadedKeys, setLoadedKeys] = useState<any[]>([]);
-  const [isSelectAll, setIsSelectAll] = useState<boolean>(
-    props?.isSelectAll || false,
-  );
+  const [isSelectAll, setIsSelectAll] = useState<boolean>(props?.isSelectAll || false);
   const [expandedKeys, setExpandedKeys] = useState<any[]>([]);
   const [searchVal, setSearchVal] = useState('');
   const [showRightMenu, setShowRightMenu] = useState<any>({});
-  const [rightMenuData, setRightMenuData] = useState<any>(
-    props.rightMenuInfo ?? {},
-  );
+  const [rightMenuData, setRightMenuData] = useState<any>(props.rightMenuInfo ?? {});
   const [popVisible, setPopVisible] = useState<any>({});
   const scrollIntoViewComp = useRef(false);
   const treeWrapRef = useRef<any>();
@@ -241,14 +207,9 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
 
   useEffect(() => {
     if (rightMenuData) {
-      const { dataSource, treeKey, titleKey, valueKey, children, selectable } =
-        rightMenuData || {};
+      const { dataSource, treeKey, titleKey, valueKey, children, selectable } = rightMenuData || {};
 
-      if (
-        treeKey &&
-        !showRightMenu[treeKey] &&
-        showRightMenu?.treeKey === treeKey
-      ) {
+      if (treeKey && !showRightMenu[treeKey] && showRightMenu?.treeKey === treeKey) {
         const recursiveSetData = (arr: any) => {
           if (Array.isArray(arr) && arr?.length) {
             return (arr || []).map((c: any) => {
@@ -280,12 +241,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
   }, [rightMenuData, showRightMenu]);
 
   // isGetAll 是否获取所有节点keys，否则只获取父级的，展开时使用
-  const recursiveFind = (
-    arr: any[],
-    oldKey: any[],
-    keys: any[],
-    isGetAll = false,
-  ) => {
+  const recursiveFind = (arr: any[], oldKey: any[], keys: any[], isGetAll = false) => {
     arr?.forEach?.((k) => {
       if (
         (Array.isArray(k.children) &&
@@ -339,10 +295,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
         providerId,
         serviceProviderRequest: params,
       };
-    } else if (
-      _source === SERVICE_SOURCE.QUERY ||
-      _source === SERVICE_SOURCE.INNER
-    ) {
+    } else if (_source === SERVICE_SOURCE.QUERY || _source === SERVICE_SOURCE.INNER || _source === SERVICE_SOURCE.PLATFORM) {
       // 解析类服务或请求层服务
       params = {
         appId: (window as any).appId || appId,
@@ -404,22 +357,14 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
           // _isReload 标识节点数据是通过加载子节点动作设置的,此时取该动作配置好的key/title/selectable,原数据放在了data字段
           const originData = c._isReload ? c.data : c;
           const isSelectable =
-            transformBoolean(originData[selectable] ?? originData.selectable) ??
-            true;
+            transformBoolean(originData[selectable] ?? originData.selectable) ?? true;
           // 如果加载子节点配置了映射，优先取加载子节点的，否则取当时加载数据的映射，若都没有则取数据上的默认字段
-          const nodeSelectable = c._isReload
-            ? c.selectable ?? isSelectable
-            : isSelectable;
-          const _key = c._isReload
-            ? c.key ?? originData[key]
-            : originData[key] ?? originData.key;
+          const nodeSelectable = c._isReload ? c.selectable ?? isSelectable : isSelectable;
+          const _key = c._isReload ? c.key ?? originData[key] : originData[key] ?? originData.key;
           const renderTitle = () => {
             let _title = _key;
             // 返回的数据对象有配置的标题字段
-            if (
-              Object.prototype.hasOwnProperty.call(c, title) ||
-              Object.prototype.hasOwnProperty.call(c, 'title')
-            ) {
+            if (Object.prototype.hasOwnProperty.call(c, title) || Object.prototype.hasOwnProperty.call(c, 'title')) {
               _title = '';
             }
             if (c._isReload) {
@@ -451,10 +396,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
             if (asyncService || isAsync) {
               // 存量异步数据
               // -null是非叶子 -[]是叶子 -属性不存在是非叶子
-              if (
-                Array.isArray(c[childrenKey]) &&
-                c[childrenKey]?.length === 0
-              ) {
+              if (Array.isArray(c[childrenKey]) && c[childrenKey]?.length === 0) {
                 node.isLeaf = true;
               }
             } else if (children || c[childrenKey]) {
@@ -512,12 +454,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
         setExpandedKeys(newKeys);
       }
     }
-  }, [
-    JSON.stringify(treeService),
-    JSON.stringify(dataSource),
-    isAsync,
-    JSON.stringify(treeData),
-  ]);
+  }, [JSON.stringify(treeService), JSON.stringify(dataSource), isAsync, JSON.stringify(treeData)]);
 
   const findTreeDataByKey = (treeD: any, keys: string[]) => {
     const selectedData: any[] = [];
@@ -576,6 +513,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
           SERVICE_SOURCE.ATOM,
           SERVICE_SOURCE.QUERY,
           SERVICE_SOURCE.INNER,
+          SERVICE_SOURCE.PLATFORM,
           SERVICE_SOURCE.STD,
           SERVICE_SOURCE.RHIN,
           SERVICE_SOURCE.SCENE,
@@ -583,35 +521,30 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
       ) {
         serviceMethod = 'post';
       }
-      engineApis?.service
-        ?.commonFetch(serviceMethod, asyncService.api, params)
-        .then(
-          (res: string | any[]) => {
-            setLoadedKeys((pre) => {
-              const newKeys = new Set([...pre, eventKey]);
-              return [...newKeys];
-            });
-            if (Array.isArray(res) && res.length) {
-              const source = loadTreeData(res, asyncService);
-              node.props.dataRef.children = source.map((c) => ({
-                ...c,
-                isLeaf: false,
-              }));
-              node.props.dataRef.isLeaf = false;
-            } else {
-              node.props.dataRef.children = undefined;
-              node.props.dataRef.isLeaf = true;
-            }
-            setData([...data]);
-            resolve();
-          },
-          (err: void | PromiseLike<void>) => {
+      engineApis?.service?.commonFetch(serviceMethod, asyncService.api, params).then(
+        (res: string | any[]) => {
+          setLoadedKeys((pre) => {
+            const newKeys = new Set([...pre, eventKey]);
+            return [...newKeys];
+          });
+          if (Array.isArray(res) && res.length) {
+            const source = loadTreeData(res, asyncService);
+            node.props.dataRef.children = source.map((c) => ({ ...c, isLeaf: false }));
+            node.props.dataRef.isLeaf = false;
+          } else {
             node.props.dataRef.children = undefined;
             node.props.dataRef.isLeaf = true;
-            setData([...data]);
-            resolve(err);
-          },
-        );
+          }
+          setData([...data]);
+          resolve();
+        },
+        (err: void | PromiseLike<void>) => {
+          node.props.dataRef.children = undefined;
+          node.props.dataRef.isLeaf = true;
+          setData([...data]);
+          resolve(err);
+        },
+      );
     });
   };
 
@@ -642,15 +575,9 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
     }
   };
 
-  const renderIconFont = (
-    c: Record<string, any>,
-    icon: any,
-    dropdown?: boolean,
-  ) => {
+  const renderIconFont = (c: Record<string, any>, icon: any, dropdown?: boolean) => {
     return dropdown ? (
-      <span onClick={(e) => onClickIcon(e, c, icon)}>
-        {icon?.title || iconMap[icon]?.name}
-      </span>
+      <span onClick={(e) => onClickIcon(e, c, icon)}>{icon?.title || iconMap[icon]?.name}</span>
     ) : (
       <span className="ued-tree-icon" onClick={(e) => onClickIcon(e, c, icon)}>
         <Icon
@@ -671,7 +598,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
 
   const getRuleFunc = (rule: string) => {
     if (!rule) {
-      return () => {};
+      return () => { };
     }
     if (typeof rule === 'function') {
       return rule;
@@ -680,12 +607,10 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
       // eslint-disable-next-line no-new-func
       return new Function(
         'node',
-        `try { return ${rule};} catch(e) { console.warn("${rule}${getLocale?.(
-          'nodeRule',
-        )}");}`,
+        `try { return ${rule};} catch(e) { console.warn("${rule}${getLocale?.('nodeRule')}");}`,
       );
     }
-    return () => {};
+    return () => { };
   };
 
   const nodeIconsInfo = useMemo(() => {
@@ -705,9 +630,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
         try {
           ruleFunc = getRuleFunc(node?.rule);
         } catch (e) {
-          console.warn(
-            `${node?.rule}节点规则不正确，请使用node.字段名进行配置`,
-          );
+          console.warn(`${node?.rule}节点规则不正确，请使用node.字段名进行配置`);
         }
         return {
           ...node,
@@ -718,15 +641,9 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
     return [];
   }, [JSON.stringify(nodeIcons || {})]);
 
-  const renderDelete = (
-    c: Record<string, any>,
-    icon: any,
-    dropdown?: boolean,
-  ) => (
+  const renderDelete = (c: Record<string, any>, icon: any, dropdown?: boolean) => (
     <Popconfirm
-      onVisibleChange={(v) =>
-        v && setPopVisible({ ...popVisible, [c.key]: false })
-      }
+      onVisibleChange={v => v && setPopVisible({ ...popVisible, [c.key]: false })}
       key={`${icon?.type || icon}_1`}
       title={getLocale?.('deleteConfirm')}
       placement={dropdown ? 'rightBottom' : 'top'}
@@ -736,12 +653,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
           // 事件入参：节点key 节点数据 父节点key 父节点数据
           // 由于历史原因，图标点击事件中节点数据是原数据，而非平台包装后的数据，而选中，展开事件的节点数据为平台包装数据
           // 父节点数据保持一致，为平台包装后的数据，访问原数据需要从.data节点获取
-          onNodeDelete(
-            c.key,
-            c.data,
-            c?.data?.parentNode?.key,
-            c?.data?.parentNode,
-          );
+          onNodeDelete(c.key, c.data, c?.data?.parentNode?.key, c?.data?.parentNode);
         }
       }}
       onCancel={(e: any) => e.stopPropagation()}
@@ -750,11 +662,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
     </Popconfirm>
   );
 
-  const renderIcons = (
-    c: Record<string, any>,
-    icons: any[],
-    dropdown?: boolean,
-  ) =>
+  const renderIcons = (c: Record<string, any>, icons: any[], dropdown?: boolean) =>
     dropdown ? (
       <Menu>
         {icons.map((icon) => (
@@ -771,9 +679,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
           <Tooltip
             title={icon?.title || iconMap[icon]?.name}
             visible={popVisible?.[c.key]}
-            onVisibleChange={(v) =>
-              setPopVisible({ ...popVisible, [c.key]: v })
-            }
+            onVisibleChange={v => setPopVisible({ ...popVisible, [c.key]: v })}
           >
             {renderDelete(c, icon)}
           </Tooltip>
@@ -786,11 +692,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
     );
 
   const renderTooltip = (cItem: any, child: React.ReactNode) => (
-    <Tooltip
-      title={cItem.title}
-      overlayClassName="nodeHoverCodeTip"
-      placement="top"
-    >
+    <Tooltip title={cItem.title} overlayClassName="nodeHoverCodeTip" placement="top">
       {child}
     </Tooltip>
   );
@@ -821,8 +723,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
         </div>
       );
     } else if (codeStr && funcExpExecute) {
-      if (codeStr.toString().indexOf('节点名称hover展示全称') > -1)
-        isTooltip = true;
+      if (codeStr.toString().indexOf('节点名称hover展示全称') > -1) isTooltip = true;
       context = (
         <div
           style={{ position: 'relative' }}
@@ -856,11 +757,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
 
   const renderTitle = (c: Record<string, any>, i: number) => {
     let iconsDom: any = null;
-    if (
-      !resetProps.disabled &&
-      Array.isArray(nodeIconsInfo) &&
-      nodeIconsInfo.length
-    ) {
+    if (!resetProps.disabled && Array.isArray(nodeIconsInfo) && nodeIconsInfo.length) {
       const finalNodeIcons = nodeIconsInfo.filter((node) => {
         if (node.rule && typeof node.rule === 'function') {
           try {
@@ -902,13 +799,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
       <div
         onContextMenu={() => {
           if (typeof onRightClickNode === 'function') {
-            onRightClickNode(
-              c.key,
-              c,
-              showRightMenu[c.key] !== undefined,
-              c?.data?.parentNode?.key,
-              c?.data?.parentNode,
-            );
+            onRightClickNode(c.key, c, showRightMenu[c.key] !== undefined, c?.data?.parentNode?.key, c?.data?.parentNode);
           }
         }}
         className="ued-tree-tit"
@@ -918,6 +809,9 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
           onClickMenuItem={onClickMenuItem}
           visible={showRightMenu?.[c.key] || false}
           onVisibleChange={(v: boolean) => {
+            if (!v && rightMenuData.treeKey) {
+              setRightMenuData({});
+            }
             setShowRightMenu((pre: any) => ({
               ...pre,
               // 收起菜单时隐藏
@@ -955,10 +849,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
 
   // 扩展规则
   const extRules = useMemo(() => {
-    if (
-      Array.isArray(treeNodeIcon?.extendRules) &&
-      treeNodeIcon?.extendRules?.length
-    ) {
+    if (Array.isArray(treeNodeIcon?.extendRules) && treeNodeIcon?.extendRules?.length) {
       return (treeNodeIcon?.extendRules || []).map((iconRule: any) => {
         const { rule } = iconRule;
         let ruleFunc;
@@ -990,10 +881,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
       extRules.forEach((iconRule: any) => {
         const { rule } = iconRule;
         if (typeof rule === 'function') {
-          const ruleResult = rule({
-            ...node,
-            ...(data?.dataRef || data || {}),
-          });
+          const ruleResult = rule({ ...node, ...(data?.dataRef || data || {}) });
           if (ruleResult) {
             // 为真时表示配置该图标
             info = iconRule;
@@ -1017,72 +905,56 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
   const createNodes = (nodes: any[], parentNode?: any) =>
     Array.isArray(nodes) && nodes.length > 0
       ? nodes.map((c, i) => {
-          const nodeWithParent = {
-            ...c,
-            data: { ...(c.data || {}), parentNode },
-          };
-          const nodeProps: any = { dataRef: c };
-          return (
-            <TreeNode
-              key={c.key}
-              title={renderTitle(nodeWithParent, i)}
-              data={nodeWithParent.data}
-              isLeaf={c.isLeaf}
-              selectable={c.selectable}
-              disableCheckbox={
-                c.disabled ??
-                c.disableCheckbox ??
-                (c.selectable !== undefined ? !c.selectable : undefined)
-              }
-              disabled={
-                c.disabled ??
-                c.disableCheckbox ??
-                (c.selectable !== undefined ? !c.selectable : undefined)
-              }
-              className={classnames(
-                !c.children || !c.children.length ? 'ued-tree-node-leaf' : '',
-                'ued-tree-tree-node',
-              )}
-              domRef={(ref) => {
-                if (
-                  c.matchFlag &&
-                  !scrollIntoViewComp?.current &&
-                  ref &&
-                  treeWrapRef?.current
-                ) {
-                  let currentComp: HTMLElement | null = ref.parentElement;
-                  while (currentComp !== treeWrapRef?.current && currentComp) {
-                    if (
-                      currentComp &&
-                      currentComp.scrollHeight - currentComp.clientHeight > 8
-                    ) {
-                      // 容器存在滚动条
-                      break;
-                    }
-                    currentComp = currentComp
-                      ? currentComp.parentElement
-                      : null;
+        const nodeWithParent = { ...c, data: { ...(c.data || {}), parentNode } };
+        const nodeProps: any = { dataRef: c };
+        return (
+          <TreeNode
+            key={c.key}
+            title={renderTitle(nodeWithParent, i)}
+            data={nodeWithParent.data}
+            isLeaf={c.isLeaf}
+            selectable={c.selectable}
+            disableCheckbox={
+              c.disabled ??
+              c.disableCheckbox ??
+              (c.selectable !== undefined ? !c.selectable : undefined)
+            }
+            disabled={
+              c.disabled ??
+              c.disableCheckbox ??
+              (c.selectable !== undefined ? !c.selectable : undefined)
+            }
+            className={classnames(
+              !c.children || !c.children.length ? 'ued-tree-node-leaf' : '',
+              'ued-tree-tree-node',
+            )}
+            domRef={(ref) => {
+              if (c.matchFlag && !scrollIntoViewComp?.current && ref && treeWrapRef?.current) {
+                let currentComp: HTMLElement | null = ref.parentElement;
+                while (currentComp !== treeWrapRef?.current && currentComp) {
+                  if (currentComp && currentComp.scrollHeight - currentComp.clientHeight > 8) {
+                    // 容器存在滚动条
+                    break;
                   }
-                  if (currentComp && currentComp !== treeWrapRef?.current) {
-                    const { top: currentTop } =
-                      currentComp.getBoundingClientRect();
-                    const { top: refTop } = ref.getBoundingClientRect();
-                    if (refTop - currentTop > currentComp.scrollTop) {
-                      // 底部被遮挡，滚动
-                      currentComp.scrollTop = refTop - currentTop;
-                      scrollIntoViewComp.current = true;
-                    }
+                  currentComp = currentComp ? currentComp.parentElement : null;
+                }
+                if (currentComp && currentComp !== treeWrapRef?.current) {
+                  const { top: currentTop } = currentComp.getBoundingClientRect();
+                  const { top: refTop } = ref.getBoundingClientRect();
+                  if (refTop - currentTop > currentComp.scrollTop) {
+                    // 底部被遮挡，滚动
+                    currentComp.scrollTop = refTop - currentTop;
+                    scrollIntoViewComp.current = true;
                   }
                 }
-              }}
-              {...nodeProps}
-            >
-              {c.children &&
-                c.children.length > 0 &&
-                createNodes(c.children, Object.freeze({ ...c }))}
-            </TreeNode>
-          );
-        })
+              }
+            }}
+            {...nodeProps}
+          >
+            {c.children && c.children.length > 0 && createNodes(c.children, Object.freeze({ ...c }))}
+          </TreeNode>
+        );
+      })
       : null;
 
   // 由于为了兼容旧异步加载节点动作，搜索时过滤子节点修改了原节点数据，导致子节点数据丢失
@@ -1154,9 +1026,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
               },
             ]);
             // 过滤掉funCode的html标签
-            titText = funCodeRes
-              .replace(/<\/?[^>]*>/g, '')
-              .replace(/[|]*\n|\s*/g, '');
+            titText = funCodeRes.replace(/<\/?[^>]*>/g, '').replace(/[|]*\n|\s*/g, '');
           }
 
           if (titText?.includes(searchVal || '') || newD.children?.length > 0) {
@@ -1179,11 +1049,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
 
   // 展开指定节点
   useEffect(() => {
-    if (
-      Array.isArray(expandedKey) &&
-      expandedKey?.length &&
-      filterData?.length
-    ) {
+    if (Array.isArray(expandedKey) && expandedKey?.length && filterData?.length) {
       let _expandKeys: any = expandedKeys || [];
       const getKeys = (dataAttr: any) => {
         dataAttr.forEach((da: any) => {
@@ -1203,14 +1069,8 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
   }, [expandedKey]);
   // 展开指定节点
   useEffect(() => {
-    if (
-      Array.isArray(closeExpandedKey) &&
-      closeExpandedKey?.length &&
-      filterData?.length
-    ) {
-      const _expandedKeys = expandedKeys.filter(
-        (key) => !closeExpandedKey.includes(key),
-      );
+    if (Array.isArray(closeExpandedKey) && closeExpandedKey?.length && filterData?.length) {
+      const _expandedKeys = expandedKeys.filter((key) => !closeExpandedKey.includes(key));
       setExpandedKeys(_expandedKeys);
     }
   }, [closeExpandedKey]);
@@ -1228,18 +1088,14 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
       )}
       <Tree
         {...resetProps}
-        className={classnames(
-          'ued-tree',
-          className,
-          !showLineIcon ? 'ued-tree-no-line-icon' : '',
-        )}
+        className={classnames('ued-tree', className, !showLineIcon ? 'ued-tree-no-line-icon' : '')}
         selectedKeys={selectedKeys}
         checkedKeys={checkedKeys}
         showLine={
           resetProps?.showLine
             ? {
-                showLeafIcon: false,
-              }
+              showLeafIcon: false,
+            }
             : false
         }
         defaultExpandAll={isAsync && asyncService ? false : defaultExpandAll}
@@ -1276,12 +1132,7 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
           const selectedData = findTreeDataByKey(data, keys);
           setSelectDataList(selectedData);
           if (onSelect) {
-            onSelect(
-              keys,
-              e,
-              e?.node?.data?.parentNode?.key,
-              e?.node?.data?.parentNode,
-            );
+            onSelect(keys, e, e?.node?.data?.parentNode?.key, e?.node?.data?.parentNode);
           }
         }}
         showIcon={showLineIcon}

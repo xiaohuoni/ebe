@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CommIconEG from '../../Icon';
-import { handleIsValidIconCfg } from '../../Icon/hooks';
 import CommIconED from '../../Icon/IconED';
+import { handleIsValidIconCfg } from '../../Icon/hooks';
 import { useLocale } from '../../utils/hooks/useLocale';
 
 const useExpandable = (expandCfg: any, isED?: boolean) => {
@@ -32,8 +32,7 @@ const useExpandable = (expandCfg: any, isED?: boolean) => {
   const [childrenColumnName, setChildrenColumnName] = useState<string>('');
   const realChildrenColumnName = childrenColumnName || 'children'; // 默认为 children
 
-  const hasExpandContent =
-    Array.isArray(expandComponents) && expandComponents.length;
+  const hasExpandContent = Array.isArray(expandComponents) && expandComponents.length;
   const [expandedRowKeys, setExpandedRowKeys] = useState(() => {
     if (!defaultExpandAllRows && defaultExpandedRowKeys) {
       try {
@@ -43,10 +42,7 @@ const useExpandable = (expandCfg: any, isED?: boolean) => {
         }
         return [];
       } catch (e) {
-        console.error(
-          '默认展开行 defaultExpandedRowKeys 必须配置为合理的数组字符串',
-          e,
-        ); // eslint-disable-line no-console
+        console.error('默认展开行 defaultExpandedRowKeys 必须配置为合理的数组字符串', e); // eslint-disable-line no-console
       }
     }
     return [];
@@ -66,10 +62,8 @@ const useExpandable = (expandCfg: any, isED?: boolean) => {
       // 非树形表格调用时，isLeaf 为 undefined
       if (!isTree) {
         // 需要兼容表格存量树形数据判断
-        isLeaf =
-          !Array.isArray(record?.[realChildrenColumnName]) ||
-          (Array.isArray(record?.[realChildrenColumnName]) &&
-            record?.[realChildrenColumnName]?.length === 0);
+        isLeaf = !Array.isArray(record?.[realChildrenColumnName])
+        || (Array.isArray(record?.[realChildrenColumnName]) && record?.[realChildrenColumnName]?.length === 0);
       }
 
       // 若没有下级
@@ -102,20 +96,12 @@ const useExpandable = (expandCfg: any, isED?: boolean) => {
       };
 
       // 还原树形表格原生的展开/收缩按钮
-      const iconExpandCls = `${prefixCls}-row-expand-icon-${
-        expanded ? 'expanded' : 'collapsed'
-      }`;
+      const iconExpandCls = `${prefixCls}-row-expand-icon-${expanded ? 'expanded' : 'collapsed'}`;
       const iconClsConnect = `${iconClassName} ${iconExpandCls}`;
       const customIconCls = `${iconClsConnect} ued-table-row-expand-custom-icon`;
 
       if (!expanded) {
-        let openIcon = (
-          <button
-            type="button"
-            className={iconClsConnect}
-            onClick={handleIconClick}
-          />
-        );
+        let openIcon = <button type="button" className={iconClsConnect} onClick={handleIconClick} />;
 
         if (handleIsValidIconCfg(expandOpenIcon)) {
           openIcon = (
@@ -132,13 +118,7 @@ const useExpandable = (expandCfg: any, isED?: boolean) => {
         return openIcon;
       }
 
-      let closeIcon = (
-        <button
-          type="button"
-          className={iconClsConnect}
-          onClick={handleIconClick}
-        />
-      );
+      let closeIcon = <button type="button" className={iconClsConnect} onClick={handleIconClick} />;
 
       if (handleIsValidIconCfg(expandCloseIcon)) {
         closeIcon = (
@@ -169,29 +149,21 @@ const useExpandable = (expandCfg: any, isED?: boolean) => {
 
   if (hasExpandContent) {
     // 有内容设置才有(且开启之后，展开的按钮会有个单独的单元格)
-    expandable.expandedRowRender = (
-      record: any,
-      index: number,
-      indent: any,
-      expanded: any,
-    ) => {
+    expandable.expandedRowRender = (record: any, index: number, indent: any, expanded: any) => {
       if (Array.isArray(expandComponents) && expandComponents.length) {
         let newExpandComponents = [];
         if (!isED) {
-          newExpandComponents = expandComponents.map((c) => {
+          newExpandComponents = expandComponents.map(c => {
             const busiCompStates = c?.props?.busiCompStates;
-            if (
-              typeof busiCompStates === 'object' &&
-              !Array.isArray(busiCompStates)
-            ) {
+            if (typeof busiCompStates === 'object' && !Array.isArray(busiCompStates)) {
               const busiCompStatesKeys = Object.keys(busiCompStates);
               const newBusiCompStates: any = {};
 
-              busiCompStatesKeys.forEach((k) => {
+              busiCompStatesKeys.forEach(k => {
                 if (typeof busiCompStates[k] === 'string') {
                   const originExp = busiCompStates[k];
-                  busiCompStates[k] = (row: any, rowId: any, index: number) =>
-                    sandBoxSafeRun(originExp, {
+                  busiCompStates[k] = (row: any, rowId: any, index: number) => sandBoxSafeRun(originExp,
+                    {
                       row,
                       rowId,
                       index,
@@ -200,11 +172,7 @@ const useExpandable = (expandCfg: any, isED?: boolean) => {
 
                 if (typeof busiCompStates[k] === 'function') {
                   try {
-                    newBusiCompStates[k] = busiCompStates[k](
-                      record,
-                      record[currentRowKey],
-                      index,
-                    );
+                    newBusiCompStates[k] = busiCompStates[k](record, record[currentRowKey], index);
                   } catch (e) {
                     console.error(e);
                   }
@@ -231,18 +199,13 @@ const useExpandable = (expandCfg: any, isED?: boolean) => {
           if (typeof renderExpandComponents === 'function') {
             // remark: 目前只支持绑定一个
             const busiCompSimpleDSL = newExpandComponents[0] || {};
-            const busiComp = renderExpandComponents(
-              busiCompSimpleDSL,
-              getEngineApis,
-            );
+            const busiComp = renderExpandComponents(busiCompSimpleDSL, getEngineApis);
             return busiComp;
           }
         } else {
           let remark = getLocale('Table.expand.component');
           expandComponents.forEach((c, i) => {
-            remark = `${remark}${c.label || ''}(${c.id || ''})${
-              i !== expandComponents.length - 1 ? '、' : ''
-            }`;
+            remark = `${remark}${c.label || ''}(${c.id || ''})${i !== expandComponents.length - 1 ? '、' : ''}`;
           });
           return remark;
         }
@@ -260,8 +223,7 @@ const useExpandable = (expandCfg: any, isED?: boolean) => {
             value: record,
           },
         ]);
-      }
-      if (funcExpExecute && rowExpandable) {
+      } if (funcExpExecute && rowExpandable) {
         /**
          * 新版：配置态生成的DSL就是一个$$包含函数的表达式
          * 但会经过预处理移除 $$
@@ -284,25 +246,20 @@ const useExpandable = (expandCfg: any, isED?: boolean) => {
   }
 
   const handleAllExpandRowKeys = (rows: any[]) => {
-    const currPageRowKeys: any[] = rows
-      .map((row: any) => {
-        // 树形数据时，存在多级
-        if (row?.[realChildrenColumnName]) {
-          return [
-            row?.[currentRowKey],
-            ...handleAllExpandRowKeys(row[realChildrenColumnName]),
-          ];
-        }
+    const currPageRowKeys: any[] = rows.map((row: any) => {
+      // 树形数据时，存在多级
+      if (row?.[realChildrenColumnName]) {
+        return [row?.[currentRowKey], ...handleAllExpandRowKeys(row[realChildrenColumnName])];
+      }
 
-        return row?.[currentRowKey];
-      })
-      .reduce((prev: any, curr: any) => {
-        // 将数组数据打平
-        if (Array.isArray(curr)) {
-          return [...prev, ...curr];
-        }
-        return [...prev, curr];
-      }, []);
+      return row?.[currentRowKey];
+    }).reduce((prev: any, curr: any) => {
+      // 将数组数据打平
+      if (Array.isArray(curr)) {
+        return [...prev, ...curr];
+      }
+      return [...prev, curr];
+    }, []);
     return currPageRowKeys || [];
   };
 

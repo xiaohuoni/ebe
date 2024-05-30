@@ -4,17 +4,17 @@
 .ued-stdupload-wrap {
   // 只读样式
   &-readOnly {
-    .@{stdupload-prefix-cls} {
-      display: none !important;
-    }
+      .@{stdupload-prefix-cls} {
+        display: none !important;
+      }
   }
-
+  
   //点击上传样式
   .@{stdupload-prefix-cls}.@{stdupload-prefix-cls}-select.@{stdupload-prefix-cls}-select-text {
     button {
       height: 32px;
       border: 1px solid @border-color-base;
-      border-radius: 2px;
+      border-radius: @border-radius-base;
     }
     &.@{stdupload-prefix-cls}-disabled {
       display: block !important;
@@ -31,7 +31,7 @@
     position: relative;
     margin: 0;
     border: 1px dashed @border-color-base;
-    border-radius: 2px;
+    border-radius: @border-radius-base;
     &.@{stdupload-prefix-cls}-disabled {
       display: inline-block !important;
       cursor: not-allowed;
@@ -42,7 +42,7 @@
   .@{stdupload-prefix-cls}.@{stdupload-prefix-cls}-drag {
     height: 192px;
     border: 1px dashed @border-color-base;
-    border-radius: 2px;
+    border-radius: @border-radius-base;
 
     &.@{stdupload-prefix-cls}-disabled {
       display: block !important;
@@ -67,12 +67,12 @@
   .@{stdupload-prefix-cls}-list-item.@{stdupload-prefix-cls}-list-item-list-type-picture {
     height: 56px;
     border: 1px solid @border-color-base;
-    border-radius: 2px;
+    border-radius:  2px;
     a {
       color: rgba(0, 0, 0, 0.65);
     }
     .@{stdupload-prefix-cls}-list-item-card-actions.picture {
-      //  display: none;
+    //  display: none;
     }
     &:hover {
       background: rgba(28, 36, 46, 0.04);
@@ -80,7 +80,7 @@
         color: @primary-color;
       }
       .@{stdupload-prefix-cls}-list-item-card-actions.picture {
-        //  display: block;
+      //  display: block;
       }
     }
   }
@@ -115,7 +115,7 @@
     align-items: center;
     margin-top: 8px;
     padding: 0 4px;
-    color: rgba(0, 0, 0, 0.45);
+    color: rgba(0,0,0,.45);
     cursor: pointer;
 
     &-loading {
@@ -213,7 +213,7 @@
     }
 
     &:hover {
-      background-color: rgba(28, 36, 46, 0.04);
+      background-color: rgba(28,36,46,.04);
       a {
         color: @primary-color;
       }

@@ -1,8 +1,8 @@
-import { LingxiForwardRef } from '@lingxiteam/types';
-import classnames from 'classnames';
-import React, { useEffect, useImperativeHandle, useState } from 'react';
-import { useListenProps } from '../utils';
+import React, { useState, useEffect, useImperativeHandle } from 'react';
 import { getAfterString } from '../utils/common';
+import classnames from 'classnames';
+import { useListenProps } from '../utils';
+import { LingxiForwardRef } from '@lingxiteam/types';
 
 export interface MyLinkProps {
   visible?: boolean;
@@ -45,8 +45,7 @@ const Link = LingxiForwardRef<any, MyLinkProps>((props, ref) => {
   };
 
   if ((download && !clickType) || clickType === 'download') {
-    specialProps.download =
-      download || clickType === 'download' ? true : compFileId;
+    specialProps.download = download || clickType === 'download' ? true : compFileId;
     isBlobDownload = Boolean(aHref && download);
   }
 
@@ -80,14 +79,10 @@ const Link = LingxiForwardRef<any, MyLinkProps>((props, ref) => {
       xhr.onload = () => {
         const url = window.URL.createObjectURL(xhr.response);
         const a = document.createElement('a');
-        const suffix = getAfterString(
-          xhr.getResponseHeader('Content-Disposition'),
-          '.',
-        );
+        const suffix = getAfterString(xhr.getResponseHeader('Content-Disposition'), '.');
         a.href = url;
         // @ts-ignore
-        a.download =
-          download?.indexOf('.') > -1 ? download : `${download}.${suffix}`;
+        a.download = download?.indexOf('.') > -1 ? download : `${download}.${suffix}`;
         a.click();
       };
       xhr.send();

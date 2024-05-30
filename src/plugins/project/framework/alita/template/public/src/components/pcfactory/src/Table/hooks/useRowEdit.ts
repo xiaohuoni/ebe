@@ -1,10 +1,6 @@
 import { useState } from 'react';
+import { deleteTempRowProperties, EMPTY_ROW_TEMP_KEY_ATTR, LATEST_EMPTY_ROW_FLAG_ATTR } from '../utils';
 import { EDIT_COMPONENT_STOP_PROPAGATION_CLS } from '../constant';
-import {
-  deleteTempRowProperties,
-  EMPTY_ROW_TEMP_KEY_ATTR,
-  LATEST_EMPTY_ROW_FLAG_ATTR,
-} from '../utils';
 
 const useRowEdit = (props: any) => {
   const {
@@ -51,16 +47,12 @@ const useRowEdit = (props: any) => {
       return;
     }
 
-    const trow: any = innerDataSource.find(
-      (i: any) => i[currentRowKey] === nowInlineEditKey,
-    );
+    const trow: any = innerDataSource.find((i: any) => i[currentRowKey] === nowInlineEditKey);
     Object.assign(trow, nowEditingData);
     deleteTempRowProperties(trow);
 
     // 单行保存编辑时，需要将修改后的值同步到绑定的数据源
-    const syncPropsDataSourceRow = props.dataSource?.find(
-      (r: any) => r[currentRowKey] === nowInlineEditKey,
-    );
+    const syncPropsDataSourceRow = props.dataSource?.find((r: any) => r[currentRowKey] === nowInlineEditKey);
     Object.assign(syncPropsDataSourceRow, nowEditingData);
     deleteTempRowProperties(syncPropsDataSourceRow);
 
@@ -72,17 +64,13 @@ const useRowEdit = (props: any) => {
     editInlineRow(null);
   };
 
-  const editInlineRow = (
-    editkey: React.SetStateAction<string | null | undefined>,
-  ) => {
+  const editInlineRow = (editkey: React.SetStateAction<string | null | undefined>) => {
     // 开始行内编辑行方法
     if (editkey === undefined) {
       return;
     }
 
-    const trow: any = innerDataSource.find(
-      (i: any) => i[currentRowKey] === editkey,
-    );
+    const trow: any = innerDataSource.find((i: any) => i[currentRowKey] === editkey);
     if (onBeforeInlineEdit) {
       // 如果有这个回调，先触发这个回调
       // 预留坑：如果要判断该行不允许编辑之类的，可以在这里做准备
@@ -100,32 +88,19 @@ const useRowEdit = (props: any) => {
     setNowEditingData(null);
     setNowInlineEditKey(null);
     // 取消编辑的时候，如果当前行是刚刚新增的空白行，则过滤当前行
-    const isLatestCreationTempRow =
-      row?.[LATEST_EMPTY_ROW_FLAG_ATTR] && row?.[EMPTY_ROW_TEMP_KEY_ATTR];
-    setInnerDataSource(
-      innerDataSource.filter((i: any) =>
-        isLatestCreationTempRow
-          ? row?.[EMPTY_ROW_TEMP_KEY_ATTR] !== i?.[EMPTY_ROW_TEMP_KEY_ATTR]
-          : true,
-      ),
-    );
+    const isLatestCreationTempRow = row?.[LATEST_EMPTY_ROW_FLAG_ATTR] && row?.[EMPTY_ROW_TEMP_KEY_ATTR];
+    setInnerDataSource(innerDataSource
+      .filter((i: any) => isLatestCreationTempRow ? row?.[EMPTY_ROW_TEMP_KEY_ATTR] !== i?.[EMPTY_ROW_TEMP_KEY_ATTR] : true));
+
 
     // 同样的，需要移除选中数据中的当前行
     if (isLatestCreationTempRow) {
-      onRowSelected(
-        selectedRows.filter(
-          (r: any) => row?.[currentRowKey] !== r?.[currentRowKey],
-        ),
-        false,
-      );
+      onRowSelected(selectedRows.filter((r: any) => row?.[currentRowKey] !== r?.[currentRowKey]), false);
     }
 
     // 倘若绑定了数据源，需要通过引用的方式，移除对应的临时数据
     if (isLatestCreationTempRow && dataSourceFromDataSourceConfig) {
-      const targetIndex = innerDataSource.findIndex(
-        (i: any) =>
-          row?.[EMPTY_ROW_TEMP_KEY_ATTR] === i?.[EMPTY_ROW_TEMP_KEY_ATTR],
-      );
+      const targetIndex = innerDataSource.findIndex((i: any) => row?.[EMPTY_ROW_TEMP_KEY_ATTR] === i?.[EMPTY_ROW_TEMP_KEY_ATTR]);
       (outerDataSource as any)?.splice(targetIndex, 1);
     }
   };
@@ -157,20 +132,11 @@ const useRowEdit = (props: any) => {
     }
   };
 
-  const onRowAttrValsChange = (
-    row: any,
-    attr: string,
-    newAttrVal: any,
-    otherAttrVals: any,
-  ) => {
+  const onRowAttrValsChange = (row: any, attr: string, newAttrVal: any, otherAttrVals: any) => {
     if (editMode === 'multiple') {
-      const editRow = innerDataSource.find(
-        (r: any) => r[currentRowKey] === row[currentRowKey],
-      );
+      const editRow = innerDataSource.find((r: any) => r[currentRowKey] === row[currentRowKey]);
       // 整表编辑时，需要将修改后的值同步到绑定的数据源
-      const syncPropsDataSourceRow = outerDataSource?.find(
-        (r: any) => r[currentRowKey] === row[currentRowKey],
-      );
+      const syncPropsDataSourceRow = outerDataSource?.find((r: any) => r[currentRowKey] === row[currentRowKey]);
 
       editRow[attr] = newAttrVal;
       syncPropsDataSourceRow[attr] = newAttrVal;
@@ -232,21 +198,17 @@ const useRowEdit = (props: any) => {
       }
 
       if (!stopDoubleClick) {
-        onRowDoubleClick(
-          currentRowKey ? record[currentRowKey] : record,
-          record,
-          index,
-        );
+        onRowDoubleClick(currentRowKey ? record[currentRowKey] : record, record, index);
       }
     }
   };
 
   /**
-   * 判断表格可编辑时，里面是否可以操作
-   * @param row 某行数据对象
-   * @param index 某行所处当前页行索引
-   * @returns
-   */
+ * 判断表格可编辑时，里面是否可以操作
+ * @param row 某行数据对象
+ * @param index 某行所处当前页行索引
+ * @returns
+ */
   const handleIsRowEditableCanUse = (row: any, index?: number) => {
     // 存量：配置态生成的DSL是包含的完整代码的对象
     if (funcExpExecute && rowEditableRule?.code) {
@@ -260,8 +222,7 @@ const useRowEdit = (props: any) => {
           value: index,
         },
       ]);
-    }
-    if (funcExpExecute && rowEditableRule) {
+    } if (funcExpExecute && rowEditableRule) {
       /**
        * 新版：配置态生成的DSL就是一个$$包含函数的表达式
        * 但会经过预处理移除 $$

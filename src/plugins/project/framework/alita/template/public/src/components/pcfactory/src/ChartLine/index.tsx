@@ -1,5 +1,5 @@
-import { LingxiForwardRef } from '@lingxiteam/types';
 import React, { useImperativeHandle } from 'react';
+import { LingxiForwardRef } from '@lingxiteam/types';
 import CharBarLoader from './loader';
 import ChartLineProps from './PropsType';
 

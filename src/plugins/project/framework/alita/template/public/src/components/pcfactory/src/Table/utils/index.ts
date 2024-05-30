@@ -7,8 +7,11 @@ export type SingleRowInfo = {
     rowIdAndTitleColMap: any;
     nextRowsChildren: any;
   };
-};
-export const handleMultiLevelHeader = (leftTree: any, column: any) => {
+}
+export const handleMultiLevelHeader = (
+  leftTree: any,
+  column: any,
+) => {
   const { fixed = '' } = column;
   let { group } = column;
 
@@ -18,7 +21,11 @@ export const handleMultiLevelHeader = (leftTree: any, column: any) => {
   }
 
   // 兼容可能存在的空数据
-  if (group === '' || group === null || group === undefined) {
+  if (
+    group === '' ||
+    group === null ||
+    group === undefined
+  ) {
     group = [''];
   }
 
@@ -37,7 +44,10 @@ export const handleMultiLevelHeader = (leftTree: any, column: any) => {
       group[groupEmptyStartIndex] === ''
     ) {
       // 当分组数据遍历完成 或 下一个已经不为空时，退出循环
-      if (groupEmptyStartIndex - 1 < 0 || group[groupEmptyStartIndex - 1]) {
+      if (
+        groupEmptyStartIndex - 1 < 0 ||
+        group[groupEmptyStartIndex - 1]
+      ) {
         break;
       }
       groupEmptyStartIndex -= 1;
@@ -55,10 +65,7 @@ export const handleMultiLevelHeader = (leftTree: any, column: any) => {
     // 从第一层开始，最后一层会接入列信息
     while (rightLevel <= groupLen) {
       // 从当前层到最后一层都为空时：直接接入列信息，并退出循环
-      if (
-        rightLevel === groupEmptyStartIndex + 1 &&
-        !group[groupEmptyStartIndex]
-      ) {
+      if (rightLevel === groupEmptyStartIndex + 1 && !group[groupEmptyStartIndex]) {
         // 将列数据放入最后一层分组最后一个节点的children，即再加最后一层
         tempRightTree.children = [column];
         // 记录最最后一层
@@ -100,10 +107,10 @@ export const handleMultiLevelHeader = (leftTree: any, column: any) => {
       leftLevel += 1;
       const leftTreeCurrLevelLastChildren = leftTreeCurrLevelLast.children;
       // 取左树当前层的最后一个
-      leftTreeCurrLevelLast =
-        leftTreeCurrLevelLastChildren[leftTreeCurrLevelLastChildren.length - 1];
+      leftTreeCurrLevelLast = leftTreeCurrLevelLastChildren[leftTreeCurrLevelLastChildren.length - 1];
       leftTreeLevelMap[leftLevel] = leftTreeCurrLevelLast;
     }
+
 
     // 遍历右树（i 表示右树的层级）：
     for (let i = 0; i <= groupLen + 1; i += 1) {
@@ -114,9 +121,7 @@ export const handleMultiLevelHeader = (leftTree: any, column: any) => {
       if (
         current?.title === leftTreeLast?.title &&
         // 如果是第一层，还要额外比对列固定配置是否相同
-        i === 1
-          ? current?.fixed === leftTreeLast?.fixed
-          : true
+        i === 1 ? current?.fixed === leftTreeLast?.fixed : true
       ) {
         // 需要进一步比较下一层组名是否相同
         const currentNext = rightTreeLevelMap[i + 1];
@@ -125,8 +130,7 @@ export const handleMultiLevelHeader = (leftTree: any, column: any) => {
         // 如果相同 且 右树下一层非最后一层(即，有 children)，则continue，直接进行下一层处理
         if (
           currentNext?.title === leftTreeNextLast?.title &&
-          currentNext?.children &&
-          Array.isArray(currentNext?.children)
+          currentNext?.children && Array.isArray(currentNext?.children)
         ) {
           // eslint-disable-next-line no-continue
           continue;
@@ -156,17 +160,13 @@ export const handleExpandColumn = ({
   columns,
 }: any) => {
   // 有设置扩展内容 且 存在行展开图标位置配置
-  if (
-    Array.isArray(expandComponents) &&
-    expandComponents.length &&
-    expandIconPositionRef
-  ) {
+  if (Array.isArray(expandComponents) && expandComponents.length && expandIconPositionRef) {
     // 找到行展开图标位置 基准列的索引（有可能也是分组）
     const refColIndex = columns?.findIndex((c: any) => {
       if (c.dataIndex) {
         return c.dataIndex === expandIconPositionRef?.dataIndex;
       }
-
+      
       if (c.title) {
         return c.title === expandIconPositionRef?.title;
       }
@@ -186,8 +186,8 @@ export const handleExpandColumn = ({
   }
 };
 
-export const createAutoKey = (compId: string | undefined) => {
-  return `${compId}_${parseInt(`${Math.random() * 10000}`, 10)}`;
+export const createAutoKey = (seqId: any) => {
+  return seqId.getId();
 };
 
 export const createTempRowKey = () => {
@@ -206,27 +206,23 @@ export const createEmptyRow = () => ({
   [EMPTY_ROW_TEMP_KEY_ATTR]: createTempRowKey(),
 });
 
-export const handleRecursiveParseColumns = (
-  columnList: any[],
-  rowIndex = 1,
-  styleInfo?: {
-    colorType: 'custom' | 'single';
-    singleColorSetting?: {
-      backgroundColor?: string;
-      color?: string;
-      fontWeight?: number;
-      fontSize?: string;
-    };
-    customColorSetting?: {
-      [id: string]: {
-        backgroundColor?: string;
-        color?: string;
-        fontWeight?: number;
-        fontSize?: string;
-      };
-    };
+export const handleRecursiveParseColumns = (columnList: any[], rowIndex = 1, styleInfo?: {
+  colorType: 'custom' | 'single',
+  singleColorSetting?: {
+    backgroundColor?: string,
+    color?: string,
+    fontWeight?: number,
+    fontSize?: string,
   },
-) => {
+  customColorSetting?: {
+    [id: string] : {
+      backgroundColor?: string,
+      color?: string,
+      fontWeight?: number,
+      fontSize?: string,
+    }
+  }
+}) => {
   const colChildList: any[] = [];
   let colIdMap: { [id: string]: any } = {};
   let cols = columnList;
@@ -246,10 +242,7 @@ export const handleRecursiveParseColumns = (
         } = handleRecursiveParseColumns(col.children, rowIndex + 1, styleInfo);
         newCol.children = childColumns;
         colChildList.push(...childCols);
-        const dataColsStr = childCols.reduce(
-          (p, n) => (p ? `${p}&${n.id}` : `${n.id}`),
-          '',
-        );
+        const dataColsStr = childCols.reduce((p, n) => (p ? `${p}&${n.id}` : `${n.id}`), '');
         const id = `group-${rowIndex}-${dataColsStr}`;
         col.id = id;
         newCol.id = id;
@@ -262,10 +255,7 @@ export const handleRecursiveParseColumns = (
         colChildList.push(col);
       }
       if (styleInfo) {
-        const style =
-          styleInfo?.colorType === 'single'
-            ? styleInfo?.singleColorSetting
-            : styleInfo?.customColorSetting?.[newCol?.id];
+        const style = styleInfo?.colorType === 'single' ? styleInfo?.singleColorSetting : styleInfo?.customColorSetting?.[newCol?.id];
         col.style = style;
         newCol.style = style;
         // 给分组头部传递props
@@ -301,32 +291,24 @@ export const compareFn = (a: any, b: any) => {
   const [, nextNegative, , nextDecimal = '', nextUnit] = nextMatch;
   // 单位一致才比较，否则按字符串比
   // 其中有一个为空值时，也进行比较
-  if (prevUnit === nextUnit || !a || !b) {
+  if ((prevUnit === nextUnit) || !a || !b) {
     if (prevNegative !== nextNegative) {
       // 一正一负,正的大
       return prevNegative ? -1 : 1;
     }
     if (prevNegative === nextNegative) {
       // 两数间最长的小数位长度
-      const expandedLen =
-        prevDecimal.length > nextDecimal?.length
-          ? prevDecimal.length - 1
-          : nextDecimal.length - 1;
+      const expandedLen = prevDecimal.length > nextDecimal?.length ? (prevDecimal.length - 1) : (nextDecimal.length - 1);
       const expand = (decimal: string, len: number) => {
         // 小数部分内容
         const num = decimal.indexOf('.') === 0 ? decimal.slice(1) : decimal;
         // 长度不一的小数进行补位
-        const zero =
-          len - num.length > 0 ? new Array(len - num.length).fill('0') : [];
+        const zero = (len - num.length) > 0 ? (new Array(len - num.length)).fill('0') : [];
         return `${num}${zero.join('')}`;
       };
       // 小数时两个数字同时扩大
-      const prevStr = prevDecimal
-        ? prev.replace(prevDecimal, expand(prevDecimal, expandedLen))
-        : prev;
-      const nextStr = nextDecimal
-        ? next.replace(nextDecimal, expand(nextDecimal, expandedLen))
-        : next;
+      const prevStr = prevDecimal ? prev.replace(prevDecimal, expand(prevDecimal, expandedLen)) : prev;
+      const nextStr = nextDecimal ? next.replace(nextDecimal, expand(nextDecimal, expandedLen)) : next;
       if (prevNegative && nextNegative) {
         // 负数，调换位置
         prev = nextStr;
@@ -344,10 +326,7 @@ export const compareFn = (a: any, b: any) => {
   return prev.localeCompare(next);
 };
 
-export function recursionDataSource<
-  T extends Record<string, any>,
-  U extends T = T,
->(
+export function recursionDataSource<T extends Record<string, any>, U extends T = T>(
   dataSource: T[],
   parseNodeFn?: (node: T, parentPath?: U[]) => U | void,
   childrenKey: string = 'children',
@@ -366,33 +345,28 @@ export function recursionDataSource<
       }
     }
     if (Array.isArray(data[childrenKey]) && data[childrenKey].length) {
-      data[childrenKey] = recursionDataSource(
-        data[childrenKey],
-        parseNodeFn,
-        childrenKey,
-        [...parentPath, data as U],
-      );
+      data[childrenKey] = recursionDataSource(data[childrenKey], parseNodeFn, childrenKey, [...parentPath, data as U],);
     }
 
     return data;
   });
 }
 
+
 // 根据选中节点由下往上计算包含父节点在内的选中key
-export const getFullCheckedKeySet = <T extends {}>(params: {
+export const getFullCheckedKeySet = <
+  T extends {},
+>(params: {
   levelEntries: Map<number, LevelItem<T>[]>;
   maxLevel: number;
   currentCheckedKey: (string | number)[];
   disabledMap: Record<string | number, boolean>;
   checked?: boolean;
 }) => {
-  const { maxLevel, levelEntries, currentCheckedKey, checked, disabledMap } =
-    params;
+  const { maxLevel, levelEntries, currentCheckedKey, checked, disabledMap } = params;
   // key格式做弱等类型判断
-  const checkedLooseMap = currentCheckedKey.reduce((p, n) => {
-    p[n] = n;
-    return p;
-  }, {} as Record<string | number, string | number>);
+  const checkedLooseMap =
+  currentCheckedKey.reduce((p, n) => { p[n] = n; return p; }, {} as Record<string|number, string|number>);
   const visitedKey = new Set();
   // 从下往上收集选中的父节点
   for (let level = maxLevel; level >= 0; level -= 1) {
@@ -400,15 +374,9 @@ export const getFullCheckedKeySet = <T extends {}>(params: {
     levelList?.forEach((node) => {
       let allChecked = true;
       const parent = node.__parent__;
-      if (
-        parent &&
-        (disabledMap[parent?.__key__] || visitedKey.has(parent.__key__))
-      )
-        return;
+      if (parent && (disabledMap[parent?.__key__] || visitedKey.has(parent.__key__))) return;
       if (disabledMap[node?.__key__]) return;
-      const siblings = parent?.__children__?.filter(
-        (c) => !disabledMap[c.__key__],
-      );
+      const siblings = parent?.__children__?.filter((c) => !disabledMap[c.__key__]);
       siblings?.forEach((child) => {
         // 子节点都选中，父节点也要选中
         if (allChecked && !checkedLooseMap[child.__key__]) {
@@ -416,12 +384,7 @@ export const getFullCheckedKeySet = <T extends {}>(params: {
         }
       });
       // 反选子节点时去除之前勾选的父节点
-      if (
-        !checked &&
-        parent &&
-        !allChecked &&
-        checkedLooseMap[parent.__key__]
-      ) {
+      if (!checked && parent && !allChecked && checkedLooseMap[parent.__key__]) {
         delete checkedLooseMap[parent.__key__];
         visitedKey.add(parent?.__key__);
       }
@@ -433,10 +396,5 @@ export const getFullCheckedKeySet = <T extends {}>(params: {
       }
     });
   }
-  return new Set(
-    Object.keys(checkedLooseMap).reduce((p, n) => {
-      p.push(checkedLooseMap[n]);
-      return p;
-    }, [] as (string | number)[]),
-  );
+  return new Set(Object.keys(checkedLooseMap).reduce((p, n) => { p.push(checkedLooseMap[n]); return p; }, [] as (string|number)[]));
 };

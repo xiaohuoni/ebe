@@ -3,31 +3,33 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
-import { Form, Table } from 'antd';
+import { Table, Form } from 'antd';
 import classnames from 'classnames';
 import React, { useRef } from 'react';
-import { PrintContainer, usePrintMode } from '../utils';
-import { customLocale } from '../utils/Empty/customLocale';
-import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
-import { useLocale } from '../utils/hooks/useLocale';
 import BodyCell from './BodyCell';
 import HeaderCell from './HeaderCell';
+import TableHead from './TableHead';
+import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
 import {
-  useCMDAction,
   useColumns,
-  useCommon,
-  useDataSource,
   useExpandable,
-  useFilter,
+  useCMDAction,
   usePagination,
+  useSelection,
+  useDataSource,
   useRowEdit,
+  useFilter,
+  useCommon,
+  useSort,
   useRowMerge,
   useScroll,
-  useSelection,
-  useSort,
 } from './hooks';
-import TableHead from './TableHead';
 import type { MyTableProps } from './types/prop';
+import { customLocale } from '../utils/Empty/customLocale';
+import { usePrintMode, PrintContainer } from '../utils';
+import { useLocale } from '../utils/hooks/useLocale';
+import { useCreation } from '../utils/ahooks';
+import TableSummaryRow from './TableSummaryRow';
 
 const components = {
   body: {
@@ -53,15 +55,7 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
   } = props;
 
   const { uid: compId } = $$componentItem;
-  const {
-    size,
-    sortDirections,
-    sticky,
-    summary,
-    tableLayout,
-    title,
-    rowClassName,
-  } = restProps || {};
+  const { size, sortDirections, sticky, summary, tableLayout, title, rowClassName } = restProps || {};
   const tableProps = {
     size,
     sortDirections,
@@ -74,7 +68,10 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
   const [form] = Form.useForm();
 
   const engineApis = getEngineApis?.();
-  const { sandBoxSafeRun, renderBusiComponent } = engineApis || {};
+  const {
+    sandBoxSafeRun,
+    renderBusiComponent,
+  } = engineApis || {};
 
   const { getLocale } = useLocale(engineApis || {});
 
@@ -134,12 +131,19 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
     outerDataSourceRef,
   });
 
-  const { sortDataSource, setSortOrder, onSortChange, hasSortEvent } = useSort({
+  const {
+    sortDataSource,
+    setSortOrder,
+    onSortChange,
+    hasSortEvent,
+  } = useSort({
     ...props,
     innerDataSource: filterDataSource,
   });
 
-  const { expandable: realExpandable } = useExpandable({
+  const {
+    expandable: realExpandable,
+  } = useExpandable({
     ...props,
     dataSource: sortDataSource,
     currentRowKey,
@@ -200,17 +204,24 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
     onRowSelected,
   });
 
-  const { rowSpanColMap, rowSpanMap, rowClassMap } = useRowMerge({
+  const {
+    rowSpanColMap,
+    rowSpanMap,
+    rowClassMap,
+  } = useRowMerge({
     ...props,
     sortDataSource,
     nowInlineEditKey,
     currentRowKey,
   });
 
-  const { showPrintContainer, loadPrint, selectorKey, printData } =
-    usePrintMode(props.$$componentItem.uid);
+  const { showPrintContainer, loadPrint, selectorKey, printData } = usePrintMode(props.$$componentItem.uid);
 
-  const { loading, colServiceData, colServiceDataForEdit } = useCMDAction({
+  const {
+    loading,
+    colServiceData,
+    colServiceDataForEdit,
+  } = useCMDAction({
     ...props,
     ref,
     form,
@@ -240,6 +251,23 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
     onRowSaveClick,
     loadPrint,
   });
+
+  // 根据id获取真实的下标，避免过滤和排序后影响下标
+  const { getRealIndexById } = useCreation(() => {
+    const indexMap = new Map<string | number, number>();
+    return {
+      getRealIndexById: (id: string | number) => {
+        if (indexMap.has(id)) {
+          return indexMap.get(id);
+        }
+        const index = (innerDataSource || []).findIndex((c: any) => c[currentRowKey] === id);
+        if (index !== -1) {
+          indexMap.set(id, index);
+        }
+        return index;
+      },
+    };
+  }, [innerDataSource, currentRowKey]);
 
   const {
     tableRef,
@@ -288,6 +316,7 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
     renderFilterDropDown,
     rowSelection,
     getLocale,
+    getRealIndexById,
   });
 
   const {
@@ -379,7 +408,10 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
       <div
         {...eleProps}
         style={styles}
-        className={classnames('ued-table-wrap', className)}
+        className={classnames(
+          'ued-table-wrap',
+          className,
+        )}
         ref={tableWrapRef}
       >
         <TableHead
@@ -412,24 +444,34 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
           rowKey={currentRowKey}
           scroll={scroll}
           onChange={handleTableChange}
-          onRow={(record, index?: number) => {
-            return {
+          onRow={(record) => {
+            return ({
               onClick: (event) => {
-                const hasOnRowClick = onRowClick(event, record, index);
-                !hasOnRowClick && onRowSelectClick(record, index);
+                const hasOnRowClick = onRowClick(event, record, getRealIndexById(record[currentRowKey]));
+                !hasOnRowClick && onRowSelectClick(record, getRealIndexById(record[currentRowKey]));
               }, // 点击行
               onDoubleClick: (event) => {
-                onRowDoubleClick(event, record, index);
+                onRowDoubleClick(event, record, getRealIndexById(record[currentRowKey]));
               },
-              onContextMenu: (event) => {},
-              onMouseEnter: (event) => {}, // 鼠标移入行
-              onMouseLeave: (event) => {},
-            };
+              onContextMenu: (event) => { },
+              onMouseEnter: (event) => { }, // 鼠标移入行
+              onMouseLeave: (event) => { },
+            });
           }}
           rowSelection={rowSelection}
           dataSource={sortDataSource}
           expandable={realExpandable}
           pagination={page && pagination}
+          summary={(pageData: any[]) => (
+            <Table.Summary fixed={!!props?.scroll}>
+              <TableSummaryRow
+                columns={finalcolumns}
+                dataSource={pageData as any[]}
+                summary={props.summary}
+                summaryConfig={props?.summaryTotal}
+              />
+            </Table.Summary>
+          )}
         />
       </div>
       {showPrintContainer && (
@@ -464,11 +506,7 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
               return item;
             })}
             rowKey={currentRowKey}
-            dataSource={
-              printData?.dataSource?.length > 0
-                ? printData.dataSource
-                : sortDataSource
-            }
+            dataSource={printData?.dataSource?.length > 0 ? printData.dataSource : sortDataSource}
             expandable={realExpandable}
             pagination={false}
           />

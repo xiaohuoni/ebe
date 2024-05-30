@@ -1,5 +1,5 @@
+import React, { useRef, useImperativeHandle, useState } from 'react';
 import { LingxiForwardRef } from '@lingxiteam/types';
-import React, { useImperativeHandle, useRef, useState } from 'react';
 import SyncGridViewLoader from './loader';
 
 const SyncGridView = LingxiForwardRef<unknown, any>((props, ref) => {
@@ -12,13 +12,7 @@ const SyncGridView = LingxiForwardRef<unknown, any>((props, ref) => {
       setGridData(list || []);
     },
   }));
-  return (
-    <SyncGridViewLoader
-      {...props}
-      refGridData={gridData}
-      gridViewRef={gridViewRef}
-    />
-  );
+  return <SyncGridViewLoader {...props} refGridData={gridData} gridViewRef={gridViewRef} />;
 });
 
 export default SyncGridView;

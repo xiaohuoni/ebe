@@ -1,4 +1,7 @@
+
+
 export const CHECK_ALL_VALUE = 'LING_XI_CHECK_ALL';
+
 
 const typeFn: any = {
   string: String,
@@ -23,36 +26,25 @@ export const localFilterOption = (input: string = '', option: any) => {
     valueFilter = option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0;
   }
   if (option?.children && typeof option.children === 'string') {
-    return (
-      option?.children?.toLowerCase?.().indexOf(input.toLowerCase()) >= 0 ||
-      valueFilter
-    );
+    return option?.children?.toLowerCase?.().indexOf(input.toLowerCase()) >= 0 || valueFilter;
   }
 
-  return (
-    option?.label?.toLowerCase?.().indexOf(input.toLowerCase()) >= 0 ||
-    valueFilter
-  );
+  return option?.label?.toLowerCase?.().indexOf(input.toLowerCase()) >= 0 || valueFilter;
 };
 
 // 判断data类型是不是是labelInValue格式
 export const isLabelInValue = (data: any) => {
   if (Object.prototype.toString.call(data) === '[object Object]') {
-    if (
-      Object.keys(data).includes('label') &&
-      (Object.keys(data).includes('value') || Object.keys(data).includes('key'))
-    ) {
+    if (Object.keys(data).includes('label') &&
+            (Object.keys(data).includes('value') || Object.keys(data).includes('key'))) {
       return true;
     }
-  } else if (
-    Object.prototype.toString.call(data) === '[object Array]' &&
-    data.length
-  ) {
+  } else if (Object.prototype.toString.call(data) === '[object Array]' && data.length) {
     let isLabelInValueCount = 0;
     data.forEach((v: any) => {
       if (
         Object.keys(v).includes('label') &&
-        (Object.keys(v).includes('value') || Object.keys(v).includes('key'))
+                (Object.keys(v).includes('value') || Object.keys(v).includes('key'))
       ) {
         isLabelInValueCount += 1;
       }
@@ -66,9 +58,7 @@ export const handleFormValue = (value: any, mode?: string) => {
   let val = value;
   if (isLabelInValue(value)) {
     // 如果是绑定的值value 有label或者value的存在 那么值变成[value] value （一般的场景是页面初始化的时候，值绑定表达式）
-    val = Array.isArray(value)
-      ? value.map((v: any) => v?.key || v?.value)
-      : value?.key || value?.value;
+    val = Array.isArray(value) ? value.map((v: any) => v?.key || v?.value) : value?.key || value?.value;
   }
   if (val !== undefined) {
     // 如果是多选，值是,分割的字符串的数组
@@ -100,6 +90,7 @@ export const transformValueType = (v: any, curVal: any) => {
   return v;
 };
 
+
 export const getRules = (min?: number, max?: number, getLocale?: any) => {
   if (!min && !max) {
     return [];
@@ -114,42 +105,25 @@ export const getRules = (min?: number, max?: number, getLocale?: any) => {
     });
   }
   if (max) {
-    maxMsg.push({
-      type: 'array',
-      max,
-      message: getLocale?.('CheckboxGroup.maxRule', { max }),
-    });
+    maxMsg.push({ type: 'array', max, message: getLocale?.('CheckboxGroup.maxRule', { max }) });
   }
   return [...minMsg, ...maxMsg];
 };
 // 获取选中数据
-export const getChangeSelectData = (
-  dataSource: any[],
-  val: string[] | Object,
-  mode?: string,
-) => {
+export const getChangeSelectData = (dataSource: any[], val: string[] | Object, mode?: string) => {
   const v = val;
   if (mode === 'multiple') {
     if (Array.isArray(v) && v.length) {
-      const sltData = dataSource.filter((c: any) =>
-        v.includes(c.value?.toString()),
-      );
+      const sltData = dataSource.filter((c: any) => v.includes(c.value?.toString()));
       return sltData;
     }
     return undefined;
   }
-  const sltData = dataSource.find(
-    (c: any) => c.value?.toString() === v?.toString(),
-  );
-  return sltData ? [sltData] : undefined;
+  const sltData = dataSource.find((c: any) => c.value?.toString() === v?.toString());
+  return (sltData ? [sltData] : undefined);
 };
 
-export const getSelectedAllData = (
-  checked: boolean,
-  dataSource: any[],
-  value: any[],
-  max?: number,
-) => {
+export const getSelectedAllData = (checked: boolean, dataSource: any[], value: any[], max?: number) => {
   let latestValue = [];
   const filterDataMap: any = {};
   // 获取当前数据的所有值
@@ -190,19 +164,11 @@ export const getSelectedAllData = (
 };
 
 // 获取当前列表数据下的全选状态
-export const checkIfSelectedAll = (
-  dataSource: any[],
-  value: any[],
-  filterValue: string = '',
-) => {
-  const localFilterData = dataSource.filter((d) =>
-    localFilterOption(filterValue, d),
-  );
+export const checkIfSelectedAll = (dataSource: any[], value: any[], filterValue: string = '') => {
+  const localFilterData = dataSource.filter(d => localFilterOption(filterValue, d));
   if (localFilterData?.length && Array.isArray(value)) {
     // 如果是多选，value肯定是字符串类型的数组
-    const checkData = localFilterData.filter((f: any) =>
-      value.includes(f.value),
-    );
+    const checkData = localFilterData.filter((f: any) => value.includes(f.value));
     return checkData?.length === localFilterData?.length;
   }
   return false;
@@ -216,12 +182,7 @@ export const checkIfSelectedAll = (
  * @param labelKey
  * @returns
  */
-export const handleDataSource = (
-  dataSource: any[],
-  appendDataSoure?: any[] | Object,
-  valueKey?: string,
-  labelKey?: string,
-) => {
+export const handleDataSource = (dataSource: any[], appendDataSoure?: any[] | Object, valueKey?: string, labelKey?: string,) => {
   const valueKeys: any = [];
   let newDataSoure: any[] = [];
   if (Array.isArray(dataSource)) {
@@ -240,15 +201,10 @@ export const handleDataSource = (
   }
   let newAppednDataSoure = [];
   if (Array.isArray(appendDataSoure) && appendDataSoure.length > 0) {
-    newAppednDataSoure = appendDataSoure.filter(
-      (item) => !valueKeys?.includes(item?.[valueKey || 'value'] || item?.key),
-    );
+    newAppednDataSoure = appendDataSoure.filter(item => !valueKeys?.includes(item?.[valueKey || 'value'] || item?.key));
   }
   if (Object.prototype.toString.call(appendDataSoure) === '[object Object]') {
-    newAppednDataSoure = [appendDataSoure].filter(
-      (item: any) =>
-        !valueKeys?.includes(item?.[valueKey || 'value'] || item?.key),
-    );
+    newAppednDataSoure = [appendDataSoure].filter((item: any) => !valueKeys?.includes(item?.[valueKey || 'value'] || item?.key));
   }
   if (newAppednDataSoure?.length > 0) {
     newDataSoure = newDataSoure.concat(newAppednDataSoure);

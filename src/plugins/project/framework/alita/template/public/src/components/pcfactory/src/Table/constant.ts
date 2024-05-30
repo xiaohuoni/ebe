@@ -69,5 +69,4 @@ export const PREVIEW_NEW_TAB = 'newTab';
 export const ROUTE_PUSH = 'push';
 export const ROUTE_REPLACE = 'replace';
 
-export const EDIT_COMPONENT_STOP_PROPAGATION_CLS =
-  'table-edit-component-stop-propagation';
+export const EDIT_COMPONENT_STOP_PROPAGATION_CLS = 'table-edit-component-stop-propagation';

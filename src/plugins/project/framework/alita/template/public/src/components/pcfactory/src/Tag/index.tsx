@@ -1,8 +1,8 @@
-import { LingxiForwardRef } from '@lingxiteam/types';
-import { Tag } from 'antd';
-import type { TagProps } from 'antd/lib/tag';
-import classnames from 'classnames';
 import React from 'react';
+import { Tag } from 'antd';
+import classnames from 'classnames';
+import type { TagProps } from 'antd/lib/tag';
+import { LingxiForwardRef } from '@lingxiteam/types';
 
 const WrapperTag = ({ children }: Record<string, any>) =>
   React.cloneElement(children, {
@@ -17,16 +17,14 @@ export interface MyTagProps extends TagProps {
 const MyTag = LingxiForwardRef<any, MyTagProps>((props, ref) => {
   const { name, visible = true, title, ...restProps } = props;
 
+
   return visible ? (
     <WrapperTag>
       <div>
         <Tag
           {...restProps}
           color={restProps?.tagType?.color || restProps.color}
-          className={classnames(
-            restProps.className,
-            restProps?.tagType?.classname,
-          )}
+          className={classnames(restProps.className, restProps?.tagType?.classname)}
         >
           {title}
         </Tag>

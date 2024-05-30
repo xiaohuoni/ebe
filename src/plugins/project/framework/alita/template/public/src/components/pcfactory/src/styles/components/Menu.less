@@ -5,9 +5,8 @@
   .@{menu-prefix-cls} {
     .@{menu-prefix-cls}-submenu {
       color: @text-color;
-
-      &.@{menu-prefix-cls}-submenu-active,
-      &.@{menu-prefix-cls}-submenu-selected {
+  
+      &.@{menu-prefix-cls}-submenu-active, &.@{menu-prefix-cls}-submenu-selected {
         color: @primary-color;
         background-color: @item-hover-bg;
       }
@@ -19,13 +18,13 @@
           height: @font-size-base;
           vertical-align: baseline;
         }
-
+        
         &.fill-primary {
           color: @primary-color;
           fill: @primary-color;
         }
       }
-
+      
       .@{menu-prefix-cls}-sub {
         .@{menu-prefix-cls}-item-active {
           color: @primary-color;
@@ -39,16 +38,17 @@
           }
         }
       }
+      
     }
   }
 
   &.menu_inline_colloaps {
     .@{ant-prefix}-menu-root {
-      width: 256px;
+        width: 256px;
     }
   }
 
   .menu_icon {
-    display: inline-flex;
+      display: inline-flex;
   }
 }

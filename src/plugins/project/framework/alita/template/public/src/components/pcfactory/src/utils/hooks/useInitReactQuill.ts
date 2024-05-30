@@ -3,7 +3,9 @@ import { useRef, useState } from 'react';
 import { useLocale } from './useLocale';
 
 const useInitReactQuill = (props: any) => {
-  const { engineApis } = props;
+  const {
+    engineApis,
+  } = props;
 
   const quillRef: any = useRef(null);
 
@@ -52,10 +54,7 @@ const useInitReactQuill = (props: any) => {
       if (range == null || range.length === 0 || !preview) {
         message.info(getLocale('Quill.selectZh'));
       } else if (preview) {
-        if (
-          /^\S+@\S+\.\S+$/.test(preview) &&
-          preview.indexOf('mailto:') !== 0
-        ) {
+        if (/^\S+@\S+\.\S+$/.test(preview) && preview.indexOf('mailto:') !== 0) {
           preview = `mailto:${preview}`; // 电子邮件
         }
         const { tooltip } = quillEditor.theme;

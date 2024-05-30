@@ -1,10 +1,7 @@
 import React from 'react';
 
 export interface ConditionProps
-  extends React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
-  > {
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   visible?: boolean;
 }
 

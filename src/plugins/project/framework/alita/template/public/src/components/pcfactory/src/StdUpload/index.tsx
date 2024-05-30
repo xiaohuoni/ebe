@@ -1,35 +1,21 @@
-import {
-  CloudUploadOutlined,
-  PlusOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
-import { LingxiForwardRef } from '@lingxiteam/types';
+import { CloudUploadOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { Button, message, Modal, Radio, Upload } from 'antd';
-import { UploadType } from 'antd/lib/upload/interface';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import CommIcon from '../Icon';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
 import type { IconCfg } from '../Icon/PropsType';
-import {
-  FormFields,
-  getFieldsProps,
-  useCommonImperativeHandle,
-  useForm,
-  useListenProps,
-} from '../utils';
-import { createRandomStr, getAfterString } from '../utils/common';
-import { useLocale } from '../utils/hooks/useLocale';
+import CommIcon from '../Icon';
+import { createRandomStr, getAfterString, convertToBytes } from '../utils/common';
 import renderReadOnly from '../utils/renderReadOnly';
 import DownloadProgress from './DownloadProgress';
+import { FormFields, getFieldsProps, useCommonImperativeHandle, useListenProps, useForm } from '../utils';
+import { LingxiForwardRef } from '@lingxiteam/types';
 import UploadItem from './UploadItem';
+import { useLocale } from '../utils/hooks/useLocale';
+import { UploadType } from 'antd/lib/upload/interface';
 
 const { Dragger } = Upload;
 export interface MyFormUploadProps {
   onChange?: (list?: any[]) => void;
-  onFinishUpload?: (
-    file: File,
-    fileList: any[],
-    fileResponseList: any[],
-  ) => void;
+  onFinishUpload?: (file: File, fileList: any[], fileResponseList: any[]) => void;
   onFileListChange?: (fileList: any[], fileResponseList: any[]) => void;
   onFileRemove?: (file: File, fileList: any[]) => void;
   // draggable?: boolean;
@@ -38,16 +24,13 @@ export interface MyFormUploadProps {
   readOnly?: boolean;
   precheckService?: any;
   numberLimit?: number;
-  singleFileMaxSize?: number;
+  singleFileMaxSize?: string;
+  singleFileMinSize?: string;
   // downloadable?: boolean;
   fileNameEncode?: boolean;
   isWatermark?: boolean;
   optionalFile?: boolean;
-  onListenUploading?: (
-    file: File,
-    fileList: any[],
-    fileResponseList: any[],
-  ) => void;
+  onListenUploading?: (file: File, fileList: any[], fileResponseList: any[]) => void;
   onListenDownloading?: (file: any) => void;
   onFileNameClick?: (file: File) => void;
   accept?: any;
@@ -71,7 +54,7 @@ export interface MyFormUploadProps {
   headers?: any;
   columns?: any;
   uploadAccepType?: any;
-  viewMode: 'newTab' | 'popUp' | 'window';
+  viewMode: 'newTab' | 'popUp' | 'window',
   modalWidth?: number;
   modalHeight?: number;
 }
@@ -92,6 +75,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
     precheckService,
     numberLimit = 5,
     singleFileMaxSize,
+    singleFileMinSize,
     // downloadable = true,
     fileNameEncode = false,
     isWatermark = false,
@@ -132,9 +116,6 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
   const [okLoading, setOkLoading] = useState<boolean>(false);
   const [downloadWay, setdDownloadWay] = useState<string>('1');
   const [curFile, setCurFile] = useState<any>();
-  const [openFileDialogOnClick, setopenFileDialogOnClick] = useState(
-    typeof onCheckUpload !== 'function',
-  );
   const [downloadProVisible, setDownloadProVisible] = useState<any>({});
   const progressRef = useRef<any>({});
   const uploadDivRef = useRef<any>(null);
@@ -180,15 +161,9 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
     showDownloadIcon: downloadIcon?.showDownloadIcon,
     downloadIcon: (file: any) => {
       if (downloadProVisible[file.fileId]) {
-        return (
-          <DownloadProgress
-            ref={(r: any) => {
-              progressRef.current[file.fileId] = r;
-            }}
-          />
-        );
+        return <DownloadProgress ref={(r: any) => { progressRef.current[file.fileId] = r; }} />;
       }
-      return downloadIcon?.downloadIconType ? (
+      return (downloadIcon?.downloadIconType ? (
         <CommIcon
           icon={{
             type: downloadIcon?.downloadIconType,
@@ -213,7 +188,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
           $$componentItem={props.$$componentItem}
           className=""
         />
-      );
+      ));
     },
     showRemoveIcon: !(disabled || readOnly) && deleteIcon?.showRemoveIcon,
     removeIcon: deleteIcon?.deleteIconType ? (
@@ -257,20 +232,16 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
         defaultList.map((file: any) => {
           const { fileUrl, url, filePathInServer, fileId } = file;
           let effectDownUrl = fileUrl || url;
-          if (
-            !effectDownUrl &&
-            filePathInServer?.match(/^(http:|https:|\/\/)/)
-          ) {
+          if (!effectDownUrl && filePathInServer?.match(/^(http:|https:|\/\/)/)) {
             effectDownUrl = filePathInServer;
           }
-          return {
+          return ({
             ...file,
-            url:
-              effectDownUrl || engineApis?.service?.getAppFileUrlById(fileId),
+            url: effectDownUrl || engineApis?.service?.getAppFileUrlById(fileId),
             name: file.fileName,
             uid: `-${file.fileId || file.id || effectDownUrl || file.uid}`, // 添加uid
             status: file?.status || 'done', // 后台已存在文件状态为已完成
-          };
+          });
         }),
       );
     } else {
@@ -282,6 +253,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
   useEffect(() => {
     updateDefaultFileList(value);
   }, [value]);
+
 
   let beforeUploadCounter = 0; // 当前一次选择的待上传文件个数
   let allFilesLength = 0; // 待上传文件个数 + 当前文件列表个数
@@ -297,31 +269,16 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
       const { file, fileList } = e;
       const { percent, status } = file;
       if (onListenUploading) {
-        onListenUploading(
-          file,
-          fileList,
-          fileList?.map((file: any) =>
-            file?.fileId ? file : file?.response?.resultObject,
-          ),
-        );
+        onListenUploading(file, fileList, fileList?.map((file: any) => file?.fileId ? file : file?.response?.resultObject));
       }
       if (fileList && onFileListChange) {
-        onFileListChange(
-          fileList,
-          fileList?.map((file: any) =>
-            file?.fileId ? file : file?.response?.resultObject,
-          ),
-        );
+        onFileListChange(fileList, fileList?.map((file: any) => file?.fileId ? file : file?.response?.resultObject));
       }
       // 上传完成的标识
       let flag = true;
       let files = fileList.map((f: any) => {
         // 存在上传中的文件时，视为未完成
-        if (
-          f.status === 'uploading' ||
-          (!(f.response && typeof f.response === 'object') &&
-            f.status !== 'done')
-        ) {
+        if (f.status === 'uploading' || (!(f.response && typeof f.response === 'object') && f.status !== 'done')) {
           flag = false;
         }
         if (f.response && typeof f.response === 'object') {
@@ -335,10 +292,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
             } = resultObject;
             const { status } = f;
             let effectDownUrl = fileUrl || url;
-            if (
-              !effectDownUrl &&
-              filePathInServer?.match(/^(http:|https:|\/\/)/)
-            ) {
+            if (!effectDownUrl && filePathInServer?.match(/^(http:|https:|\/\/)/)) {
               effectDownUrl = filePathInServer;
             }
             return {
@@ -346,8 +300,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
               ...resultObject,
               name: handleFileName(f.name),
               status: +resultCode !== 0 ? 'error' : status,
-              url:
-                effectDownUrl || engineApis?.service?.getAppFileUrlById(fileId),
+              url: effectDownUrl || engineApis?.service?.getAppFileUrlById(fileId),
             };
           }
         }
@@ -374,14 +327,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
                 return false;
               }
               if (file?.fileId) {
-                const {
-                  fileId,
-                  fileName = undefined,
-                  url = undefined,
-                  filePathInServer,
-                  fileUrl,
-                  name,
-                } = file;
+                const { fileId, fileName = undefined, url = undefined, filePathInServer, fileUrl, name } = file;
                 return {
                   filePathInServer,
                   fileUrl,
@@ -392,7 +338,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
               }
               return file;
             })
-            .filter((file: any) => file); // 提交文件列表时，过滤掉异常(未上传成功)的文件);
+            .filter((file: any) => file);// 提交文件列表时，过滤掉异常(未上传成功)的文件);
           onChange(fileResponseList);
         }
         if (onFinishUpload && percent === 100 && status === 'done') {
@@ -452,8 +398,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
     try {
       // 如果有field 优先通过field拼接
       if (file.fileId) {
-        const addWaterMark =
-          isWatermark && (!optionalFile || downloadWay === '2');
+        const addWaterMark = isWatermark && (!optionalFile || downloadWay === '2');
 
         downUrl = engineApis?.service?.getAppFileUrlById({
           addWaterMark,
@@ -492,10 +437,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
       }
       xhr.onload = () => {
         // @ts-ignore
-        const suffix = getAfterString(
-          xhr.getResponseHeader('Content-Disposition'),
-          '.',
-        );
+        const suffix = getAfterString(xhr.getResponseHeader('Content-Disposition'), '.');
         const data = xhr.response; // 获取响应体数据
         createDownLink(data, getDownloadName(suffix, file));
         setDownloadProVisible({ ...downloadProVisible, [file.fileId]: false });
@@ -507,9 +449,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
       // 下载进度条
       xhr.onprogress = (event: any) => {
         if (event.lengthComputable) {
-          progressRef.current?.[file.fileId]?.setPercent(
-            Math.round((event.loaded * 100) / event.total),
-          );
+          progressRef.current?.[file.fileId]?.setPercent(Math.round(event.loaded * 100 / event.total));
         }
       };
       xhr.send();
@@ -548,13 +488,10 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
       let fileIndex: number = 0;
       const fileData = fileList?.map((f, i) => {
         // 第三方系统上传接口可能没有fileId字段，保留一个previewUrl字段作为可预览
-        if (
-          f.fileId === fileId ||
-          (f.fileId === undefined && data.previewUrl === f.previewUrl)
-        ) {
+        if (f.fileId === fileId || (f.fileId === undefined && data.previewUrl === f.previewUrl)) {
           fileIndex = i;
         }
-        return {
+        return ({
           fileId: f.fileId,
           appId: appId || window.appId,
           pageId,
@@ -567,7 +504,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
             }
           },
           file: f,
-        };
+        });
       });
       engineApis.BannerModal.open({
         fileIndex,
@@ -615,8 +552,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
 
   const getFileType = (fileName: string) => {
     const startIndex = fileName.lastIndexOf('.');
-    if (startIndex !== -1)
-      return fileName.substring(startIndex + 1, fileName.length).toLowerCase();
+    if (startIndex !== -1) return fileName.substring(startIndex + 1, fileName.length).toLowerCase();
     return '';
   };
 
@@ -626,14 +562,12 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
     if (acceptExtension) {
       const extensionList = acceptExtension.split(',');
       if (extensionList && extensionList.length > 0) {
-        targetacceptExtension = extensionList
-          .map((item: string) => {
-            if (item.startsWith('.')) {
-              return item;
-            }
-            return `.${item}`;
-          })
-          .join(',');
+        targetacceptExtension = extensionList.map((item: string) => {
+          if (item.startsWith('.')) {
+            return item;
+          }
+          return `.${item}`;
+        }).join(',');
       }
     }
     let combinedAcceptType;
@@ -653,21 +587,19 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
       message.warn(getLocale?.('Upload.readonly'));
       return Upload.LIST_IGNORE;
     }
-    if (singleFileMaxSize && file.size / 1024 / 1024 > singleFileMaxSize) {
+    if (singleFileMinSize && convertToBytes(singleFileMinSize) > file.size) {
+      message.error(getLocale?.('Upload.minSize', { singleFileMinSize }));
+      return Upload.LIST_IGNORE;
+    }
+    if (singleFileMaxSize && convertToBytes(singleFileMaxSize) < file.size) {
       message.error(getLocale?.('Upload.maxSize', { singleFileMaxSize }));
       return Upload.LIST_IGNORE;
     }
     const fileType = getFileType(file.name);
     const combinedAcceptType = acceptData();
     // 后缀名不区分大小写
-    if (
-      combinedAcceptType &&
-      fileType &&
-      !combinedAcceptType?.toLowerCase()?.split(',')?.includes(`.${fileType}`)
-    ) {
-      message.error(
-        getLocale?.('Upload.format', { acceptType: combinedAcceptType }),
-      );
+    if (combinedAcceptType && fileType && !combinedAcceptType?.toLowerCase()?.split(',')?.includes(`.${fileType}`)) {
+      message.error(getLocale?.('Upload.format', { acceptType: combinedAcceptType }));
       return Upload.LIST_IGNORE;
     }
     beforeUploadCounter += 1;
@@ -704,12 +636,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
       ...(headers || {}),
     },
     withCredentials: true,
-    itemRender: (
-      originNode: React.ReactElement,
-      file: any,
-      fileList: any[],
-      actions: any,
-    ) => (
+    itemRender: (originNode: React.ReactElement, file: any, fileList: any[], actions: any) => (
       <UploadItem
         originNode={originNode}
         file={file}
@@ -717,50 +644,11 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
         actions={actions}
         showUploadList={uploadList}
         onFileNameClick={onFileNameClick}
-        listType={
-          (uploadStyle === 'picture-card' ? 'picture-card' : listType) as any
-        }
+        listType={(uploadStyle === 'picture-card' ? 'picture-card' : listType) as any}
       />
     ),
   };
 
-  // 模拟点击
-  const onSimulationClick = () => {
-    if (uploadDivRef.current) {
-      uploadDivRef.current.click();
-    }
-    setopenFileDialogOnClick(false);
-  };
-
-  // 模拟点击出发布局
-  const renderClickDiv = () => {
-    return (
-      <div
-        style={{
-          position: 'absolute',
-          inset: '0',
-          top: '0px',
-          right: '0px',
-          bottom: '0px',
-          left: '0px',
-        }}
-        onClick={async (e) => {
-          e.stopPropagation();
-          if (onCheckUpload) {
-            const checkInfo: any = await onCheckUpload();
-            if (checkInfo === 0) {
-              setopenFileDialogOnClick(false);
-            } else {
-              setopenFileDialogOnClick(true);
-              setTimeout(() => {
-                onSimulationClick();
-              }, 500);
-            }
-          }
-        }}
-      />
-    );
-  };
 
   if (readOnly && fileList && fileList?.length <= 0) {
     return renderReadOnly('--');
@@ -770,35 +658,53 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
     if (uploadStyle === 'picture-card') {
       const hidden = fileList?.length === numberLimit;
       return hidden ? null : (
-        <div ref={uploadDivRef}>
-          <CommIcon
-            icon={icon}
-            placeholder={<PlusOutlined rev="" />}
-            className=""
-            getEngineApis={getEngineApis}
-            $$componentItem={props.$$componentItem}
-          />
+        <>
+          <CommIcon icon={icon} placeholder={<PlusOutlined rev="" />} className="" getEngineApis={getEngineApis} $$componentItem={props.$$componentItem} />
           <div>{uploadText || '点击上传'}</div>
-          {!openFileDialogOnClick && renderClickDiv()}
-        </div>
-      );
+        </>);
     }
 
     return (
-      <div style={{ position: 'relative' }} ref={uploadDivRef}>
-        <Button>
-          <CommIcon
-            icon={icon}
-            placeholder={<UploadOutlined rev="" />}
-            className=""
-            getEngineApis={getEngineApis}
-            $$componentItem={props.$$componentItem}
-          />
-          {uploadText || '点击上传'}
-        </Button>
-        {!openFileDialogOnClick && renderClickDiv()}
-      </div>
-    );
+      <Button>
+        <CommIcon icon={icon} placeholder={<UploadOutlined rev="" />} className="" getEngineApis={getEngineApis} $$componentItem={props.$$componentItem} />
+        {uploadText || '点击上传'}
+      </Button>);
+  };
+
+  // 覆写上传控件外层容器，添加点击拦截
+  const coverLayout = (props: any) => {
+    const events = props.disabled ? {} : {
+      onClick: props.openFileDialogOnClick !== false ? async (e: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => {
+        let checkResult: any;
+
+        const runNext = () => {
+          if (checkResult !== 0) {
+            props.onClick(e);
+          }
+        };
+
+        if (onCheckUpload) {
+          // 某些浏览器(Safari)可能出于安全限制，在跳出事件循环后，不再触发dom事件，此处通过添加setTimeout宏任务让当前事件循环保持
+          const loopWait = () => {
+            setTimeout(() => {
+              if (typeof checkResult === 'undefined') {
+                loopWait();
+              } else {
+                runNext();
+              }
+            }, 10);
+          };
+          loopWait();
+          checkResult = await onCheckUpload() ?? 1; // 避免onCheckUpload返回结果是undefined 导致loopWait的死循环，checkResult必须有一个非undefined的值
+        } else {
+          runNext();
+        }
+      } : () => {},
+    };
+    return <div
+      {...props}
+      {...events}
+    />;
   };
 
   // @ts-ignore
@@ -807,27 +713,18 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
       {uploadStyle === 'draggable' ? (
         // @ts-ignore
         <div className={className}>
-          <Dragger
-            {...restProps}
-            {...commonConfig}
-            openFileDialogOnClick={openFileDialogOnClick}
-          >
+          <Dragger {...restProps} {...commonConfig} component={coverLayout}>
             <p className="ant-upload-drag-icon" ref={uploadDivRef}>
               {/* TODO: 占位图标？？ */}
               <CommIcon
                 icon={icon}
-                placeholder={
-                  <CloudUploadOutlined style={{ fontSize: 45 }} rev="" />
-                }
+                placeholder={<CloudUploadOutlined style={{ fontSize: 45 }} rev="" />}
                 getEngineApis={getEngineApis}
                 $$componentItem={props.$$componentItem}
                 className=""
               />
             </p>
-            <p className="ant-upload-text">
-              {uploadText || getLocale('Upload.text')}
-            </p>
-            {!openFileDialogOnClick && renderClickDiv()}
+            <p className="ant-upload-text">{uploadText || getLocale('Upload.text')}</p>
           </Dragger>
         </div>
       ) : (
@@ -836,7 +733,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
           <Upload // TODO: disable情况下需要添加禁用鼠标指针,待添加
             {...restProps}
             {...commonConfig}
-            openFileDialogOnClick={openFileDialogOnClick}
+            component={coverLayout}
           >
             {readOnly ? null : renderUploadIcon()}
           </Upload>
@@ -853,10 +750,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
           </Button>
         }
       >
-        <Radio.Group
-          onChange={(e) => setdDownloadWay(e.target.value)}
-          value={downloadWay}
-        >
+        <Radio.Group onChange={(e) => setdDownloadWay(e.target.value)} value={downloadWay}>
           <Radio value="1">{getLocale?.('Upload.origin')}</Radio>
           <Radio value="2">{getLocale?.('Upload.waterMark')}</Radio>
         </Radio.Group>
@@ -937,24 +831,21 @@ const StdUpload = LingxiForwardRef<any, MyStdUploadProps>((props, ref) => {
     tipContent,
     tipPlacement,
     isFormChild,
-    rules: externalRules = [],
     tipSize,
     tipWidth,
     tipHeight,
     ...restProps
   } = props;
 
-  const { getLocale, lang } = useLocale(props?.getEngineApis?.());
 
   const [uploadProps, setUploadProps] = useListenProps(props.uploadProps);
 
-  const { formFieldsRef, required, readOnly, disabled } =
-    useCommonImperativeHandle(ref, props, {
-      clearValue: null,
-      setUploadProps: (_props: any) => {
-        setUploadProps(_props);
-      },
-    });
+  const { formFieldsRef, required, readOnly, disabled, finalRules } = useCommonImperativeHandle(ref, props, {
+    clearValue: null,
+    setUploadProps: (_props: any) => {
+      setUploadProps(_props);
+    },
+  });
 
   const formContext = useForm();
 
@@ -991,8 +882,7 @@ const StdUpload = LingxiForwardRef<any, MyStdUploadProps>((props, ref) => {
           data['ORCHESTRATION.serviceVersionId'] = _serviceId;
           break;
         }
-        default:
-          break;
+        default: break;
       }
     }
     return data;
@@ -1012,13 +902,6 @@ const StdUpload = LingxiForwardRef<any, MyStdUploadProps>((props, ref) => {
     return extra;
   }, [fileName, uploadProps, action, extraParamsData]);
 
-  const rules = useMemo(() => {
-    let _rules = [{ required, message: getLocale?.('notEmpty', { name }) }];
-
-    _rules = [..._rules, ...externalRules];
-    return _rules;
-  }, [required, externalRules, lang]);
-
   const value = useMemo(() => {
     return transValue(originValue);
   }, [originValue]);
@@ -1030,10 +913,8 @@ const StdUpload = LingxiForwardRef<any, MyStdUploadProps>((props, ref) => {
       readOnly={readOnly}
       required={required}
       ref={formFieldsRef}
-      wrapperClassName={`${STDUPLOAD_WRAPPER_CLASSNAME} ${
-        readOnly ? `${STDUPLOAD_WRAPPER_CLASSNAME}-readOnly` : ''
-      }`}
-      rules={rules}
+      wrapperClassName={`${STDUPLOAD_WRAPPER_CLASSNAME} ${readOnly ? `${STDUPLOAD_WRAPPER_CLASSNAME}-readOnly` : ''}`}
+      rules={finalRules}
       value={value}
       ignoreReadOnlyFlag
     >

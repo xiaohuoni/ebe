@@ -30,12 +30,12 @@ import Icon from './Icon';
 import Img from './Img';
 import Input from './Input';
 import InputNumber from './InputNumber';
+import LXPieChart from './LXPieChart';
+import LXRadarChart from './LXRadarChart';
 import Layout from './Layout';
 import LineChart from './LineChart';
 import Link from './Link';
 import LoopList from './LoopList';
-import LXPieChart from './LXPieChart';
-import LXRadarChart from './LXRadarChart';
 import Menu from './Menu';
 import ModalSelect from './ModalSelect';
 import MultipleSelect from './MultipleSelect';
@@ -50,7 +50,7 @@ import RadarChart from './RadarChart';
 import Radio from './Radio';
 import RangePicker from './RangePicker';
 import Rate from './Rate';
-import RemoteComponent, { getUseRemoteComponent } from './RemoteComponent';
+import RemoteComponent from './RemoteComponent';
 import Result from './Result';
 import RichTextEditor from './RichTextEditor';
 import Row from './Row';
@@ -58,12 +58,11 @@ import Select from './Select';
 import Slider from './Slider';
 import StdUpload from './StdUpload';
 import Steps from './Steps';
-import './styles/index.less';
 import SuperSelect from './SuperSelect';
 import Swiper from './Swiper';
 import Switch from './Switch';
-import Table from './Table';
 import TabPane from './TabPane';
+import Table from './Table';
 import Tabs from './Tabs';
 import Tag from './Tag';
 import Text from './Text';
@@ -75,14 +74,16 @@ import Tree from './Tree';
 import TreeSelect from './TreeSelect';
 import TreeTable from './TreeTable';
 import Upload from './Upload';
-import './utils/polyfill';
-import WithSyncValue from './utils/WithSyncValue';
 import VerificationCode from './VerificationCode';
 import VerticalView from './VerticalView';
 import VideoPlayer from './VideoPlayer';
 import View from './View';
 import VirtualGroup from './VirtualGroup';
 import Webview from './Webview';
+import './styles/index.less';
+import './utils/polyfill';
+import WithSyncValue from './utils/WithSyncValue';
+import { getUseRemoteComponent } from './RemoteComponent';
 
 export default {
   Alert,
@@ -164,8 +165,7 @@ export default {
   View,
   VirtualGroup,
   Webview,
-  getUseRemoteComponent,
-  WithSyncValue,
+  getUseRemoteComponent,  WithSyncValue,
 };
 
 export {
@@ -248,6 +248,5 @@ export {
   View,
   VirtualGroup,
   Webview,
-  getUseRemoteComponent,
-  WithSyncValue,
+  getUseRemoteComponent,  WithSyncValue,
 };

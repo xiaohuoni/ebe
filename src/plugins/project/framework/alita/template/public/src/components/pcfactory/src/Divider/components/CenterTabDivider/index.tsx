@@ -1,5 +1,5 @@
-import classnames from 'classnames';
 import React, { useMemo } from 'react';
+import classnames from 'classnames';
 
 interface CenterTabDividerProps {
   showTitle?: boolean;
@@ -39,38 +39,20 @@ const CenterTabDivider: React.FC<CenterTabDividerProps> = (props) => {
       className={classnames(dividerClsPrefix, className)}
       {...restProps}
     >
-      <div
-        className={`${dividerClsPrefix}-bg`}
-        style={{ backgroundColor: dividerColor }}
-      />
+      <div className={`${dividerClsPrefix}-bg`} style={{ backgroundColor: dividerColor }} />
       <div className={`${dividerClsPrefix}-center`}>
         <div
           className={`${dividerClsPrefix}-center-label`}
-          style={{
-            ...titleStyle,
-            backgroundColor: dividerColor,
-            lineHeight: dividerHeight,
-          }}
+          style={{ ...titleStyle, backgroundColor: dividerColor, lineHeight: dividerHeight }}
         >
           {showTitle && dividerText ? <span>{dividerText}</span> : null}
         </div>
-        <div
-          className={`${dividerClsPrefix}-center-left-triangle`}
-          style={{ backgroundColor: dividerColor }}
-        />
-        <div
-          className={`${dividerClsPrefix}-center-left-border`}
-          style={{ backgroundColor: dividerColor }}
-        />
-        <div
-          className={`${dividerClsPrefix}-center-rigth-triangle`}
-          style={{ backgroundColor: dividerColor }}
-        />
-        <div
-          className={`${dividerClsPrefix}-center-rigth-border`}
-          style={{ backgroundColor: dividerColor }}
-        />
+        <div className={`${dividerClsPrefix}-center-left-triangle`} style={{ backgroundColor: dividerColor }} />
+        <div className={`${dividerClsPrefix}-center-left-border`} style={{ backgroundColor: dividerColor }} />
+        <div className={`${dividerClsPrefix}-center-rigth-triangle`} style={{ backgroundColor: dividerColor }} />
+        <div className={`${dividerClsPrefix}-center-rigth-border`} style={{ backgroundColor: dividerColor }} />
       </div>
+
     </div>
   );
 };

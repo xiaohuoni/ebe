@@ -1,13 +1,9 @@
-import { Input } from 'antd';
 import React, { useEffect, useState } from 'react';
-import {
-  FormFields,
-  getFieldsProps,
-  useCommonImperativeHandle,
-} from '../utils';
-import { useUpdateEffect } from '../utils/ahooks';
+import { Input } from 'antd';
+import { FormFields, getFieldsProps, useCommonImperativeHandle } from '../utils';
 import { checkNumber } from '../utils/common';
 import ForIETextArea from './ForIETextArea';
+import { useUpdateEffect } from '../utils/ahooks';
 
 export interface TextAreaProps {
   value?: any;
@@ -71,21 +67,19 @@ interface BaseTextAreaPropsType {
 const TEXTAREA_WRAPPER_CLASSNAME = 'ued-textarea-wrap';
 const WrapperTextArea: React.FC<WrapperTextAreaProps> = ({ children }) =>
   React.cloneElement(children, {
-    className: `${TEXTAREA_WRAPPER_CLASSNAME} ${
-      children.props.className || ''
-    }`,
+    className: `${TEXTAREA_WRAPPER_CLASSNAME} ${children.props.className || ''}`,
   });
 
 const { TextArea: AntdTextArea } = Input;
 
 const BaseTextArea = (props: BaseTextAreaPropsType) => {
-  const { maxLength, ...restProps } = props;
+  const {
+    maxLength,
+    ...restProps
+  } = props;
 
   // @ts-ignore
-  const WrapText =
-    window.ActiveXObject || 'ActiveXObject' in window
-      ? ForIETextArea
-      : AntdTextArea;
+  const WrapText = (window.ActiveXObject || 'ActiveXObject' in window) ? ForIETextArea : AntdTextArea;
   const [num, setNum] = useState(0);
 
   const handleOnInput = (e: React.FormEvent) => {
@@ -97,6 +91,7 @@ const BaseTextArea = (props: BaseTextAreaPropsType) => {
   const renderNumLimit = () =>
     maxLength ? (
       <span
+        className="ued-textarea-limit"
         style={{
           position: 'absolute',
           right: '15px',
@@ -108,27 +103,15 @@ const BaseTextArea = (props: BaseTextAreaPropsType) => {
           lineHeight: '18px',
           width: 'calc(100% - 16px)',
           textAlign: 'right',
-          background: '#fff',
         }}
       >
-        {num > maxLength ? (
-          <>
-            <span style={{ color: '#FF7474' }}>{num}</span> / {maxLength}
-          </>
-        ) : (
-          `${num} / ${maxLength}`
-        )}
+        {num > maxLength ? <><span style={{ color: '#FF7474' }}>{num}</span> / {maxLength}</> : `${num} / ${maxLength}`}
       </span>
     ) : null;
 
   useEffect(() => {
     if (props.defaultValue || props.value) {
-      setNum(
-        Math.min(
-          props?.value?.length || props?.defaultValue?.length || 0,
-          maxLength,
-        ),
-      );
+      setNum(Math.min(props?.value?.length || props?.defaultValue?.length || 0, maxLength));
     }
   }, []);
   useUpdateEffect(() => {
@@ -139,7 +122,11 @@ const BaseTextArea = (props: BaseTextAreaPropsType) => {
 
   return (
     <div style={{ position: 'relative' }}>
-      <WrapText {...restProps} onInput={handleOnInput} maxLength={maxLength} />
+      <WrapText
+        {...restProps}
+        onInput={handleOnInput}
+        maxLength={maxLength}
+      />
       {renderNumLimit()}
     </div>
   );
@@ -192,24 +179,13 @@ const TextArea = React.forwardRef<any, TextAreaProps>((props, ref) => {
     ...restProps
   } = props;
 
-  const {
-    disabled,
-    required,
-    formFieldsRef,
-    readOnly,
-    finalRules,
-    setExtendRules,
-  } = useCommonImperativeHandle(ref, props);
+  const { disabled, required, formFieldsRef, readOnly, finalRules, setExtendRules } = useCommonImperativeHandle(ref, props);
 
   useEffect(() => {
     let lengthRule;
     if (minLength === 0 && maxLength === 0) {
       lengthRule = undefined;
-    } else if (
-      checkNumber(minLength) &&
-      checkNumber(maxLength) &&
-      minLength < maxLength
-    ) {
+    } else if (checkNumber(minLength) && checkNumber(maxLength) && minLength < maxLength) {
       lengthRule = {
         pattern: new RegExp(`^[\\s\\S]{${minLength},${maxLength}}$`),
         message: `内容长度须大于等于${minLength}且小于等于${maxLength}`,
@@ -226,7 +202,7 @@ const TextArea = React.forwardRef<any, TextAreaProps>((props, ref) => {
       };
     }
     if (lengthRule) {
-      setExtendRules([lengthRule]);
+      setExtendRules([lengthRule], false);
     }
   }, [minLength, maxLength]);
 

@@ -1,22 +1,14 @@
-import useCreation from './useCreation';
-import { useDeepCompareEffect } from './useDeepCompareEffect';
-import useMap from './useMap';
-import useMemoizedFn from './useMemoizedFn';
 import usePrevious from './usePrevious';
 import useSafeState from './useSafeState';
-import useSetState, { SetState } from './useSetState';
-import useUpdate from './useUpdate';
+import useMemoizedFn from './useMemoizedFn';
 import useUpdateEffect from './useUpdateEffect';
+import { useDeepCompareEffect } from './useDeepCompareEffect';
+import useSetState, { SetState } from './useSetState';
+import useMap from './useMap';
+import useUpdate from './useUpdate';
+import useCreation from './useCreation';
 
-export type { SetState };
-export {
-  usePrevious,
-  useSafeState,
-  useMemoizedFn,
-  useUpdateEffect,
-  useDeepCompareEffect,
-  useSetState,
-  useMap,
-  useUpdate,
-  useCreation,
+export type {
+  SetState,
 };
+export { usePrevious, useSafeState, useMemoizedFn, useUpdateEffect, useDeepCompareEffect, useSetState, useMap, useUpdate, useCreation };

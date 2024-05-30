@@ -1,21 +1,9 @@
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
-import {
-  PlayButton,
-  Progress,
-  Timer,
-  VolumeControl,
-} from 'react-soundplayer/components';
+import React, { useEffect, useState, useRef, useImperativeHandle, forwardRef, useMemo } from 'react';
+import { PlayButton, VolumeControl, Timer, Progress } from 'react-soundplayer/components';
 // it's just an alias for `withSoundCloudAudio` but makes code clearer
 import { withCustomAudio } from 'react-soundplayer/addons';
-import { useLocale } from '../utils/hooks/useLocale';
 import useBackgroundStyle from '../View/useBackgroundStyle';
+import { useLocale } from '../utils/hooks/useLocale';
 
 export interface MyAudioProps {
   audioTitle?: string;
@@ -70,12 +58,7 @@ const CustomAudio = withCustomAudio((props: any) => {
     return { ...props, style: null };
   }, [props]);
   const { audio } = soundCloudAudio || {};
-  const { backgroundStyle } = useBackgroundStyle({
-    engineApis,
-    backgroundType,
-    appId,
-    mode: 'engine',
-  });
+  const { backgroundStyle } = useBackgroundStyle({ engineApis, backgroundType, appId, mode: 'engine' });
   if (autoPlay && audio && !audio.autoPlay) {
     audio.autoplay = true;
   }
@@ -85,21 +68,12 @@ const CustomAudio = withCustomAudio((props: any) => {
   if (!visible) {
     if (hideType === 'hidden') {
       return (
-        <div
-          className={AudioClsWrapper}
-          style={{ ...style, ...backgroundStyle, display: 'none' }}
-        >
+        <div className={AudioClsWrapper} style={{ ...style, ...backgroundStyle, display: 'none' }}>
           <div className={`${AudioClsWrapper}-audioTitle`}>{audioTitle}</div>
           <div className={`${AudioClsWrapper}-audioContent`}>
             <PlayButton {...otherProps} />
-            <Timer
-              className={`${AudioClsWrapper}-audioTimer`}
-              {...otherProps}
-            />
-            <Progress
-              className={`${AudioClsWrapper}-progress`}
-              {...otherProps}
-            />
+            <Timer className={`${AudioClsWrapper}-audioTimer`} {...otherProps} />
+            <Progress className={`${AudioClsWrapper}-progress`} {...otherProps} />
             <VolumeControl {...otherProps} />
           </div>
         </div>
@@ -138,19 +112,16 @@ const Audio: React.FC<MyAudioProps> = forwardRef((props, ref) => {
 
   const engineApis = getEngineApis?.() || {};
   const { getLocale } = useLocale(engineApis);
-
+  
   const [audioUrl, setAudioUrl] = useState<any>('');
   const sRef = useRef();
-
+  
   useEffect(() => {
-    if (streamType === 'fileCode') {
-      // 选择的文件资源
+    if (streamType === 'fileCode') { // 选择的文件资源
       if (fileCode) {
         try {
           (async () => {
-            const url = await engineApis?.service?.getAppFileUrlByFileCode(
-              fileCode,
-            );
+            const url = await engineApis?.service?.getAppFileUrlByFileCode(fileCode);
             setAudioUrl(url);
           })();
         } catch (e) {
@@ -160,7 +131,7 @@ const Audio: React.FC<MyAudioProps> = forwardRef((props, ref) => {
         setAudioUrl('');
       }
     } else if (streamUrl) {
-      setAudioUrl(getAbsoluteUrl(streamUrl)); // 外部资源
+      setAudioUrl(getAbsoluteUrl(streamUrl));// 外部资源
     }
   }, [streamType, fileCode, streamUrl]);
 
@@ -216,7 +187,7 @@ const Audio: React.FC<MyAudioProps> = forwardRef((props, ref) => {
     }
   };
   useImperativeHandle(ref, () => ({
-    onOperationAudio: (status: string) => {
+    onOperationAudio: (status: string,) => {
       toggelAudioStatus(status);
     },
   }));

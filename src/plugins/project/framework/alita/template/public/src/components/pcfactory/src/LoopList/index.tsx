@@ -1,15 +1,16 @@
-import { Col, Row } from 'antd';
-import classNames from 'classnames';
 import React, {
-  forwardRef,
   useCallback,
   useEffect,
   useImperativeHandle,
+  forwardRef,
   useMemo,
 } from 'react';
+import classNames from 'classnames';
+import { Row, Col } from 'antd';
 // @ts-ignore
 import { IconCheckSvg, IconNormalCheckSvg } from '@lingxiteam/assets';
 import useBackgroundStyle from '../View/useBackgroundStyle';
+
 
 const basicStyle = { backgroundColor: '#fff' };
 export interface WrapperProps {
@@ -52,9 +53,7 @@ const loopListCls = 'ued-loop-list';
 
 const WrapperEditorComp: React.FC<WrapperProps> = ({ children }) =>
   React.cloneElement(children, {
-    className: `${loopListCls}-item ${loopListCls}-item-edit ${
-      children.props.className || ''
-    }`,
+    className: `${loopListCls}-item ${loopListCls}-item-edit ${children.props.className || ''}`,
   });
 
 const WrapperDisableComps: React.FC<WrapperProps> = ({ children }) =>
@@ -62,36 +61,17 @@ const WrapperDisableComps: React.FC<WrapperProps> = ({ children }) =>
     className: `${loopListCls}-item ${children.props.className || ''}`,
   });
 
-const renderIcon = ({
-  checked,
-  selectImg,
-  normalImg,
-  getAppFileUrlByFileCode,
-}: any) => {
+const renderIcon = ({ checked, selectImg, normalImg, getAppFileUrlByFileCode }: any) => {
   if (checked) {
     if (selectImg) {
-      return (
-        <img
-          src={getAppFileUrlByFileCode(selectImg)}
-          className={`${loopListCls}-icon`}
-          alt=""
-        />
-      );
+      return <img src={getAppFileUrlByFileCode(selectImg)} className={`${loopListCls}-icon`} alt="" />;
     }
     return <img src={IconCheckSvg} className={`${loopListCls}-icon`} alt="" />;
   }
   if (normalImg) {
-    return (
-      <img
-        src={getAppFileUrlByFileCode(normalImg)}
-        className={`${loopListCls}-icon`}
-        alt=""
-      />
-    );
+    return <img src={getAppFileUrlByFileCode(normalImg)} className={`${loopListCls}-icon`} alt="" />;
   }
-  return (
-    <img src={IconNormalCheckSvg} className={`${loopListCls}-icon`} alt="" />
-  );
+  return <img src={IconNormalCheckSvg} className={`${loopListCls}-icon`} alt="" />;
 };
 
 const NoCheckBox = (item: {
@@ -102,21 +82,26 @@ const NoCheckBox = (item: {
   disabled?: false | undefined;
   onChange: any;
   onClick: any;
+  isFormCompat: boolean;
 }) => {
-  const { children, itemStyle, onClick, onChange } = item;
+  const { children, itemStyle, onClick, onChange, isFormCompat } = item;
   return (
     <div
       style={itemStyle}
-      className={classNames(
-        `${loopListCls}-blockSelect`,
-        `${loopListCls}-nobox`,
-      )}
+      className={classNames(`${loopListCls}-blockSelect`, `${loopListCls}-nobox`)}
       onClick={() => {
         onClick?.();
         onChange?.();
       }}
     >
-      <div className={classNames(`${loopListCls}-content`)}>{children}</div>
+      <div
+        className={classNames({
+          [`${loopListCls}-content`]: true,
+          [`${loopListCls}-content-lass`]: isFormCompat,
+        })}
+      >
+        {children}
+      </div>
     </div>
   );
 };
@@ -132,6 +117,7 @@ const CheckBox = (item: {
   onChange: any;
   onClick: any;
   getAppFileUrlByFileCode?: (name: string) => string;
+  isFormCompat: boolean;
 }) => {
   const {
     children,
@@ -142,21 +128,20 @@ const CheckBox = (item: {
     onChange,
     onClick,
     getAppFileUrlByFileCode,
+    isFormCompat,
   } = item;
 
   return (
-    <div
-      style={itemStyle}
-      className={classNames(
-        `${loopListCls}-blockSelect`,
-        `${loopListCls}-showIcon`,
-      )}
-      onClick={onClick}
-    >
-      <div onClick={() => onChange(item)}>
-        {renderIcon({ checked, selectImg, normalImg, getAppFileUrlByFileCode })}
+    <div style={itemStyle} className={classNames(`${loopListCls}-blockSelect`, `${loopListCls}-showIcon`)} onClick={onClick}>
+      <div onClick={() => onChange(item)}>{renderIcon({ checked, selectImg, normalImg, getAppFileUrlByFileCode })}</div>
+      <div
+        className={classNames({
+          [`${loopListCls}-content`]: true,
+          [`${loopListCls}-content-lass`]: isFormCompat,
+        })}
+      >
+        {children}
       </div>
-      <div className={classNames(`${loopListCls}-content`)}>{children}</div>
     </div>
   );
 };
@@ -177,6 +162,7 @@ const EditorComp = (props: {
   selectImg?: string;
   normalImg?: string;
   getAppFileUrlByFileCode?: (name: string) => string;
+  isFormCompat: boolean;
 }) => {
   const {
     isChecked,
@@ -193,6 +179,7 @@ const EditorComp = (props: {
     selectImg,
     normalImg,
     getAppFileUrlByFileCode,
+    isFormCompat,
   } = props;
   const render = isChecked ? (
     <CheckBox
@@ -206,6 +193,7 @@ const EditorComp = (props: {
       selectImg={selectImg}
       normalImg={normalImg}
       getAppFileUrlByFileCode={getAppFileUrlByFileCode}
+      isFormCompat={isFormCompat}
     >
       {children}
     </CheckBox>
@@ -218,6 +206,7 @@ const EditorComp = (props: {
       onChange={() => onChange(item, index)}
       checked={checked}
       onClick={props.onClick}
+      isFormCompat={isFormCompat}
     >
       {children}
     </NoCheckBox>
@@ -226,9 +215,7 @@ const EditorComp = (props: {
     <Col {...colProps} className={className}>
       {render}
     </Col>
-  ) : (
-    render
-  );
+  ) : render;
 };
 
 const DisabledComps = (props: {
@@ -239,9 +226,17 @@ const DisabledComps = (props: {
   className: any;
   onClick: any;
   gridMode: boolean;
+  isFormCompat: boolean;
 }) => {
-  const { children, index, itemStyle, colProps, className, gridMode } =
-    props || {};
+  const {
+    children,
+    index,
+    itemStyle,
+    colProps,
+    className,
+    gridMode,
+    isFormCompat,
+  } = props || {};
   const item = children?.props?.$props;
   const render = (
     <NoCheckBox
@@ -250,6 +245,7 @@ const DisabledComps = (props: {
       itemStyle={itemStyle}
       disabled
       onClick={props.onClick}
+      isFormCompat={isFormCompat}
     >
       {children}
     </NoCheckBox>
@@ -259,9 +255,7 @@ const DisabledComps = (props: {
     <Col {...colProps} className={className}>
       {render}
     </Col>
-  ) : (
-    render
-  );
+  ) : render;
 };
 
 const MyGrid = (props: MyLoopList) => {
@@ -278,7 +272,7 @@ const MyGrid = (props: MyLoopList) => {
     hspace = 0,
     style,
     mediaLayout,
-    onChange: uOnChange = (e: any, datas: any[]) => {},
+    onChange: uOnChange = (e: any, datas: any[]) => { },
     fixedWidth = false,
     span,
     isEditor = true,
@@ -299,20 +293,13 @@ const MyGrid = (props: MyLoopList) => {
 
   const engineApis = getEngineApis?.() || {};
 
-  const {
-    service: { getAppFileUrlByFileCode },
-  } = engineApis;
+  const { service: { getAppFileUrlByFileCode }, compatConfig } = engineApis;
 
   const isChecked: boolean = mode !== 1;
   const isMultiple: boolean = mode === 3;
 
   // const [values, setValues] = useState(defaultValue);
-  const { backgroundStyle } = useBackgroundStyle({
-    engineApis,
-    backgroundType,
-    appId,
-    mode: 'engine',
-  });
+  const { backgroundStyle } = useBackgroundStyle({ engineApis, backgroundType, appId, mode: 'engine' });
   // useEffect(() => {
   //   if (value !== undefined) {
   //     if (form && form.setFieldsValue) {
@@ -322,18 +309,16 @@ const MyGrid = (props: MyLoopList) => {
   //   }
   // }, [value]);
 
+
   const getLoopDataByKeys = (keys: any[]) => {
-    return Array.isArray(keys)
-      ? keys.map((id) => {
-          return props?.gridData?.find((data) => data[valueKey] === id);
-        })
-      : [];
+    return Array.isArray(keys) ? keys.map((id) => {
+      return props?.gridData?.find(data => data[valueKey] === id);
+    }) : [];
   };
 
   const onChange = (restItem: Record<string, any>, index: any) => {
     // eslint-disable-next-line @typescript-eslint/no-shadow
-    const val =
-      typeof restItem === 'object' ? restItem[valueKey || 'value'] : index;
+    const val = typeof restItem === 'object' ? restItem[valueKey || 'value'] : index;
     if (!isMultiple) {
       // setValues([value]);
       if (uOnChange) {
@@ -395,75 +380,74 @@ const MyGrid = (props: MyLoopList) => {
 
   return (
     <Row gutter={[vspace, hspace]} style={{ ...backgroundStyle, ...style }}>
-      {Array.isArray(gridData) &&
-        gridData.map((item, index) => {
-          const restItem = item || {};
-          const checked = getChecked(restItem, index);
-          const itemStyle = !isEditor ? basicStyle : getItemStyle(checked);
-          const gridViewIndex =
-            restItem[valueKey] || `${props.compId}_${index}`;
-          const onClick = () =>
-            onClickLoopItem?.(restItem[valueKey], restItem, index);
+      {Array.isArray(gridData) && gridData.map((item, index) => {
+        const restItem = item || {};
+        const checked = getChecked(restItem, index);
+        const itemStyle = !isEditor ? basicStyle : getItemStyle(checked);
+        const gridViewIndex = restItem[valueKey] || `${props.compId}_${index}`;
+        const onClick = () => onClickLoopItem?.(restItem[valueKey], restItem, index);
 
-          const renderProps = {
-            itemKey,
-            indexKey,
+        const renderProps = {
+          itemKey,
+          indexKey,
+          item,
+          i: index,
+          __render__: props.__render__,
+          renderer,
+          itemId: gridViewIndex,
+          compId: $$componentItem.uid,
+          context: {
             item,
             i: index,
-            __render__: props.__render__,
-            renderer,
-            itemId: gridViewIndex,
-            compId: $$componentItem.uid,
-            context: {
-              item,
-              i: index,
-            },
-          };
+          },
+        };
 
-          return (
-            <>
-              {!props.disabled ? (
-                <WrapperEditorComp>
-                  <EditorComp
-                    colProps={getColProps(restItem, index)}
-                    itemStyle={itemStyle}
-                    valueKey={valueKey}
-                    key={restItem[valueKey]}
-                    selectImg={selectImg}
-                    normalImg={normalImg}
-                    getAppFileUrlByFileCode={getAppFileUrlByFileCode}
-                    item={restItem}
-                    index={index}
-                    onChange={onChange}
-                    isChecked={isChecked}
-                    checked={checked}
-                    onClick={onClick}
-                    gridMode={gridMode}
-                  >
-                    <MemoLoopItem {...renderProps} />
-                    {/* {renderChildren(item, index)} */}
-                  </EditorComp>
-                </WrapperEditorComp>
-              ) : (
-                <WrapperDisableComps>
-                  <DisabledComps
-                    colProps={getColProps(restItem, index)}
-                    itemStyle={itemStyle}
-                    key={restItem[valueKey]}
-                    {...({ valueKey } as any)}
-                    item={restItem}
-                    index={index}
-                    checked={checked}
-                    onClick={onClick}
-                    gridMode={gridMode}
-                  >
-                    <MemoLoopItem {...renderProps} />
-                  </DisabledComps>
-                </WrapperDisableComps>
-              )}
-            </>
-          );
-        })}
+        return (
+          <>
+            {!props.disabled ? (
+              <WrapperEditorComp>
+                <EditorComp
+                  colProps={getColProps(restItem, index)}
+                  itemStyle={itemStyle}
+                  valueKey={valueKey}
+                  key={restItem[valueKey]}
+                  selectImg={selectImg}
+                  normalImg={normalImg}
+                  getAppFileUrlByFileCode={getAppFileUrlByFileCode}
+                  item={restItem}
+                  index={index}
+                  onChange={onChange}
+                  isChecked={isChecked}
+                  checked={checked}
+                  onClick={onClick}
+                  gridMode={gridMode}
+                  isFormCompat={compatConfig.isFormCompat}
+                >
+                  <MemoLoopItem {...renderProps} />
+                  {/* {renderChildren(item, index)} */}
+                </EditorComp>
+              </WrapperEditorComp>
+            ) : (
+              <WrapperDisableComps>
+                <DisabledComps
+                  colProps={getColProps(restItem, index)}
+                  itemStyle={itemStyle}
+                  key={restItem[valueKey]}
+                  {...{ valueKey } as any}
+                  item={restItem}
+                  index={index}
+                  checked={checked}
+                  onClick={onClick}
+                  gridMode={gridMode}
+                  isFormCompat={compatConfig.isFormCompat}
+                >
+                  <MemoLoopItem {...renderProps} />
+                </DisabledComps>
+              </WrapperDisableComps>
+            )}
+          </>
+        );
+      })}
     </Row>
   );
 };
@@ -495,12 +479,15 @@ const SyncLoopList = forwardRef((props: any, ref) => {
     return [list, idx];
   };
 
-  useImperativeHandle(ref, () => ({
-    getValues: () => {
-      const [list, idx] = getDataAndIndex();
-      return [value, list, idx];
-    },
-  }));
+  useImperativeHandle(
+    ref,
+    () => ({
+      getValues: () => {
+        const [list, idx] = getDataAndIndex();
+        return [value, list, idx];
+      },
+    })
+  );
 
   return (
     <MyGrid

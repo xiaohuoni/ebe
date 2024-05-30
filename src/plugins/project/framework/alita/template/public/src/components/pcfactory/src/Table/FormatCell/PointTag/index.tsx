@@ -11,13 +11,19 @@ export interface PointTagProps {
 const pointTagClassName = 'ued-table-cell-pointTag';
 
 const PointTag: React.FC<PointTagProps> = (props) => {
-  const { fontColor, backgroundColor, content, onClick } = props;
+  const {
+    fontColor,
+    backgroundColor,
+    content,
+    onClick,
+  } = props;
 
   return (
     <div
-      className={classNames(pointTagClassName, {
-        [`${pointTagClassName}-click`]: !!onClick,
-      })}
+      className={classNames(
+        pointTagClassName,
+        { [`${pointTagClassName}-click`]: !!onClick }
+      )}
       onClick={onClick}
     >
       <span

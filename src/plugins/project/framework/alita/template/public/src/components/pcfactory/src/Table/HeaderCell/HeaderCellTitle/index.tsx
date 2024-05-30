@@ -1,19 +1,35 @@
 import React from 'react';
 import TooltipViewEG from '../../../TooltipView';
 import TooltipViewED from '../../../TooltipView/TooltipViewED';
-import type { FuncCode } from '../../types/contentStyle';
 import type { HeaderCellTitleProps } from '../../types/headerCell';
+import type { FuncCode } from '../../types/contentStyle';
+
 
 const HeaderCellTitle: React.FC<HeaderCellTitleProps> = (props) => {
-  const { size, column, mode = 'editor', funcExpExecute, engineApis } = props;
+  const {
+    size,
+    column,
+    mode = 'editor',
+    funcExpExecute,
+    engineApis,
+  } = props;
 
-  const { title, titleLineNum, titleTip } = column || {};
+  const {
+    title,
+    titleLineNum,
+    titleTip,
+  } = column || {};
 
-  const { type, content, icon, placement, iconPlacement } = titleTip || {};
+  const {
+    type,
+    content,
+    icon,
+    placement,
+    iconPlacement,
+  } = titleTip || {};
 
   const lineHeight = size === 'small' ? 16 : 20;
-  const isTitleLineNumSet =
-    typeof titleLineNum === 'number' && titleLineNum > 0;
+  const isTitleLineNumSet = typeof titleLineNum === 'number' && titleLineNum > 0;
   const TooltipView = mode === 'editor' ? TooltipViewED : TooltipViewEG;
 
   const handleContent = () => {
@@ -35,12 +51,11 @@ const HeaderCellTitle: React.FC<HeaderCellTitleProps> = (props) => {
         WebkitLineClamp: titleLineNum,
       }}
       title={title}
-    >
-      {title}
-    </span>
-  ) : (
-    title
-  );
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{ __html: title || '' }}
+    />
+  // eslint-disable-next-line react/no-danger
+  ) : <span dangerouslySetInnerHTML={{ __html: title || '' }} />;
 
   return titleTip && realContent ? (
     <TooltipView
@@ -54,9 +69,7 @@ const HeaderCellTitle: React.FC<HeaderCellTitleProps> = (props) => {
       tipPlacement={placement}
       engineApis={engineApis}
     />
-  ) : (
-    <>{realTitle}</>
-  );
+  ) : <>{realTitle}</>;
 };
 
 export default HeaderCellTitle;

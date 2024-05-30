@@ -1,13 +1,14 @@
-import type { ColProps } from 'antd/es/col';
 import type { FormInstance } from 'antd/es/form';
+import { useContext, createContext } from 'react';
 import type { FormLayout } from 'antd/es/form/Form';
-import { createContext, useContext } from 'react';
+import type { ColProps } from 'antd/es/col';
 
 export type StatusType = 'disabled' | 'readonly';
 
 export type MonitorFn = (v: unknown, type: StatusType) => void;
 
 export interface FormContextProps {
+
   /**
    * 是否在表单内
    */
@@ -22,14 +23,14 @@ export interface FormContextProps {
    * 状态下发
    */
   statusMonitor: {
-    addListener: (fn: MonitorFn) => void;
-    removeListener: (fn: MonitorFn) => void;
+    addListener: (fn: MonitorFn) => void,
+    removeListener: (fn: MonitorFn) => void,
   };
 
   /**
    * 布局
    */
-  layout: FormLayout;
+  layout: FormLayout,
 
   /**
    * 每行列数
@@ -75,23 +76,21 @@ export interface FormContextProps {
    * @param fn 处理函数
    * @returns
    */
-  preproccessSetFormValues: (
-    fileProps: string,
-    fn: (value: any) => any,
-  ) => void;
+  preproccessSetFormValues: (fileProps: string, fn: (value: any) => any) => void;
 
   /**
    * 行间距
    */
-  rowSpace: string | number;
+  rowSpace: string | number
 
   /**
    * 列间距
    */
-  colSpace: string | number;
+  colSpace: string | number
 }
 
 export interface NoopInFormProps {
+
   /**
    * 是否在表单内
    */
@@ -101,17 +100,7 @@ export interface NoopInFormProps {
 export const formContext = createContext<FormContextProps | NoopInFormProps>({
   inForm: false,
 });
-type FormEDContextProps = Pick<
-  FormContextProps,
-  | 'colSpace'
-  | 'colon'
-  | 'labelAlign'
-  | 'labelCol'
-  | 'rowSpace'
-  | 'colSpan'
-  | 'layout'
-  | 'wrapperCol'
->;
+type FormEDContextProps = Pick<FormContextProps, 'colSpace' | 'colon' | 'labelAlign' | 'labelCol' | 'rowSpace' | 'colSpan' | 'layout' | 'wrapperCol'>
 export const formEDContext = createContext<Partial<FormEDContextProps>>({});
 
 formContext.displayName = 'PCFactoryFormContext';
@@ -128,4 +117,9 @@ const useEDForm = () => {
   return useContext(formEDContext);
 };
 
-export { FormProvider, useForm, useEDForm, FormEDProvider };
+export {
+  FormProvider,
+  useForm,
+  useEDForm,
+  FormEDProvider,
+};

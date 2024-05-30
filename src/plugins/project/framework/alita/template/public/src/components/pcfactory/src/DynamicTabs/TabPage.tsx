@@ -1,5 +1,5 @@
-import { EngineBaseProps } from '@lingxiteam/types';
 import React, { useEffect, useState } from 'react';
+import { EngineBaseProps } from '@lingxiteam/types';
 import { TabsItemProps } from './PropsType';
 
 interface TabPageProps {
@@ -13,18 +13,11 @@ interface TabPageProps {
 }
 
 const TabPage: React.FC<TabPageProps> = (props) => {
-  const {
-    getEngineApis,
-    $$componentItem,
-    activeKey,
-    lcdpParentRenderId,
-    item,
-    index,
-    reloadPageKey,
-  } = props;
+  const { getEngineApis, $$componentItem, activeKey, lcdpParentRenderId, item, index, reloadPageKey } = props;
   const { PageView } = getEngineApis();
   const [load, setLoad] = useState(false);
 
+  
   useEffect(() => {
     if (activeKey === item.key) {
       setLoad(true);
@@ -42,22 +35,21 @@ const TabPage: React.FC<TabPageProps> = (props) => {
     }
   }, [reloadPageKey]);
 
-  return load ? (
-    <PageView
-      lcdpParentRenderId={lcdpParentRenderId}
-      platform="pc"
-      key={item.key}
-      pageSrc={item?.pagePath || ''}
-      appId={$$componentItem?.appId || ''}
-      $$componentItem={$$componentItem}
-      getEngineApis={getEngineApis}
-      visible
-      style={{ width: '100%', height: '100%', overflow: 'hidden auto' }}
-      compId=""
-      className=""
-      pageViewCompState={{ tabBarItem: item, tabBarIndex: index }}
-    />
-  ) : null;
+
+  return load ? <PageView
+    lcdpParentRenderId={lcdpParentRenderId}
+    platform="pc"
+    key={item.key}
+    pageSrc={item?.pagePath || ''}
+    appId={$$componentItem?.appId || ''}
+    $$componentItem={$$componentItem}
+    getEngineApis={getEngineApis}
+    visible
+    style={{ width: '100%', height: '100%', overflow: 'hidden auto' }}
+    compId=""
+    className=""
+    pageViewCompState={{ tabBarItem: item, tabBarIndex: index }}
+  /> : null;
 };
 
 export default TabPage;

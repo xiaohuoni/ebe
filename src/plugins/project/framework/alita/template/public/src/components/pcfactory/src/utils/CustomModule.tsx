@@ -10,24 +10,18 @@ export function isAtLeastReact17(version: string): boolean {
 
 const withErrorBoundary = (
   Component: React.ComponentType,
-  options: {
-    id: string;
-    render?: (error: Error, componentStack: string | null) => React.ReactNode;
-  },
+  options: { id: string; render?: (error: Error, componentStack: string | null) => React.ReactNode }
 ) =>
   class CustomErrorModule extends React.Component {
     state: Readonly<{
       error: Error | null;
       componentStack: string | null;
     }> = {
-      error: null,
-      componentStack: null,
-    };
+        error: null,
+        componentStack: null,
+      };
 
-    componentDidCatch(
-      error: Error & { cause?: Error },
-      { componentStack }: React.ErrorInfo,
-    ) {
+    componentDidCatch(error: Error & { cause?: Error }, { componentStack }: React.ErrorInfo) {
       if (isAtLeastReact17(React.version)) {
         const errorBoundaryError = new Error(error.message);
         errorBoundaryError.name = `React ErrorBoundary ${errorBoundaryError.name}`;
@@ -55,6 +49,7 @@ const withErrorBoundary = (
   };
 
 interface CustomModuleProps {
+
   /**
    * 代码
    */
@@ -92,13 +87,8 @@ interface CustomModuleProps {
   allowMap?: Record<string, any>;
 }
 
-const CustomModule: FC<CustomModuleProps> = ({
-  sandBoxLoadModule,
-  code,
-  compProps,
-  errorInfo,
-  allowMap,
-}) => {
+
+const CustomModule: FC<CustomModuleProps> = ({ sandBoxLoadModule, code, compProps, errorInfo, allowMap }) => {
   // 加载到组件模块
   const Component = useMemo(() => {
     if (!code) {
@@ -111,11 +101,7 @@ const CustomModule: FC<CustomModuleProps> = ({
   return Component ? <Component {...compProps} /> : null;
 };
 
-export const getJSXHtml = (
-  reactNode: React.ReactElement,
-  cb?: (html: string) => void,
-  options: { id?: string } = {},
-) => {
+export const getJSXHtml = (reactNode: React.ReactElement, cb?: (html: string) => void, options: { id?: string } = {}) => {
   const { id = `__JSX_id__${Math.random()}` } = options || {};
   let tempDOM = document.getElementById(id);
   if (!tempDOM) {

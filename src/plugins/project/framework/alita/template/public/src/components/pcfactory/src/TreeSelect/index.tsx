@@ -1,25 +1,17 @@
-import { LingxiForwardRef } from '@lingxiteam/types';
 import { TreeSelect } from 'antd';
 import _ from 'lodash';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import IconFont from '../IconFont';
-import {
-  FormFields,
-  getFieldsProps,
-  useCommonImperativeHandle,
-  useListenProps,
-} from '../utils';
-import { useLocale } from '../utils/hooks/useLocale';
 import { flattenTreeData, renderCommonList } from '../utils/renderReadOnly';
+import { LingxiForwardRef } from '@lingxiteam/types';
+import { FormFields, getFieldsProps, useCommonImperativeHandle, useListenProps } from '../utils';
 
 const { TreeNode } = TreeSelect;
 
 const TREESELECT_WRAPPER_CLASSNAME = 'ued-treeSelect-wrap';
 const WrapperTreeSelect = ({ children }: { children: JSX.Element }) =>
   React.cloneElement(children, {
-    className: `${TREESELECT_WRAPPER_CLASSNAME} ${
-      children.props.className || ''
-    }`,
+    className: `${TREESELECT_WRAPPER_CLASSNAME} ${children.props.className || ''}`,
   });
 
 export interface MyTreeSelectProps {
@@ -58,22 +50,12 @@ export interface MyTreeSelectProps {
   tipPlacement?: any;
   isSelectAll?: boolean;
   treeCheckable?: boolean; // 是否复选
-  onTreeExpand?: (
-    nodeKey: any,
-    childrenKey: any,
-    parentNodeKey: any,
-    parentNodeData: any,
-  ) => void;
+  onTreeExpand?: (nodeKey: any, childrenKey: any, parentNodeKey: any, parentNodeData: any) => void;
   onSelectAllRelease?: () => void;
   colon?: boolean;
   multiple: boolean;
   isFormChild?: boolean | undefined;
-  onSelect?: (
-    key: any,
-    data: any,
-    parentNodeKey: any,
-    parentNodeData: any,
-  ) => void;
+  onSelect?: (key: any, data: any, parentNodeKey: any, parentNodeData: any) => void;
   readOnly: boolean;
   rules?: any[];
   filter?: any;
@@ -89,7 +71,8 @@ const SERVICE_SOURCE = {
   APP: 'app', // 应用内部 & 模型生成
   QUERY: 'query', // 解析服务
   STD: 'std', // 编排服务
-  INNER: 'inner', // 请求层服务
+  INNER: 'inner', // 高代码服务
+  PLATFORM: 'platform', // 平台服务
   ATOM: 'atom', // 外部服务(低代码运营平台的原子服务)
   RHIN: 'rhin', // 业务运营服务
   SCENE: 'scene', // 业务运营场景服务
@@ -126,7 +109,6 @@ const MyTreeSelect = LingxiForwardRef<any, MyTreeSelectProps>((props, ref) => {
     onSelect,
     onSearch,
     filter,
-    rules: externalRules = [],
     tipSize,
     tipWidth,
     tipHeight,
@@ -139,70 +121,57 @@ const MyTreeSelect = LingxiForwardRef<any, MyTreeSelectProps>((props, ref) => {
 
   const { onlySyncValue } = engineApis;
 
-  const { getLocale, lang } = useLocale(engineApis);
-
   // 加载数据字段映射
   const [treeService, setTreeService] = useListenProps(props.treeService);
   // 加载数据
   const [dataSource, setDataSource] = useListenProps(props.dataSource);
 
   const [data, setData] = useState(treeService ? [] : treeData);
-  const [isSelectAll, setIsSelectAll] = useState<boolean>(
-    props?.isSelectAll || false,
-  );
+  const [isSelectAll, setIsSelectAll] = useState<boolean>(props?.isSelectAll || false);
   const [filterObject, setFilterObject] = useState<any>({});
   // 记录节点集合
   const treeNodeMap = useRef<any>({});
   // 用来记录当前展开的key，节点展开事件中以获取展开的节点
   const [expandedKeys, setExpandedKeys] = useState<any[]>([]);
 
-  const { formFieldsRef, required, readOnly, disabled } =
-    useCommonImperativeHandle(ref, props, {
-      get dataSource() {
-        return data;
-      },
-      setDataSource(_data: any[]) {
-        setDataSource(_data);
-      },
-      setStateMap(stateMap: any) {
-        if (stateMap?.treeService) {
-          setTreeService(stateMap.treeService);
-        }
-        if (Array.isArray(stateMap?.dataSource)) {
-          setDataSource([...stateMap.dataSource]);
-        }
-      },
-      // 设置全部选中
-      setSelectAll(_flag: boolean) {
-        setIsSelectAll(_flag);
-      },
-      clearValue() {
-        if (treeProps.multiple || treeProps.treeCheckable) {
-          onlySyncValue?.([]);
-        } else {
-          onlySyncValue?.(null);
-        }
-      },
-      setValue(newValue: any) {
-        if (treeProps.multiple || treeProps.treeCheckable) {
-          const _value = Array.isArray(newValue)
-            ? newValue
-            : newValue?.split(',');
-          onlySyncValue?.(_value);
-        } else {
-          onlySyncValue?.(newValue);
-        }
-      },
-    });
+  const { formFieldsRef, required, readOnly, disabled, finalRules } = useCommonImperativeHandle(ref, props, {
+    get dataSource() {
+      return data;
+    },
+    setDataSource(_data: any[]) {
+      setDataSource(_data);
+    },
+    setStateMap(stateMap: any) {
+      if (stateMap?.treeService) {
+        setTreeService(stateMap.treeService);
+      }
+      if (Array.isArray(stateMap?.dataSource)) {
+        setDataSource([...stateMap.dataSource]);
+      }
+    },
+    // 设置全部选中
+    setSelectAll(_flag: boolean) {
+      setIsSelectAll(_flag);
+    },
+    clearValue() {
+      if (treeProps.multiple || treeProps.treeCheckable) {
+        onlySyncValue?.([]);
+      } else {
+        onlySyncValue?.(null);
+      }
+    },
+    setValue(newValue: any) {
+      if (treeProps.multiple || treeProps.treeCheckable) {
+        const _value = Array.isArray(newValue) ? newValue : newValue?.split(',');
+        onlySyncValue?.(_value);
+      } else {
+        onlySyncValue?.(newValue);
+      }
+    },
+  });
 
   // isGetAll 是否获取所有节点keys，否则只获取父级的，展开时使用
-  const recursive = (
-    arr: any[],
-    keys: any[],
-    map?: any,
-    isGetAll = false,
-    parentNode?: any,
-  ) => {
+  const recursive = (arr: any[], keys: any[], map?: any, isGetAll = false, parentNode?: any) => {
     if (Array.isArray(arr)) {
       arr.forEach((a) => {
         if (map) {
@@ -277,10 +246,7 @@ const MyTreeSelect = LingxiForwardRef<any, MyTreeSelectProps>((props, ref) => {
         providerId,
         serviceProviderRequest: params,
       };
-    } else if (
-      _source === SERVICE_SOURCE.QUERY ||
-      _source === SERVICE_SOURCE.INNER
-    ) {
+    } else if (_source === SERVICE_SOURCE.QUERY || _source === SERVICE_SOURCE.INNER || _source === SERVICE_SOURCE.PLATFORM) {
       // 解析类服务 或 请求层服务
       params = {
         appId: (window as any).appId || appId,
@@ -341,33 +307,17 @@ const MyTreeSelect = LingxiForwardRef<any, MyTreeSelectProps>((props, ref) => {
         return arr.map((c) => {
           // _isReload 标识节点数据是通过加载子节点动作设置的,此时取该动作配置好的key/title/selectable
           const originData = c._isReload ? c.data : c;
-          const isSelectable = transformBoolean(
-            originData[selectable] ?? originData.selectable,
-          );
+          const isSelectable = transformBoolean(originData[selectable] ?? originData.selectable);
           // 如果加载子节点配置了映射，优先取加载子节点的，否则取当时加载数据的映射，若都没有则取数据上的默认字段
-          const nodeSelectable = c._isReload
-            ? c.selectable ?? isSelectable
-            : isSelectable;
+          const nodeSelectable = c._isReload ? (c.selectable ?? isSelectable) : isSelectable;
           const node: any = {
-            key: c._isReload
-              ? c.key ?? originData[key]
-              : originData[key] ?? originData.key,
-            title: c._isReload
-              ? c.title ?? originData[title]
-              : originData[title] ?? originData.title,
-            selectable: c._isReload
-              ? c.selectable ?? isSelectable
-              : isSelectable,
-            disableCheckbox:
-              c.disabled ??
-              c.disableCheckbox ??
-              (nodeSelectable !== undefined ? !nodeSelectable : undefined),
-            disabled:
-              c.disabled ??
-              c.disableCheckbox ??
-              (nodeSelectable !== undefined ? !nodeSelectable : undefined),
+            key: c._isReload ? (c.key ?? originData[key]) : (originData[key] ?? originData.key),
+            title: c._isReload ? (c.title ?? originData[title]) : (originData[title] ?? originData.title),
+            selectable: c._isReload ? (c.selectable ?? isSelectable) : isSelectable,
+            disableCheckbox: c.disabled ?? c.disableCheckbox ?? (nodeSelectable !== undefined ? !nodeSelectable : undefined),
+            disabled: c.disabled ?? c.disableCheckbox ?? (nodeSelectable !== undefined ? !nodeSelectable : undefined),
             isLeaf: c.isLeaf ?? originData.isLeaf ?? false,
-            data: c.data || c,
+            data: (c.data || c),
           };
           // 优先取配置的children字段，若配置错误则子节点为空，若无配置默认访问数据自身children
           const childrenKey = children || 'children';
@@ -378,22 +328,17 @@ const MyTreeSelect = LingxiForwardRef<any, MyTreeSelectProps>((props, ref) => {
             if (asyncService || isAsync) {
               // 存量异步数据
               // -null是非叶子 -[]是叶子 -属性不存在是非叶子
-              if (
-                Array.isArray(c[childrenKey]) &&
-                c[childrenKey]?.length === 0
-              ) {
+              if (Array.isArray(c[childrenKey]) && c[childrenKey]?.length === 0) {
                 node.isLeaf = true;
               }
             } else if (children || c[childrenKey]) {
               // 加载数据配置子节点映射，或者数据上也有children数据，则视为同步加载
               // 目前不处理加载子节点数据动作返回来的数据里面的children
               // -null是叶子 -[]是叶子 -属性不存在是叶子 -[有值]是非叶子
-              if (
-                c[childrenKey] === null ||
+              if (c[childrenKey] === null ||
                 c[childrenKey] === undefined ||
                 !(childrenKey in c) ||
-                (Array.isArray(c[childrenKey]) && c[childrenKey]?.length === 0)
-              ) {
+                (Array.isArray(c[childrenKey]) && c[childrenKey]?.length === 0)) {
                 node.isLeaf = true;
               }
             }
@@ -421,6 +366,7 @@ const MyTreeSelect = LingxiForwardRef<any, MyTreeSelectProps>((props, ref) => {
           SERVICE_SOURCE.ATOM,
           SERVICE_SOURCE.QUERY,
           SERVICE_SOURCE.INNER,
+          SERVICE_SOURCE.PLATFORM,
           SERVICE_SOURCE.STD,
           SERVICE_SOURCE.RHIN,
           SERVICE_SOURCE.SCENE,
@@ -428,31 +374,26 @@ const MyTreeSelect = LingxiForwardRef<any, MyTreeSelectProps>((props, ref) => {
       ) {
         serviceMethod = 'post';
       }
-      engineApis?.service
-        ?.commonFetch(serviceMethod, asyncService.api, params)
-        .then(
-          (res: string | any[]) => {
-            if (Array.isArray(res) && res.length) {
-              const source = loadTreeData(res, asyncService);
-              node.props.dataRef.children = source.map((c) => ({
-                ...c,
-                isLeaf: false,
-              }));
-              node.props.dataRef.isLeaf = false;
-            } else {
-              node.props.dataRef.children = undefined;
-              node.props.dataRef.isLeaf = true;
-            }
-            setData([...data]);
-            resolve();
-          },
-          (err: void | PromiseLike<void>) => {
+      engineApis?.service?.commonFetch(serviceMethod, asyncService.api, params).then(
+        (res: string | any[]) => {
+          if (Array.isArray(res) && res.length) {
+            const source = loadTreeData(res, asyncService);
+            node.props.dataRef.children = source.map((c) => ({ ...c, isLeaf: false }));
+            node.props.dataRef.isLeaf = false;
+          } else {
             node.props.dataRef.children = undefined;
             node.props.dataRef.isLeaf = true;
-            setData([...data]);
-            resolve(err);
-          },
-        );
+          }
+          setData([...data]);
+          resolve();
+        },
+        (err: void | PromiseLike<void>) => {
+          node.props.dataRef.children = undefined;
+          node.props.dataRef.isLeaf = true;
+          setData([...data]);
+          resolve(err);
+        },
+      );
     });
   };
 
@@ -471,30 +412,20 @@ const MyTreeSelect = LingxiForwardRef<any, MyTreeSelectProps>((props, ref) => {
   const createNodes = (nodes: any[], parentNode?: any) =>
     Array.isArray(nodes) && nodes.length > 0
       ? nodes.map((c) => (
-          <TreeNode
-            key={c.key}
-            title={c.title}
-            data={{ ...(c.data || {}), parentNode }}
-            isLeaf={c.isLeaf}
-            selectable={c.selectable}
-            disableCheckbox={
-              c.disabled ??
-              c.disableCheckbox ??
-              (c.selectable !== undefined ? !c.selectable : undefined)
-            }
-            disabled={
-              c.disabled ??
-              c.disableCheckbox ??
-              (c.selectable !== undefined ? !c.selectable : undefined)
-            }
-            dataRef={c}
-            value={c.key}
-          >
-            {c.children &&
-              c.children.length > 0 &&
-              createNodes(c.children, Object.freeze({ ...c }))}
-          </TreeNode>
-        ))
+        <TreeNode
+          key={c.key}
+          title={c.title}
+          data={{ ...(c.data || {}), parentNode }}
+          isLeaf={c.isLeaf}
+          selectable={c.selectable}
+          disableCheckbox={c.disabled ?? c.disableCheckbox ?? (c.selectable !== undefined ? !c.selectable : undefined)}
+          disabled={c.disabled ?? c.disableCheckbox ?? (c.selectable !== undefined ? !c.selectable : undefined)}
+          dataRef={c}
+          value={c.key}
+        >
+          {c.children && c.children.length > 0 && createNodes(c.children, Object.freeze({ ...c }))}
+        </TreeNode>
+      ))
       : null;
 
   const treeProps: any = {
@@ -516,18 +447,13 @@ const MyTreeSelect = LingxiForwardRef<any, MyTreeSelectProps>((props, ref) => {
       setFilterObject({
         filterTreeNode: (input: any, treeNode: any) => {
           const { title = '', key = '' } = treeNode.props;
-          return (
-            title.toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
-            key.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          );
+          return title.toLowerCase().indexOf(input.toLowerCase()) >= 0 || key.toLowerCase().indexOf(input.toLowerCase()) >= 0;
         },
       });
     } else if (filter === 'remote') {
       // 根据配置的‘搜索’事件过滤
       setFilterObject({
-        filterTreeNode: () => {
-          return true;
-        },
+        filterTreeNode: () => { return true; },
         onSearch: _.debounce((input: any) => {
           try {
             if (typeof onSearch === 'function') {
@@ -541,18 +467,10 @@ const MyTreeSelect = LingxiForwardRef<any, MyTreeSelectProps>((props, ref) => {
     } else if (filter === 'none') {
       // 不过滤
       setFilterObject({
-        filterTreeNode: () => {
-          return true;
-        },
+        filterTreeNode: () => { return true; },
       });
     }
   }, [filter, treeProps.showSearch]);
-
-  const finalRules = useMemo(() => {
-    let rules = [{ required, message: getLocale?.('notEmpty', { name }) }];
-    rules = [...rules, ...externalRules];
-    return rules;
-  }, [lang]);
 
   return (
     <FormFields
@@ -562,27 +480,22 @@ const MyTreeSelect = LingxiForwardRef<any, MyTreeSelectProps>((props, ref) => {
       required={required}
       wrapperClassName={TREESELECT_WRAPPER_CLASSNAME}
       rules={finalRules}
-      render={(val) =>
-        renderCommonList(val, flattenTreeData(data), {
-          labelKey: 'title',
-          valueKey: 'value',
-          childrenKey: 'children',
-        })
-      }
+      render={(val) => renderCommonList(val, flattenTreeData(data), {
+        labelKey: 'title',
+        valueKey: 'value',
+        childrenKey: 'children',
+      })}
       ref={formFieldsRef}
       value={value}
       // @ts-ignore
-      afterComponent={
-        treeProps.showSearch &&
-        (treeProps.multiple || treeProps.treeCheckable) ? (
-          <IconFont
-            width={14}
-            height={14}
-            className="ued-treeSelect-icon"
-            iconClass="lcdp-icon-flow-single-record"
-          />
-        ) : null
-      }
+      afterComponent={treeProps.showSearch && (treeProps.multiple || treeProps.treeCheckable) ? (
+        <IconFont
+          width={14}
+          height={14}
+          className="ued-treeSelect-icon"
+          iconClass="lcdp-icon-flow-single-record"
+        />
+      ) : null}
       handleFormValue={(val) => {
         if (val !== undefined) {
           let newValue = val;

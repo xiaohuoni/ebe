@@ -1,5 +1,5 @@
-import { Alert } from 'antd';
 import React from 'react';
+import { Alert } from 'antd';
 import useHiddenStyle from '../utils/hooks/useHiddenStyle';
 
 export interface MyAlertProps {
@@ -12,11 +12,7 @@ export interface MyAlertProps {
 const MyAlert: React.FC<MyAlertProps> = (props) => {
   const { name, visible, style, ...restProps } = props;
   const finalStyle = useHiddenStyle(visible, style);
-  return (
-    <div className="ued-alert">
-      <Alert style={finalStyle} {...restProps} />
-    </div>
-  );
+  return <div className="ued-alert"><Alert style={finalStyle} {...restProps} /></div>;
 };
 
 export default MyAlert;

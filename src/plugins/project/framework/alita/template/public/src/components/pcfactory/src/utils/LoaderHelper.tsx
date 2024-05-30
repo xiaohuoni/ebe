@@ -8,7 +8,9 @@ import Loadable from 'react-loadable';
  */
 export const LoadingComponennt = (props: any) => {
   // console.log("加载中组件", props);
-  return <></>;
+  return (
+    <></>
+  );
 };
 
 const loaderHelper = (loaderRet: any, loading = LoadingComponennt) => {

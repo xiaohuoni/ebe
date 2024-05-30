@@ -2,18 +2,12 @@
 import React, { FC } from 'react';
 
 import { Checkbox, CheckboxProps } from 'antd';
-import {
-  FormFields,
-  getFieldsProps,
-  useCommonImperativeHandle,
-} from '../utils';
+import { FormFields, getFieldsProps, useCommonImperativeHandle } from '../utils';
 
 const CHECKBOX_WRAPPER_CLASSNAME = 'ued-checkbox-wrap';
 const WrapperCheckbox = ({ children }: { children: JSX.Element }) =>
   React.cloneElement(children, {
-    className: `${CHECKBOX_WRAPPER_CLASSNAME} ${
-      children.props.className || ''
-    }`,
+    className: `${CHECKBOX_WRAPPER_CLASSNAME} ${children.props.className || ''}`,
   });
 
 export interface MyCheckboxProps {
@@ -56,8 +50,13 @@ export interface CheckboxItemProps extends CheckboxProps {
 }
 
 // 组件识别checked， 导致form.setFieldValue不生效 拆出来让组件识别value
-const CheckboxItem: FC<CheckboxItemProps> = (props) => {
-  return <Checkbox {...props} checked={props.value} />;
+const CheckboxItem: FC<CheckboxItemProps> = props => {
+  return (
+    <Checkbox
+      {...props}
+      checked={props.value}
+    />
+  );
 };
 
 const MyCheckbox = React.forwardRef<any, MyCheckboxProps>((props, ref) => {
@@ -96,15 +95,9 @@ const MyCheckbox = React.forwardRef<any, MyCheckboxProps>((props, ref) => {
   } = props;
 
   const customStyle = restProps.style || {};
-  const {
-    margin: customMargin,
-    display: customDisplay,
-    visibility: customVisibility,
-    ...restCusStyles
-  } = customStyle;
+  const { margin: customMargin, display: customDisplay, visibility: customVisibility, ...restCusStyles } = customStyle;
 
-  const { formFieldsRef, readOnly, required, disabled, finalRules } =
-    useCommonImperativeHandle(ref, props);
+  const { formFieldsRef, readOnly, required, disabled, finalRules } = useCommonImperativeHandle(ref, props);
 
   const rProps = { ...restProps, style: restCusStyles };
 
@@ -118,7 +111,7 @@ const MyCheckbox = React.forwardRef<any, MyCheckboxProps>((props, ref) => {
       disabled={disabled}
       ref={formFieldsRef}
       rules={finalRules}
-      handleFormValue={(value) => {
+      handleFormValue={value => {
         if (value === 'false') {
           return false;
         }
@@ -128,7 +121,7 @@ const MyCheckbox = React.forwardRef<any, MyCheckboxProps>((props, ref) => {
       <CheckboxItem
         {...rProps}
         value={value === 'false' ? false : value}
-        onChange={(e) => {
+        onChange={e => {
           if (onChange) {
             onChange(e.target.checked);
           }

@@ -1,12 +1,8 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 
 function useMap<K, T>(initialValue?: Iterable<readonly [K, T]>) {
   const initialMap = useMemo<Map<K, T>>(
-    () =>
-      (initialValue === undefined ? new Map() : new Map(initialValue)) as Map<
-        K,
-        T
-      >,
+    () => (initialValue === undefined ? new Map() : new Map(initialValue)) as Map<K, T>,
     [],
   );
   const [map, setMap] = useState(initialMap);

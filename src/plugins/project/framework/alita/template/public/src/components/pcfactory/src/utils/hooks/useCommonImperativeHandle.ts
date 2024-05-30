@@ -1,9 +1,9 @@
 import React, { useEffect, useImperativeHandle } from 'react';
-import { MonitorFn, useForm } from '../formUtils/FormContext';
 import { FormFieldsHooks } from '../formUtils/FormFields';
+import useRules, { RuleInterface } from './useRules';
 import { useListenProps } from './useListenState';
+import { MonitorFn, useForm } from '../formUtils/FormContext';
 import { useLocale } from './useLocale';
-import useRules from './useRules';
 
 /**
  *
@@ -11,11 +11,7 @@ import useRules from './useRules';
  * @param handle 额外的方法
  * @param depends 依赖监听
  */
-export const useCommonImperativeHandle = (
-  ref: any,
-  props: any,
-  handle: any = {},
-) => {
+export const useCommonImperativeHandle = (ref: any, props: any, handle: any = {}) => {
   const {
     disabled: propsDisabled,
     required: propsRequired,
@@ -40,17 +36,13 @@ export const useCommonImperativeHandle = (
   const { getLocale, lang } = useLocale(engineApis);
 
   // 通用规则生成
-  const [finalRules, setExtendRules] = useRules(
-    {
-      required,
-      regexp: props.regexp,
-      rules: props.rules,
-      message: props.message,
-      name: props.name,
-    },
-    getLocale,
-    lang,
-  );
+  const [finalRules, setExtendRules] = useRules({
+    required,
+    regexp: props.regexp,
+    rules: props.rules,
+    message: props.message,
+    name: props.name,
+  }, getLocale, lang);
 
   const clearValue = () => {
     let initValue: any = '';
@@ -92,6 +84,15 @@ export const useCommonImperativeHandle = (
       if (typeof engineApis?.onlySyncValue === 'function') {
         engineApis?.onlySyncValue(initValue);
       }
+    },
+
+    /**
+     *  追加rules，目前只有在零代码使用
+     * @param newRules
+     * @param isAppendLastTime 是否累计上一次的
+     */
+    appendRules: (newRules: RuleInterface[], isAppendLastTime: boolean = true) => {
+      setExtendRules(newRules, isAppendLastTime);
     },
   }));
 

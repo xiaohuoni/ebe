@@ -1,13 +1,13 @@
 import { InboxOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
-import { LingxiForwardRef } from '@lingxiteam/types';
 import { Button, message, Modal, Radio, Upload } from 'antd';
+import React, { forwardRef, useEffect, useMemo, useState, useRef } from 'react';
 import type { UploadProps } from 'antd/lib/upload';
-import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import { createRandomStr, getAfterString } from '../utils/common';
+import renderReadOnly from '../utils/renderReadOnly';
 import DownloadProgress from '../StdUpload/DownloadProgress';
 import { FormFields, getFieldsProps } from '../utils';
-import { createRandomStr, getAfterString } from '../utils/common';
+import { LingxiForwardRef } from '@lingxiteam/types';
 import { useLocale } from '../utils/hooks/useLocale';
-import renderReadOnly from '../utils/renderReadOnly';
 
 const { Dragger } = Upload;
 
@@ -105,7 +105,7 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
   const progressRef = useRef<any>({});
   const handleRemoveCallback = useRef<any>();
 
-  const handleRemove = async (file: { uid: any }, isRefresh?: any) => {
+  const handleRemove = async (file: { uid: any; }, isRefresh?: any) => {
     if (singleFileMode || isRefresh) {
       const restFileList = fileList.filter((f) => f.uid !== file.uid);
       setFileList(restFileList);
@@ -116,6 +116,7 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
   };
   handleRemoveCallback.current = handleRemove;
 
+
   const previewFile = async (fileId: any) => {
     if (typeof engineApis?.BannerModal?.open === 'function') {
       let fileIndex: number = 0;
@@ -125,7 +126,7 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
         if (resultObject?.fileId === fileId) {
           fileIndex = i;
         }
-        return {
+        return ({
           appId,
           fileId: resultObject?.fileId,
           pageId: props.pageId,
@@ -142,7 +143,7 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
             ...f,
             ...resultObject,
           },
-        };
+        });
       });
       engineApis.BannerModal.open({
         fileIndex,
@@ -162,13 +163,7 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
     _fileName ? _fileName.split('\\').pop() : _fileName;
 
   useEffect(() => {
-    if (
-      value &&
-      value !== '[]' &&
-      value !== '[null]' &&
-      value !== '[{}]' &&
-      value !== undefined
-    ) {
+    if (value && value !== '[]' && value !== '[null]' && value !== '[{}]' && value !== undefined) {
       try {
         let fileName = null;
         if (
@@ -177,39 +172,37 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
           Number(value).toString() !== 'NaN' &&
           !storeArr.includes(`${value}`)
         ) {
-          engineApis?.service
-            ?.qryDownloadFileInfo({ fileId: value })
-            .then((res: any) => {
-              setStoreArr([...storeArr, `${value}`]);
-              fileName = res?.fileName;
-              const singleList = [
-                {
-                  response: {
-                    resultObject: {
-                      fileId: value,
-                      fileName,
-                    },
+          engineApis?.service?.qryDownloadFileInfo({ fileId: value }).then((res: any) => {
+            setStoreArr([...storeArr, `${value}`]);
+            fileName = res?.fileName;
+            const singleList = [
+              {
+                response: {
+                  resultObject: {
+                    fileId: value,
+                    fileName,
                   },
-                  uid: value,
-                  name: handleFileName(fileName),
-                  status: value ? 'done' : 'stop',
-                  url: engineApis?.service?.getAppFileUrlById(value),
                 },
-              ];
-              downloadable
-                ? setFileList(singleList)
-                : setFileList(
-                    singleList.map((f) => {
-                      const { response, uid, name, status } = f;
-                      return {
-                        response,
-                        uid,
-                        name,
-                        status,
-                      };
-                    }),
-                  );
-            });
+                uid: value,
+                name: handleFileName(fileName),
+                status: value ? 'done' : 'stop',
+                url: engineApis?.service?.getAppFileUrlById(value),
+              },
+            ];
+            downloadable
+              ? setFileList(singleList)
+              : setFileList(
+                singleList.map((f) => {
+                  const { response, uid, name, status } = f;
+                  return {
+                    response,
+                    uid,
+                    name,
+                    status,
+                  };
+                }),
+              );
+          });
         } else {
           let list = [];
           // value 绑定的内容，是个数组的情况，数据兼容
@@ -242,16 +235,16 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
               downloadable
                 ? setFileList(newFileList)
                 : setFileList(
-                    newFileList.map((f: any) => {
-                      const { response, uid, name, status } = f;
-                      return {
-                        response,
-                        uid,
-                        name,
-                        status,
-                      };
-                    }),
-                  );
+                  newFileList.map((f: any) => {
+                    const { response, uid, name, status } = f;
+                    return {
+                      response,
+                      uid,
+                      name,
+                      status,
+                    };
+                  }),
+                );
             }
           }
         }
@@ -282,10 +275,7 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
     }
     if (singleFileMode) {
       if (Array.isArray(fileList) && fileList.length > 0) {
-        if (
-          fileList[0].response &&
-          fileList[0].response.resultMsg === 'success'
-        ) {
+        if (fileList[0].response && fileList[0].response.resultMsg === 'success') {
           const { resultObject } = fileList[0].response;
           const { fileId } = resultObject;
           // onChange(parseInt(fileId, 10));
@@ -320,16 +310,16 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
       downloadable
         ? setFileList(files)
         : setFileList(
-            files.map((f: any) => {
-              const { response, uid, name, status } = f;
-              return {
-                response,
-                uid,
-                name,
-                status,
-              };
-            }),
-          );
+          files.map((f: any) => {
+            const { response, uid, name, status } = f;
+            return {
+              response,
+              uid,
+              name,
+              status,
+            };
+          }),
+        );
 
       if (files[0] && files[0].status !== 'uploading') {
         const { resultCode, resultMsg } = files[0].response || {};
@@ -369,8 +359,7 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
     try {
       // 如果有field 优先通过field拼接
       if (file.fileId) {
-        const addWaterMark =
-          isWatermark && (!optionalFile || downloadWay === '2');
+        const addWaterMark = isWatermark && (!optionalFile || downloadWay === '2');
         downUrl = engineApis?.service?.getAppFileUrlById({
           addWaterMark,
           fileId: file.fileId,
@@ -392,10 +381,7 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
       xhr.onload = () => {
         const data = xhr.response; // 获取响应体数据
         // @ts-ignore
-        const suffix = getAfterString(
-          xhr.getResponseHeader('Content-Disposition'),
-          '.',
-        );
+        const suffix = getAfterString(xhr.getResponseHeader('Content-Disposition'), '.');
         const a = document.createElement('a');
         document.body.appendChild(a);
         a.href = window.URL.createObjectURL(data); // 获取blob地址
@@ -407,9 +393,7 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
       // 下载进度条
       xhr.onprogress = (event: any) => {
         if (event.lengthComputable) {
-          progressRef.current?.[file.fileId]?.setPercent(
-            Math.round((event.loaded * 100) / event.total),
-          );
+          progressRef.current?.[file.fileId]?.setPercent(Math.round(event.loaded * 100 / event.total));
         }
       };
       xhr.ontimeout = () => {
@@ -475,11 +459,7 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
     if (numberLimit) {
       const { length } = fileList;
       if (length >= numberLimit) {
-        message.warn(
-          getLocale?.('Upload.fileLimit', {
-            num: singleFileMode ? 1 : numberLimit,
-          }),
-        );
+        message.warn(getLocale?.('Upload.fileLimit', { num: singleFileMode ? 1 : numberLimit }));
         return false;
       }
       if (singleFileMode && length > 0) {
@@ -495,22 +475,15 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
     action,
     accept: acceptExtension || accept,
     // eslint-disable-next-line @typescript-eslint/no-shadow
-    beforeUpload: (file: any, fileList: any) =>
-      handleBeforeUpload(file, fileList),
+    beforeUpload: (file: any, fileList: any) => handleBeforeUpload(file, fileList),
     fileList,
-    onRemove: (file: { uid: any }) => handleRemove(file),
+    onRemove: (file: { uid: any; }) => handleRemove(file),
     onChange: (e: any) => handleOnChange(e),
     showUploadList: {
       ...showUploadList,
       downloadIcon: (file: any) => {
         if (downloadProVisible[file.fileId]) {
-          return (
-            <DownloadProgress
-              ref={(r: any) => {
-                progressRef.current[file.fileId] = r;
-              }}
-            />
-          );
+          return <DownloadProgress ref={(r: any) => { progressRef.current[file.fileId] = r; }} />;
         }
         return null;
       },
@@ -536,16 +509,10 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
           <p className="ant-upload-drag-icon">
             <InboxOutlined rev="" />
           </p>
-          <p className="ant-upload-text">
-            {getLocale?.('Upload.uploadPlaceholder')}
-          </p>
+          <p className="ant-upload-text">{getLocale?.('Upload.uploadPlaceholder')}</p>
         </Dragger>
       ) : (
-        <div
-          className={
-            disabled || readOnly ? `${UPLOAD_WRAPPER_CLASSNAME}-hidden` : ''
-          }
-        >
+        <div className={disabled || readOnly ? `${UPLOAD_WRAPPER_CLASSNAME}-hidden` : ''}>
           <Upload {...restProps} {...commonConfig}>
             {children}
           </Upload>
@@ -562,10 +529,7 @@ const FormUpload: React.FC<FormUploadProps> = forwardRef((props, ref) => {
           </Button>
         }
       >
-        <Radio.Group
-          onChange={(e) => setdDownloadWay(e.target.value)}
-          value={downloadWay}
-        >
+        <Radio.Group onChange={(e) => setdDownloadWay(e.target.value)} value={downloadWay}>
           <Radio value="1">{getLocale?.('Upload.origin')}</Radio>
           <Radio value="2">{getLocale?.('Upload.waterMark')}</Radio>
         </Radio.Group>
@@ -602,11 +566,11 @@ export interface MyUploadProps {
   wrapperContainer: any;
   colon?: boolean;
   isFormChild?: boolean | undefined;
-  uploadProps: any; // 懒加载入参
-  formFieldsRef: any; // 懒加载入参
-  disabled: boolean; // 懒加载入参
-  readOnly: boolean; // 懒加载入参
-  required: boolean; // 懒加载入参
+  uploadProps: any;// 懒加载入参
+  formFieldsRef: any;// 懒加载入参
+  disabled: boolean;// 懒加载入参
+  readOnly: boolean;// 懒加载入参
+  required: boolean;// 懒加载入参
 }
 
 const MyUpload = LingxiForwardRef<any, MyUploadProps>((props, ref) => {
@@ -700,20 +664,20 @@ const MyUpload = LingxiForwardRef<any, MyUploadProps>((props, ref) => {
         appId={props.$$componentItem.appId}
         pageId={props.$$componentItem.pageId}
         getSimpleFileList={(v: string) => {
-          // if (props.singleFileMode) {
-          //   if (v) {
-          //     const arr = JSON.parse(v) || [];
-          //     if (arr.length > 0 && arr[0]) {
-          //       // eslint-disable-next-line radix
-          //       if (form?.setFieldsValue) {
-          //         // form.setFieldsValue({ [fieldName]: parseInt(arr[0].fileId, 10) });
-          //         form.setFieldsValue({ [fieldName]: arr[0].fileId });
-          //       }
-          //     }
-          //   }
-          // } else if (form?.setFieldsValue) {
-          //   form.setFieldsValue({ [fieldName]: v });
-          // }
+        // if (props.singleFileMode) {
+        //   if (v) {
+        //     const arr = JSON.parse(v) || [];
+        //     if (arr.length > 0 && arr[0]) {
+        //       // eslint-disable-next-line radix
+        //       if (form?.setFieldsValue) {
+        //         // form.setFieldsValue({ [fieldName]: parseInt(arr[0].fileId, 10) });
+        //         form.setFieldsValue({ [fieldName]: arr[0].fileId });
+        //       }
+        //     }
+        //   }
+        // } else if (form?.setFieldsValue) {
+        //   form.setFieldsValue({ [fieldName]: v });
+        // }
         }}
         onChange={(e) => {
           if (onChange) {
@@ -733,8 +697,7 @@ const MyUpload = LingxiForwardRef<any, MyUploadProps>((props, ref) => {
           </Button>
         )}
       </FormUpload>
-    </FormFields>
-  );
+    </FormFields>);
 });
 
 export default MyUpload;

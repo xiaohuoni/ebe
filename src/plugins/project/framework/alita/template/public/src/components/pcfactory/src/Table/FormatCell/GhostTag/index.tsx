@@ -12,13 +12,20 @@ export interface GhostTagProps {
 const ghostTagClassName = 'ued-table-cell-ghostTag';
 
 const GhostTag: React.FC<GhostTagProps> = (props) => {
-  const { fontColor, backgroundColor, borderColor, content, onClick } = props;
+  const {
+    fontColor,
+    backgroundColor,
+    borderColor,
+    content,
+    onClick,
+  } = props;
 
   return (
     <span
-      className={classNames(ghostTagClassName, {
-        [`${ghostTagClassName}-click`]: !!onClick,
-      })}
+      className={classNames(
+        ghostTagClassName,
+        { [`${ghostTagClassName}-click`]: !!onClick }
+      )}
       style={{
         color: fontColor,
         backgroundColor,

@@ -1,24 +1,15 @@
-import { LingxiForwardRef } from '@lingxiteam/types';
+import React, { useRef, useEffect, useImperativeHandle, useState, CSSProperties } from 'react';
 import {
   addEventListenerMessage,
   postMessageToContentWindow,
   removeEventListenerMessage,
 } from 'lcdp-message';
-import React, {
-  CSSProperties,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react';
 import { useHiddenStyle, useListenProps } from '../utils';
+import { LingxiForwardRef } from '@lingxiteam/types';
 
 export interface MyWebviewProps {
   __compId?: string;
-  getWebviewApis?: (
-    e: MyWebviewProps['__compId'],
-    opts: Record<string, any>,
-  ) => void;
+  getWebviewApis?: (e: MyWebviewProps['__compId'], opts: Record<string, any>) => void;
   onMessage?: React.FC<any>;
   title?: string;
   src?: string;
@@ -29,15 +20,7 @@ export interface MyWebviewProps {
 // const prefixCls = 'webview';
 
 const Webview = LingxiForwardRef<any, MyWebviewProps>((props, ref) => {
-  const {
-    __compId,
-    getWebviewApis,
-    onMessage = () => {},
-    style,
-    visible,
-    title,
-    ...restProps
-  } = props;
+  const { __compId, getWebviewApis, onMessage = () => { }, style, visible, title, ...restProps } = props;
   const hiddenStyle = useHiddenStyle(visible, style);
   const webViewRef = useRef<HTMLIFrameElement | null>(null);
   const getContentWindow = () => webViewRef?.current?.contentWindow;
@@ -89,16 +72,7 @@ const Webview = LingxiForwardRef<any, MyWebviewProps>((props, ref) => {
     };
   }, []);
 
-  return (
-    <iframe
-      title="title"
-      ref={webViewRef}
-      {...restProps}
-      src={src}
-      key={update}
-      style={hiddenStyle}
-    />
-  );
+  return <iframe title="title" ref={webViewRef} {...restProps} src={src} key={update} style={hiddenStyle} />;
 });
 
 export default Webview;

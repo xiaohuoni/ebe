@@ -1,3 +1,4 @@
+
 import { useMemo } from 'react';
 import { useCreation } from '../ahooks';
 
@@ -24,35 +25,33 @@ export const useDataMask = ({
     maskValue: any;
     getMaskData(value: any): any;
     init: boolean;
-  }>(() => {
-    const { functorsMap } = getEngineApis() || {};
-    if (!functorsMap?.DATAMASK || !dataMask) {
-      return {
-        isMask: false,
-        defaultMaskValue: defaultValue,
-        maskValue: value,
-        getMaskData: (val) => val,
-        init: false,
-      };
-    }
+      }>(() => {
+        const { functorsMap } = getEngineApis() || {};
+        if (!functorsMap?.DATAMASK || !dataMask) {
+          return {
+            isMask: false,
+            defaultMaskValue: defaultValue,
+            maskValue: value,
+            getMaskData: val => val,
+            init: false,
+          };
+        }
 
-    const defaultMaskValue =
+        const defaultMaskValue =
       defaultValue !== undefined
         ? functorsMap.DATAMASK(defaultValue || '', dataMask)
         : defaultValue;
-    return {
-      isMask: true,
-      defaultMaskValue,
-      maskValue:
-        value !== undefined
-          ? functorsMap.DATAMASK(value || '', dataMask)
-          : defaultMaskValue,
-      getMaskData(value) {
-        return functorsMap.DATAMASK(value, dataMask);
-      },
-      init: false,
-    };
-  }, []);
+        return {
+          isMask: true,
+          defaultMaskValue,
+          maskValue:
+        value !== undefined ? functorsMap.DATAMASK(value || '', dataMask) : defaultMaskValue,
+          getMaskData(value) {
+            return functorsMap.DATAMASK(value, dataMask);
+          },
+          init: false,
+        };
+      }, []);
 
   const maskValue = useMemo(() => {
     if (maskData.isMask) {
@@ -74,9 +73,7 @@ export const useDataMask = ({
       maskData.isMask = false;
     },
     maskValue: !maskData.isMask ? value : maskValue,
-    defaultMaskValue: !maskData.isMask
-      ? defaultValue
-      : maskData.defaultMaskValue,
+    defaultMaskValue: !maskData.isMask ? defaultValue : maskData.defaultMaskValue,
   };
 };
 

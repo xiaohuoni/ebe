@@ -1,11 +1,8 @@
-import isFunction from 'lodash/isFunction';
 import { useCallback, useState } from 'react';
+import isFunction from 'lodash/isFunction';
 
 export type SetState<S extends Record<string, any>> = <K extends keyof S>(
-  state:
-    | Pick<S, K>
-    | null
-    | ((prevState: Readonly<S>) => Pick<S, K> | S | null),
+  state: Pick<S, K> | null | ((prevState: Readonly<S>) => Pick<S, K> | S | null),
 ) => void;
 
 const useSetState = <S extends Record<string, any>>(

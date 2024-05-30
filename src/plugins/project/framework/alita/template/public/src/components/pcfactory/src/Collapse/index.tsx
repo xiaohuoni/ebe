@@ -1,17 +1,12 @@
-import { DownOutlined } from '@ant-design/icons';
-import { LingxiForwardRef } from '@lingxiteam/types';
 import { Collapse } from 'antd';
 import type { CollapsePanelProps } from 'antd/es/collapse';
 import classnames from 'classnames';
-import isUndefined from 'lodash/isUndefined';
-import React, {
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useState,
-} from 'react';
+import React, { useEffect, useState, useImperativeHandle, useMemo } from 'react';
 import { PrefixIconIconProps } from '../Icon/PropsType';
-import { ChildRenderProvider, useChildRender } from '../utils';
+import { ChildRenderProvider, useChildRender, useHiddenStyle } from '../utils';
+import { DownOutlined } from '@ant-design/icons';
+import { LingxiForwardRef } from '@lingxiteam/types';
+import isUndefined from 'lodash/isUndefined';
 
 export interface MyCollapseProps extends CollapsePanelProps {
   name: string;
@@ -24,6 +19,7 @@ export interface MyCollapseProps extends CollapsePanelProps {
   titleColor?: string;
   appId?: string;
   prefixIcon?: PrefixIconIconProps;
+  visible?: boolean;
 
   onChange?: (activeKey: string[] | string) => void;
 
@@ -66,22 +62,16 @@ const MyCollapse = LingxiForwardRef<any, MyCollapseProps>((props, ref) => {
     defaultActiveKey,
     onChange,
     accordion,
+    visible = true,
     ...restProps
   } = props;
 
-  const {
-    context,
-    resetList,
-    addChildProps,
-    addParentProps,
-    renderChildren,
-    childRef,
-  } = useChildRender();
-  const [activeKeys, setActiveKeys] = useState<string[] | string>(
-    defaultActiveKey || [],
-  );
+  const { context, resetList, addChildProps, addParentProps, renderChildren, childRef } = useChildRender();
+  const [activeKeys, setActiveKeys] = useState<string[] | string >(defaultActiveKey || []);
 
-  const { padding, ...restStyle } = style || {};
+  const finalStyle = useHiddenStyle(visible, style);
+  const { padding, ...restStyle } = finalStyle || {};
+
   addParentProps(props);
   const renderComponent = () => {
     const components: any[] = [];
@@ -95,7 +85,7 @@ const MyCollapse = LingxiForwardRef<any, MyCollapseProps>((props, ref) => {
     resetList(list);
     return components;
   };
-
+ 
   useEffect(() => {
     if (Array.isArray(defaultActiveKey)) {
       setActiveKeys(defaultActiveKey || []);
@@ -120,9 +110,7 @@ const MyCollapse = LingxiForwardRef<any, MyCollapseProps>((props, ref) => {
       } else if (type === '1') {
         setActiveKeys([]);
       } else if (type === '2') {
-        const childsKeys = collectChildsKeys().filter(
-          (key) => !activeKeys.includes(key),
-        );
+        const childsKeys = collectChildsKeys().filter(key => !activeKeys.includes(key));
         setActiveKeys(childsKeys);
       } else if (type === '3') {
         if (typeof keys === 'string') {
@@ -146,23 +134,23 @@ const MyCollapse = LingxiForwardRef<any, MyCollapseProps>((props, ref) => {
     <ChildRenderProvider value={context}>
       <WrapperCollapse>
         <div className={className} style={restStyle} id={id}>
+          
           <Collapse
             {...restProps}
             accordion={accordion}
             // @ts-ignore
             defaultActiveKey={myActiveKeys}
             // @ts-ignore
-            activeKey={myActiveKeys}
+            activeKey={props.activeKey ?? myActiveKeys}
             onChange={(key) => {
               const temKeys = Array.isArray(key) ? key : [key];
               setActiveKeys(temKeys);
               onChange && onChange(key);
             }}
             expandIcon={({ isActive }) => (
-              <div
-                className={classnames('ued-collapse-expand-icon-arrow', {
-                  active: isActive,
-                })}
+              <div className={classnames('ued-collapse-expand-icon-arrow', {
+                active: isActive,
+              })}
               >
                 <DownOutlined style={{ fontSize: 14 }} rev="" />
               </div>

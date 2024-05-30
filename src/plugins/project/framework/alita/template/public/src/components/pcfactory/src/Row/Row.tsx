@@ -30,12 +30,7 @@ const MyRow: React.FC<MyRowProps> = (props) => {
 
   const engineApis = getEngineApis?.() || {};
 
-  const { backgroundStyle } = useBackgroundStyle({
-    engineApis,
-    backgroundType,
-    appId: restProps?.appId,
-    mode: 'engine',
-  });
+  const { backgroundStyle } = useBackgroundStyle({ engineApis, backgroundType, appId: restProps?.appId, mode: 'engine' });
 
   const renderChildren = () => {
     // children可能是单个React元素（这种事情发生在普通的嵌套写法里）

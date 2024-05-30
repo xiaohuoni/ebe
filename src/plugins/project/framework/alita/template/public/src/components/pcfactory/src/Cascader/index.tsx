@@ -1,20 +1,13 @@
 import { Cascader, Tooltip } from 'antd';
 import classNames from 'classnames';
 import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
-import {
-  FormFields,
-  getFieldsProps,
-  useCommonImperativeHandle,
-  useListenProps,
-} from '../utils';
 import { renderCommonList } from '../utils/renderReadOnly';
+import { FormFields, getFieldsProps, useCommonImperativeHandle, useListenProps } from '../utils';
 
 const CASCADER_WRAPPER_CLASSNAME = 'ued-cascader-wrap';
 const WrapperCascader = ({ children }: { children: JSX.Element }) =>
   React.cloneElement(children, {
-    className: `${CASCADER_WRAPPER_CLASSNAME} ${
-      children.props.className || ''
-    }`,
+    className: `${CASCADER_WRAPPER_CLASSNAME} ${children.props.className || ''}`,
   });
 
 export interface MyCascaderProps {
@@ -51,21 +44,12 @@ export interface MyCascaderProps {
   showSearch: boolean;
   allowClear: boolean;
   multiple: '1' | '2'; // 1单选  2 多选
-  onSearch?: (
-    searchVal: string,
-    selectedOptionIds: any,
-    selectedOptions: any,
-  ) => void;
-  onClickOption?: (
-    openKey: string,
-    childrenKeys: any,
-    selectedOptionIds: any,
-    selectedOptions: any,
-  ) => void;
+  onSearch?: (searchVal: string, selectedOptionIds: any, selectedOptions: any) => void;
+  onClickOption?: (openKey: string, childrenKeys: any, selectedOptionIds: any, selectedOptions: any) => void;
   onClickStaticOption?: (zattrNbrValueMap: any) => Promise<any[]>;
   childOptions: {
-    key: string;
-    options: any[];
+    key: string,
+    options: any[]
   };
   className: string;
   isFormChild?: boolean | undefined;
@@ -77,6 +61,7 @@ export interface MyCascaderProps {
 }
 
 const prefixCls = 'cascader';
+
 
 /**
  * @description: 根据长度截断字符串，用省略号补充
@@ -169,9 +154,10 @@ const MyCascader: React.FC<MyCascaderProps> = forwardRef((props, ref) => {
   } = customStyle;
 
   const [childOptions, setChildOptions] = useListenProps<{
-    key: string;
-    options: any[];
+    key: string,
+    options: any[]
   }>(props.childOptions);
+
 
   // 是否多选
   const multiple = useMemo(() => {
@@ -204,7 +190,7 @@ const MyCascader: React.FC<MyCascaderProps> = forwardRef((props, ref) => {
     if (childOptions?.key && sourceOptions?.length > 0) {
       const newOptions = [...sourceOptions];
       const replaceChildren = (list: any[]) => {
-        list.forEach((item) => {
+        list.forEach(item => {
           if (item.value === childOptions.key) {
             item.children = childOptions?.options || [];
           } else if (item?.children?.length > 0) {
@@ -235,17 +221,13 @@ const MyCascader: React.FC<MyCascaderProps> = forwardRef((props, ref) => {
         let { isLeaf } = _item;
         if (isLeaf === undefined) {
           // children为非数组时且配置了展开事件时，视为需要异步加载
-          isLeaf =
-            !Array.isArray(_children) && props.onClickOption
-              ? false
-              : _item.isLeaf;
+          isLeaf = !Array.isArray(_children) && props.onClickOption ? false : _item.isLeaf;
         }
 
         return {
           ..._item,
           label: __label,
-          children:
-            _children && _children.length ? changeLabel(_children) : _children,
+          children: _children && _children.length ? changeLabel(_children) : _children,
           isLeaf,
         };
       }) || [];
@@ -254,20 +236,14 @@ const MyCascader: React.FC<MyCascaderProps> = forwardRef((props, ref) => {
   }, [sourceOptions]);
 
   const renderDisplay = (_label: any[]) => {
-    const target = _label.map((l) =>
-      l instanceof Object ? l.props?.title : l,
-    );
+    const target = _label.map((l) => (l instanceof Object ? l.props?.title : l));
     return target.join(' / ');
   };
 
   useEffect(() => {
     if (matchInputWidth) {
-      const node = document.querySelector(
-        `.${dropdownClassName}`,
-      ) as HTMLElement;
-      const clsNode = document.querySelector(
-        `.${cascaderClassName}`,
-      ) as HTMLElement;
+      const node = document.querySelector(`.${dropdownClassName}`) as HTMLElement;
+      const clsNode = document.querySelector(`.${cascaderClassName}`) as HTMLElement;
       if (showDropDown && searchVal?.length > 0) {
         if (!setStyleRef.current && node && clsNode) {
           node.style.setProperty('width', `${clsNode.clientWidth}px`);
@@ -282,35 +258,38 @@ const MyCascader: React.FC<MyCascaderProps> = forwardRef((props, ref) => {
     }
   }, [searchVal, showDropDown, matchInputWidth]);
 
-  const { formFieldsRef, required, readOnly, disabled, finalRules } =
-    useCommonImperativeHandle(ref, props, {
-      selectAll: () => {
-        // 多选模式下才能全选
-        if (multiple) {
-          const tmp: any = [];
-          const tmpData: any = [];
-          options?.forEach((item: any) => {
-            tmp.push([item.value]);
-            tmpData.push([item]);
-          });
-          setCompData(tmpData);
-          if (onChange) {
-            onChange(tmp, tmpData);
-          }
+  const { formFieldsRef, required, readOnly, disabled, finalRules } = useCommonImperativeHandle(ref, props, {
+    selectAll: () => {
+      // 多选模式下才能全选
+      if (multiple) {
+        const tmp: any = [];
+        const tmpData: any = [];
+        options?.forEach((item: any) => {
+          tmp.push([item.value]);
+          tmpData.push([item]);
+        });
+        setCompData(tmpData);
+        if (onChange) {
+          onChange(tmp, tmpData);
         }
-      },
-      clearValue: [],
-      // 加载数据
-      setOptions(options: any) {
-        if (Array.isArray(options)) {
-          setSourceOptions(options);
-        }
-      },
-      // 加载子节点数据
-      setChildOptions(data: { key: string; options: any[] }) {
-        setChildOptions(data);
-      },
-    });
+      }
+    },
+    clearValue: [],
+    // 加载数据
+    setOptions(options: any) {
+      if (Array.isArray(options)) {
+        setSourceOptions(options);
+      }
+    },
+    // 加载子节点数据
+    setChildOptions(data: {
+      key: string,
+      options: any[]
+    }) {
+      setChildOptions(data);
+    },
+  });
+
 
   return (
     <FormFields
@@ -325,30 +304,25 @@ const MyCascader: React.FC<MyCascaderProps> = forwardRef((props, ref) => {
       clearValue={null}
     >
       <Cascader
-        dropdownClassName={classNames(
-          dropdownClassName,
-          `${prefixCls}-dropdown`,
-        )}
-        onDropdownVisibleChange={(visible) => {
+        dropdownClassName={classNames(dropdownClassName, `${prefixCls}-dropdown`)}
+        onDropdownVisibleChange={visible => {
           setShowDropDown(visible);
           if (!visible) {
-            // 关闭浮层重置搜索条件
+          // 关闭浮层重置搜索条件
             setSearchVal('');
           }
         }}
-        {...(restProps as any)}
+        {...restProps as any}
         value={value}
         options={options}
         style={restCusStyles}
         multiple={multiple}
         displayRender={renderDisplay}
         showSearch={
-          showSearch
-            ? {
-                matchInputWidth: popoverStyle !== 'auto',
-              }
-            : false
-        }
+        showSearch ? {
+          matchInputWidth: popoverStyle !== 'auto',
+        } : false
+      }
         onSearch={(words) => {
           setSearchVal(words);
           if (showSearch && props.onSearch) {
@@ -358,22 +332,14 @@ const MyCascader: React.FC<MyCascaderProps> = forwardRef((props, ref) => {
         loadData={async (selectOptions: any[]) => {
           if (selectOptions?.length > 0 && props.onClickOption) {
             const currentRow = selectOptions[selectOptions.length - 1];
-            const childrenKeys =
-              currentRow?.children?.map?.((item: any) => item.value) || [];
-            props.onClickOption(
-              currentRow.value,
-              childrenKeys,
-              value,
-              compData,
-            );
+            const childrenKeys = currentRow?.children?.map?.((item: any) => item.value) || [];
+            props.onClickOption(currentRow.value, childrenKeys, value, compData);
           }
           if (selectOptions?.length > 0 && props.onClickStaticOption) {
             const currentRow = selectOptions[selectOptions.length - 1];
             const { zattrNbrValueMap } = currentRow;
             if (zattrNbrValueMap) {
-              const children = await props.onClickStaticOption(
-                zattrNbrValueMap,
-              );
+              const children = await props.onClickStaticOption(zattrNbrValueMap);
               currentRow.children = children;
               delete currentRow.zattrNbrValueMap;
               setSourceOptions(options);
@@ -382,7 +348,7 @@ const MyCascader: React.FC<MyCascaderProps> = forwardRef((props, ref) => {
         }}
         className={classNames(className, cascaderClassName)}
         onChange={(keys: any, selctOptions: any) => {
-          // 选中数据时清除搜索词
+        // 选中数据时清除搜索词
           setSearchVal('');
           setCompData(selctOptions);
           if (onChange) {
@@ -390,8 +356,7 @@ const MyCascader: React.FC<MyCascaderProps> = forwardRef((props, ref) => {
           }
         }}
       />
-    </FormFields>
-  );
+    </FormFields>);
 });
 
 export default MyCascader;
