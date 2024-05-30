@@ -10,6 +10,10 @@ export const clearProps = (data: any, diff: any) => {
       clearedProps[key] = clearProps(clearedProps[key], diff[key]);
     } else if (isArray(diff[key]) && isArray(clearedProps[key])) {
       delete clearedProps[key];
+    } else if (typeof diff[key] === 'function') {
+      if (diff[key](clearedProps)) {
+        delete clearedProps[key];
+      }
     } else if (diff[key] === clearedProps[key]) {
       delete clearedProps[key];
     }

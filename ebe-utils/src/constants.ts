@@ -58,7 +58,7 @@ const componentsRule: IRulesType = {
           size: 'default',
           type: 'default',
           shape: 'default',
-          loading: false,
+          loading: (data: any) => data.loading === false,
           ghost: false,
           block: false,
           hasIcon: false,
