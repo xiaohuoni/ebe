@@ -38,6 +38,8 @@ const patchObjectParenthesis = (code: string) => {
   return code;
 };
 
+const excludeCalleeNames = ['classNames'];
+
 /**
  * 修正语法错误
  *
@@ -68,6 +70,14 @@ const fixSyntaxError = (code: string) => {
       CallExpression: (path) => {
         // a.b() -> a.b?.();
         const calleeNode = path.get('callee').node;
+
+        if (
+          calleeNode.type === 'Identifier' &&
+          excludeCalleeNames.includes(calleeNode.name)
+        ) {
+          path.skip();
+          return;
+        }
         if (t.isExpression(calleeNode)) {
           path.replaceWith(
             t.optionalCallExpression(calleeNode, path.node.arguments, true),

@@ -6,6 +6,7 @@ import {
   isJSSlot,
   isJSVar,
   isLXComponent,
+  parse2JSCode,
 } from '../utils/deprecated';
 
 import {
@@ -131,7 +132,7 @@ export function generateVarString(value: any): string {
   if (!isJSVar(value)) {
     return value;
   }
-  let code = value.replace(/^\$|\$$/g, '').replace(/;$/, '');
+  let code = parse2JSCode(value);
   // .replace(/(?<!\d)\.(?!\d)/g, '?.')
   // .replace(/\?\?\./g, '?.');
 

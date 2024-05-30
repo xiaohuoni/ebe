@@ -172,9 +172,15 @@ const preprocessComponentSchema = (
     $$componentItem: `##{{id: '${schema.id}',uid: ${generateUid(schema)}}}##`,
   };
 
-  // if (['CollapsePanel'].includes(schema.type)) {
-  //   props.uid = `$${generateUid(schema)}$`;
-  // }
+  let className = `${schema.compName}_${schema.id}`;
+  if (props.className) {
+    // className = `$\`${className} \${${parse2Var(props.className)})}\`$`
+    className = `$classNames(${parse2Var(className)}, ${parse2Var(
+      props.className,
+    )})$`;
+  }
+
+  props.className = className;
 
   // 执行组件预处理
   const methodsRun = assetHelper.comRunPreprocess.getRunComPreprocessMethods(

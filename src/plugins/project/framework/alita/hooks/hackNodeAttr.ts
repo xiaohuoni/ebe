@@ -220,15 +220,15 @@ export default function hackEngineApis(
       value: `lcdpParentRenderId={customActionId}`,
     });
   }
-  // className='View_View_938709'
-  if (nodeTags === 'View') {
-    if (!nodeItem?.props?.className) {
-      pieces.unshift({
-        type: PIECE_TYPE.ATTR,
-        value: `className='View_${nodeItem?.id}'`,
-      });
-    }
-  }
+ // className='View_View_938709'
+  // if (nodeTags === 'View') {
+  //   if (!nodeItem?.props?.className) {
+  //     pieces.unshift({
+  //       type: PIECE_TYPE.ATTR,
+  //       value: `className='View_${nodeItem?.id}'`,
+  //     });
+  //   }
+  // }
 
   // 如果是自定义组件要改名字
   if (compAssetListMapping[nodeTags]) {

@@ -144,6 +144,7 @@ export const withPageHOC = (
       const injectData = {
         getEngineApis: () => {
           return {
+            compatConfig: {},
             BannerModal,
             stateListener: getStateListener(renderId),
             ...baseApi,
