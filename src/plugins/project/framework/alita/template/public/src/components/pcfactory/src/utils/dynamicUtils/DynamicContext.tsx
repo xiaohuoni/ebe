@@ -1,7 +1,6 @@
-import { useContext, createContext } from 'react';
+import { createContext, useContext } from 'react';
 
 export interface DynamicDataContext {
-
   /**
    * 是否在动态数据容器内
    */
@@ -27,13 +26,16 @@ export interface DynamicDataContext {
    * @param changedFieldValue 表单变动值
    * @returns
    */
-  onFormChange: (formCode: string, changedFieldName: string, changedFieldValue: unknown) => void;
+  onFormChange: (
+    formCode: string,
+    changedFieldName: string,
+    changedFieldValue: unknown,
+  ) => void;
 
   /**
    * 表单，目前提供给自定义组件使用
    */
   form: {
-
     /**
      * 获取动态容器表单值
      * @returns
@@ -60,31 +62,40 @@ export interface DynamicDataContext {
      * @returns
      */
     useWatch: (formCode: string, fieldCode: string) => unknown;
-  }
+  };
 }
 
 export interface NoopInDynamicContainerProps {
-
   /**
    * 是否在动态数据容器内
    */
   _innerDynamicDataContainer: false;
 
-  form: DynamicDataContext['form']
+  form: DynamicDataContext['form'];
 }
 
-export const dynamicDataContext = createContext<DynamicDataContext | NoopInDynamicContainerProps>({
+export const dynamicDataContext = createContext<
+  DynamicDataContext | NoopInDynamicContainerProps
+>({
   _innerDynamicDataContainer: false,
   form: {
-    getFieldsValue: () => { console.warn('请在动态容器下使用getFieldsValue方法'); return {}; },
-    resetFields: () => { console.warn('请在动态容器下使用resetFields方法'); },
-    setFieldsValue: () => { console.warn('请在动态容器下使用resetFields方法'); },
-    useWatch: (formCode: string, fieldCode: string) => { console.warn('请在动态容器下使用useWatch方法'); },
+    getFieldsValue: () => {
+      console.warn('请在动态容器下使用getFieldsValue方法');
+      return {};
+    },
+    resetFields: () => {
+      console.warn('请在动态容器下使用resetFields方法');
+    },
+    setFieldsValue: () => {
+      console.warn('请在动态容器下使用resetFields方法');
+    },
+    useWatch: (formCode: string, fieldCode: string) => {
+      console.warn('请在动态容器下使用useWatch方法');
+    },
   },
 });
 
 dynamicDataContext.displayName = 'PCFactoryDynamicDataContext';
-
 
 const useDynamicData = () => {
   return useContext(dynamicDataContext);
@@ -92,7 +103,4 @@ const useDynamicData = () => {
 
 const DynamicDataProvider = dynamicDataContext.Provider;
 
-export {
-  DynamicDataProvider,
-  useDynamicData,
-};
+export { DynamicDataProvider, useDynamicData };

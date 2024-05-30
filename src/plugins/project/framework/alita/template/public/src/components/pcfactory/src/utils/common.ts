@@ -2,7 +2,11 @@ import moment from 'moment';
 
 type flatTreeFunction = (data?: any[], array?: any[], key?: string) => void;
 
-const flatTree: flatTreeFunction = (data = [], array = [], key = 'children') => {
+const flatTree: flatTreeFunction = (
+  data = [],
+  array = [],
+  key = 'children',
+) => {
   data.forEach((element: any) => {
     array.push(element);
     if (Array.isArray(element[key]) && element[key].length) {
@@ -18,7 +22,11 @@ const evalMyFunction = (str: any, params: any = {}) => {
   if (!str) return '';
 
   // eslint-disable-next-line no-control-regex
-  let codeStr = str.replace(/^\$/, '').replace(/\$$/, '').replace(/\/\*.+[^\x05]*\*\//, '').replace(/\n/, '');
+  let codeStr = str
+    .replace(/^\$/, '')
+    .replace(/\$$/, '')
+    .replace(/\/\*.+[^\x05]*\*\//, '')
+    .replace(/\n/, '');
 
   try {
     if (params && Array.isArray(params)) {
@@ -41,11 +49,11 @@ const evalMyFunction = (str: any, params: any = {}) => {
        * 所以，需要兼容两种参数格式解析，在这边临时处理强行弥补
        */
       if (!str.match(/function.*\(renderParams\)/g)) {
-        funcParams = params.map(param => param.value);
+        funcParams = params.map((param) => param.value);
       } else {
         const objParam: any = {};
 
-        params.forEach(param => {
+        params.forEach((param) => {
           objParam[param.key] = param.value;
         });
 
@@ -79,7 +87,11 @@ const createId = (prefix?: string, id?: string | number, slength = 12) => {
 // 生成指定长度的英文字母+数字随机组合
 const createRandomStr = (len = 20) => {
   let rdmString = '';
-  for (; rdmString.length < len; rdmString += Math.random().toString(36).substr(2));
+  for (
+    ;
+    rdmString.length < len;
+    rdmString += Math.random().toString(36).substr(2)
+  );
   return rdmString.substr(0, len);
 };
 
@@ -117,8 +129,13 @@ const initMomentLocale = () => {
     }
   };
   moment.defineLocale('zh-cn', {
-    months: '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
-    monthsShort: '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
+    months:
+      '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split(
+        '_',
+      ),
+    monthsShort: '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split(
+      '_',
+    ),
     weekdays: '星期日_星期一_星期二_星期三_星期四_星期五_星期六'.split('_'),
     weekdaysShort: '周日_周一_周二_周三_周四_周五_周六'.split('_'),
     weekdaysMin: '日_一_二_三_四_五_六'.split('_'),
@@ -169,24 +186,35 @@ const initMomentLocale = () => {
     },
     calendar: {
       // eslint-disable-next-line @typescript-eslint/no-invalid-this
-      sameDay: () => ((this as any).minutes() === 0 ? '[今天]Ah[点整]' : '[今天]LT'),
+      sameDay: () =>
+        (this as any).minutes() === 0 ? '[今天]Ah[点整]' : '[今天]LT',
       // eslint-disable-next-line @typescript-eslint/no-invalid-this
-      nextDay: () => ((this as any).minutes() === 0 ? '[明天]Ah[点整]' : '[明天]LT'),
+      nextDay: () =>
+        (this as any).minutes() === 0 ? '[明天]Ah[点整]' : '[明天]LT',
       // eslint-disable-next-line @typescript-eslint/no-invalid-this
-      lastDay: () => ((this as any).minutes() === 0 ? '[昨天]Ah[点整]' : '[昨天]LT'),
+      lastDay: () =>
+        (this as any).minutes() === 0 ? '[昨天]Ah[点整]' : '[昨天]LT',
       nextWeek: () => {
         const startOfWeek = moment().startOf('week');
         // eslint-disable-next-line @typescript-eslint/no-invalid-this
-        const prefix = (this as any).unix() - startOfWeek.unix() >= 7 * 24 * 3600 ? '[下]' : '[本]';
+        const prefix =
+          (this as any).unix() - startOfWeek.unix() >= 7 * 24 * 3600
+            ? '[下]'
+            : '[本]';
         // eslint-disable-next-line @typescript-eslint/no-invalid-this
-        return (this as any).minutes() === 0 ? `${prefix}dddAh点整` : `${prefix}dddAh点mm`;
+        return (this as any).minutes() === 0
+          ? `${prefix}dddAh点整`
+          : `${prefix}dddAh点mm`;
       },
       lastWeek: () => {
         const startOfWeek = moment().startOf('week');
         // eslint-disable-next-line @typescript-eslint/no-invalid-this
-        const prefix = (this as any).unix() < startOfWeek.unix() ? '[上]' : '[本]';
+        const prefix =
+          (this as any).unix() < startOfWeek.unix() ? '[上]' : '[本]';
         // eslint-disable-next-line @typescript-eslint/no-invalid-this
-        return (this as any).minutes() === 0 ? `${prefix}dddAh点整` : `${prefix}dddAh点mm`;
+        return (this as any).minutes() === 0
+          ? `${prefix}dddAh点整`
+          : `${prefix}dddAh点mm`;
       },
       sameElse: 'LL',
     },
@@ -228,10 +256,13 @@ const getRegExp = (pattern = '') => {
     if (location === pattern.length - 1) {
       return new RegExp(pattern.substr(1, pattern.length - 2));
     }
-    return new RegExp(pattern.substr(1, location - 1), pattern.substring(location + 1));
+    return new RegExp(
+      pattern.substr(1, location - 1),
+      pattern.substring(location + 1),
+    );
   }
   // 如果是/开头和结尾 或者/开头/; 结尾
-  if (typeof pattern === 'string' && !(/^\/.*\/$|^\/.*\/;$/.test(pattern))) {
+  if (typeof pattern === 'string' && !/^\/.*\/$|^\/.*\/;$/.test(pattern)) {
     return new RegExp(pattern);
   }
   // 还原原逻辑，原来的正则是通过eval执行到的结果，通过new RegExp可能部分无法正确还原
@@ -254,25 +285,23 @@ const setRgbTo16 = (str: string) => {
   const r = Math.floor(a * parseInt(values[0], 10) + (1 - a) * 255);
   const g = Math.floor(a * parseInt(values[1], 10) + (1 - a) * 255);
   const b = Math.floor(a * parseInt(values[2], 10) + (1 - a) * 255);
-  return (
-    `#${
-      (`0${r.toString(16)}`).slice(-2)
-    }${(`0${g.toString(16)}`).slice(-2)
-    }${(`0${b.toString(16)}`).slice(-2)}`
-  );
+  return `#${`0${r.toString(16)}`.slice(-2)}${`0${g.toString(16)}`.slice(
+    -2,
+  )}${`0${b.toString(16)}`.slice(-2)}`;
 };
 
 // 判断图片是否存在
-const isImgUrl = (imgurl: any) => new Promise((resolve, reject) => {
-  const ImgObj = new Image();
-  ImgObj.onload = res => {
-    resolve(res);
-  };
-  ImgObj.onerror = err => {
-    reject(err);
-  };
-  ImgObj.src = imgurl;
-});
+const isImgUrl = (imgurl: any) =>
+  new Promise((resolve, reject) => {
+    const ImgObj = new Image();
+    ImgObj.onload = (res) => {
+      resolve(res);
+    };
+    ImgObj.onerror = (err) => {
+      reject(err);
+    };
+    ImgObj.src = imgurl;
+  });
 
 /**
  * @description: 根据文本计算大概宽度
@@ -309,7 +338,13 @@ const convertToBytes = (size: string) => {
   if (typeof size !== 'string') return 0;
   const unit = size.match(/[a-zA-Z]+/)?.[0]?.toUpperCase() || 'B';
   const value = parseFloat(size);
-  const units: any = { B: 1, KB: 1024, MB: 1024 * 1024, GB: 1024 * 1024 * 1024, TB: 1024 * 1024 * 1024 * 1024 };
+  const units: any = {
+    B: 1,
+    KB: 1024,
+    MB: 1024 * 1024,
+    GB: 1024 * 1024 * 1024,
+    TB: 1024 * 1024 * 1024 * 1024,
+  };
   return value * (units[unit] || 0);
 };
 

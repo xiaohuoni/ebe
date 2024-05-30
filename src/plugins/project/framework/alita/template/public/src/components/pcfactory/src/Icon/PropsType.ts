@@ -45,7 +45,7 @@ export interface IconEDProps {
   placeholder?: any; // 占位 icon
 }
 
-export interface IconProps extends IconEDProps{
+export interface IconProps extends IconEDProps {
   visible?: boolean;
   engineApis?: any;
   getEngineApis?: any;

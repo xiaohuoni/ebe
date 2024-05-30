@@ -1,5 +1,5 @@
-import React, { useRef, useImperativeHandle, useState } from 'react';
 import { LingxiForwardRef } from '@lingxiteam/types';
+import React, { useImperativeHandle, useRef, useState } from 'react';
 import GanttLoader from './loader';
 
 const Gantt = LingxiForwardRef<unknown, any>((props, ref) => {
@@ -8,7 +8,9 @@ const Gantt = LingxiForwardRef<unknown, any>((props, ref) => {
   useImperativeHandle(ref, () => ({
     setDataSource,
   }));
-  return <GanttLoader {...props} refDataSource={dataSource} ref={gridViewRef} />;
+  return (
+    <GanttLoader {...props} refDataSource={dataSource} ref={gridViewRef} />
+  );
 });
 
 export default Gantt;

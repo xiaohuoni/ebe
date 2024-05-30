@@ -1,8 +1,7 @@
+import { LingxiForwardRef } from '@lingxiteam/types';
 import React from 'react';
 import LcdpUeditorMain from './LcdpUeditorMain';
 import RichTextEditorMain from './RichTextEditorMain';
-import { LingxiForwardRef } from '@lingxiteam/types';
-
 
 class RichTextEditor extends React.Component<any, {}> {
   state = {
@@ -28,7 +27,6 @@ class RichTextEditor extends React.Component<any, {}> {
     return <LcdpUeditorMain {...this.props} />;
   }
 }
-
 
 export default LingxiForwardRef<any, any>((props, ref) => {
   return <RichTextEditor {...props} rootRef={ref} />;

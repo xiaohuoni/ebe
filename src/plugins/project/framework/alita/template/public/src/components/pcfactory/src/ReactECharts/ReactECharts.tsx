@@ -3,28 +3,23 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable @typescript-eslint/no-for-in-array */
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useMemo, useRef, useLayoutEffect } from 'react';
 import { LingXiFC } from '@lingxiteam/types';
-import * as echarts from 'echarts/core';
-import { bind, clear } from 'size-sensor';
+import { BarChart, LineChart, PieChart, RadarChart } from 'echarts/charts';
 import {
-  LineChart,
-  BarChart,
-  PieChart,
-  RadarChart,
-} from 'echarts/charts';
-import {
-  TitleComponent,
-  TooltipComponent,
-  GridComponent,
   // 数据集组件
   DatasetComponent,
+  GridComponent,
+  LegendComponent,
+  TitleComponent,
+  TooltipComponent,
   // 内置数据转换器组件 (filter, sort)
   TransformComponent,
-  LegendComponent,
 } from 'echarts/components';
+import * as echarts from 'echarts/core';
 import { LabelLayout, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
+import React, { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
+import { bind, clear } from 'size-sensor';
 import { useHiddenStyle, useListenProps } from '../utils';
 import { MyReactEChartsProps } from './PropsType';
 
@@ -50,13 +45,17 @@ echarts.use([
  * 配 api参考echarts官网： https://echarts.apache.org/examples/zh/index.html
  */
 
-
 function arrayToJSON(arr: any[], val: any, obj: any) {
   const result = { ...obj };
   let temp = result;
   for (const key in arr) {
     let len = 0;
-    if (arr.some((i) => ['LineChart', 'BarChart', 'PieChart', 'RadarChart'].indexOf(i) > -1)) {
+    if (
+      arr.some(
+        (i) =>
+          ['LineChart', 'BarChart', 'PieChart', 'RadarChart'].indexOf(i) > -1,
+      )
+    ) {
       if (Number.isNaN(Number(arr[1]))) {
         len = 1;
       } else {
@@ -84,7 +83,12 @@ export interface ColorStopMap {
 export interface SeriesMap {
   data?: any[];
   type?: string;
-  areaStyle?: { showColor?: boolean; color0?: string; color1?: string; color?: ColorStopMap };
+  areaStyle?: {
+    showColor?: boolean;
+    color0?: string;
+    color1?: string;
+    color?: ColorStopMap;
+  };
   label?: { formatter: any };
   lineStyle?: { color: string };
   itemStyle?: { color: string };
@@ -115,13 +119,27 @@ const ReactECharts: LingXiFC<MyReactEChartsProps> = (props, ref) => {
   const [dataSource, setDataSource] = useListenProps(props.dataSource);
 
   const seriesAttr = Object.keys(props).filter((i) => i.indexOf('series') > -1);
-  const pieSeriesAttr = Object.keys(props).filter((i) => i.indexOf('pieSeries') > -1);
-  const titleAttr = Object.keys(props).filter((i) => i.indexOf('chartTitle') > -1);
-  const legendAttr = Object.keys(props).filter((i) => i.indexOf('chartsLegend') > -1);
-  const xAxisAttr = Object.keys(props).filter((i) => i.indexOf('chartXAxis') > -1);
-  const yAxisAttr = Object.keys(props).filter((i) => i.indexOf('chartYAxis') > -1);
-  const gridAttr = Object.keys(props).filter((i) => i.indexOf('chartGrid') > -1);
-  const tooltipAttr = Object.keys(props).filter((i) => i.indexOf('chartTooltip') > -1);
+  const pieSeriesAttr = Object.keys(props).filter(
+    (i) => i.indexOf('pieSeries') > -1,
+  );
+  const titleAttr = Object.keys(props).filter(
+    (i) => i.indexOf('chartTitle') > -1,
+  );
+  const legendAttr = Object.keys(props).filter(
+    (i) => i.indexOf('chartsLegend') > -1,
+  );
+  const xAxisAttr = Object.keys(props).filter(
+    (i) => i.indexOf('chartXAxis') > -1,
+  );
+  const yAxisAttr = Object.keys(props).filter(
+    (i) => i.indexOf('chartYAxis') > -1,
+  );
+  const gridAttr = Object.keys(props).filter(
+    (i) => i.indexOf('chartGrid') > -1,
+  );
+  const tooltipAttr = Object.keys(props).filter(
+    (i) => i.indexOf('chartTooltip') > -1,
+  );
   const finalStyle = useHiddenStyle(visible, style);
   const chartRef = useRef<HTMLDivElement>(null);
   const chartNode = useRef<echarts.EChartsType>();
@@ -156,11 +174,13 @@ const ReactECharts: LingXiFC<MyReactEChartsProps> = (props, ref) => {
           ?.filter((j) => j !== 'key' && j.indexOf('y') > -1)?.length;
       } else {
         xAxislength = Array.isArray(chartData)
-          ? Object.keys(chartData[0] || {})?.filter((i) => i.indexOf('x') > -1)?.length
+          ? Object.keys(chartData[0] || {})?.filter((i) => i.indexOf('x') > -1)
+              ?.length
           : 1;
         yAxislength = Array.isArray(chartData)
-          ? Object.keys(chartData[0] || {})?.filter((i) => i !== 'key' && i.indexOf('y') > -1)
-            ?.length
+          ? Object.keys(chartData[0] || {})?.filter(
+              (i) => i !== 'key' && i.indexOf('y') > -1,
+            )?.length
           : 1;
       }
       return {
@@ -170,7 +190,15 @@ const ReactECharts: LingXiFC<MyReactEChartsProps> = (props, ref) => {
       };
     }
     return { datasource: chartData, xAxislen: 1, yAxislen: 1 };
-  }, [data, dataSource, chartDataSource, relateDataType, type, dataMapColumns, isDataMap]);
+  }, [
+    data,
+    dataSource,
+    chartDataSource,
+    relateDataType,
+    type,
+    dataMapColumns,
+    isDataMap,
+  ]);
 
   const transferDataMap: { name?: any; value?: any; x?: any } = useMemo(() => {
     let obj = {};
@@ -218,8 +246,13 @@ const ReactECharts: LingXiFC<MyReactEChartsProps> = (props, ref) => {
       // const xItem0=getNestObj(xAxisAttr.filter((attr) => attr.indexOf(`chartXAxis0`) > -1));
       // const len=xItem0.type === 'value'?yAxislen:xAxislen;
       for (let i = 0; i < yAxisNum; i += 1) {
-        const xAxisItem = xAxisAttr.filter((attr) => attr.indexOf(`chartXAxis${i}`) > -1);
-        let obj: { type?: string; data?: any[] } = { type: 'category', ...getNestObj(xAxisItem) };
+        const xAxisItem = xAxisAttr.filter(
+          (attr) => attr.indexOf(`chartXAxis${i}`) > -1,
+        );
+        let obj: { type?: string; data?: any[] } = {
+          type: 'category',
+          ...getNestObj(xAxisItem),
+        };
         if (obj.type === 'value' && +i === +yAxislen) {
           break;
         } else {
@@ -231,13 +264,18 @@ const ReactECharts: LingXiFC<MyReactEChartsProps> = (props, ref) => {
               ...obj,
               data:
                 datasource?.map((j: Record<string, any>) =>
-                  i < 1 ? j[transferDataMap.x || 'x'] : j[(transferDataMap as any)[`x${i}`] || `x${i}`],
+                  i < 1
+                    ? j[transferDataMap.x || 'x']
+                    : j[(transferDataMap as any)[`x${i}`] || `x${i}`],
                 ) || [],
             };
           } else {
             obj = {
               ...obj,
-              data: datasource?.map((j: Record<string, any>) => (i < 1 ? j.x : j[`x${i}`])) || [],
+              data:
+                datasource?.map((j: Record<string, any>) =>
+                  i < 1 ? j.x : j[`x${i}`],
+                ) || [],
             };
           }
         }
@@ -254,8 +292,14 @@ const ReactECharts: LingXiFC<MyReactEChartsProps> = (props, ref) => {
       // const yItem0=getNestObj(yAxisAttr.filter((attr) => attr.indexOf(`chartYAxis0`) > -1));
       // const len=yItem0.type === 'category'?xAxislen:yAxislen;
       for (let i = 0; i < yAxisNum; i += 1) {
-        const yAxisItem = yAxisAttr.filter((attr) => attr.indexOf(`chartYAxis${i}`) > -1);
-        let obj: { type?: string; axisLabel?: { formatter?: string }; data?: any[] } = {
+        const yAxisItem = yAxisAttr.filter(
+          (attr) => attr.indexOf(`chartYAxis${i}`) > -1,
+        );
+        let obj: {
+          type?: string;
+          axisLabel?: { formatter?: string };
+          data?: any[];
+        } = {
           type: 'value',
           ...getNestObj(yAxisItem),
         };
@@ -279,13 +323,18 @@ const ReactECharts: LingXiFC<MyReactEChartsProps> = (props, ref) => {
               ...obj,
               data:
                 datasource?.map((j: Record<string, any>) =>
-                  i < 1 ? j[transferDataMap.x || 'x'] : j[(transferDataMap as any)[`x${i}`] || `x${i}`],
+                  i < 1
+                    ? j[transferDataMap.x || 'x']
+                    : j[(transferDataMap as any)[`x${i}`] || `x${i}`],
                 ) || [],
             };
           } else {
             obj = {
               ...obj,
-              data: datasource?.map((j: { x: any }) => (i < 1 ? j.x : (j as any)[`x${i}`])) || [],
+              data:
+                datasource?.map((j: { x: any }) =>
+                  i < 1 ? j.x : (j as any)[`x${i}`],
+                ) || [],
             };
           }
         } else if (+i === +yAxislen) {
@@ -298,9 +347,16 @@ const ReactECharts: LingXiFC<MyReactEChartsProps> = (props, ref) => {
   }, [yAxisAttr, transferDataMap, isDataMap]);
 
   const chartTooltip = useMemo(() => {
-    const obj: { position?: any; formatter?: any; padding?: any; trigger?: string; } = getNestObj(tooltipAttr);
+    const obj: {
+      position?: any;
+      formatter?: any;
+      padding?: any;
+      trigger?: string;
+    } = getNestObj(tooltipAttr);
     if (obj.position) {
-      obj.position = Array.isArray(obj.position) ? obj.position : obj.position?.split(',') || undefined;
+      obj.position = Array.isArray(obj.position)
+        ? obj.position
+        : obj.position?.split(',') || undefined;
     } else {
       obj.position = undefined;
     }
@@ -388,14 +444,16 @@ const ReactECharts: LingXiFC<MyReactEChartsProps> = (props, ref) => {
         ...
       }],
    */
-  
+
   // @ts-ignore
   const chartSeries = useMemo(() => {
     if (datasource) {
       if (['bar', 'line'].includes(type)) {
         const series = [];
         for (let i = 0; i < yAxislen; i += 1) {
-          const seriesItem = seriesAttr.filter((attr) => attr.indexOf(`series${i}`) > -1);
+          const seriesItem = seriesAttr.filter(
+            (attr) => attr.indexOf(`series${i}`) > -1,
+          );
           let obj: SeriesMap = getNestObj(seriesItem);
           obj = {
             type,
@@ -404,10 +462,16 @@ const ReactECharts: LingXiFC<MyReactEChartsProps> = (props, ref) => {
           };
           if (isDataMap) {
             obj.data =
-              datasource?.map((j: Record<string, any>) => j[(transferDataMap as any)[`y${i}`] || `y${i}`]) ||
-              [];
+              datasource?.map(
+                (j: Record<string, any>) =>
+                  j[(transferDataMap as any)[`y${i}`] || `y${i}`],
+              ) || [];
           }
-          if (obj.areaStyle?.showColor && obj.areaStyle?.color0 && obj.areaStyle?.color1) {
+          if (
+            obj.areaStyle?.showColor &&
+            obj.areaStyle?.color0 &&
+            obj.areaStyle?.color1
+          ) {
             obj = {
               ...obj,
               areaStyle: {
@@ -448,12 +512,20 @@ const ReactECharts: LingXiFC<MyReactEChartsProps> = (props, ref) => {
             const newdata = [...datasource];
             let item: any = {};
             const xval = isDataMap ? transferDataMap.x : 'x';
-            obj.label.formatter = function (params: { name: string; value: string }) {
+            obj.label.formatter = function (params: {
+              name: string;
+              value: string;
+            }) {
               item = newdata.find((i) => i[xval] === params.name);
-              return item[`percent${i}`] ? `${item[`percent${i}`]}%` : `${params.value}%`;
+              return item[`percent${i}`]
+                ? `${item[`percent${i}`]}%`
+                : `${params.value}%`;
             };
           } else if (obj.label?.formatter === 'labvalue') {
-            obj.label.formatter = function (param: { name: string; value: string }) {
+            obj.label.formatter = function (param: {
+              name: string;
+              value: string;
+            }) {
               return `${param.name}：${param.value}`;
             };
           }
@@ -474,8 +546,14 @@ const ReactECharts: LingXiFC<MyReactEChartsProps> = (props, ref) => {
             value: item[transferDataMap.value || 'value'],
           }));
         }
-        obj = { ...obj, ...getNestObj(pieSeriesAttr), data: newDataSource || [] };
-        obj.radius = Array.isArray(obj.radius) ? obj.radius : obj.radius?.split(',') || [0, '75%'];
+        obj = {
+          ...obj,
+          ...getNestObj(pieSeriesAttr),
+          data: newDataSource || [],
+        };
+        obj.radius = Array.isArray(obj.radius)
+          ? obj.radius
+          : obj.radius?.split(',') || [0, '75%'];
         obj.center = Array.isArray(obj.center)
           ? obj.center
           : obj.center?.split(',') || ['50%', '50%'];
@@ -488,7 +566,10 @@ const ReactECharts: LingXiFC<MyReactEChartsProps> = (props, ref) => {
         } else if (obj.label?.formatter === 'percent') {
           obj.label.formatter = '{d}%';
         } else if (obj.label?.formatter === 'labvalue') {
-          obj.label.formatter = function (param: { name: string; value: string }) {
+          obj.label.formatter = function (param: {
+            name: string;
+            value: string;
+          }) {
             return `${param.name} ${param.value}`;
           };
         } else if (obj.label?.formatter === 'labpercent') {
@@ -545,7 +626,6 @@ const ReactECharts: LingXiFC<MyReactEChartsProps> = (props, ref) => {
     }
   }, [refDataReload]);
 
-
   useEffect(() => {
     if (chartNode && chartNode.current) {
       const chartInst = chartNode.current;
@@ -579,7 +659,14 @@ const ReactECharts: LingXiFC<MyReactEChartsProps> = (props, ref) => {
     };
   }, []);
 
-  return <div data-compid={(props as any)?.['data-compid']} ref={chartRef} style={finalStyle} className={className} />;
+  return (
+    <div
+      data-compid={(props as any)?.['data-compid']}
+      ref={chartRef}
+      style={finalStyle}
+      className={className}
+    />
+  );
 };
 
 export default ReactECharts;

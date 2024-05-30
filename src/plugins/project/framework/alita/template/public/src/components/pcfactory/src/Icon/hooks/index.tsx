@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react';
-import { Icon as LegacyIcon } from '@lingxiteam/icons';
 import { createFromIconfontCN } from '@ant-design/icons';
+import { Icon as LegacyIcon } from '@lingxiteam/icons';
 import classnames from 'classnames';
-import { UseIconProps, IconCfg } from '../PropsType';
+import React, { useMemo } from 'react';
 import { useLocale } from '../../utils/hooks/useLocale';
+import { IconCfg, UseIconProps } from '../PropsType';
 
 export const ICON_FILE_IMAGE = 'ICON_IMAGE';
 export const ICON_FILE_ICONFONT = 'ICONFONT';
@@ -23,7 +23,11 @@ export const handleIsValidIconCfg = (icon: IconCfg) => {
   }
 
   if (icon?.iconFile && Object.keys(icon.iconFile).length > 0) {
-    if ([ICON_FILE_ICONFONT, ICON_FILE_IMAGE].includes(icon?.iconFile?.fileSubType)) {
+    if (
+      [ICON_FILE_ICONFONT, ICON_FILE_IMAGE].includes(
+        icon?.iconFile?.fileSubType,
+      )
+    ) {
       return true;
     }
     return false;
@@ -33,7 +37,8 @@ export const handleIsValidIconCfg = (icon: IconCfg) => {
     const { svgContent, materialId, fileName } = icon.iconFileInfo || {};
     if (svgContent) {
       return true;
-    } if (materialId && fileName) {
+    }
+    if (materialId && fileName) {
       return true;
     }
     return false;
@@ -90,7 +95,9 @@ const useIcon = (props: UseIconProps) => {
     isUsePrimary,
     color,
   } = useMemo(() => {
-    const iconInfo = Array.isArray(iconItems) && (iconItems.find((c) => c.rule) || iconItems[0]);
+    const iconInfo =
+      Array.isArray(iconItems) &&
+      (iconItems.find((c) => c.rule) || iconItems[0]);
     if (mode === 'custom' && iconInfo && !myIcon?.isAction) {
       return {
         type: iconInfo?.icon?.type,
@@ -166,8 +173,9 @@ const useIcon = (props: UseIconProps) => {
     // 图标来源于 文件资源
     if (iconFile && Object.keys(iconFile).length > 0) {
       const { fileId, fileCode, fileHttp } = iconFile;
-      const { getFileIconUrlByCode, getFileIconUrlById } = getFileIconUrl() || {};
-  
+      const { getFileIconUrlByCode, getFileIconUrlById } =
+        getFileIconUrl() || {};
+
       let iconUrl;
       if (fileId && typeof getFileIconUrlById === 'function') {
         iconUrl = getFileIconUrlById(fileId);
@@ -187,11 +195,15 @@ const useIcon = (props: UseIconProps) => {
               {...resProps}
               style={{
                 ...(resProps.style || {}),
-                color: isUsePrimary ? undefined : color || resProps.style?.color,
+                color: isUsePrimary
+                  ? undefined
+                  : color || resProps.style?.color,
                 width: resProps?.style?.fontSize,
                 height: resProps?.style?.fontSize,
               }}
-              className={`ued-icon ${resProps?.className || ''} ${isUsePrimary ? 'fill-primary' : ''}`}
+              className={`ued-icon ${resProps?.className || ''} ${
+                isUsePrimary ? 'fill-primary' : ''
+              }`}
             />
           );
         // 文件是 iconfont.js
@@ -209,7 +221,8 @@ const useIcon = (props: UseIconProps) => {
                 isUsePrimary ? 'fill-primary' : ''
               }`}
             />
-          ); }
+          );
+        }
         default:
           return placeholder;
       }
@@ -223,16 +236,22 @@ const useIcon = (props: UseIconProps) => {
         return (
           <span
             style={_style}
-            className={classnames('anticon', `ued-icon ${designPlatformiconCls} ${resProps?.className || ''}`)}
+            className={classnames(
+              'anticon',
+              `ued-icon ${designPlatformiconCls} ${resProps?.className || ''}`,
+            )}
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: svgContent }}
           />
         );
-      } if (materialId && fileName) {
+      }
+      if (materialId && fileName) {
         const iconUrl = getDesignPlatormIconUrl(materialId, fileName);
         return (
           <img
-            className={`ued-icon ${designPlatformiconCls} ${resProps?.className || ''}`}
+            className={`ued-icon ${designPlatformiconCls} ${
+              resProps?.className || ''
+            }`}
             src={iconUrl}
             alt=""
           />
@@ -265,7 +284,9 @@ const useIcon = (props: UseIconProps) => {
           rotate={rotate}
           {...resProps}
           style={_style}
-          className={`ued-icon ${resProps?.className || ''} ${isUsePrimary ? 'fill-primary' : ''}`}
+          className={`ued-icon ${resProps?.className || ''} ${
+            isUsePrimary ? 'fill-primary' : ''
+          }`}
         />
       );
     }
@@ -276,6 +297,4 @@ const useIcon = (props: UseIconProps) => {
   return visible ? renderIcon() : null;
 };
 
-export {
-  useIcon,
-};
+export { useIcon };

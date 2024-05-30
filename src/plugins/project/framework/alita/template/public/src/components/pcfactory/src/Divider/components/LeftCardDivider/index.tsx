@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
 import classnames from 'classnames';
+import React, { useMemo } from 'react';
 
 interface LeftCardDividerProps {
   showTitle?: boolean;
@@ -54,21 +54,33 @@ const LeftCardDivider: React.FC<LeftCardDividerProps> = (props) => {
           lineHeight: dividerHeight,
         }}
       >
-        <div className={`${dividerClsPrefix}-lable-text`}>{showTitle && dividerText ? dividerText : ''}</div>
+        <div className={`${dividerClsPrefix}-lable-text`}>
+          {showTitle && dividerText ? dividerText : ''}
+        </div>
       </div>
-      <div className={`${dividerClsPrefix}-parallelogram1`} style={{ backgroundColor: dividerColor }} />
+      <div
+        className={`${dividerClsPrefix}-parallelogram1`}
+        style={{ backgroundColor: dividerColor }}
+      />
       <div
         className={`${dividerClsPrefix}-triangle`}
-        style={dividerColor ? {
-          borderBottomWidth: dividerHeight,
-          borderBottomColor: dividerColor,
-          borderLeft: `${triangleLeftWidth}px solid transparent`,
-        } : {
-          borderBottomWidth: dividerHeight,
-          borderLeft: `${triangleLeftWidth}px solid transparent`,
-        }}
+        style={
+          dividerColor
+            ? {
+                borderBottomWidth: dividerHeight,
+                borderBottomColor: dividerColor,
+                borderLeft: `${triangleLeftWidth}px solid transparent`,
+              }
+            : {
+                borderBottomWidth: dividerHeight,
+                borderLeft: `${triangleLeftWidth}px solid transparent`,
+              }
+        }
       />
-      <div className={`${dividerClsPrefix}-parallelogram2`} style={{ backgroundColor: dividerColor }} />
+      <div
+        className={`${dividerClsPrefix}-parallelogram2`}
+        style={{ backgroundColor: dividerColor }}
+      />
     </div>
   );
 };

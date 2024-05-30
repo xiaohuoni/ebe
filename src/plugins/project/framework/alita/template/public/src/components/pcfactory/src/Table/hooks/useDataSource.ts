@@ -1,8 +1,13 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
 import { message } from 'antd';
-import { deleteTempRowProperties, createTempRowKey, createAutoKey, EMPTY_ROW_TEMP_KEY_ATTR } from '../utils';
-import { useCreation } from '../../utils/ahooks';
 import { clone } from 'lodash';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCreation } from '../../utils/ahooks';
+import {
+  createAutoKey,
+  createTempRowKey,
+  deleteTempRowProperties,
+  EMPTY_ROW_TEMP_KEY_ATTR,
+} from '../utils';
 import SequenceId from '../utils/SequenceId';
 
 const useDataSource = (props: any) => {
@@ -35,9 +40,13 @@ const useDataSource = (props: any) => {
   const preOuterDataSourceRef = outerDataSourceRef.current;
 
   // 创建id 实例
-  const seqId = useMemo(() => new SequenceId({
-    type: 'random',
-  }), []);
+  const seqId = useMemo(
+    () =>
+      new SequenceId({
+        type: 'random',
+      }),
+    [],
+  );
 
   // 若表格源数据源引用发生变更，则进一步判断
   if (preOuterDataSourceRef !== outerDataSource) {
@@ -48,12 +57,13 @@ const useDataSource = (props: any) => {
      * 导致表格数据重复更新渲染 -> 外部渲染 -> 死循环
      * 若今后有其他场景被影响到，或者是 表格数据源绑定的表达式是“json字符串数组固定数据” 但数据量巨大的场景，影响到性能，请修正
      */
-    if (JSON.stringify(preCloneData.current) !== JSON.stringify(outerDataSource)) {
+    if (
+      JSON.stringify(preCloneData.current) !== JSON.stringify(outerDataSource)
+    ) {
       preCloneData.current = clone(outerDataSource);
       outerDataSourceRef.current = outerDataSource;
     }
   }
-
 
   // 表格当前页数据
   const currentPageDataSource = useMemo(() => {
@@ -62,9 +72,9 @@ const useDataSource = (props: any) => {
       hasPageChangeEvent || !page
         ? dataSource
         : dataSource.slice(
-          (pagination?.current - 1) * pagination?.pageSize,
-          pagination?.current * pagination?.pageSize,
-        );
+            (pagination?.current - 1) * pagination?.pageSize,
+            pagination?.current * pagination?.pageSize,
+          );
 
     return currentPageData;
   }, [
@@ -94,11 +104,15 @@ const useDataSource = (props: any) => {
     let fd: any[] = outerDataSource || [];
     // 处理数据
     if (!Array.isArray(fd)) {
-      message.warn(getLocale('Table.data.typeError', { type: Object.prototype.toString.call(fd) }));
+      message.warn(
+        getLocale('Table.data.typeError', {
+          type: Object.prototype.toString.call(fd),
+        }),
+      );
       return;
     }
 
-    const tempRows = fd.filter(r => r?.[EMPTY_ROW_TEMP_KEY_ATTR]);
+    const tempRows = fd.filter((r) => r?.[EMPTY_ROW_TEMP_KEY_ATTR]);
     const lastTempRow = tempRows[tempRows.length - 1];
 
     fd = fd.map((i: any, idx) => {
@@ -131,7 +145,10 @@ const useDataSource = (props: any) => {
            * 移除空白行的临时属性
            * 最后一条空白行，不允许自动移除临时属性（交由保存/取消逻辑手动移除）
            */
-          if (lastTempRow?.[EMPTY_ROW_TEMP_KEY_ATTR] !== i?.[EMPTY_ROW_TEMP_KEY_ATTR]) {
+          if (
+            lastTempRow?.[EMPTY_ROW_TEMP_KEY_ATTR] !==
+            i?.[EMPTY_ROW_TEMP_KEY_ATTR]
+          ) {
             // 移除临时属性
             deleteTempRowProperties(i);
           }
@@ -139,7 +156,9 @@ const useDataSource = (props: any) => {
           // 行主键自动生成
           // remark：每页每行的固定标识 作为自动生成主键缓存后，二次渲染时，查找的标识（但如果涉及到数据变更，感觉不是太合理，但先恢复这么处理）
           // 每页每行的固定标识
-          const rowAutoKeyFlag = `${compId}_${page ? `${pagination.current || 0}_` : ''}${idx}`;
+          const rowAutoKeyFlag = `${compId}_${
+            page ? `${pagination.current || 0}_` : ''
+          }${idx}`;
           // 优先取缓存
           const cachedKey = rowIdMapRef.current[rowAutoKeyFlag];
           // 若无则直接生成，并记录
@@ -167,11 +186,7 @@ const useDataSource = (props: any) => {
       };
     });
     setDataSource(fd);
-  }, [
-    outerDataSourceRef.current,
-    currentRowKey,
-    boundDataSource,
-  ]);
+  }, [outerDataSourceRef.current, currentRowKey, boundDataSource]);
 
   return {
     outerDataSource,

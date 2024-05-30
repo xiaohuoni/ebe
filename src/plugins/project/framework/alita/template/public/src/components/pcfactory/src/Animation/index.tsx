@@ -1,9 +1,16 @@
-import React, { CSSProperties, forwardRef, useEffect, useMemo, useRef, useState } from 'react';
-import TweenOne from 'rc-tween-one';
-import { useAnimation, AnimationOpts } from './useAnimation';
-import useBackgroundStyle from './useBackgroundStyle';
 import { Spin } from 'antd';
+import TweenOne from 'rc-tween-one';
+import React, {
+  CSSProperties,
+  forwardRef,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { useLocale } from '../utils/hooks/useLocale';
+import { AnimationOpts, useAnimation } from './useAnimation';
+import useBackgroundStyle from './useBackgroundStyle';
 
 export interface MyViewProps {
   style: React.CSSProperties;

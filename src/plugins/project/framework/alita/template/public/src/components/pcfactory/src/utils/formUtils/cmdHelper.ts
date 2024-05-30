@@ -29,7 +29,14 @@ export const getFormOfInLoopByLoopId = (options: {
   forms?: RefsType[];
   inLoop?: boolean;
 }) => {
-  const { loopId, routerId, engineRelation, forms = [], refs, inLoop = false } = options;
+  const {
+    loopId,
+    routerId,
+    engineRelation,
+    forms = [],
+    refs,
+    inLoop = false,
+  } = options;
   const uids = Object.keys(refs);
   for (let index = 0; index < uids.length; index += 1) {
     const uid = uids[index];
@@ -64,7 +71,6 @@ export const getFormOfInLoopByLoopId = (options: {
       });
     }
 
-
     // 不是表单 或者不在循环容器内
     if (refs[uid].compName !== 'Form' || !/[@@@|&&&]/.test(uid)) {
       continue;
@@ -83,7 +89,10 @@ export const getFormOfInLoopByLoopId = (options: {
  * @param getFieldsValue
  * @returns
  */
-export const getLoopForms = async (forms: RefsType[], getFieldsValue: (form: any) => void) => {
+export const getLoopForms = async (
+  forms: RefsType[],
+  getFieldsValue: (form: any) => void,
+) => {
   const fieldValues: any = {};
   let firstErrorInfo: any = null;
   for (let index = 0; index < forms.length; index += 1) {
@@ -178,7 +187,12 @@ interface FirstErrorInfoType {
  * @param getFieldsValue
  */
 export const getOwnFormValues = async (
-  options: { currentRefs: RefsType; engineRelation: EngineRelationMethods; routerId: string, compId?: string },
+  options: {
+    currentRefs: RefsType;
+    engineRelation: EngineRelationMethods;
+    routerId: string;
+    compId?: string;
+  },
   getFieldsValue: (form: any) => void,
 ) => {
   const { currentRefs, engineRelation, routerId, compId } = options;
@@ -191,7 +205,10 @@ export const getOwnFormValues = async (
   /**
    * 获取单个引擎下的表单值
    */
-  const getRenderRefsFormValues = async (refs: RefsType = {}, compId?: string) => {
+  const getRenderRefsFormValues = async (
+    refs: RefsType = {},
+    compId?: string,
+  ) => {
     const uidArr = Object.keys(refs);
 
     for (let index = 0; index < uidArr.length; index += 1) {
@@ -200,13 +217,19 @@ export const getOwnFormValues = async (
       if (!compId || compId === uid) {
         const ref = refs[uid];
         if (!['Form', 'DynamicDataContainer'].includes(ref.compName)) {
-        // 需要处理BOFramer和PageView这种渲染逻辑
+          // 需要处理BOFramer和PageView这种渲染逻辑
           const uidRefs = engineRelation.getEngineRefsByUid(uid, routerId);
           if (uidRefs) {
             await getRenderRefsFormValues(uidRefs.refs);
           }
         } else {
-          const { formCode, form, scrollToErrorField, compName, _innerDynamicDataContainer } = ref;
+          const {
+            formCode,
+            form,
+            scrollToErrorField,
+            compName,
+            _innerDynamicDataContainer,
+          } = ref;
           if (!formCode) {
             continue;
           }
@@ -219,7 +242,7 @@ export const getOwnFormValues = async (
           try {
             const value = await getFieldsValue(ref);
             if (type === 'default') {
-            // 1. 首次赋值， 包含循环容器内逻辑
+              // 1. 首次赋值， 包含循环容器内逻辑
               if (!values[formCode]) {
                 values[formCode] = value;
                 formCodeTypes[formCode] = 'default';
@@ -227,23 +250,25 @@ export const getOwnFormValues = async (
               }
               // 2. 存在编码相同时，切换成数组类型
               if (formCodeTypes[formCode] === 'default') {
-              // 处理页面中存在多个相同的表单，但是表单编码一样。这时候表现为数组形式
+                // 处理页面中存在多个相同的表单，但是表单编码一样。这时候表现为数组形式
                 values[formCode] = [values[formCode]];
                 formCodeTypes[formCode] = 'array';
               }
 
               // 3. 给数组添加当前值
-              if ((formCodeTypes[formCode] === 'array')) {
+              if (formCodeTypes[formCode] === 'array') {
                 values[formCode].push(value);
               }
             } else if (type === 'inLoop') {
-            // 1. 或许存在一个没包含在循环容器内表单，并且该表单和循环容器下的表单编码相同，
+              // 1. 或许存在一个没包含在循环容器内表单，并且该表单和循环容器下的表单编码相同，
               if (formCodeTypes[formCode] === 'default') {
                 values[formCode] = [values[formCode]];
               }
 
               formCodeTypes[formCode] = 'array';
-              values[formCode] = Array.isArray(values[formCode]) ? values[formCode] : [];
+              values[formCode] = Array.isArray(values[formCode])
+                ? values[formCode]
+                : [];
               values[formCode].push(value);
             }
           } catch (error) {
@@ -276,7 +301,7 @@ export const getOwnFormValues = async (
 export const getAllFormValues = (options: {
   currentRefs: RefsType;
   engineRelation: EngineRelationMethods;
-  routerId: string,
+  routerId: string;
 }) => {
   const { currentRefs, engineRelation, routerId } = options;
   const forms: RefsType[] = [];
@@ -308,7 +333,9 @@ export const getAllFormValues = (options: {
  * @param refs
  */
 export const getBOFramers = (compId: string, refs: RefsType = {}) => {
-  const boframerUids = Object.keys(refs).filter(id => refs[id].compId === compId);
+  const boframerUids = Object.keys(refs).filter(
+    (id) => refs[id].compId === compId,
+  );
   // 如果没找到组件，就返回null
   if (!boframerUids.length) {
     return null;
@@ -316,19 +343,22 @@ export const getBOFramers = (compId: string, refs: RefsType = {}) => {
 
   const boframerRefs: RefsType = {};
 
-  boframerUids.forEach(uid => {
+  boframerUids.forEach((uid) => {
     boframerRefs[uid] = refs[uid];
   });
 
   return boframerRefs;
 };
 
-export const getBOFramerOwnFormValues = async (options: {
-  refs: RefsType;
-  engineRelation: EngineRelationMethods;
-  routerId: string,
-  compId: string
-}, getFieldsValue: (form: any) => void,) => {
+export const getBOFramerOwnFormValues = async (
+  options: {
+    refs: RefsType;
+    engineRelation: EngineRelationMethods;
+    routerId: string;
+    compId: string;
+  },
+  getFieldsValue: (form: any) => void,
+) => {
   const { engineRelation, routerId, refs, compId } = options;
 
   // 2种情况 1只有单个业务组件 2 业务组件放在循环容器下
@@ -353,15 +383,20 @@ export const getBOFramerOwnFormValues = async (options: {
 };
 
 // 获取BOFramer下所有表单
-export const getBoframerOwnForms = (options: { currentRefs: RefsType; engineRelation: EngineRelationMethods; routerId: string, compId: string }) => {
+export const getBoframerOwnForms = (options: {
+  currentRefs: RefsType;
+  engineRelation: EngineRelationMethods;
+  routerId: string;
+  compId: string;
+}) => {
   const { compId, currentRefs, engineRelation, routerId } = options;
   const boframers = getBOFramers(compId, currentRefs);
 
   const forms: RefsType[] = [];
   const getAllForms = (refs: RefsType | null) => {
-    Object.keys(refs || {}).forEach(uid => {
+    Object.keys(refs || {}).forEach((uid) => {
       const engineRef = engineRelation.getEngineRefsByUid(uid, routerId);
-      Object.keys(engineRef?.refs || {}).forEach(compUid => {
+      Object.keys(engineRef?.refs || {}).forEach((compUid) => {
         const r = engineRef?.refs[compUid];
         getAllForms(r);
         if (r.compName === 'Form') {

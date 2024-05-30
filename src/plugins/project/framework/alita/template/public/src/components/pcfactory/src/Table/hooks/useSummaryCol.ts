@@ -1,29 +1,33 @@
+import { TableColumnProps } from 'antd';
 import { useMemo } from 'react';
 import { SummaryConfig } from '../types/prop';
-import { TableColumnProps } from 'antd';
 
 export type ColItem = {
-
   /**
    * 总结行类型 sub 合计
    */
-  'operateType': 'sub',
+  operateType: 'sub';
 
   /**
    * 总结行涉及列key集合
    */
-  'group': string[]
-}
+  group: string[];
+};
 
-export type Column = {key?: string; dataIndex: string; type?: string;
+export type Column = {
+  key?: string;
+  dataIndex: string;
+  type?: string;
   fixed?: TableColumnProps<any>['fixed'];
-  align?: TableColumnProps<any>['align'], children?: Array<Column>}
+  align?: TableColumnProps<any>['align'];
+  children?: Array<Column>;
+};
 export interface SummaryProps<T> {
-  summaryConfig?: SummaryConfig,
+  summaryConfig?: SummaryConfig;
   readonly dataSource?: Array<T>;
-  columns?: Array<Column>
+  columns?: Array<Column>;
 }
-const useSummaryCol = <T, >(props: SummaryProps<T>) => {
+const useSummaryCol = <T>(props: SummaryProps<T>) => {
   const { summaryConfig, dataSource, columns } = props;
   const { summaryType, summaryGroup } = useMemo(() => {
     if (!summaryConfig) {
@@ -35,15 +39,19 @@ const useSummaryCol = <T, >(props: SummaryProps<T>) => {
     const { type } = summaryConfig;
     return {
       summaryType: type,
-      summaryGroup: type === 'single' ? summaryConfig?.col : summaryConfig?.group,
+      summaryGroup:
+        type === 'single' ? summaryConfig?.col : summaryConfig?.group,
     };
   }, [summaryConfig]);
 
   const summaryColIndexMap = useMemo(() => {
-    const map = new Map<string, {
-      index: number,
-      operateType: ColItem['operateType']
-    }>();
+    const map = new Map<
+      string,
+      {
+        index: number;
+        operateType: ColItem['operateType'];
+      }
+    >();
     if (summaryType === 'none') {
       return map;
     }
@@ -68,17 +76,17 @@ const useSummaryCol = <T, >(props: SummaryProps<T>) => {
   const summaryColList = useMemo(() => {
     if (summaryColIndexMap.size === 0) return [];
     const col: Array<{
-      title: string | number,
-      colSpan?: number,
-      dataIndexList?: string[],
-      operateType?: ColItem['operateType'],
+      title: string | number;
+      colSpan?: number;
+      dataIndexList?: string[];
+      operateType?: ColItem['operateType'];
       prev?: {
         index: number;
         fixed?: TableColumnProps<T>['fixed'];
       };
-      align?: TableColumnProps<T>['align']
+      align?: TableColumnProps<T>['align'];
     }> = [];
-      // 标记当前已经记录的总结列
+    // 标记当前已经记录的总结列
     const currentSummaryColMap: Record<number, (typeof col)[number]> = {};
     columns?.forEach((c, i) => {
       if (i === 0 && c.type === 'orderCol' && summaryConfig?.name) {
@@ -98,7 +106,11 @@ const useSummaryCol = <T, >(props: SummaryProps<T>) => {
           const { index, operateType } = summaryCol;
           if (currentSummaryColMap[index]) {
             const prevItem = currentSummaryColMap[index];
-            if (prevItem?.prev && i === prevItem?.prev?.index + 1 && prevItem?.prev?.fixed === c?.fixed) {
+            if (
+              prevItem?.prev &&
+              i === prevItem?.prev?.index + 1 &&
+              prevItem?.prev?.fixed === c?.fixed
+            ) {
               // 勾选列是相邻的，则允许合并
               item = prevItem;
             } else {
@@ -126,7 +138,7 @@ const useSummaryCol = <T, >(props: SummaryProps<T>) => {
         col.push(item);
       }
     });
-    const dataMap:Record<string, any[]> = {};
+    const dataMap: Record<string, any[]> = {};
     dataSource?.forEach((v) => {
       Object.keys(v || {}).forEach((key: string) => {
         if (!dataMap[key]) {
@@ -150,17 +162,27 @@ const useSummaryCol = <T, >(props: SummaryProps<T>) => {
               // 转换失败不合计
               return NaN;
             }
-            data.forEach((v) => { val += Number(v); });
+            data.forEach((v) => {
+              val += Number(v);
+            });
             return val;
           }, 0);
-          item.title = isNaN(sub) ? '' : sub.toFixed(summaryConfig?.decimal || 0);
+          item.title = isNaN(sub)
+            ? ''
+            : sub.toFixed(summaryConfig?.decimal || 0);
           break;
         }
         default:
       }
       return item;
     });
-  }, [dataSource, summaryConfig?.name, summaryConfig?.decimal, columns, summaryColIndexMap]);
+  }, [
+    dataSource,
+    summaryConfig?.name,
+    summaryConfig?.decimal,
+    columns,
+    summaryColIndexMap,
+  ]);
   return {
     summaryColList,
   };

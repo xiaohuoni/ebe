@@ -1,13 +1,13 @@
-import { Ref, useImperativeHandle, useMemo, useRef, useState } from 'react';
-import type { ITimelineCallBack } from 'rc-tween-one';
 import _ from 'lodash';
+import type { ITimelineCallBack } from 'rc-tween-one';
+import { Ref, useImperativeHandle, useMemo, useRef, useState } from 'react';
 
 export interface AnimationOpts {
-  effect: string,
-  animation: any[],
-  repeat: number | 'custom',
-  reverse: boolean,
-  ease: string,
+  effect: string;
+  animation: any[];
+  repeat: number | 'custom';
+  reverse: boolean;
+  ease: string;
   autoPlay: boolean;
   repeatCustom: number;
   left?: string | 'custom';
@@ -29,7 +29,7 @@ const removeNullOrUndefined = (obj: Record<string, any>) => {
   if (!obj) {
     return obj;
   }
-  Object.keys(obj).forEach(key => {
+  Object.keys(obj).forEach((key) => {
     if (_.isNull(obj[key]) || _.isUndefined(obj[key])) {
       delete obj[key];
     }
@@ -37,7 +37,10 @@ const removeNullOrUndefined = (obj: Record<string, any>) => {
   return obj;
 };
 
-export const useAnimation = (opts: AnimationOpts, ref: Ref<unknown> | undefined) => {
+export const useAnimation = (
+  opts: AnimationOpts,
+  ref: Ref<unknown> | undefined,
+) => {
   const {
     effect,
     repeatCustom,
@@ -72,13 +75,12 @@ export const useAnimation = (opts: AnimationOpts, ref: Ref<unknown> | undefined)
     }
   };
 
-
   /**
    * 播放动画
    */
   const playAnimation = () => {
     onStart();
-    setMoment(needRestartRef.current ? 0 : null as any);
+    setMoment(needRestartRef.current ? 0 : (null as any));
     setPaused(false);
     needRestartRef.current = false;
   };
@@ -107,7 +109,7 @@ export const useAnimation = (opts: AnimationOpts, ref: Ref<unknown> | undefined)
       opts.onEnd(v);
     }
     needRestartRef.current = true;
-    setMoment((null as any));
+    setMoment(null as any);
     setPaused(true);
   };
 
@@ -170,7 +172,7 @@ export const useAnimation = (opts: AnimationOpts, ref: Ref<unknown> | undefined)
 
   const IAnimation = useMemo(() => {
     const animation = opts.animation || [];
-    return animation?.map(item => ({
+    return animation?.map((item) => ({
       ...item,
       ...item.style,
     }));
@@ -202,7 +204,6 @@ export const useAnimation = (opts: AnimationOpts, ref: Ref<unknown> | undefined)
       y: newY,
     };
   }, [opts.left, opts.top, leftCustom, topCustom]);
-
 
   const getMoveAni = () => {
     const ani: any = {

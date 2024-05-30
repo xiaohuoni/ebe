@@ -6,4 +6,4 @@ export default interface LXRadarChartPorps extends RadarChartPorps {
   visible?: boolean;
   className?: string;
   style?: React.CSSProperties; // 样式
-};
+}

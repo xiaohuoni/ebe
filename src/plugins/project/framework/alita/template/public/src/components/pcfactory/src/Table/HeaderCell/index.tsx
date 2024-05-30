@@ -3,9 +3,7 @@ import React from 'react';
 import { Resizable } from 'react-resizable';
 import type { HeaderCellProps } from '../types/headerCell';
 
-const HeaderCell = (
-  props: HeaderCellProps,
-) => {
+const HeaderCell = (props: HeaderCellProps) => {
   const { onResize, width, isFlexColumn, ...restProps } = props;
 
   if (!isFlexColumn) {

@@ -2,15 +2,10 @@ import { useEffect, useState } from 'react';
 import { useExpandable as useTableExpandable } from '../../Table/hooks';
 
 const useExpandable = (props: any) => {
-  const {
-    setInnerDataSource,
-  } = props;
+  const { setInnerDataSource } = props;
 
   const useTableExpandableReturn = useTableExpandable(props);
-  const {
-    childrenColumnName,
-    expandable,
-  } = useTableExpandableReturn;
+  const { childrenColumnName, expandable } = useTableExpandableReturn;
 
   const [mode, setMode] = useState('all');
 
@@ -28,20 +23,20 @@ const useExpandable = (props: any) => {
           record?.[childrenColumnName] === null ||
           record?.[childrenColumnName] === undefined ||
           !(childrenColumnName in record) ||
-          (Array.isArray(record?.[childrenColumnName]) && record?.[childrenColumnName]?.length === 0)
+          (Array.isArray(record?.[childrenColumnName]) &&
+            record?.[childrenColumnName]?.length === 0)
         ) {
           // 为非异步场景，且没有下级数据，则修正为叶子节点
           isLeaf = true;
         }
       }
     }
-    
+
     return expandable?.expandIcon({
       ...props,
       isLeaf,
     });
   };
-
 
   useEffect(() => {
     // 当模式为异步时，

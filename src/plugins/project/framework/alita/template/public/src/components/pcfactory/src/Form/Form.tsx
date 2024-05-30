@@ -1,28 +1,28 @@
+import { LingxiForwardRef } from '@lingxiteam/types';
+import { Col, Form as AntdForm, Row } from 'antd';
+import type { FormLayout } from 'antd/lib/form/Form';
+import { isEqual } from 'lodash';
 import React, {
-  useImperativeHandle,
   Children,
   cloneElement,
-  useRef,
   useEffect,
+  useImperativeHandle,
   useMemo,
+  useRef,
   useState,
 } from 'react';
-import { Form as AntdForm, Row, Col } from 'antd';
-import { LingxiForwardRef } from '@lingxiteam/types';
 import {
-  FormProvider,
   FormContextProps,
+  FormProvider,
   getFormItemClassName,
-  usePrintMode,
   PrintContainer,
   useDynamicData,
+  usePrintMode,
 } from '../utils';
-import type { FormLayout } from 'antd/lib/form/Form';
-import WrapperForm from './WrapperForm';
+import { useCreation } from '../utils/ahooks';
 import useBackgroundStyle from '../View/useBackgroundStyle';
 import { useFormStatus } from './useFormStatus';
-import { isEqual } from 'lodash';
-import { useCreation } from '../utils/ahooks';
+import WrapperForm from './WrapperForm';
 
 const EMPTY_COL = { span: 'none' }; // 避免每次都创建对象造成无用渲染
 const FULL_COL = { span: 24 };
@@ -50,18 +50,21 @@ export interface FormProps {
 
 const useInit = (cb: () => () => void) => {
   const initialRef = useRef(true);
-  const unmountRef = useRef(() => { });
+  const unmountRef = useRef(() => {});
 
   if (initialRef.current) {
     initialRef.current = false;
     unmountRef.current = cb();
   }
 
-  useEffect(() => () => {
-    if (typeof unmountRef.current === 'function') {
-      unmountRef.current();
-    }
-  }, [unmountRef.current]);
+  useEffect(
+    () => () => {
+      if (typeof unmountRef.current === 'function') {
+        unmountRef.current();
+      }
+    },
+    [unmountRef.current],
+  );
 };
 
 export const ViewFormItem = (props: any) => {
@@ -113,19 +116,27 @@ export const ViewFormItem = (props: any) => {
     return <Col key={`blank-${i}`} span={colSpan} style={finalStyle} />;
   }
   return (
-    <Col key={schemaProps['data-compid']} span={selfSpan || colSpan} style={finalStyle}>
+    <Col
+      key={schemaProps['data-compid']}
+      span={selfSpan || colSpan}
+      style={finalStyle}
+    >
       <AntdForm.Item wrapperCol={FULL_COL}>{child}</AntdForm.Item>
     </Col>
   );
 };
 
-type FormChildrenType = Pick<FormProps, 'colSpan' | 'rowSpace' | 'layout' | 'colSpace'> & {
+type FormChildrenType = Pick<
+  FormProps,
+  'colSpan' | 'rowSpace' | 'layout' | 'colSpace'
+> & {
   children?: React.ReactNode;
   formRef?: any;
   engineApis?: any;
-}
+};
 export const FormChildren = (props: FormChildrenType) => {
-  const { children, colSpan, formRef, rowSpace, layout, colSpace, engineApis } = props;
+  const { children, colSpan, formRef, rowSpace, layout, colSpace, engineApis } =
+    props;
 
   // 兼容存量数据中，表单没有列间距的情况
   const compatColSpace = (() => {
@@ -140,34 +151,44 @@ export const FormChildren = (props: FormChildrenType) => {
    */
   const layoutChildren = () => {
     const { getVisible, stateListener } = engineApis;
-    const components: (React.ReactChild | React.ReactFragment | React.ReactPortal)[] = [];
+    const components: (
+      | React.ReactChild
+      | React.ReactFragment
+      | React.ReactPortal
+    )[] = [];
     Children.forEach(Children.toArray(children), (child, index) => {
       if (!React.isValidElement(child)) {
         components.push(child);
         return;
       }
-  
+
       const { schema } = child.props;
       const { compType, props: schemaProps } = schema || {};
-  
+
       if (compType !== undefined && compType !== 2) {
-        const { formItemIndex, hidden, style: childStyle, selfSpan } = schemaProps;
-        const { display: customDisplay, visibility: customVisibility } = childStyle || {};
-  
+        const {
+          formItemIndex,
+          hidden,
+          style: childStyle,
+          selfSpan,
+        } = schemaProps;
+        const { display: customDisplay, visibility: customVisibility } =
+          childStyle || {};
+
         const changeColStyle = () => {
           const colStyle: React.CSSProperties = {};
-  
+
           if (hidden || (customDisplay && customDisplay === 'none')) {
             colStyle.display = 'none';
           }
-  
+
           if (customVisibility) {
             colStyle.visibility = customVisibility;
           }
-  
+
           return colStyle;
         };
-  
+
         // 中间间隔组件的个数
         const gap = formItemIndex - index || 0;
         new Array(gap).fill(0).forEach((_, i) => {
@@ -185,7 +206,7 @@ export const FormChildren = (props: FormChildrenType) => {
             />,
           );
         });
-  
+
         components.push(
           <ViewFormItem
             style={changeColStyle()}
@@ -202,10 +223,12 @@ export const FormChildren = (props: FormChildrenType) => {
         );
         return;
       }
-  
-      components.push(cloneElement(child, { extendProps: { isFormRootChild: true } } as any));
+
+      components.push(
+        cloneElement(child, { extendProps: { isFormRootChild: true } } as any),
+      );
     });
-  
+
     return components;
   };
 
@@ -246,18 +269,23 @@ const Form = LingxiForwardRef<any, FormProps>((props, ref) => {
   const formRef = useRef<HTMLDivElement>(null);
   const dynamicContext = useDynamicData() || {};
 
-  const { showPrintContainer, loadPrint, selectorKey } = usePrintMode(props.$$componentItem.uid);
+  const { showPrintContainer, loadPrint, selectorKey } = usePrintMode(
+    props.$$componentItem.uid,
+  );
 
   // 保存值变化回调，
   const valueChangeFnRef = useRef<(changedValues: any, values: any) => void>();
 
-  const { backgroundStyle } = useBackgroundStyle({ engineApis, backgroundType, mode: 'engine' });
+  const { backgroundStyle } = useBackgroundStyle({
+    engineApis,
+    backgroundType,
+    mode: 'engine',
+  });
 
   const { run, addListener, removeListener, status } = useFormStatus({
     disabled: props.disabled,
     readonly: props.readOnly,
   });
-
 
   // 由于需要考虑loop等组件，可能存在多个相同的字段名，自行研发
   const scrollToError = (errorInfo: any) => {
@@ -286,7 +314,10 @@ const Form = LingxiForwardRef<any, FormProps>((props, ref) => {
   /**
    * 保存表单值预处理表单值的方法
    */
-  const preproccessSetFormValues = (fileProps: string, fn: (value: any) => any) => {
+  const preproccessSetFormValues = (
+    fileProps: string,
+    fn: (value: any) => any,
+  ) => {
     if (fileProps) {
       patchSetFormsValueFn[fileProps] = fn;
     }
@@ -296,85 +327,93 @@ const Form = LingxiForwardRef<any, FormProps>((props, ref) => {
    * 需要上传给动态数据容器的表单方法
    */
 
-  const formRefHandler = useCreation(() => ({
-
-    /**
-     * 校验并滚动到某字段
-     */
-    validateFormAndScroll: (errScroll: boolean = true) => {
-      return form.validateFields().catch(errorInfo => {
-        if (errScroll) {
-          scrollToError(errorInfo);
-        }
-        throw errorInfo;
-      });
-    },
-
-    /**
-     * 滚动到错误的位置
-     */
-    scrollToErrorField: (errorInfo: any) => {
-      scrollToError(errorInfo);
-    },
-
-    /**
-     * 获取表单值
-     */
-    getFieldsValue: () => {
-      return form.getFieldsValue();
-    },
-
-    /**
-     * 设置表单值
-     * @param values
-     * @param refs 低代码平台引擎内所有的refs，其他平台不要使用
-     */
-    setFieldsValue(values: any, refs: Record<string, any>) {
-      const target: any = {};
-      const relation: any = formChildRelation.current;
-      Object.keys(values).forEach(key => {
-        target[key] = values[key];
-        if (typeof patchSetFormsValueFn[key] === 'function') {
-          target[key] = patchSetFormsValueFn[key](target[key]);
-        }
-        if (refs && relation) {
-          const relation = formChildRelation.current;
-          // @ts-ignore
-          const comId = relation?.[key];
-          if (comId) {
-            refs?.[comId]?.onlySyncValue(target[key]);
+  const formRefHandler = useCreation(
+    () => ({
+      /**
+       * 校验并滚动到某字段
+       */
+      validateFormAndScroll: (errScroll: boolean = true) => {
+        return form.validateFields().catch((errorInfo) => {
+          if (errScroll) {
+            scrollToError(errorInfo);
           }
-        }
-        if (!isEqual(form.getFieldValue(key), target[key]) && typeof onValuesChange === 'function') {
-          if (engineApis?.compatConfig.cmd.setFieldsValueToOnValuesChange === true) {
-            onValuesChange(key, target[key]);
+          throw errorInfo;
+        });
+      },
+
+      /**
+       * 滚动到错误的位置
+       */
+      scrollToErrorField: (errorInfo: any) => {
+        scrollToError(errorInfo);
+      },
+
+      /**
+       * 获取表单值
+       */
+      getFieldsValue: () => {
+        return form.getFieldsValue();
+      },
+
+      /**
+       * 设置表单值
+       * @param values
+       * @param refs 低代码平台引擎内所有的refs，其他平台不要使用
+       */
+      setFieldsValue(values: any, refs: Record<string, any>) {
+        const target: any = {};
+        const relation: any = formChildRelation.current;
+        Object.keys(values).forEach((key) => {
+          target[key] = values[key];
+          if (typeof patchSetFormsValueFn[key] === 'function') {
+            target[key] = patchSetFormsValueFn[key](target[key]);
           }
-        }
-      });
-      
-      form.setFieldsValue(target);
-    },
+          if (refs && relation) {
+            const relation = formChildRelation.current;
+            // @ts-ignore
+            const comId = relation?.[key];
+            if (comId) {
+              refs?.[comId]?.onlySyncValue(target[key]);
+            }
+          }
+          if (
+            !isEqual(form.getFieldValue(key), target[key]) &&
+            typeof onValuesChange === 'function'
+          ) {
+            if (
+              engineApis?.compatConfig.cmd.setFieldsValueToOnValuesChange ===
+              true
+            ) {
+              onValuesChange(key, target[key]);
+            }
+          }
+        });
 
-    /**
-     * 重置表单值
-     */
-    resetFields() {
-      form.resetFields();
-    },
+        form.setFieldsValue(target);
+      },
 
-    // 设置禁用状态
-    setDisabled: (v: boolean | 'toggle') => {
-      run('disabled', v === 'toggle' ? !status.disabled : v);
-    },
-    // 设置只读状态
-    setReadOnly: (v: boolean | 'toggle') => {
-      run('readonly', v === 'toggle' ? !status.readonly : v);
-    },
-    scrollToError,
-    // 作为ref标志，表示form已经被渲染了
-    has: true,
-    form,
-  }), [status]);
+      /**
+       * 重置表单值
+       */
+      resetFields() {
+        form.resetFields();
+      },
+
+      // 设置禁用状态
+      setDisabled: (v: boolean | 'toggle') => {
+        run('disabled', v === 'toggle' ? !status.disabled : v);
+      },
+      // 设置只读状态
+      setReadOnly: (v: boolean | 'toggle') => {
+        run('readonly', v === 'toggle' ? !status.readonly : v);
+      },
+      scrollToError,
+      // 作为ref标志，表示form已经被渲染了
+      has: true,
+      form,
+    }),
+    [status],
+  );
 
   /**
    * 动态数据容器ref上报
@@ -403,7 +442,7 @@ const Form = LingxiForwardRef<any, FormProps>((props, ref) => {
      * @returns
      */
     getChildRelation: () => formChildRelation.current,
-    
+
     /**
      * 打印模式钩子
      */
@@ -419,7 +458,10 @@ const Form = LingxiForwardRef<any, FormProps>((props, ref) => {
 
   // 转化成antd接收的数据
   const labelCol = useMemo(() => ({ span: props.labelCol }), [props.labelCol]);
-  const wrapperCol = useMemo(() => ({ span: props.wrapperCol }), [props.wrapperCol]);
+  const wrapperCol = useMemo(
+    () => ({ span: props.wrapperCol }),
+    [props.wrapperCol],
+  );
 
   const providerValue: FormContextProps = useMemo(
     () => ({
@@ -440,7 +482,17 @@ const Form = LingxiForwardRef<any, FormProps>((props, ref) => {
       preproccessSetFormValues,
       colSpace,
     }),
-    [form, layout, colSpan, labelCol, wrapperCol, colon, labelAlign, addListener, removeListener],
+    [
+      form,
+      layout,
+      colSpan,
+      labelCol,
+      wrapperCol,
+      colon,
+      labelAlign,
+      addListener,
+      removeListener,
+    ],
   );
 
   const formStyle: React.CSSProperties = {
@@ -477,7 +529,11 @@ const Form = LingxiForwardRef<any, FormProps>((props, ref) => {
               if (dynamicContext._innerDynamicDataContainer) {
                 if (keys.length > 0) {
                   const name = keys[0];
-                  dynamicContext.onFormChange(formCode!, name, changedValues[name]);
+                  dynamicContext.onFormChange(
+                    formCode!,
+                    name,
+                    changedValues[name],
+                  );
                 }
               }
             }}
@@ -519,7 +575,11 @@ const Form = LingxiForwardRef<any, FormProps>((props, ref) => {
                 style={formStyle}
                 {...extendProps}
               >
-                <FormChildren formRef={formRef} {...props} engineApis={engineApis}>
+                <FormChildren
+                  formRef={formRef}
+                  {...props}
+                  engineApis={engineApis}
+                >
                   {props.children}
                 </FormChildren>
               </AntdForm>

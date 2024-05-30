@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useMemo } from 'react';
 import { LingxiForwardRef } from '@lingxiteam/types';
 import QrCodeWithLogo from 'qr-code-with-logo';
-import { setRgbTo16, isImgUrl } from '../utils/common';
+import React, { useEffect, useMemo, useState } from 'react';
+import { isImgUrl, setRgbTo16 } from '../utils/common';
 import { logoSizeTrans } from './const';
 // @ts-ignore
 import IconDefaultLogo from '../Img/assets/placeholder.png';
@@ -23,8 +23,19 @@ export interface MyQRCodeProps {
 const prefixCls = 'qRCode';
 
 const QRCode = LingxiForwardRef<any, MyQRCodeProps>((props, ref) => {
-  const { content, isLogo, fileCode, src, srcType, color: rbgaColor,
-    logoSize: logoSizeData, onClick, getEngineApis, visible = true, ...restProps } = props;
+  const {
+    content,
+    isLogo,
+    fileCode,
+    src,
+    srcType,
+    color: rbgaColor,
+    logoSize: logoSizeData,
+    onClick,
+    getEngineApis,
+    visible = true,
+    ...restProps
+  } = props;
   const [url, setUrl] = useState<any>();
   const [logoSrc, setLogoSrc] = useState<any>();
   const [flag, setFlag] = useState(false);
@@ -39,7 +50,9 @@ const QRCode = LingxiForwardRef<any, MyQRCodeProps>((props, ref) => {
     if (srcType === 'fileCode' && fileCode) {
       (async () => {
         try {
-          setLogoSrc(await engineApis?.service?.getAppFileUrlByFileCode(fileCode));
+          setLogoSrc(
+            await engineApis?.service?.getAppFileUrlByFileCode(fileCode),
+          );
         } catch (e) {
           setLogoSrc(null);
           console.log(e);
@@ -57,7 +70,10 @@ const QRCode = LingxiForwardRef<any, MyQRCodeProps>((props, ref) => {
     return setRgbTo16(rbgaColor);
   }, [rbgaColor]);
 
-  const logoSize = useMemo(() => logoSizeData && logoSizeTrans[logoSizeData], [logoSizeData]);
+  const logoSize = useMemo(
+    () => logoSizeData && logoSizeTrans[logoSizeData],
+    [logoSizeData],
+  );
 
   const getQrCodeUrl: any = (config: any) => {
     const image = new Image();
@@ -126,6 +142,5 @@ const QRCode = LingxiForwardRef<any, MyQRCodeProps>((props, ref) => {
     </div>
   ) : null;
 });
-
 
 export default QRCode;

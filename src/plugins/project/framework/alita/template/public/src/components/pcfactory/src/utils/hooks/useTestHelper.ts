@@ -1,4 +1,3 @@
-
 interface TestHelperOptions {
   fieldName?: string;
   disabled?: boolean;
@@ -16,7 +15,6 @@ export const toString = (val: any) => {
 
   return val;
 };
-
 
 export const getTestHelperProps = (props: TestHelperOptions) => {
   const { fieldName, disabled } = props;

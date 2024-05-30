@@ -1,10 +1,9 @@
-import React from 'react';
-import LXRadarChartPorps from './PropsType';
-import { useHiddenStyle } from '../utils';
 import { LXChart } from '@lingxiteam/charts-common';
 import { LingXiFC } from '@lingxiteam/types';
+import React from 'react';
+import { useHiddenStyle } from '../utils';
 import './index.less';
-
+import LXRadarChartPorps from './PropsType';
 
 // const prefixCls = 'lXRadarChart';
 

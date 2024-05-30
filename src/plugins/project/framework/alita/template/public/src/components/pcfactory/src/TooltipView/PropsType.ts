@@ -11,7 +11,7 @@ export interface TooltiProps extends React.HTMLProps<HTMLDivElement> {
   label?: any;
   tipSize?: string;
   tipWidth?: string;
-  tipHeight?:string;
+  tipHeight?: string;
   engineApis?: EngineApisType;
   getEngineApis?: any;
   $$componentItem?: any;

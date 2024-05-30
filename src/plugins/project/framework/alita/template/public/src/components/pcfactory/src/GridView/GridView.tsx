@@ -1,15 +1,15 @@
+import { LingxiForwardRef } from '@lingxiteam/types';
+import { Col, Row } from 'antd';
+import classNames from 'classnames';
 import React, {
+  createContext,
   useCallback,
-  useState,
   useEffect,
   useImperativeHandle,
-  useRef,
-  createContext,
   useMemo,
+  useRef,
+  useState,
 } from 'react';
-import classNames from 'classnames';
-import { Row, Col } from 'antd';
-import { LingxiForwardRef } from '@lingxiteam/types';
 // @ts-ignore
 import { IconCheckSvg, IconNormalCheckSvg } from '@lingxiteam/assets';
 import { useListenProps } from '../utils';
@@ -53,7 +53,9 @@ const gridViewCls = 'ued-grid-view';
 
 const WrapperEditorComp: React.FC<WrapperProps> = ({ children }) =>
   React.cloneElement(children, {
-    className: `${gridViewCls}-item ${gridViewCls}-item-edit ${children.props.className || ''}`,
+    className: `${gridViewCls}-item ${gridViewCls}-item-edit ${
+      children.props.className || ''
+    }`,
   });
 
 const WrapperDisableComps: React.FC<WrapperProps> = ({ children }) =>
@@ -71,7 +73,9 @@ const renderIcon = ({ checked, selectImg, normalImg }: any) => {
   if (normalImg) {
     return <img src={normalImg} className={`${gridViewCls}-icon`} alt="" />;
   }
-  return <img src={IconNormalCheckSvg} className={`${gridViewCls}-icon`} alt="" />;
+  return (
+    <img src={IconNormalCheckSvg} className={`${gridViewCls}-icon`} alt="" />
+  );
 };
 
 const NoCheckBox = (item: {
@@ -86,9 +90,13 @@ const NoCheckBox = (item: {
   return (
     <div
       style={itemStyle}
-      className={classNames(`${gridViewCls}-blockSelect`, `${gridViewCls}-nobox`, {
-        [`${gridViewCls}-select`]: checked,
-      })}
+      className={classNames(
+        `${gridViewCls}-blockSelect`,
+        `${gridViewCls}-nobox`,
+        {
+          [`${gridViewCls}-select`]: checked,
+        },
+      )}
       onClick={onChange}
     >
       <div className={classNames(`${gridViewCls}-content`)}>{children}</div>
@@ -106,18 +114,19 @@ const CheckBox = (item: {
   disabled?: false | undefined;
   onChange: any;
 }) => {
-  const {
-    children,
-    selectImg,
-    normalImg,
-    checked,
-    itemStyle,
-    onChange,
-  } = item;
+  const { children, selectImg, normalImg, checked, itemStyle, onChange } = item;
 
   return (
-    <div style={itemStyle} className={classNames(`${gridViewCls}-blockSelect`, `${gridViewCls}-showIcon`)}>
-      <div onClick={() => onChange(item)}>{renderIcon({ checked, selectImg, normalImg })}</div>
+    <div
+      style={itemStyle}
+      className={classNames(
+        `${gridViewCls}-blockSelect`,
+        `${gridViewCls}-showIcon`,
+      )}
+    >
+      <div onClick={() => onChange(item)}>
+        {renderIcon({ checked, selectImg, normalImg })}
+      </div>
       <div className={classNames(`${gridViewCls}-content`)}>{children}</div>
     </div>
   );
@@ -210,7 +219,7 @@ const MyGrid = (props: MyGridView) => {
     hspace = 0,
     style,
     mediaLayout,
-    onChange: uOnChange = (e: any) => { },
+    onChange: uOnChange = (e: any) => {},
     fixedWidth = false,
     span,
     isEditor = true,
@@ -237,7 +246,8 @@ const MyGrid = (props: MyGridView) => {
 
   const onChange = (restItem: Record<string, any>, index: any) => {
     // eslint-disable-next-line @typescript-eslint/no-shadow
-    const value = typeof restItem === 'object' ? restItem[valueKey || 'value'] : index;
+    const value =
+      typeof restItem === 'object' ? restItem[valueKey || 'value'] : index;
     if (!isMultiple) {
       setValues([value]);
       if (uOnChange) {
@@ -302,14 +312,14 @@ const MyGrid = (props: MyGridView) => {
     return [props.itemKey || 'item', props.indexKey || 'i'];
   }, []);
 
-
   return (
     <Row gutter={[vspace, hspace]} style={style}>
       {(Array.isArray(gridData) ? gridData : []).map((item, index) => {
         const restItem = item;
         const checked = getChecked(restItem, index);
         const itemStyle = !isEditor ? basicStyle : getItemStyle(checked);
-        const gridViewIndex = restItem[valueKey] ?? `${$$componentItem.uid}_${index}`;
+        const gridViewIndex =
+          restItem[valueKey] ?? `${$$componentItem.uid}_${index}`;
 
         const renderProps = {
           itemKey,
@@ -335,7 +345,7 @@ const MyGrid = (props: MyGridView) => {
                   itemStyle={itemStyle}
                   valueKey={valueKey}
                   key={restItem[valueKey]}
-                  {...{ selectImg } as any}
+                  {...({ selectImg } as any)}
                   normalImg={normalImg}
                   item={restItem}
                   index={index}
@@ -353,7 +363,7 @@ const MyGrid = (props: MyGridView) => {
                   colProps={getColProps(restItem, index)}
                   itemStyle={itemStyle}
                   key={restItem[valueKey]}
-                  {...{ valueKey } as any}
+                  {...({ valueKey } as any)}
                   item={restItem}
                   index={index}
                   checked={checked}
@@ -371,7 +381,14 @@ const MyGrid = (props: MyGridView) => {
 };
 
 const SyncGridView = LingxiForwardRef((props: any, ref) => {
-  const { defaultValue, value, valueKey = 'value', onChange, gridViewRef, refGridData } = props;
+  const {
+    defaultValue,
+    value,
+    valueKey = 'value',
+    onChange,
+    gridViewRef,
+    refGridData,
+  } = props;
   const [gridData, setGridData] = useListenProps(props.gridData || []);
   const values = useRef(defaultValue || []);
   useEffect(() => {
@@ -382,7 +399,9 @@ const SyncGridView = LingxiForwardRef((props: any, ref) => {
 
   const getValues = () =>
     gridData?.filter((d: Record<string, any>, i: any) =>
-      typeof d === 'object' ? values.current?.includes(d[valueKey]) : values.current?.includes(i),
+      typeof d === 'object'
+        ? values.current?.includes(d[valueKey])
+        : values.current?.includes(i),
     );
   useEffect(() => {
     if (Array.isArray(refGridData)) {

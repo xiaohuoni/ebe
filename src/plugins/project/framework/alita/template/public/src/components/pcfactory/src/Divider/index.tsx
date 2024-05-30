@@ -1,12 +1,12 @@
 import React from 'react';
+import CenterLineDivider from './components/CenterLineDivider';
+import CenterTabDivider from './components/CenterTabDivider';
+import LeftCardDivider from './components/LeftCardDivider';
+import LeftLineDivider from './components/LeftLineDivider';
+import LeftTabDivider from './components/LeftTabDivider';
+import LeftTopDivider from './components/LeftTopDivider';
 import LxDashed from './components/LxDashed';
 import LxSolid from './components/LxSolid';
-import LeftTopDivider from './components/LeftTopDivider';
-import LeftTabDivider from './components/LeftTabDivider';
-import LeftLineDivider from './components/LeftLineDivider';
-import LeftCardDivider from './components/LeftCardDivider';
-import CenterTabDivider from './components/CenterTabDivider';
-import CenterLineDivider from './components/CenterLineDivider';
 
 export interface MyDividerProps {
   visible: any;
@@ -70,10 +70,11 @@ const MyDivider: React.FC<MyDividerProps> = (props) => {
 
   const dividerStyle = () => {
     let s = { ...style, ...customStyle };
-    if (type === 'vertical') { // 设置默认值
-      s = { width: '1px', height: '12px', ...s };// 垂直
+    if (type === 'vertical') {
+      // 设置默认值
+      s = { width: '1px', height: '12px', ...s }; // 垂直
     } else {
-      s = { width: '100%', height: '1px', ...s };// 水平
+      s = { width: '100%', height: '1px', ...s }; // 水平
     }
     return s;
   };
@@ -100,89 +101,107 @@ const MyDivider: React.FC<MyDividerProps> = (props) => {
     switch (`${dashed}`) {
       case 'true':
         if (type === 'horizontal') {
-          return <LxDashed
+          return (
+            <LxDashed
+              showTitle={showTitle}
+              dividerText={dividerText}
+              titleStyle={titleStyle()}
+              dashedWidth={dashedWidth}
+              dashedMargin={dashedMargin}
+              customStyle={customStyle}
+              style={dividerStyle()}
+              {...restProps}
+            />
+          );
+        }
+        return (
+          <LxSolid
             showTitle={showTitle}
             dividerText={dividerText}
-            titleStyle={titleStyle()}
-            dashedWidth={dashedWidth}
-            dashedMargin={dashedMargin}
-            customStyle={customStyle}
             style={dividerStyle()}
+            type={type}
+            titleStyle={titleStyle()}
             {...restProps}
-          />;
-        }
-        return <LxSolid
-          showTitle={showTitle}
-          dividerText={dividerText}
-          style={dividerStyle()}
-          type={type}
-          titleStyle={titleStyle()}
-          {...restProps}
-        />;
-          
+          />
+        );
+
       case 'leftTop':
-        return <LeftTopDivider
-          titleStyle={titleStyle()}
-          showTitle={showTitle}
-          dividerText={dividerText}
-          style={style}
-          customStyle={customStyle}
-          {...restProps}
-        />;
+        return (
+          <LeftTopDivider
+            titleStyle={titleStyle()}
+            showTitle={showTitle}
+            dividerText={dividerText}
+            style={style}
+            customStyle={customStyle}
+            {...restProps}
+          />
+        );
       case 'leftTab':
-        return <LeftTabDivider
-          titleStyle={titleStyle()}
-          showTitle={showTitle}
-          dividerText={dividerText}
-          style={style}
-          customStyle={customStyle}
-          {...restProps}
-        />;
+        return (
+          <LeftTabDivider
+            titleStyle={titleStyle()}
+            showTitle={showTitle}
+            dividerText={dividerText}
+            style={style}
+            customStyle={customStyle}
+            {...restProps}
+          />
+        );
       case 'leftCard':
-        return <LeftCardDivider
-          titleStyle={titleStyle()}
-          showTitle={showTitle}
-          dividerText={dividerText}
-          style={style}
-          customStyle={customStyle}
-          {...restProps}
-        />;
+        return (
+          <LeftCardDivider
+            titleStyle={titleStyle()}
+            showTitle={showTitle}
+            dividerText={dividerText}
+            style={style}
+            customStyle={customStyle}
+            {...restProps}
+          />
+        );
       case 'leftLine':
-        return <LeftLineDivider
-          titleStyle={titleStyle()}
-          showTitle={showTitle}
-          dividerText={dividerText}
-          style={style}
-          customStyle={customStyle}
-          {...restProps}
-        />;
+        return (
+          <LeftLineDivider
+            titleStyle={titleStyle()}
+            showTitle={showTitle}
+            dividerText={dividerText}
+            style={style}
+            customStyle={customStyle}
+            {...restProps}
+          />
+        );
       case 'centerTab':
-        return <CenterTabDivider
-          titleStyle={titleStyle()}
-          showTitle={showTitle}
-          dividerText={dividerText}
-          style={style}
-          customStyle={customStyle}
-          {...restProps}
-        />;
+        return (
+          <CenterTabDivider
+            titleStyle={titleStyle()}
+            showTitle={showTitle}
+            dividerText={dividerText}
+            style={style}
+            customStyle={customStyle}
+            {...restProps}
+          />
+        );
       case 'centerLine':
-        return <CenterLineDivider
-          titleStyle={titleStyle()}
-          showTitle={showTitle}
-          dividerText={dividerText}
-          style={style}
-          customStyle={customStyle}
-          {...restProps}
-        />;
+        return (
+          <CenterLineDivider
+            titleStyle={titleStyle()}
+            showTitle={showTitle}
+            dividerText={dividerText}
+            style={style}
+            customStyle={customStyle}
+            {...restProps}
+          />
+        );
       default:
-        return <LxSolid
-          showTitle={showTitle}
-          dividerText={dividerText}
-          style={dividerStyle()}
-          type={type}
-          titleStyle={titleStyle()}
-          {...restProps}
-        />;
+        return (
+          <LxSolid
+            showTitle={showTitle}
+            dividerText={dividerText}
+            style={dividerStyle()}
+            type={type}
+            titleStyle={titleStyle()}
+            {...restProps}
+          />
+        );
     }
   };
   return <>{dividerView()}</>;

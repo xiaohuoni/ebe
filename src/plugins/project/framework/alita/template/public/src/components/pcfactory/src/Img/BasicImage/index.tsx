@@ -1,7 +1,15 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const MyImage = (props: any) => {
-  const { defaultSrc, errorSrc, alt, getContainerStyle, imgDisplay, style, ...restProps } = props;
+  const {
+    defaultSrc,
+    errorSrc,
+    alt,
+    getContainerStyle,
+    imgDisplay,
+    style,
+    ...restProps
+  } = props;
   const imageRef = useRef<HTMLImageElement>(null);
   const [src, setSrc] = useState(props.src);
   const [imgStyle, setImgStyle] = useState({});
@@ -11,7 +19,6 @@ const MyImage = (props: any) => {
       setSrc(props.src);
     }
   }, [props.src]);
-
 
   // useEffect(() => {
   //   if (imageRef.current) {
@@ -73,7 +80,9 @@ const MyImage = (props: any) => {
           setComplete(true);
         }}
       />
-      {!complete && <img {...restProps} alt={alt} src={props.defaultSrc} style={myStyle} />}
+      {!complete && (
+        <img {...restProps} alt={alt} src={props.defaultSrc} style={myStyle} />
+      )}
     </>
   );
 };

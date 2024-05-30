@@ -1,8 +1,8 @@
-import React from 'react';
 import { Tooltip } from 'antd';
-import type { UseTooltipProps } from '../PropsType';
+import React from 'react';
 import CommIconEG from '../../Icon';
 import CommIconED from '../../Icon/IconED';
+import type { UseTooltipProps } from '../PropsType';
 
 const toolTipViewCls = 'ued-tooltip-view';
 const toolTipViewIconCls = `${toolTipViewCls}-icon`;
@@ -35,7 +35,11 @@ const useToolTipView = (props: UseTooltipProps) => {
                 mouseLeaveDelay={0.1}
                 overlayClassName={toolTipViewCls}
                 placement={tipPlacement}
-                overlayInnerStyle={tipSize === 'custom' ? { maxWidth: tipWidth, maxHeight: tipHeight } : {}}
+                overlayInnerStyle={
+                  tipSize === 'custom'
+                    ? { maxWidth: tipWidth, maxHeight: tipHeight }
+                    : {}
+                }
               >
                 <CommIcon
                   style={mode !== 'editor' ? { marginRight: '2px' } : {}}
@@ -57,7 +61,11 @@ const useToolTipView = (props: UseTooltipProps) => {
                 mouseLeaveDelay={0.1}
                 overlayClassName={toolTipViewCls}
                 placement={tipPlacement}
-                overlayInnerStyle={tipSize === 'custom' ? { maxWidth: tipWidth, maxHeight: tipHeight } : {}}
+                overlayInnerStyle={
+                  tipSize === 'custom'
+                    ? { maxWidth: tipWidth, maxHeight: tipHeight }
+                    : {}
+                }
               >
                 <CommIcon
                   style={mode !== 'editor' ? { marginLeft: '2px' } : {}}
@@ -80,6 +88,4 @@ const useToolTipView = (props: UseTooltipProps) => {
   return renderLabel();
 };
 
-export {
-  useToolTipView,
-};
+export { useToolTipView };

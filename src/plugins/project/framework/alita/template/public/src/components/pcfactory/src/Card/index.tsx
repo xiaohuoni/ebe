@@ -1,11 +1,11 @@
+import { LingxiForwardRef } from '@lingxiteam/types';
 import { Card, Skeleton } from 'antd';
 import type { CardProps } from 'antd/lib/card';
 import classnames from 'classnames';
 import React, { useImperativeHandle, useMemo, useState } from 'react';
 import CommIcon from '../Icon';
-import useBackgroundStyle from '../View/useBackgroundStyle';
 import { useHiddenStyle } from '../utils';
-import { LingxiForwardRef } from '@lingxiteam/types';
+import useBackgroundStyle from '../View/useBackgroundStyle';
 import useExtendBtn from './useExtendBtn';
 
 export type FunctionHandleType = (e: any) => void;
@@ -101,14 +101,22 @@ const MyCard = LingxiForwardRef<any, MyCardProps>((props, ref) => {
     return {};
   }, [loading]);
   const renderTitle = () => {
-    const cardTitle = titleColor ? <div style={{ color: titleColor }}>{title}</div> : title;
+    const cardTitle = titleColor ? (
+      <div style={{ color: titleColor }}>{title}</div>
+    ) : (
+      title
+    );
 
     if (hasIcon || cardIconType) {
       switch (cardIconType) {
         case 'middle':
           return <div className="ued-card-title">{cardTitle}</div>;
         case 'left':
-          return <div className="ued-card-title ued-card-title-icon-left">{cardTitle}</div>;
+          return (
+            <div className="ued-card-title ued-card-title-icon-left">
+              {cardTitle}
+            </div>
+          );
         case 'auto': {
           const {
             prefixIconIsIconFont,
@@ -136,7 +144,8 @@ const MyCard = LingxiForwardRef<any, MyCardProps>((props, ref) => {
               />
               {cardTitle}
             </div>
-          ); }
+          );
+        }
         case 'none':
           return cardTitle;
         default:
@@ -167,11 +176,23 @@ const MyCard = LingxiForwardRef<any, MyCardProps>((props, ref) => {
       size={size}
       title={renderTitle()}
       headStyle={headStyle}
-      bodyStyle={padding ? { padding, ...backgroundStyle, ...bodyStyleRelative } : { ...backgroundStyle, ...bodyStyleRelative }}
+      bodyStyle={
+        padding
+          ? { padding, ...backgroundStyle, ...bodyStyleRelative }
+          : { ...backgroundStyle, ...bodyStyleRelative }
+      }
       extra={<div className="ued-card-extend">{renderExtendBtn()}</div>}
     >
       {/** Card 的loingd 会导致子容器重新刷新 */}
-      {loading === true && <Skeleton loading active paragraph={{ rows: 4 }} title={false} className="ued-card-children-skeleton" />}
+      {loading === true && (
+        <Skeleton
+          loading
+          active
+          paragraph={{ rows: 4 }}
+          title={false}
+          className="ued-card-children-skeleton"
+        />
+      )}
       {children}
     </Card>
   );

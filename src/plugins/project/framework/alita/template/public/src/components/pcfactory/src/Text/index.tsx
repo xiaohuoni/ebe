@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
 import { LingxiForwardRef } from '@lingxiteam/types';
+import React, { useMemo } from 'react';
 import useDoubleClick from '../utils/hooks/useDoubleClick';
 
 export interface MyTextProps {
@@ -22,9 +22,8 @@ export interface MyTextProps {
   pageState?: any;
   pagePublicState?: any;
   onDoubleClick?: React.MouseEventHandler<any>;
-  onClick?: React.MouseEventHandler<any>
+  onClick?: React.MouseEventHandler<any>;
 }
-
 
 const Text = LingxiForwardRef<any, MyTextProps>((props, ref) => {
   const {
@@ -75,7 +74,8 @@ const Text = LingxiForwardRef<any, MyTextProps>((props, ref) => {
   ): [Record<string, any>, string[]] => {
     const regExpMap: any = {};
     const regExpSort = [...array].sort(
-      (a: any, b: any) => String(b[originKey]).length - String(a[originKey]).length,
+      (a: any, b: any) =>
+        String(b[originKey]).length - String(a[originKey]).length,
     );
     regExpSort.forEach((c) => {
       regExpMap[getRegStr(c[originKey])] = c[targetKey];
@@ -88,12 +88,23 @@ const Text = LingxiForwardRef<any, MyTextProps>((props, ref) => {
     return map[key];
   };
 
-  const getFinalStr = (array: string[], originKey: string, targetKey: string) => {
-    const [customRegMap, customRegSort] = getRegMap(array, originKey, targetKey);
+  const getFinalStr = (
+    array: string[],
+    originKey: string,
+    targetKey: string,
+  ) => {
+    const [customRegMap, customRegSort] = getRegMap(
+      array,
+      originKey,
+      targetKey,
+    );
     const reStr = `(${customRegSort.join('|')})`;
     const newReg = new RegExp(reStr, 'g');
     const pcontent = typeof content === 'string' ? content : '';
-    return pcontent.replace(newReg, (it) => customRegMap[it] || getRegMapItem(customRegMap, it));
+    return pcontent.replace(
+      newReg,
+      (it) => customRegMap[it] || getRegMapItem(customRegMap, it),
+    );
   };
   const Ele: any = useMemo(() => {
     const _tag = textType?.toLowerCase();
@@ -101,9 +112,31 @@ const Text = LingxiForwardRef<any, MyTextProps>((props, ref) => {
       console.warn('文本控件：文本类型不能为空，将使用div进行展示');
       return 'div';
     }
-    const htmlTextTag = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'p', 'q', 'strong', 'em', 'mark', 'time', 'meter', 'ruby', 'rt', 'rp', 'div', 'span'];
+    const htmlTextTag = [
+      'h1',
+      'h2',
+      'h3',
+      'h4',
+      'h5',
+      'h6',
+      'a',
+      'p',
+      'q',
+      'strong',
+      'em',
+      'mark',
+      'time',
+      'meter',
+      'ruby',
+      'rt',
+      'rp',
+      'div',
+      'span',
+    ];
     if (!htmlTextTag.includes(_tag)) {
-      console.warn(`文本控件：文本类型(${_tag})为非文本标签，将使用div进行展示`);
+      console.warn(
+        `文本控件：文本类型(${_tag})为非文本标签，将使用div进行展示`,
+      );
       return 'div';
     }
     return _tag;
@@ -121,7 +154,6 @@ const Text = LingxiForwardRef<any, MyTextProps>((props, ref) => {
     }
     return content;
   }, [content, attrNbrInfo]);
-
 
   // eslint-disable-next-line no-nested-ternary
   return visible ? (

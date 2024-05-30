@@ -1,11 +1,10 @@
-import React, { useState, useImperativeHandle } from 'react';
-import { createUseRemoteComponent } from '@paciolan/remote-component/dist/hooks/useRemoteComponent';
-import { createRequires } from '@paciolan/remote-component/dist/createRequires';
 import { LingxiForwardRef } from '@lingxiteam/types';
+import { createRequires } from '@paciolan/remote-component/dist/createRequires';
+import { createUseRemoteComponent } from '@paciolan/remote-component/dist/hooks/useRemoteComponent';
+import React, { useImperativeHandle, useState } from 'react';
 import { useListenProps } from '../utils';
 import { useDeepCompareEffect } from '../utils/ahooks';
 import { RemoteComponentMap } from './constant';
-
 
 export const getUseRemoteComponent = (config: any) => {
   const requires = createRequires(() => config.resolve);
@@ -21,54 +20,63 @@ export interface MyRemoteComponentProps {
   type?: 'React' | 'Vue' | 'Fish';
 }
 
-const RemoteComponent = LingxiForwardRef<any, MyRemoteComponentProps>((props, ref) => {
-  const {
-    url,
-    customProps: myProps,
-    fileCode,
-    associatedType = 'file',
-    getEngineApis,
-    visible = true,
-    type = 'React',
-    ...restProps
-  } = props;
+const RemoteComponent = LingxiForwardRef<any, MyRemoteComponentProps>(
+  (props, ref) => {
+    const {
+      url,
+      customProps: myProps,
+      fileCode,
+      associatedType = 'file',
+      getEngineApis,
+      visible = true,
+      type = 'React',
+      ...restProps
+    } = props;
 
-  const engineApis = getEngineApis?.() || {};
+    const engineApis = getEngineApis?.() || {};
 
-  const [remoteUrl, setRemoteUrl] = useState<string>(url || '');
+    const [remoteUrl, setRemoteUrl] = useState<string>(url || '');
 
-  const [customProps, setProps] = useListenProps<any>(myProps);
+    const [customProps, setProps] = useListenProps<any>(myProps);
 
-
-  useImperativeHandle(ref, () => ({
-    setCompProps: (params: any) => {
-      setProps({ ...customProps, ...params });
-    },
-    setSrc: (src: string) => {
-      if (src.startsWith('http')) {
-        setRemoteUrl(src);
-      } else {
-        // 怀疑是文件id
-        setRemoteUrl(engineApis?.getAppFileUrlByFileCode(src));
+    useImperativeHandle(ref, () => ({
+      setCompProps: (params: any) => {
+        setProps({ ...customProps, ...params });
+      },
+      setSrc: (src: string) => {
+        if (src.startsWith('http')) {
+          setRemoteUrl(src);
+        } else {
+          // 怀疑是文件id
+          setRemoteUrl(engineApis?.getAppFileUrlByFileCode(src));
+        }
+      },
+    }));
+    useDeepCompareEffect(() => {
+      // 如果是远程服务组件
+      if (fileCode && associatedType === 'file') {
+        setRemoteUrl(engineApis?.getAppFileUrlByFileCode(fileCode));
+      } else if (url && associatedType === 'url') {
+        setRemoteUrl(url);
       }
-    },
-  }));
-  useDeepCompareEffect(() => {
-    // 如果是远程服务组件
-    if (fileCode && associatedType === 'file') {
-      setRemoteUrl(engineApis?.getAppFileUrlByFileCode(fileCode));
-    } else if (url && associatedType === 'url') {
-      setRemoteUrl(url);
+    }, [url, fileCode]);
+
+    if (!visible) {
+      return <></>;
     }
-  }, [url, fileCode]);
 
-  if (!visible) {
-    return <></>;
-  }
+    const Component = RemoteComponentMap[type];
 
-  const Component = RemoteComponentMap[type];
-
-  return <Component engineType="engine" {...restProps} customProps={customProps} url={remoteUrl} getEngineApis={getEngineApis} />;
-});
+    return (
+      <Component
+        engineType="engine"
+        {...restProps}
+        customProps={customProps}
+        url={remoteUrl}
+        getEngineApis={getEngineApis}
+      />
+    );
+  },
+);
 
 export default RemoteComponent;

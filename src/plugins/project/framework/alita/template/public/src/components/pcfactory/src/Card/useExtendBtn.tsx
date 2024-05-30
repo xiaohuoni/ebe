@@ -1,27 +1,29 @@
-import { ButtonType } from 'antd/lib/button';
-import type { IconCfg } from '../Icon/PropsType';
-import { Button, Popover, Tooltip } from 'antd';
 import { Icon } from '@lingxiteam/icons';
-import CommIcon from '../Icon';
-import React from 'react';
-import { useLocale } from '../utils/hooks/useLocale';
+import { Button, Popover, Tooltip } from 'antd';
+import { ButtonType } from 'antd/lib/button';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
+import React from 'react';
+import CommIcon from '../Icon';
+import type { IconCfg } from '../Icon/PropsType';
+import { useLocale } from '../utils/hooks/useLocale';
 
 interface ExtendProps {
-  extend?: Array<{icon: IconCfg,
-    iconPos: 'left' | 'right',
-    id: string,
-    btnType?: ButtonType,
-    btnSize?: SizeType,
-    isIcon?: boolean,
-    rule?: string,
-    visible?: boolean,
-    checked?: boolean,
+  extend?: Array<{
+    icon: IconCfg;
+    iconPos: 'left' | 'right';
+    id: string;
+    btnType?: ButtonType;
+    btnSize?: SizeType;
+    isIcon?: boolean;
+    rule?: string;
+    visible?: boolean;
+    checked?: boolean;
     value?: string;
-    disabled?: boolean}>,
-    getEngineApis: any;
-    extendNum?: number;
-    $$componentItem?: any;
+    disabled?: boolean;
+  }>;
+  getEngineApis: any;
+  extendNum?: number;
+  $$componentItem?: any;
   prefixCls?: string;
   [key: string | number]: unknown;
 }
@@ -59,7 +61,11 @@ const useExtendBtn = (props: ExtendProps) => {
             onClick={isIcon && handleOnClick}
           >
             {/** @ts-ignore */}
-            <CommIcon icon={icon} engineApis={engineApis} getEngineApis={getEngineApis} />
+            <CommIcon
+              icon={icon}
+              engineApis={engineApis}
+              getEngineApis={getEngineApis}
+            />
           </Button>
         ) : undefined;
         const TooltipBtn = <Tooltip title={c.title}>{BtnIcon}</Tooltip>;
@@ -88,22 +94,25 @@ const useExtendBtn = (props: ExtendProps) => {
                   size={btnSize}
                   onClick={handleOnClick}
                 >
-                  {iconPos && iconPos === 'left' && icon &&
-                  <CommIcon
-                    icon={icon}
-                    engineApis={engineApis}
-                    getEngineApis={getEngineApis}
-                    $$componentItem={props.$$componentItem}
-                    className=""
-                  />}
+                  {iconPos && iconPos === 'left' && icon && (
+                    <CommIcon
+                      icon={icon}
+                      engineApis={engineApis}
+                      getEngineApis={getEngineApis}
+                      $$componentItem={props.$$componentItem}
+                      className=""
+                    />
+                  )}
                   {c.title}
-                  {iconPos && iconPos === 'right' && icon && <CommIcon
-                    icon={icon}
-                    engineApis={engineApis}
-                    getEngineApis={getEngineApis}
-                    $$componentItem={props.$$componentItem}
-                    className=""
-                  />}
+                  {iconPos && iconPos === 'right' && icon && (
+                    <CommIcon
+                      icon={icon}
+                      engineApis={engineApis}
+                      getEngineApis={getEngineApis}
+                      $$componentItem={props.$$componentItem}
+                      className=""
+                    />
+                  )}
                 </Button>
               </div>
             ) : (
@@ -115,21 +124,25 @@ const useExtendBtn = (props: ExtendProps) => {
                 size={btnSize}
                 onClick={handleOnClick}
               >
-                {iconPos && iconPos === 'left' && icon && <CommIcon
-                  icon={icon}
-                  engineApis={engineApis}
-                  getEngineApis={getEngineApis}
-                  $$componentItem={props.$$componentItem}
-                  className=""
-                />}
+                {iconPos && iconPos === 'left' && icon && (
+                  <CommIcon
+                    icon={icon}
+                    engineApis={engineApis}
+                    getEngineApis={getEngineApis}
+                    $$componentItem={props.$$componentItem}
+                    className=""
+                  />
+                )}
                 {c.title}
-                {iconPos && iconPos === 'right' && icon && <CommIcon
-                  icon={icon}
-                  engineApis={engineApis}
-                  getEngineApis={getEngineApis}
-                  $$componentItem={props.$$componentItem}
-                  className=""
-                />}
+                {iconPos && iconPos === 'right' && icon && (
+                  <CommIcon
+                    icon={icon}
+                    engineApis={engineApis}
+                    getEngineApis={getEngineApis}
+                    $$componentItem={props.$$componentItem}
+                    className=""
+                  />
+                )}
               </Button>
             )
           ) : null

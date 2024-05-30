@@ -13,7 +13,7 @@ export interface MyImgProps {
   fileName?: string;
   fileCode?: string;
   errorSrc?: string;
-  srcType?: 'fileCode' | 'src'
+  srcType?: 'fileCode' | 'src';
   style?: React.CSSProperties;
   getContainerStyle?: () => React.CSSProperties;
   imgDisplay?: string;
@@ -39,11 +39,11 @@ const MyImg = React.forwardRef<any, MyImgProps>((props, ref) => {
   const [imgSrc, setImgSrc] = useState<string>();
   const [errorSrc, setErrorSrc] = useState<string>();
 
-
   useEffect(() => {
     // srcType设置兼容存量数据，当存量数据无srcType时根据旧的资源优先级进行赋值
     let mySrcType = srcType;
-    if (!mySrcType) { // 存量数据判断，建议三个月以上的时间之后再进行删除
+    if (!mySrcType) {
+      // 存量数据判断，建议三个月以上的时间之后再进行删除
       if (fileCode) {
         mySrcType = 'fileCode';
       } else {
@@ -59,7 +59,9 @@ const MyImg = React.forwardRef<any, MyImgProps>((props, ref) => {
 
   useEffect(() => {
     if (props.errorSrc) {
-      const tempSrc = engineApis?.service?.getAppFileUrlByFileCode(props.errorSrc);
+      const tempSrc = engineApis?.service?.getAppFileUrlByFileCode(
+        props.errorSrc,
+      );
       setErrorSrc(tempSrc);
     }
   }, [props.errorSrc]);
@@ -77,7 +79,13 @@ const MyImg = React.forwardRef<any, MyImgProps>((props, ref) => {
   }));
 
   return visible ? (
-    <Img {...restProps} src={imgSrc} alt={alt} errorSrc={errorSrc} defaultSrc={IconPlaceholder} />
+    <Img
+      {...restProps}
+      src={imgSrc}
+      alt={alt}
+      errorSrc={errorSrc}
+      defaultSrc={IconPlaceholder}
+    />
   ) : null;
 });
 export default MyImg;

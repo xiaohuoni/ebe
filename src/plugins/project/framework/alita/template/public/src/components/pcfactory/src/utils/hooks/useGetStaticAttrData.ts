@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // 静态页面查询静态数据
 const useGetStaticAttrData = ({
@@ -11,7 +11,8 @@ const useGetStaticAttrData = ({
   const [attrDataMap, setAttrDataMap] = useState<any>([]);
 
   const getAttrData = async () => {
-    const attrCodes = attrNbrs && attrNbrs.length ? attrNbrs?.filter((a: any) => a) : null;
+    const attrCodes =
+      attrNbrs && attrNbrs.length ? attrNbrs?.filter((a: any) => a) : null;
     if (!attrCodes || !attrCodes.length) {
       return;
     }

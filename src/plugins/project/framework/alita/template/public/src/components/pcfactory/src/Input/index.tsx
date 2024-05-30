@@ -1,14 +1,19 @@
 import { Input as AntdInput } from 'antd';
 // @ts-ignore
+import { LingxiForwardRef } from '@lingxiteam/types';
 import type { ValidationRule } from 'antd/es/form';
 import classnames from 'classnames';
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import CommIcon from '../Icon';
-import type { IconCfg } from '../Icon/PropsType';
 import { handleIsValidIconCfg } from '../Icon/hooks';
+import type { IconCfg } from '../Icon/PropsType';
+import {
+  FormFields,
+  getFieldsProps,
+  useCommonImperativeHandle,
+  useDataMask,
+} from '../utils';
 import { checkNumber } from '../utils/common';
-import { FormFields, getFieldsProps, useCommonImperativeHandle, useDataMask } from '../utils';
-import { LingxiForwardRef } from '@lingxiteam/types';
 import { useLocale } from '../utils/hooks/useLocale';
 import renderReadOnly from '../utils/renderReadOnly';
 
@@ -150,7 +155,13 @@ const Input = LingxiForwardRef<any, MyInputProps>((props, ref) => {
     ...restProps
   } = props;
 
-  const { disabled, required, formFieldsRef, readOnly, finalRules: temRules } = useCommonImperativeHandle(ref, props);
+  const {
+    disabled,
+    required,
+    formFieldsRef,
+    readOnly,
+    finalRules: temRules,
+  } = useCommonImperativeHandle(ref, props);
 
   const { getLocale, lang } = useLocale(getEngineApis?.());
   // Input控件值需要经过水印处理
@@ -177,7 +188,10 @@ const Input = LingxiForwardRef<any, MyInputProps>((props, ref) => {
       return false;
     }
     // 旧数据 type 为后缀图标
-    if ((props.icon?.type || props?.type || props?.postfix) && typeof props.onIconClick === 'function') {
+    if (
+      (props.icon?.type || props?.type || props?.postfix) &&
+      typeof props.onIconClick === 'function'
+    ) {
       return true;
     }
     return false;
@@ -285,7 +299,10 @@ const Input = LingxiForwardRef<any, MyInputProps>((props, ref) => {
       switch (postfixIconPosition) {
         case 'after':
           after = (
-            <span className="postfix" onClick={disabled ? null : onIconClick || undefined}>
+            <span
+              className="postfix"
+              onClick={disabled ? null : onIconClick || undefined}
+            >
               {postfix}
               {after}
             </span>
@@ -294,7 +311,10 @@ const Input = LingxiForwardRef<any, MyInputProps>((props, ref) => {
         case 'before':
         default:
           after = (
-            <span className="postfix" onClick={disabled ? null : onIconClick || undefined}>
+            <span
+              className="postfix"
+              onClick={disabled ? null : onIconClick || undefined}
+            >
               {after}
               {postfix}
             </span>
@@ -313,7 +333,11 @@ const Input = LingxiForwardRef<any, MyInputProps>((props, ref) => {
     let lengthRule;
     if (minLength === 0 && maxLength === 0) {
       lengthRule = undefined;
-    } else if (checkNumber(minLength) && checkNumber(maxLength) && minLength < maxLength) {
+    } else if (
+      checkNumber(minLength) &&
+      checkNumber(maxLength) &&
+      minLength < maxLength
+    ) {
       lengthRule = {
         pattern: new RegExp(`^.{${minLength},${maxLength}}$`),
         message: getLocale?.('Input.lenRule', { minLength, maxLength }),
@@ -333,18 +357,21 @@ const Input = LingxiForwardRef<any, MyInputProps>((props, ref) => {
       rules.push(lengthRule);
     }
 
-    if (Array.isArray((temRules || []))) {
+    if (Array.isArray(temRules || [])) {
       rules.push(...(temRules || []));
     }
     return rules;
   }, [required, lang, temRules]);
-  const showCount = useMemo(() => maxLength && checkNumber(maxLength), [maxLength]);
-  
+  const showCount = useMemo(
+    () => maxLength && checkNumber(maxLength),
+    [maxLength],
+  );
+
   return (
     <FormFields
       {...getFieldsProps(props)}
       rules={finalRules}
-      handleFormValue={val => {
+      handleFormValue={(val) => {
         return Number.isNaN(val) ? '' : val;
       }}
       trigger={trigger}
@@ -373,12 +400,16 @@ const Input = LingxiForwardRef<any, MyInputProps>((props, ref) => {
         showCount={showCount}
         defaultValue={defaultValue}
         value={value}
-        onChange={e => {
+        onChange={(e) => {
           if (onChange) {
             onChange(e);
           }
         }}
-        className={classnames(prefixStyleClsName, postfixStyleClsName, className)}
+        className={classnames(
+          prefixStyleClsName,
+          postfixStyleClsName,
+          className,
+        )}
         addonBefore={getAddonBeforeBtn()}
         addonAfter={getAddonAfterBtn()}
       />

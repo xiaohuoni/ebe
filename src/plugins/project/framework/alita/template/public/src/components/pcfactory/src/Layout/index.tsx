@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
-import { findItemsSumThanNum, pxToNum } from './utils';
 import { LingXiFC } from '@lingxiteam/types';
+import React, { useMemo } from 'react';
 import { useHiddenStyle } from '../utils';
+import { findItemsSumThanNum, pxToNum } from './utils';
 
 export interface LayoutProps {
   children: any;
@@ -72,7 +72,8 @@ const Layout: LingXiFC<LayoutProps> = (props) => {
                       style={{
                         width: `${targetCol}%`,
                         paddingLeft: colIndex === 0 ? 0 : `${curColSpace}px`,
-                        paddingRight: colIndex === item.length - 1 ? 0 : `${curColSpace}px`,
+                        paddingRight:
+                          colIndex === item.length - 1 ? 0 : `${curColSpace}px`,
                         marginTop: rowIndex === 0 ? 0 : rowSpace,
                       }}
                     >

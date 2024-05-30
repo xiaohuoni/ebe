@@ -7,13 +7,8 @@ interface BackgroundConfig {
   engineApis?: any;
 }
 const useBackgroundStyle = (props: BackgroundConfig) => {
-  const {
-    backgroundType,
-    mode = 'editor',
-    appId,
-    engineApis,
-  } = props || {};
-  
+  const { backgroundType, mode = 'editor', appId, engineApis } = props || {};
+
   const [imgSrc, setImgSrc] = useState('');
 
   useEffect(() => {
@@ -28,14 +23,20 @@ const useBackgroundStyle = (props: BackgroundConfig) => {
               if (apis.getAppFileUrlByFileCode) {
                 func = apis.getAppFileUrlByFileCode;
               }
-            } else if (typeof engineApis?.getAppFileUrlByFileCode === 'function') {
+            } else if (
+              typeof engineApis?.getAppFileUrlByFileCode === 'function'
+            ) {
               func = engineApis.getAppFileUrlByFileCode;
             }
             if (func) {
               setImgSrc(await func({ appId: window.appId, fileCode: code }));
             }
           } else if (mode === 'engine') {
-            setImgSrc(await engineApis?.service?.getAppFileUrlByFileCode(code, { appId }));
+            setImgSrc(
+              await engineApis?.service?.getAppFileUrlByFileCode(code, {
+                appId,
+              }),
+            );
           }
         } catch (e) {
           console.log(e);

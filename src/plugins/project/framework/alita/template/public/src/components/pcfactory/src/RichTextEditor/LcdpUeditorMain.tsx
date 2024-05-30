@@ -1,25 +1,30 @@
-import { FormFields, getFieldsProps, useCommonImperativeHandle } from '../utils';
-import { useLocale } from '../utils/hooks/useLocale';
-import { renderRichText } from '../utils/renderReadOnly';
 import LcdpUeditor from '@lingxiteam/lcdp-ueditor-react';
 import { ILcdpUeditorInst } from '@lingxiteam/lcdp-ueditor-react/es/type';
 import { LingXiFC } from '@lingxiteam/types';
 import React, { useMemo, useRef } from 'react';
+import {
+  FormFields,
+  getFieldsProps,
+  useCommonImperativeHandle,
+} from '../utils';
+import { useLocale } from '../utils/hooks/useLocale';
+import { renderRichText } from '../utils/renderReadOnly';
 
-const LcdpUeditorMain: LingXiFC <{[key: string]: any}> = (props => {
+const LcdpUeditorMain: LingXiFC<{ [key: string]: any }> = (props) => {
   const { value, onChange, style, className, rootRef: ref } = props;
   const editorRef = useRef<ILcdpUeditorInst | null>(null);
 
   const engineApis = props.getEngineApis();
   const { getLocale, lang } = useLocale(engineApis);
 
-  const { disabled, required, readOnly, formFieldsRef } = useCommonImperativeHandle(ref, props, {
-    setValue: (val:string) => {
-      if (editorRef.current) {
-        editorRef.current.setContent(val);
-      }
-    },
-  });
+  const { disabled, required, readOnly, formFieldsRef } =
+    useCommonImperativeHandle(ref, props, {
+      setValue: (val: string) => {
+        if (editorRef.current) {
+          editorRef.current.setContent(val);
+        }
+      },
+    });
 
   const finalRules = useMemo(
     () => [
@@ -28,7 +33,7 @@ const LcdpUeditorMain: LingXiFC <{[key: string]: any}> = (props => {
         message: getLocale?.('notEmpty', { name }),
       },
     ],
-    [required, name, lang]
+    [required, name, lang],
   );
 
   const getLang = useMemo<any>(() => {
@@ -71,7 +76,9 @@ const LcdpUeditorMain: LingXiFC <{[key: string]: any}> = (props => {
         uploadFunction={async (file) => {
           const formData = new FormData();
           formData.append('attach', file, file.name);
-          const res: any = await engineApis?.service?.uploadFileByFetch(formData);
+          const res: any = await engineApis?.service?.uploadFileByFetch(
+            formData,
+          );
           if (res?.fileId) {
             const link = engineApis?.getAppFileUrlById(res?.fileId);
             console.log(link, res.fileId);
@@ -92,8 +99,7 @@ const LcdpUeditorMain: LingXiFC <{[key: string]: any}> = (props => {
         }}
       />
     </FormFields>
-
   );
-});
+};
 
 export default LcdpUeditorMain;

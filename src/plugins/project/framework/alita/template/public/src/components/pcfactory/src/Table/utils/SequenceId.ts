@@ -1,11 +1,10 @@
 import merge from 'lodash/merge';
 
 interface SequenceIdOptions {
-
   /**
    * 创建id类型 random 随机   increment 自增
    */
-  type?: 'random' | 'increment',
+  type?: 'random' | 'increment';
 
   /**
    * 随机数创建的长度
@@ -23,7 +22,8 @@ interface SequenceIdOptions {
   excludeId?: string[];
 }
 
-const randomArr = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'.split('');
+const randomArr =
+  '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'.split('');
 
 const getRandomId = (randomBit = 6) => {
   let t = '';
@@ -33,7 +33,6 @@ const getRandomId = (randomBit = 6) => {
   });
   return t;
 };
-
 
 class SequenceId {
   private idMap: (string | number)[] = [];

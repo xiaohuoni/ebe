@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
-import { Button, Checkbox, Popover, Tree, Divider, Tooltip } from 'antd';
 import { Icon } from '@lingxiteam/icons';
+import { Button, Checkbox, Divider, Popover, Tooltip, Tree } from 'antd';
 import type { ButtonType } from 'antd/lib/button';
 import classnames from 'classnames';
 import React, { useMemo } from 'react';
@@ -74,7 +74,6 @@ const TableHead: React.FC<MyTableHeadProps> = (props: any) => {
 
   const { getLocale } = useLocale(engineApis);
 
-
   const {
     hasCustom = false,
     iconPosition,
@@ -85,7 +84,7 @@ const TableHead: React.FC<MyTableHeadProps> = (props: any) => {
     customTitle,
     customStyle,
     iconFile: newIconFile,
-  } = (!showCustom || typeof showCustom === 'boolean') ? {} as any : showCustom; // 兼容旧数据,旧数据是true、false、undefined
+  } = !showCustom || typeof showCustom === 'boolean' ? ({} as any) : showCustom; // 兼容旧数据,旧数据是true、false、undefined
 
   const [checkedKeys, checkedMap] = useMemo(() => {
     const map: any = {};
@@ -117,7 +116,11 @@ const TableHead: React.FC<MyTableHeadProps> = (props: any) => {
     return map;
   }, [colOrder]);
 
-  const renderExtendBtn = (_headExtends: any, isPopover = false, onClicks: FunctionHandleType[] = []) => {
+  const renderExtendBtn = (
+    _headExtends: any,
+    isPopover = false,
+    onClicks: FunctionHandleType[] = [],
+  ) => {
     if (Array.isArray(_headExtends)) {
       // const onClicks = visibleClick.length ? visibleClick : [
       //   onHeadClickBtn1,
@@ -146,7 +149,10 @@ const TableHead: React.FC<MyTableHeadProps> = (props: any) => {
         const BtnIcon = icon ? (
           <Tooltip title={c.title}>
             <Button
-              className={classnames('iconBtn', `table-head-btn-${btnSize || 'default'}`)}
+              className={classnames(
+                'iconBtn',
+                `table-head-btn-${btnSize || 'default'}`,
+              )}
               type="link"
               disabled={disabled}
               key={isIcon && id}
@@ -176,77 +182,91 @@ const TableHead: React.FC<MyTableHeadProps> = (props: any) => {
         }
 
         return (
-          <> {isPopover ? (
-            <div>
-              {
-              buttonVisible ? (
-                isIcon ? (
-                  BtnIcon
-                ) : (
-                  <Button
-                    type="link"
-                    disabled={disabled}
-                    key={id}
-                    className={classnames('btn', `table-head-btn-${btnSize || 'default'}`)}
-                    size={btnSize}
-                    onClick={handleOnClick}
-                  >
-                    {iconPos && iconPos === 'left' && icon && <CommIcon
-                      icon={icon}
-                      className=""
-                      $$componentItem={props.$$componentItem}
-                      getEngineApis={props.getEngineApis}
-                      engineApis={engineApis}
-                      getEdEngineApi={props.getEdEngineApi}
-                    />}
-                    {c.title}
-                    {iconPos && iconPos === 'right' && icon && <CommIcon
-                      icon={icon}
-                      className=""
-                      $$componentItem={props.$$componentItem}
-                      getEngineApis={props.getEngineApis}
-                      engineApis={engineApis}
-                      getEdEngineApi={props.getEdEngineApi}
-                    />}
-                  </Button>
-                )
-              ) : null
-            }
-            </div>) : (
-            buttonVisible ? (
+          <>
+            {' '}
+            {isPopover ? (
+              <div>
+                {buttonVisible ? (
+                  isIcon ? (
+                    BtnIcon
+                  ) : (
+                    <Button
+                      type="link"
+                      disabled={disabled}
+                      key={id}
+                      className={classnames(
+                        'btn',
+                        `table-head-btn-${btnSize || 'default'}`,
+                      )}
+                      size={btnSize}
+                      onClick={handleOnClick}
+                    >
+                      {iconPos && iconPos === 'left' && icon && (
+                        <CommIcon
+                          icon={icon}
+                          className=""
+                          $$componentItem={props.$$componentItem}
+                          getEngineApis={props.getEngineApis}
+                          engineApis={engineApis}
+                          getEdEngineApi={props.getEdEngineApi}
+                        />
+                      )}
+                      {c.title}
+                      {iconPos && iconPos === 'right' && icon && (
+                        <CommIcon
+                          icon={icon}
+                          className=""
+                          $$componentItem={props.$$componentItem}
+                          getEngineApis={props.getEngineApis}
+                          engineApis={engineApis}
+                          getEdEngineApi={props.getEdEngineApi}
+                        />
+                      )}
+                    </Button>
+                  )
+                ) : null}
+              </div>
+            ) : buttonVisible ? (
               isIcon ? (
                 BtnIcon
               ) : (
                 <Button
                   disabled={disabled}
                   key={id}
-                  className={classnames('btn', `table-head-btn-${btnSize || 'default'}`)}
+                  className={classnames(
+                    'btn',
+                    `table-head-btn-${btnSize || 'default'}`,
+                  )}
                   type={btnType}
                   size={btnSize}
                   onClick={handleOnClick}
                 >
-                  {iconPos && iconPos === 'left' && icon && <CommIcon
-                    icon={icon}
-                    className=""
-                    $$componentItem={props.$$componentItem}
-                    getEngineApis={props.getEngineApis}
-                    engineApis={engineApis}
-                    getEdEngineApi={props.getEdEngineApi}
-                  />}
+                  {iconPos && iconPos === 'left' && icon && (
+                    <CommIcon
+                      icon={icon}
+                      className=""
+                      $$componentItem={props.$$componentItem}
+                      getEngineApis={props.getEngineApis}
+                      engineApis={engineApis}
+                      getEdEngineApi={props.getEdEngineApi}
+                    />
+                  )}
                   {c.title}
-                  {iconPos && iconPos === 'right' && icon && <CommIcon
-                    icon={icon}
-                    className=""
-                    $$componentItem={props.$$componentItem}
-                    getEngineApis={props.getEngineApis}
-                    engineApis={engineApis}
-                    getEdEngineApi={props.getEdEngineApi}
-                  />}
+                  {iconPos && iconPos === 'right' && icon && (
+                    <CommIcon
+                      icon={icon}
+                      className=""
+                      $$componentItem={props.$$componentItem}
+                      getEngineApis={props.getEngineApis}
+                      engineApis={engineApis}
+                      getEdEngineApi={props.getEdEngineApi}
+                    />
+                  )}
                 </Button>
               )
-            ) : null
-          )}
-          </>);
+            ) : null}
+          </>
+        );
       });
     }
     return undefined;
@@ -281,24 +301,26 @@ const TableHead: React.FC<MyTableHeadProps> = (props: any) => {
       const tempList = [...visibleBtn];
       const preList = tempList.splice(0, headBtnNum);
       const preClick = visibleClick.splice(0, headBtnNum);
-      const content = <div style={{ maxHeight: '300px', overflow: 'auto' }}>{renderExtendBtn(tempList, true, visibleClick)}</div>;
+      const content = (
+        <div style={{ maxHeight: '300px', overflow: 'auto' }}>
+          {renderExtendBtn(tempList, true, visibleClick)}
+        </div>
+      );
       return (
         <>
           {renderExtendBtn(preList, false, preClick)}
           <Divider type="vertical" />
           <Popover content={content} trigger="click">
-            <Button
-              type="link"
-              key="more"
-            >
+            <Button type="link" key="more">
               <div className="ued-table-actions-extendBtn">
                 {getLocale?.('more')}
                 <Icon className="actIcon-left" type="down" />
               </div>
             </Button>
           </Popover>
-        </>);
-        
+        </>
+      );
+
       // }
     }
     return null;
@@ -353,7 +375,11 @@ const TableHead: React.FC<MyTableHeadProps> = (props: any) => {
             title={
               <div className="title">
                 <div className="icon">
-                  <IconFont width={16} height={16} iconClass="lcdp-icon-tuozhuai" />
+                  <IconFont
+                    width={16}
+                    height={16}
+                    iconClass="lcdp-icon-tuozhuai"
+                  />
                 </div>
                 <Checkbox
                   checked={checkedMap[col.dataIndex] !== undefined}
@@ -364,12 +390,18 @@ const TableHead: React.FC<MyTableHeadProps> = (props: any) => {
                         if (e.target.checked) {
                           return [...(checkedKeys || []), col.dataIndex];
                         }
-                        return (checkedKeys || []).filter((co: any) => co !== col.dataIndex);
+                        return (checkedKeys || []).filter(
+                          (co: any) => co !== col.dataIndex,
+                        );
                       });
                     }
                   }}
                 />
-                {checkedMap[col.dataIndex] ? <a>{col.originTitle}</a> : col.originTitle}
+                {checkedMap[col.dataIndex] ? (
+                  <a>{col.originTitle}</a>
+                ) : (
+                  col.originTitle
+                )}
               </div>
             }
             key={col.dataIndex}
@@ -459,7 +491,8 @@ const TableHead: React.FC<MyTableHeadProps> = (props: any) => {
       <div className={classnames('title', `${prefix}-title`)}>{tableTitle}</div>
       <div className="extend">
         {renderHeaderBtn()}
-        {(typeof showCustom === 'boolean' ? showCustom : hasCustom) && renderCustomBtn()}
+        {(typeof showCustom === 'boolean' ? showCustom : hasCustom) &&
+          renderCustomBtn()}
       </div>
     </div>
   ) : null;

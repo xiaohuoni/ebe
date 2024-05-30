@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useImperativeHandle } from 'react';
-import { Steps } from 'antd';
-import { LingxiForwardRef } from '@lingxiteam/types';
-import { Vector, CheckCircle } from './constant';
-import { useListenProps } from '../utils';
 import { Icon } from '@lingxiteam/icons';
-import FactoryIcon from '../Icon';
+import { LingxiForwardRef } from '@lingxiteam/types';
+import { Steps } from 'antd';
 import classNames from 'classnames';
+import React, { useEffect, useImperativeHandle, useState } from 'react';
+import FactoryIcon from '../Icon';
+import { useListenProps } from '../utils';
 import { useLocale } from '../utils/hooks/useLocale';
+import { CheckCircle, Vector } from './constant';
 
 export interface MyStepsProps {
   visible: boolean;
@@ -27,30 +27,31 @@ export interface MyStepsProps {
 }
 
 interface IconSettingItem {
-  label: string,
-  value: 'wait' | 'process' | 'finish' | 'error',
-  isUsePrimary?: boolean, // 是否应用主题
-  icon?: any, // 图标信息
-  color?: string, // 颜色
+  label: string;
+  value: 'wait' | 'process' | 'finish' | 'error';
+  isUsePrimary?: boolean; // 是否应用主题
+  icon?: any; // 图标信息
+  color?: string; // 颜色
 }
-const getDefaultIconSetting = (getLocale: any) => [
-  {
-    label: getLocale?.('Steps.wait'),
-    value: 'wait',
-  },
-  {
-    label: getLocale?.('Steps.process'),
-    value: 'process',
-  },
-  {
-    label: getLocale?.('Steps.finish'),
-    value: 'finish',
-  },
-  {
-    label: getLocale?.('Steps.error'),
-    value: 'error',
-  },
-] as IconSettingItem[];
+const getDefaultIconSetting = (getLocale: any) =>
+  [
+    {
+      label: getLocale?.('Steps.wait'),
+      value: 'wait',
+    },
+    {
+      label: getLocale?.('Steps.process'),
+      value: 'process',
+    },
+    {
+      label: getLocale?.('Steps.finish'),
+      value: 'finish',
+    },
+    {
+      label: getLocale?.('Steps.error'),
+      value: 'error',
+    },
+  ] as IconSettingItem[];
 const prefixCls = 'ued-step-wrap';
 const MySteps = LingxiForwardRef<any, MyStepsProps>((props, ref) => {
   const engineApis = props?.getEngineApis?.();
@@ -84,7 +85,6 @@ const MySteps = LingxiForwardRef<any, MyStepsProps>((props, ref) => {
     id: idAlias = 'id', // 唯一ID别名
   } = alias || {};
 
-  
   const [current, setCurrent] = useListenProps(props.current);
   const [innerDataSource, setInnerDataSource] = useState<any[]>([]);
 
@@ -93,10 +93,18 @@ const MySteps = LingxiForwardRef<any, MyStepsProps>((props, ref) => {
     if (Array.isArray(dataSource)) {
       // 绑定数据源
       setInnerDataSource(dataSource);
-      setCurrent(props.current || dataSource.findIndex(i => i[statusAlias] === 'process') || 0);
+      setCurrent(
+        props.current ||
+          dataSource.findIndex((i) => i[statusAlias] === 'process') ||
+          0,
+      );
     } else if (stepsOptions && Array.isArray(stepsOptions)) {
       // 步骤设置
-      setCurrent(props.current || stepsOptions.findIndex(i => i[statusAlias] === 'process') || 0);
+      setCurrent(
+        props.current ||
+          stepsOptions.findIndex((i) => i[statusAlias] === 'process') ||
+          0,
+      );
       setInnerDataSource(stepsOptions);
     }
   }, [JSON.stringify(stepsOptions), JSON.stringify(dataSource)]);
@@ -114,24 +122,37 @@ const MySteps = LingxiForwardRef<any, MyStepsProps>((props, ref) => {
    * @param item
    */
   const renderDefaultIcon = (item: any) => {
-    const iconItem = iconSetting.find((i: any) => i.value === item[statusAlias]);
-    const currentColor = iconItem?.isUsePrimary ? undefined : item.color || iconItem?.color;
+    const iconItem = iconSetting.find(
+      (i: any) => i.value === item[statusAlias],
+    );
+    const currentColor = iconItem?.isUsePrimary
+      ? undefined
+      : item.color || iconItem?.color;
     const style = {
       fontSize: size === 'default' ? '18px' : '16px',
       color: currentColor,
     };
     if (iconItem?.icon) {
-      return <FactoryIcon
-        mode="custom"
-        style={style}
-        iconItems={[{ ...iconItem }]}// 图标优先展示iconItems的颜色，但是这里需要将用户设置的颜色优先级提高
-        getEngineApis={getEngineApis}
-        engineApis={{ service: getEngineApis?.() }}
-        $$componentItem={$$componentItem}
-        className=""
-      />;
+      return (
+        <FactoryIcon
+          mode="custom"
+          style={style}
+          iconItems={[{ ...iconItem }]} // 图标优先展示iconItems的颜色，但是这里需要将用户设置的颜色优先级提高
+          getEngineApis={getEngineApis}
+          engineApis={{ service: getEngineApis?.() }}
+          $$componentItem={$$componentItem}
+          className=""
+        />
+      );
     }
-    return <><Icon style={style} component={item[statusAlias] === 'finish' ? CheckCircle : Vector} /></>;
+    return (
+      <>
+        <Icon
+          style={style}
+          component={item[statusAlias] === 'finish' ? CheckCircle : Vector}
+        />
+      </>
+    );
   };
 
   /**
@@ -142,8 +163,12 @@ const MySteps = LingxiForwardRef<any, MyStepsProps>((props, ref) => {
    */
   const renderStepIcon = (item: any, index: number) => {
     const iconValue = item[iconAlias];
-    const iconItem = iconSetting.find((i: any) => i.value === item[statusAlias]);
-    const currentColor = iconItem?.isUsePrimary ? undefined : item.color || iconItem?.color;
+    const iconItem = iconSetting.find(
+      (i: any) => i.value === item[statusAlias],
+    );
+    const currentColor = iconItem?.isUsePrimary
+      ? undefined
+      : item.color || iconItem?.color;
     // 存量无状态的默认状态
     const status = item[statusAlias] || (index === 0 ? 'process' : 'wait');
     switch (stepStyle) {
@@ -162,49 +187,61 @@ const MySteps = LingxiForwardRef<any, MyStepsProps>((props, ref) => {
             }}
           >
             {index + 1}
-          </div>);
+          </div>
+        );
       case 'icon': {
         const style = {
           fontSize: size === 'default' ? '18px' : '16px',
           color: item.color,
         };
         // 如果数据没有图标内容，返回默认的图标配置
-        if (!iconValue || iconValue.isIconFont === false || Object.keys(iconValue || {}).length === 0) {
+        if (
+          !iconValue ||
+          iconValue.isIconFont === false ||
+          Object.keys(iconValue || {}).length === 0
+        ) {
           return renderDefaultIcon(item);
         }
         // 字符串代表使用fileID或者url展示图标
         if (typeof iconValue === 'string') {
           // 判断数字字符串
           item[iconAlias] = {
-            iconFile: iconValue.startsWith('http') ? {
-              fileHttp: iconValue,
-              fileSubType: 'ICON_IMAGE',
-            } : {
-              fileCode: iconValue,
-              fileSubType: 'ICON_IMAGE',
-            },
+            iconFile: iconValue.startsWith('http')
+              ? {
+                  fileHttp: iconValue,
+                  fileSubType: 'ICON_IMAGE',
+                }
+              : {
+                  fileCode: iconValue,
+                  fileSubType: 'ICON_IMAGE',
+                },
           };
         }
         // 否则为自定义配置的
-        return <FactoryIcon
-          style={style}
-          mode="custom"
-          iconItems={[item]}
-          getEngineApis={getEngineApis}
-          engineApis={{ service: getEngineApis?.() }}
-          $$componentItem={$$componentItem}
-          className=""
-        />; }
-        
+        return (
+          <FactoryIcon
+            style={style}
+            mode="custom"
+            iconItems={[item]}
+            getEngineApis={getEngineApis}
+            engineApis={{ service: getEngineApis?.() }}
+            $$componentItem={$$componentItem}
+            className=""
+          />
+        );
+      }
+
       case 'dot':
-        return <div
-          className={classNames({
-            [`${prefixCls}-dot`]: true,
-            [`${prefixCls}-dot-${size}`]: true,
-            [`${prefixCls}-dot-${status}`]: true,
-          })}
-          style={{ background: currentColor }}
-        />;
+        return (
+          <div
+            className={classNames({
+              [`${prefixCls}-dot`]: true,
+              [`${prefixCls}-dot-${size}`]: true,
+              [`${prefixCls}-dot-${status}`]: true,
+            })}
+            style={{ background: currentColor }}
+          />
+        );
 
       default:
         return null;
@@ -223,9 +260,16 @@ const MySteps = LingxiForwardRef<any, MyStepsProps>((props, ref) => {
     setCurrent(_current: any) {
       onCurrentChange(+_current);
     },
-    setStepByOptions(options: { step: string; status: 'wait' | 'process' | 'finish' | 'error'; }[]) {
+    setStepByOptions(
+      options: {
+        step: string;
+        status: 'wait' | 'process' | 'finish' | 'error';
+      }[],
+    ) {
       const newData = innerDataSource.map((i, index) => {
-        const item = options.find((j) => j.step === i[idAlias] || +j.step === index);
+        const item = options.find(
+          (j) => j.step === i[idAlias] || +j.step === index,
+        );
         if (item && item.status) {
           i[statusAlias] = item.status;
         }
@@ -238,7 +282,10 @@ const MySteps = LingxiForwardRef<any, MyStepsProps>((props, ref) => {
   /**
    * 步骤切换
    */
-  const onCurrentChange = (index: number, dataSource: any = innerDataSource) => {
+  const onCurrentChange = (
+    index: number,
+    dataSource: any = innerDataSource,
+  ) => {
     setCurrent(index);
     const newData = dataSource.map((item: any, i: number) => {
       if (i === index) {
@@ -264,7 +311,7 @@ const MySteps = LingxiForwardRef<any, MyStepsProps>((props, ref) => {
   return visible ? (
     <Steps
       {...restProps}
-      labelPlacement={stepStyle === 'dot' ? 'vertical' : labelPlacement}// 点状标签位置只能在下方
+      labelPlacement={stepStyle === 'dot' ? 'vertical' : labelPlacement} // 点状标签位置只能在下方
       current={current}
       onChange={(c) => {
         if (onChange && !innerDataSource[c]?.[disabledAlias]) {
@@ -282,7 +329,11 @@ const MySteps = LingxiForwardRef<any, MyStepsProps>((props, ref) => {
           disabled={!!opt[disabledAlias]}
           key={opt[idAlias]}
           style={{ ...(opt[disabledAlias] ? { cursor: 'not-allowed' } : {}) }}
-          icon={<div className={`${prefixCls}-iconItem-${size}`}>{renderStepIcon(opt, i)}</div>}
+          icon={
+            <div className={`${prefixCls}-iconItem-${size}`}>
+              {renderStepIcon(opt, i)}
+            </div>
+          }
         />
       ))}
     </Steps>

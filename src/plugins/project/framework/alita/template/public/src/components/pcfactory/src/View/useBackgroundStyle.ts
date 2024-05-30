@@ -1,17 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 
 interface BackgroundConfig {
-  backgroundType?:any;
-  mode?:string;
-  appId?:string;
+  backgroundType?: any;
+  mode?: string;
+  appId?: string;
   engineApis?: any;
 }
-const useBackgroundStyle = (props:BackgroundConfig) => {
-  const {
-    backgroundType,
-    mode = 'editor',
-    engineApis,
-  } = props || {};
+const useBackgroundStyle = (props: BackgroundConfig) => {
+  const { backgroundType, mode = 'editor', engineApis } = props || {};
 
   const [imgSrc, setImgSrc] = useState('');
 
@@ -27,11 +23,18 @@ const useBackgroundStyle = (props:BackgroundConfig) => {
               if (apis.getAppFileUrlByFileCode) {
                 func = apis.getAppFileUrlByFileCode;
               }
-            } else if (typeof engineApis?.getAppFileUrlByFileCode === 'function') {
+            } else if (
+              typeof engineApis?.getAppFileUrlByFileCode === 'function'
+            ) {
               func = engineApis.getAppFileUrlByFileCode;
             }
             if (func) {
-              setImgSrc(await func({ appId: props?.appId || window.appId, fileCode: code }));
+              setImgSrc(
+                await func({
+                  appId: props?.appId || window.appId,
+                  fileCode: code,
+                }),
+              );
             }
           } else if (mode === 'engine') {
             setImgSrc(await engineApis?.service?.getAppFileUrlByFileCode(code));
@@ -47,7 +50,7 @@ const useBackgroundStyle = (props:BackgroundConfig) => {
     if (backgroundType) {
       const { type, color, image, imageType } = backgroundType || {};
       const { fileUrl } = image || {};
-      const obj:any = {};
+      const obj: any = {};
       if (type === 'image') {
         let url = '';
         if (imageType === 'custom') {

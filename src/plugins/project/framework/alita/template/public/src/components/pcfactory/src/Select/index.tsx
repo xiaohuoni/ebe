@@ -1,18 +1,39 @@
-import { Select as AntdSelect, Empty, Spin, Tag } from 'antd';
-import type { SelectProps } from 'antd/es/select';
 import { CheckOutlined } from '@ant-design/icons';
-import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { renderCommonList } from '../utils/renderReadOnly';
-import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
-import { FormFields, getFieldsProps, useCommonImperativeHandle, useForm } from '../utils';
-import { useMemoizedFn } from '../utils/ahooks';
-import classNames from 'classnames';
-import { useLocale } from '../utils/hooks/useLocale';
-import { CHECK_ALL_VALUE, handleFormValue, isLabelInValue, localFilterOption, getSelectedAllData, transformValueType, getRules, getChangeSelectData, checkIfSelectedAll, handleDataSource } from './selectUtils';
-import CustomModule from '../utils/CustomModule';
 import { EngineBaseProps } from '@lingxiteam/types';
+import { Empty, Select as AntdSelect, Spin, Tag } from 'antd';
+import type { SelectProps } from 'antd/es/select';
+import classNames from 'classnames';
 import { isEqual } from 'lodash';
-
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import {
+  FormFields,
+  getFieldsProps,
+  useCommonImperativeHandle,
+  useForm,
+} from '../utils';
+import { useMemoizedFn } from '../utils/ahooks';
+import CustomModule from '../utils/CustomModule';
+import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
+import { useLocale } from '../utils/hooks/useLocale';
+import { renderCommonList } from '../utils/renderReadOnly';
+import {
+  checkIfSelectedAll,
+  CHECK_ALL_VALUE,
+  getChangeSelectData,
+  getRules,
+  getSelectedAllData,
+  handleDataSource,
+  handleFormValue,
+  isLabelInValue,
+  localFilterOption,
+  transformValueType,
+} from './selectUtils';
 
 export interface MySelectProps extends EngineBaseProps {
   value?: any;
@@ -63,7 +84,7 @@ export interface MySelectProps extends EngineBaseProps {
   tipWidth?: string; // 提示自定义的宽度
   tipHeight?: string; // 提示自定义的高度
   getEngineApis: any;
-  checkedAll?: boolean;// 下拉多选时是否支持全选
+  checkedAll?: boolean; // 下拉多选时是否支持全选
 
   /**
    * 是否输入触发，默认fasel，也就是回车键触发, 为true的时候表示实时搜索
@@ -80,7 +101,6 @@ const WrapperSelect: React.FC<WrapperSelectProps> = ({ children }) =>
   React.cloneElement(children, {
     className: `${SELECT_WRAPPER_CLASSNAME} ${children.props.className || ''}`,
   });
-
 
 const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
   const {
@@ -137,18 +157,17 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
   } = props;
 
   const defaultValue = useMemo(() => {
-    if ((_defaultValue === null || _defaultValue === '') && mode === 'multiple') {
+    if (
+      (_defaultValue === null || _defaultValue === '') &&
+      mode === 'multiple'
+    ) {
       return undefined;
     }
     return _defaultValue;
   }, []);
 
-  const {
-    sandBoxSafeRun,
-    sandBoxLoadModule,
-    onlySyncValue,
-    compatConfig,
-  } = getEngineApis() || {};
+  const { sandBoxSafeRun, sandBoxLoadModule, onlySyncValue, compatConfig } =
+    getEngineApis() || {};
   const { getLocale, lang } = useLocale(getEngineApis());
   const CHECK_ALL_TEXT = getLocale?.('all', '全选');
   const funcExpExecute = useFuncExpExecute(sandBoxSafeRun, getLocale);
@@ -161,7 +180,10 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
   const [isCheckedAll, setCheckedAll] = useState(false);
 
   // 配置了全选后增加一个全选项
-  const hasCheckAll = useMemo(() => mode === 'multiple' && checkedAll, [mode, checkedAll]);
+  const hasCheckAll = useMemo(
+    () => mode === 'multiple' && checkedAll,
+    [mode, checkedAll],
+  );
 
   const value = useMemo(() => {
     const temValue = handleFormValue(originValue, props.mode);
@@ -176,7 +198,9 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
 
   // FIX: 兼容旧逻辑 通过表单设置值时表单项的值需要预处理，否则会导致值和预想的值不一致
   if (formContext.inForm) {
-    formContext.preproccessSetFormValues(props.fieldName, (v) => handleFormValue(v, props.mode));
+    formContext.preproccessSetFormValues(props.fieldName, (v) =>
+      handleFormValue(v, props.mode),
+    );
   }
 
   const {
@@ -200,10 +224,19 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
       setDataSource(_dataSource || []);
     },
     // 加载数据
-    setDataWithLabelAndValue: (data: { dataSource: any[]; labelKey: any; valueKey: any }) => {
+    setDataWithLabelAndValue: (data: {
+      dataSource: any[];
+      labelKey: any;
+      valueKey: any;
+    }) => {
       setVKey(data.valueKey);
       setLKey(data.labelKey);
-      const dataSoure = handleDataSource(data.dataSource, [], data.valueKey, data.labelKey);
+      const dataSoure = handleDataSource(
+        data.dataSource,
+        [],
+        data.valueKey,
+        data.labelKey,
+      );
       // 3.3.1 之前，为空不进行赋值
       if (compatConfig?.isFormCompat === true) {
         if (Array.isArray(dataSource) && dataSoure.length > 0) {
@@ -234,7 +267,12 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
 
   // 处理列表数据
   useEffect(() => {
-    const newData = handleDataSource(propsDataSource, isLabelInValue(originValue) ? originValue : [], vKey, lKey);
+    const newData = handleDataSource(
+      propsDataSource,
+      isLabelInValue(originValue) ? originValue : [],
+      vKey,
+      lKey,
+    );
     setDataSource(newData);
   }, [JSON.stringify(propsDataSource)]);
   const filterObject: SelectProps = useMemo(() => {
@@ -296,7 +334,11 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
   }, [filter]);
 
   const renderLabel = (c: any, index: number) => {
-    if (customRenderLabel && typeof customRenderLabel === 'object' && customRenderLabel.jsx) {
+    if (
+      customRenderLabel &&
+      typeof customRenderLabel === 'object' &&
+      customRenderLabel.jsx
+    ) {
       return (
         <CustomModule
           code={customRenderLabel.targetVal}
@@ -344,7 +386,11 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
   const renderOption = (c: any, index: number) => {
     let context: React.ReactNode = c.label;
 
-    if (customRenderOption && typeof customRenderOption === 'object' && customRenderOption.jsx) {
+    if (
+      customRenderOption &&
+      typeof customRenderOption === 'object' &&
+      customRenderOption.jsx
+    ) {
       context = (
         <CustomModule
           code={customRenderOption.targetVal}
@@ -389,14 +435,23 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
 
   const extraProps = {
     // 选中数据时过滤掉全选
-    tagRender: (p: any) => (p?.value !== CHECK_ALL_VALUE ? <Tag {...p} className="ued-select-checked-tag">{p?.label}</Tag> : null),
+    tagRender: (p: any) =>
+      p?.value !== CHECK_ALL_VALUE ? (
+        <Tag {...p} className="ued-select-checked-tag">
+          {p?.label}
+        </Tag>
+      ) : null,
     ...restProps,
   };
 
   // 判断是否选中全选项，当开启全选时，若选项都勾上时则视为全选，本地或远程过滤后，全选表示的是过滤后的数据
   useEffect(() => {
     if (hasCheckAll) {
-      const checked = checkIfSelectedAll(dataSource, value, searchTextRef.current);
+      const checked = checkIfSelectedAll(
+        dataSource,
+        value,
+        searchTextRef.current,
+      );
       setCheckedAll(checked);
     }
   }, [JSON.stringify(dataSource), hasCheckAll, value]);
@@ -405,7 +460,10 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
     if (hasCheckAll) {
       return (
         <AntdSelect.Option
-          className={classNames('ued-check-all', isCheckedAll && 'ued-check-all-checked')}
+          className={classNames(
+            'ued-check-all',
+            isCheckedAll && 'ued-check-all-checked',
+          )}
           title={CHECK_ALL_TEXT}
           key={CHECK_ALL_VALUE}
           label={CHECK_ALL_TEXT}
@@ -463,8 +521,15 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
 
   const handleCheckedAll = () => {
     if (hasCheckAll) {
-      const localFilterData = dataSource.filter((d) => localFilterOption(searchTextRef.current, d));
-      const data = getSelectedAllData(!isCheckedAll, localFilterData, value, max);
+      const localFilterData = dataSource.filter((d) =>
+        localFilterOption(searchTextRef.current, d),
+      );
+      const data = getSelectedAllData(
+        !isCheckedAll,
+        localFilterData,
+        value,
+        max,
+      );
       handleOnChange(data);
     }
   };
@@ -487,7 +552,7 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
       <AntdSelect
         showArrow
         {...restProps}
-      // value无值时不配置value属性，避免defaultValue渲染失败
+        // value无值时不配置value属性，避免defaultValue渲染失败
         defaultValue={defaultValue}
         {...extraProps}
         {...filterObject}
@@ -497,7 +562,7 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
         optionLabelProp="label"
         onChange={(v) => {
           if (filter === 'local' && searchTextRef.current) {
-          // 点击时需要重置过滤条件
+            // 点击时需要重置过滤条件
             handleLocalSearch('');
           }
           // 单选选完要关闭
@@ -528,9 +593,9 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
           handleAfterClose();
         }}
         onClear={() => {
-        // setOpen(false);
+          // setOpen(false);
           if (searchTextRef.current) {
-          // 需要置空搜索值
+            // 需要置空搜索值
             searchTextRef.current = '';
             resetRemoteFilter();
           }
@@ -544,7 +609,11 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
               title={c.label}
               key={c.value || Math.random()}
               value={transformValueType(c.value, value ?? [])}
-              disabled={rangeLimit && rangeLimit.length > 0 && !rangeLimit.includes(+c.value)}
+              disabled={
+                rangeLimit &&
+                rangeLimit.length > 0 &&
+                !rangeLimit.includes(+c.value)
+              }
             >
               {renderOption(c, index)}
             </AntdSelect.Option>

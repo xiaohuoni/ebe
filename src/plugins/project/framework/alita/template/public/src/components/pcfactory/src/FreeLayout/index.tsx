@@ -1,9 +1,16 @@
-import React, { CSSProperties, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
-import useBackgroundStyle from '../View/useBackgroundStyle';
-import { Spin } from 'antd';
-import { useHiddenStyle, useListenProps } from '../utils';
 import { LingxiForwardRef } from '@lingxiteam/types';
+import { Spin } from 'antd';
+import React, {
+  CSSProperties,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import { useHiddenStyle, useListenProps } from '../utils';
 import { useLocale } from '../utils/hooks/useLocale';
+import useBackgroundStyle from '../View/useBackgroundStyle';
 
 export interface FreeLayoutProps {
   style: React.CSSProperties;
@@ -33,7 +40,12 @@ const FreeLayout = LingxiForwardRef<any, FreeLayoutProps>((props, ref) => {
   const engineApis = getEngineApis?.() || {};
   const { getLocale } = useLocale(engineApis);
 
-  const { backgroundStyle } = useBackgroundStyle({ engineApis, backgroundType, appId: restProps?.appId, mode: 'engine' });
+  const { backgroundStyle } = useBackgroundStyle({
+    engineApis,
+    backgroundType,
+    appId: restProps?.appId,
+    mode: 'engine',
+  });
 
   const finalStyle = useHiddenStyle(visible, style);
 
@@ -118,16 +130,20 @@ const FreeLayout = LingxiForwardRef<any, FreeLayoutProps>((props, ref) => {
     >
       {children}
       {/* loading 定位元素 */}
-      {
-        loading && (
-          <div
-            style={{ width: 0, height: 0, position: 'relative', backgroundColor: 'transparent', visibility: loading ? 'visible' : 'hidden' }}
-            ref={loadingRef}
-          >
-            {renderLoadingComp}
-          </div>
-        )
-      }
+      {loading && (
+        <div
+          style={{
+            width: 0,
+            height: 0,
+            position: 'relative',
+            backgroundColor: 'transparent',
+            visibility: loading ? 'visible' : 'hidden',
+          }}
+          ref={loadingRef}
+        >
+          {renderLoadingComp}
+        </div>
+      )}
     </div>
   );
 });

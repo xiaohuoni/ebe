@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
 import classnames from 'classnames';
+import React, { useMemo } from 'react';
 
 interface LeftLineDividerProps {
   showTitle?: boolean;
@@ -40,32 +40,42 @@ const LeftLineDivider: React.FC<LeftLineDividerProps> = (props) => {
   }, [style?.height]);
   const rigthView = (classNameStr: string) => {
     const heigth = `${dividerHeight}`;
-    const _height = heigth?.indexOf('px') ? parseInt(heigth?.split('px')[0], 10) - 5 : 27;
+    const _height = heigth?.indexOf('px')
+      ? parseInt(heigth?.split('px')[0], 10) - 5
+      : 27;
     if (classNameStr === 'triangle') {
-      return <div
-        className={`${dividerClsPrefix}-right-${classNameStr}`}
-        style={
-          dividerColor ? {
-            borderBottomColor: dividerColor,
-            borderBottomWidth: _height,
-          } :
-            { borderBottomWidth: _height }}
-      />;
+      return (
+        <div
+          className={`${dividerClsPrefix}-right-${classNameStr}`}
+          style={
+            dividerColor
+              ? {
+                  borderBottomColor: dividerColor,
+                  borderBottomWidth: _height,
+                }
+              : { borderBottomWidth: _height }
+          }
+        />
+      );
     }
     if (classNameStr === 'line') {
-      return <div
-        className={`${dividerClsPrefix}-right-${classNameStr}`}
-        style={{ borderColor: dividerColor }}
-      />;
+      return (
+        <div
+          className={`${dividerClsPrefix}-right-${classNameStr}`}
+          style={{ borderColor: dividerColor }}
+        />
+      );
     }
     // 标题右侧三块区域
-    return <div
-      className={`${dividerClsPrefix}-right-${classNameStr}`}
-      style={{
-        backgroundColor: dividerColor,
-        height: _height <= 5 ? 0 : `${_height - 5}px`,
-      }}
-    />;
+    return (
+      <div
+        className={`${dividerClsPrefix}-right-${classNameStr}`}
+        style={{
+          backgroundColor: dividerColor,
+          height: _height <= 5 ? 0 : `${_height - 5}px`,
+        }}
+      />
+    );
   };
   return (
     <div
@@ -90,7 +100,6 @@ const LeftLineDivider: React.FC<LeftLineDividerProps> = (props) => {
         {rigthView('parallelogram2')}
         {rigthView('parallelogram3')}
       </div>
-
     </div>
   );
 };

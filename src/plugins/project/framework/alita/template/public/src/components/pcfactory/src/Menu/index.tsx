@@ -1,9 +1,14 @@
-import React, { useState, useEffect, useMemo, useImperativeHandle } from 'react';
+import { LingxiForwardRef } from '@lingxiteam/types';
 import { Menu } from 'antd';
+import React, {
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from 'react';
 import Icon from '../Icon';
 import { useListenProps } from '../utils';
 import { useLocale } from '../utils/hooks/useLocale';
-import { LingxiForwardRef } from '@lingxiteam/types';
 
 export interface MyMenuProps {
   visible?: boolean;
@@ -29,8 +34,17 @@ const prefixCls = 'menu';
 
 const MyMenu = LingxiForwardRef<any, MyMenuProps>((props, ref) => {
   const {
-    visible, mode, style, isUsePrimary, color, treeData,
-    isExpanded, propKey, onClick, icon = {}, getEngineApis,
+    visible,
+    mode,
+    style,
+    isUsePrimary,
+    color,
+    treeData,
+    isExpanded,
+    propKey,
+    onClick,
+    icon = {},
+    getEngineApis,
     className,
   } = props;
 
@@ -52,17 +66,21 @@ const MyMenu = LingxiForwardRef<any, MyMenuProps>((props, ref) => {
   // 图标规则
   const getRuleFunc = (rule: string) => {
     if (!rule) {
-      return () => { };
+      return () => {};
     }
     if (typeof rule === 'function') {
       return rule;
     }
     if (typeof rule === 'string') {
       // eslint-disable-next-line no-new-func
-      return new Function('node',
-        `try { return ${rule};} catch(e) { console.warn("${rule}${getLocale?.('nodeRule')}");}`);
+      return new Function(
+        'node',
+        `try { return ${rule};} catch(e) { console.warn("${rule}${getLocale?.(
+          'nodeRule',
+        )}");}`,
+      );
     }
-    return () => { };
+    return () => {};
   };
 
   useImperativeHandle(ref, () => ({
@@ -118,20 +136,22 @@ const MyMenu = LingxiForwardRef<any, MyMenuProps>((props, ref) => {
 
   const renderIconFont = (info: any) => {
     if (info) {
-      return <Icon
-        icon={info}
-        isUsePrimary={isUsePrimary}
-        style={{
-          width: 16,
-          height: 16,
-          fontSize: '16px',
-          fill: isUsePrimary ? undefined : color,
-          color: isUsePrimary ? undefined : color,
-        }}
-        $$componentItem={props.$$componentItem}
-        getEngineApis={getEngineApis}
-        className=""
-      />;
+      return (
+        <Icon
+          icon={info}
+          isUsePrimary={isUsePrimary}
+          style={{
+            width: 16,
+            height: 16,
+            fontSize: '16px',
+            fill: isUsePrimary ? undefined : color,
+            color: isUsePrimary ? undefined : color,
+          }}
+          $$componentItem={props.$$componentItem}
+          getEngineApis={getEngineApis}
+          className=""
+        />
+      );
     }
     return undefined;
   };
@@ -156,9 +176,11 @@ const MyMenu = LingxiForwardRef<any, MyMenuProps>((props, ref) => {
     }
     if (info) {
       return renderIconFont(info);
-    } if (menuExpandedKeys.includes(key)) {
+    }
+    if (menuExpandedKeys.includes(key)) {
       return renderIconFont(node?.expandedIcon || iconInfo.expanded);
-    } if (children?.length) {
+    }
+    if (children?.length) {
       return renderIconFont(node?.closedIcon || iconInfo.closed);
     }
     return renderIconFont(iconInfo.leaf);
@@ -169,7 +191,8 @@ const MyMenu = LingxiForwardRef<any, MyMenuProps>((props, ref) => {
       if (Array.isArray(arr)) {
         return arr.map((c) => {
           // _isReload 标识节点数据是通过加载子节点动作设置的,此时取该动作配置好的key/title/selectable
-          const serviceSelectable = c[selectable] !== undefined ? c[selectable] : true;
+          const serviceSelectable =
+            c[selectable] !== undefined ? c[selectable] : true;
           const params = {
             key: c._isReload ? c.key : c[key] || c.key,
             title: c._isReload ? c.title : c[title] || c.title,
@@ -181,7 +204,7 @@ const MyMenu = LingxiForwardRef<any, MyMenuProps>((props, ref) => {
           const node: Record<string, any> = {
             ...params,
             icon: getIcon({ ...c, ...params }),
-            data: c.data || ({ ...c, ...params }),
+            data: c.data || { ...c, ...params },
           };
           // 优先取配置的children字段，若配置错误则子节点为空，若无配置默认访问数据自身chidren
           const childrenKey = children || 'children';
@@ -201,14 +224,24 @@ const MyMenu = LingxiForwardRef<any, MyMenuProps>((props, ref) => {
 
   // 菜单展示数据列表
   const menuDatas: any = useMemo(() => {
-    if (Array.isArray(dataSource) && dataSource?.length) { // 动态获取回来的服务数据
+    if (Array.isArray(dataSource) && dataSource?.length) {
+      // 动态获取回来的服务数据
       const dataAttrs: any = loadData(dataSource, treeService);
-      return ([...(dataAttrs || [])]);
-    } if (Array.isArray(treeData) && treeData?.length) { // 项目设置配置的静态数据
-      return ([...treeData]);
+      return [...(dataAttrs || [])];
+    }
+    if (Array.isArray(treeData) && treeData?.length) {
+      // 项目设置配置的静态数据
+      return [...treeData];
     }
     return [];
-  }, [dataSource, treeService, treeData, extRules, isUsePrimary, menuExpandedKeys]);
+  }, [
+    dataSource,
+    treeService,
+    treeData,
+    extRules,
+    isUsePrimary,
+    menuExpandedKeys,
+  ]);
 
   const getExpendKeys = (datas: any) => {
     const { key, children } = treeService || {};
@@ -218,7 +251,8 @@ const MyMenu = LingxiForwardRef<any, MyMenuProps>((props, ref) => {
         arr.forEach((c) => {
           const childrenKey = children || 'children';
           if (Array.isArray(c[childrenKey])) {
-            if (mode === 'inline' && (c[childrenKey]?.length)) { // 是否设置默认展开项
+            if (mode === 'inline' && c[childrenKey]?.length) {
+              // 是否设置默认展开项
               menuKeys.push(c._isReload ? c.key : c[key] || c.key);
             }
             getTreeKey(c[childrenKey]);
@@ -231,10 +265,20 @@ const MyMenu = LingxiForwardRef<any, MyMenuProps>((props, ref) => {
   };
   // 设置默认展开项数据
   useEffect(() => {
-    if (dataSource?.length && isExpanded && mode === 'inline' && !inlineCollapsed) {
+    if (
+      dataSource?.length &&
+      isExpanded &&
+      mode === 'inline' &&
+      !inlineCollapsed
+    ) {
       const menuKeys = getExpendKeys(dataSource);
       setMenuExpandedKeys([...(menuKeys || [])]);
-    } else if (treeData?.length && isExpanded && mode === 'inline' && !inlineCollapsed) {
+    } else if (
+      treeData?.length &&
+      isExpanded &&
+      mode === 'inline' &&
+      !inlineCollapsed
+    ) {
       const menuKeys = getExpendKeys(treeData);
       setMenuExpandedKeys([...(defaultOpenKey || menuKeys || [])]);
     }
@@ -248,7 +292,12 @@ const MyMenu = LingxiForwardRef<any, MyMenuProps>((props, ref) => {
       const childrenKey = children || 'children';
       let defSelected: any = null;
       const getDefaultSelect = (items: any) => {
-        if (items && Array.isArray(items[childrenKey]) && items[childrenKey]?.length && !defSelected) {
+        if (
+          items &&
+          Array.isArray(items[childrenKey]) &&
+          items[childrenKey]?.length &&
+          !defSelected
+        ) {
           getDefaultSelect(items[childrenKey][0]);
         } else if (items && !defSelected) {
           items.key = items._isReload ? items.key : items[key] || items.key;
@@ -281,42 +330,49 @@ const MyMenu = LingxiForwardRef<any, MyMenuProps>((props, ref) => {
       if (isStatic) {
         const iconType =
           // eslint-disable-next-line no-nested-ternary
-          menuExpandedKeys.includes(item?.key) ? item?.expandedIcon :
-            (item?.children?.length ? item?.closedIcon : (item?.closedIcon || item?.expandedIcon));
+          menuExpandedKeys.includes(item?.key)
+            ? item?.expandedIcon
+            : item?.children?.length
+            ? item?.closedIcon
+            : item?.closedIcon || item?.expandedIcon;
         itemIcon = renderIconFont(iconType);
       } else {
-        itemIcon = item?.icon instanceof Function ? item?.icon(item) : item?.icon;
+        itemIcon =
+          item?.icon instanceof Function ? item?.icon(item) : item?.icon;
       }
       if (item?.children?.length) {
         return (
           <Menu.SubMenu
             disabled={item.disabled}
-            title={(
+            title={
               <>
-                {
-                  itemIcon && (
-                    <span role="img" aria-label="mail" className={`anticon anticon-mail ${`${prefixCls}_icon`}`}>
-                      {itemIcon}
-                    </span>
-                  )
-                }
+                {itemIcon && (
+                  <span
+                    role="img"
+                    aria-label="mail"
+                    className={`anticon anticon-mail ${`${prefixCls}_icon`}`}
+                  >
+                    {itemIcon}
+                  </span>
+                )}
                 <span>{item && item[titleKey]}</span>
               </>
-            )}
+            }
             key={item.key}
           >
             {getItems(item.children, isStatic)}
           </Menu.SubMenu>
         );
       }
-      return ((item && item[titleKey]) ? (
+      return item && item[titleKey] ? (
         <Menu.Item
           key={item.key}
           disabled={item.disabled}
           onClick={() => {
             if (onClick instanceof Function) {
               let newItem = item;
-              if (!newItem?.data) { // 节点数据获取的是data属性的内容
+              if (!newItem?.data) {
+                // 节点数据获取的是data属性的内容
                 newItem = { ...newItem, data: item };
               }
               onClick(item.key, item.url, newItem);
@@ -324,42 +380,48 @@ const MyMenu = LingxiForwardRef<any, MyMenuProps>((props, ref) => {
             setDefaultSelectedKeys([item?.key]);
           }}
         >
-          {
-            itemIcon && (
-              <span role="img" aria-label="mail" className={`anticon anticon-mail ${`${prefixCls}_icon`}`}>
-                {itemIcon}
-              </span>
-            )
-          }
+          {itemIcon && (
+            <span
+              role="img"
+              aria-label="mail"
+              className={`anticon anticon-mail ${`${prefixCls}_icon`}`}
+            >
+              {itemIcon}
+            </span>
+          )}
           <span>{item && item[titleKey]}</span>
         </Menu.Item>
-      ) : null);
+      ) : null;
     });
   };
-  const extendOptions: any = mode === 'inline' ? {
-    inlineCollapsed,
-  } : {};
+  const extendOptions: any =
+    mode === 'inline'
+      ? {
+          inlineCollapsed,
+        }
+      : {};
 
-  return (
-    visible ? (
-      <div
-        className={`ued-menu ${className} ${prefixCls} ${mode === 'inline' && !inlineCollapsed ? `${prefixCls}_inline_colloaps` : ''}`}
-        style={{ width, height }}
+  return visible ? (
+    <div
+      className={`ued-menu ${className} ${prefixCls} ${
+        mode === 'inline' && !inlineCollapsed
+          ? `${prefixCls}_inline_colloaps`
+          : ''
+      }`}
+      style={{ width, height }}
+    >
+      <Menu
+        {...extendOptions}
+        mode={mode}
+        style={style}
+        selectedKeys={defaultSelectedKeys}
+        openKeys={menuExpandedKeys}
+        onOpenChange={(keys: any) => setMenuExpandedKeys([...(keys || [])])}
       >
-        <Menu
-          {...extendOptions}
-          mode={mode}
-          style={style}
-          selectedKeys={defaultSelectedKeys}
-          openKeys={menuExpandedKeys}
-          onOpenChange={(keys: any) => setMenuExpandedKeys([...(keys || [])])}
-        >
-          {getItems(menuDatas || [], (dataSource?.length || 0) < 1) || false}
-        </Menu>
-      </div>
-    ) : null
-  );
+        {getItems(menuDatas || [], (dataSource?.length || 0) < 1) || false}
+      </Menu>
+    </div>
+  ) : null;
 });
-
 
 export default MyMenu;

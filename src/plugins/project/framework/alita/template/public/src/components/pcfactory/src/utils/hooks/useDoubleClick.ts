@@ -1,4 +1,4 @@
-import { useRef, useEffect, MouseEventHandler } from 'react';
+import { MouseEventHandler, useEffect, useRef } from 'react';
 
 export interface DoubleClickProps {
   events: Record<string, MouseEventHandler<HTMLElement> | undefined>;
@@ -9,7 +9,11 @@ export interface DoubleClickProps {
 /**
  * 双击事件处理逻辑
  */
-const useDoubleClick = ({ events = {}, clickName = 'onClick', doubleClickName = 'onDoubleClick' }: DoubleClickProps) => {
+const useDoubleClick = ({
+  events = {},
+  clickName = 'onClick',
+  doubleClickName = 'onDoubleClick',
+}: DoubleClickProps) => {
   const clickTimerRef = useRef<any>(null);
   const recordClickTimesRef = useRef(0);
 
@@ -32,7 +36,6 @@ const useDoubleClick = ({ events = {}, clickName = 'onClick', doubleClickName = 
 
   useEffect(() => resetClickParams, []);
 
-
   // 存在双击事件
   const target: DoubleClickProps['events'] = {
     [clickName]: (...args) => {
@@ -54,7 +57,6 @@ const useDoubleClick = ({ events = {}, clickName = 'onClick', doubleClickName = 
     },
   };
 
-  
   return target;
 };
 

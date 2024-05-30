@@ -1,9 +1,9 @@
-import CustomModule from '../utils/CustomModule';
 import { LingxiForwardRef } from '@lingxiteam/types';
 import { Badge } from 'antd';
 import React, { useCallback, useImperativeHandle } from 'react';
 import { useListenProps } from '../utils';
 import { useDeepCompareEffect } from '../utils/ahooks';
+import CustomModule from '../utils/CustomModule';
 import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
 import { useLocale } from '../utils/hooks/useLocale';
 
@@ -33,13 +33,14 @@ const MyTabPane = LingxiForwardRef<any, MyTabPaneProps>((props, ref) => {
   /**
    * visible 表示用户是否设置了隐藏
    */
-  const [visible, setVisible] = useListenProps(typeof props.visible === 'undefined' ? true : props.visible);
+  const [visible, setVisible] = useListenProps(
+    typeof props.visible === 'undefined' ? true : props.visible,
+  );
 
   const { sandBoxSafeRun, sandBoxLoadModule } = getEngineApis();
   const { getLocale } = useLocale(getEngineApis());
 
   const funcExpExecute = useFuncExpExecute(sandBoxSafeRun, getLocale);
-
 
   const getTab = useCallback(() => {
     if (currentIndex !== -1) {

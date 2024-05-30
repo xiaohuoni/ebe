@@ -1,7 +1,10 @@
 import { isEqual } from 'lodash';
 import { DependencyList, EffectCallback, useEffect, useRef } from 'react';
 
-const depsEqual = function depsEqual(aDeps: DependencyList, bDeps?: DependencyList) {
+const depsEqual = function depsEqual(
+  aDeps: DependencyList,
+  bDeps?: DependencyList,
+) {
   let bDepsList = bDeps;
   if (bDepsList === undefined) {
     bDepsList = [];
@@ -10,7 +13,10 @@ const depsEqual = function depsEqual(aDeps: DependencyList, bDeps?: DependencyLi
   return isEqual(aDeps, bDepsList);
 };
 
-export const useDeepCompareEffect = (effect: EffectCallback, deps: DependencyList) => {
+export const useDeepCompareEffect = (
+  effect: EffectCallback,
+  deps: DependencyList,
+) => {
   const ref = useRef<DependencyList>();
   const signalRef = useRef(0);
   if (!depsEqual(deps, ref.current)) {

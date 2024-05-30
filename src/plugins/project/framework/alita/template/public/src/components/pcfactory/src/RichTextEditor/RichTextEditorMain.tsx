@@ -6,20 +6,21 @@ import { LingXiFC } from '@lingxiteam/types';
 
 export interface RichTextEditorProps {
   height: number;
-  rootRef: any
+  rootRef: any;
 }
 
-const RichTextEditorMain: LingXiFC<RichTextEditorProps> = ((props) => {
+const RichTextEditorMain: LingXiFC<RichTextEditorProps> = (props) => {
   const { rootRef: ref } = props;
   const gridViewRef = useRef<any>(null);
   const richTextRef = useRef<any>(null);
-  const { disabled, required, readOnly, formFieldsRef } = useCommonImperativeHandle(ref, props, {
-    setValue: (val:string) => {
-      if (richTextRef.current) {
-        richTextRef.current.setHTML(val);
-      }
-    },
-  });
+  const { disabled, required, readOnly, formFieldsRef } =
+    useCommonImperativeHandle(ref, props, {
+      setValue: (val: string) => {
+        if (richTextRef.current) {
+          richTextRef.current.setHTML(val);
+        }
+      },
+    });
 
   const language = props.getEngineApis().getLocaleEnv();
 
@@ -35,6 +36,6 @@ const RichTextEditorMain: LingXiFC<RichTextEditorProps> = ((props) => {
       richTextRef={richTextRef}
     />
   );
-});
+};
 
 export default RichTextEditorMain;

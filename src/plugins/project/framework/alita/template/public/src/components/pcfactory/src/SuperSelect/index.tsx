@@ -1,6 +1,10 @@
-import React, { useRef } from 'react';
-import { FormFields, getFieldsProps, useCommonImperativeHandle } from '../utils';
 import { LingxiForwardRef } from '@lingxiteam/types';
+import React, { useRef } from 'react';
+import {
+  FormFields,
+  getFieldsProps,
+  useCommonImperativeHandle,
+} from '../utils';
 import SuperSelectLoader from './loader';
 
 export interface MySuperSelectProps {
@@ -30,11 +34,11 @@ export interface MySuperSelectProps {
   tipSize?: string; // 文字提示
   tipWidth?: string; // 提示自定义的宽度
   tipHeight?: string; // 提示自定义的高度
-  comSelectRef?: any;// 懒加载入参
-  formFieldsRef?: any;// 懒加载入参
-  readOnly: boolean;// 懒加载入参
-  disabled: boolean;// 懒加载入参
-  required?: any;// 懒加载入参
+  comSelectRef?: any; // 懒加载入参
+  formFieldsRef?: any; // 懒加载入参
+  readOnly: boolean; // 懒加载入参
+  disabled: boolean; // 懒加载入参
+  required?: any; // 懒加载入参
 }
 
 interface WrapperSuperSelectProps {
@@ -44,7 +48,9 @@ interface WrapperSuperSelectProps {
 const SUPERSELECT_WRAPPER_CLASSNAME = 'ued-superSelect-wrap';
 const WrapperSuperSelect = ({ children }: WrapperSuperSelectProps) =>
   React.cloneElement(children, {
-    className: `${SUPERSELECT_WRAPPER_CLASSNAME} ${children.props.className || ''}`,
+    className: `${SUPERSELECT_WRAPPER_CLASSNAME} ${
+      children.props.className || ''
+    }`,
   });
 
 const SuperSelect = LingxiForwardRef<any, MySuperSelectProps>((props, ref) => {
@@ -76,12 +82,13 @@ const SuperSelect = LingxiForwardRef<any, MySuperSelectProps>((props, ref) => {
     ...restProps
   } = props;
   const comSelectRef = useRef<any>();
-  const { formFieldsRef, required, readOnly, disabled, finalRules } = useCommonImperativeHandle(ref, props, {
-    getSelectedData: () => {
-      return comSelectRef.current?.getSelectedData();
-    },
-    reloadOptions: comSelectRef.current?.reloadOptions,
-  });
+  const { formFieldsRef, required, readOnly, disabled, finalRules } =
+    useCommonImperativeHandle(ref, props, {
+      getSelectedData: () => {
+        return comSelectRef.current?.getSelectedData();
+      },
+      reloadOptions: comSelectRef.current?.reloadOptions,
+    });
   const customStyle = restProps.style || {};
   const {
     margin: customMargin,
@@ -89,7 +96,6 @@ const SuperSelect = LingxiForwardRef<any, MySuperSelectProps>((props, ref) => {
     visibility: customVisibility,
     ...restCusStyles
   } = customStyle;
-
 
   return (
     <FormFields
@@ -108,8 +114,13 @@ const SuperSelect = LingxiForwardRef<any, MySuperSelectProps>((props, ref) => {
       label={label}
       style={restCusStyles}
     >
-      <SuperSelectLoader fieldName={fieldName} {...restProps} comSelectRef={comSelectRef} />
-    </FormFields>);
+      <SuperSelectLoader
+        fieldName={fieldName}
+        {...restProps}
+        comSelectRef={comSelectRef}
+      />
+    </FormFields>
+  );
 });
 
 export default SuperSelect;

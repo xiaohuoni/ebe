@@ -1,8 +1,12 @@
 import { InputNumber as AntdInputNumber, Tooltip } from 'antd';
 // @ts-ignore
 // import type { ValidationRule } from 'antd/es/form';
-import React, { useState, useMemo } from 'react';
-import { FormFields, getFieldsProps, useCommonImperativeHandle } from '../utils';
+import React, { useMemo, useState } from 'react';
+import {
+  FormFields,
+  getFieldsProps,
+  useCommonImperativeHandle,
+} from '../utils';
 import { useLocale } from '../utils/hooks/useLocale';
 
 export interface InputNumberProps {
@@ -53,7 +57,9 @@ export interface WrapperInputNumberProps {
 const INPUTNUMBER_WRAPPER_CLASSNAME = 'ued-inputNumber-wrap';
 const WrapperInputNumber: React.FC<WrapperInputNumberProps> = ({ children }) =>
   React.cloneElement(children, {
-    className: `${INPUTNUMBER_WRAPPER_CLASSNAME} ${children.props.className || ''}`,
+    className: `${INPUTNUMBER_WRAPPER_CLASSNAME} ${
+      children.props.className || ''
+    }`,
   });
 const TOOLTIP_CLASSNAME = 'ued-inputNumber-tooltip-wrap';
 const TOOLTIP_CLASSNAME_NO_FORM = `${TOOLTIP_CLASSNAME} no-form`;
@@ -103,9 +109,10 @@ const InputNumber = React.forwardRef<any, InputNumberProps>((props, ref) => {
 
   const engineApis = getEngineApis?.() || {};
   const { sandBoxSafeRun } = engineApis;
-  
+
   const { getLocale } = useLocale(engineApis);
-  const { disabled, required, formFieldsRef, finalRules, readOnly } = useCommonImperativeHandle(ref, props);
+  const { disabled, required, formFieldsRef, finalRules, readOnly } =
+    useCommonImperativeHandle(ref, props);
 
   const [digitText, setDigitText] = useState('');
 
@@ -151,11 +158,16 @@ const InputNumber = React.forwardRef<any, InputNumberProps>((props, ref) => {
       if (formatting === 'word') {
         return val;
       }
-      const withComma = (str: string) => str.split('').reverse().join('').replace(/(\d{1,3})/g, ',$1')
-        .split('')
-        .reverse()
-        .join('')
-        .replace(/,$/, '');
+      const withComma = (str: string) =>
+        str
+          .split('')
+          .reverse()
+          .join('')
+          .replace(/(\d{1,3})/g, ',$1')
+          .split('')
+          .reverse()
+          .join('')
+          .replace(/,$/, '');
       // 只有小数点前的部分需要千位分隔符
       if (formatting === 'comma' && val.indexOf('.') > -1) {
         return (

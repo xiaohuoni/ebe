@@ -9,17 +9,13 @@ export interface HyperlinkProps {
 const hyperlinkClassName = 'ued-table-cell-hyperlink';
 
 const Hyperlink: React.FC<HyperlinkProps> = (props) => {
-  const {
-    content,
-    onClick,
-  } = props;
+  const { content, onClick } = props;
 
   return (
     <span
-      className={classNames(
-        hyperlinkClassName,
-        { [`${hyperlinkClassName}-click`]: !!onClick }
-      )}
+      className={classNames(hyperlinkClassName, {
+        [`${hyperlinkClassName}-click`]: !!onClick,
+      })}
       onClick={onClick}
     >
       {content}

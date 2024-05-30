@@ -2,7 +2,14 @@ import React from 'react';
 
 export default (props: any) => {
   return (
-    <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      width="21"
+      height="20"
+      viewBox="0 0 21 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <g id="CheckCircle" clipPath="url(#clip0_2704_29331)">
         <g id="Vector">
           <path d="M15.0061 6.4502H13.9592C13.7315 6.4502 13.515 6.55957 13.3811 6.74707L9.87214 11.6131L8.28286 9.40778C8.14893 9.22252 7.93464 9.11091 7.70473 9.11091H6.65786C6.51277 9.11091 6.42795 9.27609 6.51277 9.39439L9.29402 13.2515C9.35972 13.3432 9.44634 13.418 9.54668 13.4695C9.64703 13.5211 9.75822 13.5479 9.87103 13.5479C9.98384 13.5479 10.095 13.5211 10.1954 13.4695C10.2957 13.418 10.3823 13.3432 10.448 13.2515L15.1489 6.73368C15.236 6.61537 15.1512 6.4502 15.0061 6.4502Z" />
@@ -11,8 +18,14 @@ export default (props: any) => {
       </g>
       <defs>
         <clipPath id="clip0_2704_29331">
-          <rect width="20" height="20" fill="white" transform="translate(0.832031)" />
+          <rect
+            width="20"
+            height="20"
+            fill="white"
+            transform="translate(0.832031)"
+          />
         </clipPath>
       </defs>
-    </svg>);
+    </svg>
+  );
 };

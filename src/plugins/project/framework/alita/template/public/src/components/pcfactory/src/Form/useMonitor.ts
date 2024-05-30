@@ -17,7 +17,7 @@ const useMonitor = () => {
    * 移除监听事件
    */
   const removeListener = useCallback((fn: MonitorFn) => {
-    const index = monitor.findIndex(v => v === fn);
+    const index = monitor.findIndex((v) => v === fn);
     if (index > -1) {
       monitor.splice(index, 1);
     }
@@ -27,7 +27,7 @@ const useMonitor = () => {
    * 执行监听事件
    */
   const execListeners = useCallback((v: unknown, type: StatusType) => {
-    monitor.forEach(fn => fn(v, type));
+    monitor.forEach((fn) => fn(v, type));
   }, []);
 
   return {

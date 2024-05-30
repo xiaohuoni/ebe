@@ -1,10 +1,16 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
+import type { EngineApisType } from '@lingxiteam/types';
 import { Divider, Input, Select } from 'antd';
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from 'react';
 import { useMap } from '../utils/ahooks';
 import { createId } from '../utils/common';
 import useGetStaticAttrData from '../utils/hooks/useGetStaticAttrData';
-import type { EngineApisType } from '@lingxiteam/types';
 import { useLocale } from '../utils/hooks/useLocale';
 
 interface ComSelectProps {
@@ -55,7 +61,9 @@ const superSelectCls = 'ued-superSelect';
 // const ComSelect: React.ForwardRefRenderFunction<any, ComSelectProps> = (props, ref) => {
 const ComSelect = forwardRef<any, ComSelectProps>((props) => {
   // const api = getApis();
-  const { getLocale } = useLocale((props?.engineApis || props?.getEngineApis?.()));
+  const { getLocale } = useLocale(
+    props?.engineApis || props?.getEngineApis?.(),
+  );
   const {
     className,
     value,
@@ -108,13 +116,18 @@ const ComSelect = forwardRef<any, ComSelectProps>((props) => {
   }, [JSON.stringify(value)]);
 
   useEffect(() => {
-    if (compValue === undefined || (Array.isArray(compValue) && !compValue.length)) {
+    if (
+      compValue === undefined ||
+      (Array.isArray(compValue) && !compValue.length)
+    ) {
       setSelectedRows([]);
     }
   }, [compValue]);
 
   const [attrMap] = useGetStaticAttrData({
-    attrNbrs: extraKey.filter((item: any) => item.staticCode).map((item: any) => item.staticCode),
+    attrNbrs: extraKey
+      .filter((item: any) => item.staticCode)
+      .map((item: any) => item.staticCode),
   });
 
   const onTriggerChange = (v: any) => {
@@ -163,9 +176,12 @@ const ComSelect = forwardRef<any, ComSelectProps>((props) => {
   const computeValue = (data: any) => {
     const values = data.map((item: any) => item[valueKey?.key]);
     // eslint-disable-next-line no-nested-ternary
-    const nowValues = mode === 'multiple' ? values : values.length ? values[0] : undefined;
+    const nowValues =
+      mode === 'multiple' ? values : values.length ? values[0] : undefined;
     // eslint-disable-next-line no-underscore-dangle
-    const _label = data.map((item: any) => item[labelKey?.key || valueKey?.key]).join(',');
+    const _label = data
+      .map((item: any) => item[labelKey?.key || valueKey?.key])
+      .join(',');
     onSelectChange(nowValues, _label);
   };
 
@@ -213,46 +229,54 @@ const ComSelect = forwardRef<any, ComSelectProps>((props) => {
       });
       setSelectedRows(rows);
     } else {
-      const { serviceCode, servicePath, serviceMethod, busiObjectId } = apiKeys.selectByKeys;
-      (engineApis as any)?.service?.commonFetch(serviceMethod, `${servicePath}/${serviceCode}`, {
-        busiObjectInstId: createId(),
-        busiObjectId,
-        attrs: {
-          primaryValues: ids.map((item) => `${item}`),
-        },
-      }).then((res = []) => {
-        res.forEach((item) => {
-          set(item[valueKey?.key], item);
-        });
-        // 针对选择的数据在对应表中已删除时，手动补齐数据做展示
-        const others: any[] = [];
-        ids.map((i:any) => {
-          // eslint-disable-next-line eqeqeq
-          if (!res.find(r => r[valueKey?.key] == i)) {
-            others.push({
-              [valueKey?.key]: i,
-              [labelKey?.key || valueKey?.key]: i,
-            });
+      const { serviceCode, servicePath, serviceMethod, busiObjectId } =
+        apiKeys.selectByKeys;
+      (engineApis as any)?.service
+        ?.commonFetch(serviceMethod, `${servicePath}/${serviceCode}`, {
+          busiObjectInstId: createId(),
+          busiObjectId,
+          attrs: {
+            primaryValues: ids.map((item) => `${item}`),
+          },
+        })
+        .then((res = []) => {
+          res.forEach((item) => {
+            set(item[valueKey?.key], item);
+          });
+          // 针对选择的数据在对应表中已删除时，手动补齐数据做展示
+          const others: any[] = [];
+          ids.map((i: any) => {
+            // eslint-disable-next-line eqeqeq
+            if (!res.find((r) => r[valueKey?.key] == i)) {
+              others.push({
+                [valueKey?.key]: i,
+                [labelKey?.key || valueKey?.key]: i,
+              });
+            }
+            return i;
+          });
+          setSelectedRows([...res, ...others]);
+          // 如果初次未传入正确的value数据类型
+          if (res?.length && res[0][valueKey?.key]) {
+            const realType = typeof res[0][valueKey?.key];
+            const valueType = typeof ids[0];
+            if (
+              (realType !== valueType || ignoreValueType) &&
+              transFormType[realType]
+            ) {
+              const transformValue =
+                mode !== 'multiple'
+                  ? transFormType[realType](ids[0])
+                  : ids.map((item) => transFormType[realType](item));
+              onSelectChange(
+                transformValue,
+                res
+                  .map((item) => item[labelKey?.key || valueKey?.key])
+                  .join(','),
+              );
+            }
           }
-          return i;
         });
-        setSelectedRows([...res, ...others]);
-        // 如果初次未传入正确的value数据类型
-        if (res?.length && res[0][valueKey?.key]) {
-          const realType = typeof res[0][valueKey?.key];
-          const valueType = typeof ids[0];
-          if ((realType !== valueType || ignoreValueType) && transFormType[realType]) {
-            const transformValue =
-              mode !== 'multiple'
-                ? transFormType[realType](ids[0])
-                : ids.map((item) => transFormType[realType](item));
-            onSelectChange(
-              transformValue,
-              res.map((item) => item[labelKey?.key || valueKey?.key]).join(','),
-            );
-          }
-        }
-      });
     }
   };
 
@@ -270,29 +294,32 @@ const ComSelect = forwardRef<any, ComSelectProps>((props) => {
         setShowMoreTips(false);
       }
       setFetching(true);
-      const { serviceCode, servicePath, serviceMethod, busiObjectId } = apiKeys.selectAllPage;
-      (engineApis as any)?.service?.commonFetch(serviceMethod, `${servicePath}/${serviceCode}`, {
-        busiObjectInstId: createId(),
-        busiObjectId,
-        attrs: {
-          pageNum: params.pageNum,
-          pageSize: isSearch ? 1000 : params.pageSize, // 搜索过滤时，需要查询所有符合条件的数据，做分页查询时加大查询数据
-          [labelKey?.key]: val || undefined,
-          // [labelKey?.key]: params.searchContent || undefined,
-        },
-      }).then((res: any) => {
-        const { list = [], total: newTotal } = res || {};
-        if (!isSearch) {
-          setOldDataSource(list);
-          setTotal(newTotal || 0);
-        }
-        setDataSource(list);
-        (list || []).forEach((item: any) => {
-          if (!get(item[valueKey?.key])) {
-            set(item[valueKey?.key], item);
+      const { serviceCode, servicePath, serviceMethod, busiObjectId } =
+        apiKeys.selectAllPage;
+      (engineApis as any)?.service
+        ?.commonFetch(serviceMethod, `${servicePath}/${serviceCode}`, {
+          busiObjectInstId: createId(),
+          busiObjectId,
+          attrs: {
+            pageNum: params.pageNum,
+            pageSize: isSearch ? 1000 : params.pageSize, // 搜索过滤时，需要查询所有符合条件的数据，做分页查询时加大查询数据
+            [labelKey?.key]: val || undefined,
+            // [labelKey?.key]: params.searchContent || undefined,
+          },
+        })
+        .then((res: any) => {
+          const { list = [], total: newTotal } = res || {};
+          if (!isSearch) {
+            setOldDataSource(list);
+            setTotal(newTotal || 0);
           }
+          setDataSource(list);
+          (list || []).forEach((item: any) => {
+            if (!get(item[valueKey?.key])) {
+              set(item[valueKey?.key], item);
+            }
+          });
         });
-      });
     } catch (err) {
       console.log(`远程搜索数据异常：${err}`);
     } finally {
@@ -307,7 +334,8 @@ const ComSelect = forwardRef<any, ComSelectProps>((props) => {
     const initValue = innerValue || defaultValue;
     if (initValue) {
       let values: any = Array.isArray(initValue) ? initValue : [initValue];
-      let labels: any = typeof showLabel === 'string' ? showLabel?.split(',') : [];
+      let labels: any =
+        typeof showLabel === 'string' ? showLabel?.split(',') : [];
       if (Array.isArray(showLabel)) {
         labels = showLabel;
       }
@@ -336,13 +364,18 @@ const ComSelect = forwardRef<any, ComSelectProps>((props) => {
     // eslint-disable-next-line no-underscore-dangle
     const _innerValue = mode === 'multiple' ? innerValue : [innerValue];
     if (selcetMode === 'select') {
-      const currentValue = mode === 'multiple'
-        ? selectedRows.map((f: any) => f[valueKey.key])
-        : selectedRows?.[0]?.[valueKey.key];
+      const currentValue =
+        mode === 'multiple'
+          ? selectedRows.map((f: any) => f[valueKey.key])
+          : selectedRows?.[0]?.[valueKey.key];
       // || innerValue;
       // 非弹窗时，直接渲染为下拉，，form中不必重复设置value
-      const rows = (selectedRows.length ?
-        selectedRows.map((se: any) => ({ value: se[valueKey.key], label: se[labelKey?.key || valueKey?.key] })) : undefined);
+      const rows = selectedRows.length
+        ? selectedRows.map((se: any) => ({
+            value: se[valueKey.key],
+            label: se[labelKey?.key || valueKey?.key],
+          }))
+        : undefined;
       const valueProp = {
         value: labelInValue ? rows : currentValue,
         // 4月份版本屏蔽了弹窗方式打开，兼容存量数据，则不需要添加该判断
@@ -387,7 +420,8 @@ const ComSelect = forwardRef<any, ComSelectProps>((props) => {
                       }
                     }}
                   >
-                    <PlusOutlined style={{ fontSize: '11px' }} rev="" /> {addBtnText}
+                    <PlusOutlined style={{ fontSize: '11px' }} rev="" />{' '}
+                    {addBtnText}
                   </div>
                 </>
               )}
@@ -401,11 +435,16 @@ const ComSelect = forwardRef<any, ComSelectProps>((props) => {
           onChange={(e) => {
             let changeValue: string | never[] = [];
             if (labelInValue) {
-              changeValue = mode === 'multiple' ? (e || []).map((ev: any) => ev.value) : e?.value;
+              changeValue =
+                mode === 'multiple'
+                  ? (e || []).map((ev: any) => ev.value)
+                  : e?.value;
             } else {
               changeValue = mode === 'multiple' ? e : [e];
             }
-            const newData = dataSource.filter((f) => changeValue.includes(f[valueKey.key]));
+            const newData = dataSource.filter((f) =>
+              changeValue.includes(f[valueKey.key]),
+            );
             setSelectedRows(newData);
             // 4月份版本屏蔽了弹窗方式打开，兼容存量数据，则不需要添加该判断
             // if (showMode !== 'modal') {
@@ -417,23 +456,33 @@ const ComSelect = forwardRef<any, ComSelectProps>((props) => {
           {dataSource
             // .filter(d => !doFilter || (doFilter && conditions.length && collectCondition(conditions, d)))
             .map((item: any) => (
-              <Select.Option key={item[valueKey.key]} label={item[labelKey.key]}>
+              <Select.Option
+                key={item[valueKey.key]}
+                label={item[labelKey.key]}
+              >
                 {showExtraKey && extraKey.length ? (
                   <div>
                     {item[labelKey.key]}
                     <div
-                      className={`${superSelectCls}-extraContent ${(_innerValue || []).includes(item[valueKey.key])
-                        ? `${superSelectCls}-extraContentSelected`
-                        : ''
+                      className={`${superSelectCls}-extraContent ${
+                        (_innerValue || []).includes(item[valueKey.key])
+                          ? `${superSelectCls}-extraContentSelected`
+                          : ''
                       }`}
                       title={extraKey
                         .filter((e: any) => !!item[e.key])
-                        .map((e: any, i: number) => `${renderExtralKe(item[e.key], item.staticCode)}`)
+                        .map(
+                          (e: any, i: number) =>
+                            `${renderExtralKe(item[e.key], item.staticCode)}`,
+                        )
                         .join('  |  ')}
                     >
                       {extraKey
                         .filter((e: any) => !!item[e.key])
-                        .map((e: any, i: number) => `${renderExtralKe(item[e.key], item.staticCode)}`)
+                        .map(
+                          (e: any, i: number) =>
+                            `${renderExtralKe(item[e.key], item.staticCode)}`,
+                        )
                         .join('  |  ')}
                     </div>
                   </div>
@@ -443,7 +492,12 @@ const ComSelect = forwardRef<any, ComSelectProps>((props) => {
               </Select.Option>
             ))}
           {total > 50 && showMoreTips && (
-            <Select.Option key={-1} label={-1} disabled className={`${superSelectCls}-optionTip`}>
+            <Select.Option
+              key={-1}
+              label={-1}
+              disabled
+              className={`${superSelectCls}-optionTip`}
+            >
               - {getLocale('SuperSelect.load')} -
             </Select.Option>
           )}
@@ -475,13 +529,10 @@ const ComSelect = forwardRef<any, ComSelectProps>((props) => {
   }
 
   if (showMode !== 'modal' && selcetMode === 'select') {
-    return (
-      mainContent
-    );
+    return mainContent;
   }
 
   return <></>;
 });
-
 
 export default ComSelect;

@@ -1,7 +1,11 @@
 import { Input } from 'antd';
 import React from 'react';
+import {
+  FormFields,
+  getFieldsProps,
+  useCommonImperativeHandle,
+} from '../utils';
 import { renderPassword } from '../utils/renderReadOnly';
-import { FormFields, getFieldsProps, useCommonImperativeHandle } from '../utils';
 
 export interface PassWordProps {
   value?: any;
@@ -43,15 +47,20 @@ export interface WrapperInputPasswordProps {
 }
 
 const INPUTPASSWORD_WRAPPER_CLASSNAME = 'ued-inputPassword-wrap';
-const WrapperInputPassword: React.FC<WrapperInputPasswordProps> = ({ children }) =>
+const WrapperInputPassword: React.FC<WrapperInputPasswordProps> = ({
+  children,
+}) =>
   React.cloneElement(children, {
-    className: `${INPUTPASSWORD_WRAPPER_CLASSNAME} ${children.props.className || ''}`,
+    className: `${INPUTPASSWORD_WRAPPER_CLASSNAME} ${
+      children.props.className || ''
+    }`,
   });
 
 const { Password: AntdPassword } = Input;
 
 const Password: React.FC<PassWordProps> = React.forwardRef((props, ref) => {
-  const { required, finalRules, disabled, formFieldsRef, readOnly } = useCommonImperativeHandle(ref, props);
+  const { required, finalRules, disabled, formFieldsRef, readOnly } =
+    useCommonImperativeHandle(ref, props);
   return (
     <FormFields
       {...getFieldsProps(props)}
@@ -71,7 +80,8 @@ const Password: React.FC<PassWordProps> = React.forwardRef((props, ref) => {
           }
         }}
       />
-    </FormFields>);
+    </FormFields>
+  );
 });
 
 export default Password;

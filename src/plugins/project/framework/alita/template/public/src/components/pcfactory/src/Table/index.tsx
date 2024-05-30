@@ -3,33 +3,33 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
-import { Table, Form } from 'antd';
+import { Form, Table } from 'antd';
 import classnames from 'classnames';
 import React, { useRef } from 'react';
+import { PrintContainer, usePrintMode } from '../utils';
+import { useCreation } from '../utils/ahooks';
+import { customLocale } from '../utils/Empty/customLocale';
+import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
+import { useLocale } from '../utils/hooks/useLocale';
 import BodyCell from './BodyCell';
 import HeaderCell from './HeaderCell';
-import TableHead from './TableHead';
-import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
 import {
-  useColumns,
-  useExpandable,
   useCMDAction,
-  usePagination,
-  useSelection,
-  useDataSource,
-  useRowEdit,
-  useFilter,
+  useColumns,
   useCommon,
-  useSort,
+  useDataSource,
+  useExpandable,
+  useFilter,
+  usePagination,
+  useRowEdit,
   useRowMerge,
   useScroll,
+  useSelection,
+  useSort,
 } from './hooks';
-import type { MyTableProps } from './types/prop';
-import { customLocale } from '../utils/Empty/customLocale';
-import { usePrintMode, PrintContainer } from '../utils';
-import { useLocale } from '../utils/hooks/useLocale';
-import { useCreation } from '../utils/ahooks';
+import TableHead from './TableHead';
 import TableSummaryRow from './TableSummaryRow';
+import type { MyTableProps } from './types/prop';
 
 const components = {
   body: {
@@ -55,7 +55,15 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
   } = props;
 
   const { uid: compId } = $$componentItem;
-  const { size, sortDirections, sticky, summary, tableLayout, title, rowClassName } = restProps || {};
+  const {
+    size,
+    sortDirections,
+    sticky,
+    summary,
+    tableLayout,
+    title,
+    rowClassName,
+  } = restProps || {};
   const tableProps = {
     size,
     sortDirections,
@@ -68,10 +76,7 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
   const [form] = Form.useForm();
 
   const engineApis = getEngineApis?.();
-  const {
-    sandBoxSafeRun,
-    renderBusiComponent,
-  } = engineApis || {};
+  const { sandBoxSafeRun, renderBusiComponent } = engineApis || {};
 
   const { getLocale } = useLocale(engineApis || {});
 
@@ -131,19 +136,12 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
     outerDataSourceRef,
   });
 
-  const {
-    sortDataSource,
-    setSortOrder,
-    onSortChange,
-    hasSortEvent,
-  } = useSort({
+  const { sortDataSource, setSortOrder, onSortChange, hasSortEvent } = useSort({
     ...props,
     innerDataSource: filterDataSource,
   });
 
-  const {
-    expandable: realExpandable,
-  } = useExpandable({
+  const { expandable: realExpandable } = useExpandable({
     ...props,
     dataSource: sortDataSource,
     currentRowKey,
@@ -204,24 +202,17 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
     onRowSelected,
   });
 
-  const {
-    rowSpanColMap,
-    rowSpanMap,
-    rowClassMap,
-  } = useRowMerge({
+  const { rowSpanColMap, rowSpanMap, rowClassMap } = useRowMerge({
     ...props,
     sortDataSource,
     nowInlineEditKey,
     currentRowKey,
   });
 
-  const { showPrintContainer, loadPrint, selectorKey, printData } = usePrintMode(props.$$componentItem.uid);
+  const { showPrintContainer, loadPrint, selectorKey, printData } =
+    usePrintMode(props.$$componentItem.uid);
 
-  const {
-    loading,
-    colServiceData,
-    colServiceDataForEdit,
-  } = useCMDAction({
+  const { loading, colServiceData, colServiceDataForEdit } = useCMDAction({
     ...props,
     ref,
     form,
@@ -260,7 +251,9 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
         if (indexMap.has(id)) {
           return indexMap.get(id);
         }
-        const index = (innerDataSource || []).findIndex((c: any) => c[currentRowKey] === id);
+        const index = (innerDataSource || []).findIndex(
+          (c: any) => c[currentRowKey] === id,
+        );
         if (index !== -1) {
           indexMap.set(id, index);
         }
@@ -408,10 +401,7 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
       <div
         {...eleProps}
         style={styles}
-        className={classnames(
-          'ued-table-wrap',
-          className,
-        )}
+        className={classnames('ued-table-wrap', className)}
         ref={tableWrapRef}
       >
         <TableHead
@@ -445,18 +435,30 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
           scroll={scroll}
           onChange={handleTableChange}
           onRow={(record) => {
-            return ({
+            return {
               onClick: (event) => {
-                const hasOnRowClick = onRowClick(event, record, getRealIndexById(record[currentRowKey]));
-                !hasOnRowClick && onRowSelectClick(record, getRealIndexById(record[currentRowKey]));
+                const hasOnRowClick = onRowClick(
+                  event,
+                  record,
+                  getRealIndexById(record[currentRowKey]),
+                );
+                !hasOnRowClick &&
+                  onRowSelectClick(
+                    record,
+                    getRealIndexById(record[currentRowKey]),
+                  );
               }, // 点击行
               onDoubleClick: (event) => {
-                onRowDoubleClick(event, record, getRealIndexById(record[currentRowKey]));
+                onRowDoubleClick(
+                  event,
+                  record,
+                  getRealIndexById(record[currentRowKey]),
+                );
               },
-              onContextMenu: (event) => { },
-              onMouseEnter: (event) => { }, // 鼠标移入行
-              onMouseLeave: (event) => { },
-            });
+              onContextMenu: (event) => {},
+              onMouseEnter: (event) => {}, // 鼠标移入行
+              onMouseLeave: (event) => {},
+            };
           }}
           rowSelection={rowSelection}
           dataSource={sortDataSource}
@@ -506,7 +508,11 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
               return item;
             })}
             rowKey={currentRowKey}
-            dataSource={printData?.dataSource?.length > 0 ? printData.dataSource : sortDataSource}
+            dataSource={
+              printData?.dataSource?.length > 0
+                ? printData.dataSource
+                : sortDataSource
+            }
             expandable={realExpandable}
             pagination={false}
           />

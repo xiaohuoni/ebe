@@ -1,10 +1,10 @@
+import { LingxiForwardRef } from '@lingxiteam/types';
 import { Button } from 'antd';
 import type { ButtonProps } from 'antd/lib/button';
 import React, { useImperativeHandle, useMemo } from 'react';
-import type { IconCfg } from '../Icon/PropsType';
 import CommIcon from '../Icon';
+import type { IconCfg } from '../Icon/PropsType';
 import { useListenProps, useListenToggleBoolean } from '../utils';
-import { LingxiForwardRef } from '@lingxiteam/types';
 import useDoubleClick from '../utils/hooks/useDoubleClick';
 
 const WrapperButton = ({ children }: Record<string, any>) =>
@@ -72,7 +72,9 @@ const MyButton = LingxiForwardRef<any, MyButtonProps>((props, ref) => {
   const [loading, setLoading] = useListenToggleBoolean(props.loading);
   const [disabled, setDisabled] = useListenToggleBoolean(props.disabled);
 
-  const [btnText, setBtnText] = useListenProps<string | undefined>(btnTextProp || name);
+  const [btnText, setBtnText] = useListenProps<string | undefined>(
+    btnTextProp || name,
+  );
   const [icon, setIcon] = useListenProps(iconProps);
   const { svgContent, ...iconRest } = icon;
 
@@ -116,15 +118,29 @@ const MyButton = LingxiForwardRef<any, MyButtonProps>((props, ref) => {
 
   return visible ? (
     <WrapperButton>
-      <Button {...restProps} style={{ ...(myStyle || {}) }} loading={loading} disabled={disabled} {...events}>
+      <Button
+        {...restProps}
+        style={{ ...(myStyle || {}) }}
+        loading={loading}
+        disabled={disabled}
+        {...events}
+      >
         {iconPosition === 'left' && hasIcon && (
           // @ts-ignore
-          <CommIcon svgContent={svgContent} icon={iconRest} getEngineApis={getEngineApis} />
+          <CommIcon
+            svgContent={svgContent}
+            icon={iconRest}
+            getEngineApis={getEngineApis}
+          />
         )}
         {loading ? loadingText : btnText || name}
         {iconPosition === 'right' && hasIcon && (
           // @ts-ignore
-          <CommIcon svgContent={svgContent} icon={iconRest} getEngineApis={getEngineApis} />
+          <CommIcon
+            svgContent={svgContent}
+            icon={iconRest}
+            getEngineApis={getEngineApis}
+          />
         )}
       </Button>
     </WrapperButton>

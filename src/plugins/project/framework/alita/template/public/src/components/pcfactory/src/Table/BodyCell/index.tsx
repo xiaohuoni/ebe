@@ -1,24 +1,24 @@
 import React from 'react';
-import { MyBodyCellProps } from '../types/bodyCell';
-import FormatCell from '../FormatCell';
 import {
-  SET_ROW_SPECIAL_CELL_BACKGROUND_COLOR,
-  SET_ROW_SPECIAL_CELL_CONTENT_STYLE,
-  RELATION_OR,
-  OPERATOR_EQUAL,
-  OPERATOR_NOT_EQUAL,
-  OPERATOR_GREATER_THAN,
-  OPERATOR_LESS_THAN,
-  OPERATOR_INCLUDE,
-  OPERATOR_NOT_INCLUDE,
-  OPERATOR_STARTS_WITH,
-  OPERATOR_ENDS_WITH,
-  OPERATOR_NULL,
-  OPERATOR_NOT_NULL,
   BODY_CELL_MODE_ED,
+  OPERATOR_ENDS_WITH,
+  OPERATOR_EQUAL,
+  OPERATOR_GREATER_THAN,
+  OPERATOR_INCLUDE,
+  OPERATOR_LESS_THAN,
+  OPERATOR_NOT_EQUAL,
+  OPERATOR_NOT_INCLUDE,
+  OPERATOR_NOT_NULL,
+  OPERATOR_NULL,
+  OPERATOR_STARTS_WITH,
+  RELATION_OR,
   SET_ROW_ALL_CELL_BACKGROUND_COLOR,
   SET_ROW_ALL_CELL_CONTENT_STYLE,
+  SET_ROW_SPECIAL_CELL_BACKGROUND_COLOR,
+  SET_ROW_SPECIAL_CELL_CONTENT_STYLE,
 } from '../constant';
+import FormatCell from '../FormatCell';
+import { MyBodyCellProps } from '../types/bodyCell';
 import type { ContentStyle } from '../types/contentStyle';
 
 const validateCondition = (data: any, row: any) => {
@@ -58,7 +58,11 @@ const validateCondition = (data: any, row: any) => {
     case OPERATOR_NULL:
       return row[code] === undefined || row[code] === null || row[code] === '';
     case OPERATOR_NOT_NULL:
-      return !(row[code] === undefined || row[code] === null || row[code] === '');
+      return !(
+        row[code] === undefined ||
+        row[code] === null ||
+        row[code] === ''
+      );
     default:
       return false;
   }
@@ -158,8 +162,12 @@ const MyBodyCell: React.FC<MyBodyCellProps> = (props) => {
          * 2、运行态时，单元格背景样式配置符合条件才生效
          */
         if (
-          (SET_ROW_SPECIAL_CELL_BACKGROUND_COLOR === formatStyle ? dataIndex === field : true) &&
-          (mode === BODY_CELL_MODE_ED ? true : collectCondition(conditions, record))
+          (SET_ROW_SPECIAL_CELL_BACKGROUND_COLOR === formatStyle
+            ? dataIndex === field
+            : true) &&
+          (mode === BODY_CELL_MODE_ED
+            ? true
+            : collectCondition(conditions, record))
         ) {
           bgColorStyle = {
             formatStyle,
@@ -171,7 +179,10 @@ const MyBodyCell: React.FC<MyBodyCellProps> = (props) => {
            * 兼容存量：
            * 如果前面的内容样式不存在 contentType，说明是旧版配置，此时，需要让前面的内容样式配置置空，不能同时生效
            */
-          if (contentStyle && typeof (contentStyle as ContentStyle)?.contentType === 'undefined') {
+          if (
+            contentStyle &&
+            typeof (contentStyle as ContentStyle)?.contentType === 'undefined'
+          ) {
             contentStyle = undefined;
           }
         }
@@ -193,8 +204,12 @@ const MyBodyCell: React.FC<MyBodyCellProps> = (props) => {
          * 2、运行态时，单元格内容样式配置符合条件才生效
          */
         if (
-          (SET_ROW_SPECIAL_CELL_CONTENT_STYLE === formatStyle ? dataIndex === field : true) &&
-          (mode === BODY_CELL_MODE_ED ? true : collectCondition(conditions, record))
+          (SET_ROW_SPECIAL_CELL_CONTENT_STYLE === formatStyle
+            ? dataIndex === field
+            : true) &&
+          (mode === BODY_CELL_MODE_ED
+            ? true
+            : collectCondition(conditions, record))
         ) {
           contentStyle = {
             formatStyle,
@@ -236,7 +251,6 @@ const MyBodyCell: React.FC<MyBodyCellProps> = (props) => {
       }
     }
 
-
     return (
       <FormatCell
         bgColorStyle={bgColorStyle}
@@ -248,16 +262,15 @@ const MyBodyCell: React.FC<MyBodyCellProps> = (props) => {
         funcExpExecute={funcExpExecute}
         engineApis={engineApis}
         commonCellClick={commonCellOnClick}
-      >{children}
+      >
+        {children}
       </FormatCell>
     );
   }
-  
+
   return (
-    <td
-      {...restProps}
-      onClick={commonCellOnClick}
-    >{children}
+    <td {...restProps} onClick={commonCellOnClick}>
+      {children}
     </td>
   );
 };

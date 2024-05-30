@@ -1,6 +1,6 @@
+import classnames from 'classnames';
 import React, { useMemo } from 'react';
 import styles from './index.module.less';
-import classnames from 'classnames';
 
 interface MyDashedProps {
   showTitle?: boolean;
@@ -33,9 +33,15 @@ const LxDashed: React.FC<MyDashedProps> = (props) => {
   } = props;
   // 虚线的颜色
   const dashedColor = useMemo(() => {
-    const color = dividerColor || style?.borderColor || customStyle?.borderColor || ''; // customStyle 旧数据
+    const color =
+      dividerColor || style?.borderColor || customStyle?.borderColor || ''; // customStyle 旧数据
     return color;
-  }, [customStyle?.borderColor, style?.borderColor, style?.height, dividerColor]);
+  }, [
+    customStyle?.borderColor,
+    style?.borderColor,
+    style?.height,
+    dividerColor,
+  ]);
   const backgroundStyle: React.CSSProperties = useMemo(() => {
     const bWidth = dashedWidth + dashedMargin;
     const widthPercent = `${((dashedWidth / bWidth) as any).toFixed(6) * 100}%`;
@@ -46,15 +52,18 @@ const LxDashed: React.FC<MyDashedProps> = (props) => {
       backgroundSize: `${bWidth}px ${height}`,
       backgroundRepeat: 'repeat-x',
     };
-    return dashedColor ? {
-      ...curStyle,
-      backgroundImage: `linear-gradient(90deg, ${dashedColor} 0%, ${dashedColor} ${widthPercent}, transparent ${widthPercent}, transparent 100%)`,
-    } : {
-      ...curStyle,
-      backgroundImage: `linear-gradient(90deg, #fff 0%, #fff ${widthPercent}, transparent ${widthPercent}, transparent 100%)`,
-    };
+    return dashedColor
+      ? {
+          ...curStyle,
+          backgroundImage: `linear-gradient(90deg, ${dashedColor} 0%, ${dashedColor} ${widthPercent}, transparent ${widthPercent}, transparent 100%)`,
+        }
+      : {
+          ...curStyle,
+          backgroundImage: `linear-gradient(90deg, #fff 0%, #fff ${widthPercent}, transparent ${widthPercent}, transparent 100%)`,
+        };
   }, [dashedMargin, dashedWidth, dashedColor]);
-  if (showTitle !== false && dividerText) { // 显示标题
+  if (showTitle !== false && dividerText) {
+    // 显示标题
     let leftFlex = 1;
     let rightFlex = 1;
     switch (orientation) {
@@ -74,15 +83,60 @@ const LxDashed: React.FC<MyDashedProps> = (props) => {
         break;
     }
     return (
-      <div style={{ width: style?.width || 'auto', ...style }} className={classnames(dividerClsPrefix, `${dividerClsPrefix}-dashed`, styles.dashedDivider, className)} {...restProps}>
-        <div className={classnames(`${dividerClsPrefix}-line`, `${dividerClsPrefix}-line-left`, dashedColor ? '' : `${dividerClsPrefix}-defautl-bg`)} style={{ ...backgroundStyle, flex: leftFlex }} />
-        <div className={classnames(`${dividerClsPrefix}-title`, styles.dividerText)} style={titleStyle}>{dividerText}</div>
-        <div className={classnames(`${dividerClsPrefix}-line`, `${dividerClsPrefix}-line-right`, dashedColor ? '' : `${dividerClsPrefix}-defautl-bg`)} style={{ ...backgroundStyle, flex: rightFlex }} />
-      </div>);
+      <div
+        style={{ width: style?.width || 'auto', ...style }}
+        className={classnames(
+          dividerClsPrefix,
+          `${dividerClsPrefix}-dashed`,
+          styles.dashedDivider,
+          className,
+        )}
+        {...restProps}
+      >
+        <div
+          className={classnames(
+            `${dividerClsPrefix}-line`,
+            `${dividerClsPrefix}-line-left`,
+            dashedColor ? '' : `${dividerClsPrefix}-defautl-bg`,
+          )}
+          style={{ ...backgroundStyle, flex: leftFlex }}
+        />
+        <div
+          className={classnames(
+            `${dividerClsPrefix}-title`,
+            styles.dividerText,
+          )}
+          style={titleStyle}
+        >
+          {dividerText}
+        </div>
+        <div
+          className={classnames(
+            `${dividerClsPrefix}-line`,
+            `${dividerClsPrefix}-line-right`,
+            dashedColor ? '' : `${dividerClsPrefix}-defautl-bg`,
+          )}
+          style={{ ...backgroundStyle, flex: rightFlex }}
+        />
+      </div>
+    );
   }
   return (
-    <div style={{ width: style?.width || 'auto', ...style }} className={classnames(`${dividerClsPrefix}`, `${dividerClsPrefix}-solid`, styles.solidDivider, className)} {...restProps}>
-      <div className={`${dividerClsPrefix}-line`} style={{ height: '1px', width: '100%', ...backgroundStyle }} {...restProps} />
+    <div
+      style={{ width: style?.width || 'auto', ...style }}
+      className={classnames(
+        `${dividerClsPrefix}`,
+        `${dividerClsPrefix}-solid`,
+        styles.solidDivider,
+        className,
+      )}
+      {...restProps}
+    >
+      <div
+        className={`${dividerClsPrefix}-line`}
+        style={{ height: '1px', width: '100%', ...backgroundStyle }}
+        {...restProps}
+      />
     </div>
   );
 };

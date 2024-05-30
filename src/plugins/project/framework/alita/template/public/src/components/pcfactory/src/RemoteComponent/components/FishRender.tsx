@@ -1,16 +1,15 @@
-import React from 'react';
 import { ReactLoadFish } from '@lingxiteam/load-framework';
 import { LingXiFC } from '@lingxiteam/types';
 import { Empty, Spin } from 'antd';
-
+import React from 'react';
 
 export interface FishRenderProps {
   url: string;
   customProps: any;
-  engineType: 'editor' | 'engine'
+  engineType: 'editor' | 'engine';
 }
 
-const FishRender: LingXiFC<FishRenderProps> = props => {
+const FishRender: LingXiFC<FishRenderProps> = (props) => {
   const { customProps, getEngineApis, engineType, ...restProps } = props;
   const { getLocale = () => 'Fish远程组件加载失败' } = getEngineApis?.() || {};
   return (
@@ -20,7 +19,12 @@ const FishRender: LingXiFC<FishRenderProps> = props => {
       moduleProps={customProps}
       onError={console.log}
       loading={() => <Spin />}
-      fallback={() => <Empty description={getLocale?.('RemoteComponent.fail')} image={Empty.PRESENTED_IMAGE_SIMPLE} />}
+      fallback={() => (
+        <Empty
+          description={getLocale?.('RemoteComponent.fail')}
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+        />
+      )}
     />
   );
 };

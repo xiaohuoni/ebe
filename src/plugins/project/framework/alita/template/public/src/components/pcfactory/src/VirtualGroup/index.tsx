@@ -1,5 +1,5 @@
-import React, { CSSProperties } from 'react';
 import { LingxiForwardRef } from '@lingxiteam/types';
+import React, { CSSProperties } from 'react';
 
 export interface VirtualGroupProps {
   style: CSSProperties;

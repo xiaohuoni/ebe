@@ -1,31 +1,31 @@
 import React from 'react';
 
+import type { FuncExpExeCuteType } from '../../utils/hooks/useFuncExpExecute';
+import {
+  FADE_COLOUR_TAG,
+  GHOST_TAG,
+  HYPER_LINK,
+  POINT_TAG,
+  PURE_COLOUR_FILL,
+  PURE_COLOUR_TAG,
+} from '../constant';
+import { useFormatCell } from '../hooks';
+import type { ContentStyle } from '../types/contentStyle';
 import GhostTag from './GhostTag';
+import Hyperlink from './Hyperlink';
 import PointTag from './PointTag';
 import PureColourFill from './PureColourFill';
 import PureFadeColourTag from './PureFadeColourTag';
-import Hyperlink from './Hyperlink';
-import { useFormatCell } from '../hooks';
-import {
-  PURE_COLOUR_FILL,
-  POINT_TAG,
-  GHOST_TAG,
-  FADE_COLOUR_TAG,
-  PURE_COLOUR_TAG,
-  HYPER_LINK,
-} from '../constant';
-import type { ContentStyle } from '../types/contentStyle';
-import type { FuncExpExeCuteType } from '../../utils/hooks/useFuncExpExecute';
 
 export interface MyFormatCell {
-  contentStyle: ContentStyle | undefined | {},
+  contentStyle: ContentStyle | undefined | {};
   bgColorStyle: {
     formatStyle: number;
     contentType: string;
     fontColor: string;
     borderColor: string;
     backgroundColor: string;
-  },
+  };
   tdProps: any;
   funcExpExecute?: FuncExpExeCuteType;
   engineApis: any;
@@ -182,15 +182,8 @@ const FormatCell: React.FC<MyFormatCell> = (props) => {
     commonCellClick,
   } = props;
 
-  const {
-    history,
-    appId,
-    pageId,
-    row,
-    rowId,
-    rowIndex,
-    ...restTdProps
-  } = tdProps;
+  const { history, appId, pageId, row, rowId, rowIndex, ...restTdProps } =
+    tdProps;
 
   // 如果条件全部为假，直接返回
   if (!bgColorStyle && !contentStyle) {
@@ -211,22 +204,22 @@ const FormatCell: React.FC<MyFormatCell> = (props) => {
         }
       }}
     >
-      {
-        contentStyle ? (
-          <CellContent
-            contentStyle={(contentStyle as ContentStyle)}
-            funcExpExecute={funcExpExecute}
-            engineApis={engineApis}
-            appId={appId}
-            pageId={pageId}
-            row={row}
-            rowId={rowId}
-            rowIndex={rowIndex}
-          >
-            {children}
-          </CellContent>
-        ) : children
-      }
+      {contentStyle ? (
+        <CellContent
+          contentStyle={contentStyle as ContentStyle}
+          funcExpExecute={funcExpExecute}
+          engineApis={engineApis}
+          appId={appId}
+          pageId={pageId}
+          row={row}
+          rowId={rowId}
+          rowIndex={rowIndex}
+        >
+          {children}
+        </CellContent>
+      ) : (
+        children
+      )}
     </td>
   );
 };

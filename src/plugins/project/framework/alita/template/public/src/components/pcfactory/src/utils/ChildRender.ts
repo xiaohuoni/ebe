@@ -5,7 +5,7 @@ export interface ChildRenderContextProps {
   collectChildData?: (id: string, data: any) => void;
   collectChildren?: (id: string, children: any) => void;
   update?: () => void;
-  getCurrentData?: (id: string) => { currentIndex: number; props: any; },
+  getCurrentData?: (id: string) => { currentIndex: number; props: any };
   parentProps?: any;
 }
 
@@ -26,7 +26,7 @@ export const useChildRender = () => {
   const childRef = useRef<{
     list: string[];
     data: Map<string, any>;
-    renderChild: Map<string, { current: any; }>;
+    renderChild: Map<string, { current: any }>;
     props: Map<string, any>;
     parentProps: any;
   }>({
@@ -38,16 +38,18 @@ export const useChildRender = () => {
   });
 
   const getIndex = (_id: string) => {
-    return childRef.current.list.filter(id => {
-      return childRef.current.data.get(id)?.visible ?? true;
-    }).findIndex(id => id === _id);
+    return childRef.current.list
+      .filter((id) => {
+        return childRef.current.data.get(id)?.visible ?? true;
+      })
+      .findIndex((id) => id === _id);
   };
 
   // 渲染子组件
   const renderChildren = () => {
     const { renderChild: childData, list } = childRef.current;
     if (collectComplete) {
-      return list.map(key => {
+      return list.map((key) => {
         return childData.get(key)?.current ?? null;
       });
     }
@@ -82,9 +84,11 @@ export const useChildRender = () => {
         };
         return result;
       },
-      collectChildren: (id: string, child: { current: any; }) => {
+      collectChildren: (id: string, child: { current: any }) => {
         childRef.current.renderChild.set(id, child);
-        if (childRef.current.renderChild.size === childRef.current.list.length) {
+        if (
+          childRef.current.renderChild.size === childRef.current.list.length
+        ) {
           setColletComplete(true);
         }
       },

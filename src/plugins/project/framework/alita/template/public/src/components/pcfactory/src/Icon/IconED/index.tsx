@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { LingXiEdFC } from '@lingxiteam/types';
+import { useEffect, useState } from 'react';
 import { useIcon } from '../hooks';
 import type { IconEDProps } from '../PropsType';
-import { LingXiEdFC } from '@lingxiteam/types';
 
 const IconED: LingXiEdFC<IconEDProps> = (props) => {
-  const { getMaterialFile, getAppFileUrlById, getAppFileUrlByFileCode } = props?.getEdEngineApi?.() || {};
+  const { getMaterialFile, getAppFileUrlById, getAppFileUrlByFileCode } =
+    props?.getEdEngineApi?.() || {};
   const [fun, setFun] = useState<{
     getFileIconUrl: any;
     getDesignPlatormIconUrl: any;
@@ -13,13 +14,19 @@ const IconED: LingXiEdFC<IconEDProps> = (props) => {
     getDesignPlatormIconUrl: {},
   });
   useEffect(() => {
-    const fetchFun = async () => setFun({
-      getFileIconUrl: {
-        getFileIconUrlByCode: (fileCode: string) => getAppFileUrlByFileCode({ fileCode, appId: props.$$componentItem?.appId || window.appId }),
-        getFileIconUrlById: getAppFileUrlById,
-      },
-      getDesignPlatormIconUrl: (materialId: string, fileName: string) => getMaterialFile({ materialId, fileName }),
-    });
+    const fetchFun = async () =>
+      setFun({
+        getFileIconUrl: {
+          getFileIconUrlByCode: (fileCode: string) =>
+            getAppFileUrlByFileCode({
+              fileCode,
+              appId: props.$$componentItem?.appId || window.appId,
+            }),
+          getFileIconUrlById: getAppFileUrlById,
+        },
+        getDesignPlatormIconUrl: (materialId: string, fileName: string) =>
+          getMaterialFile({ materialId, fileName }),
+      });
     fetchFun();
   }, []);
 

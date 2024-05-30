@@ -1,12 +1,7 @@
 import { useMemo } from 'react';
 
 const useRowMerge = (props: any) => {
-  const {
-    sortDataSource,
-    columns,
-    nowInlineEditKey,
-    currentRowKey,
-  } = props;
+  const { sortDataSource, columns, nowInlineEditKey, currentRowKey } = props;
 
   // 记录所有设置了行合并的列
   const rowSpanColMap = useMemo(() => {
@@ -40,7 +35,9 @@ const useRowMerge = (props: any) => {
         }
         // 正在编辑的或者有子节点的不算入合并行计算中
         if (
-          (nowInlineEditKey && currentRowKey && nowInlineEditKey === d[currentRowKey]) ||
+          (nowInlineEditKey &&
+            currentRowKey &&
+            nowInlineEditKey === d[currentRowKey]) ||
           newD?.children?.length > 0
         ) {
           return newD;
@@ -70,7 +67,7 @@ const useRowMerge = (props: any) => {
             parentSpanRowsMap[rowIndex].preIndex = i;
           }
         });
-        
+
         tableRowSpan.set(newD, __rowSpan);
         tableRowClass.set(newD, __rowClass);
 

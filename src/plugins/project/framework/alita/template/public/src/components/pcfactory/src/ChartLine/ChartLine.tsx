@@ -1,11 +1,10 @@
-import React from 'react';
-import { LingXiFC } from '@lingxiteam/types';
-import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
-import ChartLineProps from './PropsType';
 import { LXChart } from '@lingxiteam/charts-common';
+import { LingXiFC } from '@lingxiteam/types';
+import React from 'react';
 import { useHiddenStyle } from '../utils';
+import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
 import { useLocale } from '../utils/hooks/useLocale';
-
+import ChartLineProps from './PropsType';
 
 const ChartLine: LingXiFC<ChartLineProps> = (props, ref) => {
   const {
@@ -23,9 +22,7 @@ const ChartLine: LingXiFC<ChartLineProps> = (props, ref) => {
   const finalStyle = useHiddenStyle(visible, style);
   const engineApis = getEngineApis?.();
   const { getLocale } = useLocale(engineApis);
-  const {
-    sandBoxSafeRun,
-  } = engineApis || {};
+  const { sandBoxSafeRun } = engineApis || {};
 
   const funcExpExecute = useFuncExpExecute(sandBoxSafeRun as any, getLocale);
 

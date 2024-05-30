@@ -13,17 +13,17 @@ const useCMDAction = (props: any) => {
     setMode,
   } = props;
 
-  const {
-    loading,
-    colServiceData,
-  } = useCommonCMDAction(props);
+  const { loading, colServiceData } = useCommonCMDAction(props);
 
   useImperativeHandle(ref, () => ({
-
     /**
      * 加载树形表格数据（加载完之后，表格就脱离了数据源的控制了）
      */
-    reloadTreeTableData: (data: { dataSource: any[]; childrenKey: string; childrenSync: boolean; }) => {
+    reloadTreeTableData: (data: {
+      dataSource: any[];
+      childrenKey: string;
+      childrenSync: boolean;
+    }) => {
       /**
        * 注意，不是直接使用 setInnerDataSource
        * 而是通过 setOuterDataSource 间接驱动 -> setInnerDataSource
@@ -38,11 +38,11 @@ const useCMDAction = (props: any) => {
      * 加载子节点数据
      * 理论上，只更新内部数据
      */
-    reloadTreeTableChildData: (data: { children: any[]; expandRowKey: string }) => {
-      const {
-        children,
-        expandRowKey,
-      } = data;
+    reloadTreeTableChildData: (data: {
+      children: any[];
+      expandRowKey: string;
+    }) => {
+      const { children, expandRowKey } = data;
 
       // 异步加载限制为 children
       const realChildrenColumnName = childrenColumnName || 'children';
@@ -59,7 +59,7 @@ const useCMDAction = (props: any) => {
               }
               break;
             }
-            
+
             if (Array.isArray(row?.[realChildrenColumnName])) {
               findChild(row[realChildrenColumnName]);
             }

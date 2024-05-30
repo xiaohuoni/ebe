@@ -1,19 +1,22 @@
 /* eslint-disable camelcase */
-import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { WarningOutlined } from '@ant-design/icons';
 import { Button, Divider, Empty, message, Popover } from 'antd';
 import classnames from 'classnames';
 import moment from 'moment';
-import { PROCESS_STATUS_COLOR, LEGEND_MAP } from './const';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useListenProps } from '../utils';
+import { LEGEND_MAP, PROCESS_STATUS_COLOR } from './const';
 
 const customGanttPrefix = 'ued-gantt';
 
-const Legend = (props: { status: string; text: string; }) => {
+const Legend = (props: { status: string; text: string }) => {
   const { status, text } = props;
   return (
     <div className={`${customGanttPrefix}-legend`}>
-      <span className={`${customGanttPrefix}-legend-point`} style={{ background: PROCESS_STATUS_COLOR[status] }} />
+      <span
+        className={`${customGanttPrefix}-legend-point`}
+        style={{ background: PROCESS_STATUS_COLOR[status] }}
+      />
       {text}
     </div>
   );
@@ -36,7 +39,7 @@ export interface MyGanttProps {
   onGanttItemDetailClick?: any;
   onGanttItemTitleClick?: any;
   className?: any;
-  refDataSource?: any[];// 懒加载入参
+  refDataSource?: any[]; // 懒加载入参
 }
 
 // const prefixCls = 'gantt';
@@ -87,27 +90,36 @@ const Gantt: React.FC<MyGanttProps> = React.forwardRef((props, ref) => {
   // }, [scaleRef.current]);
 
   const isEmpty = useMemo(() => {
-    return value === undefined && (dataSource === undefined || JSON.stringify(dataSource) === '{}');
+    return (
+      value === undefined &&
+      (dataSource === undefined || JSON.stringify(dataSource) === '{}')
+    );
   }, [value, dataSource]);
 
-  const getDeadlineTime = (d: { delivery_date: moment.MomentInput; }) => moment(d.delivery_date);
-  const getDaysCount = (start: any, deadline: any) => deadline.diff(start, 'days');
+  const getDeadlineTime = (d: { delivery_date: moment.MomentInput }) =>
+    moment(d.delivery_date);
+  const getDaysCount = (start: any, deadline: any) =>
+    deadline.diff(start, 'days');
   const getOppositeTime = (d: any, type: string) => {
     const endTimeArr = d?.project_plan_list.map(
-      (w: { plan_node_list: { plan_finish_date: moment.MomentInput; }[]; }) =>
+      (w: { plan_node_list: { plan_finish_date: moment.MomentInput }[] }) =>
         moment(
           moment.max(
-            w.plan_node_list.map((n: { plan_finish_date: moment.MomentInput; }) =>
-              moment(n.plan_finish_date),
+            w.plan_node_list.map(
+              (n: { plan_finish_date: moment.MomentInput }) =>
+                moment(n.plan_finish_date),
             ),
           ),
         ),
     ); // 所有项目中最晚结束的
-    const lastEndTimeArr = d?.project_plan_list.map((w: { plan_node_list: any[]; }) =>
-      moment(moment.min(w.plan_node_list.map((n) => moment(n.plan_finish_date)))),
+    const lastEndTimeArr = d?.project_plan_list.map(
+      (w: { plan_node_list: any[] }) =>
+        moment(
+          moment.min(w.plan_node_list.map((n) => moment(n.plan_finish_date))),
+        ),
     ); // 所有项目中最早结束的
-    const startTimeArr = d?.project_plan_list.map((w: { impl_start_date: moment.MomentInput; }) =>
-      moment(w.impl_start_date),
+    const startTimeArr = d?.project_plan_list.map(
+      (w: { impl_start_date: moment.MomentInput }) => moment(w.impl_start_date),
     ); // 项目规定的开始时间
     if (type === 'max') {
       return moment.max(endTimeArr);
@@ -125,14 +137,17 @@ const Gantt: React.FC<MyGanttProps> = React.forwardRef((props, ref) => {
       const d = dataSource;
       d.project_plan_list = d.project_plan_list.map(
         (plan: {
-          plan_node_list: { plan_finish_date: moment.MomentInput; }[];
+          plan_node_list: { plan_finish_date: moment.MomentInput }[];
           impl_start_date: moment.MomentInput;
         }) => ({
           ...plan,
           plan_node_list: plan.plan_node_list.map(
-            (node: { plan_finish_date: moment.MomentInput; }) => ({
+            (node: { plan_finish_date: moment.MomentInput }) => ({
               ...node,
-              width: moment(node.plan_finish_date).diff(moment(plan.impl_start_date), 'days'),
+              width: moment(node.plan_finish_date).diff(
+                moment(plan.impl_start_date),
+                'days',
+              ),
             }),
           ),
         }),
@@ -140,7 +155,9 @@ const Gantt: React.FC<MyGanttProps> = React.forwardRef((props, ref) => {
       setData(d);
       const startDate = getOppositeTime(d, 'min');
       const endDate =
-        ganttShowDeadline && d?.delivery_date ? getDeadlineTime(d) : getOppositeTime(d, 'max');
+        ganttShowDeadline && d?.delivery_date
+          ? getDeadlineTime(d)
+          : getOppositeTime(d, 'max');
       const dayCount = getDaysCount(startDate, endDate);
       setPlanDate({
         startDate,
@@ -204,21 +221,32 @@ const Gantt: React.FC<MyGanttProps> = React.forwardRef((props, ref) => {
           <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
         ) : (
           <>
-            {ganttShowTitle && <h3 className={`${customGanttPrefix}-title`}>{title}</h3>}
+            {ganttShowTitle && (
+              <h3 className={`${customGanttPrefix}-title`}>{title}</h3>
+            )}
             {ganttShowTitle && <Divider />}
             <div
               className={`${customGanttPrefix}-border`}
-              style={{ borderWidth: ganttShowDeadline ? '1px' : '0px', marginRight }}
+              style={{
+                borderWidth: ganttShowDeadline ? '1px' : '0px',
+                marginRight,
+              }}
             >
               {(ganttShowLegend || ganttShowDeadline) && (
                 <div className={`${customGanttPrefix}-legendBar`}>
-                  <div className={ganttShowLegend ? '' : `${customGanttPrefix}-hideLegend`}>
+                  <div
+                    className={
+                      ganttShowLegend ? '' : `${customGanttPrefix}-hideLegend`
+                    }
+                  >
                     {LEGEND_MAP.map((c) => (
                       <Legend status={c.status} text={c.text} key={c.status} />
                     ))}
                   </div>
                   {ganttShowDeadline && data?.delivery_date && (
-                    <div className={`${customGanttPrefix}-deadline`}>{`约定交付时间：${data?.delivery_date}`}</div>
+                    <div
+                      className={`${customGanttPrefix}-deadline`}
+                    >{`约定交付时间：${data?.delivery_date}`}</div>
                   )}
                 </div>
               )}
@@ -254,8 +282,12 @@ const Gantt: React.FC<MyGanttProps> = React.forwardRef((props, ref) => {
                       <div className={`${customGanttPrefix}-scale`}>
                         {/* <div className={`${customGanttPrefix}-before} style={{ width: `${(beforeTime * 100) / dayCount}%` }} /> */}
                         {li.plan_node_list.map((n: any, i: number) => {
-                          const { plan_finish_date, plan_update_date, progress_rate, node_name } =
-                            n;
+                          const {
+                            plan_finish_date,
+                            plan_update_date,
+                            progress_rate,
+                            node_name,
+                          } = n;
                           // const tempDate =
                           //   i === 0
                           //     ? li.impl_start_date
@@ -265,7 +297,9 @@ const Gantt: React.FC<MyGanttProps> = React.forwardRef((props, ref) => {
                           // const width = `${widthRate * 100}%`;
                           // const restWidth = totalWidth - 80 - 120 * li.plan_node_list.length;
                           // const width = n.width === 0 ? `${120 + restWidth/li.plan_node_list.length}px` :`${120 + n.width/96 * restWidth}px`;
-                          const width = `${99 / (li.plan_node_list.length - 1)}%`;
+                          const width = `${
+                            99 / (li.plan_node_list.length - 1)
+                          }%`;
                           // eslint-disable-next-line radix
                           const progressRate = parseInt(progress_rate, 0);
                           const overTime = moment(plan_update_date).diff(
@@ -273,8 +307,12 @@ const Gantt: React.FC<MyGanttProps> = React.forwardRef((props, ref) => {
                             'hours',
                           );
                           const status = (percent: number, flag?: boolean) => {
-                            const { processing, unstarted, finished, overtime } =
-                              PROCESS_STATUS_COLOR;
+                            const {
+                              processing,
+                              unstarted,
+                              finished,
+                              overtime,
+                            } = PROCESS_STATUS_COLOR;
                             const diff = moment(plan_finish_date).diff(
                               moment(plan_update_date) || Date(),
                               'days',
@@ -306,7 +344,9 @@ const Gantt: React.FC<MyGanttProps> = React.forwardRef((props, ref) => {
                           const DetailPop = () => {
                             const overTimeFormat = () => {
                               if (overTime > 24) {
-                                return `${Math.floor(overTime / 24)}天${overTime % 24}小时`;
+                                return `${Math.floor(overTime / 24)}天${
+                                  overTime % 24
+                                }小时`;
                               }
                               return `${overTime % 24}小时`;
                             };
@@ -316,10 +356,14 @@ const Gantt: React.FC<MyGanttProps> = React.forwardRef((props, ref) => {
                                   <b>{node_name}</b>
                                 </div>
                                 <div>{`计划时间: ${plan_finish_date}`}</div>
-                                {plan_update_date && <div>{`完成时间: ${plan_update_date}`}</div>}
                                 {plan_update_date && (
-                                  <div>{`处理超时: ${overTime < 0 ? '0小时' : overTimeFormat()
-                                  }`}
+                                  <div>{`完成时间: ${plan_update_date}`}</div>
+                                )}
+                                {plan_update_date && (
+                                  <div>
+                                    {`处理超时: ${
+                                      overTime < 0 ? '0小时' : overTimeFormat()
+                                    }`}
                                   </div>
                                 )}
                                 <div>{`当前进度: ${n.progress_rate}%`}</div>
@@ -329,7 +373,10 @@ const Gantt: React.FC<MyGanttProps> = React.forwardRef((props, ref) => {
                           return (
                             <Popover content={DetailPop()} trigger="hover">
                               <div
-                                className={classnames(`${customGanttPrefix}-process`, `${customGanttPrefix}-start`)}
+                                className={classnames(
+                                  `${customGanttPrefix}-process`,
+                                  `${customGanttPrefix}-start`,
+                                )}
                                 style={{
                                   background: status(progressRate, true),
                                   width: i === 0 ? '0px' : width,
@@ -342,11 +389,15 @@ const Gantt: React.FC<MyGanttProps> = React.forwardRef((props, ref) => {
                                   />
                                 )}
                                 <span
-                                  className={classnames(`${customGanttPrefix}-workname`, `${customGanttPrefix}-rotate`)}
+                                  className={classnames(
+                                    `${customGanttPrefix}-workname`,
+                                    `${customGanttPrefix}-rotate`,
+                                  )}
                                   style={{
                                     transform: `rotate(${rotate}deg)`,
                                     color:
-                                      status(progressRate) === PROCESS_STATUS_COLOR.overtime
+                                      status(progressRate) ===
+                                      PROCESS_STATUS_COLOR.overtime
                                         ? PROCESS_STATUS_COLOR.overtime
                                         : undefined,
                                     right: i === 0 ? '-30px' : 0,
@@ -354,9 +405,12 @@ const Gantt: React.FC<MyGanttProps> = React.forwardRef((props, ref) => {
                                 >
                                   {ganttHideYears
                                     ? moment(n.plan_finish_date).format('MM-DD')
-                                    : moment(n.plan_finish_date).format('YYYY-MM-DD')}
+                                    : moment(n.plan_finish_date).format(
+                                        'YYYY-MM-DD',
+                                      )}
                                   {n.node_name}
-                                  {status(progressRate) === PROCESS_STATUS_COLOR.overtime && (
+                                  {status(progressRate) ===
+                                    PROCESS_STATUS_COLOR.overtime && (
                                     <WarningOutlined rev="" />
                                   )}
                                 </span>
@@ -379,7 +433,9 @@ const Gantt: React.FC<MyGanttProps> = React.forwardRef((props, ref) => {
                       {ganttShowDetailBtn && (
                         <div
                           className={`${customGanttPrefix}-detail`}
-                          style={{ right: ganttShowEditBtn ? '-112px' : '-60px' }}
+                          style={{
+                            right: ganttShowEditBtn ? '-112px' : '-60px',
+                          }}
                         >
                           <Button
                             type="primary"

@@ -1,8 +1,8 @@
-import { useState, useImperativeHandle } from 'react';
+import { useImperativeHandle, useState } from 'react';
 import { createEmptyRow, EMPTY_ROW_TEMP_KEY_ATTR } from '../utils';
 
 interface UseCommonCMDAction {
-  ref: any,
+  ref: any;
   setCurrent?: React.SetStateAction<any>;
   setCurrentPage?: React.SetStateAction<any>;
   setTotal?: React.SetStateAction<any>;
@@ -64,10 +64,7 @@ const useCMDAction = (props: UseCMDActionPropsType) => {
   // 表格编辑格式为下拉框时，绑定的服务对应的数据
   const [colServiceDataForEdit, setColServiceDataForEdit] = useState({});
 
-  const {
-    loading,
-    colServiceData,
-  } = useCommonCMDAction(props);
+  const { loading, colServiceData } = useCommonCMDAction(props);
 
   const validateFormAndScroll = (compId: string, callback: any = () => {}) => {
     const formValues = form.getFieldsValue() || {};
@@ -87,7 +84,6 @@ const useCMDAction = (props: UseCMDActionPropsType) => {
   };
 
   useImperativeHandle(ref, () => ({
-
     /**
      * 加载表格数据（加载完之后，表格就脱离了数据源的控制了）
      */
@@ -149,7 +145,10 @@ const useCMDAction = (props: UseCMDActionPropsType) => {
         };
 
         if (dataArrs.length > 2) {
-          const childFiled = dataArrs.slice(dataArrs.length - 1, dataArrs.length);
+          const childFiled = dataArrs.slice(
+            dataArrs.length - 1,
+            dataArrs.length,
+          );
           params.otherObjectArrayOptions = {
             [childFiled]: {
               name: dataName,
@@ -263,11 +262,10 @@ const useCommonCMDAction = (props: UseCommonCMDAction) => {
   const [colServiceData, setColServiceData] = useState({});
 
   useImperativeHandle(ref, () => ({
-
     /**
-   * 加载字段翻译数据
-   * @param serviceData
-   */
+     * 加载字段翻译数据
+     * @param serviceData
+     */
     addColServiceData: (serviceData: any = {}) => {
       setColServiceData({
         ...(colServiceData || {}),
@@ -324,6 +322,4 @@ const useCommonCMDAction = (props: UseCommonCMDAction) => {
 };
 
 export default useCMDAction;
-export {
-  useCommonCMDAction,
-};
+export { useCommonCMDAction };
