@@ -131,7 +131,6 @@ export default function createIceJsProjectBuilder(
             lodash: '^4.17.21',
             qs: '^6.11.2',
             'copy-to-clipboard': '^3.3.1',
-            '@lingxiteam/engine-platform': '3.3.1-alpha.14',
             '@lingxiteam/icons': '0.0.3',
             '@lingxiteam/types': '3.3.1-alpha.14',
             'crypto-js': '^4.2.0',

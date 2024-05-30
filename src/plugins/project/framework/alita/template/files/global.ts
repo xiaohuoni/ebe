@@ -22,9 +22,6 @@ import {
 // TODO: 组件移到项目中，这个文件从哪来？
 // import '@lingxiteam/pcfactory/dist/index.component.min.css';`
 }
-import {
-  setPlatformConfig,
-} from '@lingxiteam/engine-platform';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import lcdpApi from './utils/lcdpApi';
@@ -35,18 +32,18 @@ security.httpEncryption.start({
 });
 window.React = React;
 window.ReactDOM = ReactDOM;
-const platformConfig = {
-  httpSecurityMode: '1.0',
-  apiPrefix: process.env.REACT_APP_REQUEST_PREFIX || '../server/',
-  errorCodeShowType: 'console',
-  platform: '${isMobile ? 'h5' : 'pc'}',
-  // useHotUpdate: {
-  //   NODE_ENV: process.env.NODE_ENV,
-  //   pkgInfo: {
-  // '@lingxiteam/factory': assets,
-  //   },
-  // },
-} as any;
+// const platformConfig = {
+//   httpSecurityMode: '1.0',
+//   apiPrefix: process.env.REACT_APP_REQUEST_PREFIX || '../server/',
+//   errorCodeShowType: 'console',
+//   platform: '${isMobile ? 'h5' : 'pc'}',
+//   // useHotUpdate: {
+//   //   NODE_ENV: process.env.NODE_ENV,
+//   //   pkgInfo: {
+//   // '@lingxiteam/factory': assets,
+//   //   },
+//   // },
+// } as any;
 
 /**
  * 注册在【engine-utils】包下http.js文件中用到的 antdmobile 组件, 应用勾子中使用的的到
@@ -58,7 +55,7 @@ lcdpApi.setAntd({
 });
 // 注册平台信息
 
-setPlatformConfig(platformConfig);
+// setPlatformConfig(platformConfig);
 `,
   );
 
