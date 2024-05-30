@@ -61,7 +61,6 @@ export default function createIceJsProjectBuilder(
         reactCommonDeps(),
         alita.plugins.styleInject(),
         reactContainer(),
-        customActionMap(),
         containerLifeCycle(),
         reactJsx({
           nodePlugins: [alita.hooks.hackNodeAttr],
@@ -72,6 +71,7 @@ export default function createIceJsProjectBuilder(
             MobilePopover: 'div',
           },
         }),
+        customActionMap(),
         // 最前面的代码，其实是最后生成的
         esModule({
           fileType: FileType.TSX,
@@ -83,7 +83,6 @@ export default function createIceJsProjectBuilder(
         alita.plugins.mobileLayout(),
         alita.plugins.styleInject(),
         reactContainer(),
-        customActionMap(),
         containerLifeCycle(),
         reactJsx({
           nodePlugins: [alita.hooks.hackNodeAttr],
@@ -95,6 +94,7 @@ export default function createIceJsProjectBuilder(
             Drawer: 'div',
           },
         }),
+        customActionMap(),
         // 最前面的代码，其实是最后生成的
         esModule({
           fileType: FileType.TSX,
