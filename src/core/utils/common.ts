@@ -61,3 +61,9 @@ export function isExternalDependency(
 ): dependency is IExternalDependency {
   return dependency.dependencyType === DependencyType.External;
 }
+
+const { hasOwnProperty } = Object.prototype;
+export const hasOwn = (
+  val: object,
+  key: string | symbol,
+): key is keyof typeof val => hasOwnProperty.call(val, key);
