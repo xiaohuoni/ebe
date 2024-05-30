@@ -11,12 +11,21 @@ interface GlobalCLIOptions {
 // init
 cli
   .command(
-    'init',
+    'setup',
     '初始化出码产物项目，完成出码后置动作之后，移除 ebe-utils 依赖',
   )
+  .alias('init')
   .alias('i')
   .action(async (root: string, options: GlobalCLIOptions) => {
     console.log('init ebe package ');
+    const { setup } = require('./setup');
+    try {
+      await setup();
+    } catch (e) {
+      console.error(e);
+      process.exit(1);
+    } finally {
+    }
   });
 
 // move

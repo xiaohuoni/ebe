@@ -2,7 +2,7 @@ import * as fs from 'fs-extra';
 import { jsonc } from 'jsonc';
 import { join } from 'path';
 import { clearLXPagesDSL } from './ebe-utils/src/index';
-import { copyStatic } from './scripts/copyStatic';
+import { copyStatic } from './ebe-utils/src/node/copyStatic';
 import { createDiskPublisher } from './src/core/publisher/disk';
 import alita from './src/solutions/alita';
 (async () => {
