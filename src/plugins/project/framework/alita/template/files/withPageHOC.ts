@@ -197,6 +197,7 @@ export const withPageHOC = (
         urlParam,
         // TODO 需要将lcdpApi移动过来
         lcdpApi,
+        api: baseApi,
         getStaticDataSourceService,
         ModalManagerRef,
         ExpBusiObjModalRef,

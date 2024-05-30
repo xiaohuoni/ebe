@@ -34,10 +34,7 @@ const useLifeCyle = (options: LifeCycleOptions) => {
 
   // 组件状态变化
   useEffect(() => {
-    if (!didMountRef.current) {
-      // 页面没有加载完成的时候，暂时不走组件状态变更，等页面加载完成后再执行
-      todoStateChanageRef.current = lifeCycleCbRef.current.stateChange;
-    } else {
+    if (didMountRef.current) {
       lifeCycleCbRef.current.stateChange();
     }
   }, stateDeps);
@@ -63,6 +60,10 @@ const useLifeCyle = (options: LifeCycleOptions) => {
   };
 
   const useStateUpdate = (callback: () => void) => {
+    // 还没挂载的时候，保存一下state的callback回调，等页面加载完成 触发一次state
+    if (!didMountRef.current) {
+      todoStateChanageRef.current = callback;
+    }
     lifeCycleCbRef.current.stateChange = callback;
   };
 

@@ -160,7 +160,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           `${importString}
 
           const useCustomAction = (context: any) => { const { 
-
+            api,
             getValue,
     setValue,
     getVisible,
