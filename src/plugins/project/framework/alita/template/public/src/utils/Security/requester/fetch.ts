@@ -1,16 +1,19 @@
-import config from '../config';
-import message from '../utils/message';
-import { checkIsSignMode, checkIsEncryption, checkIsUrlIgnore } from '../utils/check';
-import { createHttpSignStr } from '../encipher/sign';
-import { encryptedRequestParams, decryptedStr } from '../utils/encrypted';
 import capabilities from '../clientCapabilities';
+import config from '../config';
+import { createHttpSignStr } from '../encipher/sign';
+import {
+  checkIsEncryption,
+  checkIsSignMode,
+  checkIsUrlIgnore,
+} from '../utils/check';
+import { decryptedStr, encryptedRequestParams } from '../utils/encrypted';
+import message from '../utils/message';
 
-const originRequester: any = capabilities.fetch ? (window || globalThis).fetch : undefined;
+const originRequester: any = capabilities.fetch
+  ? (window || globalThis).fetch
+  : undefined;
 
-const fetch = (
-  url: any,
-  fetchOptions: any = {},
-): Promise<any> => {
+const fetch = (url: any, fetchOptions: any = {}): Promise<any> => {
   let requester: Promise<any>;
   const opts = { ...fetchOptions };
 
@@ -30,7 +33,12 @@ const fetch = (
   const finallyMode = modeInHeadParam || config.mode;
 
   // 通过请求头参数关闭当次安全模式
-  if (String(modeInHeadParam) === 'false' || opts.headers?.disabledSignKey === true || opts.headers?.disabledEncrypted === true || finallyMode === false) {
+  if (
+    String(modeInHeadParam) === 'false' ||
+    opts.headers?.disabledSignKey === true ||
+    opts.headers?.disabledEncrypted === true ||
+    finallyMode === false
+  ) {
     // 不能直接删除，否则会导致disabledSignKey 这个节点删除了，第二次进来的时候导致异常
     // const { disabledSignKey, ...resprops } = opts?.headers;
     const _cloneHeader = Object.assign({}, opts.headers);
@@ -44,24 +52,24 @@ const fetch = (
     opts.headers = {
       [securityHeaderKey]: finallyMode,
       ...opts.headers,
-      [signValueKeyName]: createHttpSignStr(
-        url,
-        fetchOptions,
-        finallyMode
-      ),
+      [signValueKeyName]: createHttpSignStr(url, fetchOptions, finallyMode),
     };
     requester = originRequester(url, opts);
   } else if (checkIsEncryption(finallyMode)) {
     // ------ 参数加密 ------
     // search和body加密
-    const [encryptedUrl, encryptedOpts] = encryptedRequestParams(url, opts, finallyMode);
-  
+    const [encryptedUrl, encryptedOpts] = encryptedRequestParams(
+      url,
+      opts,
+      finallyMode,
+    );
+
     requester = originRequester(encryptedUrl, encryptedOpts);
   } else {
     // 其他
     requester = originRequester(url, opts);
   }
-  
+
   // ------ 响应解密 ------
   return requester.then(async (response: Response) => {
     const securityType = response.headers.get(securityHeaderKey);
@@ -92,7 +100,9 @@ const fetch = (
         json = result;
         message.warn(`响应报文转换JSON失败, 内容为 ${result}`);
       }
-      const blob = new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' });
+      const blob = new Blob([JSON.stringify(json, null, 2)], {
+        type: 'application/json',
+      });
       return new Response(blob);
     }
     return response;

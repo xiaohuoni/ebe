@@ -33,8 +33,6 @@ export const api = {
       urlParam = `&fileId=${params}`;
     }
 
-    return resolveApiPath(
-      security.createHttpSignWithUrl(`${url}${urlParam}`),
-    );
+    return resolveApiPath(security.createHttpSignWithUrl(`${url}${urlParam}`));
   },
 };

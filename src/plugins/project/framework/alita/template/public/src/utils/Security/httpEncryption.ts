@@ -9,15 +9,24 @@
 // 使用方式1: 使用fetch请求模块，start({ mode: signKey })，适应经过封装的fetch模块
 // 使用方式2: 使用fetch请求模块，将window.fetch 替换成 fetch，适应自己封装的fetch模块
 // 使用方式3: 不使用fetch请求模块，使用createHttpSignStr自己获取签名，自行在header上添加参数
-import capabilities from './clientCapabilities';
-import { conflict as conflictFetch, noConflict as noConflictFetch } from './requester/fetch';
-import { conflict as conflictWxRequest, noConflict as noConflictWxRequest } from './requester/wx';
-import { conflict as conflictXHR, noConflict as noConflictXHR } from './requester/xhr';
-import message from './utils/message';
-import type { configType } from './types';
-import config, { setConfig, createDefaultConfig } from './config';
-import { checkIsModeValue } from './utils/check';
 import merge from 'merge';
+import capabilities from './clientCapabilities';
+import config, { createDefaultConfig, setConfig } from './config';
+import {
+  conflict as conflictFetch,
+  noConflict as noConflictFetch,
+} from './requester/fetch';
+import {
+  conflict as conflictWxRequest,
+  noConflict as noConflictWxRequest,
+} from './requester/wx';
+import {
+  conflict as conflictXHR,
+  noConflict as noConflictXHR,
+} from './requester/xhr';
+import type { configType } from './types';
+import { checkIsModeValue } from './utils/check';
+import message from './utils/message';
 
 let isHttpEncryption = false;
 const noConflictList: Function[] = [];
@@ -58,7 +67,7 @@ function start(startConfig?: configType) {
 
 function stop() {
   isHttpEncryption = false;
-  noConflictList.forEach(noConflict => {
+  noConflictList.forEach((noConflict) => {
     noConflict();
   });
 }

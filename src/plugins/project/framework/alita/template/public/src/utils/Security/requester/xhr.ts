@@ -1,7 +1,7 @@
 import config from '../config';
 // import { checkIsSignMode, checkIsEncryption, checkIsUrlIgnore, checkIsSignWithSalt } from '../utils/check';
-import { checkIsUrlIgnore } from '../utils/check';
 import { createHttpSignStr } from '../encipher/sign';
+import { checkIsUrlIgnore } from '../utils/check';
 // import { encryptedRequestParams, decryptedStr } from '../utils/encrypted';
 import capabilities from '../clientCapabilities';
 
@@ -10,10 +10,13 @@ const originRequester: any = capabilities.xhr ? XMLHttpRequest : undefined;
 // 从请求头中获取参数
 function getRequestHeaders(xhr: XMLHttpRequest) {
   const headers: any = {};
-  xhr.getAllResponseHeaders().split('\n').forEach(header => {
-    const [key, value] = header.split(': ');
-    headers[key] = value;
-  });
+  xhr
+    .getAllResponseHeaders()
+    .split('\n')
+    .forEach((header) => {
+      const [key, value] = header.split(': ');
+      headers[key] = value;
+    });
   return headers;
 }
 
@@ -33,7 +36,13 @@ const xhr = function () {
 
   // 劫持 open 方法
   const originalOpen = originXhr.open;
-  originXhr.open = function (method: string, url: string, async?: boolean, user?: string, password?: string) {
+  originXhr.open = function (
+    method: string,
+    url: string,
+    async?: boolean,
+    user?: string,
+    password?: string,
+  ) {
     // 记录url地址
     xhrUrl = url;
     xhrMethod = method;
@@ -46,7 +55,10 @@ const xhr = function () {
 
   // 劫持 setRequestHeader 方法
   const originalSetRequestHeader = originXhr.setRequestHeader;
-  originXhr.setRequestHeader = function(key: string, value: string | number | boolean) {
+  originXhr.setRequestHeader = function (
+    key: string,
+    value: string | number | boolean,
+  ) {
     // 记录请求头信息
     requestHeaders[key] = value;
 
@@ -58,7 +70,13 @@ const xhr = function () {
   const originalSend = originXhr.send;
   originXhr.send = function (data: any) {
     // 判定是否符合忽略规则
-    if (checkIsUrlIgnore(xhrUrl, { headers: requestHeaders, body: data, method: xhrMethod })) {
+    if (
+      checkIsUrlIgnore(xhrUrl, {
+        headers: requestHeaders,
+        body: data,
+        method: xhrMethod,
+      })
+    ) {
       originalSend.call(this, data);
       return;
     }
@@ -73,19 +91,23 @@ const xhr = function () {
 
     // 签名并添加额外的参数
     originalSetRequestHeader.call(this, securityHeaderKey, finallyMode);
-    originalSetRequestHeader.call(this, signValueKeyName, createHttpSignStr(
-      xhrUrl,
-      { method: xhrMethod, headers: requestHeadersSnapshot, body: data },
-      finallyMode
-    ));
- 
+    originalSetRequestHeader.call(
+      this,
+      signValueKeyName,
+      createHttpSignStr(
+        xhrUrl,
+        { method: xhrMethod, headers: requestHeadersSnapshot, body: data },
+        finallyMode,
+      ),
+    );
+
     // 修改请求 URL
     //  originXhr.open(originXhr.method, url, originXhr.async, originXhr.username, originXhr.password);
- 
+
     // 调用原始的 send 方法
     originalSend.call(this, data);
   };
- 
+
   return originXhr;
 };
 
