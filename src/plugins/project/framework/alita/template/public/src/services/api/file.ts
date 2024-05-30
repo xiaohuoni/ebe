@@ -26,7 +26,7 @@ const api: ApiType = {
   // 预览文件
   previewFileById: (fileId) =>
     resolveApiPath(
-      security.httpEncryption.buildXSignUrl(`app/file/file/id/${fileId}`),
+      security.createHttpSignWithUrl(`app/file/file/id/${fileId}`),
     ),
   // 获取压缩包解压后的文件结构
   getZipFileNode: (params, appCtx) =>

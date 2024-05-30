@@ -9,7 +9,7 @@ const addFileUrlSign = (content: string) => {
     /src=\"server\/app\/file\/file\/id\/[0-9]+\?appId=[0-9]+\"/g,
     (str: string) => {
       const url = str.slice(5, -1); // 去掉src=""
-      return `src="${security.httpEncryption.buildXSignUrl(url)}"`;
+      return `src="${security.createHttpSignWithUrl(url)}"`;
     },
   );
   return newStr;

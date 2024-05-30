@@ -7,7 +7,7 @@ import resolveApiPath from '@/utils/service/resolveApiPath';
 // )),
 export function getAppFileUrlByFileCode(fileCode: string) {
   return resolveApiPath(
-    security.httpEncryption.buildXSignUrl(
+    security.createHttpSignWithUrl(
       `app/file/appFileResource/downloadFileByFileCode?ZSMART-LOCALE=zh-cn&appId=${APPID}&fileCode=${fileCode}&X-B-AUTH=1&X-B-TARGET-ID=`,
     ),
   );

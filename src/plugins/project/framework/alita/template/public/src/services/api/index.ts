@@ -34,7 +34,7 @@ export const api = {
     }
 
     return resolveApiPath(
-      security.httpEncryption.buildXSignUrl(`${url}${urlParam}`),
+      security.createHttpSignWithUrl(`${url}${urlParam}`),
     );
   },
 };

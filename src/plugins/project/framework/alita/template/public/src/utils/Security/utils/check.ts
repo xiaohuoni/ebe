@@ -1,42 +1,27 @@
-import config from '../config';
 import { MODE } from '../types';
+import config from '../config';
 
-const signModes: string[] = [
-  MODE.SIGN,
-  MODE.SIGN_KEY,
-  MODE.SIGN_UUID,
-  MODE.SIGN_UUID_WITHOUT_SALT,
-  MODE.SIGN_WITHOUT_SALT,
-  MODE.SIGN_WITH_TIME,
-];
-const signModesWithSalt: string[] = [
-  MODE.SIGN,
-  MODE.SIGN_KEY,
-  MODE.SIGN_UUID,
-  MODE.SIGN_WITH_TIME,
-];
+const signModes: string[] = [MODE.SIGN, MODE.SIGN_KEY, MODE.SIGN_UUID, MODE.SIGN_UUID_WITHOUT_SALT, MODE.SIGN_WITHOUT_SALT, MODE.SIGN_WITH_TIME];
+const signModesWithSalt: string[] = [MODE.SIGN, MODE.SIGN_KEY, MODE.SIGN_UUID, MODE.SIGN_WITH_TIME];
 const encryptionModes: string[] = [MODE.AES, MODE.DES, MODE.RSA];
 
-export const checkIsSignMode = (mode: string): boolean => {
+export const checkIsSignMode = (mode: string) : boolean => {
   return signModes.includes(mode);
 };
 
-export const checkIsSignWithSalt = (mode: string): boolean => {
+export const checkIsSignWithSalt = (mode: string) : boolean => {
   return signModesWithSalt.includes(mode);
 };
 
-export const checkIsEncryption = (mode: string): boolean => {
+export const checkIsEncryption = (mode: string) : boolean => {
   return encryptionModes.includes(mode);
 };
 
-export const checkIsModeValue = (mode: string): boolean => {
+export const checkIsModeValue = (mode: string) : boolean => {
   return signModes.includes(mode) || encryptionModes.includes(mode);
 };
 
-export const checkIsUrlIgnore = (
-  url: string,
-  options?: { headers?: any; body?: any; method?: string },
-): boolean => {
+export const checkIsUrlIgnore = (url: string, options?: { headers?: any, body?: any, method?: string }) : boolean => {
   let isIgnore: boolean = false;
   if (config.ignore) {
     const testIsIgnore = (item: string | RegExp | Function): boolean => {
@@ -53,7 +38,7 @@ export const checkIsUrlIgnore = (
     };
 
     if (Array.isArray(config.ignore)) {
-      isIgnore = config.ignore.map((item) => testIsIgnore(item)).includes(true);
+      isIgnore = config.ignore.map(item => testIsIgnore(item)).includes(true);
     } else {
       isIgnore = testIsIgnore(config.ignore);
     }

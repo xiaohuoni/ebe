@@ -32,18 +32,6 @@ security.httpEncryption.start({
 });
 window.React = React;
 window.ReactDOM = ReactDOM;
-// const platformConfig = {
-//   httpSecurityMode: '1.0',
-//   apiPrefix: process.env.REACT_APP_REQUEST_PREFIX || '../server/',
-//   errorCodeShowType: 'console',
-//   platform: '${isMobile ? 'h5' : 'pc'}',
-//   // useHotUpdate: {
-//   //   NODE_ENV: process.env.NODE_ENV,
-//   //   pkgInfo: {
-//   // '@lingxiteam/factory': assets,
-//   //   },
-//   // },
-// } as any;
 
 /**
  * 注册在【engine-utils】包下http.js文件中用到的 antdmobile 组件, 应用勾子中使用的的到
@@ -53,9 +41,6 @@ lcdpApi.setAntd({
   notification,
   modal: Modal,
 });
-// 注册平台信息
-
-// setPlatformConfig(platformConfig);
 `,
   );
 

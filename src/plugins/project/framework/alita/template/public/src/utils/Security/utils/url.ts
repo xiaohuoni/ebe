@@ -5,9 +5,7 @@
  */
 export const obj2QueryString = (params: any) => {
   const queryString = Object.keys(params)
-    .map(
-      (key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`,
-    )
+    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     .join('&');
   return queryString;
 };
@@ -18,7 +16,7 @@ export const obj2QueryString = (params: any) => {
  * @returns
  */
 export const decodeQueryString = (queryStr: string) => {
-  return queryStr?.replace(/[^&=]+/g, (mat) => decodeURIComponent(mat));
+  return queryStr?.replace(/[^&=]+/g, mat => decodeURIComponent(mat));
 };
 
 /**
@@ -33,7 +31,7 @@ export const getSearchObj = (url: string) => {
   const objs = search.split('&');
   const obj: any = {};
 
-  objs.forEach((value) => {
+  objs.forEach(value => {
     const [k, v] = value.split('=');
     if (v) {
       obj[decodeURIComponent(k)] = decodeURIComponent(v);
@@ -49,13 +47,10 @@ export const getSearchObj = (url: string) => {
  * @param paramsToRemove 需要移除的参数列表
  * @returns 处理后的url
  */
-export const removeURLParameters = (
-  url: string,
-  paramsToRemove: string[],
-): string => {
+export const removeURLParameters = (url: string, paramsToRemove: string[]): string => {
   let result = url;
   // 对每个要移除的参数，构建正则表达式并执行替换操作
-  paramsToRemove.forEach((param) => {
+  paramsToRemove.forEach(param => {
     // 正则表达式解释：
     // 1. (?<=\?|\&) 匹配参数前的 ? 或 &，使用正向后查找确保匹配位置在这些字符之后
     // 2. param 匹配指定的参数名
