@@ -98,19 +98,20 @@ export default function getFile(
       if (fieldProps?.valuePropName) {
         compProps[fieldProps?.valuePropName] = state.value;
       }
-  
+
       // 引擎能力增加仅同步数据的方法
-      compProps.getEngineApis = useMemo(() => {
-        return () => {
-          return {
-            ...props.getEngineApis(),
-            onlySyncValue: (v: unknown) => {
-              syncInputValue(v, state.value, (v) => setState({ value: v }));
-            },
-          };
+      compProps.getEngineApis = () => { 
+        return {
+          ...props.getEngineApis(),
+          onlySyncValue: (v: unknown) => {
+            syncInputValue(v, state.value, (v) =>
+              setState({
+                value: v,
+              }),
+            );
+          },
         };
-      }, [state.value]);
-  
+      }
     
       let imperative: any = {
         get compName() {
