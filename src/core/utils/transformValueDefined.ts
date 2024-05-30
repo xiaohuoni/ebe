@@ -102,7 +102,7 @@ export const parseDSSetVal = (options: any) => {
 };
 
 export const transformValueDefined = (
-  paramsConfig = [],
+  paramsConfig: any[] = [],
   dataSourceName: string,
   isOrder: boolean = false,
 ) => {

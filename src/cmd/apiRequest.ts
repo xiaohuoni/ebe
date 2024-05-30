@@ -7,9 +7,9 @@ import { GeneratorCallbackWithThenCatch } from './utils';
 import { processCustomParams } from './utils/requestUtil';
 
 export function apiRequest(generateParams: CMDGeneratorPrames): string {
-  const { value, platform, scope, config } = generateParams;
-  const { options, type } = value;
-  const { sync, _source, service } = options || {};
+  const { value } = generateParams;
+  const { options } = value;
+  const { _source } = options || {};
   const root = options?.apiRequestSetParams
     ? options.apiRequestSetParams[0]
     : undefined;
@@ -32,7 +32,7 @@ export function apiRequest(generateParams: CMDGeneratorPrames): string {
     paramsCode = parse2Var(rootValue);
   }
 
-  const newOptions = processCustomParams(options, {}, `$${paramsCode}$`);
+  const newOptions = processCustomParams(options, {}, `$(${paramsCode})$`);
 
   let param =
     options.url === '/app/object/run' ||

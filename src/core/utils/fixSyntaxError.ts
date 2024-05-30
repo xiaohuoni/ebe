@@ -26,6 +26,19 @@ const memberExprOperationChain = (path: NodePath<t.MemberExpression>) => {
 };
 
 /**
+ * 修正对象的小括号
+ * ({ a: 0, b: 100 }) -> { a: 0, b: 100 }
+ * @param code
+ */
+const patchObjectParenthesis = (code: string) => {
+  const newCode = code.replace(/[;]+$/, '');
+  if (newCode.startsWith('({') && newCode.endsWith('})')) {
+    return newCode.replace(/^\({/, '{').replace(/}\)$/, '}');
+  }
+  return code;
+};
+
+/**
  * 修正语法错误
  *
  * 例如1: 将代码转化: a.b -> a?.b
@@ -63,7 +76,7 @@ const fixSyntaxError = (code: string) => {
       },
     });
 
-    const resultCode = generator(ast).code;
+    let resultCode = patchObjectParenthesis(generator(ast).code);
 
     if (!hasLastSemicolon) {
       return resultCode.replace(/;$/, '');
