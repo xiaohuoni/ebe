@@ -10,8 +10,8 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { useListenProps } from '../utils';
 import { IconCheckSvg, IconNormalCheckSvg } from '../../../../utils/svgImage';
+import { useListenProps } from '../utils';
 
 const basicStyle = { backgroundColor: '#fff' };
 

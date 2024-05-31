@@ -7,8 +7,8 @@ import React, {
   useImperativeHandle,
   useMemo,
 } from 'react';
-import useBackgroundStyle from '../View/useBackgroundStyle';
 import { IconCheckSvg, IconNormalCheckSvg } from '../../../../utils/svgImage';
+import useBackgroundStyle from '../View/useBackgroundStyle';
 
 const basicStyle = { backgroundColor: '#fff' };
 export interface WrapperProps {
