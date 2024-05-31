@@ -30,8 +30,8 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
       private: true,
       version: cfg?.packageVersion || '1.0.0',
       scripts: {
-        'build': 'alita build',
-        'dev': 'alita dev',
+        build: 'alita build',
+        dev: 'alita dev',
         format: 'prettier --write .',
         'lint-staged': 'lint-staged',
         'lint-staged:js': 'eslint --ext .ts,.tsx',
