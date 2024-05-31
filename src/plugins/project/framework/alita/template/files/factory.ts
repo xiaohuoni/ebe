@@ -1,38 +1,15 @@
 import { LXProjectOptions, ResultFile } from '../../../../../../core';
 import { parse2Var } from '../../../../../../core/utils/compositeType';
 import { createResultFile } from '../../../../../../core/utils/resultHelper';
-import { isFirstLetterUpperCase } from '../../../../../../core/utils/validate';
-// @ts-ignore
-import appconfig from '@lingxiteam/factory/lib/index.config';
-import pcconfig from '@lingxiteam/pcfactory/lib/index.config';
+import * as factoryData from '../data/factory';
+import * as pcFactoryData from '../data/pcfactory';
 
 export default function getFile(
   config?: LXProjectOptions,
 ): [string[], ResultFile] {
-  let cg: any = appconfig;
   const isMobile = config?.platform === 'h5';
   const { componentWillMount } = config?.frontendHookMap;
-  if (!isMobile) {
-    cg = pcconfig;
-  }
-  const blackHash = ['BOFramer', 'Pageview'];
-
-  const compHash = Object.keys(cg)
-    .filter(isFirstLetterUpperCase)
-    .filter((c) => !blackHash.includes(c))
-    .filter(Boolean);
-  const formHash = {} as any;
-  const otherHash: string[] = [];
-  compHash.forEach((c) => {
-    if (cg[c] && cg[c].fieldProps) {
-      formHash[c] = cg[c].fieldProps;
-    } else {
-      otherHash.push(c);
-    }
-  });
-  const containerType = Object.values(isMobile ? appconfig : pcconfig)
-    .filter((i: any) => i?.isContainer === true)
-    .map((subi) => subi?.type);
+  const data = isMobile ? factoryData : pcFactoryData;
   const factory = isMobile ? 'factory' : 'pcfactory';
   const file = createResultFile(
     'factory',
@@ -45,9 +22,9 @@ export default function getFile(
     import { usePageProvider } from '@/utils/Context/Container';
 
   
-  import {${Object.keys(formHash)
+  import {${Object.keys(data.formHash)
     .map((i) => i + ' as _' + i)
-    .join(',')},${otherHash
+    .join(',')},${data.otherHash
       .map((i) => i + ' as _' + i)
       .join(',')}} from './${factory}/src/index.component';
   import { preprocessMethods } from '@/utils/preprocess';
@@ -195,22 +172,22 @@ export default function getFile(
     return HOC;
   };
   // 低代码组件中，表单组件，要根据 fieldProps 配置，操作 value 和 setValue
-  ${Object.keys(formHash)
+  ${Object.keys(data.formHash)
     .map((i) => {
-      const isContainer = containerType.includes(i)
+      const isContainer = data.containerType.includes(i)
         ? '// 容器类组件 \n isContainer : true,'
         : '';
       return ` export const ${i} = Hoc(_${i}, {
-          fieldProps: ${parse2Var(formHash[i])},
+          fieldProps: ${parse2Var(data.formHash[i])},
           ${isContainer}
           type: ${parse2Var(i)}
 
         });`;
     })
     .join('\n')}
-    ${otherHash
+    ${data.otherHash
       .map((i) => {
-        const isContainer = containerType.includes(i)
+        const isContainer = data.containerType.includes(i)
           ? '// 容器类组件 \n isContainer : true,'
           : '';
         return `  export const ${i} = Hoc(_${i}, {

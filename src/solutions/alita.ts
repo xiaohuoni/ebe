@@ -156,7 +156,6 @@ export default function createIceJsProjectBuilder(
             '@lingxiteam/sys-action': '3.2.1-alpha.44',
             '@lingxiteam/engine-render-core': '3.2.1-alpha.44',
             '@lingxiteam/dform': '3.3.1-alpha.6',
-            '@lingxiteam/factory': '3.3.1-alpha.4',
             'antd-mobile-5': '5.26.0',
             'react-loadable': '^5.5.0',
             '@lingxiteam/antd-mobile-v2-theme': '^0.0.1',

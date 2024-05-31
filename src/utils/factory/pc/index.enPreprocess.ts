@@ -514,8 +514,8 @@ const pc: { [key: string]: ProcessFunctionType } = {
         //     },
         //   };
         // }
-        if (col.customRendering === undefined) {
-          delete col.customRendering;
+        if (col.customRenderCode === undefined) {
+          delete col.customRenderCode;
         }
         // 编辑格式（下拉选项）配置
         if (col?.editoption?.selectoption?.attr?.attrNbr) {

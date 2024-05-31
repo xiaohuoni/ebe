@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+import { MODAL_TYPES, PAGE_TYPES } from '../constants';
 import {
   DependencyType,
   IDependency,
@@ -13,23 +15,19 @@ import {
   LXProjectOptions,
 } from '../core';
 import { uniqueArray } from '../core/utils/common';
+import { parse2Var } from '../core/utils/compositeType';
+import enPreprocess from '../utils/factory/h5/index.enPreprocess';
+import enRunPreprocess from '../utils/factory/h5/index.enRunPreprocess';
+import enPreprocessPC from '../utils/factory/pc/index.enPreprocess';
+import enRunPreprocessPC from '../utils/factory/pc/index.enRunPreprocess';
+import assetHelper from '../utils/schema/assets/assets';
+import { cleanDataSource } from '../utils/schema/cleanDataSource';
 import { getBusiCompName } from '../utils/schema/getBusiCompName';
 import {
   handleSubNodes,
   markerLoopComponent,
   parseSchema,
 } from '../utils/schema/lxschema';
-// @ts-ignore
-import enPreprocess from '@lingxiteam/factory/es/index.enPreprocess';
-// @ts-ignore
-import enRunPreprocess from '@lingxiteam/factory/es/index.enRunPreprocess';
-import * as _ from 'lodash';
-import { MODAL_TYPES, PAGE_TYPES } from '../constants';
-import { parse2Var } from '../core/utils/compositeType';
-import enPreprocessPC from '../utils/factory/pc/index.enPreprocess';
-import enRunPreprocessPC from '../utils/factory/pc/index.enRunPreprocess';
-import assetHelper from '../utils/schema/assets/assets';
-import { cleanDataSource } from '../utils/schema/cleanDataSource';
 
 function getInternalDep(
   internalDeps: Record<string, IInternalDependency>,

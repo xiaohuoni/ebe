@@ -1,5 +1,5 @@
 import changeCase from 'change-case';
-import pinyin from 'pinyin';
+import { pinyin } from 'pinyin-pro';
 
 // 业务组件id 和 组件名字的对应关系
 const busiCompMaps: Record<string, string> = {};
@@ -45,15 +45,16 @@ export const getBusiCompName = (
     return otherType;
   }
 
+  // 如果是两个字符以上的，首字母大写，因为英文会被拆成单个字母，原样拼回去即可
   const name = pinyin(`${pageName}`, {
-    style: 'normal',
+    type: 'array',
+    toneType: 'none',
   })
-    .map((i) => [changeCase.pascalCase(i[0])])
+    .map((i) => (i.length > 1 ? changeCase.pascalCase(i) : i))
     .join('')
     .replaceAll('/', '')
     .replaceAll('(', '')
     .replaceAll(')', '');
-
   const compName = getName(name);
 
   busiCompMaps[id] = compName;

@@ -48,6 +48,11 @@ const pc = {
     delete props.iconFileInfo;
     delete props.svgContent;
     delete props.iconFile;
+    // 删除垃圾dsl
+    delete props.classification;
+    delete props.autoProcessFlow;
+    delete props.flowProcessResult;
+    delete props.btnIcon;
 
     // 兼容存量数据不存在 hasIcon（是否有图标开关标识）
     if (props?.icon && JSON.stringify(props.icon) !== '{}') {
@@ -160,6 +165,12 @@ const pc = {
       });
       delete props.acceptExtension;
     }
+    if (typeof props.singleFileMaxSize === 'number') {
+      props.singleFileMaxSize += 'MB';
+    }
+    if (typeof props.singleFileMinSize === 'number') {
+      props.singleFileMinSize += 'MB';
+    }
     return component;
   },
   TreeSelect: (component: JSONType) => {
@@ -267,11 +278,14 @@ const pc = {
   },
   Table: (component: JSONType) => {
     const { props } = component;
-    const { rowActions = [], extend = [] } = props;
-    [...rowActions, ...extend].forEach((action: any) => {
+    const { rowActions = [], extend = [], headExtends = [] } = props;
+    [...rowActions, ...extend, ...headExtends].forEach((action: any) => {
       // 兼容存量数据，转 checked undefined 为 true
       if (typeof action.checked === 'undefined') {
         action.checked = true;
+      }
+      if (typeof action.id === 'number') {
+        action.id = `${action.id}`;
       }
     });
     return component;
@@ -285,13 +299,16 @@ const pc = {
       component?.style?.backgroundColor &&
       !component?.props?.backgroundType
     ) {
-      delete component?.style?.backgroundColor;
       component.props.backgroundType = {
         type: 'cleanColor',
         color: component?.style?.backgroundColor,
       };
-    }
-    if (component?.style?.backgroundColor && component?.props?.backgroundType) {
+      delete component?.style?.backgroundColor;
+      // style上有值，props有值，删除style垃圾数据
+    } else if (
+      component?.style?.backgroundColor &&
+      component?.props?.backgroundType
+    ) {
       delete component?.style?.backgroundColor;
     }
     return component;

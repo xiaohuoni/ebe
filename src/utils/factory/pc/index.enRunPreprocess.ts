@@ -1,6 +1,6 @@
 import type { PatchPropsFunctionType } from '@lingxiteam/types';
-import basicStatusTransfer from './basicStatusTransfer';
 import { hasSomeOwnProperty } from './index.enCommonPreprocess';
+import basicStatusTransfer from './utils/basicStatusTransfer';
 
 /**
  * 组件渲染时候的预处理逻辑-组件每次渲染都会处理
@@ -66,6 +66,7 @@ const pc: { [key: string]: PatchPropsFunctionType } = {
         [
           ...(originProps?.rowActions || []),
           ...(originProps?.extend || []),
+          ...(originProps?.headExtends || []),
         ].forEach((extend) => {
           if (extend.id === controlItem.controlSubType) {
             setControlItemOptions(controlItem, extend);
@@ -85,17 +86,21 @@ const pc: { [key: string]: PatchPropsFunctionType } = {
     }
     return originProps;
   },
-  'BOFramer|Pageview|RemoteComponent': (instance, originProps, Sandbox) => {
-    // originProps.appId = Sandbox.appId;
-    // originProps.lcdpParentRenderId = Sandbox.renderId;
+  'BOFramer|Pageview|RemoteComponent|DynamicTabs': (
+    instance,
+    originProps,
+    Sandbox,
+  ) => {
+    originProps.appId = Sandbox.appId;
+    originProps.lcdpParentRenderId = Sandbox.renderId;
     return originProps;
   },
-  // BOFramer: (instance, originProps, Sandbox) => {
-  //   originProps.appId = Sandbox.appId;
-  //   originProps.pageId = Sandbox.pageId;
-  //   originProps.lcdpParentRenderId = Sandbox.renderId;
-  //   return originProps;
-  // },
+  BOFramer: (instance, originProps, Sandbox) => {
+    originProps.appId = Sandbox.appId;
+    originProps.pageId = Sandbox.pageId;
+    originProps.lcdpParentRenderId = Sandbox.renderId;
+    return originProps;
+  },
   'Table|TreeTable': (instance, originProps) => {
     if (originProps.rowSelection) {
       // 新配置格式
@@ -155,6 +160,16 @@ const pc: { [key: string]: PatchPropsFunctionType } = {
           break;
       }
       originProps.defaultValue = newDefaultValue;
+    }
+    return originProps;
+  },
+  Divider: (instance, originProps, Sandbox, extraData) => {
+    // 说明是3.3.1 之前的数据
+    if (Sandbox.compatConfig.isFormCompat === true) {
+      if (!originProps.dividerColor) {
+        // 默认是灰色
+        originProps.dividerColor = 'rgba(0,0,0,0.15)';
+      }
     }
     return originProps;
   },

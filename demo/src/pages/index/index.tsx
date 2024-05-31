@@ -263,14 +263,14 @@ const Page = () => {
           <Button type="primary" htmlType="submit" loading={loading}>
             仅生成json（缓存目录中）
           </Button>
-          {/* <Button
+          <Button
             loading={loading}
             onClick={async () => {
               onFinish(form.getFieldsValue(), true);
             }}
           >
             浏览器出码
-          </Button> */}
+          </Button>
           <Button
             loading={loading}
             onClick={async () => {
