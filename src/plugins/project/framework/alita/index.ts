@@ -1,6 +1,5 @@
 import hackNodeAttr from './hooks/hackNodeAttr';
 import app from './plugins/app';
-import commonDeps from './plugins/commonDeps';
 import config from './plugins/config';
 import dataSource from './plugins/dataSource';
 import mobileLayout from './plugins/mobileLayout';
@@ -16,7 +15,6 @@ export default {
     app,
     packageJSON,
     mobileLayout,
-    commonDeps,
     config,
     pageview,
     styleInject,

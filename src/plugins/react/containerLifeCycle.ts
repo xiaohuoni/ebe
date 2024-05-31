@@ -1,15 +1,7 @@
 import { PAGE_TYPES } from '../../constants';
-import {
-  CLASS_DEFINE_CHUNK_NAME,
-  DEFAULT_LINK_AFTER,
-} from '../../core/const/generator';
+import { CLASS_DEFINE_CHUNK_NAME } from '../../core/const/generator';
 import { generateFunction } from '../../core/utils/jsExpression';
-import {
-  CUSTOM_ACTION_CHUNK_NAME,
-  LIFE_CYCLE_CHUNK_NAME,
-  MODAL_CHUNK_NAME,
-  REACT_CHUNK_NAME,
-} from './const';
+import { LIFE_CYCLE_CHUNK_NAME, MODAL_CHUNK_NAME } from './const';
 
 import {
   BuilderComponentPlugin,
@@ -81,10 +73,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
                 { ir },
               )} }`
             : '',
-          linkAfter: [
-            ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
-            CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
-          ],
+          linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         });
         next.chunks.push({
           type: ChunkType.STRING,
@@ -99,9 +88,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
                 { ir },
               )} }`
             : '',
-          linkAfter: [
-            ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
-          ],
+          linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         });
         next.chunks.push({
           type: ChunkType.STRING,
@@ -144,10 +131,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             },
             { ir },
           )} }`,
-          linkAfter: [
-            ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
-            CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
-          ],
+          linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         });
       }
       next.chunks.push({
@@ -156,27 +140,6 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         name: LIFE_CYCLE_CHUNK_NAME.UseStateUpdateContent,
         content: events?.stateChange ? 'stateChange()' : '',
         linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseStateUpdateStart],
-      });
-      next.chunks.push({
-        type: ChunkType.STRING,
-        fileType: FileType.TSX,
-        name: REACT_CHUNK_NAME.WillUnmountStart,
-        content: 'return () => {',
-        linkAfter: [
-          REACT_CHUNK_NAME.DidMountContent,
-          REACT_CHUNK_NAME.DidMountStart,
-        ],
-      });
-
-      next.chunks.push({
-        type: ChunkType.STRING,
-        fileType: FileType.TSX,
-        name: REACT_CHUNK_NAME.WillUnmountEnd,
-        content: '  };',
-        linkAfter: [
-          REACT_CHUNK_NAME.WillUnmountContent,
-          REACT_CHUNK_NAME.WillUnmountStart,
-        ],
       });
 
       if (events?.willUnmount) {
@@ -191,10 +154,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             },
             { ir },
           )} }`,
-          linkAfter: [
-            ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
-            CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
-          ],
+          linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         });
       }
       next.chunks.push({

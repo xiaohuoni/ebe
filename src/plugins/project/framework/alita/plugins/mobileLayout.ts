@@ -7,7 +7,7 @@ import {
   IContainerInfo,
 } from '../../../../../core/types';
 import { generateFunction } from '../../../../../core/utils/jsExpression';
-import { REACT_CHUNK_NAME } from '../../../../../plugins/react/const';
+import { LIFE_CYCLE_CHUNK_NAME } from '../../../../../plugins/react/const';
 import { getImportFrom } from '../../../../../utils/depsHelper';
 import { MOBILE_CHUNK_NAME } from './const';
 
@@ -49,10 +49,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       content: `setPageNavBar({
         pagePath: '${ir.pagePath}',
         navBar: {`,
-      linkAfter: [
-        REACT_CHUNK_NAME.DidMountContent,
-        REACT_CHUNK_NAME.DidMountStart,
-      ],
+      linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseMountStart],
     });
 
     next.chunks.push({

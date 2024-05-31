@@ -9,9 +9,12 @@ import {
   CUSTOM_ACTION_CHUNK_NAME,
   DATA_SOURCE_CHUNK_NAME,
   LIFE_CYCLE_CHUNK_NAME,
+  MODAL_CHUNK_NAME,
   PAGE_TOOL_CHUNK_NAME,
   REACT_CHUNK_NAME,
 } from './const';
+
+import { MOBILE_CHUNK_NAME } from '../project/framework/alita/plugins/const';
 
 import {
   BuilderComponentPlugin,
@@ -153,7 +156,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       linkAfter: [
         ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
         REACT_CHUNK_NAME.RenderEnd,
-        REACT_CHUNK_NAME.DidMountEnd,
       ],
     });
 
@@ -174,29 +176,11 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       content: '',
       linkAfter: [
         ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorEnd],
-      ],
-    });
-
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: REACT_CHUNK_NAME.DidMountStart,
-      content: '  useEffect(() => {',
-      linkAfter: [
-        ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
-        CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
-      ],
-    });
-
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: REACT_CHUNK_NAME.DidMountEnd,
-      content: '  }, []);',
-      linkAfter: [
-        REACT_CHUNK_NAME.DidMountContent,
-        REACT_CHUNK_NAME.DidMountStart,
-        REACT_CHUNK_NAME.WillUnmountEnd,
+        MODAL_CHUNK_NAME.PageStateChange,
+        MODAL_CHUNK_NAME.PageWillUnmount,
+        MODAL_CHUNK_NAME.PageDidMount,
+        MODAL_CHUNK_NAME.OnCancel,
+        MODAL_CHUNK_NAME.OnOk,
       ],
     });
 
@@ -205,7 +189,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: REACT_CHUNK_NAME.DidUpdateStart,
       content: 'useEffect(() => {',
-      linkAfter: [REACT_CHUNK_NAME.DidMountEnd],
+      linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorEnd],
     });
 
     next.chunks.push({
@@ -234,12 +218,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         mountCond: () => dataReadyComplete,
       })
       `,
-      linkAfter: [
-        REACT_CHUNK_NAME.DidUpdateEnd,
-        REACT_CHUNK_NAME.DidMountContent,
-        REACT_CHUNK_NAME.DidMountStart,
-        REACT_CHUNK_NAME.WillUnmountEnd,
-      ],
+      linkAfter: [REACT_CHUNK_NAME.DidUpdateEnd],
     });
 
     // 页面加载完成开始
@@ -262,6 +241,8 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       linkAfter: [
         LIFE_CYCLE_CHUNK_NAME.UseMountContent,
         LIFE_CYCLE_CHUNK_NAME.UseMountStart,
+        MOBILE_CHUNK_NAME.NavBarEnd,
+        CUSTOM_ACTION_CHUNK_NAME.DidMount,
       ],
     });
 
@@ -315,6 +296,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       linkAfter: [
         LIFE_CYCLE_CHUNK_NAME.UseUnMountContent,
         LIFE_CYCLE_CHUNK_NAME.UseUnMountStart,
+        CUSTOM_ACTION_CHUNK_NAME.WillUnmount,
       ],
     });
 
@@ -380,9 +362,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
         LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
         ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
-        REACT_CHUNK_NAME.DidMountEnd,
         REACT_CHUNK_NAME.DidUpdateEnd,
-        REACT_CHUNK_NAME.WillUnmountEnd,
       ],
     });
     next.chunks.push({
@@ -396,9 +376,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
         LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
         ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
-        REACT_CHUNK_NAME.DidMountEnd,
         REACT_CHUNK_NAME.DidUpdateEnd,
-        REACT_CHUNK_NAME.WillUnmountEnd,
       ],
     });
 

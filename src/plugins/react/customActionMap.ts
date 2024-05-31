@@ -2,6 +2,7 @@ import {
   CLASS_DEFINE_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
+
 import { groupDepsByPack } from '../../core/plugins/common/esmodule';
 import {
   BuilderComponentPlugin,
@@ -16,7 +17,12 @@ import {
 import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
 import { getImportFrom } from '../../utils/depsHelper';
 import { getEvents } from '../../utils/schema/parseDsl';
-import { CUSTOM_ACTION_CHUNK_NAME, REACT_CHUNK_NAME } from './const';
+import {
+  CUSTOM_ACTION_CHUNK_NAME,
+  DATA_SOURCE_CHUNK_NAME,
+  LIFE_CYCLE_CHUNK_NAME,
+  PAGE_TOOL_CHUNK_NAME,
+} from './const';
 
 /**
  * 导入依赖转成import生命代码
@@ -179,7 +185,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     validateAllForm,
     getAllFormValues,
     resetAllForm,
-    
+    saveBlobFile,
              data,
             updateData,
             resetDataSource,
@@ -216,10 +222,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         name: CUSTOM_ACTION_CHUNK_NAME.DidMount,
         content: `// 挂载自定义事件
         customFuncMapping.add(customActionId, customActionMap);`,
-        linkAfter: [
-          REACT_CHUNK_NAME.DidMountStart,
-          REACT_CHUNK_NAME.DidMountContent,
-        ],
+        linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseMountStart],
       });
       next.chunks.push({
         type: ChunkType.STRING,
@@ -227,18 +230,17 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         name: CUSTOM_ACTION_CHUNK_NAME.WillUnmount,
         content: `// 页面销毁移除
         customFuncMapping.remove(customActionId);`,
-        linkAfter: [
-          REACT_CHUNK_NAME.WillUnmountStart,
-          REACT_CHUNK_NAME.WillUnmountContent,
-        ],
+        linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseUnMountStart],
       });
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
-        content: `\n //定义页面的自定义事件 \n  const customActionMap = useCustomAction({ ...useTools, ...useDataSourceTool, ...sandBoxContext.current})`,
+        content: `\n // 定义页面的自定义事件 \n  const customActionMap = useCustomAction({ ...useTools, ...useDataSourceTool, ...sandBoxContext.current})`,
         linkAfter: [
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
+          DATA_SOURCE_CHUNK_NAME.CallDataSource,
+          PAGE_TOOL_CHUNK_NAME.PageTooL,
         ],
       });
     } else {
