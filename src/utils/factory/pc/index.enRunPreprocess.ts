@@ -165,7 +165,7 @@ const pc: { [key: string]: PatchPropsFunctionType } = {
   },
   Divider: (instance, originProps, Sandbox, extraData) => {
     // 说明是3.3.1 之前的数据
-    if (Sandbox.compatConfig.isFormCompat === true) {
+    if (Sandbox?.compatConfig?.isFormCompat === true) {
       if (!originProps.dividerColor) {
         // 默认是灰色
         originProps.dividerColor = 'rgba(0,0,0,0.15)';

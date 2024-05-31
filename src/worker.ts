@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
+// polyfills 必须在最前面，不要格式化到下面去
+import './polyfills/buffer';
+
 import type { IProjectSchema } from './core';
 import { resultHelper } from './core/utils';
-import './polyfills/buffer';
 import alita from './solutions/alita';
 
 declare const self: any;

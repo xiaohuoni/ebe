@@ -13,7 +13,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "esno ./scripts/build",
+    "build": "npx father build && esno ./scripts/build",
     "dev": "npx father dev",
     "test": "npx ebe move ./test/index.ts --o node_modules/.cache/outDir"
   },

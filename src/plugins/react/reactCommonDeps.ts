@@ -23,7 +23,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
 // 注意: 出码模块正在调试
 import React, { useImperativeHandle, useEffect } from 'react';
 import moment from 'moment';
-// 默认都加，应该用到再加
 import Popover from '@/components/Popover';
 import _ from 'lodash';
 import ArrayUtil from '@/utils/array';

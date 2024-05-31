@@ -14,6 +14,12 @@ import {
 import { getErrorMessage } from '../../../../../core/utils/errors';
 import { isNpmInfo } from '../../../../../core/utils/schema';
 import { calcCompatibleVersion } from '../../../../../core/utils/version';
+
+const __UTILS_PACKAGE_VERSION__: string = '0,0,6';
+
+// @ts-ignore
+const packageVersion = __UTILS_PACKAGE_VERSION__ ?? 'latest';
+
 const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
     const next: ICodeStruct = {
@@ -33,16 +39,9 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
         build: 'alita build',
         dev: 'alita dev',
         format: 'prettier --write .',
-        'lint-staged': 'lint-staged',
-        'lint-staged:js': 'eslint --ext .ts,.tsx',
         plugin: 'alita plugin list',
-        start: 'NODE_OPTIONS=--max-old-space-size=8192 alita dev',
-      },
-      'lint-staged': {
-        '**/*.less': 'stylelint --syntax less',
-        '**/*.css': 'stylelint --syntax css',
-        '**/*.{ts,tsx}': 'npm run lint-staged:js',
-        '**/*.{ts,tsx,json,jsx,less}': ['git add', 'prettier --write'],
+        postinstall: 'ebe setup && pnpm run format',
+        start: 'alita dev',
       },
       dependencies: {
         react: '^17.0.2',
@@ -62,6 +61,7 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
         ),
       },
       devDependencies: {
+        'ebe-utils': `^${packageVersion}`,
         '@types/react': '^18.0.15',
         '@types/react-dom': '^18.0.6',
         'cross-env': '^6.0.3',
@@ -72,10 +72,6 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
       },
       engines: {
         node: '>=14.0.1',
-      },
-      gitHooks: {
-        'pre-commit': 'lint-staged',
-        'commit-msg': 'alita verify-commit',
       },
     };
 

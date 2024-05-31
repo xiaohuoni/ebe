@@ -46,15 +46,19 @@ export const getBusiCompName = (
   }
 
   // 如果是两个字符以上的，首字母大写，因为英文会被拆成单个字母，原样拼回去即可
-  const name = pinyin(`${pageName}`, {
-    type: 'array',
-    toneType: 'none',
-  })
+  const name = pinyin(
+    `${pageName
+      .replaceAll(' ', '')
+      .replaceAll('/', '')
+      .replaceAll('(', '')
+      .replaceAll(')', '')}`,
+    {
+      type: 'array',
+      toneType: 'none',
+    },
+  )
     .map((i) => (i.length > 1 ? changeCase.pascalCase(i) : i))
-    .join('')
-    .replaceAll('/', '')
-    .replaceAll('(', '')
-    .replaceAll(')', '');
+    .join('');
   const compName = getName(name);
 
   busiCompMaps[id] = compName;

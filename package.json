@@ -1,6 +1,6 @@
 {
   "name": "ebe",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "keywords": [],
   "license": "ISC",
@@ -19,7 +19,7 @@
     "es"
   ],
   "scripts": {
-    "build": " node scripts/build",
+    "build": "ANALYZE=true node scripts/build",
     "build:ebe-utils": "cd ebe-utils && father build",
     "build:worker": "esno build-standalone-worker.js",
     "dev": "father dev",

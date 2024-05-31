@@ -1,7 +1,8 @@
 import prettier from 'prettier';
 import parserBabel from 'prettier/parser-babel';
-import parserHtml from 'prettier/parser-html';
-import parserPostCss from 'prettier/parser-postcss';
+// TODO: 感觉用不到，产物包能少 0.55M，先注释
+// import parserHtml from 'prettier/parser-html';
+// import parserPostCss from 'prettier/parser-postcss';
 
 import { PostProcessor, PostProcessorFactory } from '../../types';
 
@@ -54,7 +55,8 @@ const factory: PostProcessorFactory<ProcessorConfig> = (
     // };
     return prettier.format(content, {
       parser,
-      plugins: [parserBabel, parserPostCss, parserHtml, ...(cfg.plugins || [])],
+      // plugins: [parserBabel, parserPostCss, parserHtml, ...(cfg.plugins || [])],
+      plugins: [parserBabel, ...(cfg.plugins || [])],
       singleQuote: true,
       jsxSingleQuote: false,
       trailingComma: 'all',

@@ -20,3 +20,4 @@ pnpm-lock.yaml
 cache.json
 zs
 templates
+src/worker.ts
