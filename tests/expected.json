@@ -45,11 +45,8 @@
             "props": {
               "name": "按钮",
               "basicStatus": 1,
-              "classification": "default",
               "autoProcessFlow": false,
-              "flowProcessResult": "common",
               "iconPosition": "left",
-              "btnIcon": "none",
               "btnText": "按钮"
             },
             "style": {

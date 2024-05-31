@@ -3,28 +3,28 @@ const basicStatusTransfer = (basicStatusValue: number | string) => {
   switch (+basicStatusValue) {
     case 2: // 隐藏
       return {
-        disabled: false,
+        // disabled: false,
         visible: false,
-        readOnly: false,
+        // readOnly: false,
       };
     case 3: // 禁用
       return {
         disabled: true,
         visible: true,
-        readOnly: false,
+        // readOnly: false,
       };
     case 4: // 只读
       return {
-        disabled: false,
+        // disabled: false,
         visible: true,
         readOnly: true,
       };
     case 1: // 默认情况
     default:
       return {
-        disabled: false,
+        // disabled: false,
         visible: true,
-        readOnly: false,
+        // readOnly: false,
       };
   }
 };

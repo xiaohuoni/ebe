@@ -23,23 +23,19 @@ const pc: { [key: string]: PatchPropsFunctionType } = {
     // 如果状态绑定数据则根据值更改属性：普通、隐藏、禁用、只读
     const basicStatusValue = originProps.basicStatus;
     if (basicStatusValue) {
-      const {
-        disabled: disabledProp,
-        visible: visibleProp,
-        readOnly: readOnlyProp,
-      } = basicStatusTransfer(basicStatusValue);
-
+      const statObject = basicStatusTransfer(basicStatusValue);
+      Object.assign(originProps, statObject);
       // 存量数据不兼容，以下的判断存量数据和事件控制显隐的判断冲突
-      originProps.disabled =
-        originProps.disabled !== undefined
-          ? originProps.disabled
-          : disabledProp;
-      originProps.visible =
-        originProps.visible !== undefined ? originProps.visible : visibleProp;
-      originProps.readOnly =
-        originProps.readOnly !== undefined
-          ? originProps.readOnly
-          : readOnlyProp;
+      //   originProps.disabled =
+      //     originProps.disabled !== undefined
+      //       ? originProps.disabled
+      //       : disabledProp;
+      //   originProps.visible =
+      //     originProps.visible !== undefined ? originProps.visible : visibleProp;
+      //   originProps.readOnly =
+      //     originProps.readOnly !== undefined
+      //       ? originProps.readOnly
+      //       : readOnlyProp;
     }
 
     // 权限规则处理

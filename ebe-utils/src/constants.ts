@@ -39,6 +39,13 @@ const componentsRule: IRulesType = {
       }
     },
   },
+  Collapse: {
+    rule: ({ value, diffraction }) => {
+      if (value?.components) {
+        return removeObjectByRules(value, lingxiDslRules);
+      }
+    },
+  },
   Layout: {
     rule: ({ value, diffraction }) => {
       if (value?.components) {
@@ -55,9 +62,12 @@ const componentsRule: IRulesType = {
     rule: ({ diffraction }) => {
       return diffraction?.({
         props: {
+          classification: 'default',
+          flowProcessResult: 'common',
           size: 'default',
           type: 'default',
           shape: 'default',
+          btnIcon: 'none',
           loading: (data: any) => data.loading === false,
           ghost: false,
           block: false,
@@ -103,11 +113,27 @@ const componentsRule: IRulesType = {
     rule: ({ diffraction }) => {
       const value = diffraction?.({
         props: {
+          tableTitle: (value: { showHead: boolean }) => {
+            return value.showHead !== false;
+          },
           showHead: false,
           showSizeChanger: false,
           showQuickJumper: false,
           dataSourceLoading: false,
-          headExtends: '[]',
+          showTotal: false,
+          page: false,
+          isFlexColumn: false,
+          checkLoosed: false,
+          fixedAction: false,
+          headExtends: (value: any) => {
+            return (
+              Array.isArray(value.headExtends) && value.headExtends.length === 0
+            );
+          },
+          extend: (value: any) => {
+            return Array.isArray(value.extend) && value.extend.length === 0;
+          },
+          headBtnNum: 3,
         },
       });
       return value;
