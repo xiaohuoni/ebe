@@ -15,7 +15,7 @@ import { getErrorMessage } from '../../../../../core/utils/errors';
 import { isNpmInfo } from '../../../../../core/utils/schema';
 import { calcCompatibleVersion } from '../../../../../core/utils/version';
 
-const __UTILS_PACKAGE_VERSION__: string = '0,0,6';
+const __UTILS_PACKAGE_VERSION__: string = '0.0.6';
 
 // @ts-ignore
 const packageVersion = __UTILS_PACKAGE_VERSION__ ?? 'latest';
@@ -40,7 +40,7 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
         dev: 'alita dev',
         format: 'prettier --write .',
         plugin: 'alita plugin list',
-        postinstall: 'ebe setup && pnpm run format',
+        postinstall: 'ebe setup && npm run format',
         start: 'alita dev',
       },
       dependencies: {

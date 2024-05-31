@@ -25,7 +25,7 @@
     "build:worker": "esno build-standalone-worker.js",
     "dev": "father dev",
     "format": "prettier --write .",
-    "postinstall": "pnpm run build:ebe-utils & pnpm run build",
+    "postinstall": "npm run build:ebe-utils & npm run build",
     "prepare": "husky",
     "req": "esno req.ts",
     "start": "esno index.ts",
