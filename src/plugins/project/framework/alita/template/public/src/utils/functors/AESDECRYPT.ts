@@ -1,4 +1,4 @@
-import { security } from '@lingxiteam/assets';
+import security from '../Security';
 import { FunctorDefine } from './types';
 
 const defaultAESKey = 'd86d7bab3d6ac01a';

@@ -7,9 +7,8 @@ import React, {
   useImperativeHandle,
   useMemo,
 } from 'react';
-// @ts-ignore
-import { IconCheckSvg, IconNormalCheckSvg } from '@lingxiteam/assets';
 import useBackgroundStyle from '../View/useBackgroundStyle';
+import { IconCheckSvg, IconNormalCheckSvg } from '../../../../utils/svgImage';
 
 const basicStyle = { backgroundColor: '#fff' };
 export interface WrapperProps {
