@@ -96,7 +96,10 @@ const MyCollapse = LingxiForwardRef<any, MyCollapseProps>((props, ref) => {
       list.push(child?.props?.uid || child?.props?.$$componentItem.uid);
       components.push(child);
       // 兼容高代码模式下的uid
-      addChildProps(child.props.uid || child?.props?.$$componentItem.uid, child.props?.schema?.props);
+      addChildProps(
+        child.props.uid || child?.props?.$$componentItem.uid,
+        child.props?.schema?.props,
+      );
     });
     resetList(list);
     return components;
