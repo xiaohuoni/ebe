@@ -1,8 +1,29 @@
 import { parse2Var } from './compositeType';
 import TreeParser from './TreeParser';
 
+const getVarName = (type: string[], topVarSuffix = '') => {
+  return [...type.slice(1), topVarSuffix].filter(Boolean).join('_');
+};
+
+const creatorId = () => {
+  let id = 1;
+  return () => {
+    // 避免id过长，当id长度超过9999时，从0开始计算
+    if (id > 9999) {
+      id = 0;
+    }
+    id += 1;
+    return `${id}`;
+  };
+};
+
+const createId = creatorId();
+
 export const getDSFilterName = (name: string) => `${name}Filter`;
-export const GetReqParamValues = (value: { type: string[]; code: string }) => {
+export const GetReqParamValues = (
+  value: { type: string[]; code: string },
+  context?: { topVarSuffix?: string },
+) => {
   const { type = [], code: valueCode } = value;
   let targetVal: string = 'undefined';
   switch (type[0]) {
@@ -44,12 +65,43 @@ export const GetReqParamValues = (value: { type: string[]; code: string }) => {
       targetVal = valueStr;
       break;
     }
+
+    case 'Dform':
+    case 'form':
+      {
+        const [typeCode, compId, methodName] = type;
+        if (methodName === 'getFieldsValue') {
+          const varName = getVarName(type, context?.topVarSuffix);
+          const varValue = `const ${varName} = await getFormValue(${parse2Var(
+            compId,
+          )})`;
+
+          if (valueCode) {
+            return [`${varName}?.${valueCode}`, varValue];
+          }
+
+          return [varName, varValue];
+        }
+        if (methodName === 'validateFields') {
+          const varName = getVarName(type, context?.topVarSuffix);
+          const varValue = `const ${varName} = await validateForm(${parse2Var(
+            compId,
+          )})`;
+
+          if (valueCode) {
+            return [`${varName}?.${valueCode}`, varValue];
+          }
+
+          return [varName, varValue];
+        }
+      }
+      break;
     default:
       targetVal = JSON.stringify('');
       // childParams[code] = '';
       break;
   }
-  return targetVal;
+  return [targetVal];
 };
 
 export const parseDSSetVal = (options: any) => {
@@ -108,6 +160,8 @@ export const transformValueDefined = (
 ) => {
   const parser = new TreeParser();
 
+  const topVarSuffix = createId();
+
   // TODO: 这段代码需要确认下是否需要
   if (dataSourceName && isOrder) {
     const orderFields: string[] = paramsConfig.filter((it: any) =>
@@ -128,6 +182,8 @@ export const transformValueDefined = (
     }
   }
 
+  const topSet = new Set();
+
   const code = parser.stringify(
     {
       type: 'object',
@@ -139,10 +195,17 @@ export const transformValueDefined = (
         if (item.type === 'object') {
           stop();
         }
-        return GetReqParamValues(item.value);
+        const [targetVal, top] = GetReqParamValues(item.value, {
+          topVarSuffix: topVarSuffix,
+        });
+
+        if (top) {
+          topSet.add(top);
+        }
+        return targetVal;
       }
     },
   );
 
-  return code;
+  return [code, [...topSet].join(';')];
 };

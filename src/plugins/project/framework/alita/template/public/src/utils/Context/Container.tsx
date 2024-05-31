@@ -47,9 +47,13 @@ export { Container };
 export const PageContext = createContext<{
   registerRefs: (ref: any, id: string) => void;
   renderId: string;
+  runAwaitQueue: (comId: string) => void;
 }>({
   renderId: '',
   registerRefs() {
+    console.warn(`上下文丢失`);
+  },
+  runAwaitQueue: () => {
     console.warn(`上下文丢失`);
   },
 });

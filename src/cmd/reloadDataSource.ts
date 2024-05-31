@@ -30,7 +30,7 @@ export function reloadDataSource(generateParams: CMDGeneratorPrames): string {
   const { source, id } = dsConfig;
   const { dataSourceReloadFilter } = options;
 
-  const payloadCode = transformValueDefined(
+  const [payloadCode, topCode] = transformValueDefined(
     dataSourceReloadFilter,
     options.dataSourceName,
     true,
@@ -89,7 +89,11 @@ export function reloadDataSource(generateParams: CMDGeneratorPrames): string {
     )}, ${payloadCode});`;
   }
 
-  return GeneratorCallbackWithThenCatch(callMethodCode, generateParams, {
-    sync: options.sync,
-  });
+  return (
+    `${topCode}\n` +
+    GeneratorCallbackWithThenCatch(callMethodCode, generateParams, {
+      sync: options.sync,
+      topFuncAsync: true,
+    })
+  );
 }

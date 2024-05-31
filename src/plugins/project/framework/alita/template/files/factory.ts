@@ -53,7 +53,7 @@ export default function getFile(
       // 属性预处理
       const props = useMemo(() => run(initialProps), [initialProps]);
 
-      const { registerRefs, renderId } = usePageProvider();
+      const { registerRefs, renderId, runAwaitQueue } = usePageProvider();
 
       // 自定义组件HOC hooks  保持visible逻辑
       //@ts-ignore
@@ -135,10 +135,12 @@ export default function getFile(
         uploadRef();
       });
 
-      useEffect(() => () => {
-        // 注销ref
-        registerRefs(null, props?.$$componentItem?.uid);
-      }, []);
+      useEffect(() =>{ 
+        runAwaitQueue(props?.$$componentItem?.uid);
+        return () => {
+          // 注销ref
+          registerRefs(null, props?.$$componentItem?.uid);
+      }}, []);
 
       ${
         componentWillMount

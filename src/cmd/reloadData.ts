@@ -22,7 +22,9 @@ export function reloadData(generateParams: CMDGeneratorPrames): string {
       },
     })})
     `;
-    return GeneratorCallbackWithThenCatch(code, generateParams);
+    return GeneratorCallbackWithThenCatch(code, generateParams, {
+      topFuncAsync: true,
+    });
   } else if (['"Cascader"'].includes(compName)) {
     return `
     // 加载数据
@@ -73,7 +75,9 @@ export function reloadData(generateParams: CMDGeneratorPrames): string {
     // 加载数据
     asyncCallComponentMethod(${parse2Var(compId)}, 'setStepsOptions', ${data})
     `;
-    return GeneratorCallbackWithThenCatch(code, generateParams);
+    return GeneratorCallbackWithThenCatch(code, generateParams, {
+      topFuncAsync: true,
+    });
   } else {
     const code = `
     // 加载数据
@@ -81,7 +85,9 @@ export function reloadData(generateParams: CMDGeneratorPrames): string {
       data,
     )})
     `;
-    return GeneratorCallbackWithThenCatch(code, generateParams);
+    return GeneratorCallbackWithThenCatch(code, generateParams, {
+      topFuncAsync: true,
+    });
   }
 }
 

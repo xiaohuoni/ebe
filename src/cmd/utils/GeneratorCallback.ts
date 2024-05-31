@@ -40,6 +40,11 @@ const GeneratorCallbackWithThenCatch = (
      * 是否总是有catch
      */
     alwayCatch?: boolean;
+
+    /**
+     * 父级函数是否增加async标识
+     */
+    topFuncAsync?: boolean;
   },
 ) => {
   if (!code) return code;
@@ -94,6 +99,11 @@ const GeneratorCallbackWithThenCatch = (
     config.parentIsAsync = true;
     cmdCode = `await ${cmdCode}`;
   }
+
+  if (options?.topFuncAsync && config) {
+    config.parentIsAsync = true;
+  }
+
   return cmdCode;
 };
 

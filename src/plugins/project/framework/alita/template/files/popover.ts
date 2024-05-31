@@ -16,7 +16,7 @@ import Popover, {
   PopoverProps,
 } from 'antd-mobile-5/es/components/popover';
 import React, { FC, useState } from 'react';
-import Pageview from '../Pageview';
+import { PageComent } from '../Pageview';
 // @ts-ignore
 import { Wrapper } from './Wrapper';
 
@@ -90,7 +90,7 @@ const DynamicPopover: FC<DynamicPopoverProps> = (props) => {
         {...popVisibleProps}
         className={\`dynamic_popover_\${pageId || ''}\`}
    
-    content={<Pageview pageSrc={pageId} parentEngineId={parentEngineId}/>}
+    content={<PageComent pageSrc={pageId} parentEngineId={parentEngineId}/>}
         placement={placement}
         trigger={trigger}
       >
@@ -173,7 +173,7 @@ export default DynamicPopover;
       import classnames from 'classnames';
       import React, { FC, useEffect, useMemo, useState } from 'react';
       import lcdpApi from '@/utils/lcdpApi';
-      import Pageview from '../Pageview';
+      import { PageComent } from '../Pageview';
       
       export interface DynamicPopoverProps {
         page?: {
@@ -208,7 +208,7 @@ export default DynamicPopover;
         const [visible, setVisible] = useState<boolean>(false);
         const content = useMemo(() => {
           if (page?.pageId) {
-            return <Pageview pageSrc={page?.pageId} parentEngineId={parentEngineId}/>;
+            return <PageComent pageSrc={page?.pageId} parentEngineId={parentEngineId}/>;
           }
           if (popoverOptions?.content) {
             return popoverOptions.content;

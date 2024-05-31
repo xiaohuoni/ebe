@@ -25,8 +25,18 @@ const toBool = (v: string | boolean, defaultValue?: any) => {
   return val;
 };
 
-export const useTool = (refs: Record<string, any>) => {
+export interface ToolsContext {
+  addToAwaitQueue: (
+    compId: string,
+    functionName: string,
+    ...args: any[]
+  ) => void;
+}
+
+export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
   const { refs: renderRefs } = useContext(Context);
+
+  const { addToAwaitQueue } = context;
 
   const getValue = (id: string, stateName?: string) => {
     if (stateName) {
@@ -160,7 +170,8 @@ export const useTool = (refs: Record<string, any>) => {
     if (refs?.[comId]) {
       return refs?.[comId]?.[methodName]?.(...args);
     } else {
-      console.error('组件' + comId + '不存在');
+      // console.error('组件' + comId + '不存在');
+      addToAwaitQueue(comId, methodName, ...args);
     }
   };
 
@@ -179,7 +190,8 @@ export const useTool = (refs: Record<string, any>) => {
       if (refs?.[comId]) {
         resolve(refs?.[comId]?.[methodName]?.(...args));
       } else {
-        resolve(undefined);
+        // resolve(undefined);
+        resolve(addToAwaitQueue(comId, methodName, ...args));
         // reject(new Error('组件' + comId + '不存在'));
       }
     });
@@ -187,7 +199,7 @@ export const useTool = (refs: Record<string, any>) => {
   /**
    * 获取当前表单值
    */
-  const getFormValue = async (compId: string) => {
+  const getFormValue = async (compId: string): Promise<any> => {
     // 表单不存在 就返回null
     if (!refs[compId]) return Promise.reject(new Error('组件不存在'));
 
@@ -219,7 +231,7 @@ export const useTool = (refs: Record<string, any>) => {
    * 验证并取值
    * @param compId
    */
-  const validateForm = async (compId: string) => {
+  const validateForm = async (compId: string): Promise<any> => {
     // 表单不存在 就返回null
     if (!refs[compId]) return Promise.reject(new Error('组件不存在'));
 

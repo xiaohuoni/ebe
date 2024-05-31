@@ -155,7 +155,8 @@ export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
   const { onlySetPatch, targetDataSourcePaths = [] } = options;
 
   const dSSetVals = parseDSSetVal(options);
-  const payloadCode = transformValueDefined(
+  let [payloadCode, topCode]: string[] = [];
+  [payloadCode, topCode] = transformValueDefined(
     dSSetVals,
     options.dataSourceName,
     false,
@@ -212,7 +213,7 @@ export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
           console.warn('不存在的节点id[${attrId}]');
         `;
       }
-      updateParams.value = transformValueDefined(
+      [updateParams.value, topCode] = transformValueDefined(
         node.children,
         node.code,
         false,
@@ -240,8 +241,10 @@ export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
     }
   }
 
-  return GeneratorCallbackWithThenCatch(
-    `
+  return (
+    `${topCode}\n` +
+    GeneratorCallbackWithThenCatch(
+      `
   // 更新数据源 ${dataSourceName}
   updateData({
     ${Object.keys(updateParams)
@@ -250,6 +253,10 @@ export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
         (key) => `${key}: ${updateParams[key as keyof typeof updateParams]}`,
       )}
   })`,
-    generateParams,
+      generateParams,
+      {
+        topFuncAsync: topCode?.length > 0,
+      },
+    )
   );
 }

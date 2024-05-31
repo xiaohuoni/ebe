@@ -85,6 +85,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
             BannerModal,
             customActionId,
             lcdpParentRenderId,
+            addToAwaitQueue,
             ${isModal ? 'onOk: fatherOnOk,' : ''}
             ${isModal ? 'closeModal' : ''}
         } = props;
@@ -140,7 +141,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: PAGE_TOOL_CHUNK_NAME.PageTooL,
-      content: `const useTools = useTool(refs);\n const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled, getDisabled, validateForm, getFormValue, resetForm, clearValue, setFormValues, asyncCallComponentMethod,validateAllForm,getAllFormValues, resetAllForm } = useTools`,
+      content: `const useTools = useTool(refs, { addToAwaitQueue });\n const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled, getDisabled, validateForm, getFormValue, resetForm, clearValue, setFormValues, asyncCallComponentMethod,validateAllForm,getAllFormValues, resetAllForm } = useTools`,
       linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
     });
 
@@ -351,9 +352,13 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         fileType: FileType.TSX,
         name: BOFRAMER_CHUNK_NAME.SetMapState,
         content: `
-          setCompPropMapState: setState,
+          setCompPropMapState: (mapState: Record<string, any>) => {
+            setState({ ...state, ...mapState });
+          },
           // 兼容setCompPropMapState("boframeId","params", {})
-          setParams: setState,
+          setParams: (mapState: Record<string, any>) => {
+            setState({ ...state, ...mapState });
+          },
         `,
         linkAfter: [
           LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleContent,

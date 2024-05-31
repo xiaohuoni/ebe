@@ -26,6 +26,7 @@ import { i18n } from '@/utils/i18n';
 import { useLocation } from 'alita';
 import { parse } from 'qs';
 import lcdpApi from '@/utils/lcdpApi';
+import AwaitHandleData from '@/utils/AwaitHandleData';
 import { Context } from './Context/context';
 import { sandBoxLoadModule } from './sandBoxLoadModule';
 import { getStateListener } from './StateListener';
@@ -83,6 +84,8 @@ export const withPageHOC = (
         ...props.urlParam
       })
     }, [props.urlParam])
+
+    const awaitHandleData = useMemo(() => new AwaitHandleData(), [])
 
     // 指令定时器存储
     const actionTimerRef = useRef<Record<string, any>>({
@@ -233,6 +236,9 @@ export const withPageHOC = (
       <>
       <PageProvider value={{
         renderId,
+        runAwaitQueue: (comId: string) => {
+          awaitHandleData.runQueue(comId, refs);
+        },
         registerRefs: (ref, id) => {
           if (ref) {
             // @ts-ignore
@@ -262,6 +268,7 @@ export const withPageHOC = (
           ImportBusiObjModalRef={ImportBusiObjModalRef}
           BannerModal={BannerModal}
           customActionId={customActionId}
+          addToAwaitQueue={(compId: string, functionName: string, ...args: any[]) => awaitHandleData.addToAwaitQueue(compId, functionName, ...args)}
         />
         </PageProvider>
         ${

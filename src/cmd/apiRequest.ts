@@ -16,15 +16,20 @@ export function apiRequest(generateParams: CMDGeneratorPrames): string {
 
   // 请求入参
   let paramsCode;
+  let topCode = '';
 
   if (root && root.isRoot) {
     if (typeof root.value?.code !== 'undefined') {
       paramsCode = parse2Var(root.value?.code);
     } else {
-      paramsCode = transformValueDefined(root.children, '', false);
+      [paramsCode, topCode] = transformValueDefined(root.children, '', false);
     }
   } else {
-    paramsCode = transformValueDefined(options.apiRequestSetParams, '', false);
+    [paramsCode, topCode] = transformValueDefined(
+      options.apiRequestSetParams,
+      '',
+      false,
+    );
   }
 
   const { sceneCode, valueType = 'object', rootValue } = options;
@@ -57,37 +62,45 @@ export function apiRequest(generateParams: CMDGeneratorPrames): string {
 
   // 批量逻辑
   if (options.url === '/app/object/batchInsert') {
-    return GeneratorCallbackWithThenCatch(
-      `api.batchInsert(
+    return (
+      `${topCode}\n` +
+      GeneratorCallbackWithThenCatch(
+        `api.batchInsert(
         ${parse2Var(options._source || '')},
         ${parse2Var(options.method || 'post')},
         ${parse2Var(options.url)},
         ${param},
         ${extparam}
       )`,
+        generateParams,
+        {
+          sync: options.sync,
+          params: {
+            callback1: [`reply_${options.id}`],
+          },
+          topFuncAsync: topCode.length > 0,
+        },
+      )
+    );
+  }
+
+  return (
+    `${topCode}\n` +
+    GeneratorCallbackWithThenCatch(
+      `api.commonFetch(
+      ${parse2Var(options.method || 'post')},
+      ${parse2Var(options.url)},
+      ${param},
+      ${extparam}
+    )`,
       generateParams,
       {
         sync: options.sync,
         params: {
           callback1: [`reply_${options.id}`],
         },
+        topFuncAsync: topCode.length > 0,
       },
-    );
-  }
-
-  return GeneratorCallbackWithThenCatch(
-    `api.commonFetch(
-      ${parse2Var(options.method || 'post')},
-      ${parse2Var(options.url)},
-      ${param},
-      ${extparam}
-    )`,
-    generateParams,
-    {
-      sync: options.sync,
-      params: {
-        callback1: [`reply_${options.id}`],
-      },
-    },
+    )
   );
 }
