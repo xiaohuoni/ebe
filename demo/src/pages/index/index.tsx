@@ -7,6 +7,7 @@ import {
   qryAttrSpecPage,
   qryPageCompAssetList,
   qryPageInstListByAppId,
+  queryFrontendDatasourcePage,
   queryFrontendHookList,
 } from '@/services/api';
 import { Button, Form, Input, message, Switch } from 'antd';
@@ -70,6 +71,13 @@ const Page = () => {
     const compAssetList = await qryPageCompAssetList({
       appId: values.appId,
     });
+
+    // 根据appId 获取全局数据源
+    let globalDataInfo = await queryFrontendDatasourcePage({
+      appId: values.appId,
+      pageSize: 10000,
+    });
+
     const pageIdMapping: any = {};
     const appPageList = resultObject?.map((i) => {
       pageIdMapping[i.pagePath] = i.pageId;
@@ -189,6 +197,7 @@ const Page = () => {
         (i: any) => i.attrNbr,
       ),
       themeCss,
+      models: globalDataInfo || [],
     };
     let cleanedTree = cleanTree(pageDSLS, ['path']); // 清理字段'b'和字段'e'
     cleanedTree = clearLXPagesDSL(cleanedTree);

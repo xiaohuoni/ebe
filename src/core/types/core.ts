@@ -147,6 +147,34 @@ export interface IProjectPlugins {
   [slotName: string]: BuilderComponentPlugin[];
 }
 
+/**
+ * 全局数据源
+ */
+export interface GlobalDataSourceItemType {
+  datasourceType: 'service' | 'object' | 'custom';
+  frontendDatasourceCode: string;
+  frontendDatasourceId: string;
+  frontendDatasourceMainId: string;
+  frontendDatasourceContent: {
+    outParams: any[];
+    filterParams: any[];
+    config: any[];
+    description: string;
+    name: string;
+    queryType: string;
+    requestType: string;
+    source: string;
+    sourceId: string;
+    type: string;
+    id: number;
+    isGlobalData: boolean;
+    [key: string]: any;
+  };
+  frontendDatasourceName: string;
+  isInit: 'F' | 'T';
+  queryType: string;
+}
+
 export interface LXProjectOptions {
   platform: string;
   appId: string;
@@ -158,6 +186,7 @@ export interface LXProjectOptions {
   appConfig?: any;
   attrSpecPage?: string[];
   themeCss?: string;
+  models: GlobalDataSourceItemType[];
 }
 export interface IProjectBuilderOptions {
   /** 是否处于严格模式 (默认：否) */

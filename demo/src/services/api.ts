@@ -111,3 +111,38 @@ export async function getThemeCss(params): Promise<any> {
     headers,
   });
 }
+
+/**
+ * 获取全局数据源
+ * @param params
+ */
+export async function queryFrontendDatasourcePage(params: any) {
+  // lcdp/frontend/datasource/queryFrontendDatasourcePage
+  const headers: any = {
+    'Content-Type': 'application/json',
+    'APP-ID': params.appId,
+  };
+
+  return request('/api/lcdp/frontend/datasource/queryFrontendDatasourcePage', {
+    data: params,
+    headers,
+    method: 'post',
+  }).then((res) => {
+    if (res.resultCode === '0') {
+      const dataSourceList = res.resultObject?.list || [];
+      return dataSourceList
+        .map((item: any) => {
+          const { frontendDatasourceContent, ...restItem } = item;
+          try {
+            return {
+              ...restItem,
+              frontendDatasourceContent: JSON.parse(frontendDatasourceContent),
+            };
+          } catch (err) {}
+          return null;
+        })
+        .filter(Boolean);
+    }
+    return [];
+  });
+}
