@@ -19,7 +19,8 @@
     "es"
   ],
   "scripts": {
-    "build": "ANALYZE=true node scripts/build",
+    "build": "node scripts/build",
+    "build:ANALYZE": "ANALYZE=true node scripts/build",
     "build:ebe-utils": "cd ebe-utils && father build",
     "build:worker": "esno build-standalone-worker.js",
     "dev": "father dev",
