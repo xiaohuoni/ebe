@@ -130,19 +130,20 @@ export async function queryFrontendDatasourcePage(params: any) {
   }).then((res) => {
     if (res.resultCode === '0') {
       const dataSourceList = res.resultObject?.list || [];
-      return dataSourceList
-        .map((item: any) => {
-          const { frontendDatasourceContent, ...restItem } = item;
-          try {
-            return {
-              ...restItem,
-              frontendDatasourceContent: JSON.parse(frontendDatasourceContent),
-            };
-          } catch (err) {}
-          return null;
-        })
-        .filter(Boolean);
+      const globalDataMap: Record<string, any> = {};
+      dataSourceList.forEach((item: any) => {
+        const { frontendDatasourceContent, ...restItem } = item;
+
+        try {
+          globalDataMap[item.frontendDatasourceMainId] = {
+            ...restItem,
+            frontendDatasourceContent: JSON.parse(frontendDatasourceContent),
+          };
+        } catch (err) {}
+        return null;
+      });
+      return globalDataMap;
     }
-    return [];
+    return {};
   });
 }

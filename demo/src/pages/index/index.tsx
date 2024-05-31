@@ -197,7 +197,7 @@ const Page = () => {
         (i: any) => i.attrNbr,
       ),
       themeCss,
-      models: globalDataInfo || [],
+      models: globalDataInfo || {},
     };
     let cleanedTree = cleanTree(pageDSLS, ['path']); // 清理字段'b'和字段'e'
     cleanedTree = clearLXPagesDSL(cleanedTree);

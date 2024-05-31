@@ -186,7 +186,7 @@ export interface LXProjectOptions {
   appConfig?: any;
   attrSpecPage?: string[];
   themeCss?: string;
-  models: GlobalDataSourceItemType[];
+  models: Record<string, GlobalDataSourceItemType>;
 }
 export interface IProjectBuilderOptions {
   /** 是否处于严格模式 (默认：否) */
