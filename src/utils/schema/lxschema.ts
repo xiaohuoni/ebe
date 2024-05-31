@@ -168,7 +168,7 @@ const preprocessComponentSchema = (
     // platform: schema.platform,
     // TODO: fusionMode
     // fusionMode: schema?.fusionMode,
-    uid: `$${generateUid(schema)}$`,
+    // uid: `$${generateUid(schema)}$`,
     $$componentItem: `##{{id: '${schema.id}',uid: ${generateUid(schema)}}}##`,
   };
 

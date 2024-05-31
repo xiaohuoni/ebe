@@ -92,9 +92,11 @@ const MyCollapse = LingxiForwardRef<any, MyCollapseProps>((props, ref) => {
     const childrenList = React.Children.toArray(children);
     const list: string[] = [];
     React.Children.forEach(childrenList, (child: any) => {
-      list.push(child?.props?.uid);
+      // 兼容高代码模式下的uid
+      list.push(child?.props?.uid || child?.props?.$$componentItem.uid);
       components.push(child);
-      addChildProps(child.props.uid, child.props?.schema?.props);
+      // 兼容高代码模式下的uid
+      addChildProps(child.props.uid || child?.props?.$$componentItem.uid, child.props?.schema?.props);
     });
     resetList(list);
     return components;
