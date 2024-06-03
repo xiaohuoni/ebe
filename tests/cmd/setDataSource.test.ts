@@ -40,7 +40,7 @@ describe('getSetDataSource', () => {
     const expectedCode = `
   // 更新数据源 myDataSource
   updateData({
-    name: "myDataSource",path: "myDataSource.myDataSource",value: {},operateType: update,type: "array",onlySetPatch: true
+    path: "myDataSource.myDataSource",value: {},operateType: update,type: "array",onlySetPatch: true,name: "myDataSource"
   })`;
 
     const result = getSetDataSource(generateParams as any);
@@ -53,11 +53,12 @@ describe('getSetDataSource', () => {
       value: {
         options: {
           isGlobalData: true,
+          dataSourceName: 'dataName'
         },
       },
     };
 
-    const expectedCode = `//【设置全局数据源】全局数据源指令暂不支持`;
+    const expectedCode = `//【更新全局数据源】全局数据源${generateParams.value.options.dataSourceName}不存在，请检查配置`;
 
     const result = getSetDataSource(generateParams);
 

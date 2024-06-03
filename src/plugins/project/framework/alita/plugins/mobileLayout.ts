@@ -84,7 +84,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           {
             name: ir.platform,
           },
-          { ir },
+          { ir, options: next.contextData.options },
         )}}`,
         linkAfter: [MOBILE_CHUNK_NAME.NavBarStart],
       });

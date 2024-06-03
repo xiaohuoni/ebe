@@ -47,17 +47,7 @@ export interface IProjectSchema extends Component {
   busiCompId?: string;
   pageId?: string;
   // 全局数据源
-  globalDataSource: {
-    elementType: string;
-    elementId: string;
-    resourceType: string;
-    platform: string;
-    id: string;
-    frontendDatasourceId: string;
-    remark: string;
-    dataSourceCode: string;
-    dataSourceName: string;
-  }[];
+  globalDataSource: any;
   [LoopMarkSymbol]?: {
     /**
      * 父循环容器的组件id

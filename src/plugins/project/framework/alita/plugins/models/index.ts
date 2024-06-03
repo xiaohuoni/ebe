@@ -303,7 +303,7 @@ const pluginModels: BuilderComponentPluginFactory<unknown> = () => {
 
           // 重置数据源
           const ${ir.resetFunctionName} = (globalData: Record<string, any>) => {
-            const nextModel = ${
+            const nextModel: any = ${
               ['objectArray', 'array'].includes(globalDataConfig.type)
                 ? '[]'
                 : '{}'
@@ -312,12 +312,11 @@ const pluginModels: BuilderComponentPluginFactory<unknown> = () => {
             return setModel({
               ${ir.dataName}: nextModel,
             }).then(() => globalData);
-            return Promise.resolve(globalData);
           };
 
           return {
-            ${getDSFilterName(name)}: model.${getDSFilterName(name)},
-            ${ir.dataName}: model.${name},
+            ${getDSFilterName(name)}: model?.${getDSFilterName(name)},
+            ${ir.dataName}: model?.${name},
             ${ir.readyCompleteName},
             ${ir.camelCaseName}Loading,
             ${ir.initialFunctionName},

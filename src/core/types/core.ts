@@ -293,6 +293,9 @@ export interface CompositeValueGeneratorOptions {
   isTopHasPromise?: boolean;
   // 自定义事件
   isCustomEvent?: boolean;
+  options?: {
+    [key: string]: any;
+  };
 }
 
 /**

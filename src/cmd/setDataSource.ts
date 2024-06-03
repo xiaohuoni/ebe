@@ -132,26 +132,55 @@ const findNode = (list: any[], attrId: string) => {
   return result;
 };
 
+/**
+ * 检查是否存在该数据源
+ */
+const getDataSourceConfig = (
+  generateParams: CMDGeneratorPrames,
+  dataSourceName: string,
+) => {
+  const { value, config } = generateParams;
+  const { options } = value;
+
+  const { isGlobalData = false } = options;
+
+  if (!isGlobalData) {
+    const dataSourceConfig = config?.ir?.dataSource;
+    const dsConfig = dataSourceConfig?.find((item) =>
+      [item.name, getDSFilterName(item.name)].includes(dataSourceName),
+    );
+    return dsConfig;
+  }
+
+  if (
+    !Object.keys(config?.ir?.globalDataSource || {}).includes(dataSourceName)
+  ) {
+    return null;
+  }
+
+  const { id } = config?.ir?.globalDataSource[dataSourceName];
+
+  return config?.options?.models?.[id];
+};
+
 export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
   const { value, platform, scope, config } = generateParams;
   const { options, callback1, callback2 } = value;
 
-  // TODO: 全局数据源
-  if (options?.isGlobalData)
-    return `//【设置全局数据源】全局数据源指令暂不支持`;
-
+  const { isGlobalData } = options;
   // 检查数据源
   const dataSourceName = options?.dataSourceName;
   if (!dataSourceName) return `//【更新数据源】数据源名称不存在，请检查配置`;
 
-  // 检查是否配置了该数据源
-  const dataSourceConfig = config?.ir?.dataSource;
-  const dsConfig = dataSourceConfig?.find((item) =>
-    [item.name, getDSFilterName(item.name)].includes(dataSourceName),
-  );
-  if (!dsConfig)
+  const dsConfig = getDataSourceConfig(generateParams, dataSourceName);
+  if (!dsConfig) {
+    if (isGlobalData) {
+      return `//【更新全局数据源】全局数据源${dataSourceName}不存在，请检查配置`;
+    }
     return `//【更新数据源】数据源${dataSourceName}不存在，请检查配置`;
+  }
 
+  // 页面数据源检查是否配置了该数据源
   const { onlySetPatch, targetDataSourcePaths = [] } = options;
 
   const dSSetVals = parseDSSetVal(options);
@@ -189,8 +218,7 @@ export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
   const { attrId, fieldType, operateType, newData } = lastItem;
   const path = pathMap[attrId];
 
-  const updateParams = {
-    name: parse2Var(dataSourceName),
+  let updateParams = {
     path: getPath(path),
     value: payloadCode,
     predicate: '',
@@ -199,7 +227,13 @@ export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
       ['objectArray', 'array'].includes(fieldType) ? 'array' : 'object',
     ),
     onlySetPatch,
-  };
+  } as Record<string, any>;
+
+  if (!isGlobalData) {
+    updateParams.name = parse2Var(dataSourceName);
+  } else {
+    updateParams.globalData = 'globalData';
+  }
 
   if (['objectArray', 'array'].includes(fieldType)) {
     updateParams.operateType = operateType;
@@ -239,6 +273,27 @@ export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
       }
       updateParams.predicate = filterCode;
     }
+  }
+
+  if (isGlobalData) {
+    return (
+      `${topCode}\n` +
+      GeneratorCallbackWithThenCatch(
+        `
+    // 更新全局数据源 ${dataSourceName}
+    ${dsConfig.updateFunctionName}({
+      ${Object.keys(updateParams)
+        .filter((key) => updateParams[key as keyof typeof updateParams] !== '')
+        .map(
+          (key) => `${key}: ${updateParams[key as keyof typeof updateParams]}`,
+        )}
+    })`,
+        generateParams,
+        {
+          topFuncAsync: topCode?.length > 0,
+        },
+      )
+    );
   }
 
   return (

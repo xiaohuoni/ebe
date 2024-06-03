@@ -131,6 +131,12 @@ export const CMDGeneratorEvent = (
   if (!value || !value.params) {
     return '()=>{ console.log("这里找不到参数/？")}';
   }
+
+  if (!options?.options) {
+    console.trace(options?.options);
+    throw '';
+  }
+
   const isHasReturn = checkIfCMDHasReturn(value);
   let returnStartString = '';
   let returnEndString = '';

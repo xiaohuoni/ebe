@@ -70,7 +70,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
                 {
                   name: ir.platform,
                 },
-                { ir },
+                { ir, options: next.contextData.options },
               )} }`
             : '',
           linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
@@ -85,7 +85,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
                 {
                   name: ir.platform,
                 },
-                { ir },
+                { ir, options: next.contextData.options },
               )} }`
             : '',
           linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
@@ -129,7 +129,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             {
               name: ir.platform,
             },
-            { ir },
+            { ir, options: next.contextData.options },
           )} }`,
           linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         });
@@ -152,7 +152,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             {
               name: ir.platform,
             },
-            { ir },
+            { ir, options: next.contextData.options },
           )} }`,
           linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         });
@@ -175,7 +175,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             {
               name: ir.platform,
             },
-            { ir },
+            { ir, options: next.contextData.options },
           )} }`,
           linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         });

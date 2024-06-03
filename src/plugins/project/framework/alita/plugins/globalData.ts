@@ -22,7 +22,7 @@ const pluginGlobalData: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TS,
       name: COMMON_CHUNK_NAME.InternalDepsImport,
       content: `
-        import { useEffect, useState } from 'react';
+        import { useEffect, useState, useMemo, useRef } from 'react';
         import { useModel } from 'alita';
         import useReactive from '@/utils/hooks/useReactive'
 
@@ -59,11 +59,29 @@ const pluginGlobalData: BuilderComponentPluginFactory<unknown> = () => {
             })
             .join(';')}
 
-            const globalData = useReactive({
+            const globalDataRef = useRef<{
+              ${Object.keys(ir.globalDataSource).map((name) =>
+                [
+                  `${name}: typeof ${name}`,
+                  `${getDSFilterName(name)}: typeof ${getDSFilterName(name)}`,
+                ].join(','),
+              )}
+            }>({
               ${Object.keys(ir.globalDataSource).map((name) =>
                 [name, getDSFilterName(name)].join(','),
               )}
             });
+            const globalData = useMemo(() => {
+              Object.assign(globalDataRef.current, {
+                ${Object.keys(ir.globalDataSource).map((name) =>
+                  [name, getDSFilterName(name)].join(','),
+                )}
+              });
+
+              return globalDataRef.current;
+            }, [${Object.keys(ir.globalDataSource).map((name) =>
+              [name, getDSFilterName(name)].join(','),
+            )}]);
 
           useEffect(() => {
             ${

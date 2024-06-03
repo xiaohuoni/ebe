@@ -196,6 +196,7 @@ export class SchemaParser implements ISchemaParser {
 
       (schema.globalDataSource || [])?.forEach((item: any) => {
         const gItem = globalModels[item.id];
+        if (!gItem.dataName) return;
         globalDataSource[gItem.dataName] = {
           moduleName: gItem.moduleName,
           namespace: gItem.namespace,

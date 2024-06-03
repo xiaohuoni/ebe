@@ -107,6 +107,10 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       ...pre,
     };
 
+    if (!next.contextData.options) {
+      console.log(next.contextData.options, '===sl');
+    }
+
     const ir = next.ir as IContainerInfo;
     if (ir?.customFuctions && ir?.customFuctions.length > 0) {
       const customFuctionsIds: string[] = [];
@@ -150,7 +154,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             item?.value,
             next?.contextData,
             {} as IScope,
-            { ir, isCustomEvent: true },
+            { ir, isCustomEvent: true, options: next.contextData.options },
           )}`;
         })
         .join(';');
