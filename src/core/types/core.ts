@@ -1,10 +1,10 @@
+import { Hookable } from 'hookable';
 import type { ProjectBuilderInitOptions } from '../generator/ProjectBuilder';
 import { IScopeBindings } from '../utils/ScopeBindings';
 import { IContainerInfo } from './';
 import { ResultDir, ResultFile } from './files';
 import { IParseResult } from './intermediate';
 import { IProjectSchema } from './page';
-
 export enum FileType {
   CSS = 'css',
   SCSS = 'scss',
@@ -127,6 +127,7 @@ export interface ISchemaParser {
   parse: (
     schema: IProjectSchema | string,
     options?: LXProjectOptions,
+    hooks?: LogHooks,
   ) => IParseResult;
 }
 
@@ -181,12 +182,18 @@ export interface LXProjectOptions {
   pageIdMapping: any;
   busiCompMapping?: any;
   frontendHookMap?: any;
+  // 当前应用的使用的自定义组件
   compAssetList?: any;
   baseUrl?: string;
   appConfig?: any;
   attrSpecPage?: string[];
   themeCss?: string;
   models: Record<string, GlobalDataSourceItemType>;
+}
+export interface PrintUtilProps {
+  log?: any;
+  prettier?: any;
+  onOff?: boolean;
 }
 export interface IProjectBuilderOptions {
   /** 是否处于严格模式 (默认：否) */
@@ -224,6 +231,9 @@ export interface IProjectBuilderOptions {
 
   // TODO: 一些平台需要的数据
   options?: LXProjectOptions;
+
+  // 日志输出工具
+  printUtil?: PrintUtilProps;
 }
 
 export interface IProjectBuilder {
@@ -257,6 +267,8 @@ export type PostProcessor = (
   fileType: string,
   name?: string,
 ) => string;
+
+export type LogHooks = Hookable<Record<string, any>, string>;
 
 // TODO: temp interface, need modify
 export interface IPluginOptions {

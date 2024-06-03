@@ -42,7 +42,9 @@ export async function run(msg: {
     }
     print('generating from options: %o', options);
 
-    const appBuilder = createAppBuilder({ options });
+    const appBuilder = createAppBuilder({ options,printUtil:{
+      log: printProgress
+    } });
 
     print('generating from schema: %o', schema);
 
@@ -76,6 +78,15 @@ function print(text: string, ...args: any[]) {
   console.debug(`[code-creator/worker]: ${text}`, ...args);
   self.postMessage({
     type: 'stdout',
+    data: text,
+    args,
+  });
+}
+
+function printProgress(text: string, ...args: any[]) {
+  console.debug(`[code-creator/worker]: ${text}`, ...args);
+  self.postMessage({
+    type: 'progress',
     data: text,
     args,
   });

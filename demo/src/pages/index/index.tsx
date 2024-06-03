@@ -10,28 +10,32 @@ import {
   queryFrontendDatasourcePage,
   queryFrontendHookList,
 } from '@/services/api';
-import { Button, Form, Input, message, Switch } from 'antd';
+import { Button, Form, Input, message, Progress, Switch } from 'antd';
 import { useEffect, useState } from 'react';
 // @ts-ignore
-import { generateCode, init, publishers } from 'ebe';
+// import { generateCode, init, publishers } from 'ebe';
 import {
   cleanTree,
   clearLXPagesDSL,
+  codeCreate,
   findAllItem,
   getPageDsls,
+  init,
   treeForEach,
 } from 'ebe-utils';
 
 const Item = Form.Item;
 
 const Page = () => {
-  const ii = async () => {
-    await init({});
-  };
+  // const ii = async () => {
+  //   await init({});
+  // };
   useEffect(() => {
-    ii();
+    init();
   }, []);
   const [loading, setLoading] = useState(false);
+  const [percent, setPercent] = useState(0);
+  const [log, setLog] = useState('');
 
   const [form] = Form.useForm();
   const onFinish = async (
@@ -40,7 +44,32 @@ const Page = () => {
     localGenerete: boolean = false,
   ) => {
     setLoading(true);
-
+    setPercent(0);
+    setLog('');
+    await codeCreate({
+      appId: values.appId,
+      platform: values.platform ? 'APP' : 'PC',
+      baseUrl:
+        process.env.BASE_URL === 'http://10.10.179.140:8047/HJF/'
+          ? 'http://10.10.179.140:8048/HJF/'
+          : process.env.BASE_URL!,
+      services: {
+        findBusiCompById,
+        findPageInstByVersionId,
+        getThemeCss,
+        qryAttrSpecPage,
+        qryPageCompAssetList,
+        qryPageInstListByAppId,
+        queryFrontendDatasourcePage,
+        queryFrontendHookList,
+      },
+      onProgress: (d) => {
+        setLog(d.log);
+        setPercent(d.process);
+      },
+    });
+    setLoading(false);
+    return;
     // 根据 appId 获取当前应用的全部页面
     const attrSpecPage = await qryAttrSpecPage({
       appId: values.appId,
@@ -203,11 +232,26 @@ const Page = () => {
     cleanedTree = clearLXPagesDSL(cleanedTree);
     console.log('cleanedTree', cleanedTree);
     if (bower) {
+      setPercent(0);
       const result = await generateCode({
         solution: 'alita', // 出码方案
         options,
         schema: cleanedTree, // 编排搭建出来的 schema
         // workerJsUrl: '/ebe/worker.js',
+        onProgress: (dat) => {
+          if (!dat || !dat.data) return;
+          setLog(dat.data);
+          console.info(dat);
+          if (dat.data.includes('出码生成完成')) {
+            setPercent(100);
+            return;
+          }
+          const p = dat.data.match(/(?<=\(整体进度: ).*?(?=\))/)?.[0] || '0';
+          const pro = p.split('/');
+          if (pro && pro[0] && pro[1]) {
+            setPercent((pro[0] / pro[1]) * 100);
+          }
+        },
       } as any);
       console.log(result); // 出码结果(默认是递归结构描述的，可以传 flattenResult: true 以生成扁平结构的结果)
       publishers.zip().publish({
@@ -254,7 +298,7 @@ const Page = () => {
         autoComplete="off"
         onFinish={onFinish}
         initialValues={{
-          appId: '1089426139952508928',
+          appId: '1107148717246517248',
           pageId: '',
           platform: false,
         }}
@@ -290,6 +334,8 @@ const Page = () => {
           </Button>
         </Item>
       </Form>
+      {loading && <Progress percent={percent} />}
+      {loading && log}
     </>
   );
 };

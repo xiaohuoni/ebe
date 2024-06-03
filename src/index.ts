@@ -33,6 +33,9 @@ export async function generateCode(options: {
   flattenResult?: boolean;
   workerJsUrl?: string;
   timeoutInMs?: number;
+  onSuccess?: (data: string) => void;
+  onFail?: (data: string) => void;
+  onProgress?: (data: string) => void;
 }): Promise<Result> {
   if (typeof self !== 'object') {
     throw new Error('self is not defined');
@@ -42,6 +45,7 @@ export async function generateCode(options: {
     throw new Error('Worker is not supported');
   }
 
+  const { onSuccess = print, onFail = printErr, onProgress = print } = options;
   const workerJsUrl = options.workerJsUrl || DEFAULT_WORKER_JS;
 
   const workerJs = await loadWorkerJs(workerJsUrl);
@@ -61,26 +65,29 @@ export async function generateCode(options: {
       const msg = event.data;
       switch (msg.type) {
         case 'ready':
-          print('worker is ready.');
+          onProgress('worker is ready.');
           break;
 
         case 'run:begin':
-          print('worker is running...');
+          onProgress('worker is running...');
           break;
         case 'run:end':
-          print('worker is done.');
+          onSuccess('worker is done.');
           resolve(msg.result);
           clearTimeout(timer);
           worker.terminate();
           break;
         case 'run:error':
-          printErr(`worker error: ${msg.errorMsg}`);
+          onFail(`worker error: ${msg.errorMsg}`);
           clearTimeout(timer);
           reject(new Error(msg.errorMsg || 'unknown error'));
           worker.terminate();
           break;
+        case 'progress':
+          onProgress(msg);
+          break;
         default:
-          print('got unknown msg: %o', msg);
+          onProgress('got unknown msg: %o', msg);
           break;
       }
     };

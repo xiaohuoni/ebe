@@ -1,10 +1,17 @@
-// @ts-ignore
 import { generateCode, init as ebeInit, publishers } from 'ebe';
-import { isArray } from 'lodash';
+import { type ResultDir } from 'ebe/types/core';
 import { lingxiDslRules } from './constants';
 import { IRulePrams, IRulesType } from './types';
 
 export * from './types';
+
+const isArray = (arr: any[]) => {
+  if (Array.isArray) {
+    return Array.isArray(arr);
+  } else {
+    return Object.prototype.toString.call(arr) === '[object Array]';
+  }
+};
 
 export const clearProps = (data: any, diff: any) => {
   const clearedProps = { ...data };
@@ -240,6 +247,7 @@ interface CodeOptions {
   baseUrl: string;
   platform: string;
   services: CodeServices;
+  onProgress: (data: { log: string; progress: number }) => void;
 }
 export const init = async () => {
   await ebeInit();
@@ -249,6 +257,7 @@ export const codeCreate = async ({
   services,
   platform,
   baseUrl,
+  onProgress,
 }: CodeOptions) => {
   try {
     // 根据 appId 获取当前应用的全部页面
@@ -354,11 +363,32 @@ export const codeCreate = async ({
       solution: 'alita', // 出码方案
       options,
       schema: cleanedTree, // 编排搭建出来的 schema
-    } as any);
+      onProgress: (log: string) => {
+        if (!log) {
+          // 错误数据，不给返回
+          return;
+        }
+        if (log.includes('出码生成完成')) {
+          onProgress({
+            log,
+            progress: 100,
+          });
+          return;
+        }
+        const p = log.match(/(?<=\(整体进度: ).*?(?=\))/)?.[0] || '0';
+        const pro = p.split('/') as string[];
+        if (pro && pro[0] && pro[1]) {
+          onProgress({
+            log,
+            progress: (parseInt(pro[0]) / parseInt(pro[1])) * 100,
+          });
+        }
+      },
+    });
     // console.log(result);
     // 出码结果(默认是递归结构描述的，可以传 flattenResult: true 以生成扁平结构的结果)
     publishers.zip().publish({
-      project: result, // 上一步生成的 project
+      project: result as ResultDir, // 上一步生成的 project
       projectSlug: appId, // 项目标识
     });
     return {

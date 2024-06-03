@@ -12,6 +12,7 @@ import {
   IPublicTypeNodeDataType,
   IRouterInfo,
   ISchemaParser,
+  LogHooks,
   LXGlobalDataInfo,
   LXProjectOptions,
 } from '../core';
@@ -49,6 +50,7 @@ export class SchemaParser implements ISchemaParser {
   parse(
     schemaSrc: IProjectSchema | string,
     options?: LXProjectOptions,
+    hooks?: LogHooks,
   ): IParseResult {
     const schemaData = this.decodeSchema(schemaSrc);
     const schemaArr = Array.isArray(schemaData) ? schemaData : [schemaData];
@@ -63,6 +65,10 @@ export class SchemaParser implements ISchemaParser {
       pageIdMapping = {},
     } = options || {};
     const compAssetListMapping: Record<string, any> = {};
+
+    // 细化日志
+    // hooks?.callHook('aaa', { msg: 'AAA112312' });
+
     compAssetList.forEach((asset: any) => {
       compAssetListMapping[asset.compCode] = asset;
     });
@@ -76,18 +82,6 @@ export class SchemaParser implements ISchemaParser {
 
     // compLib schema.platform
     // 解析三方组件依赖
-    // const getPackage = ({ compLib, type }) => {
-    //   // TODO：遗留问题，组件包应该正确写明 compLib，现在先写死
-    //   // if (
-    //   //   compLib === '@/components' ||
-    //   //   compLib === 'custom' ||
-    //   //   compLib === 'comm'
-    //   // ) {
-
-    //   return '@/components/factory';
-    //   // }
-    //   // return compLib;
-    // };
     const getComponentsMap = (root: any, pageId: string) => {
       root.components.forEach((info: any) => {
         if (info?.customClass) {
@@ -162,6 +156,7 @@ export class SchemaParser implements ISchemaParser {
     // dataSource
     let dataSources: any[] = [];
     let globalDatas: any[] = [];
+
     containers = schemaArr.map((schema) => {
       getComponentsMap(_.cloneDeep(schema), pageIdMapping[schema.pagePath]);
       // 标记循环容器
@@ -336,7 +331,9 @@ export class SchemaParser implements ISchemaParser {
       npms.push(...npmInfos);
     });
 
-    npms = uniqueArray<INpmPackage>(npms, (i) => i.package).filter(Boolean);
+    npms = uniqueArray<INpmPackage>(npms, (i: any) => i.package).filter(
+      Boolean,
+    );
 
     return {
       containers,

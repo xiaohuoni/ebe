@@ -180,5 +180,6 @@ export default function createIceJsProjectBuilder(
     },
     postProcessors: [babel(), fixUndefinedVar(), prettier()],
     // postProcessors: [],
+    printUtil: options?.printUtil,
   });
 }

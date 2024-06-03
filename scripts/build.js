@@ -16,7 +16,6 @@ if (!argv.format) {
 function buildAll() {
   concurrently(
     [
-      // { name: 'build:types', command: 'sh scripts/build-types' },
       {
         name: 'build:cjs',
         command: 'node scripts/build --format=cjs --out=lib',

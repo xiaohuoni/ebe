@@ -9,7 +9,7 @@ export default function getFile(
 ): [string[], ResultFile] {
   const isMobile = config?.platform === 'h5';
   const { componentWillMount } = config?.frontendHookMap;
-  const data = isMobile ? factoryData : pcFactoryData;
+  const data: any = isMobile ? factoryData : pcFactoryData;
   const factory = isMobile ? 'factory' : 'pcfactory';
   const file = createResultFile(
     'factory',
@@ -25,7 +25,7 @@ export default function getFile(
   import {${Object.keys(data.formHash)
     .map((i) => i + ' as _' + i)
     .join(',')},${data.otherHash
-      .map((i) => i + ' as _' + i)
+      .map((i: any) => i + ' as _' + i)
       .join(',')}} from './${factory}/src/index.component';
   import { preprocessMethods } from '@/utils/preprocess';
   ${config?.themeCss ? 'import "@/styles/themeCss.css"' : ''}
@@ -180,7 +180,7 @@ export default function getFile(
         ? '// 容器类组件 \n isContainer : true,'
         : '';
       return ` export const ${i} = Hoc(_${i}, {
-          fieldProps: ${parse2Var(data.formHash[i])},
+          fieldProps: ${parse2Var(data?.formHash[i])},
           ${isContainer}
           type: ${parse2Var(i)}
 
@@ -188,7 +188,7 @@ export default function getFile(
     })
     .join('\n')}
     ${data.otherHash
-      .map((i) => {
+      .map((i: any) => {
         const isContainer = data.containerType.includes(i)
           ? '// 容器类组件 \n isContainer : true,'
           : '';

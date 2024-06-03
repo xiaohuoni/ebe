@@ -1,3 +1,4 @@
+import { createHooks } from 'hookable';
 import {
   IModuleBuilder,
   IParseResult,
@@ -6,11 +7,12 @@ import {
   IProjectSchema,
   IProjectTemplate,
   ISchemaParser,
+  LogHooks,
   PostProcessor,
+  PrintUtilProps,
   ResultDir,
   ResultFile,
 } from '../types';
-
 import { addDirectory, addFile, createResultDir } from '../utils/resultHelper';
 
 import { PAGE_TYPES } from '../../constants';
@@ -21,7 +23,7 @@ import {
   ProjectPreProcessor,
 } from '../types/core';
 import { CodeGeneratorError } from '../types/error';
-import { printCmdList } from '../utils/debug';
+import { LogTagsHash, printCmdList } from '../utils/debug';
 import { createModuleBuilder } from './ModuleBuilder';
 
 interface IModuleInfo {
@@ -62,6 +64,8 @@ export interface ProjectBuilderInitOptions {
   customizeBuilderOptions?(
     originalOptions: ProjectBuilderInitOptions,
   ): ProjectBuilderInitOptions;
+
+  printUtil?: PrintUtilProps;
 }
 
 export class ProjectBuilder implements IProjectBuilder {
@@ -89,6 +93,9 @@ export class ProjectBuilder implements IProjectBuilder {
   /** 一些额外的上下文数据 */
   readonly extraContextData: IContextData;
 
+  readonly hooks: LogHooks;
+  readonly printUtil: PrintUtilProps;
+
   constructor(builderOptions: ProjectBuilderInitOptions) {
     let customBuilderOptions = builderOptions;
     if (typeof builderOptions.customizeBuilderOptions === 'function') {
@@ -104,6 +111,7 @@ export class ProjectBuilder implements IProjectBuilder {
       projectPostProcessors = [],
       inStrictMode = false,
       extraContextData = {},
+      printUtil = {} as PrintUtilProps,
     } = customBuilderOptions;
     this.template = template;
     this.plugins = plugins;
@@ -113,24 +121,104 @@ export class ProjectBuilder implements IProjectBuilder {
     this.projectPostProcessors = projectPostProcessors;
     this.inStrictMode = inStrictMode;
     this.extraContextData = extraContextData;
+
+    const defaultPrettier = ({
+      tag,
+      childTag = '',
+      msg,
+      progress,
+      childProcess = '',
+      end = '',
+    }: any) => {
+      if (end) {
+        return `${tag} ${msg} ${end}`;
+      }
+      return `${tag}${childTag} ${msg} ${childProcess} ${progress}`;
+    };
+    // 允许用户不传 printUtil
+    const {
+      log = console.log,
+      prettier = defaultPrettier,
+      onOff = false,
+    } = printUtil;
+    this.printUtil = {
+      log,
+      prettier,
+    };
+    // log
+    const hooks = createHooks();
+
+    // 这个和整体模块数相关
+    // why -1? 最后一个 end log 不算进度
+    const hooksLength = Object.keys(LogTagsHash).length - 1;
+    hooks.afterEach((result) => {
+      // 关闭不打印
+      if (onOff) return;
+      const { name = '', args = [] } = result;
+      const { msg = '' } = (args[0] as { msg: string }) || {};
+      const [type, childType] = name.split(':');
+      let logTag = LogTagsHash[type];
+      let childLogTag;
+
+      if (logTag) {
+        if (childType) {
+          childLogTag = logTag?.childProcess?.[childType];
+        }
+
+        if (logTag.progress > hooksLength) {
+          this.printUtil.log(
+            this.printUtil.prettier({
+              tag: `[${logTag.tag}]`,
+              msg,
+              end: '出码模块执行完毕，自动下载项目 zip，请关注浏览器【下载】',
+            }),
+          );
+        } else if (childLogTag) {
+          const childProcessLength = Object.keys(logTag?.childProcess).length;
+          this.printUtil.log(
+            this.printUtil.prettier({
+              tag: `[${logTag.tag}]`,
+              childTag: `[${childLogTag?.tag}]`,
+              progress: `(整体进度: ${logTag?.progress}/${hooksLength})`,
+              childProcess: `{ 进度：${childLogTag?.progress}/${childProcessLength} }`,
+              msg,
+            }),
+          );
+        } else {
+          this.printUtil.log(
+            this.printUtil.prettier({
+              tag: `[${logTag.tag}]`,
+              progress: `(整体进度: ${logTag?.progress}/${hooksLength})`,
+              msg,
+            }),
+          );
+        }
+      }
+    });
+    this.hooks = hooks;
   }
 
   async generateProject(
     originalSchema: IProjectSchema | string,
   ): Promise<ResultDir> {
     // Init
-    const { schemaParser } = this;
+    const { schemaParser, hooks } = this;
 
     let schema: IProjectSchema =
       typeof originalSchema === 'string'
         ? JSON.parse(originalSchema)
         : originalSchema;
-
     // Parse / Format
     // Preprocess
+    let preProcessorCount = 1;
+    const projectPreProcessorsLength = this.projectPreProcessors.length;
     for (const preProcessor of this.projectPreProcessors) {
       // eslint-disable-next-line no-await-in-loop
       schema = await preProcessor(schema);
+      hooks.callHook('preProcessor', {
+        msg: `进度${preProcessorCount}/${projectPreProcessorsLength}`,
+      });
+      preProcessorCount += 1;
     }
 
     // Validate
@@ -140,9 +228,18 @@ export class ProjectBuilder implements IProjectBuilder {
 
     // Collect Deps
     // Parse JSExpression
+    hooks.callHook('schemaParser', { msg: '' });
+
     const parseResult: IParseResult = schemaParser.parse(
       schema,
       this.extraContextData?.options,
+      {
+        ...hooks,
+        // 简化子进程，写法
+        callHook: (name, ...args) => {
+          return hooks.callHook(`schemaParser:${name}`, ...args);
+        },
+      } as LogHooks,
     );
 
     const projectRoot = await this.template.generateTemplate(
@@ -161,8 +258,10 @@ export class ProjectBuilder implements IProjectBuilder {
     // Generator Code module
     // components
     // pages
+
+    const pagesLength = parseResult.containers.length;
     const containerBuildResult: IModuleInfo[] = await Promise.all<IModuleInfo>(
-      parseResult.containers.map(async (containerInfo) => {
+      parseResult.containers.map(async (containerInfo, index) => {
         let builder: IModuleBuilder;
         let path: string[];
         if (PAGE_TYPES.includes(containerInfo.containerType)) {
@@ -172,7 +271,9 @@ export class ProjectBuilder implements IProjectBuilder {
           builder = builders.components;
           path = this.template.slots.components.path;
         }
-
+        hooks.callHook('containers', {
+          msg: `进度${index + 1}/${pagesLength}`,
+        });
         const { files } = await builder.generateModule(containerInfo);
 
         return {
@@ -183,17 +284,23 @@ export class ProjectBuilder implements IProjectBuilder {
       }),
     );
     buildResult = buildResult.concat(containerBuildResult);
+
     // dataSource
     if (parseResult.dataSources && builders.dataSources) {
+      const dataSourcesLength = parseResult.dataSources.length;
+
       const dataSourceBuildResult: IModuleInfo[] =
         await Promise.all<IModuleInfo>(
-          parseResult.dataSources.map(async (containerInfo) => {
+          parseResult.dataSources.map(async (containerInfo, index) => {
             let path: string[];
             if (PAGE_TYPES.includes(containerInfo.containerType)) {
               path = this.template.slots.pages.path;
             } else {
               path = this.template.slots.components.path;
             }
+            hooks.callHook('dataSources', {
+              msg: `进度${index + 1}/${dataSourcesLength}`,
+            });
             const { files } = await builders.dataSources.generateModule(
               containerInfo,
             );
@@ -204,6 +311,7 @@ export class ProjectBuilder implements IProjectBuilder {
             };
           }),
         );
+
       buildResult = buildResult.concat(dataSourceBuildResult);
     }
 
@@ -233,6 +341,9 @@ export class ProjectBuilder implements IProjectBuilder {
 
     // app
     if (parseResult.app && builders.app) {
+      hooks.callHook('app', {
+        msg: ``,
+      });
       const { files } = await builders.app.generateModule(parseResult.app);
 
       buildResult.push({
@@ -242,6 +353,9 @@ export class ProjectBuilder implements IProjectBuilder {
     }
     // pageview
     if (parseResult.pageview && builders.pageview) {
+      hooks.callHook('pageview', {
+        msg: ``,
+      });
       const { files } = await builders.pageview.generateModule(
         parseResult.pageview,
       );
@@ -253,6 +367,9 @@ export class ProjectBuilder implements IProjectBuilder {
     }
     // router
     if (parseResult.globalRouter && builders.router) {
+      hooks.callHook('router', {
+        msg: ``,
+      });
       const { files } = await builders.router.generateModule(
         parseResult.globalRouter,
       );
@@ -263,7 +380,7 @@ export class ProjectBuilder implements IProjectBuilder {
       });
     }
 
-    // entry
+    // entry 不打印日志
     if (parseResult.project && builders.entry) {
       const { files } = await builders.entry.generateModule(
         parseResult.project,
@@ -277,6 +394,9 @@ export class ProjectBuilder implements IProjectBuilder {
 
     // appConfig
     if (builders.appConfig) {
+      hooks.callHook('appConfig', {
+        msg: ``,
+      });
       const { files } = await builders.appConfig.generateModule(parseResult);
 
       buildResult.push({
@@ -363,6 +483,9 @@ export class ProjectBuilder implements IProjectBuilder {
 
     // packageJSON
     if (parseResult.project && builders.packageJSON) {
+      hooks.callHook('packageJSON', {
+        msg: ``,
+      });
       const { files } = await builders.packageJSON.generateModule(
         parseResult.project,
       );
@@ -384,10 +507,15 @@ export class ProjectBuilder implements IProjectBuilder {
 
     // globalDataSource
     if (Object.keys(parseResult.models).length > 0 && builders.models) {
+      const modelsLength = parseResult.models.length;
+
       const globalDataBuildResult: IModuleInfo[] =
         await Promise.all<IModuleInfo>(
-          Object.keys(parseResult.models).map(async (key) => {
+          Object.keys(parseResult.models).map(async (key, index) => {
             const item = parseResult.models[key]!;
+            hooks.callHook('globalDataSource', {
+              msg: `进度${index + 1}/${modelsLength}`,
+            });
             const { files } = await builders.models.generateModule(item);
             return {
               path: ['src', 'models'],
@@ -429,6 +557,7 @@ export class ProjectBuilder implements IProjectBuilder {
         },
       );
     }
+    hooks.callHook('end');
 
     printCmdList();
     return finalResult;

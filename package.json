@@ -1,6 +1,6 @@
 {
   "name": "ebe",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "",
   "keywords": [],
   "license": "ISC",
@@ -16,12 +16,14 @@
   "files": [
     "dist",
     "lib",
+    "types",
     "es"
   ],
   "scripts": {
-    "build": "node scripts/build",
+    "build": "npm run build:types && node scripts/build",
     "build:ANALYZE": "ANALYZE=true node scripts/build",
     "build:ebe-utils": "cd ebe-utils && father build",
+    "build:types": "tsc --declaration --emitDeclarationOnly",
     "build:worker": "esno build-standalone-worker.js",
     "dev": "father dev",
     "format": "prettier --write .",
@@ -41,7 +43,6 @@
     "@babel/types": "^7.12.12",
     "@lingxiteam/types": "3.3.1-alpha.14",
     "buffer": "^6.0.3",
-    "chalk": "^4.1.0",
     "change-case": "^3.1.0",
     "commander": "^6.1.0",
     "css-string-utils": "^0.0.0",
@@ -49,6 +50,7 @@
     "fp-ts": "^2.11.9",
     "fs-extra": "9.x",
     "glob": "^7.2.0",
+    "hookable": "^5.5.3",
     "html-entities": "^2.3.2",
     "json5": "^2.2.0",
     "jsonc": "^2.0.0",
@@ -86,6 +88,7 @@
     "@types/qs": "^6.9.6",
     "@types/semver": "^7.3.4",
     "antd-mobile-5": "^5.26.0",
+    "chalk": "^4.1.0",
     "concurrently": "^6.5.1",
     "cross-env": "^7.0.3",
     "esbuild": "^0.14.5",

@@ -15,11 +15,6 @@ import { getErrorMessage } from '../../../../../core/utils/errors';
 import { isNpmInfo } from '../../../../../core/utils/schema';
 import { calcCompatibleVersion } from '../../../../../core/utils/version';
 
-const __UTILS_PACKAGE_VERSION__: string = '0.0.7';
-
-// @ts-ignore
-const packageVersion = __UTILS_PACKAGE_VERSION__ ?? 'latest';
-
 const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
     const next: ICodeStruct = {
@@ -62,7 +57,8 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
         ),
       },
       devDependencies: {
-        'ebe-utils': `^${packageVersion}`,
+        // TODO: 现状最新的，如果有版本管控，需要建立关联关系
+        'ebe-utils': 'latest',
         '@types/react': '^18.0.15',
         '@types/react-dom': '^18.0.6',
         'cross-env': '^6.0.3',
@@ -97,7 +93,7 @@ function getNpmDependencies(project: IProjectInfo): IPublicTypeNpmInfo[] {
 
   const allDeps = project.packages;
 
-  allDeps.forEach((dep) => {
+  allDeps.forEach((dep: any) => {
     if (!isNpmInfo(dep)) {
       return;
     }

@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "declaration": true,
+    "declarationDir": "./types",
+    "emitDeclarationOnly": true,
+    "rootDir": "./src",
     "lib": ["es2015", "dom"],
     // Target latest version of ECMAScript.
     "target": "esnext",
@@ -32,10 +35,15 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "useDefineForClassFields": true,
-    "paths": {
-      "@alilc/lowcode-*": ["./*/src"]
-    },
     "outDir": "lib"
   },
-  "exclude": ["**/tests/*", "**/*.test.ts", "**/lib", "**/es", "node_modules"]
+  "include": ["src/**/*.ts"],
+  "exclude": [
+    "**/tests/*",
+    "**/*.test.ts",
+    "**/lib",
+    "**/es",
+    "node_modules",
+    "**/public/*"
+  ]
 }
