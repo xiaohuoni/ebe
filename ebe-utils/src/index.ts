@@ -1,6 +1,9 @@
+// @ts-ignore
+import { generateCode, init as ebeInit, publishers } from 'ebe';
 import { isArray } from 'lodash';
 import { lingxiDslRules } from './constants';
 import { IRulePrams, IRulesType } from './types';
+
 export * from './types';
 
 export const clearProps = (data: any, diff: any) => {
@@ -219,4 +222,152 @@ export const clearLXPagesDSL = (pages: any[]) => {
   return pages.map((page) => {
     return removeObjectByRules(page, lingxiDslRules);
   });
+};
+
+interface CodeServices {
+  qryAttrSpecPage: (data: any) => Promise<any>;
+  qryPageInstListByAppId: (data: any) => Promise<any>;
+  queryFrontendHookList: (data: any) => Promise<any>;
+  getThemeCss: (data: any) => Promise<any>;
+  qryPageCompAssetList: (data: any) => Promise<any>;
+  queryFrontendDatasourcePage: (data: any) => Promise<any>;
+  findPageInstByVersionId: (data: any) => Promise<any>;
+  findBusiCompById: (data: any) => Promise<any>;
+}
+
+interface CodeOptions {
+  appId: string;
+  baseUrl: string;
+  platform: string;
+  services: CodeServices;
+}
+export const init = async () => {
+  await ebeInit();
+};
+export const codeCreate = async ({
+  appId,
+  services,
+  platform,
+  baseUrl,
+}: CodeOptions) => {
+  try {
+    // 根据 appId 获取当前应用的全部页面
+    const attrSpecPage = await services.qryAttrSpecPage({
+      appId,
+      pageNum: 1,
+      pageSize: 999999,
+    });
+
+    // 根据 appId 获取当前应用的全部页面
+    const { resultObject = [] } = await services.qryPageInstListByAppId({
+      appId,
+      terminalType: platform,
+    });
+    const { resultObject: frontendHookList = [] } =
+      await services.queryFrontendHookList({
+        appId,
+      });
+
+    // 根据 appId 获取当前应用的全部页面
+    const themeCss = await services.getThemeCss({
+      appId,
+      terminalType: platform,
+    });
+
+    // 根据 appId 获取当前应用的使用的自定义组件
+    const compAssetList = await services.qryPageCompAssetList({
+      appId,
+    });
+
+    // 根据appId 获取全局数据源
+    let globalDataInfo = await services.queryFrontendDatasourcePage({
+      appId,
+      pageSize: 10000,
+    });
+
+    const pageIdMapping: any = {};
+    const appPageList = resultObject?.map((i: any) => {
+      pageIdMapping[i.pagePath] = i.pageId;
+      return i;
+    });
+    let lastPageId: any = '';
+    // 根据 pageId 获得 dsl
+    let data = [];
+
+    data = await Promise.all(
+      appPageList.map((i: any) => {
+        lastPageId = i.pageId;
+        return services.findPageInstByVersionId({
+          appId,
+          pageId: i.pageId,
+        });
+      }),
+    );
+
+    const pages = getPageDsls(data);
+    // busiCompId 过滤重复
+    const itemHash: any = {};
+    // 找到所有页面使用到的 业务组件
+    findAllItem(pages, (item) => item.compName === 'BOFramer', itemHash);
+
+    const itemLists = Object.keys(itemHash);
+    // 请求所有业务组件的 dsl
+    const busiData = await Promise.all(
+      itemLists.map((i) =>
+        services.findBusiCompById({
+          busiCompId: i,
+          appId,
+          pageId: lastPageId,
+        }),
+      ),
+    );
+    const busiCompMapping: any = {};
+    const busiPages = busiData.map((i, index) => {
+      const busiData = JSON.parse(
+        i?.resultObject?.busiCompVersion?.sourceCodeJson,
+      );
+      busiData.busiCompId = i?.resultObject?.busiCompId;
+      busiCompMapping[itemLists[index]] = busiData.id;
+      return busiData;
+    });
+    // 合并页面，生成器那边支持页面类型和业务组件类型
+    const pageDSLS = [...pages, ...busiPages];
+    const options = {
+      platform,
+      appId,
+      pageIdMapping,
+      busiCompMapping,
+      compAssetList: compAssetList?.resultObject || [],
+      baseUrl,
+      appConfig: {
+        frontendHookList,
+      },
+      attrSpecPage: (attrSpecPage?.resultObject?.list || []).map(
+        (i: any) => i.attrNbr,
+      ),
+      themeCss,
+      models: globalDataInfo || {},
+    };
+    let cleanedTree = cleanTree(pageDSLS, ['path']); // 清理字段'b'和字段'e'
+    cleanedTree = clearLXPagesDSL(cleanedTree);
+    const result = await generateCode({
+      solution: 'alita', // 出码方案
+      options,
+      schema: cleanedTree, // 编排搭建出来的 schema
+    } as any);
+    // console.log(result);
+    // 出码结果(默认是递归结构描述的，可以传 flattenResult: true 以生成扁平结构的结果)
+    publishers.zip().publish({
+      project: result, // 上一步生成的 project
+      projectSlug: appId, // 项目标识
+    });
+    return {
+      success: true,
+    };
+  } catch (error) {
+    return {
+      msg: error,
+      success: false,
+    };
+  }
 };

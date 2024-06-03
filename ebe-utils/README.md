@@ -22,6 +22,55 @@ eve move ./a/index.ts --o ./dist
 
 ## 工具类
 
+### codeCreate
+
+一键出码
+
+```tsx
+import {
+  findBusiCompById,
+  findPageInstByVersionId,
+  getThemeCss,
+  qryAttrSpecPage,
+  qryPageCompAssetList,
+  qryPageInstListByAppId,
+  queryFrontendDatasourcePage,
+  queryFrontendHookList,
+} from '@/services/api';
+import { useEffect } from 'react';
+import { codeCreate, init } from 'ebe-utils';
+
+const Page = () => {
+  useEffect(() => {
+    init();
+  }, []);
+
+  const onFinish = async (values: any) => {
+    await codeCreate({
+      appId: values.appId,
+      platform: values.platform ? 'APP' : 'PC',
+      baseUrl:
+        process.env.BASE_URL === 'http://10.10.179.140:8047/HJF/'
+          ? 'http://10.10.179.140:8048/HJF/'
+          : process.env.BASE_URL!,
+      services: {
+        findBusiCompById,
+        findPageInstByVersionId,
+        getThemeCss,
+        qryAttrSpecPage,
+        qryPageCompAssetList,
+        qryPageInstListByAppId,
+        queryFrontendDatasourcePage,
+        queryFrontendHookList,
+      },
+    });
+  };
+  return <></>;
+};
+
+export default Page;
+```
+
 #### clearLXPagesDSL
 
 使用内定规则清理 dsl，注意传入数据是一个页面 dsl 数组，如果仅有一个页面，可以传入 [page]
