@@ -82,21 +82,21 @@ const pc: { [key: string]: PatchPropsFunctionType } = {
     }
     return originProps;
   },
-  'BOFramer|Pageview|RemoteComponent|DynamicTabs': (
-    instance,
-    originProps,
-    Sandbox,
-  ) => {
-    originProps.appId = Sandbox.appId;
-    originProps.lcdpParentRenderId = Sandbox.renderId;
-    return originProps;
-  },
-  BOFramer: (instance, originProps, Sandbox) => {
-    originProps.appId = Sandbox.appId;
-    originProps.pageId = Sandbox.pageId;
-    originProps.lcdpParentRenderId = Sandbox.renderId;
-    return originProps;
-  },
+  // 'BOFramer|Pageview|RemoteComponent|DynamicTabs': (
+  //   instance,
+  //   originProps,
+  //   Sandbox,
+  // ) => {
+  //   originProps.appId = Sandbox.appId;
+  //   originProps.lcdpParentRenderId = Sandbox.renderId;
+  //   return originProps;
+  // },
+  // BOFramer: (instance, originProps, Sandbox) => {
+  //   originProps.appId = Sandbox.appId;
+  //   originProps.pageId = Sandbox.pageId;
+  //   originProps.lcdpParentRenderId = Sandbox.renderId;
+  //   return originProps;
+  // },
   'Table|TreeTable': (instance, originProps) => {
     if (originProps.rowSelection) {
       // 新配置格式
@@ -159,16 +159,16 @@ const pc: { [key: string]: PatchPropsFunctionType } = {
     }
     return originProps;
   },
-  Divider: (instance, originProps, Sandbox, extraData) => {
-    // 说明是3.3.1 之前的数据
-    if (Sandbox?.compatConfig?.isFormCompat === true) {
-      if (!originProps.dividerColor) {
-        // 默认是灰色
-        originProps.dividerColor = 'rgba(0,0,0,0.15)';
-      }
-    }
-    return originProps;
-  },
+  // Divider: (instance, originProps, Sandbox, extraData) => {
+  //   // 说明是3.3.1 之前的数据
+  //   if (Sandbox?.compatConfig?.isFormCompat === true) {
+  //     if (!originProps.dividerColor) {
+  //       // 默认是灰色
+  //       originProps.dividerColor = 'rgba(0,0,0,0.15)';
+  //     }
+  //   }
+  //   return originProps;
+  // },
 };
 
 export default pc;
