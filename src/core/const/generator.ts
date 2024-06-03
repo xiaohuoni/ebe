@@ -12,6 +12,7 @@ export const COMMON_CHUNK_NAME = {
   StyleCssContent: 'CommonStyleCssContent',
   HtmlContent: 'CommonHtmlContent',
   CustomContent: 'CommonCustomContent',
+  FileGlobalDataModel: 'FileGlobalDataModel',
 };
 
 export const CLASS_DEFINE_CHUNK_NAME = {

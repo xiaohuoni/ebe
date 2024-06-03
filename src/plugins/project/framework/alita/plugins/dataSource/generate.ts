@@ -18,6 +18,7 @@ const importDeps = () => {
     `import ArrayUtil from '@/utils/array';`,
     `import { fetchQueryObject, fetchQueryService } from '@/utils/dataSource';`,
     `import { DataSourceType } from './dataSourceType'`,
+    `import { ARRAY_OPERATE_TYPE } from '@/constants';`,
   ].join(';\n');
 };
 
@@ -26,14 +27,6 @@ const getDataSourceBegin = (
   params: Record<string, { isRequired: boolean; type: string }> = {},
 ) => {
   return `
-  // 数组操作类型 operateType
-  export const ARRAY_OPERATE_TYPE = {
-    ADD: 0, // 新增元素
-    UPDATE: 1, // 更新元素
-    DELETE: 2, // 删除元素
-    REPLACE: 3, // 替换数据
-  } as const;
-
   export interface UpdateDataSourceOptions { 
     /**
      * 数据源名称

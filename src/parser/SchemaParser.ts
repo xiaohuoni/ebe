@@ -12,6 +12,7 @@ import {
   IPublicTypeNodeDataType,
   IRouterInfo,
   ISchemaParser,
+  LXGlobalDataInfo,
   LXProjectOptions,
 } from '../core';
 import { uniqueArray } from '../core/utils/common';
@@ -28,6 +29,7 @@ import {
   markerLoopComponent,
   parseSchema,
 } from '../utils/schema/lxschema';
+import { parseGlobalData } from '../utils/schema/parseGlobalData';
 
 function getInternalDep(
   internalDeps: Record<string, IInternalDependency>,
@@ -64,6 +66,14 @@ export class SchemaParser implements ISchemaParser {
     compAssetList.forEach((asset: any) => {
       compAssetListMapping[asset.compCode] = asset;
     });
+
+    const globalData: Record<string, LXGlobalDataInfo> = {};
+    Object.keys(options?.models || {}).forEach((itemId) => {
+      if (options?.models?.[itemId]) {
+        globalData[itemId] = parseGlobalData(options?.models?.[itemId]!);
+      }
+    });
+
     // compLib schema.platform
     // 解析三方组件依赖
     // const getPackage = ({ compLib, type }) => {
@@ -180,6 +190,24 @@ export class SchemaParser implements ISchemaParser {
       });
       // delete newSchema.dataSource;
       // }
+
+      const globalDataSource: Record<string, any> = {};
+
+      (schema.globalDataSource || [])?.forEach((item: any) => {
+        const gItem = globalData[item.id];
+        globalDataSource[gItem.dataName] = {
+          moduleName: gItem.moduleName,
+          namespace: gItem.namespace,
+          updateFunctionName: gItem.updateFunctionName,
+          reloadFunctionName: gItem.reloadFunctionName,
+          resetFunctionName: gItem.resetFunctionName,
+          id: item.id,
+          dataName: gItem.dataName,
+          readyCompleteName: gItem.readyCompleteName,
+          initialFunctionName: gItem.moduleName,
+        };
+      });
+
       return {
         ...newSchema,
         moduleName,
@@ -188,6 +216,7 @@ export class SchemaParser implements ISchemaParser {
         analyzeResult: {
           isUsingRef: false,
         },
+        globalDataSource,
       };
     });
 
@@ -318,6 +347,7 @@ export class SchemaParser implements ISchemaParser {
       },
       // 静态文件生成的时候，可以传递一些简单的配置，比如修改一个代理地址，没有必要单独写一个插件？
       staticFiles: options,
+      models: globalData,
     };
   }
   decodeSchema(schemaSrc: string | IProjectSchema): IProjectSchema {

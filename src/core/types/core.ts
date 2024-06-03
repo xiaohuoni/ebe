@@ -158,7 +158,7 @@ export interface GlobalDataSourceItemType {
   frontendDatasourceContent: {
     outParams: any[];
     filterParams: any[];
-    config: any[];
+    config: any;
     description: string;
     name: string;
     queryType: string;

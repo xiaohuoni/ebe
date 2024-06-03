@@ -358,6 +358,28 @@ export class ProjectBuilder implements IProjectBuilder {
       });
     }
 
+    // globalDataSource
+    if (
+      Object.keys(parseResult.models).length > 0 &&
+      builders.globalDataSource
+    ) {
+      const globalDataBuildResult: IModuleInfo[] =
+        await Promise.all<IModuleInfo>(
+          Object.keys(parseResult.models).map(async (key) => {
+            const item = parseResult.models[key]!;
+            const { files } = await builders.globalDataSource.generateModule(
+              item,
+            );
+            return {
+              path: ['src', 'models'],
+              files,
+            };
+          }),
+        );
+
+      buildResult = buildResult.concat(globalDataBuildResult);
+    }
+
     // handle extra slots
     await this.generateExtraSlots(builders, parseResult, buildResult);
 

@@ -39,7 +39,7 @@ const gType = {
 
     return [
       '{',
-      typeCode.join(';'),
+      typeCode.filter(Boolean).join('\n'),
       extendCode
         ? `
       ${extendCode}
@@ -72,23 +72,10 @@ const gType = {
   long: () => 'number',
 };
 
-// 生成数据源的类型
-export const generatorDataType = (dataSource: any[]) => {
-  const code: string[] = [];
-
-  // 存储key， 用来检测属性名的唯一性
-  const propertyKey: string[] = [];
-  dataSource.forEach((item) => {
-    const { name, filterParams, outParams, type, description } = item;
-
-    const filterName = getDSFilterName(name);
-    if (propertyKey.includes(filterName)) return;
-    if (propertyKey.includes(name)) return;
-
-    propertyKey.push(...[filterName, name]);
-
-    code.push(
-      `
+export const generatorType = (item: any) => {
+  const { name, filterParams, outParams, type, description } = item;
+  const filterName = getDSFilterName(name);
+  return `
       ${
         description
           ? `/**
@@ -96,12 +83,10 @@ export const generatorDataType = (dataSource: any[]) => {
       */`
           : ''
       }
-      ${getKey(getDSFilterName(name))}?: ${
-        gType.object?.(
-          filterParams,
-          `orderByAsc?: string; orderByDesc?: string`,
-        ) ?? 'unknown'
-      }
+      ${getKey(filterName)}?: ${
+    gType.object?.(filterParams, `orderByAsc?: string; orderByDesc?: string`) ??
+    'unknown'
+  }
       ${
         description
           ? `/**
@@ -110,12 +95,14 @@ export const generatorDataType = (dataSource: any[]) => {
           : ''
       }
       ${getKey(name)}?: ${
-        gType[type as keyof typeof gType]?.(outParams) ?? 'unknown'
-      }
-      `,
-    );
-  });
+    gType[type as keyof typeof gType]?.(outParams) ?? 'unknown'
+  }
+      `;
+};
 
+// 生成数据源的类型
+export const generatorDataType = (dataSource: any[]) => {
+  const code = dataSource.map((item) => generatorType(item));
   return [
     `export interface DataSourceType {`,
 

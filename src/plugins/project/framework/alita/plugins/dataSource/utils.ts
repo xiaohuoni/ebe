@@ -61,7 +61,7 @@ export const filterObjectEmptyField = (object: any) => {
   return loopPlainObject(object);
 };
 
-const generateParams = (
+export const generateParams = (
   dataItem: any,
   t: keyof typeof DATADOURCE_TYPE_CN = 'custom',
 ) => {
@@ -126,16 +126,19 @@ const generateParams = (
   `;
 };
 
-const gData = {
+export const gData = {
   // 生成自定义初始化内容
-  custom: (dataItem: any, t: keyof typeof DATADOURCE_TYPE_CN = 'custom') => {
-    return generateParams(
-      {
-        ...dataItem,
-        rootFilterParams: '${}$',
-      },
-      'custom',
-    );
+  custom: (dataItem: any) => {
+    return {
+      requestCode: '',
+      initialValue: generateParams(
+        {
+          ...dataItem,
+          rootFilterParams: '${}$',
+        },
+        'custom',
+      ),
+    };
   },
 
   // 生成对象
@@ -257,7 +260,10 @@ export const initialDataSource = (dataSource: any[]) => {
     const { source } = dataItem;
     switch (source) {
       case 'custom':
-        initialData.push(`${gData.custom(dataItem)},`);
+        {
+          const { initialValue } = gData.object(dataItem);
+          initialData.push(`${initialValue},`);
+        }
         break;
       case 'object':
         // 解析对象

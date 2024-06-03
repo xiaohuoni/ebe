@@ -1,5 +1,5 @@
 import { ICompAnalyzeResult } from './analyze';
-import { LXProjectOptions } from './core';
+import { GlobalDataSourceItemType, LXProjectOptions } from './core';
 import { IDependency, INpmPackage } from './deps';
 import { IProjectSchema } from './page';
 export interface IParseResult {
@@ -11,6 +11,19 @@ export interface IParseResult {
   pageview?: IRouterInfo;
   app?: IRunTimeConfig;
   staticFiles?: LXProjectOptions;
+  models: Record<string, LXGlobalDataInfo>;
+}
+
+export interface LXGlobalDataInfo extends GlobalDataSourceItemType {
+  moduleName: string;
+  namespace: string;
+  updateFunctionName: string;
+  reloadFunctionName: string;
+  resetFunctionName: string;
+  dataName: string;
+  readyCompleteName: string;
+  initialFunctionName: string;
+  camelCaseName: string;
 }
 
 export interface IRunTimeConfig {
