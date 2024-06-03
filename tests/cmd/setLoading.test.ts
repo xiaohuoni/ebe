@@ -15,7 +15,7 @@ describe('setLoading', () => {
     const expectedCode = `// 加载loading
   refs['table1']?.setLoading?.(!!isLoading);`;
 
-  const result = setLoading(generateParams);
+    const result = setLoading(generateParams);
 
     expectValue(result, expectedCode);
   });
