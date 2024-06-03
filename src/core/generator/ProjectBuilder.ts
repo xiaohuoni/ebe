@@ -361,13 +361,13 @@ export class ProjectBuilder implements IProjectBuilder {
     // globalDataSource
     if (
       Object.keys(parseResult.models).length > 0 &&
-      builders.globalDataSource
+      builders.models
     ) {
       const globalDataBuildResult: IModuleInfo[] =
         await Promise.all<IModuleInfo>(
           Object.keys(parseResult.models).map(async (key) => {
             const item = parseResult.models[key]!;
-            const { files } = await builders.globalDataSource.generateModule(
+            const { files } = await builders.models.generateModule(
               item,
             );
             return {

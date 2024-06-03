@@ -11,7 +11,7 @@ import {
 import { generatorType, getDSFilterName } from '../dataSource/type';
 import { filterObjectEmptyField, generateParams } from '../dataSource/utils';
 
-const pluginGlobalDataSource: BuilderComponentPluginFactory<unknown> = () => {
+const pluginModels: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
     const next: ICodeStruct = {
       ...pre,
@@ -338,4 +338,4 @@ const pluginGlobalDataSource: BuilderComponentPluginFactory<unknown> = () => {
   return plugin;
 };
 
-export default pluginGlobalDataSource;
+export default pluginModels;

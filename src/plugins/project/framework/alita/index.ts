@@ -2,7 +2,7 @@ import hackNodeAttr from './hooks/hackNodeAttr';
 import app from './plugins/app';
 import config from './plugins/config';
 import dataSource from './plugins/dataSource';
-import globalDataSource from './plugins/globalDataSource';
+import models from './plugins/models';
 import mobileLayout from './plugins/mobileLayout';
 import packageJSON from './plugins/packageJSON';
 import pageview from './plugins/pageview';
@@ -21,7 +21,7 @@ export default {
     styleInject,
     dataSource,
     themeCss,
-    globalDataSource,
+    models,
   },
   hooks: {
     hackNodeAttr,
