@@ -1,3 +1,4 @@
+import { getGlobalDataExportNamesCode } from 'src/utils/globalDataSource/template';
 import {
   CLASS_DEFINE_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
@@ -200,7 +201,8 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             ImportBusiObjModalRef,
             lcdpApi,
             urlParam,
-            state
+            state,
+            ${getGlobalDataExportNamesCode(ir.globalDataSource)}
            } = context; ` +
           eventCodeString +
           `\n const customActionMap =  {\n${customFuctionsIds
@@ -236,7 +238,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         type: ChunkType.STRING,
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
-        content: `\n // 定义页面的自定义事件 \n  const customActionMap = useCustomAction({ ...useTools, ...useDataSourceTool, ...sandBoxContext.current})`,
+        content: `\n // 定义页面的自定义事件 \n  const customActionMap = useCustomAction({ ...useTools, ...useDataSourceTool, ...globalDataSourceTool, ...sandBoxContext.current})`,
         linkAfter: [
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
           DATA_SOURCE_CHUNK_NAME.CallDataSource,

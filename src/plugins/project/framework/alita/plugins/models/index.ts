@@ -216,10 +216,10 @@ const pluginModels: BuilderComponentPluginFactory<unknown> = () => {
                 }
               }
 
-              const model = cloneDeep(model?.${ir.dataName});
-              globalData.${ir.dataName} = model;
+              const nextModel = cloneDeep(model?.${ir.dataName});
+              globalData.${ir.dataName} = nextModel;
               return setModel({
-                ${ir.dataName}: model,
+                ${ir.dataName}: nextModel,
               }).then(() => globalData);
 
             } catch (error) {
@@ -316,8 +316,8 @@ const pluginModels: BuilderComponentPluginFactory<unknown> = () => {
           };
 
           return {
-            ${getDSFilterName(name)},
-            ${ir.dataName},
+            ${getDSFilterName(name)}: model.${getDSFilterName(name)},
+            ${ir.dataName}: model.${name},
             ${ir.readyCompleteName},
             ${ir.camelCaseName}Loading,
             ${ir.initialFunctionName},

@@ -21,6 +21,7 @@ import enPreprocess from '../utils/factory/h5/index.enPreprocess';
 import enRunPreprocess from '../utils/factory/h5/index.enRunPreprocess';
 import enPreprocessPC from '../utils/factory/pc/index.enPreprocess';
 import enRunPreprocessPC from '../utils/factory/pc/index.enRunPreprocess';
+import { parseGlobalData } from '../utils/globalDataSource/parseGlobalData';
 import assetHelper from '../utils/schema/assets/assets';
 import { cleanDataSource } from '../utils/schema/cleanDataSource';
 import { getBusiCompName } from '../utils/schema/getBusiCompName';
@@ -29,7 +30,6 @@ import {
   markerLoopComponent,
   parseSchema,
 } from '../utils/schema/lxschema';
-import { parseGlobalData } from '../utils/schema/parseGlobalData';
 
 function getInternalDep(
   internalDeps: Record<string, IInternalDependency>,
@@ -67,10 +67,10 @@ export class SchemaParser implements ISchemaParser {
       compAssetListMapping[asset.compCode] = asset;
     });
 
-    const globalData: Record<string, LXGlobalDataInfo> = {};
+    const globalModels: Record<string, LXGlobalDataInfo> = {};
     Object.keys(options?.models || {}).forEach((itemId) => {
       if (options?.models?.[itemId]) {
-        globalData[itemId] = parseGlobalData(options?.models?.[itemId]!);
+        globalModels[itemId] = parseGlobalData(options?.models?.[itemId]!);
       }
     });
 
@@ -161,6 +161,7 @@ export class SchemaParser implements ISchemaParser {
 
     // dataSource
     let dataSources: any[] = [];
+    let globalDatas: any[] = [];
     containers = schemaArr.map((schema) => {
       getComponentsMap(_.cloneDeep(schema), pageIdMapping[schema.pagePath]);
       // 标记循环容器
@@ -194,7 +195,7 @@ export class SchemaParser implements ISchemaParser {
       const globalDataSource: Record<string, any> = {};
 
       (schema.globalDataSource || [])?.forEach((item: any) => {
-        const gItem = globalData[item.id];
+        const gItem = globalModels[item.id];
         globalDataSource[gItem.dataName] = {
           moduleName: gItem.moduleName,
           namespace: gItem.namespace,
@@ -204,8 +205,18 @@ export class SchemaParser implements ISchemaParser {
           id: item.id,
           dataName: gItem.dataName,
           readyCompleteName: gItem.readyCompleteName,
-          initialFunctionName: gItem.moduleName,
+          initialFunctionName: gItem.initialFunctionName,
         };
+      });
+
+      globalDatas.push({
+        globalDataSource,
+        type: newSchema.pageContainerType ?? 'Page',
+        containerType: newSchema.pageContainerType ?? 'Page',
+        moduleName,
+        analyzeResult: {
+          isUsingRef: false,
+        },
       });
 
       return {
@@ -347,7 +358,8 @@ export class SchemaParser implements ISchemaParser {
       },
       // 静态文件生成的时候，可以传递一些简单的配置，比如修改一个代理地址，没有必要单独写一个插件？
       staticFiles: options,
-      models: globalData,
+      models: globalModels,
+      globalDatas,
     };
   }
   decodeSchema(schemaSrc: string | IProjectSchema): IProjectSchema {

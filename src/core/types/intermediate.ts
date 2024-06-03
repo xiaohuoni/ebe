@@ -12,6 +12,30 @@ export interface IParseResult {
   app?: IRunTimeConfig;
   staticFiles?: LXProjectOptions;
   models: Record<string, LXGlobalDataInfo>;
+  globalDatas: GlobalDataInfo[];
+}
+
+export interface GlobalDataInfo {
+  globalDataSource: Record<
+    string,
+    {
+      moduleName: string;
+      namespace: string;
+      updateFunctionName: string;
+      reloadFunctionName: string;
+      resetFunctionName: string;
+      id: any;
+      dataName: string;
+      readyCompleteName: string;
+      initialFunctionName: string;
+    }
+  >;
+  type: string;
+  containerType: string;
+  moduleName: string;
+  analyzeResult: {
+    isUsingRef: boolean;
+  };
 }
 
 export interface LXGlobalDataInfo extends GlobalDataSourceItemType {

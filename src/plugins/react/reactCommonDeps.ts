@@ -71,6 +71,13 @@ import classNames from 'classnames';
     next.ir.deps.push(
       ...getImportsFrom('@/utils/historytool', ['historytool', 'HISTORYTYPES']),
     );
+
+    next.ir.deps.push(getImportFrom('./useGlobalData', 'useGlobalData', false));
+
+    next.ir.deps.push(getImportFrom('./useDataSource', 'useDataSource', false));
+
+    next.ir.deps.push(getImportFrom('@/utils/uid', 'getUid', true));
+
     return next;
   };
   return plugin;

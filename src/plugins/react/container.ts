@@ -4,6 +4,8 @@ import {
   COMMON_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
+import { getGlobalDataExportNamesCode } from '../../utils/globalDataSource/template';
+import { MOBILE_CHUNK_NAME } from '../project/framework/alita/plugins/const';
 import {
   BOFRAMER_CHUNK_NAME,
   CUSTOM_ACTION_CHUNK_NAME,
@@ -13,8 +15,6 @@ import {
   PAGE_TOOL_CHUNK_NAME,
   REACT_CHUNK_NAME,
 } from './const';
-
-import { MOBILE_CHUNK_NAME } from '../project/framework/alita/plugins/const';
 
 import {
   BuilderComponentPlugin,
@@ -143,9 +143,33 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,
+      name: DATA_SOURCE_CHUNK_NAME.CallGlobalDataSource,
+      content: `const globalDataSourceTool = useGlobalData({
+        urlParam,
+        routerData,
+        state,
+        lcdpApi,
+      });
+      const {
+        ${getGlobalDataExportNamesCode(ir.globalDataSource)}
+      } = globalDataSourceTool;
+      `,
+      linkAfter: [
+        DATA_SOURCE_CHUNK_NAME.CallDataSource,
+        CLASS_DEFINE_CHUNK_NAME.Start,
+      ],
+    });
+
+    next.chunks.push({
+      type: ChunkType.STRING,
+      fileType: FileType.TSX,
       name: PAGE_TOOL_CHUNK_NAME.PageTooL,
       content: `const useTools = useTool(refs, { addToAwaitQueue });\n const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled, getDisabled, validateForm, getFormValue, resetForm, clearValue, setFormValues, asyncCallComponentMethod,validateAllForm,getAllFormValues, resetAllForm } = useTools`,
-      linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
+      linkAfter: [
+        DATA_SOURCE_CHUNK_NAME.CallGlobalDataSource,
+        DATA_SOURCE_CHUNK_NAME.CallDataSource,
+        CLASS_DEFINE_CHUNK_NAME.Start,
+      ],
     });
 
     next.chunks.push({
@@ -213,9 +237,9 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       content: `
       // 获取生命周期
       const { useMount, useStateUpdate, useUnmounted } = useLifeCycle({
-        monutDeps: [dataReadyComplete],
+        monutDeps: [dataReadyComplete, globalDataReadyComplete],
         stateDeps: [state],
-        mountCond: () => dataReadyComplete,
+        mountCond: () => dataReadyComplete && globalDataReadyComplete,
       })
       `,
       linkAfter: [REACT_CHUNK_NAME.DidUpdateEnd],
@@ -403,9 +427,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       // import dataSource from './dataSource';
       hasDataSource = true;
     }
-    next.ir.deps.push(getImportFrom('./useDataSource', 'useDataSource', false));
 
-    next.ir.deps.push(getImportFrom('@/utils/uid', 'getUid', true));
     // "customFuctions": [
     //   {
     //       "eventName": "选中节点",

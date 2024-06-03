@@ -207,6 +207,30 @@ export class ProjectBuilder implements IProjectBuilder {
       buildResult = buildResult.concat(dataSourceBuildResult);
     }
 
+    // useModels
+    if (parseResult.globalDatas && builders.globalData) {
+      const globalDataBuildResult: IModuleInfo[] =
+        await Promise.all<IModuleInfo>(
+          parseResult.globalDatas.map(async (containerInfo) => {
+            let path: string[];
+            if (PAGE_TYPES.includes(containerInfo.containerType)) {
+              path = this.template.slots.pages.path;
+            } else {
+              path = this.template.slots.components.path;
+            }
+            const { files } = await builders.globalData.generateModule(
+              containerInfo,
+            );
+            return {
+              moduleName: containerInfo.moduleName,
+              path,
+              files,
+            };
+          }),
+        );
+      buildResult = buildResult.concat(globalDataBuildResult);
+    }
+
     // app
     if (parseResult.app && builders.app) {
       const { files } = await builders.app.generateModule(parseResult.app);
@@ -359,17 +383,12 @@ export class ProjectBuilder implements IProjectBuilder {
     }
 
     // globalDataSource
-    if (
-      Object.keys(parseResult.models).length > 0 &&
-      builders.models
-    ) {
+    if (Object.keys(parseResult.models).length > 0 && builders.models) {
       const globalDataBuildResult: IModuleInfo[] =
         await Promise.all<IModuleInfo>(
           Object.keys(parseResult.models).map(async (key) => {
             const item = parseResult.models[key]!;
-            const { files } = await builders.models.generateModule(
-              item,
-            );
+            const { files } = await builders.models.generateModule(item);
             return {
               path: ['src', 'models'],
               files,

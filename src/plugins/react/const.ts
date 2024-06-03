@@ -54,6 +54,7 @@ export const CUSTOM_ACTION_CHUNK_NAME = {
 
 export const DATA_SOURCE_CHUNK_NAME = {
   CallDataSource: 'CallDataSource',
+  CallGlobalDataSource: 'CallGlobalDataSource',
 };
 export const PAGE_TOOL_CHUNK_NAME = {
   PageTooL: 'PageTooL',
