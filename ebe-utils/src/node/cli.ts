@@ -20,7 +20,7 @@ cli
     console.log('init ebe package ');
     const { setup } = require('./setup');
     try {
-      await setup();
+      await setup({ cwd: process.cwd() });
     } catch (e) {
       console.error(e);
       process.exit(1);
