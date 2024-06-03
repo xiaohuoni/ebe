@@ -21,8 +21,8 @@
     "@babel/parser": "^7.12.12",
     "@babel/traverse": "^7.12.12",
     "@babel/types": "^7.12.12",
-    "ebe": "workspace:*",
     "cac": "^6.7.14",
+    "ebe": "workspace:*",
     "fs-extra": "9.x"
   }
 }
