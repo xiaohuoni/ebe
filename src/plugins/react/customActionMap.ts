@@ -191,6 +191,8 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     getAllFormValues,
     resetAllForm,
     saveBlobFile,
+    messageApi,
+    refs,
              data,
             updateData,
             resetDataSource,

@@ -227,6 +227,7 @@ export const withPageHOC = (
         functorsMap,
         state,
         messageApi,
+        refs,
       };
     }, []);
 
