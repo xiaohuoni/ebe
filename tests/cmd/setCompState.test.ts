@@ -16,6 +16,7 @@ describe('setCompState', () => {
     };
 
     const expectedCode = `
+  // 设置组件状态
   callComponentMethod(
     "table1",
     "setCompPropMapState",

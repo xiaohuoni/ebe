@@ -13,18 +13,7 @@ export function appendTreeNode(generateParams: CMDGeneratorPrames): string {
     title,
   } = value.options;
   if (nodeKey) {
-    const transformBoolean = (value: any) => {
-      if (value === undefined || value === null) {
-        return undefined;
-      }
-      if (value === 'false') {
-        return false;
-      }
-      return Boolean(value);
-    };
-    const selectable = temSelectable
-      ? transformBoolean(temSelectable)
-      : undefined;
+    const selectable = temSelectable ? parse2Var(temSelectable) : undefined;
     return `// 加载树形控件子节点数据 \n const newData = refs?.[${parse2Var(
       compId,
     )}]?.dataSource.filter((e: any) => e) || [];

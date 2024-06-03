@@ -53,7 +53,7 @@ describe('getSetDataSource', () => {
       value: {
         options: {
           isGlobalData: true,
-          dataSourceName: 'dataName'
+          dataSourceName: 'dataName',
         },
       },
     };

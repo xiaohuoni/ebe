@@ -417,8 +417,17 @@ export const updateNodeChildren = (
   arr: any[],
   key: string,
   title: string,
-  selectable: boolean | undefined,
+  selectable: string | undefined,
 ) => {
+  const transformBoolean = (value: any) => {
+    if (value === undefined || value === null) {
+      return undefined;
+    }
+    if (value === 'false') {
+      return false;
+    }
+    return Boolean(value);
+  };
   arr.forEach((c, i) => {
     if (`${c.key}` === `${nodeKey}`) {
       const oldChildMap: any = {};
@@ -426,10 +435,13 @@ export const updateNodeChildren = (
         oldChildMap[d.key] = d.children;
       });
       arr[i].children = odata.map((item: any) => ({
-        key, // 取值字段
-        title, // 显示字段
+        key: item[key], // 取值字段
+        title: item[title], // 显示字段
         isLeaf: false,
-        selectable,
+        selectable:
+          selectable !== undefined
+            ? transformBoolean(item[selectable])
+            : undefined,
         children: oldChildMap[item[key]],
         data: item,
         // 标识该节点数据是通过加载子节点动作设置的
@@ -442,4 +454,5 @@ export const updateNodeChildren = (
       updateNodeChildren(nodeKey, odata, c.children, key, title, selectable);
     }
   });
+  return arr;
 };
