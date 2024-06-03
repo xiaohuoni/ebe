@@ -7,7 +7,7 @@ import {
   getFieldsValue,
   getFormByCompId,
   getOwnFormValues,
-  updateNodeChildren
+  updateNodeChildren,
 } from './formUtils';
 
 const toBool = (v: string | boolean, defaultValue?: any) => {

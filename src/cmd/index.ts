@@ -2,6 +2,7 @@
 export { addTableRow } from './addTableRow';
 export { addTableRowData } from './addTableRowData';
 export { apiRequest } from './apiRequest';
+export { appendTreeNode } from './appendTreeNode';
 export { callCurrentFunc } from './callCurrentFunc';
 export { callCustomPageFunc } from './callCustomPageFunc';
 export { callParentCustomFunc } from './callParentCustomFunc';
@@ -71,4 +72,3 @@ export { validateAllForm } from './validateAllForm';
 export { validateCurrentForm } from './validateCurrentForm';
 export { validateForm } from './validateForm';
 export { validateTableData } from './validateTableData';
-export { appendTreeNode } from './appendTreeNode';

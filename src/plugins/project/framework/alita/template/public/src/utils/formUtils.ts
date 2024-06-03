@@ -404,18 +404,27 @@ export const getBoframerOwnForms = (options: {
 };
 /**
  * 加载子节点数据
- * @param nodeKey 
- * @param odata 
- * @param arr 
- * @param key 
- * @param title 
- * @param selectable 
+ * @param nodeKey
+ * @param odata
+ * @param arr
+ * @param key
+ * @param title
+ * @param selectable
  */
-export const updateNodeChildren = (nodeKey:any, odata: any[], arr: any[], key: string, title: string, selectable: boolean | undefined) => {
+export const updateNodeChildren = (
+  nodeKey: any,
+  odata: any[],
+  arr: any[],
+  key: string,
+  title: string,
+  selectable: boolean | undefined,
+) => {
   arr.forEach((c, i) => {
     if (`${c.key}` === `${nodeKey}`) {
       const oldChildMap: any = {};
-      (arr[i].children || []).forEach((d: any) => { oldChildMap[d.key] = d.children; });
+      (arr[i].children || []).forEach((d: any) => {
+        oldChildMap[d.key] = d.children;
+      });
       arr[i].children = odata.map((item: any) => ({
         key, // 取值字段
         title, // 显示字段
