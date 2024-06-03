@@ -15,7 +15,7 @@ import { getErrorMessage } from '../../../../../core/utils/errors';
 import { isNpmInfo } from '../../../../../core/utils/schema';
 import { calcCompatibleVersion } from '../../../../../core/utils/version';
 
-const __UTILS_PACKAGE_VERSION__: string = '0.0.6';
+const __UTILS_PACKAGE_VERSION__: string = '0.0.7';
 
 // @ts-ignore
 const packageVersion = __UTILS_PACKAGE_VERSION__ ?? 'latest';
