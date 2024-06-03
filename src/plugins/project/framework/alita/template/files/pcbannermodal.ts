@@ -15,7 +15,6 @@ export default function getFile(): [string[], ResultFile] {
     import { LoadingComponennt } from '@/components/LoaderHelper';
     // import Watermark from '@/components/WaterMark';
     import './index.less';
-    import { LocaleFunction } from '@lingxiteam/types';
     
     interface BannerModalProps {
       visible?: boolean;
@@ -31,7 +30,8 @@ export default function getFile(): [string[], ResultFile] {
       modalWidth?: number | string;
       modalHeight?: number | string;
       localPreviewUrl?: string;
-      getLocale: LocaleFunction;
+      // TODO 多语言
+      getLocale: any;
       language: string;
     }
     
@@ -202,12 +202,11 @@ export default function getFile(): [string[], ResultFile] {
         modalHeight: height,
         // appId,
         // pageId,
-        localPreviewUrl,
+        localPreviewUrl: temLocalPreviewUrl,
         getLocale,
         language,
       } = props;
       let closed = false;
-    
       // const appInst = getAppInst({ appId });
       // const viewMode = appInst?.lcdpApi?.data?.appConfig?.viewMode || props.viewMode || 'popUp';
       const viewMode = props.viewMode || 'popUp';
@@ -282,7 +281,7 @@ export default function getFile(): [string[], ResultFile] {
             openNewWindows({ 
               // appId, 
               // pageId, 
-              localPreviewUrl
+              localPreviewUrl: temLocalPreviewUrl
             });
           }
         }
@@ -290,7 +289,7 @@ export default function getFile(): [string[], ResultFile] {
     };
     
     BannerModal.defaultProps = {
-      getLocale: (k, t) => t ?? '',
+      getLocale: (_k: any, t: any) => t ?? '',
     };
     
     export default BannerModal;
