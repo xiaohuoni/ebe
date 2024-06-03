@@ -69,7 +69,7 @@ const transformContent = (value: string) => {
   return finalContent;
 };
 const messageApi = (
-  type: 'info' | 'success' | 'error' | 'warning' | 'loading',
+  type: 'info' | 'success' | 'error' | 'warning' | 'loading' | 'warn',
   content: string,
   duration?: number,
 ) => {
@@ -84,6 +84,7 @@ const messageApi = (
       message.error(transformContent(content), duration);
       break;
     case 'warning':
+    case 'warn':
       message.warning(transformContent(content), duration);
       break;
     case 'loading':

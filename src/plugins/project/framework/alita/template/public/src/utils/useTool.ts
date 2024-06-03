@@ -201,8 +201,8 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
    * 获取当前表单值
    */
   const getFormValue = async (compId: string): Promise<any> => {
-    // 表单不存在 就返回null
-    if (!refs[compId]) return Promise.reject(new Error('组件不存在'));
+    // 为了兼容动态渲染引擎，表单不存在 就返回空对象
+    if (!refs[compId]) return Promise.resolve({});
 
     // 表单的情况 可能是循环容器
     if (refs[compId].compName === 'Form') {
@@ -233,8 +233,8 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
    * @param compId
    */
   const validateForm = async (compId: string): Promise<any> => {
-    // 表单不存在 就返回null
-    if (!refs[compId]) return Promise.reject(new Error('组件不存在'));
+    // 为了兼容动态渲染引擎，表单不存在 就返回空对象
+    if (!refs[compId]) return Promise.resolve({});
 
     // 表单的情况 可能是循环容器
     if (refs[compId].compName === 'Form') {

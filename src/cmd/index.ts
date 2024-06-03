@@ -53,6 +53,7 @@ export { setCompState } from './setCompState';
 export { setCurrentFormValues } from './setCurrentFormValues';
 export { getSetDataSource as setDataSource } from './setDataSource';
 export { setDownloadResponse } from './setDownloadResponse';
+export { setExpansionTerm } from './setExpansionTerm';
 export { setFormValues } from './setFormValues';
 export { setInterval } from './setInterval';
 export { setLoading } from './setLoading';

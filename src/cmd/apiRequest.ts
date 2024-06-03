@@ -1,7 +1,10 @@
 import { SERVICE_SOURCE } from '../constants';
 import { CMDGeneratorPrames } from '../core/types';
 import { parse2Var } from '../core/utils/compositeType';
-import { transformValueDefined } from '../core/utils/transformValueDefined';
+import {
+  GetReqParamValues,
+  transformValueDefined,
+} from '../core/utils/transformValueDefined';
 import { filterObjectEmptyField } from '../plugins/project/framework/alita/plugins/dataSource/utils';
 import { GeneratorCallbackWithThenCatch } from './utils';
 import { processCustomParams } from './utils/requestUtil';
@@ -19,8 +22,8 @@ export function apiRequest(generateParams: CMDGeneratorPrames): string {
   let topCode = '';
 
   if (root && root.isRoot) {
-    if (typeof root.value?.code !== 'undefined') {
-      paramsCode = parse2Var(root.value?.code);
+    if (Array.isArray(root.value?.type) && root.value.type.length > 0) {
+      paramsCode = GetReqParamValues(root.value);
     } else {
       [paramsCode, topCode] = transformValueDefined(root.children, '', false);
     }
