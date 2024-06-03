@@ -7,6 +7,7 @@ import {
   getFieldsValue,
   getFormByCompId,
   getOwnFormValues,
+  updateNodeChildren
 } from './formUtils';
 
 const toBool = (v: string | boolean, defaultValue?: any) => {
@@ -363,5 +364,6 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
     validateAllForm,
     getAllFormValues,
     resetAllForm,
+    updateNodeChildren,
   };
 };

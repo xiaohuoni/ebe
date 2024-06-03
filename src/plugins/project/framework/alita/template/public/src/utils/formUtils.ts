@@ -402,3 +402,35 @@ export const getBoframerOwnForms = (options: {
   getAllForms(boframers);
   return forms;
 };
+/**
+ * 加载子节点数据
+ * @param nodeKey 
+ * @param odata 
+ * @param arr 
+ * @param key 
+ * @param title 
+ * @param selectable 
+ */
+export const updateNodeChildren = (nodeKey:any, odata: any[], arr: any[], key: string, title: string, selectable: boolean | undefined) => {
+  arr.forEach((c, i) => {
+    if (`${c.key}` === `${nodeKey}`) {
+      const oldChildMap: any = {};
+      (arr[i].children || []).forEach((d: any) => { oldChildMap[d.key] = d.children; });
+      arr[i].children = odata.map((item: any) => ({
+        key, // 取值字段
+        title, // 显示字段
+        isLeaf: false,
+        selectable,
+        children: oldChildMap[item[key]],
+        data: item,
+        // 标识该节点数据是通过加载子节点动作设置的
+        _isReload: true,
+      }));
+      arr[i].isLeaf = odata.length === 0;
+      return;
+    }
+    if (c.children && c.children.length) {
+      updateNodeChildren(nodeKey, odata, c.children, key, title, selectable);
+    }
+  });
+};
