@@ -40,7 +40,8 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
         dev: 'alita dev',
         format: 'prettier --write .',
         plugin: 'alita plugin list',
-        postinstall: 'ebe setup && npm run format',
+        // TODO: 本地调试不需要
+        // postinstall: 'ebe setup && npm run format',
         start: 'alita dev',
       },
       dependencies: {
