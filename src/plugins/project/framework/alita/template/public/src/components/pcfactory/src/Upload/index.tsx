@@ -1,5 +1,5 @@
 import { LingxiForwardRef } from '@lingxiteam/types';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useCommonImperativeHandle } from '../utils';
 import UploadLoader from './loader';
 import type { MyUploadProps } from './Upload';

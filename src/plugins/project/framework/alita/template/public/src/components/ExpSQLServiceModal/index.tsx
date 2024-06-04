@@ -7,12 +7,7 @@ import {
 import { exportFileShowProgress } from '@/utils/platform/utils/fileUtils';
 import { LocaleFunction } from '@lingxiteam/types';
 import { Checkbox, Divider, message, Modal, Spin } from 'antd';
-import React, {
-  forwardRef,
-  useImperativeHandle,
-  useMemo,
-  useState,
-} from 'react';
+import { forwardRef, useImperativeHandle, useMemo, useState } from 'react';
 import { prefix } from '../../styles';
 import {
   closeProgressMsg,

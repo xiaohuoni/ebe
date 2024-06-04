@@ -1,4 +1,3 @@
-import React from 'react';
 // @ts-ignore
 import { Resizable } from 'react-resizable';
 import type { HeaderCellProps } from '../types/headerCell';

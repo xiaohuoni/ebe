@@ -18,7 +18,7 @@ import {
 import * as echarts from 'echarts/core';
 import { LabelLayout, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
-import React, { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { bind, clear } from 'size-sensor';
 import { useHiddenStyle, useListenProps } from '../utils';
 import { MyReactEChartsProps } from './PropsType';

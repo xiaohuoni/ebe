@@ -1,5 +1,4 @@
 import { Tooltip } from 'antd';
-import React from 'react';
 import CommIconEG from '../../Icon';
 import CommIconED from '../../Icon/IconED';
 import type { UseTooltipProps } from '../PropsType';

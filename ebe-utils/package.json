@@ -10,7 +10,8 @@
     "ebe": "bin/ebe.js"
   },
   "files": [
-    "es","lib"
+    "es",
+    "lib"
   ],
   "scripts": {
     "build": "npx father build && esno ./scripts/build",

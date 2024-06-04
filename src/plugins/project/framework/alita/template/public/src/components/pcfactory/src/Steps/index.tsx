@@ -2,7 +2,7 @@ import { Icon } from '@lingxiteam/icons';
 import { LingxiForwardRef } from '@lingxiteam/types';
 import { Steps } from 'antd';
 import classNames from 'classnames';
-import React, { useEffect, useImperativeHandle, useState } from 'react';
+import { useEffect, useImperativeHandle, useState } from 'react';
 import FactoryIcon from '../Icon';
 import { useListenProps } from '../utils';
 import { useLocale } from '../utils/hooks/useLocale';

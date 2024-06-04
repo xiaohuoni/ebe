@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CommIconEG from '../../Icon';
 import { handleIsValidIconCfg } from '../../Icon/hooks';
 import CommIconED from '../../Icon/IconED';

@@ -1,7 +1,6 @@
 import { ReactLoadFish } from '@lingxiteam/load-framework';
 import { LingXiFC } from '@lingxiteam/types';
 import { Empty, Spin } from 'antd';
-import React from 'react';
 
 export interface FishRenderProps {
   url: string;

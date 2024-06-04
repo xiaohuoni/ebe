@@ -1,5 +1,5 @@
 import { ConfigProvider, Progress } from 'antd';
-import React, { FC, forwardRef, useEffect, useState } from 'react';
+import { FC, forwardRef, useEffect, useState } from 'react';
 
 import './ProgressComp.less';
 

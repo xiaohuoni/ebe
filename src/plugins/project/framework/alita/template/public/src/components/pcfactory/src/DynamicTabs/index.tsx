@@ -1,7 +1,7 @@
 import { LingxiForwardRef } from '@lingxiteam/types';
 import { Badge, Tabs } from 'antd';
 import classNames from 'classnames';
-import React, { useEffect, useImperativeHandle, useState } from 'react';
+import { useEffect, useImperativeHandle, useState } from 'react';
 import { useHiddenStyle } from '../utils';
 import CustomModule from '../utils/CustomModule';
 import { DynamicTabsProps, TabsItemProps } from './PropsType';

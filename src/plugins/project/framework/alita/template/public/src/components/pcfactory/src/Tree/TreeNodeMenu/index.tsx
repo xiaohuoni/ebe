@@ -2,7 +2,7 @@ import { RightOutlined } from '@ant-design/icons';
 import { useDebounceFn } from 'ahooks';
 import { Popover } from 'antd';
 import classNames from 'classnames';
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 const List = (props: any) => {
   const { data, keyList, handleOnClick } = props;

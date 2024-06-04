@@ -1,7 +1,7 @@
 import { PageComent, RootProps } from '@/components/Pageview';
 import { Modal } from 'antd';
 import classnames from 'classnames';
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import './index.less';
 const DM = forwardRef((props: any) => {
   const {

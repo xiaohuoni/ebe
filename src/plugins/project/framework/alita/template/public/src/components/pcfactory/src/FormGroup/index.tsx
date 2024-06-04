@@ -2,7 +2,7 @@ import { CaretDownOutlined } from '@ant-design/icons';
 import { LingxiForwardRef } from '@lingxiteam/types';
 import { Collapse } from 'antd';
 import classNames from 'classnames';
-import React, { CSSProperties, useMemo, useState } from 'react';
+import { CSSProperties, useMemo, useState } from 'react';
 import { MyCardProps } from '../Card';
 import useExtendBtn from '../Card/useExtendBtn';
 import { FormChildren } from '../Form/Form';

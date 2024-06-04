@@ -1,5 +1,5 @@
 import { LingxiForwardRef } from '@lingxiteam/types';
-import React, { useImperativeHandle, useRef, useState } from 'react';
+import { useImperativeHandle, useRef, useState } from 'react';
 import GanttLoader from './loader';
 
 const Gantt = LingxiForwardRef<unknown, any>((props, ref) => {

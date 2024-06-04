@@ -1,6 +1,5 @@
 import { LXChart } from '@lingxiteam/charts-common';
 import { LingXiFC } from '@lingxiteam/types';
-import React from 'react';
 import { useHiddenStyle } from '../utils';
 import './index.less';
 import LXPieChartPorps from './PropsType';

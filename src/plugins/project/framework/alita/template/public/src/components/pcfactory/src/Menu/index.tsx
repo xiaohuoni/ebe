@@ -1,11 +1,6 @@
 import { LingxiForwardRef } from '@lingxiteam/types';
 import { Menu } from 'antd';
-import React, {
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useState,
-} from 'react';
+import { useEffect, useImperativeHandle, useMemo, useState } from 'react';
 import Icon from '../Icon';
 import { useListenProps } from '../utils';
 import { useLocale } from '../utils/hooks/useLocale';

@@ -1,5 +1,5 @@
 import { LingxiForwardRef } from '@lingxiteam/types';
-import React, { useImperativeHandle, useState } from 'react';
+import { useImperativeHandle, useState } from 'react';
 import ReactEChartsLoader from './loader';
 import { MyReactEChartsProps } from './PropsType';
 

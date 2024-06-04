@@ -1,6 +1,6 @@
 import { LingxiForwardRef } from '@lingxiteam/types';
 import { Switch as AntdSwitch } from 'antd';
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import CommIcon from '../Icon';
 import { handleIsValidIconCfg } from '../Icon/hooks';
 import { FormFields, useCommonImperativeHandle, useForm } from '../utils';

@@ -1,6 +1,6 @@
 import { LingxiForwardRef } from '@lingxiteam/types';
 import QrCodeWithLogo from 'qr-code-with-logo';
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { isImgUrl, setRgbTo16 } from '../utils/common';
 import { logoSizeTrans } from './const';
 // @ts-ignore

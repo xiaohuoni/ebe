@@ -1,7 +1,6 @@
 import { ReactLoadVue } from '@lingxiteam/load-framework';
 import { LingXiFC } from '@lingxiteam/types';
 import { Empty, Spin } from 'antd';
-import React from 'react';
 
 export interface VueRenderProps {
   url: string;

@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useCreation, useMemoizedFn, useUpdateEffect } from '../ahooks';
 
 const CSS_SELECTOR_KEY = 'data-print-compid';

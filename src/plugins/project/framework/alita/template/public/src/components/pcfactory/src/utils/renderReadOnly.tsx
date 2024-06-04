@@ -1,5 +1,4 @@
 import { cloneDeep } from 'lodash';
-import React from 'react';
 
 const className = 'ued-input-readonly';
 

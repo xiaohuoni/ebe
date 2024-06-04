@@ -2,7 +2,6 @@ import { LingXiFC } from '@lingxiteam/types';
 import { createRequires } from '@paciolan/remote-component/dist/createRequires';
 import { createUseRemoteComponent } from '@paciolan/remote-component/dist/hooks/useRemoteComponent';
 import { Empty, Spin } from 'antd';
-import React from 'react';
 import { useDynamicData } from '../../utils';
 import RemoteCompConfig from '../remote-component.config';
 

@@ -1,7 +1,7 @@
 import LcdpUeditor from '@lingxiteam/lcdp-ueditor-react';
 import { ILcdpUeditorInst } from '@lingxiteam/lcdp-ueditor-react/es/type';
 import { LingXiFC } from '@lingxiteam/types';
-import React, { useMemo, useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import {
   FormFields,
   getFieldsProps,

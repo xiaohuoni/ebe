@@ -1,7 +1,7 @@
 import { LingxiForwardRef } from '@lingxiteam/types';
 import { Progress } from 'antd';
 import classNames from 'classnames';
-import React, { useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useListenProps } from '../utils';
 import { useUpdateEffect } from '../utils/ahooks';
 

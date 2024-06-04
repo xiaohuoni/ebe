@@ -1,5 +1,5 @@
 import { Progress } from 'antd';
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import { forwardRef, useImperativeHandle, useState } from 'react';
 
 const DownloadProgress = forwardRef((_, ref) => {
   const [percent, setPercent] = useState<number>(0);

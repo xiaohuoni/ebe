@@ -1,5 +1,5 @@
 import { Col } from 'antd';
-import React, { CSSProperties, FC } from 'react';
+import { CSSProperties, FC } from 'react';
 import { getTestHelperProps } from '../hooks/useTestHelper';
 
 export interface WrapperContainerProps {

@@ -1,7 +1,7 @@
 import { PageComent, RootProps } from '@/components/Pageview';
 import { Button, Drawer } from 'antd';
 import classnames from 'classnames';
-import React, { forwardRef, useEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 import { useSetState } from '../../hooks';
 import './index.less';
 

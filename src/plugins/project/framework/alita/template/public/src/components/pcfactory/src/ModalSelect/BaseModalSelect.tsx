@@ -1,6 +1,5 @@
 import { Select } from 'antd';
 import classnames from 'classnames';
-import React from 'react';
 
 const BaseModalSelect = (props: any) => {
   const {

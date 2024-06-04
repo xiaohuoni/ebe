@@ -1,5 +1,4 @@
 import { Table, TableProps } from 'antd';
-import React from 'react';
 import useSummaryCol, { SummaryProps } from '../hooks/useSummaryCol';
 import { SummaryConfig } from '../types/prop';
 

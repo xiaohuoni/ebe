@@ -1,7 +1,7 @@
 import { LingxiForwardRef } from '@lingxiteam/types';
 import { createRequires } from '@paciolan/remote-component/dist/createRequires';
 import { createUseRemoteComponent } from '@paciolan/remote-component/dist/hooks/useRemoteComponent';
-import React, { useImperativeHandle, useState } from 'react';
+import { useImperativeHandle, useState } from 'react';
 import { useListenProps } from '../utils';
 import { useDeepCompareEffect } from '../utils/ahooks';
 import { RemoteComponentMap } from './constant';

@@ -1,7 +1,7 @@
 import { createFromIconfontCN } from '@ant-design/icons';
 import { Icon as LegacyIcon } from '@lingxiteam/icons';
 import classnames from 'classnames';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useLocale } from '../../utils/hooks/useLocale';
 import { IconCfg, UseIconProps } from '../PropsType';
 

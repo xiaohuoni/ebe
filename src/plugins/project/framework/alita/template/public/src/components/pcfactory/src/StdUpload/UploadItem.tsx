@@ -3,7 +3,7 @@ import {
   LoadingOutlined,
   PaperClipOutlined,
 } from '@ant-design/icons';
-import React, { Progress, Spin } from 'antd';
+import { Progress, Spin } from 'antd';
 import { UploadFile } from 'antd/lib/upload/interface';
 import classNames from 'classnames';
 import { ReactElement, ReactNode } from 'react';

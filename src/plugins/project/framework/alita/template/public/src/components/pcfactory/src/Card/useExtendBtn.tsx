@@ -2,7 +2,6 @@ import { Icon } from '@lingxiteam/icons';
 import { Button, Popover, Tooltip } from 'antd';
 import { ButtonType } from 'antd/lib/button';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
-import React from 'react';
 import CommIcon from '../Icon';
 import type { IconCfg } from '../Icon/PropsType';
 import { useLocale } from '../utils/hooks/useLocale';

@@ -2,7 +2,7 @@
 import { LingxiForwardRef } from '@lingxiteam/types';
 import { Rate as AntdRate } from 'antd';
 import type { RateProps } from 'antd/lib/rate';
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import {
   FormFields,
   getFieldsProps,

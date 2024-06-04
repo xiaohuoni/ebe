@@ -1,5 +1,4 @@
 import { EngineBaseProps, IEdCompBaseProps } from '@lingxiteam/types';
-import React from 'react';
 import { FormGroupProps } from '.';
 import Icon from '../Icon';
 import IconED from '../Icon/IconED';

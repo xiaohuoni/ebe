@@ -19,7 +19,7 @@ import {
   Upload,
 } from 'antd';
 import { UploadProps } from 'antd/es/upload/interface';
-import React, {
+import {
   forwardRef,
   useEffect,
   useImperativeHandle,

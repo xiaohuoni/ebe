@@ -1,6 +1,6 @@
 import { useLocation } from 'alita';
 import { parse } from 'qs';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 import BannerModal from '@/components/BannerModal';
 

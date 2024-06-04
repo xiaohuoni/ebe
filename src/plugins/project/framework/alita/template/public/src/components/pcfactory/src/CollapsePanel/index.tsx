@@ -1,7 +1,7 @@
 import { LingxiForwardRef } from '@lingxiteam/types';
 import { Collapse } from 'antd';
 import type { CollapsePanelProps } from 'antd/lib/collapse';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import CommIcon from '../Icon';
 import type { PrefixIconIconProps } from '../Icon/PropsType';
 import { useChildRenderContext } from '../utils';

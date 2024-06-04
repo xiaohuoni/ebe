@@ -1,13 +1,7 @@
 /* eslint-disable react/no-danger-with-children */
 import { Button, Checkbox } from 'antd';
 import { FilterDropdownProps } from 'antd/lib/table/interface';
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 const useFilter = (props: any) => {
   const {

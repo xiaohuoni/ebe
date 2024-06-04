@@ -6,6 +6,6 @@ export default defineConfig({
   },
   cjs: {
     output: 'lib/node',
-    input:'src/node'
+    input: 'src/node',
   },
 });
