@@ -266,7 +266,10 @@ export const codeCreate = async ({
       pageNum: 1,
       pageSize: 999999,
     });
-
+    onProgress({
+      log: '获取当前应用的全部页面',
+      progress: 1,
+    });
     // 根据 appId 获取当前应用的全部页面
     const resultObject = await services.qryPageInstListByAppId({
       appId,
@@ -287,11 +290,19 @@ export const codeCreate = async ({
     } catch (error) {}
 
     // 根据 appId 获取当前应用的使用的自定义组件
+    onProgress({
+      log: '获取当前应用的使用的自定义组件',
+      progress: 2,
+    });
     const compAssetList = await services.qryPageCompAssetList({
       appId,
     });
 
     // 根据appId 获取全局数据源
+    onProgress({
+      log: '获取全局数据源',
+      progress: 3,
+    });
     let globalDataInfo = await services.queryFrontendDatasourcePage({
       appId,
       pageSize: 10000,
@@ -318,7 +329,10 @@ export const codeCreate = async ({
     let lastPageId: any = '';
     // 根据 pageId 获得 dsl
     let data = [];
-
+    onProgress({
+      log: '获取所有页面dsl',
+      progress: 4,
+    });
     data = await Promise.all(
       appPageList.map((i: any) => {
         lastPageId = i.pageId;
@@ -337,6 +351,10 @@ export const codeCreate = async ({
 
     const itemLists = Object.keys(itemHash);
     // 请求所有业务组件的 dsl
+    onProgress({
+      log: '获取所有业务组件dsl',
+      progress: 5,
+    });
     const busiData = await Promise.all(
       itemLists.map((i) =>
         services.findBusiCompById({
@@ -369,6 +387,10 @@ export const codeCreate = async ({
       themeCss,
       models: globalDataMap,
     };
+    onProgress({
+      log: '清理无用数据',
+      progress: 6,
+    });
     let cleanedTree = cleanTree(pageDSLS, ['path']); // 清理字段'b'和字段'e'
     cleanedTree = clearLXPagesDSL(cleanedTree);
     console.log(cleanedTree);
@@ -389,7 +411,8 @@ export const codeCreate = async ({
           });
           return;
         }
-        const p = log.match(/(?<=\(整体进度: ).*?(?=\%)/)?.[0] || '0';
+
+        const p = log.match(/(?<=\(总进度: ).*?(?=\%)/)?.[0] || '0';
         if (p) {
           onProgress({
             log,
