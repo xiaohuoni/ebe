@@ -2,7 +2,7 @@ export const getDSFilterName = (name: string) => `${name}Filter`;
 
 const getKey = (code: string = '') => {
   const iCode = code.trim();
-  if (!/^[\$_a-zA-Z][\d_\$a-zA-Z]{0,}/.test(iCode) && !/^\d+$/.test(iCode)) {
+  if (!/^[\$_a-zA-Z][\d_\$a-zA-Z]{0,}$/.test(iCode) && !/^\d+$/.test(iCode)) {
     return `['${code}']`;
   }
   return iCode;

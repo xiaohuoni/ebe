@@ -173,7 +173,18 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         name: CUSTOM_ACTION_CHUNK_NAME.Map,
         subModule: 'customAction',
         content:
-          `${importString}
+          `
+          import { historytool, HISTORYTYPES } from '@/utils/historytool';
+          import {
+            previewFile,
+            saveBlobFile,
+            batchDownloadFileByIds,
+            downloadByFileCode,
+          } from '@/utils/platform';
+          import BannerModal from '@/components/BannerModal';
+          import customFuncMapping from '@/utils/customFuncMapping';
+
+          ${importString}
 
           const useCustomAction = (context: any) => { const { 
             api,
