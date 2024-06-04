@@ -270,6 +270,7 @@ export const withPageHOC = (
           BannerModal={BannerModal}
           customActionId={customActionId}
           addToAwaitQueue={(compId: string, functionName: string, ...args: any[]) => awaitHandleData.addToAwaitQueue(compId, functionName, ...args)}
+          getStaticDataSourceService={getStaticDataSourceService}
         />
         </PageProvider>
         ${

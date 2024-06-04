@@ -23,6 +23,12 @@ const CMDGenerator = (prames: CMDGeneratorPrames) => {
     // 没有事件就抛弃
     return '';
   }
+
+  // 如果指令被屏蔽，就不在执行往下执行
+  if (prames?.value?.shielding) {
+    return '';
+  }
+
   countCMD(prames?.value);
   let str = '';
 

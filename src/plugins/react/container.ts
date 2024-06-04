@@ -90,6 +90,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
             customActionId,
             lcdpParentRenderId,
             addToAwaitQueue,
+            getStaticDataSourceService,
             ${isModal ? 'onOk: fatherOnOk,' : ''}
             ${isModal ? 'closeModal' : ''}
         } = props;
