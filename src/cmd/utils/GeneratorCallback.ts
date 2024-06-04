@@ -55,10 +55,10 @@ const GeneratorCallbackWithThenCatch = (
   const callback1Params = options?.params?.callback1 || [];
   const callback2Params = options?.params?.callback2 || [];
   if (callback1) {
-    callback1.params = callback1Params.map((key) => ({ name: key }));
+    callback1.params = callback1Params.map((key) => ({ name: key, value: key }));
   }
   if (callback2) {
-    callback2.params = callback2Params.map((key) => ({ name: key }));
+    callback2.params = callback2Params.map((key) => ({ name: key, value: key }));
   }
 
   const callback1Code =
