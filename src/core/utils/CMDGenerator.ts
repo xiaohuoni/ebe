@@ -167,7 +167,7 @@ export const CMDGeneratorEvent = (
     eventTop = 'async';
   }
   let params = value.params;
-  if (nodeItem.params) {
+  if (nodeItem?.params) {
     params = nodeItem.params.map((key) => ({ name: key, value: key }));
   }
   const renderEvent = `${eventTop}(${prefix}${params
