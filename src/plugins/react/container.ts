@@ -26,6 +26,7 @@ import {
 } from '../../core/types';
 import { ensureValidClassName } from '../../core/utils/validate';
 import { getImportFrom } from '../../utils/depsHelper';
+import { shouldUsedGlobalData } from '../../utils/globalDataSource/general';
 
 const isBOFramer = (ir: IContainerInfo) => {
   return ir.containerType === 'BusiComp';
@@ -140,32 +141,37 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
     });
 
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: DATA_SOURCE_CHUNK_NAME.CallGlobalDataSource,
-      content: `const globalDataSourceTool = useGlobalData({
-        urlParam,
-        routerData,
-        state,
-        lcdpApi,
+    if (shouldUsedGlobalData(ir.globalDataSource)) {
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: FileType.TSX,
+        name: DATA_SOURCE_CHUNK_NAME.CallGlobalDataSource,
+        content: `const globalDataSourceTool = useGlobalData({
+          urlParam,
+          routerData,
+          state,
+          lcdpApi,
+        });
+        const {
+          ${getGlobalDataExportNamesCode(ir.globalDataSource)}
+        } = globalDataSourceTool;
+        `,
+        linkAfter: [
+          DATA_SOURCE_CHUNK_NAME.CallDataSource,
+          CLASS_DEFINE_CHUNK_NAME.Start,
+        ],
       });
-      const {
-        ${getGlobalDataExportNamesCode(ir.globalDataSource)}
-      } = globalDataSourceTool;
-      `,
-      linkAfter: [
-        DATA_SOURCE_CHUNK_NAME.CallDataSource,
-        CLASS_DEFINE_CHUNK_NAME.Start,
-      ],
-    });
+    }
 
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: PAGE_TOOL_CHUNK_NAME.PageTooL,
       content: `//通用的工具类方法 \n const useTools = useTool(refs, { addToAwaitQueue });\n const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled, getDisabled, validateForm, getFormValue, resetForm, clearValue, setFormValues, asyncCallComponentMethod,validateAllForm,getAllFormValues, resetAllForm, updateNodeChildren } = useTools`,
-      linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
+      linkAfter: [
+        DATA_SOURCE_CHUNK_NAME.CallGlobalDataSource,
+        CLASS_DEFINE_CHUNK_NAME.Start,
+      ],
     });
 
     next.chunks.push({
@@ -233,9 +239,23 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       content: `
       // 获取生命周期
       const { useMount, useStateUpdate, useUnmounted } = useLifeCycle({
-        monutDeps: [dataReadyComplete, globalDataReadyComplete],
+        monutDeps: [
+          ${[
+            'dataReadyComplete',
+            shouldUsedGlobalData(ir.globalDataSource) &&
+              'globalDataReadyComplete',
+          ]
+            .filter(Boolean)
+            .join(',')}
+        ],
         stateDeps: [state],
-        mountCond: () => dataReadyComplete && globalDataReadyComplete,
+        mountCond: () => ${[
+          'dataReadyComplete',
+          shouldUsedGlobalData(ir.globalDataSource) &&
+            'globalDataReadyComplete',
+        ]
+          .filter(Boolean)
+          .join('&&')},
       })
       `,
       linkAfter: [REACT_CHUNK_NAME.DidUpdateEnd],

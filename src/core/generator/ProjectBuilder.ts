@@ -338,7 +338,7 @@ export class ProjectBuilder implements IProjectBuilder {
     }
 
     // useModels
-    if (parseResult.globalDatas && builders.globalData) {
+    if (parseResult.globalDatas.length && builders.globalData) {
       const globalDataSourcesLength = parseResult.globalDatas.length;
 
       const globalDataBuildResult: IModuleInfo[] =

@@ -189,10 +189,7 @@ const Page = () => {
       pageIdMapping,
       busiCompMapping,
       compAssetList: compAssetList?.resultObject || [],
-      baseUrl:
-        process.env.BASE_URL === 'http://10.10.179.140:8047/HJF/'
-          ? 'http://10.10.179.140:8048/HJF/'
-          : process.env.BASE_URL,
+      baseUrl: 'http://172.21.72.205:10010/',
       appConfig: {
         frontendHookList,
       },
@@ -272,7 +269,7 @@ const Page = () => {
         autoComplete="off"
         onFinish={onFinish}
         initialValues={{
-          appId: '1107148717246517248',
+          appId: '1106842174504439808',
           pageId: '',
           platform: false,
         }}

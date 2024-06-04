@@ -17,6 +17,7 @@ import {
 } from '../../core/types';
 import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
 import { getImportFrom } from '../../utils/depsHelper';
+import { shouldUsedGlobalData } from '../../utils/globalDataSource/general';
 import { getEvents } from '../../utils/schema/parseDsl';
 import {
   CUSTOM_ACTION_CHUNK_NAME,
@@ -244,7 +245,11 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         type: ChunkType.STRING,
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
-        content: `\n // 定义页面的自定义事件 \n  const customActionMap = useCustomAction({ ...useTools, ...useDataSourceTool, ...globalDataSourceTool, ...sandBoxContext.current})`,
+        content: `\n // 定义页面的自定义事件 \n  const customActionMap = useCustomAction({ ...useTools, ...useDataSourceTool, ${
+          shouldUsedGlobalData(ir.globalDataSource)
+            ? '...globalDataSourceTool,'
+            : ''
+        } ...sandBoxContext.current})`,
         linkAfter: [
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
           DATA_SOURCE_CHUNK_NAME.CallDataSource,

@@ -205,15 +205,17 @@ export class SchemaParser implements ISchemaParser {
         };
       });
 
-      globalDatas.push({
-        globalDataSource,
-        type: newSchema.pageContainerType ?? 'Page',
-        containerType: newSchema.pageContainerType ?? 'Page',
-        moduleName,
-        analyzeResult: {
-          isUsingRef: false,
-        },
-      });
+      if (Object.keys(globalDataSource).length > 0) {
+        globalDatas.push({
+          globalDataSource,
+          type: newSchema.pageContainerType ?? 'Page',
+          containerType: newSchema.pageContainerType ?? 'Page',
+          moduleName,
+          analyzeResult: {
+            isUsingRef: false,
+          },
+        });
+      }
 
       return {
         ...newSchema,

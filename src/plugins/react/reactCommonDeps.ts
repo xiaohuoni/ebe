@@ -1,4 +1,5 @@
 import { COMMON_CHUNK_NAME } from '../../core/const/generator';
+import { shouldUsedGlobalData } from '../../utils/globalDataSource/general';
 
 import {
   BuilderComponentPlugin,
@@ -6,6 +7,7 @@ import {
   ChunkType,
   FileType,
   ICodeStruct,
+  IContainerInfo,
 } from '../../core/types';
 import { getImportFrom, getImportsFrom } from '../../utils/depsHelper';
 
@@ -14,6 +16,8 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     const next: ICodeStruct = {
       ...pre,
     };
+
+    const ir = next.ir as IContainerInfo;
 
     next.chunks.push({
       type: ChunkType.STRING,
@@ -72,7 +76,11 @@ import classNames from 'classnames';
       ...getImportsFrom('@/utils/historytool', ['historytool', 'HISTORYTYPES']),
     );
 
-    next.ir.deps.push(getImportFrom('./useGlobalData', 'useGlobalData', false));
+    if (shouldUsedGlobalData(ir.globalDataSource)) {
+      next.ir.deps.push(
+        getImportFrom('./useGlobalData', 'useGlobalData', false),
+      );
+    }
 
     next.ir.deps.push(getImportFrom('./useDataSource', 'useDataSource', false));
 

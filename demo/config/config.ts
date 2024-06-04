@@ -8,9 +8,9 @@ const BASE_URL = 'http://10.10.179.140:8047/HJF/'; // HJF环境
 // // http://10.10.179.140:8896/HJE
 // const DEV_URL = `${BASE_URL}lcdp-app/server/`;
 // demo配置态HJF
-const EDITOR_URL = 'http://10.10.179.140:8047/HJF/';
+// const EDITOR_URL = 'http://10.10.179.140:8047/HJF/';
 // demo配置态开发环境
-// const EDITOR_URL = 'http://172.21.72.205:8088/';
+const EDITOR_URL = 'http://172.21.72.205:8088/';
 
 process.env.LCDP_HTTP_SECURITY_MODE = '1.0';
 export default defineConfig({
