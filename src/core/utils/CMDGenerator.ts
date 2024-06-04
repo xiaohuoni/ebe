@@ -121,7 +121,15 @@ const checkIfCMDHasReturn = (cmddata: any[]) => {
 
 export const CMDGeneratorEvent = (
   value: any,
-  nodeItem: any,
+  nodeItem: {
+    
+  /**
+ * 变量参数, 将不会默认的params
+ */
+  params?: string[];
+  platform?: string;
+  [key: string]: any
+  },
   scope?: IScope,
   options: CompositeValueGeneratorOptions = {},
   // TODO: 后续无用移除
@@ -159,8 +167,11 @@ export const CMDGeneratorEvent = (
   } else if (options?.parentIsAsync) {
     eventTop = 'async';
   }
-  const renderEvent = `${eventTop}(${prefix}${value.params
-    .filter((obj: { name: any }, index: any, arr: any[]) => {
+  let params =  value.params;
+  if (nodeItem.params) {
+    params = nodeItem.params.map((key) => ({ name: key, value: key }));
+  }
+  const renderEvent = `${eventTop}(${prefix}${params.filter((obj: { name: any }, index: any, arr: any[]) => {
       // 删掉 name 重复的对象，如 Tree {title: '节点key(单选)',name: 'selectedKeys',value: '$selectedKeys[0]$',},{title: '节点keys(多选)',name: 'selectedKeys',value: '$selectedKeys$', },
       return arr.findIndex((o) => o.name === obj.name) === index;
     })

@@ -113,6 +113,10 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     }
 
     const ir = next.ir as IContainerInfo;
+    const isModal =
+      ir.containerType === 'MobileModal' ||
+      ir.containerType === 'Modal' ||
+      ir.containerType === 'Drawer';
     if (ir?.customFuctions && ir?.customFuctions.length > 0) {
       const customFuctionsIds: string[] = [];
       // 写到独立文件
@@ -209,6 +213,8 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             lcdpApi,
             urlParam,
             state,
+            fatherOnOk,
+            closeModal,
             ${getGlobalDataExportNamesCode(ir.globalDataSource)}
            } = context; ` +
           eventCodeString +
@@ -249,7 +255,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           shouldUsedGlobalData(ir.globalDataSource)
             ? '...globalDataSourceTool,'
             : ''
-        } ...sandBoxContext.current})`,
+        } ...sandBoxContext.current, ${isModal ? 'fatherOnOk,\n closeModal,' : ''}})`,
         linkAfter: [
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
           DATA_SOURCE_CHUNK_NAME.CallDataSource,

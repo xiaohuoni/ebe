@@ -7,7 +7,7 @@ export function showCustomModal({
   scope,
   config,
 }: CMDGeneratorPrames): string {
-  const { paramsObj, modalname, pageId } = value.options;
+  const { paramsObj, modalname, pageId, id } = value.options;
   const { callback1, callback2 } = value;
   const temParams = {
     ...paramsObj,
@@ -20,13 +20,13 @@ export function showCustomModal({
   const onOkString =
     Array.isArray(callback1) && callback1.length
       ? // @ts-ignore
-        `onOk: ${CMDGeneratorEvent(callback1, { platform }, scope, config)},`
+        `onOk: ${CMDGeneratorEvent(callback1, { platform, params:[`okData_${id}`] }, scope, config)},`
       : '\n';
 
   const onCancelString =
     Array.isArray(callback2) && callback2.length
       ? // @ts-ignore
-        `onCancel: ${CMDGeneratorEvent(callback2, { platform }, scope, config)}`
+        `onCancel: ${CMDGeneratorEvent(callback2, { platform, params:[`okData_${id}`] }, scope, config)}`
       : '\n';
   return `// 打开弹窗\n ModalManagerRef?.current?.openModal({pagePath: '${
     params.pagePath
