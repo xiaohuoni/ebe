@@ -4,4 +4,4 @@ process.title = 'ebe';
 // See: https://github.com/nodejs/node/blob/master/lib/internal/process/warning.js#L77
 // @ts-ignore
 process.noDeprecation = '1';
-require('../dist/node/cli');
+require('../lib/node/cli');

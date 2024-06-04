@@ -26,7 +26,6 @@ function print(text: string, ...args: any[]) {
   const projectBuilder = alita({
     options: schema.options,
     printUtil: {
-      log: console.debug,
       prettier: ({
         tag,
         childTag = '',
@@ -36,11 +35,16 @@ function print(text: string, ...args: any[]) {
         end = '',
       }) => {
         if (end) {
-          return `${chalk.green(tag)} ${chalk.cyan(msg)} ${chalk.cyan(end)}`;
+          console.debug(
+            `${chalk.green(tag)} ${chalk.cyan(msg)} ${chalk.cyan(end)}`,
+          );
+          return;
         }
-        return `${chalk.magenta(tag)}${chalk.blue(childTag)} ${chalk.cyan(
-          msg,
-        )} ${chalk.gray(childProcess)} ${chalk.yellow(progress)}`;
+        console.debug(
+          `${chalk.magenta(tag)}${chalk.blue(childTag)} ${chalk.cyan(
+            msg,
+          )} ${chalk.gray(childProcess)} ${chalk.yellow(progress)}`,
+        );
       },
     },
   });
@@ -56,10 +60,11 @@ function print(text: string, ...args: any[]) {
     outputPath: join(__dirname, './templates/'), // 输出目录
     projectSlug,
   });
-  copyStatic(
-    join(__dirname, './src/plugins/project/framework/alita/template/public'),
-    join(__dirname, './templates/', projectSlug),
-  );
+  // 走 ebe setup
+  // copyStatic(
+  //   join(__dirname, './src/plugins/project/framework/alita/template/public'),
+  //   join(__dirname, './templates/', projectSlug),
+  // );
   async function loadSchemaFile(schemaFile: string): Promise<any> {
     if (!schemaFile) {
       throw new Error('invalid schema file name');

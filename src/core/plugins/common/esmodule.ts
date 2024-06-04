@@ -344,8 +344,8 @@ function buildPackageImport(
         ],
         ext: {
           originalName: `${getDefaultExportName(info)}.${info.subName}`,
-          aliasName: info.nodeIdentifier,
-          dependency: info.source,
+          aliasName: info?.nodeIdentifier,
+          dependency: info?.source,
         },
       });
     } else if (info.aliasName) {
@@ -375,8 +375,8 @@ function buildPackageImport(
         ],
         ext: {
           originalName: getDefaultExportName(info),
-          aliasName: info.aliasName,
-          dependency: info.source,
+          aliasName: info?.aliasName,
+          dependency: info?.source,
         },
       });
     }

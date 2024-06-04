@@ -1,6 +1,6 @@
 {
   "name": "ebe",
-  "version": "0.1.7",
+  "version": "0.1.12",
   "description": "",
   "keywords": [],
   "license": "ISC",
@@ -20,14 +20,14 @@
     "es"
   ],
   "scripts": {
-    "build": "npm run build:types && node scripts/build",
+    "build": "node scripts/build",
     "build:ANALYZE": "ANALYZE=true node scripts/build",
-    "build:ebe-utils": "cd ebe-utils && father build",
+    "build:ebe-utils": "cd ebe-utils && npm run build",
     "build:types": "tsc --declaration --emitDeclarationOnly",
     "build:worker": "esno build-standalone-worker.js",
     "dev": "father dev",
     "format": "prettier --write .",
-    "postinstall": "npm run build:ebe-utils & npm run build",
+    "setup": "npm run build:ebe-utils && npm run build && npm run build:types",
     "prepare": "husky",
     "req": "esno req.ts",
     "start": "esno index.ts",

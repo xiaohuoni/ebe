@@ -190,9 +190,16 @@ export interface LXProjectOptions {
   themeCss?: string;
   models: Record<string, GlobalDataSourceItemType>;
 }
+export type PrintUtilPrettier = (data: {
+  tag: string;
+  childTag?: string;
+  msg: string;
+  progress?: string;
+  childProcess?: string;
+  end?: string;
+}) => void;
 export interface PrintUtilProps {
-  log?: any;
-  prettier?: any;
+  prettier?: PrintUtilPrettier;
   onOff?: boolean;
 }
 export interface IProjectBuilderOptions {

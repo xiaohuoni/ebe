@@ -25,7 +25,7 @@ const pluginModels: BuilderComponentPluginFactory<unknown> = () => {
       camelCase([ir.camelCaseName, 'model'].join(' ')),
     );
 
-    const source = globalDataConfig.source as any;
+    const source = globalDataConfig?.source as any;
     const initialValue = generateParams(globalDataConfig, source);
 
     const {

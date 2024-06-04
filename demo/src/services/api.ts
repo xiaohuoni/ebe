@@ -127,23 +127,5 @@ export async function queryFrontendDatasourcePage(params: any) {
     data: params,
     headers,
     method: 'post',
-  }).then((res) => {
-    if (res.resultCode === '0') {
-      const dataSourceList = res.resultObject?.list || [];
-      const globalDataMap: Record<string, any> = {};
-      dataSourceList.forEach((item: any) => {
-        const { frontendDatasourceContent, ...restItem } = item;
-
-        try {
-          globalDataMap[item.frontendDatasourceMainId] = {
-            ...restItem,
-            frontendDatasourceContent: JSON.parse(frontendDatasourceContent),
-          };
-        } catch (err) {}
-        return null;
-      });
-      return globalDataMap;
-    }
-    return {};
   });
 }

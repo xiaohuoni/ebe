@@ -111,7 +111,7 @@ export function generateExpression(value: any, scope: IScope): string {
 }
 
 function getFunctionSource(cfg: any): string {
-  return cfg.source || cfg.value || cfg.compiled;
+  return cfg?.source || cfg?.value || cfg?.compiled;
 }
 
 export function generateFunction(

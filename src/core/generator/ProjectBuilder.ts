@@ -9,6 +9,7 @@ import {
   ISchemaParser,
   LogHooks,
   PostProcessor,
+  PrintUtilPrettier,
   PrintUtilProps,
   ResultDir,
   ResultFile,
@@ -122,27 +123,24 @@ export class ProjectBuilder implements IProjectBuilder {
     this.inStrictMode = inStrictMode;
     this.extraContextData = extraContextData;
 
-    const defaultPrettier = ({
+    const defaultPrettier: PrintUtilPrettier = ({
       tag,
       childTag = '',
       msg,
       progress,
       childProcess = '',
       end = '',
-    }: any) => {
+    }) => {
       if (end) {
-        return `${tag} ${msg} ${end}`;
+        console.log(`${tag} ${msg} ${end}`);
       }
-      return `${tag}${childTag} ${msg} ${childProcess} ${progress}`;
+      return console.log(
+        `${tag}${childTag} ${msg} ${childProcess} ${progress}`,
+      );
     };
     // 允许用户不传 printUtil
-    const {
-      log = console.log,
-      prettier = defaultPrettier,
-      onOff = false,
-    } = printUtil;
+    const { prettier = defaultPrettier, onOff = false } = printUtil;
     this.printUtil = {
-      log,
       prettier,
     };
     // log
@@ -155,56 +153,59 @@ export class ProjectBuilder implements IProjectBuilder {
       // 关闭不打印
       if (onOff) return;
       const { name = '', args = [] } = result;
-      const { msg = '' } = (args[0] as { msg: string }) || {};
+      const { msg = '', childProcess = 0 } =
+        (args[0] as { msg: string; childProcess?: number }) || {};
       const [type, childType] = name.split(':');
       let logTag = LogTagsHash[type];
       let childLogTag;
 
+      let process = '0';
       if (logTag) {
         if (childType) {
           childLogTag = logTag?.childProcess?.[childType];
         }
 
         if (logTag.progress > hooksLength) {
-          this.printUtil.log(
-            this.printUtil.prettier({
-              tag: `[${logTag.tag}]`,
-              msg,
-              end: '出码模块执行完毕，自动下载项目 zip，请关注浏览器【下载】',
-            }),
-          );
+          this.printUtil.prettier!({
+            tag: `[${logTag.tag}]`,
+            msg,
+            end: '出码模块执行完毕，自动下载项目 zip，请关注浏览器【下载】',
+          });
         } else if (childLogTag) {
           const childProcessLength = Object.keys(logTag?.childProcess).length;
-          console.log(
-            `(整体进度: ${parseInt(
-              (logTag?.progress / hooksLength) * 100 +
-                (childLogTag?.progress / childProcessLength) * 10 +
-                '',
-            )}%)`,
-          );
-          this.printUtil.log(
-            this.printUtil.prettier({
-              tag: `[${logTag.tag}]`,
-              childTag: `[${childLogTag?.tag}]`,
-              progress: `(整体进度: ${parseInt(
-                (logTag?.progress / hooksLength) * 100 +
-                  (childLogTag?.progress / childProcessLength) * 10 +
-                  '',
-              )}%)`,
-              childProcess: `{ 进度：${childLogTag?.progress}/${childProcessLength} }`,
-              msg,
-            }),
-          );
+          process = parseFloat(
+            ((logTag?.progress - 1) / hooksLength) * 100 +
+              ((childLogTag?.progress - 1) / childProcessLength) * 10 +
+              // 子进程的子进程，只占1%
+              childProcess +
+              '',
+          ).toFixed(2);
+          this.printUtil.prettier!({
+            tag: `[${logTag.tag}]`,
+            childTag: `[${childLogTag?.tag}]`,
+            progress: `(总进度: ${process}%)`,
+            childProcess: `{ 进度：${childLogTag?.progress}/${childProcessLength} }`,
+            msg,
+          });
         } else {
-          this.printUtil.log(
-            this.printUtil.prettier({
-              tag: `[${logTag.tag}]`,
-              progress: `(整体进度: ${parseInt(
-                (logTag?.progress / hooksLength) * 100 + '',
-              )}%)`,
-              msg,
-            }),
-          );
+          if (childProcess) {
+            process = parseFloat(
+              //  - childProcess / childProcess？存在子进程则减1
+              ((logTag?.progress - 1) / hooksLength) * 100 +
+                childProcess * 10 +
+                '',
+            ).toFixed(2);
+          } else {
+            process = parseFloat(
+              (logTag?.progress / hooksLength) * 100 + childProcess * 10 + '',
+            ).toFixed(2);
+          }
+
+          this.printUtil.prettier!({
+            tag: `[${logTag.tag}]`,
+            progress: `(总进度: ${process}%)`,
+            msg,
+          });
         }
       }
     });
@@ -235,6 +236,7 @@ export class ProjectBuilder implements IProjectBuilder {
       schema = await preProcessor(schema);
       hooks.callHook('preProcessor', {
         msg: `进度${preProcessorCount}/${projectPreProcessorsLength}`,
+        childProcess: preProcessorCount / projectPreProcessorsLength,
       });
       preProcessorCount += 1;
     }
@@ -246,8 +248,6 @@ export class ProjectBuilder implements IProjectBuilder {
 
     // Collect Deps
     // Parse JSExpression
-    hooks.callHook('schemaParser', { msg: '' });
-
     const parseResult: IParseResult = schemaParser.parse(
       schema,
       this.extraContextData?.options,
@@ -290,9 +290,10 @@ export class ProjectBuilder implements IProjectBuilder {
           path = this.template.slots.components.path;
         }
         hooks.callHook('containers', {
-          msg: `生成页面${containerInfo.containerType} - ${
+          msg: `生成 ${containerInfo.containerType} - ${
             containerInfo.moduleName
           } 进度${index + 1}/${pagesLength}`,
+          childProcess: (index + 1) / pagesLength,
         });
         const { files } = await builder.generateModule(containerInfo);
 
@@ -322,6 +323,7 @@ export class ProjectBuilder implements IProjectBuilder {
               msg: `生成数据源${containerInfo.moduleName} 进度${
                 index + 1
               }/${dataSourcesLength}`,
+              childProcess: (index + 1) / dataSourcesLength,
             });
             const { files } = await builders.dataSources.generateModule(
               containerInfo,
@@ -335,6 +337,10 @@ export class ProjectBuilder implements IProjectBuilder {
         );
 
       buildResult = buildResult.concat(dataSourceBuildResult);
+    } else {
+      hooks.callHook('dataSources', {
+        msg: `未使用页面数据源，跳过生成`,
+      });
     }
 
     // useModels
@@ -354,6 +360,7 @@ export class ProjectBuilder implements IProjectBuilder {
               msg: `生成全局数据源${containerInfo.moduleName} 进度${
                 index + 1
               }/${globalDataSourcesLength}`,
+              childProcess: (index + 1) / globalDataSourcesLength,
             });
             const { files } = await builders.globalData.generateModule(
               containerInfo,
@@ -366,6 +373,10 @@ export class ProjectBuilder implements IProjectBuilder {
           }),
         );
       buildResult = buildResult.concat(globalDataBuildResult);
+    } else {
+      hooks.callHook('globalDataSources', {
+        msg: `未使用全局数据源，跳过生成`,
+      });
     }
 
     // app

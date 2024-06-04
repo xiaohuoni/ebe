@@ -156,8 +156,8 @@ export const getPageDsls = (resultObjects: any[]) => {
     .filter(Boolean)
     .map((i) => {
       try {
-        const pageData = JSON.parse(i.resultObject.attrMappingJson);
-        pageData.pageId = i.resultObject?.pageId;
+        const pageData = JSON.parse(i.attrMappingJson);
+        pageData.pageId = i?.pageId;
         return pageData;
       } catch (error) {
         console.error(error, '该页面信息出错', i);
@@ -268,20 +268,23 @@ export const codeCreate = async ({
     });
 
     // 根据 appId 获取当前应用的全部页面
-    const { resultObject = [] } = await services.qryPageInstListByAppId({
+    const resultObject = await services.qryPageInstListByAppId({
       appId,
       terminalType: platform,
     });
-    const { resultObject: frontendHookList = [] } =
-      await services.queryFrontendHookList({
-        appId,
-      });
+    const frontendHookList = await services.queryFrontendHookList({
+      appId,
+    });
 
-    // 根据 appId 获取当前应用的全部页面
-    const themeCss = await services.getThemeCss({
-      appId,
-      terminalType: platform,
-    });
+    let themeCss = '';
+    try {
+      // 这个接口总是出错，莫名其妙
+      // 根据 appId 获取当前应用的全部页面
+      // themeCss = await services.getThemeCss({
+      //   appId,
+      //   terminalType: platform,
+      // });
+    } catch (error) {}
 
     // 根据 appId 获取当前应用的使用的自定义组件
     const compAssetList = await services.qryPageCompAssetList({
@@ -294,6 +297,19 @@ export const codeCreate = async ({
       pageSize: 10000,
     });
 
+    const dataSourceList = globalDataInfo?.list || [];
+    const globalDataMap: Record<string, any> = {};
+    dataSourceList.forEach((item: any) => {
+      const { frontendDatasourceContent, ...restItem } = item;
+
+      try {
+        globalDataMap[item.frontendDatasourceMainId] = {
+          ...restItem,
+          frontendDatasourceContent: JSON.parse(frontendDatasourceContent),
+        };
+      } catch (err) {}
+      return null;
+    });
     const pageIdMapping: any = {};
     const appPageList = resultObject?.map((i: any) => {
       pageIdMapping[i.pagePath] = i.pageId;
@@ -332,10 +348,8 @@ export const codeCreate = async ({
     );
     const busiCompMapping: any = {};
     const busiPages = busiData.map((i, index) => {
-      const busiData = JSON.parse(
-        i?.resultObject?.busiCompVersion?.sourceCodeJson,
-      );
-      busiData.busiCompId = i?.resultObject?.busiCompId;
+      const busiData = JSON.parse(i?.busiCompVersion?.sourceCodeJson);
+      busiData.busiCompId = i?.busiCompId;
       busiCompMapping[itemLists[index]] = busiData.id;
       return busiData;
     });
@@ -346,46 +360,45 @@ export const codeCreate = async ({
       appId,
       pageIdMapping,
       busiCompMapping,
-      compAssetList: compAssetList?.resultObject || [],
+      compAssetList: compAssetList || [],
       baseUrl,
       appConfig: {
         frontendHookList,
       },
-      attrSpecPage: (attrSpecPage?.resultObject?.list || []).map(
-        (i: any) => i.attrNbr,
-      ),
+      attrSpecPage: (attrSpecPage?.list || []).map((i: any) => i.attrNbr),
       themeCss,
-      models: globalDataInfo || {},
+      models: globalDataMap,
     };
     let cleanedTree = cleanTree(pageDSLS, ['path']); // 清理字段'b'和字段'e'
     cleanedTree = clearLXPagesDSL(cleanedTree);
+    console.log(cleanedTree);
+    console.log(options);
     const result = await generateCode({
       solution: 'alita', // 出码方案
       options,
       schema: cleanedTree, // 编排搭建出来的 schema
       onProgress: (log: string) => {
-        if (!log) {
+        if (!log || typeof log !== 'string') {
           // 错误数据，不给返回
           return;
         }
-        if (log.includes('出码生成完成')) {
+        if (log?.includes('出码生成完成')) {
           onProgress({
             log,
             progress: 100,
           });
           return;
         }
-        const p = log.match(/(?<=\(整体进度: ).*?(?=%)/)?.[0] || '0';
-        const pro = p.split('/') as string[];
-        if (pro && pro[0] && pro[1]) {
+        const p = log.match(/(?<=\(整体进度: ).*?(?=\%)/)?.[0] || '0';
+        if (p) {
           onProgress({
             log,
-            progress: (parseInt(pro[0]) / parseInt(pro[1])) * 100,
+            progress: parseFloat(p),
           });
         }
       },
     });
-    // console.log(result);
+    console.log(result);
     // 出码结果(默认是递归结构描述的，可以传 flattenResult: true 以生成扁平结构的结果)
     publishers.zip().publish({
       project: result as ResultDir, // 上一步生成的 project

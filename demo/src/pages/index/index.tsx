@@ -80,7 +80,22 @@ const Page = () => {
       appId: values.appId,
       pageSize: 10000,
     });
+    const globalDataMap: Record<string, any> = {};
 
+    if (globalDataInfo.resultCode === '0') {
+      const dataSourceList = globalDataInfo.resultObject?.list || [];
+      dataSourceList.forEach((item: any) => {
+        const { frontendDatasourceContent, ...restItem } = item;
+
+        try {
+          globalDataMap[item.frontendDatasourceMainId] = {
+            ...restItem,
+            frontendDatasourceContent: JSON.parse(frontendDatasourceContent),
+          };
+        } catch (err) {}
+        return null;
+      });
+    }
     const pageIdMapping: any = {};
     const appPageList = resultObject?.map((i: any) => {
       pageIdMapping[i.pagePath] = i.pageId;
@@ -197,7 +212,7 @@ const Page = () => {
         (i: any) => i.attrNbr,
       ),
       themeCss,
-      models: globalDataInfo || {},
+      models: globalDataMap,
     };
     let cleanedTree = cleanTree(pageDSLS, ['path']); // 清理字段'b'和字段'e'
     cleanedTree = clearLXPagesDSL(cleanedTree);

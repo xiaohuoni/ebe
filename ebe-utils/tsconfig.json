@@ -3,9 +3,9 @@
     "declaration": true,
     "lib": ["es2015", "dom"],
     // Target latest version of ECMAScript.
-    "target": "esnext",
+    "target": "ES5",
     // Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'.
-    "module": "esnext",
+    "module": "ES2015",
     // Search under node_modules for non-relative imports.
     "moduleResolution": "node",
     // Enable strictest settings like strictNullChecks & noImplicitAny.

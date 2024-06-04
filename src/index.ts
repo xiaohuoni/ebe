@@ -84,10 +84,10 @@ export async function generateCode(options: {
           worker.terminate();
           break;
         case 'progress':
-          onProgress(msg);
+          onProgress(msg?.data || '');
           break;
         default:
-          onProgress('got unknown msg: %o', msg);
+          print('got unknown msg: %o', msg);
           break;
       }
     };

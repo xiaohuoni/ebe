@@ -2,7 +2,7 @@
 // polyfills 必须在最前面，不要格式化到下面去
 import './polyfills/buffer';
 
-import type { IProjectSchema } from './core';
+import type { IProjectSchema, PrintUtilProps } from './core';
 import { resultHelper } from './core/utils';
 import alita from './solutions/alita';
 
@@ -42,9 +42,31 @@ export async function run(msg: {
     }
     print('generating from options: %o', options);
 
-    const appBuilder = createAppBuilder({ options,printUtil:{
-      log: printProgress
-    } });
+    const appBuilder = createAppBuilder({
+      options, 
+      printUtil: {
+        prettier: (data) => {
+          const {
+            tag,
+            childTag = '',
+            msg,
+            progress,
+            childProcess = '',
+            end = '',
+          } = data;
+          if (end) {
+            printProgress(
+              `${tag} ${msg} ${end}`, data
+            );
+            return;
+          }
+          printProgress(
+            `${tag}${childTag} ${msg
+            } ${childProcess} ${progress}`, data
+          );
+        },
+      } as PrintUtilProps
+    });
 
     print('generating from schema: %o', schema);
 

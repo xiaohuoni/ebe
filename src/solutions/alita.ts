@@ -143,6 +143,7 @@ export default function createIceJsProjectBuilder(
             '@ant-design/icons': '^4.2.2',
             'react-loadable': '^5.5.0',
             'react-pdf': '4.2.0',
+            moment: '^2.30.1',
             'es6-proxy-polyfill': '^2.1.1',
           },
           dependencies: {

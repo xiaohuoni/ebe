@@ -67,13 +67,15 @@ export class SchemaParser implements ISchemaParser {
     const compAssetListMapping: Record<string, any> = {};
 
     // 细化日志
-    // hooks?.callHook('aaa', { msg: 'AAA112312' });
+    hooks?.callHook('compAssetList', { msg: '查找项目使用到的自定义组件' });
 
     compAssetList.forEach((asset: any) => {
       compAssetListMapping[asset.compCode] = asset;
     });
 
     const globalModels: Record<string, LXGlobalDataInfo> = {};
+    hooks?.callHook('globalModels', { msg: '解析全局数据' });
+
     Object.keys(options?.models || {}).forEach((itemId) => {
       if (options?.models?.[itemId]) {
         globalModels[itemId] = parseGlobalData(options?.models?.[itemId]!);
@@ -82,6 +84,8 @@ export class SchemaParser implements ISchemaParser {
 
     // compLib schema.platform
     // 解析三方组件依赖
+    hooks?.callHook('components', { msg: '解析三方组件依赖' });
+
     const getComponentsMap = (root: any, pageId: string) => {
       root.components.forEach((info: any) => {
         if (info?.customClass) {
@@ -156,6 +160,7 @@ export class SchemaParser implements ISchemaParser {
     // dataSource
     let dataSources: any[] = [];
     let globalDatas: any[] = [];
+    hooks?.callHook('containers', { msg: '解析页面数据' });
 
     containers = schemaArr.map((schema) => {
       getComponentsMap(_.cloneDeep(schema), pageIdMapping[schema.pagePath]);
@@ -229,6 +234,8 @@ export class SchemaParser implements ISchemaParser {
       };
     });
 
+    hooks?.callHook('deps', { msg: '建立所有容器的内部依赖索引' });
+
     // 建立所有容器的内部依赖索引
     containers.forEach((container) => {
       if (PAGE_TYPES.includes(container.containerType)) {
@@ -263,6 +270,8 @@ export class SchemaParser implements ISchemaParser {
     });
 
     // 分析路由配置
+    hooks?.callHook('routes', { msg: '分析路由配置' });
+
     const routes: IRouterInfo['routes'] = containers
       .filter((container) => PAGE_TYPES.includes(container.containerType))
       .map((page) => {
@@ -275,6 +284,8 @@ export class SchemaParser implements ISchemaParser {
       });
 
     // 获取 model 的弹窗配置
+    hooks?.callHook('model', { msg: '获取 model 的弹窗配置' });
+
     const models: IRouterInfo['routes'] = containers
       .filter((container) => MODAL_TYPES.includes(container.containerType))
       .map((page) => {
@@ -319,6 +330,8 @@ export class SchemaParser implements ISchemaParser {
       });
 
     // 分析项目 npm 依赖
+    hooks?.callHook('npm', { msg: '分析项目 npm 依赖' });
+
     let npms: INpmPackage[] = [];
     containers.forEach((con) => {
       const p = (con.deps || [])
