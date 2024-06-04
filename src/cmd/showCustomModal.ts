@@ -20,13 +20,23 @@ export function showCustomModal({
   const onOkString =
     Array.isArray(callback1) && callback1.length
       ? // @ts-ignore
-        `onOk: ${CMDGeneratorEvent(callback1, { platform, params:[`okData_${id}`] }, scope, config)},`
+        `onOk: ${CMDGeneratorEvent(
+          callback1,
+          { platform, params: [`okData_${id}`] },
+          scope,
+          config,
+        )},`
       : '\n';
 
   const onCancelString =
     Array.isArray(callback2) && callback2.length
       ? // @ts-ignore
-        `onCancel: ${CMDGeneratorEvent(callback2, { platform, params:[`okData_${id}`] }, scope, config)}`
+        `onCancel: ${CMDGeneratorEvent(
+          callback2,
+          { platform, params: [`okData_${id}`] },
+          scope,
+          config,
+        )}`
       : '\n';
   return `// 打开弹窗\n ModalManagerRef?.current?.openModal({pagePath: '${
     params.pagePath
