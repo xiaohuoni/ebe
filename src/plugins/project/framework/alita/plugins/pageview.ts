@@ -84,7 +84,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       name: COMMON_CHUNK_NAME.FileExport,
       content: `
 
-      export function parseSrc(src?: string): [string, any] {
+      export function parseSrc(src: string = ''): [string, any] {
         const arr = src?.split('?') as string[];
         return [arr[0], parse(arr[1])];
       }
@@ -118,6 +118,11 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
             }
           }
         }))
+
+        if (!Page) {
+          return null;
+        }
+        
         if (isDid.current !== true) {
           // 如果上层隐藏，就不要渲染，加载接口等
           if (topHidden || !props.visible) {
