@@ -15,11 +15,11 @@ function print(text: string, ...args: any[]) {
   // 支持命令中指定 appId 如 pnpm req appId
   const appId = process.argv.slice(2)[0] || '1106842174504439808'; // HJF
   // const appId = '772790966277644288'; // 开发环境
-  // const schemaFile = join(
-  //   __dirname,
-  //   `./demo/node_modules/.cache/${appId}/req.json`,
-  // );
-  const schemaFile = `./req.json`;
+  const schemaFile = join(
+    __dirname,
+    `./demo/node_modules/.cache/${appId}/req.json`,
+  );
+  // const schemaFile = `./req.json`;
   // 读取 Schema
   const schema = await loadSchemaFile(schemaFile);
 

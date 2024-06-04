@@ -43,16 +43,16 @@ export const LogTagsHash: any = {
     tag: '数据源生成',
     progress: 4,
   },
+  globalDataSource: {
+    tag: '全局数据源',
+    progress: 5,
+  },
   app: {
     tag: '运行时配置',
-    progress: 5,
+    progress: 6,
   },
   pageview: {
     tag: '页面视图',
-    progress: 6,
-  },
-  router: {
-    tag: '路由生成',
     progress: 7,
   },
   appConfig: {
@@ -62,10 +62,6 @@ export const LogTagsHash: any = {
   packageJSON: {
     tag: '项目依赖',
     progress: 9,
-  },
-  globalDataSource: {
-    tag: '全局数据源',
-    progress: 10,
   },
   end: {
     tag: '出码生成完成',

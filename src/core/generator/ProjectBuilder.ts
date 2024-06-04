@@ -175,11 +175,22 @@ export class ProjectBuilder implements IProjectBuilder {
           );
         } else if (childLogTag) {
           const childProcessLength = Object.keys(logTag?.childProcess).length;
+          console.log(
+            `(整体进度: ${parseInt(
+              (logTag?.progress / hooksLength) * 100 +
+                (childLogTag?.progress / childProcessLength) * 10 +
+                '',
+            )}%)`,
+          );
           this.printUtil.log(
             this.printUtil.prettier({
               tag: `[${logTag.tag}]`,
               childTag: `[${childLogTag?.tag}]`,
-              progress: `(整体进度: ${logTag?.progress}/${hooksLength})`,
+              progress: `(整体进度: ${parseInt(
+                (logTag?.progress / hooksLength) * 100 +
+                  (childLogTag?.progress / childProcessLength) * 10 +
+                  '',
+              )}%)`,
               childProcess: `{ 进度：${childLogTag?.progress}/${childProcessLength} }`,
               msg,
             }),
@@ -188,7 +199,9 @@ export class ProjectBuilder implements IProjectBuilder {
           this.printUtil.log(
             this.printUtil.prettier({
               tag: `[${logTag.tag}]`,
-              progress: `(整体进度: ${logTag?.progress}/${hooksLength})`,
+              progress: `(整体进度: ${parseInt(
+                (logTag?.progress / hooksLength) * 100 + '',
+              )}%)`,
               msg,
             }),
           );
@@ -212,6 +225,11 @@ export class ProjectBuilder implements IProjectBuilder {
     // Preprocess
     let preProcessorCount = 1;
     const projectPreProcessorsLength = this.projectPreProcessors.length;
+    if (projectPreProcessorsLength) {
+      hooks.callHook('preProcessor', {
+        msg: `无需执行前置处理器`,
+      });
+    }
     for (const preProcessor of this.projectPreProcessors) {
       // eslint-disable-next-line no-await-in-loop
       schema = await preProcessor(schema);
@@ -272,7 +290,9 @@ export class ProjectBuilder implements IProjectBuilder {
           path = this.template.slots.components.path;
         }
         hooks.callHook('containers', {
-          msg: `进度${index + 1}/${pagesLength}`,
+          msg: `生成页面${containerInfo.containerType} - ${
+            containerInfo.moduleName
+          } 进度${index + 1}/${pagesLength}`,
         });
         const { files } = await builder.generateModule(containerInfo);
 
@@ -299,7 +319,9 @@ export class ProjectBuilder implements IProjectBuilder {
               path = this.template.slots.components.path;
             }
             hooks.callHook('dataSources', {
-              msg: `进度${index + 1}/${dataSourcesLength}`,
+              msg: `生成数据源${containerInfo.moduleName} 进度${
+                index + 1
+              }/${dataSourcesLength}`,
             });
             const { files } = await builders.dataSources.generateModule(
               containerInfo,
@@ -317,15 +339,22 @@ export class ProjectBuilder implements IProjectBuilder {
 
     // useModels
     if (parseResult.globalDatas && builders.globalData) {
+      const globalDataSourcesLength = parseResult.globalDatas.length;
+
       const globalDataBuildResult: IModuleInfo[] =
         await Promise.all<IModuleInfo>(
-          parseResult.globalDatas.map(async (containerInfo) => {
+          parseResult.globalDatas.map(async (containerInfo, index) => {
             let path: string[];
             if (PAGE_TYPES.includes(containerInfo.containerType)) {
               path = this.template.slots.pages.path;
             } else {
               path = this.template.slots.components.path;
             }
+            hooks.callHook('globalDataSources', {
+              msg: `生成全局数据源${containerInfo.moduleName} 进度${
+                index + 1
+              }/${globalDataSourcesLength}`,
+            });
             const { files } = await builders.globalData.generateModule(
               containerInfo,
             );
@@ -342,7 +371,7 @@ export class ProjectBuilder implements IProjectBuilder {
     // app
     if (parseResult.app && builders.app) {
       hooks.callHook('app', {
-        msg: ``,
+        msg: `生成运行时配置，配置项目钩子，生命周期函数...`,
       });
       const { files } = await builders.app.generateModule(parseResult.app);
 
@@ -354,7 +383,7 @@ export class ProjectBuilder implements IProjectBuilder {
     // pageview
     if (parseResult.pageview && builders.pageview) {
       hooks.callHook('pageview', {
-        msg: ``,
+        msg: `生成页面视图，建立页面之间联系`,
       });
       const { files } = await builders.pageview.generateModule(
         parseResult.pageview,
@@ -367,9 +396,6 @@ export class ProjectBuilder implements IProjectBuilder {
     }
     // router
     if (parseResult.globalRouter && builders.router) {
-      hooks.callHook('router', {
-        msg: ``,
-      });
       const { files } = await builders.router.generateModule(
         parseResult.globalRouter,
       );
@@ -395,7 +421,7 @@ export class ProjectBuilder implements IProjectBuilder {
     // appConfig
     if (builders.appConfig) {
       hooks.callHook('appConfig', {
-        msg: ``,
+        msg: `生成项目级配置，配置代理`,
       });
       const { files } = await builders.appConfig.generateModule(parseResult);
 
@@ -484,7 +510,7 @@ export class ProjectBuilder implements IProjectBuilder {
     // packageJSON
     if (parseResult.project && builders.packageJSON) {
       hooks.callHook('packageJSON', {
-        msg: ``,
+        msg: `建立项目模块依赖，装载 ebe utils`,
       });
       const { files } = await builders.packageJSON.generateModule(
         parseResult.project,

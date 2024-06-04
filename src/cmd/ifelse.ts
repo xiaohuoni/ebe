@@ -187,13 +187,17 @@ export const getElseIf = ({
         hasCondition ? `(${getCondition(condition, config)}){` : '{'
       }
     ${CMDGeneratorFunction(callback, params, platform, scope, config)}
-  }${getElseIf({
-    value: elseIfs,
-    params,
-    platform,
-    scope,
-    config,
-  })}`;
+  }${
+    !!elseIfs && elseIfs.length
+      ? getElseIf({
+          value: elseIfs,
+          params,
+          platform,
+          scope,
+          config,
+        })
+      : ''
+  }`;
     })
     .join(' ');
 };
@@ -209,11 +213,15 @@ export function getIfelse({
   if (!condition) return '';
   return `if(${getCondition(condition, config)}){
 ${CMDGeneratorFunction(callback1, params, platform, scope, config)}
-  }${getElseIf({
-    value: elseIfs,
-    params,
-    platform,
-    scope,
-    config,
-  })}`;
+  }${
+    elseIfs && elseIfs.length
+      ? getElseIf({
+          value: elseIfs,
+          params,
+          platform,
+          scope,
+          config,
+        })
+      : ''
+  }`;
 }

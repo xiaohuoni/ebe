@@ -375,7 +375,7 @@ export const codeCreate = async ({
           });
           return;
         }
-        const p = log.match(/(?<=\(整体进度: ).*?(?=\))/)?.[0] || '0';
+        const p = log.match(/(?<=\(整体进度: ).*?(?=%)/)?.[0] || '0';
         const pro = p.split('/') as string[];
         if (pro && pro[0] && pro[1]) {
           onProgress({

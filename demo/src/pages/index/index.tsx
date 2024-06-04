@@ -13,14 +13,12 @@ import {
 import { Button, Form, Input, message, Progress, Switch } from 'antd';
 import { useEffect, useState } from 'react';
 // @ts-ignore
-// import { generateCode, init, publishers } from 'ebe';
+import { generateCode, init, publishers } from 'ebe';
 import {
   cleanTree,
   clearLXPagesDSL,
-  codeCreate,
   findAllItem,
   getPageDsls,
-  init,
   treeForEach,
 } from 'ebe-utils';
 
@@ -46,30 +44,6 @@ const Page = () => {
     setLoading(true);
     setPercent(0);
     setLog('');
-    await codeCreate({
-      appId: values.appId,
-      platform: values.platform ? 'APP' : 'PC',
-      baseUrl:
-        process.env.BASE_URL === 'http://10.10.179.140:8047/HJF/'
-          ? 'http://10.10.179.140:8048/HJF/'
-          : process.env.BASE_URL!,
-      services: {
-        findBusiCompById,
-        findPageInstByVersionId,
-        getThemeCss,
-        qryAttrSpecPage,
-        qryPageCompAssetList,
-        qryPageInstListByAppId,
-        queryFrontendDatasourcePage,
-        queryFrontendHookList,
-      },
-      onProgress: (d) => {
-        setLog(d.log);
-        setPercent(d.process);
-      },
-    });
-    setLoading(false);
-    return;
     // 根据 appId 获取当前应用的全部页面
     const attrSpecPage = await qryAttrSpecPage({
       appId: values.appId,
@@ -108,7 +82,7 @@ const Page = () => {
     });
 
     const pageIdMapping: any = {};
-    const appPageList = resultObject?.map((i) => {
+    const appPageList = resultObject?.map((i: any) => {
       pageIdMapping[i.pagePath] = i.pageId;
       return i;
     });
@@ -117,7 +91,7 @@ const Page = () => {
     let data = [];
     if (!values.pageId) {
       data = await Promise.all(
-        appPageList.map((i) => {
+        appPageList.map((i: any) => {
           lastPageId = i.pageId;
           return findPageInstByVersionId({
             appId: values.appId,
@@ -238,24 +212,24 @@ const Page = () => {
         options,
         schema: cleanedTree, // 编排搭建出来的 schema
         // workerJsUrl: '/ebe/worker.js',
-        onProgress: (dat) => {
-          if (!dat || !dat.data) return;
-          setLog(dat.data);
-          console.info(dat);
-          if (dat.data.includes('出码生成完成')) {
+        onProgress: (log: string) => {
+          if (!log) return;
+          setLog(log);
+          console.info(log);
+          if (log.includes('出码生成完成')) {
             setPercent(100);
             return;
           }
-          const p = dat.data.match(/(?<=\(整体进度: ).*?(?=\))/)?.[0] || '0';
+          const p = log.match(/(?<=\(整体进度: ).*?(?=%)/)?.[0] || '0';
           const pro = p.split('/');
           if (pro && pro[0] && pro[1]) {
-            setPercent((pro[0] / pro[1]) * 100);
+            setPercent((parseInt(pro[0]) / parseInt(pro[1])) * 100);
           }
         },
       } as any);
       console.log(result); // 出码结果(默认是递归结构描述的，可以传 flattenResult: true 以生成扁平结构的结果)
       publishers.zip().publish({
-        project: result, // 上一步生成的 project
+        project: result as any, // 上一步生成的 project
         projectSlug: values.appId, // 项目标识
       });
       setLoading(false);
