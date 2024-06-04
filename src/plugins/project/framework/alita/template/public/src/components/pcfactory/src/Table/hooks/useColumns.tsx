@@ -1758,7 +1758,8 @@ const useColumns = (props: any) => {
       // 当前执行时，antd表格列虽展示，但列宽按指定宽度渲染，需等下一次render，目前解决办法先延迟执行
       setTimeout(() => {
         const thList =
-          tableRef?.current?.querySelectorAll('colgroup')[1].children || [];
+          tableRef?.current?.querySelectorAll('colgroup')?.[1]?.children || [];
+
         for (let i = 0; i < thList.length; i += 1) {
           const rowWidth = thList[i].offsetWidth;
           columnWidth[i] = rowWidth;
