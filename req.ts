@@ -3,12 +3,9 @@ import * as fs from 'fs-extra';
 import { jsonc } from 'jsonc';
 import { join } from 'path';
 import { clearLXPagesDSL } from './ebe-utils/src/index';
+import { copyStatic } from './ebe-utils/src/node/copyStatic';
 import { createDiskPublisher } from './src/core/publisher/disk';
 import alita from './src/solutions/alita';
-
-function print(text: string, ...args: any[]) {
-  console.debug(`[code-creator/worker]: ${text}`, ...args);
-}
 
 (async () => {
   // 支持命令中指定 appId 如 pnpm req appId
@@ -24,6 +21,7 @@ function print(text: string, ...args: any[]) {
 
   const projectBuilder = alita({
     options: schema.options,
+    useEbeSetup: false,
     printUtil: {
       prettier: ({
         tag,
@@ -60,10 +58,10 @@ function print(text: string, ...args: any[]) {
     projectSlug,
   });
   // 走 ebe setup
-  // copyStatic(
-  //   join(__dirname, './src/plugins/project/framework/alita/template/public'),
-  //   join(__dirname, './templates/', projectSlug),
-  // );
+  copyStatic(
+    join(__dirname, './src/plugins/project/framework/alita/template/public'),
+    join(__dirname, './templates/', projectSlug),
+  );
   async function loadSchemaFile(schemaFile: string): Promise<any> {
     if (!schemaFile) {
       throw new Error('invalid schema file name');

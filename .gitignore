@@ -42,7 +42,7 @@ screenshot
 .eslintcache
 
 build
-types
+/types
 templates/req
 cache.json
 templates

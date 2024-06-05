@@ -241,6 +241,9 @@ export interface IProjectBuilderOptions {
 
   // 日志输出工具
   printUtil?: PrintUtilProps;
+
+  // 是否使用 ebe setup 功能
+  useEbeSetup?: boolean;
 }
 
 export interface IProjectBuilder {

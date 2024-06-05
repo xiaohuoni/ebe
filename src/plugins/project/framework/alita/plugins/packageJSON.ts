@@ -35,7 +35,7 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
         dev: 'alita dev',
         format: 'prettier --write .',
         plugin: 'alita plugin list',
-        postinstall: 'ebe setup && npm run format',
+        postinstall: cfg?.useEbeSetup ? 'ebe setup && npm run format' : '',
         start: 'alita dev',
       },
       dependencies: {

@@ -113,6 +113,7 @@ export default function createIceJsProjectBuilder(
       appConfig: [alita.plugins.config()],
       packageJSON: [
         alita.plugins.packageJSON({
+          useEbeSetup: options?.useEbeSetup !== false,
           dependenciesPc: {
             '@lingxiteam/charts-common': '^3.7.1-alpha.10',
             '@lingxiteam/lcdp-ueditor-react': '^1.0.0-alpha.8',
