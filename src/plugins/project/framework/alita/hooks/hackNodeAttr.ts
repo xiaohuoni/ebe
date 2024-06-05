@@ -40,9 +40,16 @@ export default function hackEngineApis(
     });
   } else {
     // 页面容器可能会传 style
+
+    let styleValue = 'style={{ height: "100%", ...style }}';
+
+    if (nodeItem.pageContainerType === 'BusiComp') {
+      styleValue = 'style={{ height: "100%", ...style, ...hiddenStyle }}';
+    }
+
     pieces.push({
       type: PIECE_TYPE.ATTR,
-      value: 'style={{ height: "100%", ...style }}',
+      value: styleValue,
     });
 
     // 根据页面类型不同，渲染不同的id

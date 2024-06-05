@@ -1,3 +1,5 @@
+import { useTopContainerHidden } from '@/utils/Context/Container';
+import { useHiddenStyle } from '@/utils/hooks';
 import { DependencyList, useEffect, useRef } from 'react';
 
 interface LifeCycleOptions {
@@ -71,6 +73,37 @@ const useLifeCyle = (options: LifeCycleOptions) => {
     useMount,
     useUnmounted,
     useStateUpdate,
+  };
+};
+
+/**
+ * 是否应该展示组件
+ * @param param0
+ * @returns
+ */
+export const useShouldVisible = ({
+  visible = true,
+  style,
+}: {
+  visible?: boolean;
+  style?: React.CSSProperties;
+}) => {
+  const isDid = useRef(false);
+  // 获取上层容器是否被隐藏
+  const topHidden = useTopContainerHidden();
+  const hiddenStyle = useHiddenStyle(visible, style);
+
+  if (isDid.current !== true) {
+    // 如果上层隐藏，就不要渲染，加载接口等
+    if (topHidden || !visible) {
+      return { visible: false, hiddenStyle };
+    }
+  }
+
+  isDid.current = true;
+  return {
+    visible: true,
+    hiddenStyle,
   };
 };
 

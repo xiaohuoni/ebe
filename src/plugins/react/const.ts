@@ -43,6 +43,7 @@ export const MODAL_CHUNK_NAME = {
 
 export const BOFRAMER_CHUNK_NAME = {
   SetMapState: 'BOFramerSetState',
+  ControlVisible: 'ControlVisible',
 };
 
 export const CUSTOM_ACTION_CHUNK_NAME = {

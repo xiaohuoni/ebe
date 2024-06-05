@@ -1,6 +1,4 @@
 import { COMMON_CHUNK_NAME } from '../../core/const/generator';
-import { shouldUsedGlobalData } from '../../utils/globalDataSource/general';
-
 import {
   BuilderComponentPlugin,
   BuilderComponentPluginFactory,
@@ -10,6 +8,8 @@ import {
   IContainerInfo,
 } from '../../core/types';
 import { getImportFrom, getImportsFrom } from '../../utils/depsHelper';
+import { shouldUsedGlobalData } from '../../utils/globalDataSource/general';
+import { isBOFramer } from '../../utils/schema/getBusiCompName';
 
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
@@ -25,7 +25,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       name: COMMON_CHUNK_NAME.ExternalDepsImport,
       content: `
 // 注意: 出码模块正在调试
-import React, { useImperativeHandle, useEffect } from 'react';
+import React, { useImperativeHandle, useEffect, useRef } from 'react';
 import moment from 'moment';
 import Popover from '@/components/Popover';
 import _ from 'lodash';
@@ -85,6 +85,12 @@ import classNames from 'classnames';
     next.ir.deps.push(getImportFrom('./useDataSource', 'useDataSource', false));
 
     next.ir.deps.push(getImportFrom('@/utils/uid', 'getUid', true));
+
+    if (isBOFramer(next.ir)) {
+      next.ir.deps.push(
+        getImportFrom('@/hooks/useLifeCycle', 'useShouldVisible', true),
+      );
+    }
 
     return next;
   };

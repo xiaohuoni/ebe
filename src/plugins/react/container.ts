@@ -27,10 +27,7 @@ import {
 import { ensureValidClassName } from '../../core/utils/validate';
 import { getImportFrom } from '../../utils/depsHelper';
 import { shouldUsedGlobalData } from '../../utils/globalDataSource/general';
-
-const isBOFramer = (ir: IContainerInfo) => {
-  return ir.containerType === 'BusiComp';
-};
+import { isBOFramer } from '../../utils/schema/getBusiCompName';
 
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
@@ -92,12 +89,18 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
             addToAwaitQueue,
             getStaticDataSourceService,
             ${isModal ? 'onOk: fatherOnOk,' : ''}
-            ${isModal ? 'closeModal' : ''}
+            ${isModal ? 'closeModal,' : ''}
         } = props;
 
         ${
           isBOFramer(ir)
-            ? 'const [state, setState] = useListenProps(props.state)'
+            ? `
+            const [state, setState] = useListenProps(props.state);
+            const { visible, hiddenStyle } = useShouldVisible({
+              visible: props.visible,
+              style: props.style
+            })
+            `
             : ''
         }
           `,
@@ -388,6 +391,22 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleStart,
         ],
       });
+
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: FileType.TSX,
+        name: BOFRAMER_CHUNK_NAME.ControlVisible,
+        content: `
+          if (!visible) {
+            return null;
+          }
+        `,
+        linkAfter: [
+          BOFRAMER_CHUNK_NAME.SetMapState,
+          LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleContent,
+          LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleStart,
+        ],
+      });
     }
 
     next.chunks.push({
@@ -398,6 +417,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         return <Spin spinning/>
       }`,
       linkAfter: [
+        BOFRAMER_CHUNK_NAME.ControlVisible,
         LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleEnd,
         LIFE_CYCLE_CHUNK_NAME.UseUnMountEnd,
         LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,

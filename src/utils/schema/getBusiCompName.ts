@@ -1,5 +1,6 @@
 import changeCase from 'change-case';
 import { pinyin } from 'pinyin-pro';
+import { IContainerInfo } from '../../core';
 
 // 业务组件id 和 组件名字的对应关系
 const busiCompMaps: Record<string, string> = {};
@@ -65,4 +66,8 @@ export const getBusiCompName = (
   busiCompNameSet.add(compName);
 
   return compName;
+};
+
+export const isBOFramer = (ir: IContainerInfo) => {
+  return ir.containerType === 'BusiComp';
 };
