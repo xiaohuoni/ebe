@@ -1,5 +1,6 @@
 import type { ParserPlugin } from '@babel/parser';
 import * as parser from '@babel/parser';
+import * as t from '@babel/types';
 
 export function parse(
   code: string,
@@ -7,7 +8,7 @@ export function parse(
     excludePlugins?: ParserPlugin[];
     includePlugins?: ParserPlugin[];
   } = {},
-) {
+): t.File {
   const excludePlugins = opts.excludePlugins || [];
   const includePlugins = opts.includePlugins || [];
   const plugins = (
