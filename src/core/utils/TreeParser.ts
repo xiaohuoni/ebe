@@ -23,6 +23,12 @@ interface TreeParserOptions {
     type?: string;
 
     /**
+     * 部分属性是动态读取的
+     * @returns
+     */
+    getType?: (item: any) => string;
+
+    /**
      * value值的字段
      * 可以使用 initialData.value  自动根据路径读取
      */
@@ -154,6 +160,13 @@ class TreeParser {
       }));
   }
 
+  private getType(item: any) {
+    if (typeof this.options?.alias?.getType === 'function') {
+      return this.options?.alias?.getType(item) ?? this.type;
+    }
+    return this.type;
+  }
+
   /**
    * 开始解析
    */
@@ -170,13 +183,15 @@ class TreeParser {
     const loop = (item: any, path: string[]) => {
       const code = get(item, this.fieldCode);
       const children = get(item, this.children);
-      const type = get(item, this.type);
+
+      const type = get(item, this.getType(item));
       const value = this.parseValue(get(item, this.value));
 
       const keyCode = this.getKey(code);
 
       // 更新是否继续下钻
       let shouldNext = shouldDeepLoop(type);
+
       // 先给予默认值
       let keyVal: string = value ?? '{}';
 
@@ -215,6 +230,7 @@ class TreeParser {
       if (value !== undefined) {
         shouldNext = false;
       }
+
       // 继续下钻 遍历
       if (shouldNext && Array.isArray(children)) {
         const brotherKeys: string[] = [];

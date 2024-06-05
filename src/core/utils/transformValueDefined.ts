@@ -158,7 +158,12 @@ export const transformValueDefined = (
   dataSourceName: string,
   isOrder: boolean = false,
 ) => {
-  const parser = new TreeParser();
+  const parser = new TreeParser({
+    alias: {
+      getType: (item) =>
+        item.attrType && item.attrType !== 'field' ? 'attrType' : 'type',
+    },
+  });
 
   const topVarSuffix = createId();
 
