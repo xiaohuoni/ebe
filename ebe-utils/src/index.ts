@@ -281,12 +281,15 @@ export const codeCreate = async ({
 
     let themeCss = '';
     try {
-      // 这个接口总是出错，莫名其妙
+      // 这个接口没有数据就直接等到死，无语！！！
       // 根据 appId 获取当前应用的全部页面
-      // themeCss = await services.getThemeCss({
-      //   appId,
-      //   terminalType: platform,
-      // });
+      themeCss = await Promise.race([
+        services.getThemeCss({
+          appId,
+          terminalType: platform,
+        }),
+        new Promise((resolve) => setTimeout(resolve, 3000)),
+      ]);
     } catch (error) {}
 
     // 根据 appId 获取当前应用的使用的自定义组件
