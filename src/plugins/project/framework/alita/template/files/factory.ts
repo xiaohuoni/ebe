@@ -28,7 +28,6 @@ export default function getFile(
       .map((i: any) => i + ' as _' + i)
       .join(',')}} from './${factory}/src/index.component';
   import { preprocessMethods } from '@/utils/preprocess';
-  ${config?.themeCss ? 'import "@/styles/themeCss.css"' : ''}
   export { CustomComponent } from './CustomComponent';
   export const syncInputValue = (
     e: unknown,

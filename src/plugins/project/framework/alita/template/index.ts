@@ -25,8 +25,8 @@ const alitaTemplate: IProjectTemplate = {
       fileName: 'app',
     },
     themeCss: {
-      path: ['src', 'styles'],
-      fileName: 'themeCss',
+      path: ['src'],
+      fileName: 'overrides',
     },
   },
 
