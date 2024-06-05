@@ -52,15 +52,13 @@ const Page = () => {
     });
 
     // 根据 appId 获取当前应用的全部页面
-    const { resultObject = [] } = await qryPageInstListByAppId({
+    const resultObject = await qryPageInstListByAppId({
       appId: values.appId,
       terminalType: values.platform ? 'APP' : 'PC',
     });
-    const { resultObject: frontendHookList = [] } = await queryFrontendHookList(
-      {
-        appId: values.appId,
-      },
-    );
+    const frontendHookList = await queryFrontendHookList({
+      appId: values.appId,
+    });
 
     // 根据 appId 获取当前应用的全部页面
     const themeCss = await getThemeCss({
@@ -82,20 +80,18 @@ const Page = () => {
     });
     const globalDataMap: Record<string, any> = {};
 
-    if (globalDataInfo.resultCode === '0') {
-      const dataSourceList = globalDataInfo.resultObject?.list || [];
-      dataSourceList.forEach((item: any) => {
-        const { frontendDatasourceContent, ...restItem } = item;
+    const dataSourceList = globalDataInfo?.list || [];
+    dataSourceList.forEach((item: any) => {
+      const { frontendDatasourceContent, ...restItem } = item;
 
-        try {
-          globalDataMap[item.frontendDatasourceMainId] = {
-            ...restItem,
-            frontendDatasourceContent: JSON.parse(frontendDatasourceContent),
-          };
-        } catch (err) {}
-        return null;
-      });
-    }
+      try {
+        globalDataMap[item.frontendDatasourceMainId] = {
+          ...restItem,
+          frontendDatasourceContent: JSON.parse(frontendDatasourceContent),
+        };
+      } catch (err) {}
+      return null;
+    });
     const pageIdMapping: any = {};
     const appPageList = resultObject?.map((i: any) => {
       pageIdMapping[i.pagePath] = i.pageId;
@@ -186,10 +182,8 @@ const Page = () => {
     console.log(busiData);
     const busiCompMapping: any = {};
     const busiPages = busiData.map((i, index) => {
-      const busiData = JSON.parse(
-        i?.resultObject?.busiCompVersion?.sourceCodeJson,
-      );
-      busiData.busiCompId = i?.resultObject?.busiCompId;
+      const busiData = JSON.parse(i?.busiCompVersion?.sourceCodeJson);
+      busiData.busiCompId = i?.busiCompId;
       busiCompMapping[itemLists[index]] = busiData.id;
       return busiData;
     });
@@ -203,14 +197,12 @@ const Page = () => {
       appId: values.appId,
       pageIdMapping,
       busiCompMapping,
-      compAssetList: compAssetList?.resultObject || [],
+      compAssetList: compAssetList || [],
       baseUrl: 'http://172.21.72.205:10010/',
       appConfig: {
         frontendHookList,
       },
-      attrSpecPage: (attrSpecPage?.resultObject?.list || []).map(
-        (i: any) => i.attrNbr,
-      ),
+      attrSpecPage: (attrSpecPage?.list || []).map((i: any) => i.attrNbr),
       themeCss,
       models: globalDataMap,
     };
@@ -254,23 +246,16 @@ const Page = () => {
       cache: false,
     });
     console.log(res);
-    if (res.resultCode === '0') {
-      message.success(res.resultObject.message);
-      if (localGenerete) {
-        const lgRes = await localgenerate({
-          appId: values.appId,
-        });
-        console.log(res);
-        if (lgRes.resultCode === '0') {
-          message.success(lgRes.resultObject.message);
-        } else {
-          message.error(lgRes.resultObject.message);
-        }
-      }
-      // window.open(`/download?appId=${values.appId}`);
-    } else {
-      message.error(res.resultObject.message);
+    message.success(res.message);
+    if (localGenerete) {
+      const lgRes = await localgenerate({
+        appId: values.appId,
+      });
+      console.log(res);
+      message.success(lgRes.message);
     }
+    // window.open(`/download?appId=${values.appId}`);
+
     setLoading(false);
   };
   return (
