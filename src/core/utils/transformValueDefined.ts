@@ -158,10 +158,12 @@ export const transformValueDefined = (
   dataSourceName: string,
   isOrder: boolean = false,
 ) => {
+  const getType = (item: any) =>
+    item.attrType && item.attrType !== 'field' ? 'attrType' : 'type';
+
   const parser = new TreeParser({
     alias: {
-      getType: (item) =>
-        item.attrType && item.attrType !== 'field' ? 'attrType' : 'type',
+      getType,
     },
   });
 
@@ -197,7 +199,7 @@ export const transformValueDefined = (
     },
     ({ item }, stop) => {
       if (item?.value?.type?.length) {
-        if (item.type === 'object') {
+        if (item?.[getType(item)] === 'object') {
           stop();
         }
         const [targetVal, top] = GetReqParamValues(item.value, {
