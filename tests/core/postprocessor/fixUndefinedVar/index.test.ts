@@ -12,7 +12,6 @@ describe('fixSyntaxError 解决部分未定义变量导致的错误', () => {
     ['const c = { a: window.a }', `const c = { a: window.a }`],
     ['const c = { a: console.log }', `const c = { a: console.log }`],
   ])('from %s to %s', (code, expected) => {
-    console.log(fixUndefinedVar()(code, 'ts').split('\n').join(''));
     expectValue(expected, fixUndefinedVar()(code, 'ts').split('\n').join(''));
   });
 });

@@ -26,8 +26,8 @@ export interface IProjectSchema extends Component {
   pageLayout: string;
   pageDynamicFlag: boolean;
   catalogItemId: string;
-  ignoreLogin: false;
-  hideNavBar: false;
+  ignoreLogin: boolean;
+  hideNavBar: boolean;
   layout: string;
   searchParams: any[];
   compState: any[];
@@ -48,6 +48,7 @@ export interface IProjectSchema extends Component {
   pageId?: string;
   // 全局数据源
   globalDataSource: any;
+  functors?: any;
   [LoopMarkSymbol]?: {
     /**
      * 父循环容器的组件id

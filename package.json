@@ -1,6 +1,6 @@
 {
   "name": "ebe",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "",
   "keywords": [],
   "license": "ISC",
@@ -31,7 +31,9 @@
     "prepare": "husky",
     "req": "esno req.ts",
     "sync": "esno scripts/syncFactoryConfig.ts",
-    "test": "jest"
+    "test:update-snapshots": "jest -u",
+    "test": "jest",
+    "test:cov": "jest --collectCoverage"
   },
   "dependencies": {
     "@babel/generator": "^7.12.12",

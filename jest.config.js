@@ -8,8 +8,10 @@ module.exports = {
   collectCoverage: false,
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
+    'ebe-utils/src/**/*.{ts,tsx}',
     '!**/node_modules/**',
     '!**/vendor/**',
+    '!**/public/**'
   ],
   testMatch: ['<rootDir>/tests/**/*.test.ts'],
 };
