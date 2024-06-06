@@ -1,6 +1,8 @@
+## 今天的灵感或闪念
+
 - [x] ebe-utils/src
   - [x] constants.ts
-  - [ ] index.ts
+  - [x] index.ts ✅ 2024-06-06
   - [ ] node/cli.ts
   - [ ] node/constants.ts
   - [x] node/copyStatic.ts
@@ -103,31 +105,31 @@
   - [x] common.ts
   - [x] index.ts
   - [x] requestUtil.ts
-- [ ] src/parser
-  - [ ] SchemaParser.ts
+- [x] src/parser ✅ 2024-06-06
+  - [x] SchemaParser.ts ✅ 2024-06-06
 - [x] src/plugins/project/framework/alita
   - [x] index.ts
-- [ ] src/plugins/project/framework/alita/hooks
-  - [ ] hackNodeAttr.ts
+- [x] src/plugins/project/framework/alita/hooks ✅ 2024-06-06
+  - [x] hackNodeAttr.ts ✅ 2024-06-06
 - [ ] src/plugins/project/framework/alita/plugins
   - [x] app.ts
-  - [ ] busiComp.ts
-  - [x] config.ts
-  - [x] const.ts
-  - [x] globalData.ts
-  - [ ] mobileLayout.ts
-  - [x] packageJSON.ts
-  - [ ] pageview.ts
-  - [ ] styleInject.ts
-  - [ ] themeCss.ts
+  - [x] busiComp.ts ✅ 2024-06-06
+  - [x] config.ts ✅ 2024-06-06
+  - [ ] const.ts
+  - [ ] globalData.ts
+  - [x] mobileLayout.ts ✅ 2024-06-06
+  - [ ] packageJSON.ts
+  - [x] pageview.ts ✅ 2024-06-06
+  - [x] styleInject.ts ✅ 2024-06-06
+  - [x] themeCss.ts ✅ 2024-06-06
 - [ ] src/plugins/project/framework/alita/plugins/dataSource
   - [ ] generate.ts
-  - [x] index.ts
+  - [ ] index.ts
   - [ ] template.ts
   - [ ] type.ts
   - [ ] utils.ts
 - [ ] src/plugins/project/framework/alita/plugins/models
-  - [x] index.ts
+  - [ ] index.ts
 - [ ] src/plugins/project/framework/alita/template
   - [x] index.ts
   - [ ] static-files.ts
@@ -135,7 +137,7 @@
   - [ ] factory.ts
   - [ ] pcfactory.ts
 - [ ] src/plugins/project/framework/alita/template/files
-  - [ ] attrSpecPage.ts
+  - [x] attrSpecPage.ts ✅ 2024-06-06
   - [ ] constants.ts
   - [ ] customComponent.ts
   - [ ] editorconfig.ts
@@ -165,11 +167,11 @@
   - [ ] withPageHOC.ts
 - [ ] src/plugins/react
   - [x] const.ts
-  - [ ] container.ts
-  - [ ] containerLifeCycle.ts
-  - [ ] customActionMap.ts
+  - [x] container.ts ✅ 2024-06-06
+  - [x] containerLifeCycle.ts ✅ 2024-06-06
+  - [x] customActionMap.ts ✅ 2024-06-06
   - [x] jsx.ts
-  - [ ] reactCommonDeps.ts
+  - [x] reactCommonDeps.ts ✅ 2024-06-06
 - [ ] src/polyfills
   - [ ] buffer.ts
 - [x] src/solutions
