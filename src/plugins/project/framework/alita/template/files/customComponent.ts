@@ -25,6 +25,7 @@ export default function getFile(
   react: require('react'),
   ReactDOM: require('react-dom'),
   'react-dom': require('react-dom'),
+  ${isMobile? `antdMobile: require('antd-mobile-5')`: `antd: require('antd')` }
   // TODO: 依赖清理
   // classnames: require('classnames'),
   // 'rc-tween-one': require('rc-tween-one'),
