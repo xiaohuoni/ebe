@@ -1,46 +1,139 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`plugin react jsx compilation completed 1`] = `
+exports[`plugin react customActionMap compilation completed 1`] = `
 Object {
   "chunks": Array [
     Object {
-      "content": "<Page><View name=\\"页面\\" backgroundType={{\\"type\\": \\"cleanColor\\",
-\\"color\\": \\"rgba(255, 255, 255, 1)\\"}} $$componentItem={{id: 'View_947893_1',uid: \\"View_947893_1\\"}} className=\\"View_View_947893_1\\" visible style={{\\"minHeight\\": \\"100%\\",
-\\"display\\": \\"flex\\",
-\\"padding\\": \\"20px 20px 20px 20px\\",
-\\"flexDirection\\": \\"column\\",
-\\"overflowY\\": \\"auto\\",
-\\"width\\": \\"auto\\",
-\\"height\\": \\"auto\\"}}><Button name=\\"按钮\\" iconPosition=\\"left\\" btnText=\\"按钮\\" hasIcon={false} $$componentItem={{id: 'Button_830932',uid: \\"Button_830932\\"}} className=\\"Button_Button_830932\\" visible style={{\\"textAlign\\": \\"center\\"}} onClick={()=>{ console.log(\\"这里找不到参数/？\\")}} /><BOFramer busiCompId=\\"1107157718352924674\\" name=\\"新增Web业务组件\\" state={{\\"input\\": data?.lcdp_domain_user?.user_name}} $$componentItem={{id: 'BOFramer_863053',uid: \\"BOFramer_863053\\"}} className=\\"BOFramer_BOFramer_863053\\" style={{\\"margin\\": \\"0 0 12px 0\\"}} /><Form name=\\"表单\\" colSpan={8} labelCol={8} wrapperCol={16} layout=\\"vertical\\" colon labelAlign=\\"right\\" colSpace={16} rowSpace={16} formCode=\\"Code_Form_475914\\" formType=\\"normal\\" genRuleType=\\"key\\" relationDataSource={data?.lcdp_domain_user} $$componentItem={{id: 'Form_475914',uid: \\"Form_475914\\"}} className=\\"Form_Form_475914\\" visible style={{\\"padding\\": \\"0px 0px 0px 0px\\"}} onValuesChange={()=>{ console.log(\\"这里找不到参数/？\\")}}><InputNumber name=\\"用户ID\\" size=\\"default\\" labelCol={8} wrapperCol={16} step={1} titleTip=\\"notext\\" tipSize=\\"default\\" tipWidth=\\"240px\\" tipHeight=\\"auto\\" required={false} min={0} fieldName=\\"user_id\\" showMore={false} defaultValue={null} attr={{}} regexp={[]} value={data?.lcdp_domain_user?.user_id} formItemIndex={0} $$componentItem={{id: 'InputNumber_user_id_267925',uid: \\"InputNumber_user_id_267925\\"}} className=\\"InputNumber_InputNumber_user_id_267925\\" visible /><Input name=\\"用户名称\\" size=\\"default\\" labelCol={8} wrapperCol={16} titleTip=\\"notext\\" tipSize=\\"default\\" tipWidth=\\"240px\\" tipHeight=\\"auto\\" prefixIconPosition=\\"before\\" postfixIconPosition=\\"before\\" required={false} placeholder=\\"请输入\\" allowClear fieldName=\\"user_name\\" showMore={false} defaultValue={null} attr={{}} regexp={[]} value={data?.lcdp_domain_user?.user_name} formItemIndex={1} icon={{\\"theme\\": \\"outlined\\",
-\\"fontAddress\\": \\"\\",
-\\"isIconFont\\": false,
-\\"iconFileInfo\\": {}}} prefixIcon={{\\"theme\\": \\"outlined\\",
-\\"fontAddress\\": \\"\\",
-\\"isIconFont\\": false,
-\\"iconFileInfo\\": {}}} $$componentItem={{id: 'Input_user_name_047119',uid: \\"Input_user_name_047119\\"}} className=\\"Input_Input_user_name_047119\\" visible /><StdUpload name=\\"文件上传\\" uploadStyle=\\"click\\" listType=\\"text\\" titleTip=\\"notext\\" tipSize=\\"default\\" tipWidth=\\"240px\\" tipHeight=\\"auto\\" viewMode=\\"popUp\\" fileNameEncode={false} isWatermark={false} optionalFile={false} fileName=\\"file\\" labelCol={8} wrapperCol={16} numberLimit={5} singleFileMaxSize=\\"50MB\\" uploadText=\\"点击上传\\" uploadTimeout={30000} deleteIcon={{\\"deleteIconTheme\\": \\"outlined\\",
-\\"deleteIconType\\": \\"delete\\",
-\\"deleteIconIsIconFont\\": false,
-\\"showRemoveIcon\\": true}} downloadIcon={{\\"downloadIconTheme\\": \\"outlined\\",
-\\"downloadIconType\\": \\"download\\",
-\\"downloadIconIsIconFont\\": false,
-\\"showDownloadIcon\\": true}} previewIcon={{\\"previewIconTheme\\": \\"outlined\\",
-\\"previewIconType\\": \\"eye\\",
-\\"previewIconIsIconFont\\": false,
-\\"showPreviewIcon\\": true}} modalWidth={960} modalHeight={648} formItemIndex={2} fieldName=\\"231312\\" icon={{\\"theme\\": \\"outlined\\",
-\\"fontAddress\\": \\"\\",
-\\"isIconFont\\": false,
-\\"iconFileInfo\\": {},
-\\"type\\": undefined}} $$componentItem={{id: 'StdUpload_238057',uid: \\"StdUpload_238057\\"}} className=\\"StdUpload_StdUpload_238057\\" visible onCheckUpload={()=>{ console.log(\\"这里找不到参数/？\\")}} /></Form><Button name=\\"按钮\\" iconPosition=\\"left\\" btnText=\\"调用当前自定义事件\\" hasIcon={false} $$componentItem={{id: 'Button_670068',uid: \\"Button_670068\\"}} className=\\"Button_Button_670068\\" visible style={{\\"textAlign\\": \\"center\\"}} onClick={()=>{ console.log(\\"这里找不到参数/？\\")}} /><Button name=\\"按钮\\" iconPosition=\\"left\\" btnText=\\"打开弹窗\\" hasIcon={false} $$componentItem={{id: 'Button_925275',uid: \\"Button_925275\\"}} className=\\"Button_Button_925275\\" visible style={{\\"textAlign\\": \\"center\\"}} onClick={()=>{ console.log(\\"这里找不到参数/？\\")}} /></View></Page>",
+      "content": "
+          import { historytool, HISTORYTYPES } from '@/utils/historytool';
+          import {
+            previewFile,
+            saveBlobFile,
+            batchDownloadFileByIds,
+            downloadByFileCode,
+          } from '@/utils/platform';
+          import BannerModal from '@/components/BannerModal';
+          import customFuncMapping from '@/utils/customFuncMapping';
+
+          import { View,Button,Form,InputNumber,Input,StdUpload } from '@/components/factory';
+import XinZengWebYeWuZuJian from '@/components/XinZengWebYeWuZuJian';
+
+          const useCustomAction = (context: any) => { const { 
+            api,
+            getValue,
+    setValue,
+    getVisible,
+    setVisible,
+    getRequired,
+    setRequired,
+    callComponentMethod,
+    setDisabled,
+    getDisabled,
+    getFormValue,
+    validateForm,
+    resetForm,
+    clearValue,
+    setFormValues,
+    asyncCallComponentMethod,
+    validateAllForm,
+    getAllFormValues,
+    resetAllForm,
+    saveBlobFile,
+    messageApi,
+    refs,
+             data,
+            updateData,
+            resetDataSource,
+            reloadCustomDataSource,
+            dataSnapshot,
+            reloadServiceDataSource,
+            reloadObjectDataSource,
+            ModalManagerRef,
+            functorsMap,
+            ExpBusiObjModalRef,
+            ExpSQLServiceModalRef,
+            ImportBusiObjModalRef,
+            lcdpApi,
+            urlParam,
+            state,
+            getTriggerRelDataSource,
+            fatherOnOk,
+            closeModal,
+            
+    globalDataReadyComplete,
+    globalData,
+    
+  
+           } = context; const parant = (options_768712: any)=>new Promise(async (resolve, reject) =>{ 
+      
+      // 打印日志
+ console.log(options_768712);
+// 退出事件 
+  resolve(\\"123123321\\");
+    })
+ const customActionMap =  {
+parant 
+} 
+return customActionMap; 
+} 
+ export default useCustomAction;",
       "fileType": "tsx",
       "linkAfter": Array [
-        "ReactComponentRenderStart",
-        "ReactComponentRenderPre",
+        "CommonClassDefineStart",
+        "CommonClassDefineStaticVar",
+        "CommonClassDefineStaticMethod",
+        "CommonClassDefineInsVar",
+        "CommonClassDefineInsVarMethod",
       ],
-      "name": "ReactComponentRenderJSX",
+      "name": "CustomActionMap",
+      "subModule": "customAction",
+      "type": "string",
+    },
+    Object {
+      "content": "// 挂载自定义事件
+        customFuncMapping.add(customActionId, customActionMap);",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "UseMountStart",
+      ],
+      "name": "DidMount",
+      "type": "string",
+    },
+    Object {
+      "content": "// 页面销毁移除
+        customFuncMapping.remove(customActionId);",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "UseUnMountStart",
+      ],
+      "name": "WillUnmount",
+      "type": "string",
+    },
+    Object {
+      "content": "
+ // 定义页面的自定义事件 
+  const customActionMap = useCustomAction({ ...useTools, ...useDataSourceTool,  ...sandBoxContext.current, state,}
+      )",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "CommonClassDefineStart",
+        "CommonClassDefineStaticVar",
+        "CommonClassDefineStaticMethod",
+        "CommonClassDefineInsVar",
+        "CommonClassDefineInsVarMethod",
+        "CallDataSource",
+        "PageTooL",
+      ],
+      "name": "CustomActionMapUseImperativeHandle",
       "type": "string",
     },
   ],
-  "contextData": Object {},
+  "contextData": Object {
+    "options": Object {
+      "busiCompMapping": Object {},
+      "pageIdMapping": Object {},
+    },
+  },
   "depNames": Array [],
   "ir": Object {
     "actions": Array [],
@@ -5151,6 +5244,7 @@ Object {
                 "children": Array [],
                 "dataId": 171576635425161150,
                 "dataName": "action",
+                "line_number": 1,
                 "options": Object {
                   "compId": "console",
                   "compName": "system",
@@ -5174,6 +5268,7 @@ Object {
                 "children": Array [],
                 "dataId": 171593458287623300,
                 "dataName": "action",
+                "line_number": 2,
                 "options": Object {
                   "compId": "return",
                   "compName": "system",
@@ -7732,6 +7827,14 @@ Object {
         "exportName": "StdUpload",
         "package": "@/components/factory",
         "type": "StdUpload",
+        "version": "*",
+      },
+      Object {
+        "dependencyType": "External",
+        "destructuring": false,
+        "exportName": "useCustomAction",
+        "package": "./customAction",
+        "type": "useCustomAction",
         "version": "*",
       },
     ],

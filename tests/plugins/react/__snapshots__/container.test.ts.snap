@@ -1,46 +1,363 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`plugin react jsx compilation completed 1`] = `
+exports[`plugin react container compilation completed 1`] = `
 Object {
   "chunks": Array [
     Object {
-      "content": "<Page><View name=\\"页面\\" backgroundType={{\\"type\\": \\"cleanColor\\",
-\\"color\\": \\"rgba(255, 255, 255, 1)\\"}} $$componentItem={{id: 'View_947893_1',uid: \\"View_947893_1\\"}} className=\\"View_View_947893_1\\" visible style={{\\"minHeight\\": \\"100%\\",
-\\"display\\": \\"flex\\",
-\\"padding\\": \\"20px 20px 20px 20px\\",
-\\"flexDirection\\": \\"column\\",
-\\"overflowY\\": \\"auto\\",
-\\"width\\": \\"auto\\",
-\\"height\\": \\"auto\\"}}><Button name=\\"按钮\\" iconPosition=\\"left\\" btnText=\\"按钮\\" hasIcon={false} $$componentItem={{id: 'Button_830932',uid: \\"Button_830932\\"}} className=\\"Button_Button_830932\\" visible style={{\\"textAlign\\": \\"center\\"}} onClick={()=>{ console.log(\\"这里找不到参数/？\\")}} /><BOFramer busiCompId=\\"1107157718352924674\\" name=\\"新增Web业务组件\\" state={{\\"input\\": data?.lcdp_domain_user?.user_name}} $$componentItem={{id: 'BOFramer_863053',uid: \\"BOFramer_863053\\"}} className=\\"BOFramer_BOFramer_863053\\" style={{\\"margin\\": \\"0 0 12px 0\\"}} /><Form name=\\"表单\\" colSpan={8} labelCol={8} wrapperCol={16} layout=\\"vertical\\" colon labelAlign=\\"right\\" colSpace={16} rowSpace={16} formCode=\\"Code_Form_475914\\" formType=\\"normal\\" genRuleType=\\"key\\" relationDataSource={data?.lcdp_domain_user} $$componentItem={{id: 'Form_475914',uid: \\"Form_475914\\"}} className=\\"Form_Form_475914\\" visible style={{\\"padding\\": \\"0px 0px 0px 0px\\"}} onValuesChange={()=>{ console.log(\\"这里找不到参数/？\\")}}><InputNumber name=\\"用户ID\\" size=\\"default\\" labelCol={8} wrapperCol={16} step={1} titleTip=\\"notext\\" tipSize=\\"default\\" tipWidth=\\"240px\\" tipHeight=\\"auto\\" required={false} min={0} fieldName=\\"user_id\\" showMore={false} defaultValue={null} attr={{}} regexp={[]} value={data?.lcdp_domain_user?.user_id} formItemIndex={0} $$componentItem={{id: 'InputNumber_user_id_267925',uid: \\"InputNumber_user_id_267925\\"}} className=\\"InputNumber_InputNumber_user_id_267925\\" visible /><Input name=\\"用户名称\\" size=\\"default\\" labelCol={8} wrapperCol={16} titleTip=\\"notext\\" tipSize=\\"default\\" tipWidth=\\"240px\\" tipHeight=\\"auto\\" prefixIconPosition=\\"before\\" postfixIconPosition=\\"before\\" required={false} placeholder=\\"请输入\\" allowClear fieldName=\\"user_name\\" showMore={false} defaultValue={null} attr={{}} regexp={[]} value={data?.lcdp_domain_user?.user_name} formItemIndex={1} icon={{\\"theme\\": \\"outlined\\",
-\\"fontAddress\\": \\"\\",
-\\"isIconFont\\": false,
-\\"iconFileInfo\\": {}}} prefixIcon={{\\"theme\\": \\"outlined\\",
-\\"fontAddress\\": \\"\\",
-\\"isIconFont\\": false,
-\\"iconFileInfo\\": {}}} $$componentItem={{id: 'Input_user_name_047119',uid: \\"Input_user_name_047119\\"}} className=\\"Input_Input_user_name_047119\\" visible /><StdUpload name=\\"文件上传\\" uploadStyle=\\"click\\" listType=\\"text\\" titleTip=\\"notext\\" tipSize=\\"default\\" tipWidth=\\"240px\\" tipHeight=\\"auto\\" viewMode=\\"popUp\\" fileNameEncode={false} isWatermark={false} optionalFile={false} fileName=\\"file\\" labelCol={8} wrapperCol={16} numberLimit={5} singleFileMaxSize=\\"50MB\\" uploadText=\\"点击上传\\" uploadTimeout={30000} deleteIcon={{\\"deleteIconTheme\\": \\"outlined\\",
-\\"deleteIconType\\": \\"delete\\",
-\\"deleteIconIsIconFont\\": false,
-\\"showRemoveIcon\\": true}} downloadIcon={{\\"downloadIconTheme\\": \\"outlined\\",
-\\"downloadIconType\\": \\"download\\",
-\\"downloadIconIsIconFont\\": false,
-\\"showDownloadIcon\\": true}} previewIcon={{\\"previewIconTheme\\": \\"outlined\\",
-\\"previewIconType\\": \\"eye\\",
-\\"previewIconIsIconFont\\": false,
-\\"showPreviewIcon\\": true}} modalWidth={960} modalHeight={648} formItemIndex={2} fieldName=\\"231312\\" icon={{\\"theme\\": \\"outlined\\",
-\\"fontAddress\\": \\"\\",
-\\"isIconFont\\": false,
-\\"iconFileInfo\\": {},
-\\"type\\": undefined}} $$componentItem={{id: 'StdUpload_238057',uid: \\"StdUpload_238057\\"}} className=\\"StdUpload_StdUpload_238057\\" visible onCheckUpload={()=>{ console.log(\\"这里找不到参数/？\\")}} /></Form><Button name=\\"按钮\\" iconPosition=\\"left\\" btnText=\\"调用当前自定义事件\\" hasIcon={false} $$componentItem={{id: 'Button_670068',uid: \\"Button_670068\\"}} className=\\"Button_Button_670068\\" visible style={{\\"textAlign\\": \\"center\\"}} onClick={()=>{ console.log(\\"这里找不到参数/？\\")}} /><Button name=\\"按钮\\" iconPosition=\\"left\\" btnText=\\"打开弹窗\\" hasIcon={false} $$componentItem={{id: 'Button_925275',uid: \\"Button_925275\\"}} className=\\"Button_Button_925275\\" visible style={{\\"textAlign\\": \\"center\\"}} onClick={()=>{ console.log(\\"这里找不到参数/？\\")}} /></View></Page>",
+      "content": "
+        // 生成一个Id，用来记录当前页面所有的自定义事件
+        const renderId = 'pageIdError';
+        const $1231781$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
+          const {
+            attrDataMap={},customActionMapRef,routerData,lcdpApi, addActionTimer, clearActionTimer,
+            injectData, sandBoxContext, refs, functorsMap,
+            state,
+            style, urlParam,  
+            setComponentRef,
+            ModalManagerRef,
+            ExpSQLServiceModalRef,
+            ExpBusiObjModalRef,
+            ImportBusiObjModalRef,
+            BannerModal,
+            customActionId,
+            lcdpParentRenderId,
+            addToAwaitQueue,
+            getStaticDataSourceService,
+            
+            
+        } = props;
+
+        
+          ",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "CommonExternalDependencyImport",
+        "CommonInternalDependencyImport",
+        "CommonImportAliasDefine",
+        "CommonFileScopeVarDefine",
+        "CommonFileScopeMethodDefine",
+      ],
+      "name": "CommonClassDefineStart",
+      "type": "string",
+    },
+    Object {
+      "content": "
+        const useDataSourceTool = useDataSource({
+          urlParam,
+          routerData,
+          state,
+          lcdpApi,
+        });
+        const {
+          data,
+          updateData,
+          resetDataSource,
+          reloadCustomDataSource,
+          dataSnapshot,
+          reloadServiceDataSource,
+          reloadObjectDataSource,
+          loading: dataLoading,
+          dataReadyComplete
+        } = useDataSourceTool;
+        ",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "CommonClassDefineStart",
+      ],
+      "name": "CallDataSource",
+      "type": "string",
+    },
+    Object {
+      "content": "//通用的工具类方法 
+ const useTools = useTool(refs, { addToAwaitQueue });
+ const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled, getDisabled, asyncGetValue, validateForm, getFormValue, resetForm, clearValue, setFormValues, getTriggerRelDataSource, asyncCallComponentMethod,validateAllForm,getAllFormValues, resetAllForm, updateNodeChildren } = useTools",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "CallGlobalDataSource",
+        "CommonClassDefineStart",
+      ],
+      "name": "PageTooL",
+      "type": "string",
+    },
+    Object {
+      "content": "})",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "CommonClassDefineStart",
+        "CommonClassDefineStaticVar",
+        "CommonClassDefineStaticMethod",
+        "CommonClassDefineInsVar",
+        "CommonClassDefineInsVarMethod",
+        "CommonClassDefineInsMethod",
+        "CommonClassDefineInsPrivateMethod",
+        "CommonClassDefineConstructorEnd",
+        "ModalEventUseImperativeHandle",
+        "PageDidMount",
+        "PageEndRequest",
+        "PageStateChange",
+        "PageWillUnmount",
+        "ReactComponentRenderEnd",
+      ],
+      "name": "CommonClassDefineEnd",
+      "type": "string",
+    },
+    Object {
+      "content": " ",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "CommonClassDefineStart",
+        "CommonClassDefineStaticVar",
+        "CommonClassDefineStaticMethod",
+        "CommonClassDefineInsVar",
+        "CommonClassDefineInsVarMethod",
+      ],
+      "name": "CommonClassDefineConstructorStart",
+      "type": "string",
+    },
+    Object {
+      "content": "",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "CommonClassDefineConstructorStart",
+        "CommonClassDefineConstructorContent",
+        "PageStateChange",
+        "PageWillUnmount",
+        "PageDidMount",
+        "ModalEventOnCancel",
+        "ModalEventOnOk",
+      ],
+      "name": "CommonClassDefineConstructorEnd",
+      "type": "string",
+    },
+    Object {
+      "content": "useEffect(() => {",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "CommonClassDefineConstructorEnd",
+      ],
+      "name": "ReactComponentDidUpdateStart",
+      "type": "string",
+    },
+    Object {
+      "content": "  }, [state]);",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "ReactComponentDidUpdateContent",
+        "ReactComponentDidUpdateStart",
+      ],
+      "name": "ReactComponentDidUpdateEnd",
+      "type": "string",
+    },
+    Object {
+      "content": "
+      // 获取生命周期
+      const { useMount, useStateUpdate, useUnmounted } = useLifeCycle({
+        monutDeps: [
+          dataReadyComplete
+        ],
+        stateDeps: [state],
+        mountCond: () => dataReadyComplete,
+      })
+      ",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "ReactComponentDidUpdateEnd",
+      ],
+      "name": "CallLifeCycleHooks",
+      "type": "string",
+    },
+    Object {
+      "content": "
+      // 页面加载完成
+      useMount(() => {
+",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "CallLifeCycleHooks",
+      ],
+      "name": "UseMountStart",
+      "type": "string",
+    },
+    Object {
+      "content": "
+})",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "UseMountContent",
+        "UseMountStart",
+        "SetPageNavBarEnd",
+        "DidMount",
+      ],
+      "name": "UseMountEnd",
+      "type": "string",
+    },
+    Object {
+      "content": "
+      // 组件状态发生变化
+      useStateUpdate(() => {
+",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "UseMountEnd",
+        "CallLifeCycleHooks",
+      ],
+      "name": "UseStateUpdateStart",
+      "type": "string",
+    },
+    Object {
+      "content": "
+})",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "UseStateUpdateContent",
+        "UseStateUpdateStart",
+      ],
+      "name": "UseStateUpdateEnd",
+      "type": "string",
+    },
+    Object {
+      "content": "
+        // 页面将要卸载
+       useUnmounted(() => {
+",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "UseStateUpdateEnd",
+        "UseMountEnd",
+        "CallLifeCycleHooks",
+      ],
+      "name": "UseUnMountStart",
+      "type": "string",
+    },
+    Object {
+      "content": "
+})
+",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "UseUnMountContent",
+        "UseUnMountStart",
+        "WillUnmount",
+      ],
+      "name": "UseUnMountEnd",
+      "type": "string",
+    },
+    Object {
+      "content": "useImperativeHandle(ref, () => ({
+",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "UseUnMountEnd",
+        "UseStateUpdateEnd",
+        "UseMountEnd",
+        "CallLifeCycleHooks",
+        "ReactComponentDidUpdateEnd",
+      ],
+      "name": "UseImperativeHandleStart",
+      "type": "string",
+    },
+    Object {
+      "content": "
+}));",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "BOFramerSetState",
+        "UseImperativeHandleContent",
+        "UseImperativeHandleStart",
+      ],
+      "name": "UseImperativeHandleEnd",
+      "type": "string",
+    },
+    Object {
+      "content": "if (!dataReadyComplete) {
+        return <Spin spinning/>
+      }",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "ControlVisible",
+        "UseImperativeHandleEnd",
+        "UseUnMountEnd",
+        "UseStateUpdateEnd",
+        "UseMountEnd",
+        "CommonClassDefineStart",
+        "CommonClassDefineStaticVar",
+        "CommonClassDefineStaticMethod",
+        "CommonClassDefineInsVar",
+        "CommonClassDefineInsVarMethod",
+        "CommonClassDefineInsMethod",
+        "CommonClassDefineInsPrivateMethod",
+        "CommonClassDefineConstructorEnd",
+        "ModalEventUseImperativeHandle",
+        "PageDidMount",
+        "PageEndRequest",
+        "PageStateChange",
+        "PageWillUnmount",
+        "ReactComponentDidUpdateEnd",
+      ],
+      "name": "ReactComponentRenderLoading",
+      "type": "string",
+    },
+    Object {
+      "content": "return (",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "ReactComponentRenderLoading",
+        "UseUnMountEnd",
+        "UseStateUpdateEnd",
+        "UseMountEnd",
+        "CommonClassDefineStart",
+        "CommonClassDefineStaticVar",
+        "CommonClassDefineStaticMethod",
+        "CommonClassDefineInsVar",
+        "CommonClassDefineInsVarMethod",
+        "CommonClassDefineInsMethod",
+        "CommonClassDefineInsPrivateMethod",
+        "CommonClassDefineConstructorEnd",
+        "ModalEventUseImperativeHandle",
+        "PageDidMount",
+        "PageEndRequest",
+        "PageStateChange",
+        "PageWillUnmount",
+        "ReactComponentDidUpdateEnd",
+      ],
+      "name": "ReactComponentRenderStart",
+      "type": "string",
+    },
+    Object {
+      "content": ")",
       "fileType": "tsx",
       "linkAfter": Array [
         "ReactComponentRenderStart",
         "ReactComponentRenderPre",
+        "ReactComponentRenderJSX",
       ],
-      "name": "ReactComponentRenderJSX",
+      "name": "ReactComponentRenderEnd",
+      "type": "string",
+    },
+    Object {
+      "content": "export default withPageHOC($1231781$$Page, {
+      renderId,
+      hasLogin: false,
+    })",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "CommonExternalDependencyImport",
+        "CommonInternalDependencyImport",
+        "CommonImportAliasDefine",
+        "CommonFileScopeVarDefine",
+        "CommonFileScopeMethodDefine",
+        "CommonClassDefineEnd",
+      ],
+      "name": "CommonFileExport",
       "type": "string",
     },
   ],
-  "contextData": Object {},
+  "contextData": Object {
+    "options": Object {
+      "busiCompMapping": Object {},
+      "pageIdMapping": Object {},
+    },
+  },
   "depNames": Array [],
   "ir": Object {
     "actions": Array [],
@@ -7732,6 +8049,14 @@ Object {
         "exportName": "StdUpload",
         "package": "@/components/factory",
         "type": "StdUpload",
+        "version": "*",
+      },
+      Object {
+        "dependencyType": "External",
+        "destructuring": false,
+        "exportName": "useLifeCycle",
+        "package": "@/hooks/useLifeCycle",
+        "type": "useLifeCycle",
         "version": "*",
       },
     ],
