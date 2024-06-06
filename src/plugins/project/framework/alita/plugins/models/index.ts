@@ -1,5 +1,4 @@
 import { camelCase, upperFirst } from 'lodash';
-import { parse2Var } from '../../../../../../core/utils/compositeType';
 import { COMMON_CHUNK_NAME, LXGlobalDataInfo } from '../../../../../../core';
 import {
   BuilderComponentPlugin,
@@ -8,6 +7,7 @@ import {
   FileType,
   ICodeStruct,
 } from '../../../../../../core/types';
+import { parse2Var } from '../../../../../../core/utils/compositeType';
 import { generatorType, getDSFilterName } from '../dataSource/type';
 import { filterObjectEmptyField, generateParams } from '../dataSource/utils';
 
