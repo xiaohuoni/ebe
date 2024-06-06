@@ -227,6 +227,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             getTriggerRelDataSource,
             fatherOnOk,
             closeModal,
+            asyncGetValue,
             ${getGlobalDataExportNamesCode(ir.globalDataSource)}
            } = context; ` +
           eventCodeString +

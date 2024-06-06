@@ -59,6 +59,7 @@ import XinZengWebYeWuZuJian from '@/components/XinZengWebYeWuZuJian';
             getTriggerRelDataSource,
             fatherOnOk,
             closeModal,
+            asyncGetValue,
             
     globalDataReadyComplete,
     globalData,

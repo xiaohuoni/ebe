@@ -35,7 +35,7 @@ export const GetReqParamValues = (
         place === 'filterData' ? getDSFilterName(dsName) : dsName;
       targetVal = valueCode
         ? `${prefix}?.${dataSourceName}?.${valueCode}`
-        : `${valueCode}`;
+        : `${prefix}?.${dataSourceName}`;
       break;
     }
     case '$function$':
