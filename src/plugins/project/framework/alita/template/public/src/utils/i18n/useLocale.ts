@@ -12,7 +12,7 @@ type LocaleReturnType = {
 export interface I18nOptions {
   language: LanguageKeys;
   remoteLocale?: Record<string, string>;
-  locale: () => Promise<LocaleReturnType>;
+  locale: LocaleReturnType;
 
   /**
    * 通过init注册进来的多语言
@@ -22,7 +22,7 @@ export interface I18nOptions {
 
 export const useLocale = (
   i18n: I18nOptions,
-  defaultLocales: Record<LanguageKeys, () => Promise<LocaleReturnType>>,
+  defaultLocales: Record<LanguageKeys, LocaleReturnType>,
 ) => {
   const { locale: loca, language = 'zh-CN', configLocale } = i18n || {};
   const [locale, setLocale] = useState<{
@@ -48,12 +48,12 @@ export const useLocale = (
   };
 
   const setLocalFn = useCallback(async () => {
-    if (typeof loca === 'function') {
-      setLocale(merge({ lowcode: configLocale[language] }, await loca()));
+    if (typeof loca === 'object') {
+      setLocale(merge({ lowcode: configLocale[language] }, loca));
       return;
     }
 
-    const defaultLocale = await defaultLocales[language as LanguageKeys]?.();
+    const defaultLocale = await defaultLocales[language as LanguageKeys];
     setLocale(merge({}, defaultLocale || {}, { lowcode: configLocale }));
   }, [loca, language]);
 

@@ -15,25 +15,16 @@ export const setLocaleChange = ({
 localeMonitor.addListener(setLocaleChange);
 
 export default {
-  'en-US': async () => {
-    const { enUS } = await pcLocale.other();
-    return {
-      antd: antdEnUS,
-      lowcode: enUS,
-    };
+  'en-US': {
+    antd: antdEnUS,
+    lowcode: pcLocale.enUS,
   },
-  'zh-CN': async () => {
-    const zhCN = await pcLocale.zhCN();
-    return {
-      antd: antdZhCN,
-      lowcode: zhCN,
-    };
+  'zh-CN': {
+    antd: antdZhCN,
+    lowcode: pcLocale.zhCN,
   },
-  'zh-HK': async () => {
-    const { zhHK } = await pcLocale.other();
-    return {
-      antd: antdZhHK,
-      lowcode: zhHK,
-    };
+  'zh-HK': {
+    antd: antdZhHK,
+    lowcode: pcLocale.zhHK,
   },
 };

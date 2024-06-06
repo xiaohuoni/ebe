@@ -1,7 +1,9 @@
 import zhCN from './zh_CN';
+import enUS from './en_US';
+import zhHK from './zh_HK';
 
 export default {
-  zhCN: () => Promise.resolve(zhCN),
-  other: () =>
-    import(/* webpackChunkName: 'other-pc-locale' */ './otherLocale'),
+  zhCN,
+  enUS,
+  zhHK,
 };
