@@ -1,8 +1,8 @@
-import { getGlobalDataExportNamesCode } from 'src/utils/globalDataSource/template';
 import {
   CLASS_DEFINE_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
+import { getGlobalDataExportNamesCode } from '../../utils/globalDataSource/template';
 
 import { groupDepsByPack } from '../../core/plugins/common/esmodule';
 import {
