@@ -267,9 +267,10 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           shouldUsedGlobalData(ir.globalDataSource)
             ? '...globalDataSourceTool,'
             : ''
-        } ...sandBoxContext.current, ${
+        } ...sandBoxContext.current, state,${
           isModal ? 'fatherOnOk,\n closeModal,' : ''
-        }})`,
+        }}
+      )`,
         linkAfter: [
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
           DATA_SOURCE_CHUNK_NAME.CallDataSource,

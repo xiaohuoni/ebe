@@ -48,7 +48,6 @@ const getStaticDataSourceService = (
 export interface PageProps {
   CMDGenerator?: any;
   injectData?: any;
-  state: any;
   [key: string]: any;
 }
 export interface PageHOCOptions {
@@ -70,12 +69,6 @@ export const withPageHOC = (
     const ExpSQLServiceModalRef = React.useRef<any>();
     const ImportBusiObjModalRef = React.useRef<any>();
     const sandBoxContext = useRef<Record<string, any>>({});
-    // 组件状态的处理
-    const state = useMemo(() => {
-      return {
-        ...props.state,
-      };
-    }, [props.state]);
 
     const urlParam = useMemo(() => {
       const queryParams = parse((location?.search ?? '?')?.split('?')[1]);
@@ -225,7 +218,6 @@ export const withPageHOC = (
         sandBoxRun,
         attrDataMap,
         functorsMap,
-        state,
         messageApi,
         refs,
       };
@@ -261,7 +253,6 @@ export const withPageHOC = (
           ModalManagerRef={ModalManagerRef}
           sandBoxContext={sandBoxContext}
           functorsMap={functorsMap}
-          state={state}
           addActionTimer={addActionTimer}
           clearActionTimer={clearActionTimer}
           ExpSQLServiceModalRef={ExpSQLServiceModalRef}
