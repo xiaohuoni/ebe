@@ -297,10 +297,17 @@ export const codeCreate = async ({
       log: '获取当前应用的使用的自定义组件',
       progress: 2,
     });
-    const compAssetList = await services.qryPageCompAssetList({
+    const temCompAssetList = await services.qryPageCompAssetList({
       appId,
     });
-
+    // 兼容下割接数据，数组前面的自定义组件是新的
+    const compAssetList = temCompAssetList.reduce((acc: any[], current: { compCode: any; }) => {
+      const codes = acc.map(item => item.compCode);
+      if (!codes.includes(current.compCode)) {
+        acc.push(current);
+      }
+      return acc;
+    }, []);
     // 根据appId 获取全局数据源
     onProgress({
       log: '获取全局数据源',

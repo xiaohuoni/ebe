@@ -69,10 +69,17 @@ const Page = () => {
     console.log(themeCss);
 
     // 根据 appId 获取当前应用的使用的自定义组件
-    const compAssetList = await qryPageCompAssetList({
+    const temCompAssetList = await qryPageCompAssetList({
       appId: values.appId,
     });
-
+    // 兼容下割接数据，数组前面的自定义组件是新的
+    const compAssetList = temCompAssetList.reduce((acc: any[], current: { compCode: any; }) => {
+      const codes = acc.map(item => item.compCode);
+      if (!codes.includes(current.compCode)) {
+        acc.push(current);
+      }
+      return acc;
+    }, []);
     // 根据appId 获取全局数据源
     let globalDataInfo = await queryFrontendDatasourcePage({
       appId: values.appId,

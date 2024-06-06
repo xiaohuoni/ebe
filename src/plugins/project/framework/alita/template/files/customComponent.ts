@@ -18,6 +18,7 @@ export default function getFile(
         fileCode: string;
         visible: boolean;
         type: string;
+        style?: React.CSSProperties;
       }
       
       const presetDependencies = {
@@ -89,7 +90,7 @@ export default function getFile(
           if (err || !Component) {
             return <Error {...props} />;
           }
-          return <Component {...restProps} />;
+          return <Component {...restProps} style={{ ...restProps.style}}/>;
         },
       );
       `,
