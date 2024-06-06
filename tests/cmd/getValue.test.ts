@@ -14,7 +14,7 @@ describe('getValue', () => {
     };
 
     const expectedCode = `// 获取组件的值 
-    getValue('table1');
+    asyncGetValue('table1');
   `;
 
     const result = getValue(generateParams);

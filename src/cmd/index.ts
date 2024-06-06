@@ -74,3 +74,4 @@ export { validateAllForm } from './validateAllForm';
 export { validateCurrentForm } from './validateCurrentForm';
 export { validateForm } from './validateForm';
 export { validateTableData } from './validateTableData';
+export { triggerRelDataSource } from './triggerRelDataSource';

@@ -171,7 +171,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: PAGE_TOOL_CHUNK_NAME.PageTooL,
-      content: `//通用的工具类方法 \n const useTools = useTool(refs, { addToAwaitQueue });\n const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled, getDisabled, validateForm, getFormValue, resetForm, clearValue, setFormValues, asyncCallComponentMethod,validateAllForm,getAllFormValues, resetAllForm, updateNodeChildren } = useTools`,
+      content: `//通用的工具类方法 \n const useTools = useTool(refs, { addToAwaitQueue });\n const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled, getDisabled, asyncGetValue, validateForm, getFormValue, resetForm, clearValue, setFormValues, getTriggerRelDataSource, asyncCallComponentMethod,validateAllForm,getAllFormValues, resetAllForm, updateNodeChildren } = useTools`,
       linkAfter: [
         DATA_SOURCE_CHUNK_NAME.CallGlobalDataSource,
         CLASS_DEFINE_CHUNK_NAME.Start,

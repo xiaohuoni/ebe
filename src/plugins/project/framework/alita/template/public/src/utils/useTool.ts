@@ -39,7 +39,7 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
 
   const { addToAwaitQueue } = context;
 
-  const getValue = (id: string, stateName?: string) => {
+  const asyncGetValue = (id: string, stateName?: string) => {
     if (stateName) {
       return Promise.resolve(refs?.[id]?.[stateName]);
       // return refs?.[id]?.[stateName];
@@ -48,6 +48,13 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
     return Promise.resolve(refs?.[id]?.value);
   };
 
+  const getValue = (id: string, stateName?: string) => {
+    if (stateName) {
+      // @ts-ignore
+      return refs?.[id]?.[stateName];
+    }
+    return refs?.[id]?.value;
+  };
   const setValue = (ids: Record<string, any> | string, value?: any) => {
     if (Object.prototype.toString.call(ids) === '[object Object]') {
       Object.keys(ids).forEach((id) => {
@@ -168,6 +175,9 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
     methodName: string,
     ...args: any[]
   ) => {
+    if (methodName === 'getValue') {
+      return refs?.[comId]?.value;
+    }
     if (refs?.[comId]) {
       return refs?.[comId]?.[methodName]?.(...args);
     } else {
@@ -345,8 +355,53 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
     });
   };
 
+  /**
+   * 获取联动数据值
+   * @param attrDataMap  静态数据
+   * @param aNbr a端值
+   * @param zNbr z端值
+   * @param targetValue 关联值
+   */
+  const getTriggerRelDataSource = (
+    attrDataMap: Record<string, any[]>,
+    aNbr: any,
+    zNbr: any,
+    targetValue?: any,
+  ) => {
+    if (attrDataMap) {
+      // 用于处理联动规则的工具方法
+      // 下拉清空，返回z端数据
+      if (
+        targetValue === undefined ||
+        (Array.isArray(targetValue) && targetValue.length === 0)
+      ) {
+        return attrDataMap?.[zNbr] || [];
+      }
+      const res = attrDataMap?.[aNbr]?.find((i) => {
+        const targetValueArr = Array.isArray(targetValue)
+          ? targetValue[0]
+          : targetValue;
+        return i.value === targetValueArr;
+      });
+      if (res && res.relatedAttrSpecList) {
+        const targetRelRule = res.relatedAttrSpecList.find(
+          (i: any) => i.zattrNbr === zNbr,
+        );
+        return targetRelRule
+          ? targetRelRule.zrelatedAttrValueList.map((o: any) => ({
+              label: o.zattrValueName,
+              value: o.zattrValue,
+            }))
+          : [];
+      }
+      return [];
+    }
+    return undefined;
+  };
+
   return {
     getValue,
+    asyncGetValue,
     setValue,
     getVisible,
     setVisible,
@@ -365,5 +420,6 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
     getAllFormValues,
     resetAllForm,
     updateNodeChildren,
+    getTriggerRelDataSource,
   };
 };

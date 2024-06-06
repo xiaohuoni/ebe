@@ -220,6 +220,7 @@ export const request: RequestConfig = {
     );`
         : ''
     }
+    console.error('请求服务失败：', error);
   },
   requestInterceptors: [${!!fetchSendBefore ? 'requestInterceptor' : ''}],
   responseInterceptors: [${

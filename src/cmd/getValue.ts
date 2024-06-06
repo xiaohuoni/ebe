@@ -11,7 +11,7 @@ export function getValue({
     const { id, compId } = options;
     return `// 获取组件的值 \n;
     ${GeneratorCallbackWithThenCatch(
-      `getValue('${compId}')`,
+      `asyncGetValue('${compId}')`,
       {
         value,
         platform,

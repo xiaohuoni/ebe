@@ -224,6 +224,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             lcdpApi,
             urlParam,
             state,
+            getTriggerRelDataSource,
             fatherOnOk,
             closeModal,
             ${getGlobalDataExportNamesCode(ir.globalDataSource)}
