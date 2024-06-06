@@ -295,9 +295,9 @@ export function generateCompositeType(
  * 把对象的key字段e转化成合法的key
  * @param key
  */
-const getLegitimateKey = (key: string) => {
+export const getLegitimateKey = (key: string) => {
   const iCode = key.trim();
-  if (!/^[\$_a-zA-Z][\d_\$a-zA-Z]{0,}/.test(iCode) && !/^\d+$/.test(iCode)) {
+  if (!/^[\$_a-zA-Z][\d_\$a-zA-Z]{0,}$/.test(iCode) && !/^\d+$/.test(iCode)) {
     return `['${key}']`;
   }
   return iCode;
