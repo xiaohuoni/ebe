@@ -1,4 +1,4 @@
-import { get, isArray, set } from 'lodash';
+import { get, isArray, merge, set } from 'lodash';
 
 /**
  * 往数组中添加数据元素
@@ -111,7 +111,7 @@ const updateObject = (options: {
     Object.prototype.toString.call(value) === '[object Object]' &&
     isPatch
   ) {
-    newData = Object.assign({}, oldItem, newData);
+    newData = merge({}, oldItem, newData);
   }
   set(data, path, newData);
   return newData;
