@@ -31,9 +31,9 @@
     "prepare": "husky",
     "req": "esno req.ts",
     "sync": "esno scripts/syncFactoryConfig.ts",
-    "test:update-snapshots": "jest -u",
     "test": "jest",
-    "test:cov": "jest --collectCoverage"
+    "test:cov": "jest --collectCoverage",
+    "test:update-snapshots": "jest -u"
   },
   "dependencies": {
     "@babel/generator": "^7.12.12",

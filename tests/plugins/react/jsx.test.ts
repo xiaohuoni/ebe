@@ -2701,7 +2701,7 @@ describe('condition at root', () => {
                   ],
                 },
               ],
-             
+
               components: [],
               events: {
                 onClick: {
@@ -3095,7 +3095,7 @@ describe('condition at root', () => {
                   ],
                 },
               ],
-             
+
               busiObjectId: '',
               components: [
                 {
@@ -3137,7 +3137,7 @@ describe('condition at root', () => {
                   platform: 'pc',
                   setEvents: [],
                   busiObjectId: '1001',
-                 
+
                   components: [],
                   events: {},
                   originClassName: '',
@@ -3198,7 +3198,7 @@ describe('condition at root', () => {
                   alias: 'DformInput',
                   setEvents: [],
                   busiObjectId: '1001',
-                 
+
                   components: [],
                   events: {},
                   originClassName: '',
@@ -5068,7 +5068,7 @@ describe('condition at root', () => {
                       ],
                     },
                   ],
-                 
+
                   components: [],
                   events: {
                     onCheckUpload: {

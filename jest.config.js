@@ -11,7 +11,7 @@ module.exports = {
     'ebe-utils/src/**/*.{ts,tsx}',
     '!**/node_modules/**',
     '!**/vendor/**',
-    '!**/public/**'
+    '!**/public/**',
   ],
   testMatch: ['<rootDir>/tests/**/*.test.ts'],
 };
