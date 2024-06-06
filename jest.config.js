@@ -2,7 +2,8 @@ module.exports = {
   transform: {
     '^.+\\.(t|j)sx?$': '@swc/jest',
   },
-  testEnvironment: 'node',
+  // testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   transformIgnorePatterns: ['/node_modules/(?!core-js)/'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
   collectCoverage: false,

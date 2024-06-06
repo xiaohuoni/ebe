@@ -21,22 +21,6 @@ import popoverwrapper from './files/popoverwrapper';
 import proxy from './files/proxy';
 import withPageHOC from './files/withPageHOC';
 
-// TODO:为了标记无用文件，注释先保留着，后续清理
-// import useSetState from './files/useSetState';
-// import styleInject from './files/styleInject';
-// import stylelintrc from './files/stylelintrc';
-// import tsconfig from './files/tsconfig';
-// import typings from './files/typings';
-// import prettierignore from './files/prettierignore';
-// import prettierrc from './files/prettierrc';
-// import npmrc from './files/npmrc';
-// import context from './files/context';
-// import useTool from './files/useTool';
-// import messageApi from './files/messageApi';
-// import historytool from './files/historytool';
-// import editorconfig from './files/editorconfig';
-// import gitignore from './files/gitignore';
-
 export function generateStaticFiles(
   parseResult: IParseResult,
   postProcessors: PostProcessor[],

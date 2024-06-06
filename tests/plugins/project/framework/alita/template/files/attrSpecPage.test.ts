@@ -1,6 +1,6 @@
 import getFile from '../../../../../../../src/plugins/project/framework/alita/template/files/attrSpecPage';
 
-describe('getFile', () => {
+describe('template files attrSpecPage', () => {
   it('should return the correct file', () => {
     const config: any = {
       attrSpecPage: [
