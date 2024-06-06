@@ -1,5 +1,5 @@
 import { camelCase, upperFirst } from 'lodash';
-import { parse2Var } from 'src/core/utils/compositeType';
+import { parse2Var } from '../../../../../../core/utils/compositeType';
 import { COMMON_CHUNK_NAME, LXGlobalDataInfo } from '../../../../../../core';
 import {
   BuilderComponentPlugin,
