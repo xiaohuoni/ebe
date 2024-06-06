@@ -291,6 +291,18 @@ export function generateCompositeType(
   return result;
 }
 
+/**
+ * 把对象的key字段e转化成合法的key
+ * @param key
+ */
+const getLegitimateKey = (key: string) => {
+  const iCode = key.trim();
+  if (!/^[\$_a-zA-Z][\d_\$a-zA-Z]{0,}/.test(iCode) && !/^\d+$/.test(iCode)) {
+    return `['${key}']`;
+  }
+  return iCode;
+};
+
 // 把变量标识解析成变量
 export const parse2Var = (object: any): string => {
   const getType = (o: any): keyof typeof variableType => {
@@ -328,7 +340,9 @@ export const parse2Var = (object: any): string => {
       let target: string[] = [];
       Object.keys(v).forEach((key) => {
         // target += `${key}: `;
-        target.push(`${key}: ${variableType[getType(v[key])](v[key])}`);
+        target.push(
+          `${getLegitimateKey(key)}: ${variableType[getType(v[key])](v[key])}`,
+        );
       });
       return `{${target.join(',')}}`;
     },

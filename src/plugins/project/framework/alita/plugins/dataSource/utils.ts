@@ -89,12 +89,12 @@ export const generateParams = (
           }
         }
       });
-      parser.appendProperty('orderByAsc', parse2Var(orderByAsc.join(',')), '');
-      parser.appendProperty(
-        'orderByDesc',
-        parse2Var(orderByDesc.join(',')),
-        '',
-      );
+      if (orderByAsc.length) {
+        parser.appendProperty('orderByAsc', orderByAsc.join(','), []);
+      }
+      if (orderByDesc.length) {
+        parser.appendProperty('orderByDesc', orderByDesc.join(','), []);
+      }
     }
 
     return (
@@ -104,7 +104,7 @@ export const generateParams = (
           value,
         },
         children: children,
-        code: name,
+        code: '',
         type: type || dataItem.type,
       }) || 'null'
     );

@@ -178,13 +178,13 @@ export const transformValueDefined = (
     if (!orderFields.length) {
       parser.appendProperty(
         'orderByAsc',
-        `data?.${getDSFilterName(dataSourceName)}?.orderByAsc`,
-        '',
+        `$data?.${getDSFilterName(dataSourceName)}?.orderByAsc$`,
+        [],
       );
       parser.appendProperty(
         'orderByDesc',
-        `data?.${getDSFilterName(dataSourceName)}?.orderByDesc`,
-        '',
+        `$data?.${getDSFilterName(dataSourceName)}?.orderByDesc$`,
+        [],
       );
     }
   }
@@ -209,7 +209,12 @@ export const transformValueDefined = (
         if (top) {
           topSet.add(top);
         }
-        return targetVal;
+
+        if (!targetVal) {
+          return targetVal;
+        }
+
+        return `$${targetVal}$`;
       }
     },
   );

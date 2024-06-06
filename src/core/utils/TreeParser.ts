@@ -1,7 +1,5 @@
-import { get, isPlainObject } from 'lodash';
-import { generateVarString } from './compositeType';
-import { isJSVar } from './deprecated';
-
+import { get, isPlainObject, set } from 'lodash';
+import { parse2Var } from './compositeType';
 interface TreeParserOptions {
   /**
    * 字段别名
@@ -42,6 +40,10 @@ interface TreeParserOptions {
   filterEmpty?: boolean;
 }
 
+const isArrayType = (type: string) => {
+  return ['array', 'objectArray'].includes(type);
+};
+
 // 是否需要继续递归
 const shouldDeepLoop = (type: string) => {
   return ['object'].includes(type);
@@ -54,7 +56,7 @@ class TreeParser {
   todoProperty: {
     key: string;
     value: string;
-    path: string;
+    path: string[];
   }[] = [];
   constructor(readonly options?: TreeParserOptions) {}
 
@@ -78,14 +80,6 @@ class TreeParser {
     return this.options?.filterEmpty ?? true;
   }
 
-  private getKey(code: string = '') {
-    const iCode = code.trim();
-    if (!/^[\$_a-zA-Z][\d_\$a-zA-Z]{0,}/.test(iCode) && !/^\d+$/.test(iCode)) {
-      return `['${code}']`;
-    }
-    return iCode;
-  }
-
   private getStopFn = () => {
     const context = {
       stopFlag: false,
@@ -99,65 +93,12 @@ class TreeParser {
     };
   };
 
-  /**
-   * 获取代码片段
-   * @param key
-   * @param value
-   * @returns
-   */
-  private getFragment = (value: string, type: string) => {
-    if (
-      !value &&
-      this.filterEmpty &&
-      !['array', 'fieldArray', 'objectArray', 'object'].includes(type)
-    ) {
-      return '';
-    }
-
-    let placeholder = 'undefined';
-    if (type === 'object') {
-      placeholder = '{}';
-    } else if (['array', 'fieldArray', 'objectArray'].includes(type)) {
-      placeholder = '[]';
-    }
-
-    return `${value || placeholder}`;
-  };
-
-  /**
-   * 解析value值
-   * @param val
-   * @returns
-   */
-  private parseValue = (val: any) => {
-    if (typeof val === 'string') {
-      if (isJSVar(val)) {
-        return generateVarString(val);
-      }
-    }
-
-    if (!val) {
-      return val;
-    }
-
-    return JSON.stringify(val);
-  };
-
-  public appendProperty(key: string, value: string, path: string) {
+  public appendProperty(key: string, value: string, path: string[]) {
     this.todoProperty.push({
       key,
       value,
       path,
     });
-  }
-
-  private getKeyValueByPath(path: string[]) {
-    return this.todoProperty
-      .filter((it) => it.path === path.join('.'))
-      .map((it) => ({
-        keyCode: it.key,
-        value: it.value,
-      }));
   }
 
   private getType(item: any) {
@@ -167,8 +108,15 @@ class TreeParser {
     return this.type;
   }
 
+  private getPath = (path: string[], code: string) => {
+    return [...path, code].filter((it) => it !== '');
+  };
+
   /**
-   * 开始解析
+   * 解析
+   * @param tree
+   * @param replacer
+   * @returns
    */
   public stringify(
     tree: any,
@@ -179,21 +127,27 @@ class TreeParser {
   ) {
     if (!isPlainObject(tree) || Object.keys(tree).length === 0)
       return 'undefined';
+    const type = get(tree, this.getType(tree));
+    if (isArrayType(type)) return '[]';
+
+    const reqParams: Record<string, any> = {};
+
+    this.todoProperty.forEach(({ key, value, path = [] }) => {
+      if (value !== undefined) {
+        set(reqParams, [...path, key], value);
+      }
+    });
 
     const loop = (item: any, path: string[]) => {
       const code = get(item, this.fieldCode);
       const children = get(item, this.children);
 
       const type = get(item, this.getType(item));
-      const value = this.parseValue(get(item, this.value));
-
-      const keyCode = this.getKey(code);
+      let value = get(item, this.value);
+      if (isArrayType(type)) value = [];
 
       // 更新是否继续下钻
       let shouldNext = shouldDeepLoop(type);
-
-      // 先给予默认值
-      let keyVal: string = value ?? '{}';
 
       if (typeof replacer === 'function') {
         const stopParam = this.getStopFn();
@@ -202,7 +156,7 @@ class TreeParser {
           stopParam.stop();
         }
 
-        let val = replacer(
+        value = replacer(
           {
             key: code,
             value,
@@ -212,13 +166,8 @@ class TreeParser {
           stopParam.stop,
         );
 
-        keyVal = this.getFragment(val === undefined ? value : val, type);
-
         // 更新是否继续下钻
         shouldNext = !stopParam.context.stopFlag;
-      } else if (!shouldNext) {
-        // 不需要递归的情况下，直接赋值即可
-        keyVal = this.getFragment(value, type);
       }
 
       // 部分字段为字符串、数字等类型，确实无法下钻。即使用户设置为下钻也不继续执行
@@ -228,45 +177,25 @@ class TreeParser {
 
       // 如果value已经有值了，就不在需要下钻
       if (value !== undefined) {
+        set(reqParams, this.getPath(path, item.code), value);
         shouldNext = false;
       }
 
       // 继续下钻 遍历
       if (shouldNext && Array.isArray(children)) {
-        const brotherKeys: string[] = [];
-        let fragmentCode: {
-          keyCode: string;
-          value: string;
-        }[] = [];
-        children.forEach((it) => {
-          const fragmentItem = loop(it, [...path, code]);
-          // 自动检测key是否重复，重复了就放弃该字段
-          if (brotherKeys.includes(fragmentItem.keyCode)) {
-            fragmentCode = fragmentCode.filter(
-              (it) => it.keyCode !== fragmentItem.keyCode,
-            );
-          }
-          brotherKeys.push(fragmentItem.keyCode);
-
-          if (fragmentItem.value) {
-            fragmentCode.push(fragmentItem);
-          }
-        });
-
-        keyVal = `{${[...fragmentCode, ...this.getKeyValueByPath(path)]
-          .map((item) => `${item.keyCode}: ${item.value}`)
-          .join(',')}}`;
+        children.forEach((it) => loop(it, this.getPath(path, item.code)));
       }
-
-      return {
-        keyCode,
-        value: keyVal,
-      };
     };
 
-    const key = loop(tree, []);
+    loop(
+      {
+        ...tree,
+        code: '',
+      },
+      [],
+    );
 
-    return this.getFragment(key.value, tree.type);
+    return parse2Var(reqParams);
   }
 }
 
