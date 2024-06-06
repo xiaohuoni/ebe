@@ -1,0 +1,213 @@
+- [x] ebe-utils/src
+  - [x] constants.ts
+  - [ ] index.ts
+  - [ ] node/cli.ts
+  - [ ] node/constants.ts
+  - [x] node/copyStatic.ts
+  - [x] node/move.ts
+  - [x] node/setup.ts
+  - [x] node/babel/getAllImportFiles.ts
+  - [x] node/babel/getRealPath.ts
+  - [x] node/babel/parse.ts
+- [ ] src/constants.ts
+- [ ] src/index.ts
+- [ ] src/worker.ts
+- [x] src/cmd
+  - [x] addTableRow.ts
+  - [x] addTableRowData.ts
+  - [x] apiRequest.ts
+  - [x] appendTreeNode.ts
+  - [x] callCurrentFunc.ts
+  - [x] callCustomPageFunc.ts
+  - [x] callParentCustomFunc.ts
+  - [x] callSelfFunc.ts
+  - [x] changeContent.ts
+  - [x] clearOptions.ts
+  - [x] clearTimer.ts
+  - [x] clearValue.ts
+  - [x] closeModal.ts
+  - [x] console.ts
+  - [x] customActionCode.ts
+  - [x] defaultCmd.ts
+  - [x] delTableRow.ts
+  - [x] downloadByFileId.ts
+  - [x] dropPageByCatch.ts
+  - [x] editInlineRow.ts
+  - [x] exportCustomBusiObjectData.ts
+  - [x] exportSQLServiceData.ts
+  - [x] getAllFormValues.ts
+  - [x] getCurrentFormValues.ts
+  - [x] getFormValue.ts
+  - [x] getLoopListValues.ts
+  - [x] getSelectedData.ts
+  - [x] getTableData.ts
+  - [x] getTableSelected.ts
+  - [x] getTableSelectedKey.ts
+  - [x] getValue.ts
+  - [x] hideMessage.ts
+  - [x] history.ts
+  - [x] historyGoBack.ts
+  - [x] historyReplace.ts
+  - [x] ifelse.ts
+  - [x] importCustomBusiObjectData.ts
+  - [ ] index.ts
+  - [x] okCallbackData.ts
+  - [x] previewFile.ts
+  - [x] reloadData.ts
+  - [x] reloadDataSource.ts
+  - [x] reloadSelectData.ts
+  - [x] reloadTableData.ts
+  - [x] resetAllForm.ts
+  - [x] resetCurrentForm.ts
+  - [x] resetDataSource.ts
+  - [x] resetForm.ts
+  - [x] return.ts
+  - [x] saveBlobFile.ts
+  - [x] setActiveTabPane.ts
+  - [x] setCompState.ts
+  - [x] setCurrentFormValues.ts
+  - [x] setDataSource.ts
+  - [x] setDownloadResponse.ts
+  - [x] setExpansionTerm.ts
+  - [x] setFormValues.ts
+  - [x] setInterval.ts
+  - [x] saveBlobFile.ts
+  - [x] setActiveTabPane.ts
+  - [x] setCompState.ts
+  - [x] setCurrentFormValues.ts
+  - [x] setDataSource.ts
+  - [x] setDownloadResponse.ts
+  - [ ] setExpansionTerm.ts
+  - [x] setFormValues.ts
+  - [ ] setInterval.ts
+  - [x] setLoading.ts
+  - [x] setPageSrc.ts
+  - [ ] setRangeValue.ts
+  - [x] setSrc.ts
+  - [ ] setTimeout.ts
+  - [ ] setTimer.ts
+  - [ ] setTreeSelectedKey.ts
+  - [x] showCustomModal.ts
+  - [x] showMessage.ts
+  - [x] showModal.ts
+  - [x] sysSetDisable.ts
+  - [x] sysSetRequired.ts
+  - [x] sysSetValue.ts
+  - [x] sysSetVisible.ts
+  - [x] validateAllForm.ts
+  - [x] validateCurrentForm.ts
+  - [x] validateForm.ts
+  - [ ] validateTableData.ts
+- [x] src/cmd/utils
+  - [x] GeneratorCallback.ts
+  - [x] common.ts
+  - [x] index.ts
+  - [x] requestUtil.ts
+- [ ] src/parser
+  - [ ] SchemaParser.ts
+- [x] src/plugins/project/framework/alita
+  - [x] index.ts
+- [ ] src/plugins/project/framework/alita/hooks
+  - [ ] hackNodeAttr.ts
+- [ ] src/plugins/project/framework/alita/plugins
+  - [x] app.ts
+  - [ ] busiComp.ts
+  - [x] config.ts
+  - [x] const.ts
+  - [x] globalData.ts
+  - [ ] mobileLayout.ts
+  - [x] packageJSON.ts
+  - [ ] pageview.ts
+  - [ ] styleInject.ts
+  - [ ] themeCss.ts
+- [ ] src/plugins/project/framework/alita/plugins/dataSource
+  - [ ] generate.ts
+  - [x] index.ts
+  - [ ] template.ts
+  - [ ] type.ts
+  - [ ] utils.ts
+- [ ] src/plugins/project/framework/alita/plugins/models
+  - [x] index.ts
+- [ ] src/plugins/project/framework/alita/template
+  - [x] index.ts
+  - [ ] static-files.ts
+- [ ] src/plugins/project/framework/alita/template/data
+  - [ ] factory.ts
+  - [ ] pcfactory.ts
+- [ ] src/plugins/project/framework/alita/template/files
+  - [ ] attrSpecPage.ts
+  - [ ] constants.ts
+  - [ ] customComponent.ts
+  - [ ] editorconfig.ts
+  - [ ] env.ts
+  - [ ] factory.ts
+  - [ ] gitignore.ts
+  - [ ] global.ts
+  - [ ] globalless.ts
+  - [ ] indexpage.ts
+  - [ ] indexpageless.ts
+  - [ ] layout.ts
+  - [ ] modalindex.ts
+  - [ ] modalmodal.ts
+  - [ ] modaltypes.ts
+  - [ ] npmrc.ts
+  - [ ] pcbannermodal.ts
+  - [ ] pcbannermodalless.ts
+  - [ ] popover.ts
+  - [ ] popoverwrapper.ts
+  - [ ] prettierignore.ts
+  - [ ] prettierrc.ts
+  - [ ] proxy.ts
+  - [ ] styleInject.ts
+  - [ ] stylelintrc.ts
+  - [ ] tsconfig.ts
+  - [ ] typings.ts
+  - [ ] withPageHOC.ts
+- [ ] src/plugins/react
+  - [x] const.ts
+  - [ ] container.ts
+  - [ ] containerLifeCycle.ts
+  - [ ] customActionMap.ts
+  - [x] jsx.ts
+  - [ ] reactCommonDeps.ts
+- [ ] src/polyfills
+  - [ ] buffer.ts
+- [x] src/solutions
+  - [x] alita.ts
+- [ ] src/utils
+  - [ ] depsHelper.ts
+- [ ] src/utils/factory/h5
+  - [ ] index.enCommonPreprocess.ts
+  - [ ] index.enPreprocess.ts
+  - [ ] index.enRunPreprocess.ts
+- [ ] src/utils/factory/h5/utils
+  - [ ] date.ts
+  - [ ] useMobileVisible.ts
+- [ ] src/utils/factory/pc
+  - [ ] index.enCommonPreprocess.ts
+  - [ ] index.enPreprocess.ts
+  - [ ] index.enRunPreprocess.ts
+- [ ] src/utils/factory/pc/utils
+  - [ ] basicStatusTransfer.ts
+- [ ] src/utils/globalDataSource
+  - [ ] general.ts
+  - [x] parseGlobalData.ts
+  - [ ] template.ts
+- [ ] src/utils/schema
+  - [ ] cleanDataSource.ts
+  - [ ] getBusiCompName.ts
+  - [ ] lxschema.ts
+  - [ ] parseDsl.ts
+  - [ ] parseEventCtx.ts
+  - [ ] parseExpr.ts
+- [ ] src/utils/schema/assets
+  - [ ] assets.ts
+  - [ ] comPreprocess.ts
+  - [ ] command.ts
+  - [ ] runComPreprocess.ts
+- [ ] src/utils/schema/assets/utils
+  - [ ] common.ts
+  - [x] index.ts
+- [ ] src/utils/schema/compat
+  - [ ] boframer.ts
+  - [x] index.ts

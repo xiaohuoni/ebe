@@ -12,6 +12,8 @@ module.exports = {
     '!**/node_modules/**',
     '!**/vendor/**',
     '!**/public/**',
+    // 临时忽略 core 包，后续也需要增加测试用例
+    '!src/core/**/*.{ts,tsx}',
   ],
   testMatch: ['<rootDir>/tests/**/*.test.ts'],
 };

@@ -28,12 +28,12 @@ export default function hackEngineApis(
     compAssetListMapping[asset.compCode] = asset;
   });
   if (!ignoreTags.includes(nodeTags)) {
-    if (!['Popover'].includes(nodeTags)) {
-      // pieces.push({
-      //   type: PIECE_TYPE.ATTR,
-      //   value: `ref={(r:any)=>setComponentRef(r, ${generateUid(nodeItem)})}`,
-      // });
-    }
+    // if (!['Popover'].includes(nodeTags)) {
+    // pieces.push({
+    //   type: PIECE_TYPE.ATTR,
+    //   value: `ref={(r:any)=>setComponentRef(r, ${generateUid(nodeItem)})}`,
+    // });
+    // }
     pieces.push({
       type: PIECE_TYPE.ATTR,
       value: '{...injectData}',

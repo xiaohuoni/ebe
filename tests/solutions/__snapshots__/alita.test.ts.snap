@@ -1,0 +1,348 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`solutions/alita compilation completed 1`] = `
+ProjectBuilder {
+  "extraContextData": Object {
+    "options": Object {
+      "appConfig": Object {
+        "appCode": "APP_868681578956083200",
+        "appId": "868681578956083200",
+        "appMenuJson": null,
+        "appName": "集客成员营销任务管理",
+        "applicationIcon": null,
+        "frameExtension": Object {},
+        "frontendHookList": Array [
+          Object {
+            "hookCode": "appDidInit",
+            "hookCompiledContent": "(function(appInfo){window.scqx_fetch_num=0;document.title=\\"\\\\u96C6\\\\u5BA2\\\\u5168\\\\u606F\\\\u4E13\\\\u533A\\";window.parent.document.title=document.title;var script=document.createElement(\\"script\\");script.src=\\"https://api.map.baidu.com/library/GeoUtils/1.2/docs/symbols/src/BMapLib_GeoUtils.js\\";document.body.appendChild(script)});",
+            "hookSourceContent": "/**
+ * @param {object} appInfo 应用信息
+*/
+(appInfo) => {
+  window.scqx_fetch_num = 0
+  document.title = '集客全息专区';
+  window.parent.document.title = document.title;
+  const script = document.createElement('script');
+  script.src = 'https://api.map.baidu.com/library/GeoUtils/1.2/docs/symbols/src/BMapLib_GeoUtils.js';
+  document.body.appendChild(script);
+}
+",
+            "hookType": "app",
+          },
+          Object {
+            "hookCode": "fetchResponse",
+            "hookCompiledContent": "(function(response,httpCode,success,fail,_ref,_ref2){var url=_ref.url,params=_ref.params;var CryptoJS=_ref2.CryptoJS;window.scqx_fetch_num=window.scqx_fetch_num-1});",
+            "hookSourceContent": "/**
+ * @param {object} response 响应报文
+ * @param {number} httpCode http响应编码
+ * @param {function} success 触发成功，传入报文业务数据
+ * @param {function} fail 触发失败，传入错误信息
+ * @param {string} url 请求地址
+ * @param {object} params 请求参数
+ * @param {object} CryptoJS 加密工具
+*/
+(response, httpCode, success, fail, { url, params }, { CryptoJS }) => {
+    // if(window.location.href.includes('zhongzhuanyemian4662')){
+     window.scqx_fetch_num=window.scqx_fetch_num-1
+  // }
+}
+",
+            "hookType": "req",
+          },
+          Object {
+            "hookCode": "fetchSendBefore",
+            "hookCompiledContent": "(function(url,method,params,_ref){var CryptoJS=_ref.CryptoJS;window.scqx_fetch_num=window.scqx_fetch_num+1});",
+            "hookSourceContent": "/**
+ * @param {string} url 请求地址
+ * @param {string} method 请求方法
+ * @param {object} params 请求参数
+ * @param {object} CryptoJS 加密工具
+ * @return {object} {
+    header:'附带请求头数据',
+    params:'参数',
+    url: '改写请求地址',
+    fetchOption: 'fetch支持的配置',
+  } 返回对象，请求层将对请求配置二次处理
+  * @return {boolean} false 中止该请求
+  * @return {promise} 不执行网络请求，但会根据Promise执行 ‘请求成功’和‘请求失败’
+*/
+(url, method, params, { CryptoJS }) => {
+  // if(window.location.href.includes('zhongzhuanyemian4662')){
+    window.scqx_fetch_num=window.scqx_fetch_num+1
+  // }
+}
+",
+            "hookType": "req",
+          },
+        ],
+        "globalDataSource": null,
+        "i18nInfo": Object {
+          "enabled": null,
+          "locales": null,
+        },
+      },
+      "appId": "868681578956083200",
+      "baseUrl": "http://10.10.193.65:9012/",
+      "busiCompMapping": Object {},
+      "compAssetList": Array [],
+      "frontendHookMap": Object {
+        "appDidInit": "/**
+ * @param {object} appInfo 应用信息
+*/
+ const appDidInit = (appInfo) => {
+  window.scqx_fetch_num = 0
+  document.title = '集客全息专区';
+  window.parent.document.title = document.title;
+  const script = document.createElement('script');
+  script.src = 'https://api.map.baidu.com/library/GeoUtils/1.2/docs/symbols/src/BMapLib_GeoUtils.js';
+  document.body.appendChild(script);
+}
+",
+        "fetchResponse": "/**
+ * @param {object} response 响应报文
+ * @param {number} httpCode http响应编码
+ * @param {function} success 触发成功，传入报文业务数据
+ * @param {function} fail 触发失败，传入错误信息
+ * @param {string} url 请求地址
+ * @param {object} params 请求参数
+ * @param {object} CryptoJS 加密工具
+*/
+ const fetchResponse = (response, httpCode, success, fail, { url, params }, { CryptoJS }) => {
+    // if(window.location.href.includes('zhongzhuanyemian4662')){
+     window.scqx_fetch_num=window.scqx_fetch_num-1
+  // }
+}
+",
+        "fetchSendBefore": "/**
+ * @param {string} url 请求地址
+ * @param {string} method 请求方法
+ * @param {object} params 请求参数
+ * @param {object} CryptoJS 加密工具
+ * @return {object} {
+    header:'附带请求头数据',
+    params:'参数',
+    url: '改写请求地址',
+    fetchOption: 'fetch支持的配置',
+  } 返回对象，请求层将对请求配置二次处理
+  * @return {boolean} false 中止该请求
+  * @return {promise} 不执行网络请求，但会根据Promise执行 ‘请求成功’和‘请求失败’
+*/
+ const fetchSendBefore = (url, method, params, { CryptoJS }) => {
+  // if(window.location.href.includes('zhongzhuanyemian4662')){
+    window.scqx_fetch_num=window.scqx_fetch_num+1
+  // }
+}
+",
+      },
+      "pageIdMapping": Object {
+        "/TTTC1858": "899834190456836096",
+        "/TTTTTTT0978": "897865290545934336",
+        "/TTTTTTT0978copy": "955659038239764480",
+        "/TracyTest1247": "869780141765591040",
+        "/applicationFormSetList?appId=868681578956083200&catalogItemId=882206099849510912&pageId=882206104794595328&type=page": "882206104794595328",
+        "/biaogejiazaitupianceshi0015123": "956383215578001408",
+        "/biaozhunchanpinyingxiao2435": "1019132055831023616",
+        "/ceshibiaogejiazaitupian5316": "956029665732726784",
+        "/ceshiyemian012332": "899118936410267648",
+        "/changjingxuanzeyemian2411": "876720646100758528",
+        "/daijiandangqiye2910": "1045238349683339264",
+        "/daipaifajituanfenbuxiangqingtanchuang3926": "869758859921620992",
+        "/daoru6125": "871590497857712128",
+        "/diaoyongfuchuangkoufangfa7521": "1067800877664919552",
+        "/gequxianjituanduiying": "927743380699754496",
+        "/gongdanchuli9650": "971613994714750976",
+        "/gongdanfaqiguanlijiemian2425copycopy": "889083791716089856",
+        "/gongdanfaqiguanlijiemian2425copycopycopy": "945580960623509504",
+        "/gongdangmingxitongjibaobiao": "909615118796615680",
+        "/gongdanpaifa6251": "871281670436302848",
+        "/gongdanpaifa62511copy": "907922822368804864",
+        "/gongdanpaifa6251copy": "1002115088770547712",
+        "/gongdanpicipaifatongjibaobiao145": "953538989051117568",
+        "/gongdanpicipaifatongjibaobiao1454": "912596729668415488",
+        "/gongdanpicipaifatongjibaobiao1454copy": "946304764975820800",
+        "/gongdanpicipaifatongjibaobiao1454copycopy": "951013791857922048",
+        "/gongdanpicipaifatongjibaobiao145copy": "956454499648569344",
+        "/gongdanpicipaifatongjibaobiao145copycopy": "956879786506088448",
+        "/gongdanrenyuanpeizhi5800": "891908709324177408",
+        "/gongdanrenyuanpeizhi5800-new": "903211721105510400",
+        "/gongdanrenyuanpeizhi5800copy": "892221456175607808",
+        "/gongdanrenyuanpeizhi5800copycopycopy": "898472894087344128",
+        "/gongdanzhongzhitanchuang7731": "1008926366107435008",
+        "/hangyezongjian6654": "899133742030757888",
+        "/haomaqingdan0168": "981131908525371392",
+        "/huaxiangmingxi8861": "942982691350474752",
+        "/imageViewer": "955842601212207104",
+        "/imageViewerWindow": "956490978775220224",
+        "/imageViewercopy": "956487143990181888",
+        "/jikechengyuangongjian": "903831414833057792",
+        "/jikechengyuangongjiancopy": "927873289162076160",
+        "/jikeliuchengfaqiqishihuanjie5389": "874125593343266816",
+        "/jikequanxipaoxiaomingxibaobiao3323": "897003315829030912",
+        "/jikequanxitongtanmingxibaobiao0957": "896941245100081152",
+        "/jikequanxizhuanhualvbaobiao5891": "896941025859616768",
+        "/jikezhongkegongdanpaifa6251copy": "898455841213296640",
+        "/jikezongjianshenpi-modihou4964": "881738185543417856",
+        "/jituanbiaoqiankoujing3998": "963066086472966144",
+        "/jituanbiaoqiankoujing3998copy": "964111772751933440",
+        "/jituanbiaoqiankoujing3998copycopy": "969141912905732096",
+        "/jituanchengyuanqingdan": "916882232428281856",
+        "/jituandaorucuowutishi1190": "900029343968677888",
+        "/jituankehuxuanzetanchuangyemian6218": "870565605452427264",
+        "/jituanxinxi2650": "943040967534538752",
+        "/jituanxinxi4636": "942243904962838528",
+        "/jituanzhongkegongdanguiji6251": "898456240108384256",
+        "/kehujinglimodichulihuanjie6349": "874130140828635136",
+        "/kehujinglimodichulihuanjie6349copy": "881790219080597504",
+        "/liuchengdiaoduyichanggongdanchaxun9364": "942251215550824448",
+        "/luyinzhijian4049": "963686167003422720",
+        "/msceshibiaoge4226": "1002111390342938624",
+        "/paifachuliren8124": "902388256959332352",
+        "/paoxiao5207": "978572536241909760",
+        "/paoxiao5207copy": "990550162314813440",
+        "/piliangdaoruhaoma1065": "981021638165823488",
+        "/renwuzhixing4449": "954996620153348096",
+        "/shaixuanjituan8136copy": "983192562538672128",
+        "/shijianceshi1230058": "914766039526518784",
+        "/shuangdigongdanguijixiangxi6251": "901047083795439616",
+        "/testzzh12425copycopycopy": "902484901092884480",
+        "/tongtan8515": "973509311629885440",
+        "/tongtan8743copy": "873146627329892352",
+        "/tongtan8743copycopy": "873525059763052544",
+        "/tongtan8743copycopycopy": "927936604223582208",
+        "/tongtanjikezongjianshenpifenzhipanduantiaojian7895": "881805735010664448",
+        "/tongtanjikezongjianshenpifenzhipanduantiaojian7895copy": "901099424242425856",
+        "/ttplan": "976028589426262016",
+        "/tupianzhanshi5631": "956870760006053888",
+        "/woderenwu2258copy": "898435362863755264",
+        "/xinjikeshuangdichenggonggongjiangongdanfaqi9076": "954928233963356160",
+        "/xuanzehaoma8158": "872310912473243648",
+        "/xuanzejikezongjian2731": "979301546524704768",
+        "/xuanzejikezongjian2731copy": "980647618656370688",
+        "/yewuxiangqing2512": "909617376865140736",
+        "/yingxiaotongtanjindujituanweidu4023": "940417506565959680",
+        "/zhixiaoduizuzhixuanze5800": "912268597019127808",
+        "/zhuanhualvbaobiao5891": "911867890456674304",
+        "/zuozhanzhihuishenpifenzhipanduantiaojian4403": "901043509225021440",
+      },
+      "platform": "pc",
+    },
+    "useEbeSetup": false,
+  },
+  "hooks": Hookable {
+    "_after": Array [
+      [Function],
+    ],
+    "_before": undefined,
+    "_deprecatedHooks": Object {},
+    "_deprecatedMessages": undefined,
+    "_hooks": Object {},
+    "callHook": [Function],
+    "callHookWith": [Function],
+    "hook": [Function],
+  },
+  "inStrictMode": false,
+  "plugins": Object {
+    "app": Array [
+      [Function],
+    ],
+    "appConfig": Array [
+      [Function],
+    ],
+    "components": Array [
+      [Function],
+      [Function],
+      [Function],
+      [Function],
+      [Function],
+      [Function],
+      [Function],
+    ],
+    "dataSources": Array [
+      [Function],
+    ],
+    "globalData": Array [
+      [Function],
+    ],
+    "models": Array [
+      [Function],
+    ],
+    "packageJSON": Array [
+      [Function],
+    ],
+    "pages": Array [
+      [Function],
+      [Function],
+      [Function],
+      [Function],
+      [Function],
+      [Function],
+      [Function],
+      [Function],
+    ],
+    "pageview": Array [
+      [Function],
+      [Function],
+    ],
+    "themeCss": Array [
+      [Function],
+    ],
+  },
+  "postProcessors": Array [
+    [Function],
+    [Function],
+    [Function],
+  ],
+  "printUtil": Object {
+    "prettier": [Function],
+  },
+  "projectPostProcessors": Array [],
+  "projectPreProcessors": Array [],
+  "schemaParser": SchemaParser {},
+  "template": Object {
+    "generateTemplate": [Function],
+    "slots": Object {
+      "app": Object {
+        "fileName": "app",
+        "path": Array [
+          "src",
+        ],
+      },
+      "appConfig": Object {
+        "fileName": "config",
+        "path": Array [
+          "config",
+        ],
+      },
+      "components": Object {
+        "path": Array [
+          "src",
+          "components",
+        ],
+      },
+      "packageJSON": Object {
+        "fileName": "package",
+        "path": Array [],
+      },
+      "pages": Object {
+        "path": Array [
+          "src",
+          "pages",
+        ],
+      },
+      "pageview": Object {
+        "path": Array [
+          "src",
+          "components",
+          "Pageview",
+        ],
+      },
+      "themeCss": Object {
+        "fileName": "overrides",
+        "path": Array [
+          "src",
+        ],
+      },
+    },
+  },
+}
+`;

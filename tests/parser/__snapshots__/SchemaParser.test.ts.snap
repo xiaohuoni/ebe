@@ -1,0 +1,506 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SchemaParser parse should parse the schema and return the parse result 1`] = `
+Object {
+  "app": Object {
+    "keepalive": Array [],
+  },
+  "containers": Array [
+    Object {
+      "analyzeResult": Object {
+        "isUsingRef": false,
+      },
+      "appId": "1106394452819316736",
+      "components": Array [
+        Object {
+          "compLib": "custom",
+          "compName": "View",
+          "compType": 0,
+          "components": Array [
+            Object {
+              "compLib": "comm",
+              "compName": "Button",
+              "compType": 1,
+              "components": Array [],
+              "events": Object {
+                "onClick": Object {
+                  "id": "Button_Button_096226_onClick",
+                  "value": Array [
+                    Object {
+                      "callback1": Array [
+                        Object {
+                          "dataId": 171576713163522750,
+                          "line_number": 2,
+                          "options": Object {
+                            "compId": "console",
+                            "compName": "system",
+                            "id": "179761",
+                            "pageJsonId": "542158",
+                            "value": Array [
+                              "123",
+                            ],
+                          },
+                          "path": undefined,
+                          "shielding": undefined,
+                          "type": "console",
+                        },
+                      ],
+                      "condition": Array [
+                        Object {
+                          "condId": "58469",
+                          "conditionType": "isVisible",
+                          "objId": "Input_347757",
+                          "objType": "Input",
+                          "options": Object {},
+                        },
+                      ],
+                      "dataId": 171574149702936580,
+                      "elseIfs": Array [
+                        Object {
+                          "callback": Array [
+                            Object {
+                              "dataId": 171576765418323900,
+                              "line_number": 3,
+                              "options": Object {
+                                "compId": "console",
+                                "compName": "system",
+                                "id": "442761",
+                                "pageJsonId": "542158",
+                                "value": Array [
+                                  "2222",
+                                ],
+                              },
+                              "path": undefined,
+                              "shielding": undefined,
+                              "type": "console",
+                            },
+                          ],
+                          "children": Array [
+                            Object {
+                              "actionObjId": "console",
+                              "actionObjName": "system",
+                              "children": Array [],
+                              "dataId": 171576765418323900,
+                              "dataName": "action",
+                              "elseIfs": Array [],
+                              "line_number": 3,
+                              "options": Object {
+                                "compId": "console",
+                                "compName": "system",
+                                "id": "442761",
+                                "pageJsonId": "542158",
+                                "value": Array [
+                                  "2222",
+                                ],
+                              },
+                              "todoOptions": Array [
+                                "valueArray",
+                              ],
+                              "value": "console",
+                            },
+                          ],
+                          "condition": Array [
+                            Object {
+                              "condId": "250352",
+                              "conditionType": "notVisible",
+                              "objId": "Input_1814256",
+                              "objType": "Input",
+                              "options": Object {},
+                            },
+                          ],
+                          "dataId": 171576763139135300,
+                          "dataName": "elseIf",
+                          "elseIfs": Array [],
+                          "value": "elseIf",
+                        },
+                        Object {
+                          "callback": Array [
+                            Object {
+                              "dataId": 171577180618680400,
+                              "line_number": 4,
+                              "options": Object {
+                                "compId": "console",
+                                "compName": "system",
+                                "id": "880927",
+                                "pageJsonId": "542158",
+                                "value": Array [
+                                  "333333",
+                                ],
+                              },
+                              "path": undefined,
+                              "shielding": undefined,
+                              "type": "console",
+                            },
+                          ],
+                          "children": Array [
+                            Object {
+                              "actionObjId": "console",
+                              "actionObjName": "system",
+                              "children": Array [],
+                              "dataId": 171577180618680400,
+                              "dataName": "action",
+                              "elseIfs": Array [],
+                              "line_number": 4,
+                              "options": Object {
+                                "compId": "console",
+                                "compName": "system",
+                                "id": "880927",
+                                "pageJsonId": "542158",
+                                "value": Array [
+                                  "333333",
+                                ],
+                              },
+                              "todoOptions": Array [
+                                "valueArray",
+                              ],
+                              "value": "console",
+                            },
+                          ],
+                          "condition": Array [],
+                          "dataId": 171577179754159780,
+                          "dataName": "elseIf",
+                          "elseIfs": Array [],
+                          "value": "elseIf",
+                        },
+                      ],
+                      "line_number": 1,
+                      "path": undefined,
+                      "shielding": undefined,
+                      "type": "ifelse",
+                    },
+                  ],
+                },
+              },
+              "id": "Button_096226",
+              "isBusiObjContainer": false,
+              "isContainer": false,
+              "isInlineBlock": true,
+              "isLabelDropBoxChild": false,
+              "label": "按钮",
+              "originClassName": "",
+              "platform": "pc",
+              "props": Object {
+                "$$componentItem": "##{{id: 'Button_096226',uid: \\"Button_096226\\"}}##",
+                "block": false,
+                "btnText": "按钮",
+                "className": "Button_Button_096226",
+                "data-compid": "Button_096226",
+                "ghost": false,
+                "hasIcon": false,
+                "iconPosition": "left",
+                "loading": false,
+                "name": "按钮",
+                "shape": "default",
+                "size": "default",
+                "type": "default",
+                "visible": true,
+              },
+              "setEvents": Array [
+                Object {
+                  "children": Array [
+                    Object {
+                      "children": Array [
+                        Object {
+                          "actionObjId": "console",
+                          "actionObjName": "system",
+                          "children": Array [],
+                          "dataId": 171576713163522750,
+                          "dataName": "action",
+                          "elseIfs": Array [],
+                          "line_number": 2,
+                          "options": Object {
+                            "compId": "console",
+                            "compName": "system",
+                            "id": "179761",
+                            "pageJsonId": "542158",
+                            "value": Array [
+                              "123",
+                            ],
+                          },
+                          "todoOptions": Array [
+                            "valueArray",
+                          ],
+                          "value": "console",
+                        },
+                      ],
+                      "condition": Array [
+                        Object {
+                          "condId": "58469",
+                          "conditionType": "isVisible",
+                          "objId": "Input_347757",
+                          "objType": "Input",
+                          "options": Object {},
+                        },
+                      ],
+                      "dataId": 171574149702936580,
+                      "dataName": "condition",
+                      "elseIfs": Array [
+                        Object {
+                          "callback": Array [
+                            Object {
+                              "dataId": 171576765418323900,
+                              "line_number": 3,
+                              "options": Object {
+                                "compId": "console",
+                                "compName": "system",
+                                "id": "442761",
+                                "pageJsonId": "542158",
+                                "value": Array [
+                                  "2222",
+                                ],
+                              },
+                              "path": undefined,
+                              "shielding": undefined,
+                              "type": "console",
+                            },
+                          ],
+                          "children": Array [
+                            Object {
+                              "actionObjId": "console",
+                              "actionObjName": "system",
+                              "children": Array [],
+                              "dataId": 171576765418323900,
+                              "dataName": "action",
+                              "elseIfs": Array [],
+                              "line_number": 3,
+                              "options": Object {
+                                "compId": "console",
+                                "compName": "system",
+                                "id": "442761",
+                                "pageJsonId": "542158",
+                                "value": Array [
+                                  "2222",
+                                ],
+                              },
+                              "todoOptions": Array [
+                                "valueArray",
+                              ],
+                              "value": "console",
+                            },
+                          ],
+                          "condition": Array [
+                            Object {
+                              "condId": "250352",
+                              "conditionType": "notVisible",
+                              "objId": "Input_1814256",
+                              "objType": "Input",
+                              "options": Object {},
+                            },
+                          ],
+                          "dataId": 171576763139135300,
+                          "dataName": "elseIf",
+                          "elseIfs": Array [],
+                          "value": "elseIf",
+                        },
+                        Object {
+                          "callback": Array [
+                            Object {
+                              "dataId": 171577180618680400,
+                              "line_number": 4,
+                              "options": Object {
+                                "compId": "console",
+                                "compName": "system",
+                                "id": "880927",
+                                "pageJsonId": "542158",
+                                "value": Array [
+                                  "333333",
+                                ],
+                              },
+                              "path": undefined,
+                              "shielding": undefined,
+                              "type": "console",
+                            },
+                          ],
+                          "children": Array [
+                            Object {
+                              "actionObjId": "console",
+                              "actionObjName": "system",
+                              "children": Array [],
+                              "dataId": 171577180618680400,
+                              "dataName": "action",
+                              "elseIfs": Array [],
+                              "line_number": 4,
+                              "options": Object {
+                                "compId": "console",
+                                "compName": "system",
+                                "id": "880927",
+                                "pageJsonId": "542158",
+                                "value": Array [
+                                  "333333",
+                                ],
+                              },
+                              "todoOptions": Array [
+                                "valueArray",
+                              ],
+                              "value": "console",
+                            },
+                          ],
+                          "condition": Array [],
+                          "dataId": 171577179754159780,
+                          "dataName": "elseIf",
+                          "elseIfs": Array [],
+                          "value": "elseIf",
+                        },
+                      ],
+                      "line_number": 1,
+                      "value": "condition",
+                    },
+                  ],
+                  "dataId": 171573860914746140,
+                  "dataName": "event",
+                  "params": Array [
+                    Object {
+                      "name": "e",
+                      "title": "事件对象",
+                      "value": "$e$",
+                    },
+                  ],
+                  "value": "onClick",
+                },
+              ],
+              "style": Object {
+                "textAlign": "center",
+              },
+              "type": "Button",
+              Symbol(LoopMarkSymbol): Object {
+                "loopType": "",
+                "parentLoopId": "",
+              },
+            },
+            Object {
+              "compLib": "comm",
+              "compName": "Table",
+              "compType": 1,
+              "components": Array [],
+              "events": Object {},
+              "id": "Table_096226",
+              "label": "表格",
+              "originClassName": "",
+              "props": Object {
+                "data-compid": "Table_096226",
+                "name": "表格",
+              },
+              "type": "Table",
+              Symbol(LoopMarkSymbol): Object {
+                "loopType": "",
+                "parentLoopId": "",
+              },
+            },
+          ],
+          "events": Object {},
+          "id": "View_542158_1",
+          "isBusiObjContainer": false,
+          "isContainer": true,
+          "isLabelDropBoxChild": false,
+          "label": "普通容器",
+          "originClassName": "",
+          "platform": "pc",
+          "props": Object {
+            "$$componentItem": "##{{id: 'View_542158_1',uid: \\"View_542158_1\\"}}##",
+            "backgroundType": Object {
+              "color": "rgba(255, 255, 255, 1)",
+              "type": "cleanColor",
+            },
+            "className": "View_View_542158_1",
+            "data-compid": "View_542158_1",
+            "name": "页面",
+            "visible": true,
+          },
+          "setEvents": Array [],
+          "style": Object {
+            "display": "flex",
+            "flexDirection": "column",
+            "height": "auto",
+            "minHeight": "100%",
+            "overflowY": "auto",
+            "padding": "20px 20px 20px 20px",
+            "width": "auto",
+          },
+          "type": "View",
+          Symbol(LoopMarkSymbol): Object {
+            "loopType": "",
+            "parentLoopId": "",
+          },
+        },
+      ],
+      "containerType": "Page",
+      "createdEditorVersion": "3.3.1.05092000",
+      "currentPageVersionId": "1106394609220718593",
+      "defaultVersionId": "1106394609220718593",
+      "deps": Array [
+        Object {
+          "dependencyType": "External",
+          "destructuring": true,
+          "exportName": "View",
+          "package": "@/components/factory",
+          "type": "View",
+          "version": "*",
+        },
+        Object {
+          "dependencyType": "External",
+          "destructuring": true,
+          "exportName": "Button",
+          "package": "@/components/factory",
+          "type": "Button",
+          "version": "*",
+        },
+        Object {
+          "dependencyType": "External",
+          "destructuring": true,
+          "exportName": "Table",
+          "package": "@/components/factory",
+          "type": "Table",
+          "version": "*",
+        },
+      ],
+      "editorVersion": "3.3.1.05141705",
+      "globalDataSource": Object {},
+      "id": "542158",
+      "imgInfoList": Array [],
+      "moduleName": undefined,
+      "pageId": "1106394609220718592",
+      "platform": "pc",
+      "platformType": "LowCode",
+      "previewValidVersionId": "1106394609220718593",
+      "terminalType": "PC",
+      "type": "Page",
+    },
+  ],
+  "dataSources": Array [
+    Object {
+      "abc": 1,
+      "analyzeResult": Object {
+        "isUsingRef": false,
+      },
+      "containerType": "Page",
+      "dataSource": "[]",
+      "moduleName": undefined,
+      "type": "Page",
+    },
+  ],
+  "globalDatas": Array [],
+  "models": Object {},
+  "pageview": Object {
+    "models": Array [],
+    "pageStaticData": Object {},
+    "routes": Array [
+      Object {
+        "fileName": undefined,
+        "pageId": undefined,
+        "path": undefined,
+        "type": undefined,
+      },
+    ],
+  },
+  "project": Object {
+    "containersDeps": Array [],
+    "packages": Array [
+      Object {
+        "package": "@/components/factory",
+        "version": "*",
+      },
+    ],
+  },
+  "staticFiles": undefined,
+}
+`;
