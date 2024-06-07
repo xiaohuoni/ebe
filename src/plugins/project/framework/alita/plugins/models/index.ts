@@ -169,9 +169,12 @@ const pluginModels: BuilderComponentPluginFactory<unknown> = () => {
            return initialModel(context).catch((err) => {
               console.log('全局数据源${ir.dataName}初始化失败');
               console.log(err);
+            }).then(res => {
+              setModel({
+                ${ir.dataName}: res,
+              })
             })
             .finally(() => {
-              setModel(newData as ${modelTypeName});
               setLoading(false);
               setReadyComplete(true);
             });
