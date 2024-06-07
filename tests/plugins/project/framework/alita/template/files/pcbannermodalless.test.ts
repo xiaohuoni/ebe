@@ -6,7 +6,7 @@ describe('template files pcbannermodalless', () => {
     const config: any = {
       platform: 'pc',
     };
-    const expectedFileContent = `@import (reference) '../../styles/index.less';
+    const expectedFileContent = `@import (reference) '../../../styles/index.less';
     @prefixCls: lcdp-bannermodal;
     .@{prefixCls} {
       position: fixed;
@@ -219,7 +219,7 @@ describe('template files pcbannermodalless', () => {
 
     const [directories, file] = getFile();
 
-    expect(directories).toEqual(['src', 'components', 'BannerModal']);
+    expect(directories).toEqual(['src', 'components', 'common', 'BannerModal']);
     expect(file.name).toEqual('index');
     expect(file.ext).toEqual('less');
     expectValueIgnoreWhitespace(file.content, expectedFileContent);

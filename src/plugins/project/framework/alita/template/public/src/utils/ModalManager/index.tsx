@@ -1,4 +1,4 @@
-import { RootProps } from '@/components/Pageview';
+import { RootProps } from '@/components/common/Pageview';
 import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';
 import Drawer from './Drawer';
 import Modal from './Modal';

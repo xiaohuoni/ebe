@@ -5,7 +5,7 @@ export default function getFile(): [string[], ResultFile] {
   const file = createResultFile(
     'Modal',
     'tsx',
-    `import Pageview, { RootProps } from '@/components/Pageview';
+    `import Pageview, { RootProps } from '@/components/common/Pageview';
 import CenterPopup from 'antd-mobile-5/es/components/center-popup';
 import Popup from 'antd-mobile-5/es/components/popup';
 import React, {

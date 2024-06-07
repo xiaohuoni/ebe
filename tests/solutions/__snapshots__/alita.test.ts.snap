@@ -317,6 +317,7 @@ ProjectBuilder {
         "path": Array [
           "src",
           "components",
+          "businessComponent",
         ],
       },
       "packageJSON": Object {
@@ -333,6 +334,7 @@ ProjectBuilder {
         "path": Array [
           "src",
           "components",
+          "common",
           "Pageview",
         ],
       },

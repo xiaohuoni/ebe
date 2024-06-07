@@ -26,7 +26,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       import { useAppData } from 'alita';
         import { parse } from 'qs';
         import useListenProps from '@/hooks/useListenProps';
-        import { Hoc } from '../factory';
+        import { Hoc } from '@/components/factory';
         import { useTopContainerHidden } from '@/utils/Context/Container';
         import { useHiddenStyle } from '@/utils/hooks';
         import classNames from 'classnames';

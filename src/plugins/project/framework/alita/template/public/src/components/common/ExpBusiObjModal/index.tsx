@@ -12,7 +12,7 @@ import {
   closeProgressNotification,
   openProgressMsg,
   showProgressNotification,
-} from '../ProgressComp';
+} from '../../ProgressComp';
 // import getApis from '../../services';
 import {
   BaseModalProps,
@@ -22,7 +22,7 @@ import {
 } from '@/types';
 import { exportFileShowProgress } from '@/utils/platform/utils/fileUtils';
 import { LocaleFunction } from '@lingxiteam/types';
-import { prefix } from '../../styles';
+import { prefix } from '../../../styles';
 import './index';
 
 const expBusiObjModal = `${prefix}-expBusiObjModal`;

@@ -371,7 +371,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     });
 
     if (isBOFramer(ir)) {
-      ir.deps?.push(getImportFrom('../factory', 'Hoc', true));
+      ir.deps?.push(getImportFrom('@/components/factory', 'Hoc', true));
 
       next.chunks.push({
         type: ChunkType.STRING,

@@ -7,7 +7,7 @@ const alitaTemplate: IProjectTemplate = {
       path: ['src', 'pages'],
     },
     components: {
-      path: ['src', 'components'],
+      path: ['src', 'components', 'businessComponent'],
     },
     packageJSON: {
       path: [],
@@ -18,7 +18,7 @@ const alitaTemplate: IProjectTemplate = {
       fileName: 'config',
     },
     pageview: {
-      path: ['src', 'components', 'Pageview'],
+      path: ['src', 'components', 'common', 'Pageview'],
     },
     app: {
       path: ['src'],

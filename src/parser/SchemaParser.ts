@@ -106,7 +106,7 @@ export class SchemaParser implements ISchemaParser {
           };
         } else if (info.type === 'Pageview' || info.type === 'Popover') {
           compDeps[info.type] = {
-            package: `@/components/${info.type}`,
+            package: `@/components/common/${info.type}`,
             dependencyType: DependencyType.External,
             type: info.type,
             exportName: info.exportName ?? info.type,
@@ -116,7 +116,7 @@ export class SchemaParser implements ISchemaParser {
         } else if (info.type === 'BOFramer' || info.type === 'BusiComp') {
           const typeBOFramer = getBusiCompName(info, 'component');
           compDeps[typeBOFramer] = {
-            package: `@/components/${typeBOFramer}`,
+            package: `@/components/businessComponent/${typeBOFramer}`,
             dependencyType: DependencyType.External,
             type: typeBOFramer,
             exportName: typeBOFramer,

@@ -9,9 +9,9 @@ describe('template files withPageHOC', () => {
     const expectedFileContent = `import React, { useContext, useEffect, useState, useRef, useMemo } from 'react';
     import { api as baseApi } from '@/services/api';
     import { messageApi } from '@/utils/messageApi';
-    import { pageStaticData } from '@/components/Pageview';
-    import BannerModal from '@/components/BannerModal';
-    import ExpBusiObjModal from '@/components/ExpBusiObjModal';
+    import { pageStaticData } from '@/components/common/Pageview';
+    import BannerModal from '@/components/common/BannerModal';
+    import ExpBusiObjModal from '@/components/common/ExpBusiObjModal';
     import { createRenderId } from '@/utils/customFuncMapping';
     import ImportBusiObjModal from '@/components/ImportBusiObjModal';
     import ExpSQLServiceModal from '@/components/ExpSQLServiceModal';

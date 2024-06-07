@@ -266,5 +266,5 @@ export default DynamicPopover;
 `,
   );
 
-  return [['src', 'components', 'Popover'], file];
+  return [['src', 'components', 'common', 'Popover'], file];
 }

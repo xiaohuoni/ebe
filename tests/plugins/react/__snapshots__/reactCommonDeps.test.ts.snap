@@ -8,7 +8,7 @@ Object {
 // 注意: 出码模块正在调试
 import React, { useImperativeHandle, useEffect, useRef } from 'react';
 import moment from 'moment';
-import Popover from '@/components/Popover';
+import Popover from '@/components/common/Popover';
 import _ from 'lodash';
 import ArrayUtil from '@/utils/array';
 import { api } from '@/services/api';

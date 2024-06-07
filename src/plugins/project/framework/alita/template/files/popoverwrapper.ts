@@ -69,5 +69,5 @@ export class Wrapper extends React.Component<
 `,
   );
 
-  return [['src', 'components', 'Popover'], file];
+  return [['src', 'components', 'common', 'Popover'], file];
 }

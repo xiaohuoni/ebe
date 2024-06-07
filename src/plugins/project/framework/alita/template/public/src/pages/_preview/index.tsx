@@ -2,7 +2,7 @@ import { useLocation } from 'alita';
 import { parse } from 'qs';
 import { useMemo } from 'react';
 
-import BannerModal from '@/components/BannerModal';
+import BannerModal from '@/components/common/BannerModal';
 
 const PreviewFile = () => {
   // const { fileIds = '', fileIndex, appId, pageId } = getSearchObj();

@@ -1,3 +1,4 @@
+import { antPrefix } from '@/components/pcfactory/src/variables';
 import { CloseCircleFilled } from '@ant-design/icons';
 import { LocaleFunction } from '@lingxiteam/types';
 import {
@@ -9,7 +10,6 @@ import {
   Spin,
 } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
-import { antPrefix } from '../pcfactory/src/variables';
 import ProgressComp from './ProgressComp';
 
 const openProgress = (percent: number, restProps?: any) => (

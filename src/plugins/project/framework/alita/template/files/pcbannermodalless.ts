@@ -6,7 +6,7 @@ export default function getFile(): [string[], ResultFile] {
     'index',
     'less',
     `
-    @import (reference) '../../styles/index.less';
+    @import (reference) '../../../styles/index.less';
     @prefixCls: lcdp-bannermodal;
     .@{prefixCls} {
       position: fixed;
@@ -220,5 +220,5 @@ export default function getFile(): [string[], ResultFile] {
 `,
   );
 
-  return [['src', 'components', 'BannerModal'], file];
+  return [['src', 'components', 'common', 'BannerModal'], file];
 }

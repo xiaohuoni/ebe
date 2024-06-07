@@ -7,7 +7,7 @@ export default function getFile(): [string[], ResultFile] {
     'tsx',
     `import React, { FC, useEffect, useMemo, useState } from 'react';
     // @ts-ignore
-    import { antPrefix as clsPrefix } from '../pcfactory/src/variables';
+    import { antPrefix as clsPrefix } from '@/components/pcfactory/src/variables';
     import { ConfigProvider } from 'antd';
     import * as ReactDOM from 'react-dom';
     import Loadable from 'react-loadable';
@@ -297,5 +297,5 @@ export default function getFile(): [string[], ResultFile] {
 `,
   );
 
-  return [['src', 'components', 'BannerModal'], file];
+  return [['src', 'components', 'common', 'BannerModal'], file];
 }

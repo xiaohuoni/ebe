@@ -13,7 +13,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import pageIcon from '../../assets/pageicon';
+import pageIcon from '../../../assets/pageicon';
 // @ts-ignore
 import { Document, Page, pdfjs } from 'react-pdf';
 // @ts-ignore

@@ -8,7 +8,7 @@ describe('template files pcbannermodal', () => {
     };
     const expectedFileContent = `import React, { FC, useEffect, useMemo, useState } from 'react';
     // @ts-ignore
-    import { antPrefix as clsPrefix } from '../pcfactory/src/variables';
+    import { antPrefix as clsPrefix } from '@/components/pcfactory/src/variables';
     import { ConfigProvider } from 'antd';
     import * as ReactDOM from 'react-dom';
     import Loadable from 'react-loadable';
@@ -303,7 +303,7 @@ describe('template files pcbannermodal', () => {
 
     const [directories, file] = getFile();
 
-    expect(directories).toEqual(['src', 'components', 'BannerModal']);
+    expect(directories).toEqual(['src', 'components', 'common', 'BannerModal']);
     expect(file.name).toEqual('index');
     expect(file.ext).toEqual('tsx');
     expectValue(file.content, expectedFileContent);

@@ -181,7 +181,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             batchDownloadFileByIds,
             downloadByFileCode,
           } from '@/utils/platform';
-          import BannerModal from '@/components/BannerModal';
+          import BannerModal from '@/components/common/BannerModal';
           import customFuncMapping from '@/utils/customFuncMapping';
 
           ${importString}
