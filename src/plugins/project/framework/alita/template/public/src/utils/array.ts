@@ -1,4 +1,4 @@
-import { get, isArray, merge, set } from 'lodash';
+import { get, isArray, merge, mergeWith, set } from 'lodash';
 
 /**
  * 往数组中添加数据元素
@@ -92,6 +92,30 @@ const update = (
   return arr;
 };
 
+export const customizer = (_objValue: any, srcValue: any) => {
+  if (Array.isArray(srcValue)) {
+    return srcValue;
+  }
+  return undefined;
+};
+
+const setPayloadRecursively = (data: any, payload: any, pathStr: string) => {
+  const path = pathStr.split('.');
+  const nextData = get(data, path);
+
+  if (payload && typeof payload === 'object') {
+    Object.keys(payload).forEach(k => {
+      // 数组不需要处理,减少一定的性能
+      if (Object.prototype.toString.call(payload[k]) === '[object Object]') {
+        setPayloadRecursively(nextData, payload[k], k);
+      } else if (payload[k] === undefined && nextData) {
+        // nextData[path][k] = undefined;
+        set(nextData, k, undefined);
+      }
+    });
+  }
+};
+
 /**
  * 更新对象
  * @param options
@@ -111,7 +135,8 @@ const updateObject = (options: {
     Object.prototype.toString.call(value) === '[object Object]' &&
     isPatch
   ) {
-    newData = merge({}, oldItem, newData);
+    setPayloadRecursively(oldItem, newData, path);
+    newData = mergeWith({}, oldItem, newData, customizer);
   }
   set(data, path, newData);
   return newData;
