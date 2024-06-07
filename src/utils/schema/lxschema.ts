@@ -93,6 +93,26 @@ export function handleSubNodes<T>(
   return childrenRes;
 }
 
+// TODO: extraData sandBoxContext
+const StaticDataKey = 'attrDataMap';
+
+export const extraData = {
+  collectRelationKey: (
+    compId: string,
+    attrNbrKey: string,
+    childKeys?: string[],
+  ) => {
+    if (!attrNbrKey) {
+      return '';
+    }
+    if (Array.isArray(childKeys) && childKeys.length > 0) {
+      return `$${StaticDataKey}['${attrNbrKey}'].filter(item=>${JSON.stringify(
+        childKeys,
+      )}.includes(item.attrValue))$`;
+    }
+    return `$${StaticDataKey}['${attrNbrKey}']$`;
+  },
+} as any;
 /**
  * 控件属性预处理-只执行一次
  * @param schema
@@ -104,26 +124,7 @@ const preprocessComponentSchema = (
   isRoot: boolean,
 ): IProjectSchema => {
   let newSchema: any = _.cloneDeep(schema);
-  // TODO: extraData sandBoxContext
-  const StaticDataKey = 'attrDataMap';
 
-  const extraData = {
-    collectRelationKey: (
-      compId: string,
-      attrNbrKey: string,
-      childKeys?: string[],
-    ) => {
-      if (!attrNbrKey) {
-        return '';
-      }
-      if (Array.isArray(childKeys) && childKeys.length > 0) {
-        return `$${StaticDataKey}['${attrNbrKey}'].filter(item=>${JSON.stringify(
-          childKeys,
-        )}.includes(item.attrValue))$`;
-      }
-      return `$${StaticDataKey}['${attrNbrKey}']$`;
-    },
-  } as any;
   const sandBoxContext = {};
   // 预处理事件
   newSchema = parseDsl(schema, isRoot);
