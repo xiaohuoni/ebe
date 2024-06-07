@@ -1,4 +1,7 @@
-import * as cmd from '../../cmd';
+import * as h5Cmd from '../../cmd/h5Cmd';
+import * as pcCmd from '../../cmd/pcCmd';
+import * as sysCmd from '../../cmd/sysCmd';
+
 interface AllDebugDataProps {
   cmdHash?: any;
 }
@@ -9,10 +12,11 @@ export const getDebugData = () => {
 };
 
 const debugPrintCmd = true;
-export const printCmdList = () => {
+export const printCmdList = (platform: string) => {
   if (!debugPrintCmd) return;
   const { cmdHash = {} } = allDebugData;
-
+  const platformCmd = platform === 'h5' ? h5Cmd : pcCmd;
+  const cmd = { ...sysCmd, ...platformCmd };
   const cmdList = Object.keys(cmdHash)?.filter(
     (key) => typeof (cmd as any)[key] !== 'function',
   );

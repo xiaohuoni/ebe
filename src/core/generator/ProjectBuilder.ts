@@ -596,7 +596,7 @@ export class ProjectBuilder implements IProjectBuilder {
     }
     hooks.callHook('end');
 
-    printCmdList();
+    printCmdList(parseResult.staticFiles!.platform);
     return finalResult;
   }
 

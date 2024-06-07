@@ -1,5 +1,7 @@
 // 命令源码化
-import * as cmd from '../../cmd';
+import * as h5Cmd from '../../cmd/h5Cmd';
+import * as pcCmd from '../../cmd/pcCmd';
+import * as sysCmd from '../../cmd/sysCmd';
 import {
   CMDGeneratorPrames,
   CompositeValueGeneratorOptions,
@@ -32,6 +34,8 @@ const CMDGenerator = (prames: CMDGeneratorPrames) => {
   countCMD(prames?.value);
   let str = '';
 
+  const platformCmd = prames?.platform === 'h5' ? h5Cmd : pcCmd;
+  const cmd = { ...sysCmd, ...platformCmd };
   // 指令入口临时调整
   const type = prames?.value?.type as keyof typeof cmd;
 
