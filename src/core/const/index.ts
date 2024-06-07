@@ -11,6 +11,9 @@ export const SUPPORT_SCHEMA_VERSION_LIST = ['0.0.1', '1.0.0'];
 // built-in slot names which have been handled in ProjectBuilder
 export const BUILTIN_SLOT_NAMES = [
   'pages',
+  'modalPages',
+  'drawerPages',
+  'popoverPages',
   'components',
   'router',
   'entry',

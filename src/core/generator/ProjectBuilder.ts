@@ -280,13 +280,20 @@ export class ProjectBuilder implements IProjectBuilder {
     const pagesLength = parseResult.containers.length;
     const containerBuildResult: IModuleInfo[] = await Promise.all<IModuleInfo>(
       parseResult.containers.map(async (containerInfo, index) => {
-        let builder: IModuleBuilder;
+        let builder: IModuleBuilder = builders.pages;
         let path: string[];
+        // TODO: 弹窗等页面独立文件
+        // if (containerInfo.containerType === 'Modal') {
+        //   path = this.template.slots.modalPages.path;
+        // } else if (containerInfo.containerType === 'Drawer') {
+        //   path = this.template.slots.drawerPages.path;
+        // } else if (containerInfo.containerType === 'Popover') {
+        //   path = this.template.slots.popoverPages.path;
+        // } else
+
         if (PAGE_TYPES.includes(containerInfo.containerType)) {
-          builder = builders.pages;
           path = this.template.slots.pages.path;
         } else {
-          builder = builders.components;
           path = this.template.slots.components.path;
         }
         hooks.callHook('containers', {
@@ -306,78 +313,9 @@ export class ProjectBuilder implements IProjectBuilder {
     );
     buildResult = buildResult.concat(containerBuildResult);
 
-    // dataSource
-    if (parseResult.dataSources && builders.dataSources) {
-      const dataSourcesLength = parseResult.dataSources.length;
-
-      const dataSourceBuildResult: IModuleInfo[] =
-        await Promise.all<IModuleInfo>(
-          parseResult.dataSources.map(async (containerInfo, index) => {
-            let path: string[];
-            if (PAGE_TYPES.includes(containerInfo.containerType)) {
-              path = this.template.slots.pages.path;
-            } else {
-              path = this.template.slots.components.path;
-            }
-            hooks.callHook('dataSources', {
-              msg: `生成数据源${containerInfo.moduleName} 进度${
-                index + 1
-              }/${dataSourcesLength}`,
-              childProcess: (index + 1) / dataSourcesLength,
-            });
-            const { files } = await builders.dataSources.generateModule(
-              containerInfo,
-            );
-            return {
-              moduleName: containerInfo.moduleName,
-              path,
-              files,
-            };
-          }),
-        );
-
-      buildResult = buildResult.concat(dataSourceBuildResult);
-    } else {
-      hooks.callHook('dataSources', {
-        msg: `未使用页面数据源，跳过生成`,
-      });
-    }
-
     // useModels
-    if (parseResult.globalDatas.length && builders.globalData) {
-      const globalDataSourcesLength = parseResult.globalDatas.length;
-
-      const globalDataBuildResult: IModuleInfo[] =
-        await Promise.all<IModuleInfo>(
-          parseResult.globalDatas.map(async (containerInfo, index) => {
-            let path: string[];
-            if (PAGE_TYPES.includes(containerInfo.containerType)) {
-              path = this.template.slots.pages.path;
-            } else {
-              path = this.template.slots.components.path;
-            }
-            hooks.callHook('globalDataSources', {
-              msg: `生成全局数据源${containerInfo.moduleName} 进度${
-                index + 1
-              }/${globalDataSourcesLength}`,
-              childProcess: (index + 1) / globalDataSourcesLength,
-            });
-            const { files } = await builders.globalData.generateModule(
-              containerInfo,
-            );
-            return {
-              moduleName: containerInfo.moduleName,
-              path,
-              files,
-            };
-          }),
-        );
-      buildResult = buildResult.concat(globalDataBuildResult);
-    } else {
-      hooks.callHook('globalDataSources', {
-        msg: `未使用全局数据源，跳过生成`,
-      });
-    }
+    // if (parseResult.globalDatas.length && builders.globalData) {
+    //   const globalDataSourcesLength = parseResult.globalDatas.length;
 
     // app
     if (parseResult.app && builders.app) {

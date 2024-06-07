@@ -157,9 +157,7 @@ export class SchemaParser implements ISchemaParser {
     // keepalive
     let keepalive: string[] = [];
 
-    // dataSource
-    let dataSources: any[] = [];
-    let globalDatas: any[] = [];
+    // let globalDatas: any[] = [];
     hooks?.callHook('containers', { msg: '解析页面数据' });
 
     containers = schemaArr.map((schema) => {
@@ -176,21 +174,11 @@ export class SchemaParser implements ISchemaParser {
       if (newSchema.pageContainerType === 'BusiComp') {
         moduleName = getBusiCompName(newSchema, 'page');
       }
-
-      // 这里不能做dataSource判断，不然数据无法执行数据源的插件，导致文件无法生成
-      // if (newSchema.dataSource) {
-      dataSources.push({
-        moduleName,
-        abc: 1,
-        containerType: newSchema.pageContainerType ?? 'Page',
-        type: newSchema.pageContainerType ?? 'Page',
-        analyzeResult: {
-          isUsingRef: false,
-        },
-        dataSource: JSON.stringify(cleanDataSource(newSchema.dataSource ?? [])),
-      });
-      // delete newSchema.dataSource;
-      // }
+      if (!newSchema.dataSource) {
+        newSchema.dataSource = [];
+      } else {
+        newSchema.dataSource = cleanDataSource(newSchema.dataSource ?? []);
+      }
 
       const globalDataSource: Record<string, any> = {};
 
@@ -210,17 +198,17 @@ export class SchemaParser implements ISchemaParser {
         };
       });
 
-      if (Object.keys(globalDataSource).length > 0) {
-        globalDatas.push({
-          globalDataSource,
-          type: newSchema.pageContainerType ?? 'Page',
-          containerType: newSchema.pageContainerType ?? 'Page',
-          moduleName,
-          analyzeResult: {
-            isUsingRef: false,
-          },
-        });
-      }
+      // if (Object.keys(globalDataSource).length > 0) {
+      //   globalDatas.push({
+      //     globalDataSource,
+      //     type: newSchema.pageContainerType ?? 'Page',
+      //     containerType: newSchema.pageContainerType ?? 'Page',
+      //     moduleName,
+      //     analyzeResult: {
+      //       isUsingRef: false,
+      //     },
+      //   });
+      // }
 
       return {
         ...newSchema,
@@ -352,7 +340,6 @@ export class SchemaParser implements ISchemaParser {
 
     return {
       containers,
-      dataSources,
       // globalRouter: {
       //   routes,
       //   deps: routerDeps,
@@ -372,7 +359,6 @@ export class SchemaParser implements ISchemaParser {
       // 静态文件生成的时候，可以传递一些简单的配置，比如修改一个代理地址，没有必要单独写一个插件？
       staticFiles: options,
       models: globalModels,
-      globalDatas,
     };
   }
   decodeSchema(schemaSrc: string | IProjectSchema): IProjectSchema {

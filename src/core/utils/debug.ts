@@ -71,29 +71,25 @@ export const LogTagsHash: any = {
     tag: '页面生成',
     progress: 3,
   },
-  dataSources: {
-    tag: '数据源生成',
-    progress: 4,
-  },
   globalDataSources: {
     tag: '全局数据源',
-    progress: 5,
+    progress: 3,
   },
   app: {
     tag: '运行时配置',
-    progress: 6,
+    progress: 4,
   },
   pageview: {
     tag: '页面视图',
-    progress: 7,
+    progress: 5,
   },
   appConfig: {
     tag: '项目配置',
-    progress: 8,
+    progress: 6,
   },
   packageJSON: {
     tag: '项目依赖',
-    progress: 9,
+    progress: 7,
   },
   end: {
     tag: '出码生成完成',

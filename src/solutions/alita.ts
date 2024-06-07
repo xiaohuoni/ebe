@@ -57,28 +57,6 @@ export default function createIceJsProjectBuilder(
     template: alita.template,
     schemaParser: new SchemaParser(),
     plugins: {
-      components: [
-        customActionMap(),
-        reactCommonDeps(),
-        alita.plugins.styleInject(),
-        reactContainer(),
-        containerLifeCycle(),
-        reactJsx({
-          nodePlugins: [alita.hooks.hackNodeAttr],
-          nodeTypeMapping: {
-            Page: 'div',
-            MobileModal: 'div',
-            MobilePopover: 'div',
-            Modal: 'div',
-            Drawer: 'div',
-            BusiComp: 'div',
-          },
-        }),
-        // 最前面的代码，其实是最后生成的
-        esModule({
-          fileType: FileType.TSX,
-        }),
-      ],
       pages: [
         customActionMap(),
         reactCommonDeps(),
@@ -101,8 +79,9 @@ export default function createIceJsProjectBuilder(
         esModule({
           fileType: FileType.TSX,
         }),
+        alita.plugins.dataSource(),
+        alita.plugins.globalData(),
       ],
-      dataSources: [alita.plugins.dataSource()],
       pageview: [
         esModule({
           fileType: FileType.TSX,
@@ -178,7 +157,6 @@ export default function createIceJsProjectBuilder(
       ],
       themeCss: [alita.plugins.themeCss()],
       models: [alita.plugins.models()],
-      globalData: [alita.plugins.globalData()],
     },
     postProcessors: [babel(), fixUndefinedVar(), prettier()],
     // postProcessors: [],

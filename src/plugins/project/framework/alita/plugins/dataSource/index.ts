@@ -16,7 +16,7 @@ const pluginDataSource: BuilderComponentPluginFactory<unknown> = () => {
 
     const ir = next.ir as any;
 
-    const dataSource = JSON.parse(ir.dataSource);
+    const dataSource = ir.dataSource;
 
     // if (dataSource.length === 0) {
     //   return next;

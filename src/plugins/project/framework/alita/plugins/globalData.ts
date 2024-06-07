@@ -6,6 +6,7 @@ import {
   FileType,
   ICodeStruct,
 } from '../../../../../core/types';
+import { shouldUsedGlobalData } from '../../../../../utils/globalDataSource/general';
 import { getGlobalDataExportNamesCode } from '../../../../../utils/globalDataSource/template';
 import { getDSFilterName } from './dataSource/type';
 
@@ -17,6 +18,9 @@ const pluginGlobalData: BuilderComponentPluginFactory<unknown> = () => {
 
     const ir = next.ir as any;
 
+    if (!shouldUsedGlobalData(ir?.globalDataSource)) {
+      return next;
+    }
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TS,

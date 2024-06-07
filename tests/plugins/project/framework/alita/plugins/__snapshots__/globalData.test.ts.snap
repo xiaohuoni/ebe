@@ -2,62 +2,7 @@
 
 exports[`plugin alita globalData compilation completed 1`] = `
 Object {
-  "chunks": Array [
-    Object {
-      "content": "
-        import { useEffect, useState, useMemo, useRef } from 'react';
-        import { useModel } from 'alita';
-        import useReactive from '@/utils/hooks/useReactive'
-
-        interface ContextOptions {
-          urlParam?: Record<string, any>;
-          routerData?: Record<string, any>;
-          state?: Record<string, any>;
-          lcdpApi?: any;
-        }
-
-        const useGlobalData = (context: ContextOptions) => {
-          // 数据源是否准备完成
-          const [globalDataReadyComplete, setDataReadyComplete] = useState(false);
-          
-
-            const globalDataRef = useRef<{
-              
-            }>({
-              
-            });
-            const globalData = useMemo(() => {
-              Object.assign(globalDataRef.current, {
-                
-              });
-
-              return globalDataRef.current;
-            }, []);
-
-          useEffect(() => {
-            setDataReadyComplete(true)
-            
-          }, []);
-          
-          return {
-            
-    globalDataReadyComplete,
-    globalData,
-    
-  
-          }
-        };
-        export default useGlobalData;
-      ",
-      "fileType": "ts",
-      "linkAfter": Array [
-        "CommonExternalDependencyImport",
-      ],
-      "name": "CommonInternalDependencyImport",
-      "subModule": "useGlobalData",
-      "type": "string",
-    },
-  ],
+  "chunks": Array [],
   "contextData": Object {},
   "depNames": Array [],
   "ir": Object {

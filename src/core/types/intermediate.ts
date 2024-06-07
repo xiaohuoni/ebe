@@ -4,7 +4,6 @@ import { IDependency, INpmPackage } from './deps';
 import { IProjectSchema } from './page';
 export interface IParseResult {
   containers: IContainerInfo[];
-  dataSources: IContainerInfo[];
   globalUtils?: IUtilInfo;
   globalRouter?: IRouterInfo;
   project?: IProjectInfo;
@@ -12,7 +11,6 @@ export interface IParseResult {
   app?: IRunTimeConfig;
   staticFiles?: LXProjectOptions;
   models: Record<string, LXGlobalDataInfo>;
-  globalDatas: GlobalDataInfo[];
 }
 
 export interface GlobalDataInfo {

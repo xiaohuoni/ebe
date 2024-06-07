@@ -426,6 +426,7 @@ Object {
       "containerType": "Page",
       "createdEditorVersion": "3.3.1.05092000",
       "currentPageVersionId": "1106394609220718593",
+      "dataSource": Array [],
       "defaultVersionId": "1106394609220718593",
       "deps": Array [
         Object {
@@ -466,19 +467,6 @@ Object {
       "type": "Page",
     },
   ],
-  "dataSources": Array [
-    Object {
-      "abc": 1,
-      "analyzeResult": Object {
-        "isUsingRef": false,
-      },
-      "containerType": "Page",
-      "dataSource": "[]",
-      "moduleName": undefined,
-      "type": "Page",
-    },
-  ],
-  "globalDatas": Array [],
   "models": Object {},
   "pageview": Object {
     "models": Array [],

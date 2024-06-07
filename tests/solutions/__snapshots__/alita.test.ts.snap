@@ -248,21 +248,6 @@ ProjectBuilder {
     "appConfig": Array [
       [Function],
     ],
-    "components": Array [
-      [Function],
-      [Function],
-      [Function],
-      [Function],
-      [Function],
-      [Function],
-      [Function],
-    ],
-    "dataSources": Array [
-      [Function],
-    ],
-    "globalData": Array [
-      [Function],
-    ],
     "models": Array [
       [Function],
     ],
@@ -270,6 +255,8 @@ ProjectBuilder {
       [Function],
     ],
     "pages": Array [
+      [Function],
+      [Function],
       [Function],
       [Function],
       [Function],
@@ -320,6 +307,20 @@ ProjectBuilder {
           "businessComponent",
         ],
       },
+      "drawerPages": Object {
+        "path": Array [
+          "src",
+          "pages",
+          "drawer",
+        ],
+      },
+      "modalPages": Object {
+        "path": Array [
+          "src",
+          "pages",
+          "modal",
+        ],
+      },
       "packageJSON": Object {
         "fileName": "package",
         "path": Array [],
@@ -336,6 +337,13 @@ ProjectBuilder {
           "components",
           "common",
           "Pageview",
+        ],
+      },
+      "popoverPages": Object {
+        "path": Array [
+          "src",
+          "pages",
+          "popover",
         ],
       },
       "themeCss": Object {
