@@ -109,7 +109,7 @@ describe('template files popover', () => {
 
     const [directories, file] = getFile(config);
 
-    expect(directories).toEqual(['src', 'components', 'common','Popover']);
+    expect(directories).toEqual(['src', 'components', 'common', 'Popover']);
     expect(file.name).toEqual('index');
     expect(file.ext).toEqual('tsx');
     expectValue(file.content, expectedFileContent);
