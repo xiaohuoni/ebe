@@ -8,9 +8,9 @@ import engineServices from '@/services/api/engine';
 import fileServices from '@/services/api/file';
 import { getAppFileUrlByFileCode } from '@/services/api/getAppFileUrlByFileCode';
 import {
-  BatchDownloadFileByIdsType,
+  BatchDownloadFileByIdsParamsType,
   DownloadByFileCodeType,
-  ExportFileShowProgressType,
+  ExportFileShowProgressParamsType,
   LocaleFunction,
   PreviewFileType,
   SaveBlobFileType,
@@ -22,6 +22,10 @@ import security from '@/utils/Security';
 
 type ExportPathMapType = Record<'sql' | 'object' | 'multiExport', string>;
 type ExportApiMapType = Record<'sql' | 'object' | 'multiExport', HTTPMehodFn>;
+
+type OmitAppIdAndPageId<T extends Record<string, any>> = (
+  p: Omit<T, 'pageId' | 'appId'>,
+) => void;
 
 const exportPathMap: ExportPathMapType = {
   sql: engineServices.exportSqlDatasApiPath(),
@@ -96,8 +100,6 @@ const getFileName = (fileContentStr: string, newFileName?: string) => {
 };
 
 const downloadByXMLHttpRequest = (params: {
-  appId: string;
-  pageId: string;
   newFileName?: string;
   onError?: any;
   messageApi?: any;
@@ -106,8 +108,6 @@ const downloadByXMLHttpRequest = (params: {
   getLocale: LocaleFunction;
 }) => {
   const {
-    appId,
-    pageId,
     newFileName,
     onError,
     messageApi,
@@ -126,9 +126,6 @@ const downloadByXMLHttpRequest = (params: {
     xhr.responseType = 'blob'; // 设置接受类型
     const headers: any = {
       'Content-Type': 'application/json',
-      'X-B-TARGET-ID': pageId,
-      'X-B-AUTH': '1',
-      'APP-ID': appId,
     };
     Object.keys(headers).forEach((header) => {
       xhr.setRequestHeader(header, headers[header]); // 设置请求头参数
@@ -221,7 +218,9 @@ const downloadByXMLHttpRequest = (params: {
  * @param messageApi
  * @param zip
  */
-const batchDownloadFileByIds: BatchDownloadFileByIdsType = (params) => {
+const batchDownloadFileByIds: OmitAppIdAndPageId<
+  BatchDownloadFileByIdsParamsType
+> = (params) => {
   const { fileIds, zip } = params;
 
   downloadByXMLHttpRequest({
@@ -232,9 +231,9 @@ const batchDownloadFileByIds: BatchDownloadFileByIdsType = (params) => {
 };
 
 // 异步导出文件并显示进度
-const exportFileShowProgressAsync: ExportFileShowProgressType = async (
-  exportParams,
-) => {
+const exportFileShowProgressAsync: OmitAppIdAndPageId<
+  ExportFileShowProgressParamsType
+> = async (exportParams) => {
   const {
     fileOrigin,
     fileName,
@@ -243,15 +242,16 @@ const exportFileShowProgressAsync: ExportFileShowProgressType = async (
     onFail,
     messageApi,
     downloadIndex,
-    appId,
-    pageId,
+    // appId,
+    // pageId,
     getLocale,
   } = exportParams;
   let timeoutId: number | null = null;
   let percent = 0;
   let isStop = false;
   const serviceApi = exportServiceMap[fileOrigin as keyof ExportApiMapType];
-  const applyId = await serviceApi(params, { appId, pageId });
+  // @ts-ignore
+  const applyId = await serviceApi(params);
   const messageConfig = {
     title: fileName ? `${getLocale('derive', '导出')}-${fileName}` : undefined,
     key: downloadIndex,
@@ -266,10 +266,7 @@ const exportFileShowProgressAsync: ExportFileShowProgressType = async (
   const requestProgress = async (isPolled = true) => {
     try {
       const { fileId, statusCd, requestJson, responseJson, failReason } =
-        await engineServices.getImportExportApply(
-          { applyId },
-          { appId, pageId },
-        );
+        await engineServices.getImportExportApply({ applyId });
       // 点击取消时候刚好触发了下一次接口，接口未回调时
       if (isStop) return -1;
       let requestObj: {
@@ -347,8 +344,6 @@ const exportFileShowProgressAsync: ExportFileShowProgressType = async (
               messageApi.error(errorMessage);
             },
             messageApi,
-            appId,
-            pageId,
             getLocale,
           });
         }
@@ -408,9 +403,9 @@ const previewFile: PreviewFileType = (params) => {
 };
 
 // 导出文件显示进度条
-const exportFileShowProgress: ExportFileShowProgressType = async (
-  exportParams,
-) => {
+const exportFileShowProgress: OmitAppIdAndPageId<
+  ExportFileShowProgressParamsType
+> = async (exportParams) => {
   const {
     fileOrigin,
     methodType = 'POST',
@@ -420,8 +415,8 @@ const exportFileShowProgress: ExportFileShowProgressType = async (
     onFail,
     messageApi,
     downloadIndex,
-    appId,
-    pageId,
+    // appId,
+    // pageId,
     async,
     getLocale = (k, placeholder) => placeholder,
   } = exportParams;
@@ -442,9 +437,9 @@ const exportFileShowProgress: ExportFileShowProgressType = async (
     xhr.responseType = 'blob'; // 设置接受类型
     const headers: any = {
       'Content-Type': 'application/json',
-      'X-B-TARGET-ID': pageId,
+      // 'X-B-TARGET-ID': pageId,
       'X-B-AUTH': '1',
-      'APP-ID': appId,
+      // 'APP-ID': appId,
     };
     Object.keys(headers).forEach((header) => {
       xhr.setRequestHeader(header, headers[header]); // 设置请求头参数

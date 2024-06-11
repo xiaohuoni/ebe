@@ -13,6 +13,7 @@ export { getDefault as defaultCmd } from './defaultCmd';
 export { downloadByFileId } from './downloadByFileId';
 export { dropPageByCatch } from './dropPageByCatch';
 export { exportCustomBusiObjectData } from './exportCustomBusiObjectData';
+export { exportCustomData } from './exportCustomData';
 export { exportSQLServiceData } from './exportSQLServiceData';
 export { getValue } from './getValue';
 export { hideMessage } from './hideMessage';

@@ -75,22 +75,18 @@ const messageApi = (
 ) => {
   switch (type) {
     case 'info':
-      message.info(transformContent(content), duration);
-      break;
+      return message.info(transformContent(content), duration);
     case 'success':
-      message.success(transformContent(content), duration);
-      break;
+      return message.success(transformContent(content), duration);
     case 'error':
-      message.error(transformContent(content), duration);
-      break;
+      return message.error(transformContent(content), duration);
     case 'warning':
     case 'warn':
-      message.warning(transformContent(content), duration);
-      break;
+      return message.warning(transformContent(content), duration);
     case 'loading':
-      message.loading(transformContent(content), duration);
+      return message.loading(transformContent(content), duration);
     default:
-      message.info(transformContent(content), duration);
+      return message.info(transformContent(content), duration);
   }
 };
 

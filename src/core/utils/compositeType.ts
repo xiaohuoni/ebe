@@ -298,7 +298,7 @@ export function generateCompositeType(
 export const getLegitimateKey = (key: string) => {
   const iCode = key.trim();
   if (!/^[\$_a-zA-Z][\d_\$a-zA-Z]{0,}$/.test(iCode) && !/^\d+$/.test(iCode)) {
-    return `['${key}']`;
+    return `'${key}'`;
   }
   return iCode;
 };
