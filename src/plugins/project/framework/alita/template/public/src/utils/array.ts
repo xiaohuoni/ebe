@@ -1,4 +1,4 @@
-import { get, isArray, merge, mergeWith, set } from 'lodash';
+import { get, isArray, mergeWith, set } from 'lodash';
 
 /**
  * 往数组中添加数据元素
@@ -104,7 +104,7 @@ const setPayloadRecursively = (data: any, payload: any, pathStr: string) => {
   const nextData = get(data, path);
 
   if (payload && typeof payload === 'object') {
-    Object.keys(payload).forEach(k => {
+    Object.keys(payload).forEach((k) => {
       // 数组不需要处理,减少一定的性能
       if (Object.prototype.toString.call(payload[k]) === '[object Object]') {
         setPayloadRecursively(nextData, payload[k], k);
