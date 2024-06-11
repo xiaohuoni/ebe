@@ -8,8 +8,6 @@ export function setFormValues({ value }: CMDGeneratorPrames): string {
   const _p = params === 'object' ? paramsObj : params;
   return `
     // 设置表单值
-    callComponentMethod(${parse2Var(compId)}, 'setFieldsValue', ${parse2Var(
-    _p,
-  )})
+    setFormValues(${parse2Var(compId)}, ${parse2Var(_p)})
   `;
 }

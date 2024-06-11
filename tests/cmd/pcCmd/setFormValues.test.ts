@@ -15,7 +15,7 @@ describe('setFormValues', () => {
 
     const expectedCode = `
     // 设置表单值
-    callComponentMethod("form1", 'setFieldsValue', {name: "John",age: 30})
+    setFormValues("form1", {name: "John",age: 30})
   `;
 
     const result = setFormValues(generateParams);
