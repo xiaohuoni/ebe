@@ -4,18 +4,20 @@
  * @returns
  */
 export const getGlobalDataExportNamesCode = (globalDataSource: any = {}) => {
+  const exportNames = Object.keys(globalDataSource)
+    .map((name) => {
+      const { updateFunctionName, reloadFunctionName, resetFunctionName } =
+        globalDataSource[name];
+
+      return [updateFunctionName, reloadFunctionName, resetFunctionName].join(
+        ',',
+      );
+    })
+    .join(',');
+
   return `
     globalDataReadyComplete,
     globalData,
-    ${Object.keys(globalDataSource)
-      .map((name) => {
-        const { updateFunctionName, reloadFunctionName, resetFunctionName } =
-          globalDataSource[name];
-
-        return [updateFunctionName, reloadFunctionName, resetFunctionName].join(
-          ',',
-        );
-      })
-      .join(',')}
+    ${exportNames ? `${exportNames},` : ''}
   `;
 };

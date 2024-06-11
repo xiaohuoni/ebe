@@ -229,6 +229,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             closeModal,
             customActionId,
             asyncGetValue,
+            transSuperObjectParams,
             ${getGlobalDataExportNamesCode(ir.globalDataSource)}
            } = context; ` +
           eventCodeString +
@@ -269,9 +270,9 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           shouldUsedGlobalData(ir.globalDataSource)
             ? '...globalDataSourceTool,'
             : ''
-        } ...sandBoxContext.current, customActionId, state,${
+        } ...sandBoxContext.current,customActionId, state,transSuperObjectParams,${
           isModal ? 'fatherOnOk,\n closeModal,' : ''
-        }}
+        }},
       )`,
         linkAfter: [
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],

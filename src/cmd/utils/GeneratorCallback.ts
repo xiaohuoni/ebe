@@ -34,6 +34,7 @@ const GeneratorCallbackWithThenCatch = (
     funcTops?: {
       callback1?: string;
       callback2?: string;
+      callback3?: string;
     };
 
     /**
@@ -50,10 +51,11 @@ const GeneratorCallbackWithThenCatch = (
   if (!code) return code;
   const { value, platform, scope, config } = generateParams;
 
-  const { callback1, callback2 } = value;
+  const { callback1, callback2, callback3 } = value;
 
   const callback1Params = options?.params?.callback1 || [];
   const callback2Params = options?.params?.callback2 || [];
+
   if (callback1) {
     callback1.params = callback1Params.map((key) => ({
       name: key,
@@ -91,12 +93,25 @@ const GeneratorCallbackWithThenCatch = (
         )
       : '';
 
+  const callback3Code =
+    Array.isArray(callback3) && callback3.length
+      ? CMDGeneratorEvent(
+          callback3,
+          { platform },
+          scope,
+          config,
+          '',
+          options?.funcTops?.callback3,
+        )
+      : '';
+
   let cmdCode = [
     code,
     callback1Code ? `then(${callback1Code})` : '',
     callback2Code || options?.alwayCatch
       ? `catch(${callback2Code || '() => {}'})`
       : '',
+    callback3Code ? `finally(${callback3Code})` : '',
   ]
     .filter(Boolean)
     .join('.');

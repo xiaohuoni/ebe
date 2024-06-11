@@ -85,6 +85,13 @@ import classNames from 'classnames';
     next.ir.deps.push(getImportFrom('./useDataSource', 'useDataSource', false));
 
     next.ir.deps.push(getImportFrom('@/utils/uid', 'getUid', true));
+    next.ir.deps.push(
+      getImportFrom(
+        '@/hooks/useTransSuperObjectParams',
+        'useTransSuperObjectParams',
+        false,
+      ),
+    );
 
     if (isBOFramer(next.ir)) {
       next.ir.deps.push(

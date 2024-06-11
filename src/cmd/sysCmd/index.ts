@@ -22,6 +22,7 @@ export { historyReplace } from './historyReplace';
 export { getIfelse as ifelse } from './ifelse';
 export { importCustomBusiObjectData } from './importCustomBusiObjectData';
 export { okCallbackData } from './okCallbackData';
+export { postObjectData } from './postObjectData';
 export { previewFile } from './previewFile';
 export { reloadDataSource } from './reloadDataSource';
 export { getResetDataSource as resetDataSource } from './resetDataSource';
