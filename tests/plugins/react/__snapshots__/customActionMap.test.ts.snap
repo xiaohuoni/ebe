@@ -61,6 +61,7 @@ import XinZengWebYeWuZuJian from '@/components/XinZengWebYeWuZuJian';
             closeModal,
             customActionId,
             asyncGetValue,
+            transSuperObjectParams,
             
     globalDataReadyComplete,
     globalData,
@@ -114,7 +115,7 @@ return customActionMap;
     Object {
       "content": "
  // 定义页面的自定义事件 
-  const customActionMap = useCustomAction({ ...useTools, ...useDataSourceTool,  ...sandBoxContext.current, customActionId, state,}
+  const customActionMap = useCustomAction({ ...useTools, ...useDataSourceTool,  ...sandBoxContext.current,customActionId, state,transSuperObjectParams,},
       )",
       "fileType": "tsx",
       "linkAfter": Array [
