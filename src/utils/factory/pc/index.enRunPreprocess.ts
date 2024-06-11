@@ -23,7 +23,6 @@ const pc: { [key: string]: PatchPropsFunctionType } = {
     // 如果状态绑定数据则根据值更改属性：普通、隐藏、禁用、只读
     const basicStatusValue = originProps.basicStatus;
     // 删除所有的name
-    delete originProps.name;
     if (basicStatusValue) {
       const statObject = basicStatusTransfer(basicStatusValue);
       Object.assign(originProps, statObject);
