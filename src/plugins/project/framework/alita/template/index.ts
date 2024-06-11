@@ -33,10 +33,6 @@ const alitaTemplate: IProjectTemplate = {
       path: ['src'],
       fileName: 'app',
     },
-    themeCss: {
-      path: ['src'],
-      fileName: 'overrides',
-    },
   },
 
   generateTemplate(parseResult, postProcessors): ResultDir {

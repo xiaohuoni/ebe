@@ -8,6 +8,7 @@ import { createDiskPublisher } from './src/core/publisher/disk';
 import alita from './src/solutions/alita';
 
 (async () => {
+  console.time('create-code');
   // 支持命令中指定 appId 如 pnpm req appId
   const appId = process.argv.slice(2)[0] || '1106842174504439808'; // HJF
   // const appId = '772790966277644288'; // 开发环境
@@ -50,6 +51,7 @@ import alita from './src/solutions/alita';
     // @ts-ignore
     clearLXPagesDSL(schema.pages), // 编排搭建出来的 schema
   );
+  console.timeEnd('create-code');
   const projectSlug = appId;
   // 写入到 zip 包
   await createDiskPublisher().publish({
@@ -57,6 +59,7 @@ import alita from './src/solutions/alita';
     outputPath: join(__dirname, './templates/'), // 输出目录
     projectSlug,
   });
+
   // 走 ebe setup
   copyStatic(
     join(__dirname, './src/plugins/project/framework/alita/template/public'),

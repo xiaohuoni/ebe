@@ -226,7 +226,7 @@ export class ProjectBuilder implements IProjectBuilder {
     // Preprocess
     let preProcessorCount = 1;
     const projectPreProcessorsLength = this.projectPreProcessors.length;
-    if (projectPreProcessorsLength) {
+    if (!projectPreProcessorsLength) {
       hooks.callHook('preProcessor', {
         msg: `无需执行前置处理器`,
       });
@@ -259,7 +259,9 @@ export class ProjectBuilder implements IProjectBuilder {
         },
       } as LogHooks,
     );
-
+    hooks.callHook('generateTemplate', {
+      msg: `执行公共文件生成器`,
+    });
     const projectRoot = await this.template.generateTemplate(
       parseResult,
       this.postProcessors,
@@ -296,14 +298,13 @@ export class ProjectBuilder implements IProjectBuilder {
         } else {
           path = this.template.slots.components.path;
         }
+        const { files } = await builder.generateModule(containerInfo);
         hooks.callHook('containers', {
           msg: `生成 ${containerInfo.containerType} - ${
             containerInfo.moduleName
           } 进度${index + 1}/${pagesLength}`,
           childProcess: (index + 1) / pagesLength,
         });
-        const { files } = await builder.generateModule(containerInfo);
-
         return {
           moduleName: containerInfo.moduleName,
           path,
@@ -312,10 +313,6 @@ export class ProjectBuilder implements IProjectBuilder {
       }),
     );
     buildResult = buildResult.concat(containerBuildResult);
-
-    // useModels
-    // if (parseResult.globalDatas.length && builders.globalData) {
-    //   const globalDataSourcesLength = parseResult.globalDatas.length;
 
     // app
     if (parseResult.app && builders.app) {
@@ -355,18 +352,6 @@ export class ProjectBuilder implements IProjectBuilder {
       });
     }
 
-    // entry 不打印日志
-    if (parseResult.project && builders.entry) {
-      const { files } = await builders.entry.generateModule(
-        parseResult.project,
-      );
-
-      buildResult.push({
-        path: this.template.slots.entry.path,
-        files,
-      });
-    }
-
     // appConfig
     if (builders.appConfig) {
       hooks.callHook('appConfig', {
@@ -380,118 +365,35 @@ export class ProjectBuilder implements IProjectBuilder {
       });
     }
 
-    // buildConfig
-    if (builders.buildConfig) {
-      const { files } = await builders.buildConfig.generateModule(parseResult);
-
-      buildResult.push({
-        path: this.template.slots.buildConfig.path,
-        files,
-      });
-    }
-
-    // constants?
-    if (
-      parseResult.project &&
-      builders.constants &&
-      this.template.slots.constants
-    ) {
-      const { files } = await builders.constants.generateModule(
-        parseResult.project,
-      );
-
-      buildResult.push({
-        path: this.template.slots.constants.path,
-        files,
-      });
-    }
-
-    // utils?
-    if (
-      parseResult.globalUtils &&
-      builders.utils &&
-      this.template.slots.utils
-    ) {
-      const { files } = await builders.utils.generateModule(
-        parseResult.globalUtils,
-      );
-
-      buildResult.push({
-        path: this.template.slots.utils.path,
-        files,
-      });
-    }
-
-    // i18n?
-    if (builders.i18n && this.template.slots.i18n) {
-      const { files } = await builders.i18n.generateModule(parseResult.project);
-
-      buildResult.push({
-        path: this.template.slots.i18n.path,
-        files,
-      });
-    }
-
-    // globalStyle
-    if (parseResult.project && builders.globalStyle) {
-      const { files } = await builders.globalStyle.generateModule(
-        parseResult.project,
-      );
-
-      buildResult.push({
-        path: this.template.slots.globalStyle.path,
-        files,
-      });
-    }
-
-    // htmlEntry
-    if (parseResult.project && builders.htmlEntry) {
-      const { files } = await builders.htmlEntry.generateModule(
-        parseResult.project,
-      );
-
-      buildResult.push({
-        path: this.template.slots.htmlEntry.path,
-        files,
-      });
-    }
-
     // packageJSON
     if (parseResult.project && builders.packageJSON) {
-      hooks.callHook('packageJSON', {
-        msg: `建立项目模块依赖，装载 ebe utils`,
-      });
       const { files } = await builders.packageJSON.generateModule(
         parseResult.project,
       );
-
+      hooks.callHook('packageJSON', {
+        msg: `建立项目模块依赖，装载 ebe utils`,
+      });
       buildResult.push({
         path: this.template.slots.packageJSON.path,
         files,
       });
     }
 
-    // demo
-    if (parseResult.project && builders.demo) {
-      const { files } = await builders.demo.generateModule(parseResult.project);
-      buildResult.push({
-        path: this.template.slots.demo.path,
-        files,
-      });
-    }
-
     // globalDataSource
     if (Object.keys(parseResult.models).length > 0 && builders.models) {
-      const modelsLength = parseResult.models.length;
+      const modelsLength = Object.keys(parseResult.models).length;
 
       const globalDataBuildResult: IModuleInfo[] =
         await Promise.all<IModuleInfo>(
           Object.keys(parseResult.models).map(async (key, index) => {
             const item = parseResult.models[key]!;
-            hooks.callHook('globalDataSource', {
-              msg: `进度${index + 1}/${modelsLength}`,
-            });
             const { files } = await builders.models.generateModule(item);
+            hooks.callHook('globalDataSource', {
+              msg: `生成全局数据源 ${item?.moduleName ?? key} 进度${
+                index + 1
+              }/${modelsLength}`,
+              childProcess: (index + 1) / modelsLength,
+            });
             return {
               path: ['src', 'models'],
               files,
@@ -500,12 +402,14 @@ export class ProjectBuilder implements IProjectBuilder {
         );
 
       buildResult = buildResult.concat(globalDataBuildResult);
+    } else {
+      hooks.callHook('globalDataSource', {
+        msg: `未使用全局数据源，跳过生成`,
+      });
     }
 
     // handle extra slots
-    await this.generateExtraSlots(builders, parseResult, buildResult);
-
-    // Post Process
+    await this.generateExtraSlots(builders, parseResult, buildResult, hooks);
     const isSingleComponent =
       parseResult?.project?.projectRemark?.isSingleComponent;
     // Combine Modules
@@ -520,8 +424,8 @@ export class ProjectBuilder implements IProjectBuilder {
 
     // post-processors
     let finalResult = projectRoot;
+
     for (const projectPostProcessor of this.projectPostProcessors) {
-      // eslint-disable-next-line no-await-in-loop
       finalResult = await projectPostProcessor(
         finalResult,
         schema,
@@ -532,6 +436,7 @@ export class ProjectBuilder implements IProjectBuilder {
         },
       );
     }
+
     hooks.callHook('end');
 
     printCmdList(parseResult.staticFiles!.platform);
@@ -575,15 +480,28 @@ export class ProjectBuilder implements IProjectBuilder {
     builders: Record<string, IModuleBuilder>,
     parseResult: IParseResult,
     buildResult: IModuleInfo[],
+    hooks: LogHooks,
   ) {
+    const length: number = Object.keys(this.template.slots).length;
+    let count = 1;
     for (const slotName in this.template.slots) {
       if (!isBuiltinSlotName(slotName)) {
         const { files } = await builders[slotName].generateModule(parseResult);
+        hooks.callHook('generateExtraSlots', {
+          msg: `执行其他插件 ${slotName} 进度${count}/${length}`,
+          childProcess: count / length,
+        });
         buildResult.push({
           path: this.template.slots[slotName].path,
           files,
         });
+      } else {
+        hooks.callHook('generateExtraSlots', {
+          msg: `内置插件 ${slotName} 已执行 进度${count}/${length}`,
+          childProcess: count / length,
+        });
       }
+      count += 1;
     }
   }
 }

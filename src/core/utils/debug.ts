@@ -67,29 +67,37 @@ export const LogTagsHash: any = {
       },
     },
   },
-  containers: {
-    tag: '页面生成',
+  generateTemplate: {
+    tag: '公共文件',
     progress: 3,
   },
-  globalDataSources: {
-    tag: '全局数据源',
-    progress: 3,
+  containers: {
+    tag: '页面生成',
+    progress: 4,
   },
   app: {
     tag: '运行时配置',
-    progress: 4,
+    progress: 5,
   },
   pageview: {
     tag: '页面视图',
-    progress: 5,
+    progress: 6,
   },
   appConfig: {
     tag: '项目配置',
-    progress: 6,
+    progress: 7,
   },
   packageJSON: {
     tag: '项目依赖',
-    progress: 7,
+    progress: 8,
+  },
+  globalDataSource: {
+    tag: '全局数据源',
+    progress: 9,
+  },
+  generateExtraSlots: {
+    tag: '附加插件',
+    progress: 10,
   },
   end: {
     tag: '出码生成完成',

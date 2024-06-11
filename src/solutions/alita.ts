@@ -155,7 +155,6 @@ export default function createIceJsProjectBuilder(
           },
         }),
       ],
-      themeCss: [alita.plugins.themeCss()],
       models: [alita.plugins.models()],
     },
     postProcessors: [babel(), fixUndefinedVar(), prettier()],

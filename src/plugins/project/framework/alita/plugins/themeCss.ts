@@ -7,9 +7,6 @@ import {
   ICodeStruct,
 } from '../../../../../core/types';
 
-// TODO: 这里的AppiD要删除
-const pageId = '1106388573299146752';
-
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
     const next: ICodeStruct = {

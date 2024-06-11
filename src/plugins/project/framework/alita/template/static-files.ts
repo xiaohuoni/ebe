@@ -14,6 +14,7 @@ import layout from './files/layout';
 import modalindex from './files/modalindex';
 import modalmodal from './files/modalmodal';
 import modaltypes from './files/modaltypes';
+import overrides from './files/overrides';
 import pcbannermodal from './files/pcbannermodal';
 import pcbannermodalless from './files/pcbannermodalless';
 import popover from './files/popover';
@@ -85,6 +86,7 @@ export function generateStaticFiles(
     );
   } else {
   }
+  runFileGenerator(postProcessors, root, overrides, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, proxy, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, withPageHOC, parseResult?.staticFiles);
   runFileGenerator(
