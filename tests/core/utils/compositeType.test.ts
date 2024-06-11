@@ -79,11 +79,11 @@ describe('compositeType', () => {
   });
 
   it('getLegitimateKey: 错误key', () => {
-    expect(getLegitimateKey('%a')).toEqual("['%a']");
-    expect(getLegitimateKey('anb.c')).toEqual("['anb.c']");
-    expect(getLegitimateKey('_,abc')).toEqual("['_,abc']");
-    expect(getLegitimateKey('1abc')).toEqual("['1abc']");
-    expect(getLegitimateKey('*abc')).toEqual("['*abc']");
+    expect(getLegitimateKey('%a')).toEqual("'%a'");
+    expect(getLegitimateKey('anb.c')).toEqual("'anb.c'");
+    expect(getLegitimateKey('_,abc')).toEqual("'_,abc'");
+    expect(getLegitimateKey('1abc')).toEqual("'1abc'");
+    expect(getLegitimateKey('*abc')).toEqual("'*abc'");
   });
 
   it('generateCompositeType: 非表达式', () => {
