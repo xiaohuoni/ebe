@@ -71,7 +71,7 @@ const componentsRule: IRulesType = {
           loading: (data: any) => data.loading === false,
           ghost: false,
           block: false,
-          hasIcon: false,
+          iconPosition: (data: any) => data.hasIcon !== true,
         },
       });
     },

@@ -22,6 +22,8 @@ const pc: { [key: string]: PatchPropsFunctionType } = {
     // 如果数据绑定了数据源，有对象的则按对象上的的显隐规则展示，绑定数据源但没有对象的和普通组件，则按属性状态展示，
     // 如果状态绑定数据则根据值更改属性：普通、隐藏、禁用、只读
     const basicStatusValue = originProps.basicStatus;
+    // 删除所有的name
+    delete originProps.name;
     if (basicStatusValue) {
       const statObject = basicStatusTransfer(basicStatusValue);
       Object.assign(originProps, statObject);

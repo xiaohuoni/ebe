@@ -58,7 +58,7 @@ const pc = {
     if (props?.icon && JSON.stringify(props.icon) !== '{}') {
       props.hasIcon = true;
     } else {
-      props.hasIcon = false;
+      // props.hasIcon = false;
     }
 
     return component;

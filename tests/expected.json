@@ -46,7 +46,6 @@
               "name": "按钮",
               "basicStatus": 1,
               "autoProcessFlow": false,
-              "iconPosition": "left",
               "btnText": "按钮"
             },
             "style": {

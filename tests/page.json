@@ -61,7 +61,6 @@
             "size": "default",
             "type": "default",
             "btnIcon": "none",
-            "hasIcon": false,
             "shape": "default",
             "loading": false,
             "btnText": "按钮"
