@@ -227,6 +227,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             getTriggerRelDataSource,
             fatherOnOk,
             closeModal,
+            customActionId,
             asyncGetValue,
             ${getGlobalDataExportNamesCode(ir.globalDataSource)}
            } = context; ` +
@@ -268,7 +269,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           shouldUsedGlobalData(ir.globalDataSource)
             ? '...globalDataSourceTool,'
             : ''
-        } ...sandBoxContext.current, state,${
+        } ...sandBoxContext.current, customActionId, state,${
           isModal ? 'fatherOnOk,\n closeModal,' : ''
         }}
       )`,
