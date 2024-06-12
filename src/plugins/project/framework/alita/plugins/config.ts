@@ -15,6 +15,9 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
     };
     const options = next.contextData.options;
     const isMobile = options?.platform === 'h5';
+
+    const applicationIcon = next.contextData.options?.appInfo?.applicationIcon;
+
     const cfg = `import { defineConfig } from 'alita';
     import proxy from './proxy';
     
@@ -58,11 +61,10 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
       scripts:[{src:"server/app/env/info.js"}],
       links: [
         ${
-          next.contextData.options?.appInfo?.applicationIcon
+          applicationIcon
             ? parse2Var({
                 rel: 'icon',
-                // TODO: 后续如果能下载图片，先下载图片后，把href修改为地址即可
-                href: next.contextData.options?.appInfo?.applicationIcon,
+                href: './favicon.ico',
               })
             : ''
         } 

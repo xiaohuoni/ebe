@@ -99,11 +99,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       onCancel();
     }
   }}>
-    ${
-      mdProps.cancelText
-        ? mdProps.cancelText
-        : `取消`
-    }
+    ${mdProps.cancelText ? mdProps.cancelText : `取消`}
   </Button>
   <Button onClick={onOk} type="primary">
     ${mdProps.okText ? mdProps.okText : '确认'} 
