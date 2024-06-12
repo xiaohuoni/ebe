@@ -1,5 +1,6 @@
 import {
   code,
+  findApplication,
   findBusiCompById,
   findPageInstByVersionId,
   getThemeCss,
@@ -16,6 +17,7 @@ import { useEffect, useState } from 'react';
 import { generateCode, init, publishers } from 'ebe';
 import {
   cleanTree,
+  clearAppInfo,
   clearLXPagesDSL,
   findAllItem,
   getPageDsls,
@@ -201,6 +203,8 @@ const Page = () => {
     const pageDSLS = [...pages, ...busiPages];
     // 清理dsl
 
+    const appInfo = await findApplication({ appId: values.appId });
+
     console.log('pages', pageDSLS);
     const options = {
       platform: values.platform ? 'h5' : 'pc',
@@ -215,6 +219,7 @@ const Page = () => {
       attrSpecPage: (attrSpecPage?.list || []).map((i: any) => i.attrNbr),
       themeCss,
       models: globalDataMap,
+      appInfo: clearAppInfo(appInfo),
     };
     let cleanedTree = cleanTree(pageDSLS, ['path']); // 清理字段'b'和字段'e'
     cleanedTree = clearLXPagesDSL(cleanedTree);

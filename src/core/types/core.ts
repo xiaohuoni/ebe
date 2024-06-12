@@ -189,6 +189,8 @@ export interface LXProjectOptions {
   attrSpecPage?: string[];
   themeCss?: string;
   models: Record<string, GlobalDataSourceItemType>;
+  // 应用信息
+  appInfo: Record<string, any>;
 }
 export type PrintUtilPrettier = (data: {
   tag: string;

@@ -1,4 +1,6 @@
+import { parse2Var } from '../../../../../../../src/core/utils/compositeType';
 import getFile from '../../../../../../../src/plugins/project/framework/alita/template/files/attrSpecPage';
+import { expectValue } from '../../../../../../utils';
 
 describe('template files attrSpecPage', () => {
   it('should return the correct file', () => {
@@ -29,6 +31,11 @@ describe('template files attrSpecPage', () => {
           relatedAttrSpecList: [],
         },
       ],
+      appInfo: {
+        appCode: "APP_1106842174504439808",
+        appId: 'appId',
+        appName: "应用名称",
+      }
     };
 
     const expectedFileContent = `export const attrSpecPage = ${JSON.stringify(
@@ -78,12 +85,18 @@ describe('template files attrSpecPage', () => {
           relatedAttrSpecList: item.relatedAttrSpecList,
         };
       });
-      }`;
+      }
+
+      /**
+       * 应用信息
+       */
+      export const appInfo = ${parse2Var(config?.appInfo)};`;
 
     const [filePath, resultFile] = getFile(config);
     expect(filePath).toEqual(['src', 'utils']);
     expect(resultFile.name).toEqual('attrSpecPage');
     expect(resultFile.ext).toEqual('ts');
-    expect(resultFile.content).toEqual(expectedFileContent);
+    expectValue(expectedFileContent, resultFile.content);
+    // expect(codePrettier(resultFile.content, fileType)).toEqual(codePrettier(expectedFileContent, fileType));
   });
 });

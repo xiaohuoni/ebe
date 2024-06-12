@@ -1,4 +1,5 @@
 import { LXProjectOptions, ResultFile } from '../../../../../../core';
+import { parse2Var } from '../../../../../../core/utils/compositeType';
 import { createResultFile } from '../../../../../../core/utils/resultHelper';
 
 export default function getFile(
@@ -52,7 +53,18 @@ export default function getFile(
           relatedAttrSpecList: item.relatedAttrSpecList,
         };
       });
-      }`,
+      }
+    ${
+      config?.appInfo
+        ? `
+      /**
+       * 应用信息
+       */
+      export const appInfo = ${parse2Var(config?.appInfo)};
+    `
+        : ''
+    }
+      `,
   );
 
   return [['src', 'utils'], file];

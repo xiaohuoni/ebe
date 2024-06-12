@@ -92,6 +92,7 @@ import classNames from 'classnames';
         false,
       ),
     );
+    next.ir.deps.push(getImportFrom('@/utils/attrSpecPage', 'appInfo', true));
 
     if (isBOFramer(next.ir)) {
       next.ir.deps.push(

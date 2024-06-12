@@ -230,6 +230,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             customActionId,
             asyncGetValue,
             transSuperObjectParams,
+            appInfo,
             ${getGlobalDataExportNamesCode(ir.globalDataSource)}
            } = context; ` +
           eventCodeString +
@@ -270,7 +271,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           shouldUsedGlobalData(ir.globalDataSource)
             ? '...globalDataSourceTool,'
             : ''
-        } ...sandBoxContext.current,customActionId, state,transSuperObjectParams,${
+        } ...sandBoxContext.current,customActionId, state,transSuperObjectParams,appInfo,${
           isModal ? 'fatherOnOk,\n closeModal,' : ''
         }},
       )`,

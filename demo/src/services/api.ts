@@ -129,3 +129,16 @@ export async function queryFrontendDatasourcePage(params: any) {
     method: 'post',
   });
 }
+
+export async function findApplication(params: any): Promise<any> {
+  const headers: any = {
+    'Content-Type': 'application/json',
+    'APP-ID': params.appId,
+  };
+
+  return request('/api/lcdp/application/findApplication', {
+    method: 'get',
+    params,
+    headers,
+  });
+}

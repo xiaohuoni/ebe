@@ -36,6 +36,7 @@ import {
   qryPageInstListByAppId,
   queryFrontendDatasourcePage,
   queryFrontendHookList,
+  findApplication,
 } from '@/services/api';
 import { useEffect } from 'react';
 import { codeCreate, init } from 'ebe-utils';
@@ -62,6 +63,7 @@ const Page = () => {
         qryPageInstListByAppId,
         queryFrontendDatasourcePage,
         queryFrontendHookList,
+        findApplication,
       },
     });
   };
