@@ -160,6 +160,10 @@ export class SchemaParser implements ISchemaParser {
     // let globalDatas: any[] = [];
     hooks?.callHook('containers', { msg: '解析页面数据' });
 
+    const modalDrawerMap: any = {
+      modal: [],
+      drawer: [],
+    };
     containers = schemaArr.map((schema) => {
       getComponentsMap(_.cloneDeep(schema), pageIdMapping[schema.pagePath]);
       // 标记循环容器
@@ -225,6 +229,12 @@ export class SchemaParser implements ISchemaParser {
           (value) => _.isNil(value) || value === '' || _.isUndefined(value),
         );
         const pcDraw = _.mergeWith({}, drawObject);
+        const isModal = newSchema.pageContainerType === 'Modal';
+        if (isModal) {
+          modalDrawerMap.modal.push(page.pagePath);
+        } else {
+          modalDrawerMap.drawer.push(page.pagePath);
+        }
         modalDrawData = {
           path: page.pagePath,
           fileName: page.pagePath,
@@ -348,7 +358,7 @@ export class SchemaParser implements ISchemaParser {
         keepalive,
       },
       // 静态文件生成的时候，可以传递一些简单的配置，比如修改一个代理地址，没有必要单独写一个插件？
-      staticFiles: options,
+      staticFiles: { ...options, modalDrawerMap },
       models: globalModels,
     };
   }

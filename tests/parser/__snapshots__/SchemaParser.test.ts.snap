@@ -486,6 +486,11 @@ Object {
       },
     ],
   },
-  "staticFiles": undefined,
+  "staticFiles": Object {
+    "modalDrawerMap": Object {
+      "drawer": Array [],
+      "modal": Array [],
+    },
+  },
 }
 `;

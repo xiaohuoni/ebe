@@ -177,9 +177,9 @@ export interface GlobalDataSourceItemType {
 }
 
 export interface LXProjectOptions {
-  platform: string;
-  appId: string;
-  pageIdMapping: any;
+  platform?: string;
+  appId?: string;
+  pageIdMapping?: any;
   busiCompMapping?: any;
   frontendHookMap?: any;
   // 当前应用的使用的自定义组件
@@ -188,9 +188,11 @@ export interface LXProjectOptions {
   appConfig?: any;
   attrSpecPage?: string[];
   themeCss?: string;
-  models: Record<string, GlobalDataSourceItemType>;
+  models?: Record<string, GlobalDataSourceItemType>;
   // 应用信息
-  appInfo: Record<string, any>;
+  appInfo?: Record<string, any>;
+  // modal
+  modalDrawerMap?: any;
 }
 export type PrintUtilPrettier = (data: {
   tag: string;
