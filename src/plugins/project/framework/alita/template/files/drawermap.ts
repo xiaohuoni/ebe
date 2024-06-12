@@ -11,10 +11,12 @@ export default function getFile(
     'ts',
     `import React from 'react';
     const DrawerMap:any = {
-      ${drawer.map(
-        (i: string) =>
-          `'${i}': React.lazy(() => import(/* webpackChunkName: "modal_${i}_index" */'.${i}/index.tsx')),`,
-      )}
+      ${drawer
+        .map(
+          (i: string) =>
+            `'${i}': React.lazy(() => import(/* webpackChunkName: "modal_${i}_index" */'.${i}/index.tsx'))`,
+        )
+        .join(',')}
     }
     
     export default DrawerMap;
