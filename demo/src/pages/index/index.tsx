@@ -20,14 +20,13 @@ import {
   findAllItem,
   getPageDsls,
   treeForEach,
-
 } from 'ebe-utils';
 
 const Item = Form.Item;
-const workerJsUrl ='./worker.js'
+const workerJsUrl = './worker.js';
 const Page = () => {
   const ii = async () => {
-    await init({workerJsUrl});
+    await init({ workerJsUrl });
   };
   useEffect(() => {
     ii();
