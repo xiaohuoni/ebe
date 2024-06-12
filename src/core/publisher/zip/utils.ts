@@ -60,11 +60,10 @@ export const writeImageToFile = (
   zipFolder: JSZip,
 ) => {
   const isBase64 = file.options?.base64;
-  if (!isBase64) return Promise.reject(new Error('暂不支持的图片类型'));
+  if (!isBase64) return;
 
   // 文件内容不存在直接返回，无需生成文件
-  if (typeof file.content !== 'string' || !file.content)
-    return Promise.resolve();
+  if (typeof file.content !== 'string' || !file.content) return;
 
   const content = file.content.replace(/^data:image\/png;base64,/, '');
   zipFolder.file(fileName, content, { base64: file.options?.base64 });
