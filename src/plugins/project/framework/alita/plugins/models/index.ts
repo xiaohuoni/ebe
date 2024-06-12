@@ -110,7 +110,7 @@ const pluginModels: BuilderComponentPluginFactory<unknown> = () => {
             const { urlParam, routerData, state, lcdpApi } = context;
             ${
               !isInit || source === 'custom'
-                ? 'return Promise.resolve(initialData)'
+                ? `return Promise.resolve(initialData?.${ir.dataName})`
                 : ''
             }
             ${

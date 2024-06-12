@@ -281,7 +281,7 @@ export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
       GeneratorCallbackWithThenCatch(
         `
     // 更新全局数据源 ${dataSourceName}
-    ${dsConfig.updateFunctionName}({
+    ${config?.ir?.globalDataSource?.[dataSourceName]?.updateFunctionName}({
       ${Object.keys(updateParams)
         .filter((key) => updateParams[key as keyof typeof updateParams] !== '')
         .map(
