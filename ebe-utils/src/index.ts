@@ -270,7 +270,170 @@ export const setWorkerJsUrl = (url: string) => {
 export const init = async () => {
   await ebeInit({ workerJsUrl });
 };
+export const fetchData = async ({
+  appId,
+  services,
+  platform,
+  baseUrl,
+  onProgress,
+}: CodeOptions) => {
+  const appInfo = await services.findApplication({ appId });
+  onProgress({
+    log: '获取应用信息',
+    progress: 1,
+  });
+  // 根据 appId 获取当前应用的全部页面
+  const attrSpecPage = await services.qryAttrSpecPage({
+    appId,
+    pageNum: 1,
+    pageSize: 999999,
+  });
+  onProgress({
+    log: '获取当前应用的全部页面',
+    progress: 2,
+  });
+  // 根据 appId 获取当前应用的全部页面
+  const resultObject = await services.qryPageInstListByAppId({
+    appId,
+    terminalType: platform,
+  });
+  const frontendHookList = await services.queryFrontendHookList({
+    appId,
+  });
 
+  let themeCss = '';
+  try {
+    // 这个接口没有数据就直接等到死，无语！！！
+    // 根据 appId 获取当前应用的全部页面
+    themeCss = await Promise.race([
+      services.getThemeCss({
+        appId,
+        terminalType: platform,
+      }),
+      new Promise((resolve) => setTimeout(resolve, 3000)),
+    ]);
+  } catch (error) {}
+
+  // 根据 appId 获取当前应用的使用的自定义组件
+  onProgress({
+    log: '获取当前应用的使用的自定义组件',
+    progress: 3,
+  });
+  const temCompAssetList = await services.qryPageCompAssetList({
+    appId,
+  });
+  // 兼容下割接数据，数组前面的自定义组件是新的
+  const compAssetList = temCompAssetList.reduce(
+    (acc: any[], current: { compCode: any }) => {
+      const codes = acc.map((item) => item.compCode);
+      if (!codes.includes(current.compCode)) {
+        acc.push(current);
+      }
+      return acc;
+    },
+    [],
+  );
+  // 根据appId 获取全局数据源
+  onProgress({
+    log: '获取全局数据源',
+    progress: 4,
+  });
+  let globalDataInfo = await services.queryFrontendDatasourcePage({
+    appId,
+    pageSize: 10000,
+  });
+
+  const dataSourceList = globalDataInfo?.list || [];
+  const globalDataMap: Record<string, any> = {};
+  dataSourceList.forEach((item: any) => {
+    const { frontendDatasourceContent, ...restItem } = item;
+
+    try {
+      globalDataMap[item.frontendDatasourceMainId] = {
+        ...restItem,
+        frontendDatasourceContent: JSON.parse(frontendDatasourceContent),
+      };
+    } catch (err) {}
+    return null;
+  });
+  const pageIdMapping: any = {};
+  const appPageList = resultObject?.map((i: any) => {
+    pageIdMapping[i.pagePath] = i.pageId;
+    return i;
+  });
+  let lastPageId: any = '';
+  // 根据 pageId 获得 dsl
+  let data = [];
+  onProgress({
+    log: '获取所有页面dsl',
+    progress: 5,
+  });
+  data = await Promise.all(
+    appPageList.map((i: any) => {
+      lastPageId = i.pageId;
+      return services.findPageInstByVersionId({
+        appId,
+        pageId: i.pageId,
+      });
+    }),
+  );
+
+  const pages = getPageDsls(data);
+  // busiCompId 过滤重复
+  const itemHash: any = {};
+  // 找到所有页面使用到的 业务组件
+  findAllItem(pages, (item) => item.compName === 'BOFramer', itemHash);
+
+  const itemLists = Object.keys(itemHash);
+  // 请求所有业务组件的 dsl
+  onProgress({
+    log: '获取所有业务组件dsl',
+    progress: 6,
+  });
+  const busiData = await Promise.all(
+    itemLists.map((i) =>
+      services.findBusiCompById({
+        busiCompId: i,
+        appId,
+        pageId: lastPageId,
+      }),
+    ),
+  );
+  const busiCompMapping: any = {};
+  const busiPages = busiData.map((i, index) => {
+    const busiData = JSON.parse(i?.busiCompVersion?.sourceCodeJson);
+    busiData.busiCompId = i?.busiCompId;
+    busiCompMapping[itemLists[index]] = busiData.id;
+    return busiData;
+  });
+  // 合并页面，生成器那边支持页面类型和业务组件类型
+  const pageDSLS = [...pages, ...busiPages];
+  const options = {
+    platform,
+    appId,
+    pageIdMapping,
+    busiCompMapping,
+    compAssetList: compAssetList || [],
+    baseUrl,
+    appConfig: {
+      frontendHookList,
+    },
+    attrSpecPage: (attrSpecPage?.list || []).map((i: any) => i.attrNbr),
+    themeCss,
+    models: globalDataMap,
+    appInfo: clearAppInfo(appInfo),
+  };
+  onProgress({
+    log: '清理无用数据',
+    progress: 7,
+  });
+  let cleanedTree = cleanTree(pageDSLS, ['path']); // 清理字段'b'和字段'e'
+  cleanedTree = clearLXPagesDSL(cleanedTree);
+  return {
+    options,
+    cleanedTree,
+  };
+};
 export const codeCreate = async ({
   appId,
   services,
@@ -279,158 +442,13 @@ export const codeCreate = async ({
   onProgress,
 }: CodeOptions) => {
   try {
-    const appInfo = await services.findApplication({ appId });
-    onProgress({
-      log: '获取应用信息',
-      progress: 1,
-    });
-    // 根据 appId 获取当前应用的全部页面
-    const attrSpecPage = await services.qryAttrSpecPage({
+    const { cleanedTree, options } = await fetchData({
       appId,
-      pageNum: 1,
-      pageSize: 999999,
-    });
-    onProgress({
-      log: '获取当前应用的全部页面',
-      progress: 2,
-    });
-    // 根据 appId 获取当前应用的全部页面
-    const resultObject = await services.qryPageInstListByAppId({
-      appId,
-      terminalType: platform,
-    });
-    const frontendHookList = await services.queryFrontendHookList({
-      appId,
-    });
-
-    let themeCss = '';
-    try {
-      // 这个接口没有数据就直接等到死，无语！！！
-      // 根据 appId 获取当前应用的全部页面
-      themeCss = await Promise.race([
-        services.getThemeCss({
-          appId,
-          terminalType: platform,
-        }),
-        new Promise((resolve) => setTimeout(resolve, 3000)),
-      ]);
-    } catch (error) {}
-
-    // 根据 appId 获取当前应用的使用的自定义组件
-    onProgress({
-      log: '获取当前应用的使用的自定义组件',
-      progress: 3,
-    });
-    const temCompAssetList = await services.qryPageCompAssetList({
-      appId,
-    });
-    // 兼容下割接数据，数组前面的自定义组件是新的
-    const compAssetList = temCompAssetList.reduce(
-      (acc: any[], current: { compCode: any }) => {
-        const codes = acc.map((item) => item.compCode);
-        if (!codes.includes(current.compCode)) {
-          acc.push(current);
-        }
-        return acc;
-      },
-      [],
-    );
-    // 根据appId 获取全局数据源
-    onProgress({
-      log: '获取全局数据源',
-      progress: 4,
-    });
-    let globalDataInfo = await services.queryFrontendDatasourcePage({
-      appId,
-      pageSize: 10000,
-    });
-
-    const dataSourceList = globalDataInfo?.list || [];
-    const globalDataMap: Record<string, any> = {};
-    dataSourceList.forEach((item: any) => {
-      const { frontendDatasourceContent, ...restItem } = item;
-
-      try {
-        globalDataMap[item.frontendDatasourceMainId] = {
-          ...restItem,
-          frontendDatasourceContent: JSON.parse(frontendDatasourceContent),
-        };
-      } catch (err) {}
-      return null;
-    });
-    const pageIdMapping: any = {};
-    const appPageList = resultObject?.map((i: any) => {
-      pageIdMapping[i.pagePath] = i.pageId;
-      return i;
-    });
-    let lastPageId: any = '';
-    // 根据 pageId 获得 dsl
-    let data = [];
-    onProgress({
-      log: '获取所有页面dsl',
-      progress: 5,
-    });
-    data = await Promise.all(
-      appPageList.map((i: any) => {
-        lastPageId = i.pageId;
-        return services.findPageInstByVersionId({
-          appId,
-          pageId: i.pageId,
-        });
-      }),
-    );
-
-    const pages = getPageDsls(data);
-    // busiCompId 过滤重复
-    const itemHash: any = {};
-    // 找到所有页面使用到的 业务组件
-    findAllItem(pages, (item) => item.compName === 'BOFramer', itemHash);
-
-    const itemLists = Object.keys(itemHash);
-    // 请求所有业务组件的 dsl
-    onProgress({
-      log: '获取所有业务组件dsl',
-      progress: 6,
-    });
-    const busiData = await Promise.all(
-      itemLists.map((i) =>
-        services.findBusiCompById({
-          busiCompId: i,
-          appId,
-          pageId: lastPageId,
-        }),
-      ),
-    );
-    const busiCompMapping: any = {};
-    const busiPages = busiData.map((i, index) => {
-      const busiData = JSON.parse(i?.busiCompVersion?.sourceCodeJson);
-      busiData.busiCompId = i?.busiCompId;
-      busiCompMapping[itemLists[index]] = busiData.id;
-      return busiData;
-    });
-    // 合并页面，生成器那边支持页面类型和业务组件类型
-    const pageDSLS = [...pages, ...busiPages];
-    const options = {
+      services,
       platform,
-      appId,
-      pageIdMapping,
-      busiCompMapping,
-      compAssetList: compAssetList || [],
       baseUrl,
-      appConfig: {
-        frontendHookList,
-      },
-      attrSpecPage: (attrSpecPage?.list || []).map((i: any) => i.attrNbr),
-      themeCss,
-      models: globalDataMap,
-      appInfo: clearAppInfo(appInfo),
-    };
-    onProgress({
-      log: '清理无用数据',
-      progress: 7,
+      onProgress,
     });
-    let cleanedTree = cleanTree(pageDSLS, ['path']); // 清理字段'b'和字段'e'
-    cleanedTree = clearLXPagesDSL(cleanedTree);
     console.log(cleanedTree);
     console.log(options);
     const result = await generateCode({
