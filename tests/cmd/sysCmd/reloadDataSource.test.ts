@@ -57,7 +57,7 @@ describe('reloadDataSource', () => {
       },
     };
 
-    const expectedCode = `//【刷新全局数据源】全局数据源指令暂不支持`;
+    const expectedCode = `//【刷新数据源】数据源名称不存在，请检查配置`;
 
     const result = reloadDataSource(generateParams);
 
@@ -106,7 +106,7 @@ describe('reloadDataSource', () => {
       },
     };
 
-    const expectedCode = `//【刷新数据源 数据源nonExistentDataSource不存在，请检查配置\n`;
+    const expectedCode = `//【刷新数据源】数据源nonExistentDataSource不存在，请检查配置\n`;
 
     const result = reloadDataSource(generateParams as any);
 
