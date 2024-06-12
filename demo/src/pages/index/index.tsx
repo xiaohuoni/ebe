@@ -20,16 +20,17 @@ import {
   findAllItem,
   getPageDsls,
   treeForEach,
+
 } from 'ebe-utils';
 
 const Item = Form.Item;
-
+const workerJsUrl ='./worker.js'
 const Page = () => {
-  // const ii = async () => {
-  //   await init({});
-  // };
+  const ii = async () => {
+    await init({workerJsUrl});
+  };
   useEffect(() => {
-    init();
+    ii();
   }, []);
   const [loading, setLoading] = useState(false);
   const [percent, setPercent] = useState(0);
@@ -225,7 +226,7 @@ const Page = () => {
         solution: 'alita', // 出码方案
         options,
         schema: cleanedTree, // 编排搭建出来的 schema
-        // workerJsUrl: '/ebe/worker.js',
+        workerJsUrl,
         onProgress: (log: string) => {
           if (!log) return;
           setLog(log);

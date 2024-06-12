@@ -249,9 +249,16 @@ interface CodeOptions {
   services: CodeServices;
   onProgress: (data: { log: string; progress: number }) => void;
 }
-export const init = async () => {
-  await ebeInit();
+let workerJsUrl = '';
+
+export const setWorkerJsUrl = (url: string) => {
+  workerJsUrl = url;
 };
+
+export const init = async () => {
+  await ebeInit({ workerJsUrl });
+};
+
 export const codeCreate = async ({
   appId,
   services,
@@ -433,6 +440,7 @@ export const codeCreate = async ({
           });
         }
       },
+      workerJsUrl,
     });
     console.log(result);
     // 出码结果(默认是递归结构描述的，可以传 flattenResult: true 以生成扁平结构的结果)
