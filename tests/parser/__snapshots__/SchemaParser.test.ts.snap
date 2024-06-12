@@ -455,6 +455,7 @@ Object {
       "globalDataSource": Object {},
       "id": "542158",
       "imgInfoList": Array [],
+      "modalDrawData": Object {},
       "moduleName": undefined,
       "pageId": "1106394609220718592",
       "platform": "pc",
@@ -466,7 +467,6 @@ Object {
   ],
   "models": Object {},
   "pageview": Object {
-    "models": Array [],
     "pageStaticData": Object {},
     "routes": Array [
       Object {

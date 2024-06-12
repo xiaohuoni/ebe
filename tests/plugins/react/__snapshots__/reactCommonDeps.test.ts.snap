@@ -7754,14 +7754,6 @@ import classNames from 'classnames';
       Object {
         "dependencyType": "External",
         "destructuring": true,
-        "exportName": "Modal",
-        "package": "@/utils/messageApi",
-        "type": "Modal",
-        "version": "*",
-      },
-      Object {
-        "dependencyType": "External",
-        "destructuring": true,
         "exportName": "useTool",
         "package": "@/utils/useTool",
         "type": "useTool",

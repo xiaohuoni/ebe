@@ -246,7 +246,7 @@ const ExpSQLServiceModal = forwardRef<
   return (
     <Modal
       title={getLocale('ExpSQLServiceModal.title', '按字段导出SQL查询服务数据')}
-      visible={visible}
+      open={visible}
       destroyOnClose
       onOk={() => {
         if (selectedKeys.length) {

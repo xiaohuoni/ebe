@@ -46,19 +46,18 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
           )
           .join(',')}
       }
-      export const RootProps: any  = {
-        ${ir.models
-          ?.map(
-            (modal: any) =>
-              ` '${modal.path || modal.pageId}':${JSON.stringify(modal)}`,
-          )
-          .join(',')}
-      }
       const pageRouteMapping: any = {${ir.routes?.map(
         (r: any) => `'${r.pageId}':'${r.path}'`,
       )}}
         const P = (props: any) => <div>{props?.pageSrc} 页面未找到</div>;
-
+        export const getSafePage = (target: string, routeComponents: any) => {
+          let path = target;
+          // 支持传进来的是 pageId
+          if (!target.startsWith('/')) {
+            path = pageRouteMapping[target] ?? target;
+          }
+          return routeComponents[path] ?? P;
+        };
         const getPage = (target: string, clientRoutes: any, routeComponents: any) => {
           const { routes = [] } = clientRoutes[0];
           let path = target;

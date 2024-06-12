@@ -209,10 +209,48 @@ export class SchemaParser implements ISchemaParser {
       //     },
       //   });
       // }
-
+      let modalDrawData = {};
+      if (
+        newSchema.pageContainerType &&
+        MODAL_TYPES.includes(newSchema.pageContainerType)
+      ) {
+        const page: any = newSchema;
+        const drawObject = _.some(
+          {
+            okText: page.okText,
+            cancelText: page.cancelText,
+            drawerTitle: parse2Var(page.drawerTitle),
+            modalTitle: parse2Var(page.modalTitle),
+          },
+          (value) => _.isNil(value) || value === '' || _.isUndefined(value),
+        );
+        const pcDraw = _.mergeWith({}, drawObject);
+        modalDrawData = {
+          path: page.pagePath,
+          fileName: page.pagePath,
+          type: page.pagePath,
+          pageId: pageIdMapping[page.pagePath],
+          position: page.position,
+          width: page.width,
+          mode: page.mode,
+          closeOnMaskClick: page.closeOnMaskClick,
+          height: page.height,
+          closeOnClickOverlay: page.closeOnClickOverlay,
+          destroyOnClose: page.destroyOnClose,
+          showCloseButton: page.showCloseButton,
+          // pc model 需要的参数
+          pageContainerType: page.containerType,
+          pageName: page.pageName,
+          customWidth: page.customWidth,
+          customHeight: page.customHeight,
+          okText: page.okText,
+          ...pcDraw,
+        };
+      }
       return {
         ...newSchema,
         moduleName,
+        modalDrawData,
         containerType: newSchema.pageContainerType ?? 'Page',
         type: newSchema.pageContainerType ?? 'Page',
         analyzeResult: {
@@ -271,52 +309,6 @@ export class SchemaParser implements ISchemaParser {
         };
       });
 
-    // 获取 model 的弹窗配置
-    hooks?.callHook('model', { msg: '获取 model 的弹窗配置' });
-
-    const models: IRouterInfo['routes'] = containers
-      .filter((container) => MODAL_TYPES.includes(container.containerType))
-      .map((page) => {
-        const drawObject = _.some(
-          {
-            okText: page.okText,
-            cancelText: page.cancelText,
-            drawerTitle: parse2Var(page.drawerTitle),
-            modalTitle: parse2Var(page.modalTitle),
-          },
-          (value) => _.isNil(value) || value === '' || _.isUndefined(value),
-        );
-        const pcDraw = _.mergeWith({}, drawObject);
-        // position: 'top' | 'bottom' | 'right' | 'left';
-        // mode: 'alert' | 'sliderLeft' | 'sliderRight' | 'dropdown' | 'popup' | '';
-        // closeOnMaskClick: boolean;
-        // destroyOnClose: boolean;
-        // showCloseButton: boolean;
-        // width?: string;
-        // height?: string;
-        return {
-          path: page.pagePath,
-          fileName: page.pagePath,
-          type: page.pagePath,
-          pageId: pageIdMapping[page.pagePath],
-          position: page.position,
-          width: page.width,
-          mode: page.mode,
-          closeOnMaskClick: page.closeOnMaskClick,
-          height: page.height,
-          closeOnClickOverlay: page.closeOnClickOverlay,
-          destroyOnClose: page.destroyOnClose,
-          showCloseButton: page.showCloseButton,
-          // pc model 需要的参数
-          pageContainerType: page.containerType,
-          pageName: page.pageName,
-          customWidth: page.customWidth,
-          customHeight: page.customHeight,
-          okText: page.okText,
-          ...pcDraw,
-        };
-      });
-
     // 分析项目 npm 依赖
     hooks?.callHook('npm', { msg: '分析项目 npm 依赖' });
 
@@ -350,7 +342,6 @@ export class SchemaParser implements ISchemaParser {
       },
       pageview: {
         routes,
-        models,
         pageStaticData,
       },
       app: {

@@ -7,10 +7,10 @@ const alitaTemplate: IProjectTemplate = {
       path: ['src', 'pages'],
     },
     modalPages: {
-      path: ['src', 'pages', 'modal'],
+      path: ['src', 'components', 'modal'],
     },
     drawerPages: {
-      path: ['src', 'pages', 'drawer'],
+      path: ['src', 'components', 'drawer'],
     },
     popoverPages: {
       path: ['src', 'pages', 'popover'],

@@ -5,6 +5,8 @@ const { spawnSync } = require('child_process');
 const ignorePlugin = require('esbuild-plugin-ignore');
 const fs = require('fs');
 const path = require('path');
+const packageVersion = require('../package.json').version;
+console.log('build standalone-worker: packageVersion=%s', packageVersion);
 
 const enableAnalyze = process.env.ANALYZE === 'true';
 const buildConfig = {
@@ -40,6 +42,8 @@ const buildConfig = {
         STANDALONE: 'true',
       },
     }),
+    __PACKAGE_VERSION__: JSON.stringify(packageVersion),
+    __PACKAGE_CREATE_TIME__: new Date().getTime(),
   },
   treeShaking: true,
 };

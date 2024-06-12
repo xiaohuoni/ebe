@@ -4,6 +4,7 @@ import { runFileGenerator } from '../../../../../core/utils/templateHelper';
 import attrSpecPage from './files/attrSpecPage';
 import constants from './files/constants';
 import customComponent from './files/customComponent';
+import drawermap from './files/drawermap';
 import env from './files/env';
 import factory from './files/factory';
 import global from './files/global';
@@ -12,6 +13,7 @@ import indexpage from './files/indexpage';
 import indexpageless from './files/indexpageless';
 import layout from './files/layout';
 import modalindex from './files/modalindex';
+import modalmap from './files/modalmap';
 import modalmodal from './files/modalmodal';
 import modaltypes from './files/modaltypes';
 import overrides from './files/overrides';
@@ -86,6 +88,8 @@ export function generateStaticFiles(
     );
   } else {
   }
+  runFileGenerator(postProcessors, root, modalmap, parseResult?.staticFiles);
+  runFileGenerator(postProcessors, root, drawermap, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, overrides, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, proxy, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, withPageHOC, parseResult?.staticFiles);

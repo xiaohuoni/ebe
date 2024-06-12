@@ -55,7 +55,7 @@ import classNames from 'classnames';
       ...getImportsFrom('@/utils/withPageHOC', ['PageProps', 'withPageHOC']),
     );
     next.ir.deps.push(
-      ...getImportsFrom('@/utils/messageApi', ['messageApi', 'Spin', 'Modal']),
+      ...getImportsFrom('@/utils/messageApi', ['messageApi', 'Spin']),
     );
     next.ir.deps.push(...getImportsFrom('@/utils/useTool', ['useTool']));
     next.ir.deps.push(

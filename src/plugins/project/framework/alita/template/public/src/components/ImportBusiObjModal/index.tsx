@@ -1159,7 +1159,7 @@ const ImportBusiObjModal = forwardRef<
           {(isCustom || isCustomService) && renderCardExtra()}
         </>
       }
-      visible={visible}
+      open={visible}
       destroyOnClose
       onCancel={close}
       footer={

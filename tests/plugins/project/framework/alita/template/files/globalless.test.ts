@@ -78,6 +78,40 @@ describe('template files globalless', () => {
     ::-webkit-scrollbar-track {
       background: inherit;
     }
+    .ued-modal-wrap {
+      .pcfactory-modal-body {
+        padding: 0;
+      }
+    }
+    
+    .ued-drawer-wrap {
+      .pcfactory-drawer-header {
+        height: 48px;
+        padding: 16px 20px;
+    
+        .pcfactory-drawer-title {
+          color: #1c242e;
+        }
+      }
+    
+      .pcfactory-drawer-header-title > button {
+        position: absolute;
+        right: 0;
+      }
+      .pcfactory-drawer-body {
+        padding: 0;
+      }
+      .pcfactory-drawer-footer {
+        padding: 0 20px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 56px;
+        button {
+          margin-left: 8px;
+        }
+      }
+    }
     `;
 
     const [directories, file] = getFile(config);

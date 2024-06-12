@@ -1,7 +1,8 @@
-import { RootProps } from '@/components/common/Pageview';
+import { getSafePage } from '@/components/common/Pageview';
+import DrawerMap from '@/components/drawer';
+import ModalMap from '@/components/modal';
 import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';
-import Drawer from './Drawer';
-import Modal from './Modal';
+
 interface ModalManagerProps {
   parseNodeBefore?: any;
   appId: string;
@@ -98,10 +99,8 @@ const ModalManager = React.forwardRef<ModalManagerHooks, ModalManagerProps>(
       onCancel,
       params,
       lcdpParentRenderId,
+      type,
     }: any) => {
-      const pageInst = RootProps[pagePath || ''] || {};
-      const type =
-        pageInst?.pageContainerType === 'Drawer' ? 'Drawer' : 'Modal';
       const instData = type === 'Modal' ? ModalData : DrawerData;
       const instMethod = type === 'Modal' ? setModalData : setDrawerData;
       if (!pagePath) {
@@ -254,26 +253,25 @@ const ModalManager = React.forwardRef<ModalManagerHooks, ModalManagerProps>(
        */
       setStatue,
     }));
+    console.log(ModalData);
+    const renderModalOrDrawer = (data: any[], map: any) => {
+      return data.map((m) => {
+        const Page = getSafePage(m.pagePath, map);
+        return (
+          <Page
+            {...m}
+            pageSrc={m.pagePath}
+            state={m.params}
+            lcdpParentRenderId={m.lcdpParentRenderId}
+            closeModal={m.onCancel}
+          />
+        );
+      });
+    };
     return (
       <div>
-        {ModalData.map((m) => (
-          <Modal
-            {...m}
-            managerRef={ref}
-            modalInstId={m.modalInstId}
-            key={m.modalInstId}
-            setStatue={setStatue}
-          />
-        ))}
-        {DrawerData.map((m) => (
-          <Drawer
-            {...m}
-            managerRef={ref}
-            modalInstId={m.modalInstId}
-            key={m.modalInstId}
-            setStatue={setStatue}
-          />
-        ))}
+        {renderModalOrDrawer(ModalData, ModalMap)}
+        {renderModalOrDrawer(DrawerData, DrawerMap)}
       </div>
     );
   },

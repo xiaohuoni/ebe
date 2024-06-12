@@ -7,6 +7,12 @@ import { resultHelper } from './core/utils';
 import alita from './solutions/alita';
 
 declare const self: any;
+declare const __PACKAGE_VERSION__: string;
+
+const packageVersion = __PACKAGE_VERSION__ ?? 'latest';
+declare const __PACKAGE_CREATE_TIME__: string;
+
+const createTime = __PACKAGE_CREATE_TIME__ ?? '';
 
 const solutions: any = {
   alita,
@@ -29,6 +35,9 @@ export async function run(msg: {
 }) {
   try {
     print('begin run...');
+
+    print('ebe worker version' + packageVersion);
+    print('create time' + new Date(createTime));
     self.postMessage({ type: 'run:begin' });
 
     const { solution, options, schema } = msg;

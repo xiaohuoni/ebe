@@ -10,7 +10,7 @@ import alita from './src/solutions/alita';
 (async () => {
   console.time('create-code');
   // 支持命令中指定 appId 如 pnpm req appId
-  const appId = process.argv.slice(2)[0] || '1106842174504439808'; // HJF
+  const appId = process.argv.slice(2)[0] || '1117743758138974208'; // HJF
   // const appId = '772790966277644288'; // 开发环境
   const schemaFile = join(
     __dirname,

@@ -307,14 +307,14 @@ ProjectBuilder {
       "drawerPages": Object {
         "path": Array [
           "src",
-          "pages",
+          "components",
           "drawer",
         ],
       },
       "modalPages": Object {
         "path": Array [
           "src",
-          "pages",
+          "components",
           "modal",
         ],
       },

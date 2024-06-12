@@ -61,17 +61,13 @@ export interface IContainerInfo extends IProjectSchema, IWithDependency {
   type: string;
   moduleName: string;
   analyzeResult?: ICompAnalyzeResult;
+  modalDrawData?: any;
 }
 
 export interface IUtilInfo extends IWithDependency {}
 
 export interface IRouterInfo extends IWithDependency {
   routes: Array<{
-    path: string;
-    fileName: string;
-    type: string;
-  }>;
-  models: Array<{
     path: string;
     fileName: string;
     type: string;

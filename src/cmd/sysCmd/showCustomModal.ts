@@ -38,6 +38,7 @@ export function showCustomModal({
           config,
         )}`
       : '\n';
+  // TODO: bug 永远都找弹窗，推拉窗找不到
   return `// 打开弹窗\n ModalManagerRef?.current?.openModal({pagePath: '${
     params.pagePath
   }', lcdpParentRenderId: customActionId, params: ${parse2Var(

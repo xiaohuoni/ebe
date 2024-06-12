@@ -267,7 +267,7 @@ const ExpBusiObjModal = forwardRef<ExpBusiObjModalHooks, ExpBusiObjModalProps>(
     return (
       <Modal
         title={getLocale!('ExpBusiObjModal.title', '按字段导出业务对象数据')}
-        visible={visible}
+        open={visible}
         destroyOnClose
         onOk={() => {
           if (selectedKeys.length) {

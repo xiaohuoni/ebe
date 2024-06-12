@@ -16,6 +16,7 @@
     "strict": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"],
