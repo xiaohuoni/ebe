@@ -66,7 +66,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       // }
       const pageInst = ir?.modalDrawData;
       const mdProps: any = {
-        title: pageInst.modalTitle || pageInst.pageName,
+        title: pageInst.modalTitle || pageInst.drawerTitle || pageInst.pageName,
         width:
           pageInst.width === 'custom'
             ? pageInst.customWidth || 624
@@ -75,11 +75,15 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           pageInst.width === 'custom'
             ? pageInst.customHeight || 'auto'
             : pageInst.height,
-        okText: pageInst.okText,
-        cancelText: pageInst.cancelText,
-        placement: pageInst.placement || 'right',
         maskClosable: pageInst.closeOnClickOverlay !== false,
       };
+      if (isModal) {
+        mdProps.okText = pageInst.okText;
+        mdProps.cancelText = pageInst.cancelText;
+      }
+      if (isBrawer) {
+        mdProps.placement = pageInst.placement || 'right';
+      }
       if (pageInst.footer === 0) {
         mdProps.footer = null;
       }
@@ -95,14 +99,14 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       onCancel();
     }
   }}>
-    {${
+    ${
       mdProps.cancelText
         ? mdProps.cancelText
-        : `getLocale('cancelText', '取消')`
-    } }
+        : `取消`
+    }
   </Button>
   <Button onClick={onOk} type="primary">
-    {${mdProps.okText ? mdProps.okText : `getLocale('okText', '确认')`} }
+    ${mdProps.okText ? mdProps.okText : '确认'} 
   </Button>
 </div>}`
           : '';
