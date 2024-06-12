@@ -27,8 +27,9 @@ Object {
       keepalive: [],
       // info 文件配置
       scripts:[{src:\\"server/app/env/info.js\\"}],
-      // 获取主题文件
-      // links:[{rel:\\"stylesheet\\",href:\\"server/app/appTheme/getThemeCss?appId=undefined&terminalType=undefined\\"}]
+      links: [
+         
+      ],      
     });
     ",
       "fileType": "ts",
