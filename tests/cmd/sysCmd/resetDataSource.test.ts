@@ -29,7 +29,7 @@ describe('getResetDataSource', () => {
       },
     };
 
-    const expectedCode = `//【清空全局数据源】全局数据源指令暂不支持`;
+    const expectedCode = `// FIXME: 全局数据源myDataSource不存在，请检查配置。`;
 
     const result = getResetDataSource(generateParams);
 
