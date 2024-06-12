@@ -6,6 +6,7 @@ import {
   FileType,
   ICodeStruct,
 } from '../../../../../core/types';
+import { parse2Var } from '../../../../../core/utils/compositeType';
 
 const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
@@ -55,10 +56,17 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
       keepalive: [],
       // info 文件配置
       scripts:[{src:"server/app/env/info.js"}],
-      // 获取主题文件
-      // links:[{rel:"stylesheet",href:"server/app/appTheme/getThemeCss?appId=${
-        options?.appId
-      }&terminalType=${options?.platform}"}]
+      links: [
+        ${
+          next.contextData.options?.appInfo?.applicationIcon
+            ? parse2Var({
+                rel: 'icon',
+                // TODO: 后续如果能下载图片，先下载图片后，把href修改为地址即可
+                href: next.contextData.options?.appInfo?.applicationIcon,
+              })
+            : ''
+        } 
+      ],      
     });
     `;
 
