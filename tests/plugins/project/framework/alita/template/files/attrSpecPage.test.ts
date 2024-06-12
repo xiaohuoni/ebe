@@ -32,10 +32,10 @@ describe('template files attrSpecPage', () => {
         },
       ],
       appInfo: {
-        appCode: "APP_1106842174504439808",
+        appCode: 'APP_1106842174504439808',
         appId: 'appId',
-        appName: "应用名称",
-      }
+        appName: '应用名称',
+      },
     };
 
     const expectedFileContent = `export const attrSpecPage = ${JSON.stringify(
