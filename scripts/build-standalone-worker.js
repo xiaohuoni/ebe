@@ -11,7 +11,7 @@ console.log('build standalone-worker: packageVersion=%s', packageVersion);
 const enableAnalyze = process.env.ANALYZE === 'true';
 const buildConfig = {
   entryPoints: ['src/worker.ts'],
-  outfile: 'dist/worker.js',
+  outfile: 'dist/ebeWorker.js',
   metafile: enableAnalyze,
   bundle: true,
   target: ['chrome69'],
