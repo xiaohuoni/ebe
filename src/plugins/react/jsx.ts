@@ -9,6 +9,7 @@ import {
   NodeGeneratorConfig,
   NodePlugin,
 } from '../../core/types';
+import { parse2Var } from '../../core/utils/compositeType';
 import { createReactNodeGenerator } from '../../core/utils/nodeToJSX';
 import { Scope } from '../../core/utils/Scope';
 import { getImportFrom } from '../../utils/depsHelper';
@@ -108,7 +109,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           : '';
 
       jsxContent = `<${ir.pageContainerType}
-      title='${mdProps.title}'
+      title=${parse2Var(mdProps.title)}
     ${mdProps.width ? `width='${mdProps.width}'` : ''}
     ${mdProps.height ? `height='${mdProps.height}'` : ''}
     ${mdProps.okText ? `okText='${mdProps.okText}'` : ''}
