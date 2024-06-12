@@ -190,7 +190,8 @@ const parseDsl = (schema: IPublicSchemaType, isRoot: boolean) => {
   // 如果是跟节点，需要添加事件
   if (isRoot) {
     pareseDataSoure(schema);
-    replaceFunctorValue(schema, true);
+    // TODO: 先去掉replaceFunctorValue，通过babel转化的方式解决自定义语法，不然部分语法无法在属性中识别
+    // replaceFunctorValue(schema, true);
     let { setEvents = [] } = schema;
     // 业务组件事件名称和页面事件区分，做映射关系
     if (schema.pageContainerType === 'BusiComp') {
@@ -205,8 +206,9 @@ const parseDsl = (schema: IPublicSchemaType, isRoot: boolean) => {
       };
     });
   } else {
+    // TODO: 先去掉replaceFunctorValue，通过babel转化的方式解决自定义语法，不然部分语法无法在属性中识别
     // 函数表达式替换真实值
-    replaceFunctorValue(schema);
+    // replaceFunctorValue(schema);
     schema.events = {};
     // 处理控件动作
     schema.setEvents?.forEach((e: any) => {
