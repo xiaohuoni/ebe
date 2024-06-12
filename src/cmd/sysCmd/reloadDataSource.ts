@@ -68,9 +68,6 @@ export function reloadDataSource(generateParams: CMDGeneratorPrames): string {
   const reloadFunctionName =
     config?.ir?.globalDataSource?.[options.dataSourceName]?.reloadFunctionName;
 
-  if (isGlobalData) {
-    console.log(dsConfig, 'console.log(source);');
-  }
   // 生成服务
   if (source === 'service') {
     const {

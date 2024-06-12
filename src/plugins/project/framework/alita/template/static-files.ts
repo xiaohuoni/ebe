@@ -7,6 +7,7 @@ import customComponent from './files/customComponent';
 import drawermap from './files/drawermap';
 import env from './files/env';
 import factory from './files/factory';
+import favicon from './files/favicon';
 import global from './files/global';
 import globalless from './files/globalless';
 import indexpage from './files/indexpage';
@@ -105,6 +106,8 @@ export function generateStaticFiles(
     pcbannermodalless,
     parseResult?.staticFiles,
   );
+
+  runFileGenerator(postProcessors, root, favicon, parseResult?.staticFiles);
 
   return root;
 }

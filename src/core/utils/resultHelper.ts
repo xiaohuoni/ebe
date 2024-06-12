@@ -9,11 +9,13 @@ export function createResultFile(
   name: string,
   ext = 'tsx',
   content = '',
+  options?: ResultFile['options'],
 ): ResultFile {
   return {
     name,
     ext,
     content,
+    options,
   };
 }
 

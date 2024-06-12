@@ -56,4 +56,14 @@ export interface ResultFile {
    * @memberof ResultFile
    */
   content: string;
+
+  /**
+   * 选项
+   */
+  options?: {
+    /**
+     * content是否为base64字符串
+     */
+    base64?: boolean;
+  };
 }

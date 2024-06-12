@@ -1,4 +1,5 @@
 import JSZip from 'jszip';
+import { isImageFile } from '../../../core/utils/fileHelper';
 import { ResultDir, ResultFile } from '../../types';
 import type { ZipBuffer } from './index';
 
@@ -47,6 +48,28 @@ export const generateProjectZip = async (
   return zip.generateAsync({ type: zipType });
 };
 
+/**
+ * 把图片写入到指定的路径
+ * @param filePath
+ * @param file
+ * @param fs
+ */
+export const writeImageToFile = (
+  fileName: string,
+  file: ResultFile,
+  zipFolder: JSZip,
+) => {
+  const isBase64 = file.options?.base64;
+  if (!isBase64) return Promise.reject(new Error('暂不支持的图片类型'));
+
+  // 文件内容不存在直接返回，无需生成文件
+  if (typeof file.content !== 'string' || !file.content)
+    return Promise.resolve();
+
+  const content = file.content.replace(/^data:image\/png;base64,/, '');
+  zipFolder.file(fileName, content, { base64: file.options?.base64 });
+};
+
 const writeFolderToZip = (
   folder: ResultDir,
   parentFolder: JSZip,
@@ -60,7 +83,11 @@ const writeFolderToZip = (
       // const options = file.contentEncoding === 'base64' ? { base64: true } : {};
       const options = {};
       const fileName = file.ext ? `${file.name}.${file.ext}` : file.name;
-      zipFolder.file(fileName, file.content, options);
+      if (isImageFile(file)) {
+        writeImageToFile(fileName, file, zipFolder);
+      } else {
+        zipFolder.file(fileName, file.content, options);
+      }
     });
 
     folder.dirs.forEach((subFolder: ResultDir) => {
