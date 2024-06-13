@@ -24,7 +24,6 @@ import enPreprocessPC from '../utils/factory/pc/index.enPreprocess';
 import enRunPreprocessPC from '../utils/factory/pc/index.enRunPreprocess';
 import { parseGlobalData } from '../utils/globalDataSource/parseGlobalData';
 import assetHelper from '../utils/schema/assets/assets';
-import { cleanDataSource } from '../utils/schema/cleanDataSource';
 import { getBusiCompName } from '../utils/schema/getBusiCompName';
 import {
   handleSubNodes,
@@ -185,7 +184,7 @@ export class SchemaParser implements ISchemaParser {
       if (!newSchema.dataSource) {
         newSchema.dataSource = [];
       } else {
-        newSchema.dataSource = cleanDataSource(newSchema.dataSource ?? []);
+        newSchema.dataSource = newSchema.dataSource ?? [];
       }
 
       const globalDataSource: Record<string, any> = {};
