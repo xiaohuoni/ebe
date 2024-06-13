@@ -71,11 +71,11 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         width:
           pageInst.width === 'custom'
             ? pageInst.customWidth || 624
-            : pageInst.width,
+            : `${pageInst.width}px`,
         height:
           pageInst.width === 'custom'
             ? pageInst.customHeight || 'auto'
-            : pageInst.height,
+            : `${pageInst.height}px`,
         maskClosable: pageInst.closeOnClickOverlay !== false,
       };
       if (isModal) {
