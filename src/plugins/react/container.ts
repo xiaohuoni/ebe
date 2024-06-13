@@ -59,7 +59,9 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     // pageIdMapping？干嘛用的，在这里画蛇添足？
     if (next?.contextData?.options?.pageIdMapping[ir.pagePath]) {
       pageId =
-        ir.pagePath || ir.pageId ||next?.contextData?.options?.pageIdMapping[ir.pagePath];
+        ir.pagePath ||
+        ir.pageId ||
+        next?.contextData?.options?.pageIdMapping[ir.pagePath];
     } else {
       pageId = getBusiCompPageId(
         next?.contextData?.options?.busiCompMapping,
