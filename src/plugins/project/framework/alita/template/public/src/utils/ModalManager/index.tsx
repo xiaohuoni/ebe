@@ -5,7 +5,6 @@ import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';
 
 interface ModalManagerProps {
   parseNodeBefore?: any;
-  appId: string;
 }
 
 /**

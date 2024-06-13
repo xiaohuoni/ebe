@@ -16,13 +16,7 @@ const PreviewFile = () => {
     [fileIds],
   );
   return (
-    <BannerModal
-      appId="1089426139952508928"
-      pageId="1108371301173338112"
-      fileList={fileList}
-      fileIndex={fileIndex}
-      viewMode="newTab"
-    />
+    <BannerModal fileList={fileList} fileIndex={fileIndex} viewMode="newTab" />
   );
 };
 

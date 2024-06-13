@@ -40,7 +40,7 @@ const Page = () => {
       appId: values.appId,
       // platform: values.platform ? 'APP' : 'PC',
       platform: 'PC',
-      baseUrl: 'http://172.21.72.205:10000/',
+      baseUrl: 'http://172.21.72.205:10010/',
       services: {
         findBusiCompById,
         findPageInstByVersionId,

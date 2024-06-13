@@ -33,6 +33,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     } = options?.frontendHookMap;
 
     const isMobile = options?.platform === 'h5';
+    const transformHasAppId = options?.transformHasAppId;
     // 暂时只需要改 keepalive ，如果后面修改的多了，可以参考 pageview 或者 jsx 的插件的生命周期
     next.chunks.push({
       type: ChunkType.STRING,
@@ -119,9 +120,12 @@ ${
     ? `const requestInterceptor:RequestInterceptor = (url, options) => {
   try {
     let newUrl = url;
-    // TODO: 这里要删除
-    options.data.appId = '${appId}';
-    options.data.pageId = '${pageId}';
+    ${
+      transformHasAppId
+        ? ` options.data.appId = '${appId}';
+    options.data.pageId = '${pageId}';`
+        : ''
+    }
     const fetchSendBeforeResult =
     (fetchSendBefore(url, options.method, options.data, {
       CryptoJS,
@@ -195,11 +199,14 @@ export const request: RequestConfig = {
   middlewares: [middleware],
   prefix: 'server/',
   method: 'get',
-  // TODO: 这里先写死，如果用到PageId 
   headers: {
-    'APP-ID': '${appId}',
+    ${
+      transformHasAppId
+        ? `'APP-ID': '${appId}',
     "X-B-AUTH": 1,
-    "X-B-TARGET-ID": '${pageId}',
+    "X-B-TARGET-ID": '${pageId}',`
+        : ''
+    }
     "Zsmart-Locale": "zh-CN"
   },
   errorHandler: (error) => {

@@ -14,6 +14,8 @@ process.env.APPID = process.argv.slice(2)[0] ?? process.env.APPID;
 
 (async () => {
   console.time('create-code');
+  // 转化是否启用 appId
+  const transformHasAppId = true;
   // 支持命令中指定 appId 如 pnpm req appId
   const appId = process.env.APPID;
 
@@ -27,7 +29,7 @@ process.env.APPID = process.argv.slice(2)[0] ?? process.env.APPID;
   const schema = await loadSchemaFile(schemaFile);
 
   const projectBuilder = alita({
-    options: schema.options,
+    options: { ...schema.options, transformHasAppId },
     useEbeSetup: false,
     printUtil: {
       prettier: ({
@@ -57,7 +59,6 @@ process.env.APPID = process.argv.slice(2)[0] ?? process.env.APPID;
     // @ts-ignore
     clearLXPagesDSL(schema.pages), // 编排搭建出来的 schema
   );
-  console.timeEnd('create-code');
   const projectSlug = appId;
   // 写入到 zip 包
   await createDiskPublisher().publish({

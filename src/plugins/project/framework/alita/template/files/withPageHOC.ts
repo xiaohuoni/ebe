@@ -5,6 +5,7 @@ export default function getFile(
   config?: LXProjectOptions,
 ): [string[], ResultFile] {
   const isMobile = config?.platform === 'h5';
+  const transformHasAppId = config?.transformHasAppId;
   const file = createResultFile(
     'withPageHOC',
     'tsx',
@@ -64,7 +65,9 @@ export const withPageHOC = (
     const location = useLocation();
     const refs = useRef<Record<string, any>>({}).current;
 
-    const { ModalManagerRef, refs: renerRefs, appId, attrDataMap } = useContext(Context);
+    const { ModalManagerRef, refs: renerRefs, ${
+      transformHasAppId ? `appId,` : ''
+    } attrDataMap } = useContext(Context);
     const ExpBusiObjModalRef = React.useRef<any>();
     const ExpSQLServiceModalRef = React.useRef<any>();
     const ImportBusiObjModalRef = React.useRef<any>();
@@ -156,7 +159,7 @@ export const withPageHOC = (
             // 打开弹窗能力
             openModal: (data: any) =>
               ModalManagerRef.current?.openModal({
-                appId,
+              ${transformHasAppId ? `appId,` : ''}
                 ...data,
               }),
             getVisible: (compId: string) => {
@@ -282,8 +285,8 @@ export const withPageHOC = (
             : `<ImportBusiObjModal
       ref={ImportBusiObjModalRef}
       key={\`ImportBusiObjModal-\${renderId}\`}
+       ${transformHasAppId ? `appId={appId}` : ''}
       // TODO: 控件内部还存在需要 appId 和 pageId 的场景
-      // appId={appId}
       // pageId={pageId}
       // utils写内部了，看后面需不需要整合
       // utils={renderCtx.utils}
@@ -296,8 +299,7 @@ export const withPageHOC = (
         : `<ExpSQLServiceModal
       ref={ExpSQLServiceModalRef}
       key={\`ExpSQLServiceModal-\${renderId}\`}
-      // TODO: 控件内部还存在需要 appId 的场景
-      // appId={appId}
+      // TODO: 控件内部还存在需要 appId 的场景${transformHasAppId ? `\n appId={appId}` : ''}
       // api={baseApi}
       // pageId={renderId}
       // utils写内部了，看后面需不需要整合

@@ -5,6 +5,7 @@ export default function getFile(
   config?: LXProjectOptions,
 ): [string[], ResultFile] {
   const isMobile = config?.platform === 'h5';
+  const transformHasAppId = config?.transformHasAppId;
   const { routerChange } = config?.frontendHookMap;
   const file = createResultFile(
     'index',
@@ -12,8 +13,8 @@ export default function getFile(
     `import ModalView from '@/utils/ModalManager';
     import { Context, RefsManager } from '@/utils/Context/context';
     import React, { useEffect, useRef, useState } from 'react';
-    import { APPID } from '@/constants';
     import { api } from '@/services/api';
+    ${transformHasAppId ? `import { APPID } from '@/constants';` : ''}
     import { Spin } from '@/utils/messageApi';
     import { attrSpecPage, handleAttrDataMap } from '@/utils/attrSpecPage';
   ${
@@ -29,7 +30,7 @@ import zhCN from 'antd/es/locale/zh_CN';`
 }
 
 ${routerChange ? `let prePathname = '';` : ''}
-    const Layout = (props) => {
+    const Layout = (props: any) => {
       const ModalManagerRef = useRef<any>(); // 页面弹窗的所有实例
       const refs = new RefsManager();
       const element = useKeepOutlets();
@@ -57,7 +58,7 @@ ${routerChange ? `let prePathname = '';` : ''}
         const reqNbrKeys = attrSpecPage;
         const params = {
           attrCodes: reqNbrKeys,
-          appId: APPID,
+          ${transformHasAppId ? `appId: APPID,` : ''}
         };
        api.batchGetAppStaticAttr(params).then((res: any) => {
         if (res) {
@@ -76,11 +77,13 @@ ${routerChange ? `let prePathname = '';` : ''}
       }
       return (
         ${isMobile ? '' : `<ConfigProvider locale={zhCN}>`}
-        <Context.Provider value={{ ModalManagerRef, refs, appId: APPID, attrDataMap}}>
+        <Context.Provider value={{ ModalManagerRef, refs, ${
+          transformHasAppId ? `appId: APPID,` : ''
+        } attrDataMap}}>
           {element}
           <ModalView
             getLocale={getLocale as any}
-            appId={APPID}
+            ${transformHasAppId ? `appId={APPID}` : ''}
             ref={ModalManagerRef}
           />
         </Context.Provider>

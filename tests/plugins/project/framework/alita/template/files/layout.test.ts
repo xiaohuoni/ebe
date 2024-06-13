@@ -12,15 +12,15 @@ describe('template files layout', () => {
     const expectedFileContent = `import ModalView from '@/utils/ModalManager';
     import { Context, RefsManager } from '@/utils/Context/context';
     import React, { useEffect, useRef, useState } from 'react';
-    import { APPID } from '@/constants';
     import { api } from '@/services/api';
+    
     import { Spin } from '@/utils/messageApi';
     import { attrSpecPage, handleAttrDataMap } from '@/utils/attrSpecPage';
     import { useKeepOutlets } from 'alita';
     import { ConfigProvider } from 'antd';
     import zhCN from 'antd/es/locale/zh_CN';
     
-    const Layout = (props) => {
+    const Layout = (props: any) => {
       const ModalManagerRef = useRef<any>(); // 页面弹窗的所有实例
       const refs = new RefsManager();
       const element = useKeepOutlets();
@@ -32,7 +32,6 @@ describe('template files layout', () => {
         const reqNbrKeys = attrSpecPage;
         const params = {
           attrCodes: reqNbrKeys,
-          appId: APPID,
         };
         api
           .batchGetAppStaticAttr(params)
@@ -54,12 +53,11 @@ describe('template files layout', () => {
       return (
         <ConfigProvider locale={zhCN}>
           <Context.Provider
-            value={{ ModalManagerRef, refs, appId: APPID, attrDataMap }}
+            value={{ ModalManagerRef, refs, attrDataMap }}
           >
             {element}
             <ModalView
               getLocale={getLocale as any}
-              appId={APPID}
               ref={ModalManagerRef}
             />
           </Context.Provider>

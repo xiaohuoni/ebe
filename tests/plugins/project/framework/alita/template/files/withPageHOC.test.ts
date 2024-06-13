@@ -64,7 +64,6 @@ describe('template files withPageHOC', () => {
         const {
           ModalManagerRef,
           refs: renerRefs,
-          appId,
           attrDataMap,
         } = useContext(Context);
         const ExpBusiObjModalRef = React.useRef<any>();
@@ -156,7 +155,6 @@ describe('template files withPageHOC', () => {
                 // 打开弹窗能力
                 openModal: (data: any) =>
                   ModalManagerRef.current?.openModal({
-                    appId,
                     ...data,
                   }),
                 getVisible: (compId: string) => {
@@ -293,7 +291,6 @@ describe('template files withPageHOC', () => {
               ref={ImportBusiObjModalRef}
               key={\`ImportBusiObjModal-\${renderId}\`}
               // TODO: 控件内部还存在需要 appId 和 pageId 的场景
-              // appId={appId}
               // pageId={pageId}
               // utils写内部了，看后面需不需要整合
               // utils={renderCtx.utils}
@@ -303,7 +300,6 @@ describe('template files withPageHOC', () => {
               ref={ExpSQLServiceModalRef}
               key={\`ExpSQLServiceModal-\${renderId}\`}
               // TODO: 控件内部还存在需要 appId 的场景
-              // appId={appId}
               // api={baseApi}
               // pageId={renderId}
               // utils写内部了，看后面需不需要整合

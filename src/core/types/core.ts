@@ -193,6 +193,8 @@ export interface LXProjectOptions {
   appInfo?: Record<string, any>;
   // modal
   modalDrawerMap?: any;
+  // 转化源码是否包含appId
+  transformHasAppId: boolean;
 }
 export type PrintUtilPrettier = (data: {
   tag: string;
