@@ -37,8 +37,6 @@ class LcdpBaseApi {
     this.hooksOfApp = {};
     // 内部资产列表
     this.inLineComps = {};
-    // 收集antd对象
-    this.antd = {};
     // 对象引用
     this.refs = {
       /**
@@ -289,13 +287,6 @@ class LcdpBaseApi {
     hookArray.forEach((c) => {
       this.hooks[c.hookCode] = c.hookCompiledContent;
     });
-  }
-  /**
-   * 注册Antd组件，包括APP和PC
-   * @param compsOpts
-   */
-  setAntd(compsOpts: any) {
-    this.antd = compsOpts;
   }
 }
 

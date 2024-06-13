@@ -20,8 +20,12 @@ export const printCmdList = (platform: string) => {
   const cmdList = Object.keys(cmdHash)?.filter(
     (key) => typeof (cmd as any)[key] !== 'function',
   );
-  console.log('当前源码缺少的指令数:', cmdList.length);
-  console.log('当前源码缺少的指令: ', [...cmdList]);
+
+  // 有指令缺少才打印
+  if (cmdList.length) {
+    console.log('当前源码缺少的指令数:', cmdList.length);
+    console.log('当前源码缺少的指令: ', [...cmdList]);
+  }
 };
 
 export const LogTagsHash: any = {
