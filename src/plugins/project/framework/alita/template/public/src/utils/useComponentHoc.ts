@@ -54,7 +54,7 @@ export const useComponentHoc = (
     });
   }, [visible]);
 
-  useStateListener(renderId, $$componentItem.uid, 'visible', state.visible);
+  useStateListener(renderId, $$componentItem?.uid, 'visible', state.visible);
 
   // 1. 赋默认值
   useUpdateDeepEffect(() => {

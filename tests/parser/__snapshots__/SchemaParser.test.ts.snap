@@ -452,6 +452,9 @@ Object {
         },
       ],
       "editorVersion": "3.3.1.05141705",
+      "global": Object {
+        "pageTypeMap": Object {},
+      },
       "globalDataSource": Object {},
       "id": "542158",
       "imgInfoList": Array [],
@@ -471,7 +474,7 @@ Object {
     "routes": Array [
       Object {
         "fileName": undefined,
-        "pageId": undefined,
+        "pageId": "1106394609220718592",
         "path": undefined,
         "type": undefined,
       },

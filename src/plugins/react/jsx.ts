@@ -93,18 +93,19 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           ? 'footer={null}'
           : isBrawer
           ? `footer={<div className="ant-drawer-footer-button">
-  <Button onClick={() => {
-    // onCancel为内置取消处理函数，用于关闭弹窗
-    // @ts-ignore
-    if (onCancel !== false && onCancel) {
-      onCancel();
-    }
-  }}>
-    ${mdProps.cancelText ? mdProps.cancelText : `取消`}
-  </Button>
-  <Button onClick={onOk} type="primary">
-    ${mdProps.okText ? mdProps.okText : '确认'} 
-  </Button>
+          <Button
+            onClick={() => {
+              // onCancel为内置取消处理函数，用于关闭弹窗
+              // @ts-ignore
+              if (onCancel !== false && onCancel) {
+                onCancel();
+              }
+            }}
+            btnText="${mdProps.cancelText ? mdProps.cancelText : `取消`}"
+          />
+          <Button
+            btnText="${mdProps.okText ? mdProps.okText : '确认'} "
+            onClick={onOk} type="primary" />
 </div>}`
           : '';
 
@@ -120,14 +121,18 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       open={props.visible}
       destroyOnClose
       className='${isModal ? 'ued-modal-wrap' : 'ued-drawer-wrap'}'
-      onOk={onOk}
+      ${
+        isModal
+          ? ` onOk={onOk}
       onCancel={() => {
         // onCancel为内置取消处理函数，用于关闭弹窗
         // @ts-ignore
         if (onCancel !== false && onCancel) {
           onCancel();
         }
-      }}
+      }}`
+          : ''
+      }
     >
 ${
   isModal

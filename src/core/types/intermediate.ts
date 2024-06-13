@@ -62,6 +62,10 @@ export interface IContainerInfo extends IProjectSchema, IWithDependency {
   moduleName: string;
   analyzeResult?: ICompAnalyzeResult;
   modalDrawData?: any;
+  // 一些全局的数据，都从这里塞进来，好找
+  global?: {
+    pageTypeMap?: any;
+  };
 }
 
 export interface IUtilInfo extends IWithDependency {}

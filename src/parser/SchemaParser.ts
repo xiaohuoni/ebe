@@ -165,7 +165,10 @@ export class SchemaParser implements ISchemaParser {
       drawer: [],
     };
     containers = schemaArr.map((schema) => {
-      getComponentsMap(_.cloneDeep(schema), pageIdMapping[schema.pagePath]);
+      getComponentsMap(
+        _.cloneDeep(schema),
+        schema.pageId ?? pageIdMapping[schema.pagePath],
+      );
       // 标记循环容器
       markerLoopComponent(schema);
       const newSchema = parseSchema(schema, true);
@@ -239,7 +242,7 @@ export class SchemaParser implements ISchemaParser {
           path: page.pagePath,
           fileName: page.pagePath,
           type: page.pagePath,
-          pageId: pageIdMapping[page.pagePath],
+          pageId: page.pageId ?? pageIdMapping[page.pagePath],
           position: page.position,
           width: page.width,
           mode: page.mode,
@@ -307,15 +310,21 @@ export class SchemaParser implements ISchemaParser {
 
     // 分析路由配置
     hooks?.callHook('routes', { msg: '分析路由配置' });
-
+    const pageTypeMap: any = {};
     const routes: IRouterInfo['routes'] = containers
       .filter((container) => PAGE_TYPES.includes(container.containerType))
       .map((page) => {
+        const pageId = page.pageId ?? pageIdMapping[page.pagePath];
+        if (page.containerType === 'Drawer') {
+          pageTypeMap[page.containerType] ??= {};
+          pageTypeMap[page.containerType][pageId] = true;
+        }
+
         return {
           path: page.pagePath,
           fileName: page.pagePath,
           type: page.pagePath,
-          pageId: pageIdMapping[page.pagePath],
+          pageId,
         };
       });
 
@@ -339,7 +348,7 @@ export class SchemaParser implements ISchemaParser {
     npms = uniqueArray<INpmPackage>(npms, (i: any) => i.package).filter(
       Boolean,
     );
-
+    containers = containers.map((c) => ({ ...c, global: { pageTypeMap } }));
     return {
       containers,
       // globalRouter: {

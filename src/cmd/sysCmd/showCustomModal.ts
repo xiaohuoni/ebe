@@ -38,8 +38,13 @@ export function showCustomModal({
           config,
         )}`
       : '\n';
+
+  const Drawer = config?.ir?.global?.pageTypeMap?.Drawer || {};
+  const isDrawer = Drawer[pageId];
   // TODO: bug 永远都找弹窗，推拉窗找不到
-  return `// 打开弹窗\n ModalManagerRef?.current?.openModal({pagePath: '${
+  return `// 打开${isDrawer ? '推拉窗' : '弹窗'}\n ModalManagerRef?.current?.${
+    isDrawer ? 'openDrawer' : 'openModal'
+  }({pagePath: '${
     params.pagePath
   }', lcdpParentRenderId: customActionId, params: ${parse2Var(
     params.params,
