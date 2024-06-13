@@ -2521,6 +2521,33 @@ export const containerIr: IContainerInfo = {
       },
       sourceId: '1001',
     },
+    {
+      id: 171824889401746460,
+      name: 'll',
+      description: 'list',
+      source: 'custom',
+      type: 'object',
+      filterParams: [],
+      outParams: [
+        {
+          attrId: '6552722',
+          code: 'param',
+          name: '属性',
+          type: 'string',
+          initialData: {
+            type: 'static',
+          },
+          showInput: false,
+        },
+      ],
+      config: {
+        hooks: [],
+      },
+      rootOutParams: {
+        type: 'static',
+        value: '$({param:2})$',
+      },
+    },
   ],
   customFuctions: [
     {
@@ -7403,7 +7430,22 @@ export const containerIr: IContainerInfo = {
   analyzeResult: {
     isUsingRef: false,
   },
-  globalDataSource: {},
+  global: {
+    pageTypeMap: {},
+  },
+  globalDataSource: {
+    n: {
+      moduleName: 'useN',
+      namespace: 'useN',
+      updateFunctionName: 'updateNModel',
+      reloadFunctionName: 'reloadNModel',
+      resetFunctionName: 'resetNModel',
+      id: '1118379296078123008',
+      dataName: 'n',
+      readyCompleteName: 'nReadyComplete',
+      initialFunctionName: 'initialNModel',
+    },
+  },
   deps: [
     {
       package: '@/components/factory',

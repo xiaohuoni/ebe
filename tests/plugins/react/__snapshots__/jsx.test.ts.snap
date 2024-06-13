@@ -7676,6 +7676,33 @@ Object {
         "sourceId": "1001",
         "type": "object",
       },
+      Object {
+        "config": Object {
+          "hooks": Array [],
+        },
+        "description": "list",
+        "filterParams": Array [],
+        "id": 171824889401746460,
+        "name": "ll",
+        "outParams": Array [
+          Object {
+            "attrId": "6552722",
+            "code": "param",
+            "initialData": Object {
+              "type": "static",
+            },
+            "name": "属性",
+            "showInput": false,
+            "type": "string",
+          },
+        ],
+        "rootOutParams": Object {
+          "type": "static",
+          "value": "$({param:2})$",
+        },
+        "source": "custom",
+        "type": "object",
+      },
     ],
     "deps": Array [
       Object {
@@ -7736,7 +7763,22 @@ Object {
       },
     ],
     "events": Array [],
-    "globalDataSource": Object {},
+    "global": Object {
+      "pageTypeMap": Object {},
+    },
+    "globalDataSource": Object {
+      "n": Object {
+        "dataName": "n",
+        "id": "1118379296078123008",
+        "initialFunctionName": "initialNModel",
+        "moduleName": "useN",
+        "namespace": "useN",
+        "readyCompleteName": "nReadyComplete",
+        "reloadFunctionName": "reloadNModel",
+        "resetFunctionName": "resetNModel",
+        "updateFunctionName": "updateNModel",
+      },
+    },
     "id": "947893",
     "ignoreLogin": true,
     "layout": "BaseLayout",

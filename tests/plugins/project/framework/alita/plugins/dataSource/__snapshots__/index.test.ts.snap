@@ -1,8 +1,418 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`plugin alita styleInject compilation completed 1`] = `
+exports[`plugin alita dataSource compilation completed 1`] = `
 Object {
-  "chunks": Array [],
+  "chunks": Array [
+    Object {
+      "content": "export interface DataSourceType {_others_: {
+      /**
+       * 用户信息
+       */
+      personInfo: Record<string, any>
+    }
+      /**
+      * 过滤字段: 用户
+      */
+      lcdp_domain_userFilter?: { /**
+      * 主键值
+      */
+      primaryValue?: string
+      
+      orderByAsc?: string; orderByDesc?: string
+      }
+      /**
+      * 用户
+      */
+      lcdp_domain_user?: { /**
+      * 用户ID
+      */
+      user_id?: number
+      
+ /**
+      * 用户名称
+      */
+      user_name?: string
+      
+ /**
+      * 用户类型
+      */
+      user_type?: number
+      
+ /**
+      * 手机
+      */
+      phone_no?: string
+      
+ /**
+      * 邮箱
+      */
+      email?: string
+      
+ /**
+      * 密码
+      */
+      password?: string
+      
+ /**
+      * 组织ID
+      */
+      org_id?: number
+      
+ /**
+      * 创建人
+      */
+      creator_id?: number
+      
+ /**
+      * 创建时间
+      */
+      created_time?: Date
+      
+ /**
+      * 状态
+      */
+      status_cd?: string
+      
+ /**
+      * 状态时间
+      */
+      status_time?: Date
+      
+ /**
+      * 修改人
+      */
+      updator_id?: number
+      
+ /**
+      * 修改时间
+      */
+      updated_time?: Date
+      
+ /**
+      * 备注
+      */
+      remark?: string
+      
+ /**
+      * 真实名称
+      */
+      real_name?: string
+      }
+      ;
+      /**
+      * 过滤字段: list
+      */
+      llFilter?: {
+      orderByAsc?: string; orderByDesc?: string
+      }
+      /**
+      * list
+      */
+      ll?: { /**
+      * 属性
+      */
+      param?: string
+      }
+      
+[key: string]: any}",
+      "fileType": "ts",
+      "linkAfter": Array [
+        "CommonExternalDependencyImport",
+      ],
+      "name": "CommonInternalDependencyImport",
+      "subModule": "dataSourceType",
+      "type": "string",
+    },
+    Object {
+      "content": "import { useState, useRef, useEffect, useMemo } from 'react';;
+import { useRequest } from 'alita';;
+import { cloneDeep, isPlainObject, set } from 'lodash';;
+import useSetState from '@/hooks/useSetState';
+import ArrayUtil from '@/utils/array';;
+import { fetchQueryObject, fetchQueryService } from '@/utils/dataSource';;
+import { DataSourceType } from './dataSourceType';
+import { ARRAY_OPERATE_TYPE } from '@/constants';
+
+  export interface UpdateDataSourceOptions { 
+    /**
+     * 数据源名称
+     */
+    name: string;
+  
+    /**
+     * 更新数据源的路径
+     */
+    path: string;
+  
+    /**
+     * 目标值
+     */
+    value?: any;
+  
+    /**
+     * 需要过滤的变量
+     */
+    predicate?: (item: any, index: number) => boolean;
+  
+    /**
+     * 操作类型 数组时需要
+     */
+    operateType?: 0 | 1 | 2 | 3;
+  
+    /**
+     * 数组或者对象类型
+     */
+    type: 'object' | 'array';
+
+    /**
+     * 是否局部赋值
+     */
+    onlySetPatch: boolean;
+  }
+
+    export interface DataSourceOptions {
+      urlParam? : Record<string, any>;routerData? : Record<string, any>;state? : Record<string, any>;lcdpApi? : any
+    }
+
+    const useDataSource = (options: DataSourceOptions) => {
+      const { urlParam,routerData,state,lcdpApi} = options;
+  
+
+  // 是否正在加载数据，发起请求时会切换loading
+  const [loading, setLoading] = useState(false);
+  // 数据源是否准备完成
+  const [dataReadyComplete, setDataReadyComplete] = useState(false);
+  // 数据源
+  const [data, setData] = useSetState<DataSourceType>();
+  // 保存数据源快照，只有服务和对象发起成功后才会保存，用来缓存服务数据
+  const dataSnapshotRef = useRef<Record<string, any>>({});
+
+  /**
+   * 保存快照
+   */ 
+  const setDataSnapshot = (snapshot: Record<string, any>) => {
+    Object.assign(dataSnapshotRef.current, snapshot);
+  }
+  
+
+
+  /**
+   * 设置用户信息
+   */
+  useEffect(() => {
+      setData({
+        _others_: {
+          personInfo: lcdpApi.data?.user || {}
+        }
+      })
+    }, [lcdpApi.data?.user])
+
+
+    /**
+     * 初始化数据
+     */
+    const initialData: Partial<DataSourceType> = {
+
+
+      
+
+      /**
+     * 对象数据源: lcdp_domain_user
+     */
+    lcdp_domain_userFilter: {primaryValue: \\"\\"},
+    lcdp_domain_user: {}
+    
+
+  ,
+
+
+      
+
+      /**
+     * 对象数据源: ll
+     */
+    llFilter: {},
+    ll: {}
+    
+
+  ,
+
+};
+
+
+    
+
+
+    /**
+     * 初始化数据源
+     */
+    const initialDataSource = () => {
+
+const newData: Partial<DataSourceType> = cloneDeep(initialData);setLoading(true);
+
+const dataSourceValues: Promise<any>[] = []
+    
+
+    Promise.all(dataSourceValues).catch(err => {
+      console.log('数据源初始化失败')
+      console.log(err)
+    }).finally(() => {
+      setData(newData as DataSourceType);
+      setLoading(false);
+      setDataReadyComplete(true);
+    });
+    
+
+}
+
+useEffect(() => {initialDataSource()}, [])
+
+
+    /**
+     * 更新数据源
+     */
+    const updateData = async ({
+      name,
+      path,
+      value,
+      type,
+      operateType,
+      predicate = () => false,
+      onlySetPatch = true,
+    }: UpdateDataSourceOptions) => { 
+      try {
+        // 对象类型 直接赋值
+        if (type === 'object') {
+          ArrayUtil.updateObject({
+            data,
+            path,
+            value,
+            isPatch: onlySetPatch,
+          });
+        } else if (type === 'array') {
+          if (operateType === ARRAY_OPERATE_TYPE.ADD) {
+            ArrayUtil.push(data, path, value)
+          } else if (operateType === ARRAY_OPERATE_TYPE.DELETE) {
+            ArrayUtil.remove(data, path, predicate);
+          } else if (operateType === ARRAY_OPERATE_TYPE.REPLACE) {
+            ArrayUtil.replace(data, path, value);
+          } else if (operateType === ARRAY_OPERATE_TYPE.UPDATE) {
+            ArrayUtil.update({
+              data,
+              path,
+              value,
+              isPatch: onlySetPatch,
+            }, predicate);
+          }
+        }
+    
+        return setData({
+          [name]: cloneDeep(data![name])
+        });
+      } catch (error) {
+        return Promise.reject(error as Error);
+      }
+    };
+    
+
+
+  // 清空数据源
+  const cleanDataSource = (name: string) => { 
+    const newData = initialData[name];
+    if (Array.isArray(newData)) {
+      return [];
+    }
+
+    if (isPlainObject(newData)) {
+      return {};
+    }
+    return undefined;
+  }
+
+      /**
+       * 重置数据源
+       */
+    const resetDataSource = (name: string) => {
+  /**
+   * 数据源名字不存在，无需重置数据源
+   */
+  if (!name) return Promise.resolve(null);
+  return setData({
+    [name]: cleanDataSource(name),
+  });
+}
+
+
+    /**
+     * 刷新自定义数据源
+     */
+    const reloadCustomDataSource = (name: string, params?: any) => setData({
+      [name]: params
+    });
+
+    /**
+     * 刷新对象数据源
+     */
+    const reloadObjectDataSource = (name: string, url: string, options: any, params: any) => {
+      setLoading(true);
+      return fetchQueryObject(url, { ...options, attrs: params }).then((res) => {
+        setData({
+          [name]: res
+        })
+        const snapShot = cloneDeep(res);
+        setDataSnapshot({
+          [name]: snapShot,
+          [\`\${name}Filter\`]: params,
+        });
+        return res;
+      })
+      .catch(console.log).finally(() => { setLoading(false) });
+    }
+
+    /**
+     * 刷新服务数据源
+     */
+    const reloadServiceDataSource = (name: string, service: any, params: any) => {
+      setLoading(true);
+      return fetchQueryService(service, params).then((res) => {
+        setData({
+          [name]: res
+        })
+        const snapShot = cloneDeep(res);
+        setDataSnapshot({
+          [name]: snapShot,
+          [\`\${name}Filter\`]: params,
+        });
+        return res;
+      })
+      .catch(console.log).finally(() => { setLoading(false) });
+    }
+
+    
+
+      return {
+        data,
+        updateData,
+        resetDataSource,
+        reloadCustomDataSource,
+        loading,
+        dataSnapshot: dataSnapshotRef.current,
+        reloadServiceDataSource,
+        reloadObjectDataSource,
+        dataReadyComplete,
+      };
+    
+}
+export default useDataSource",
+      "fileType": "ts",
+      "linkAfter": Array [
+        "CommonExternalDependencyImport",
+      ],
+      "name": "CommonInternalDependencyImport",
+      "subModule": "useDataSource",
+      "type": "string",
+    },
+  ],
   "contextData": Object {},
   "depNames": Array [],
   "ir": Object {

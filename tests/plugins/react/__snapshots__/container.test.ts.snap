@@ -68,6 +68,29 @@ Object {
       "type": "string",
     },
     Object {
+      "content": "const globalDataSourceTool = useGlobalData({
+          urlParam,
+          routerData,
+          state,
+          lcdpApi,
+        });
+        const {
+          
+    globalDataReadyComplete,
+    globalData,
+    updateNModel,reloadNModel,resetNModel,
+  
+        } = globalDataSourceTool;
+        ",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "CallDataSource",
+        "CommonClassDefineStart",
+      ],
+      "name": "CallGlobalDataSource",
+      "type": "string",
+    },
+    Object {
       "content": "
         const { transSuperObjectParams } = useTransSuperObjectParams({
           refs,
@@ -172,10 +195,10 @@ Object {
       // 获取生命周期
       const { useMount, useStateUpdate, useUnmounted } = useLifeCycle({
         monutDeps: [
-          dataReadyComplete
+          dataReadyComplete,globalDataReadyComplete
         ],
         stateDeps: [state],
-        mountCond: () => dataReadyComplete,
+        mountCond: () => dataReadyComplete&&globalDataReadyComplete,
       })
       ",
       "fileType": "tsx",
@@ -8012,6 +8035,33 @@ Object {
         "sourceId": "1001",
         "type": "object",
       },
+      Object {
+        "config": Object {
+          "hooks": Array [],
+        },
+        "description": "list",
+        "filterParams": Array [],
+        "id": 171824889401746460,
+        "name": "ll",
+        "outParams": Array [
+          Object {
+            "attrId": "6552722",
+            "code": "param",
+            "initialData": Object {
+              "type": "static",
+            },
+            "name": "属性",
+            "showInput": false,
+            "type": "string",
+          },
+        ],
+        "rootOutParams": Object {
+          "type": "static",
+          "value": "$({param:2})$",
+        },
+        "source": "custom",
+        "type": "object",
+      },
     ],
     "deps": Array [
       Object {
@@ -8080,7 +8130,22 @@ Object {
       },
     ],
     "events": Array [],
-    "globalDataSource": Object {},
+    "global": Object {
+      "pageTypeMap": Object {},
+    },
+    "globalDataSource": Object {
+      "n": Object {
+        "dataName": "n",
+        "id": "1118379296078123008",
+        "initialFunctionName": "initialNModel",
+        "moduleName": "useN",
+        "namespace": "useN",
+        "readyCompleteName": "nReadyComplete",
+        "reloadFunctionName": "reloadNModel",
+        "resetFunctionName": "resetNModel",
+        "updateFunctionName": "updateNModel",
+      },
+    },
     "id": "947893",
     "ignoreLogin": true,
     "layout": "BaseLayout",

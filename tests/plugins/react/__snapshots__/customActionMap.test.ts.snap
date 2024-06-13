@@ -66,7 +66,7 @@ import XinZengWebYeWuZuJian from '@/components/XinZengWebYeWuZuJian';
             
     globalDataReadyComplete,
     globalData,
-    
+    updateNModel,reloadNModel,resetNModel,
   
            } = context; const parant = (options_768712: any)=>new Promise(async (resolve, reject) =>{ 
       
@@ -116,7 +116,7 @@ return customActionMap;
     Object {
       "content": "
  // 定义页面的自定义事件 
-  const customActionMap = useCustomAction({ ...useTools, ...useDataSourceTool,  ...sandBoxContext.current,customActionId, state,transSuperObjectParams,appInfo,},
+  const customActionMap = useCustomAction({ ...useTools, ...useDataSourceTool, ...globalDataSourceTool, ...sandBoxContext.current,customActionId, state,transSuperObjectParams,appInfo,},
       )",
       "fileType": "tsx",
       "linkAfter": Array [
@@ -7775,6 +7775,33 @@ return customActionMap;
         "sourceId": "1001",
         "type": "object",
       },
+      Object {
+        "config": Object {
+          "hooks": Array [],
+        },
+        "description": "list",
+        "filterParams": Array [],
+        "id": 171824889401746460,
+        "name": "ll",
+        "outParams": Array [
+          Object {
+            "attrId": "6552722",
+            "code": "param",
+            "initialData": Object {
+              "type": "static",
+            },
+            "name": "属性",
+            "showInput": false,
+            "type": "string",
+          },
+        ],
+        "rootOutParams": Object {
+          "type": "static",
+          "value": "$({param:2})$",
+        },
+        "source": "custom",
+        "type": "object",
+      },
     ],
     "deps": Array [
       Object {
@@ -7843,7 +7870,22 @@ return customActionMap;
       },
     ],
     "events": Array [],
-    "globalDataSource": Object {},
+    "global": Object {
+      "pageTypeMap": Object {},
+    },
+    "globalDataSource": Object {
+      "n": Object {
+        "dataName": "n",
+        "id": "1118379296078123008",
+        "initialFunctionName": "initialNModel",
+        "moduleName": "useN",
+        "namespace": "useN",
+        "readyCompleteName": "nReadyComplete",
+        "reloadFunctionName": "reloadNModel",
+        "resetFunctionName": "resetNModel",
+        "updateFunctionName": "updateNModel",
+      },
+    },
     "id": "947893",
     "ignoreLogin": true,
     "layout": "BaseLayout",

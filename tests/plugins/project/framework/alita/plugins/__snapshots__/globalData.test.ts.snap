@@ -2,7 +2,74 @@
 
 exports[`plugin alita globalData compilation completed 1`] = `
 Object {
-  "chunks": Array [],
+  "chunks": Array [
+    Object {
+      "content": "
+        import { useEffect, useState, useMemo, useRef } from 'react';
+        import { useModel } from 'alita';
+        import useReactive from '@/utils/hooks/useReactive'
+
+        interface ContextOptions {
+          urlParam?: Record<string, any>;
+          routerData?: Record<string, any>;
+          state?: Record<string, any>;
+          lcdpApi?: any;
+        }
+
+        const useGlobalData = (context: ContextOptions) => {
+          // 数据源是否准备完成
+          const [globalDataReadyComplete, setDataReadyComplete] = useState(false);
+          const {
+              n,
+              nFilter,
+              nReadyComplete,
+              updateNModel,
+              reloadNModel,
+              resetNModel,
+              initialNModel,
+            } = useModel(\\"useN\\")
+
+            const globalDataRef = useRef<{
+              n: typeof n,nFilter: typeof nFilter
+            }>({
+              n,nFilter
+            });
+            const globalData = useMemo(() => {
+              Object.assign(globalDataRef.current, {
+                n,nFilter
+              });
+
+              return globalDataRef.current;
+            }, [n,nFilter]);
+
+          useEffect(() => {
+            
+            
+         Promise.all([initialNModel(context)]).finally(() => {
+                setDataReadyComplete(true);
+              })
+        
+          }, []);
+          
+          return {
+            
+    globalDataReadyComplete,
+    globalData,
+    updateNModel,reloadNModel,resetNModel,
+  
+          }
+        };
+        export default useGlobalData;
+      ",
+      "fileType": "ts",
+      "linkAfter": Array [
+        "CommonExternalDependencyImport",
+      ],
+      "name": "CommonInternalDependencyImport",
+      "subModule": "useGlobalData",
+      "type": "string",
+    },
+  ],
   "contextData": Object {},
   "depNames": Array [],
   "ir": Object {
@@ -7639,6 +7706,33 @@ Object {
         "sourceId": "1001",
         "type": "object",
       },
+      Object {
+        "config": Object {
+          "hooks": Array [],
+        },
+        "description": "list",
+        "filterParams": Array [],
+        "id": 171824889401746460,
+        "name": "ll",
+        "outParams": Array [
+          Object {
+            "attrId": "6552722",
+            "code": "param",
+            "initialData": Object {
+              "type": "static",
+            },
+            "name": "属性",
+            "showInput": false,
+            "type": "string",
+          },
+        ],
+        "rootOutParams": Object {
+          "type": "static",
+          "value": "$({param:2})$",
+        },
+        "source": "custom",
+        "type": "object",
+      },
     ],
     "deps": Array [
       Object {
@@ -7699,7 +7793,22 @@ Object {
       },
     ],
     "events": Array [],
-    "globalDataSource": Object {},
+    "global": Object {
+      "pageTypeMap": Object {},
+    },
+    "globalDataSource": Object {
+      "n": Object {
+        "dataName": "n",
+        "id": "1118379296078123008",
+        "initialFunctionName": "initialNModel",
+        "moduleName": "useN",
+        "namespace": "useN",
+        "readyCompleteName": "nReadyComplete",
+        "reloadFunctionName": "reloadNModel",
+        "resetFunctionName": "resetNModel",
+        "updateFunctionName": "updateNModel",
+      },
+    },
     "id": "947893",
     "ignoreLogin": true,
     "layout": "BaseLayout",
