@@ -8,7 +8,7 @@ export const PAGE_TYPES = [
   'Drawer',
   'Popover',
 ];
-export const MODAL_TYPES = ['Modal', 'Drawer'];
+export const MODAL_TYPES = ['Modal', 'Drawer', 'Popover'];
 
 export const SERVICE_SOURCE = {
   // 服务来源

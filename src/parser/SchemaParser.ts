@@ -163,6 +163,7 @@ export class SchemaParser implements ISchemaParser {
     const modalDrawerMap: any = {
       modal: [],
       drawer: [],
+      popover: [],
     };
     containers = schemaArr.map((schema) => {
       getComponentsMap(
@@ -233,10 +234,13 @@ export class SchemaParser implements ISchemaParser {
         );
         const pcDraw = _.mergeWith({}, drawObject);
         const isModal = newSchema.pageContainerType === 'Modal';
+        const isDrawer = newSchema.pageContainerType === 'Drawer';
         if (isModal) {
           modalDrawerMap.modal.push(page.pagePath);
-        } else {
+        } else if (isDrawer) {
           modalDrawerMap.drawer.push(page.pagePath);
+        } else {
+          modalDrawerMap.popover.push(page.pagePath);
         }
         modalDrawData = {
           path: page.pagePath,

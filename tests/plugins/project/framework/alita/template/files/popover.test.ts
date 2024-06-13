@@ -13,8 +13,9 @@ describe('template files popover', () => {
     import classnames from 'classnames';
     import React, { FC, useEffect, useMemo, useState } from 'react';
     import lcdpApi from '@/utils/lcdpApi';
-    import { PageComent } from '../Pageview';
-    
+    import { getSafePage } from '@/components/common/Pageview';
+    import PopoverMap from '@/components/popover';
+
     export interface DynamicPopoverProps {
       page?: {
         pageId: string;
@@ -33,13 +34,11 @@ describe('template files popover', () => {
       parentEngineId?: string;
       children?: any;
     }
-    
     const DynamicPopover: FC<DynamicPopoverProps> = (props) => {
       const [update, forceUpdate] = useState({});
       const {
         page = {} as any,
         options: popoverOptions,
-        state,
         id,
         children,
         parentEngineId,
@@ -47,17 +46,15 @@ describe('template files popover', () => {
       // 气泡卡片显隐受控，提供给关闭所有气泡卡片动作
       const [visible, setVisible] = useState<boolean>(false);
       const content = useMemo(() => {
-        if (page?.pageId) {
-          return (
-            <PageComent pageSrc={page?.pageId} parentEngineId={parentEngineId} />
-          );
+        if (page?.pagePath) {
+          const Page = getSafePage(page.pagePath, PopoverMap);
+          return <Page pageSrc={page.pagePath} parentEngineId={parentEngineId} />;
         }
         if (popoverOptions?.content) {
           return popoverOptions.content;
         }
         return null;
       }, [page, update]);
-    
       const options = useMemo<any>(() => {
         if (page?.pageId) {
           return {
@@ -71,13 +68,15 @@ describe('template files popover', () => {
           return {
             overlayClassName: maxWidth ? 'dynamicPage-popver' : '',
             key: \`\${id}_popover\`,
-            overlayStyle: { maxWidth: maxWidth || 'none', wordBreak: 'break-word' },
+            overlayStyle: {
+              maxWidth: maxWidth || 'none',
+              wordBreak: 'break-word',
+            },
             ...resOptions,
           };
         }
         return {};
       }, [page, popoverOptions, update]);
-    
       useEffect(() => {
         const ref = {
           close: () => setVisible(false),
@@ -87,7 +86,6 @@ describe('template files popover', () => {
           lcdpApi?.refs?.PopoverManager?.removePopover?.(ref, 'lcdpParentRenderId');
         };
       }, []);
-    
       return (
         <Popover
           content={content}
@@ -96,14 +94,13 @@ describe('template files popover', () => {
             options?.overlayClassName,
             \`dynamic_popover_\${page?.pageId || ''}\`,
           )}
-          visible={visible}
-          onVisibleChange={setVisible}
+          open={visible}
+          onOpenChange={setVisible}
         >
           {children}
         </Popover>
       );
     };
-    
     export default DynamicPopover;
     `;
 

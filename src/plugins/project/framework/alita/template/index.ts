@@ -13,7 +13,7 @@ const alitaTemplate: IProjectTemplate = {
       path: ['src', 'components', 'drawer'],
     },
     popoverPages: {
-      path: ['src', 'pages', 'popover'],
+      path: ['src', 'components', 'popover'],
     },
     components: {
       path: ['src', 'components', 'businessComponent'],

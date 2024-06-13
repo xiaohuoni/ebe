@@ -5,23 +5,23 @@ export default function getFile(
   config?: LXProjectOptions,
 ): [string[], ResultFile] {
   const { modalDrawerMap = {} } = config!;
-  const { drawer = [] } = modalDrawerMap;
+  const { popover = [] } = modalDrawerMap;
   const file = createResultFile(
     'index',
     'ts',
     `import React from 'react';
-    const DrawerMap:any = {
-      ${drawer
+    const PopoverMap:any = {
+      ${popover
         .map(
           (i: string) =>
-            `'${i}': React.lazy(() => import(/* webpackChunkName: "drawer_${i}_index" */'.${i}/index.tsx'))`,
+            `'${i}': React.lazy(() => import(/* webpackChunkName: "popover_${i}_index" */'.${i}/index.tsx'))`,
         )
         .join(',')}
     }
     
-    export default DrawerMap;
+    export default PopoverMap;
     `,
   );
 
-  return [['src', 'components', 'drawer'], file];
+  return [['src', 'components', 'popover'], file];
 }

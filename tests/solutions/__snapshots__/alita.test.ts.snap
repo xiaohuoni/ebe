@@ -339,7 +339,7 @@ ProjectBuilder {
       "popoverPages": Object {
         "path": Array [
           "src",
-          "pages",
+          "components",
           "popover",
         ],
       },

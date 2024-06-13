@@ -493,6 +493,7 @@ Object {
     "modalDrawerMap": Object {
       "drawer": Array [],
       "modal": Array [],
+      "popover": Array [],
     },
   },
 }

@@ -284,15 +284,12 @@ export class ProjectBuilder implements IProjectBuilder {
       parseResult.containers.map(async (containerInfo, index) => {
         let builder: IModuleBuilder = builders.pages;
         let path: string[];
-        // TODO: 弹窗等页面独立文件
-
-        // else if (containerInfo.containerType === 'Popover') {
-        //   path = this.template.slots.popoverPages.path;
-        // } else
         if (containerInfo.containerType === 'Modal') {
           path = this.template.slots.modalPages.path;
         } else if (containerInfo.containerType === 'Drawer') {
           path = this.template.slots.drawerPages.path;
+        } else if (containerInfo.containerType === 'Popover') {
+          path = this.template.slots.popoverPages.path;
         } else if (PAGE_TYPES.includes(containerInfo.containerType)) {
           path = this.template.slots.pages.path;
         } else {

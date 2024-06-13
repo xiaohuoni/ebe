@@ -21,6 +21,7 @@ import overrides from './files/overrides';
 import pcbannermodal from './files/pcbannermodal';
 import pcbannermodalless from './files/pcbannermodalless';
 import popover from './files/popover';
+import popovermap from './files/popovermap';
 import popoverwrapper from './files/popoverwrapper';
 import proxy from './files/proxy';
 import withPageHOC from './files/withPageHOC';
@@ -91,6 +92,7 @@ export function generateStaticFiles(
   }
   runFileGenerator(postProcessors, root, modalmap, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, drawermap, parseResult?.staticFiles);
+  runFileGenerator(postProcessors, root, popovermap, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, overrides, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, proxy, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, withPageHOC, parseResult?.staticFiles);
