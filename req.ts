@@ -4,13 +4,19 @@ import { jsonc } from 'jsonc';
 import { join } from 'path';
 import { clearLXPagesDSL } from './ebe-utils/src/index';
 import { copyStatic } from './ebe-utils/src/node/copyStatic';
+import { parseEnv } from './parseEnv';
 import { createDiskPublisher } from './src/core/publisher/disk';
 import alita from './src/solutions/alita';
+
+parseEnv();
+
+process.env.APPID = process.argv.slice(2)[0] ?? process.env.APPID;
 
 (async () => {
   console.time('create-code');
   // 支持命令中指定 appId 如 pnpm req appId
-  const appId = process.argv.slice(2)[0] || '1117743758138974208'; // HJF
+  const appId = process.env.APPID;
+
   // const appId = '772790966277644288'; // 开发环境
   const schemaFile = join(
     __dirname,
