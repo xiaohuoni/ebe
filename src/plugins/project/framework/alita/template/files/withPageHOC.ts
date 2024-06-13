@@ -299,7 +299,9 @@ export const withPageHOC = (
         : `<ExpSQLServiceModal
       ref={ExpSQLServiceModalRef}
       key={\`ExpSQLServiceModal-\${renderId}\`}
-      // TODO: 控件内部还存在需要 appId 的场景${transformHasAppId ? `\n appId={appId}` : ''}
+      // TODO: 控件内部还存在需要 appId 的场景${
+        transformHasAppId ? `\n appId={appId}` : ''
+      }
       // api={baseApi}
       // pageId={renderId}
       // utils写内部了，看后面需不需要整合
