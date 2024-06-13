@@ -70,12 +70,8 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         title: pageInst.modalTitle || pageInst.drawerTitle || pageInst.pageName,
         width:
           pageInst.width === 'custom'
-            ? pageInst.customWidth || 624
+            ? `${pageInst.customWidth}px` || 624
             : `${pageInst.width}px`,
-        height:
-          pageInst.width === 'custom'
-            ? pageInst.customHeight || 'auto'
-            : `${pageInst.height}px`,
         maskClosable: pageInst.closeOnClickOverlay !== false,
       };
       if (isModal) {
@@ -84,6 +80,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       }
       if (isBrawer) {
         mdProps.placement = pageInst.placement || 'right';
+        mdProps.height=pageInst.width === 'custom' ? `${pageInst.customHeight}px` || 'auto': `${pageInst.height}px`;
       }
       if (pageInst.footer === 0) {
         mdProps.footer = null;
