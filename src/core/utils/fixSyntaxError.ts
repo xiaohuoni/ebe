@@ -156,39 +156,16 @@ const customSyntaxToJS: {
       (valueName as string)?.match(/['|"]\$(.*)\$['|"]/) || [];
 
     realName = realName.trimStart().trimEnd();
-    if (/^globalData(.([\w]*))*/.test(realName)) {
+    if (
+      /^globalData(.([\w]*))*/.test(realName) ||
+      /^data(.([\w]*))*/.test(realName) ||
+      /^state(.([\w]*))*/.test(realName) ||
+      /^urlParam(.([\w]*))*/.test(realName) ||
+      /^routerData(.([\w]*))*/.test(realName) ||
+      /^appInfo(.([\w]*))*/.test(realName)
+    ) {
       paramPath.node.body = [
-        t.expressionStatement(t.identifier(realName)),
-        ...body,
-      ];
-      path.parentPath.remove();
-    } else if (/^data(.([\w]*))*/.test(realName)) {
-      paramPath.node.body = [
-        t.expressionStatement(t.identifier(realName)),
-        ...body,
-      ];
-      path.parentPath.remove();
-    } else if (/^state(.([\w]*))*/.test(realName)) {
-      paramPath.node.body = [
-        t.expressionStatement(t.identifier(realName)),
-        ...body,
-      ];
-      path.parentPath.remove();
-    } else if (/^urlParam(.([\w]*))*/.test(realName)) {
-      paramPath.node.body = [
-        t.expressionStatement(t.identifier(realName)),
-        ...body,
-      ];
-      path.parentPath.remove();
-    } else if (/^routerData(.([\w]*))*/.test(realName)) {
-      paramPath.node.body = [
-        t.expressionStatement(t.identifier(realName)),
-        ...body,
-      ];
-      path.parentPath.remove();
-    } else if (/^appInfo(.([\w]*))*/.test(realName)) {
-      paramPath.node.body = [
-        t.expressionStatement(t.identifier(realName)),
+        t.expressionStatement(t.identifier(fixSyntaxError(realName))),
         ...body,
       ];
       path.parentPath.remove();

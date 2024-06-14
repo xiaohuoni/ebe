@@ -16,4 +16,30 @@ describe('给代码片段增加操作链', () => {
   ])('%s', (name, { code, expected }) => {
     expectValue(expected, fixSyntaxError(code));
   });
+
+  test('customSyntaxToJS', () => {
+    expectValue(
+      'functorsMap?.IF?.(functorsMap?.MAX?.(1,2),1,2)',
+      fixSyntaxError('IF(MAX(1,2),1,2)'),
+    );
+    expectValue(
+      'functorsMap?.IF?.(functorsMap?.MAX?.(globalData?.a?.b,2),state?.a,2)',
+      fixSyntaxError('IF(MAX("$globalData.a.b$",2),"$state.a$",2)'),
+    );
+  });
+
+  test.each([
+    ['"$globalData$"', 'globalData'],
+    ['"$globalData.a$"', 'globalData?.a'],
+    ['"$data.a$"', 'data?.a'],
+    ['"$data$"', 'data'],
+    ['"$urlParam.a$"', 'urlParam?.a'],
+    ['"$routerData.a$"', 'routerData?.a'],
+    ['"$appInfo.a$"', 'appInfo?.a'],
+    ['"$state.a$"', 'state?.a'],
+    ['\'$getValue("bac")$\'', 'getValue?.("bac")'],
+    ['\'$getDynamicDataValue("bac")$\'', 'getValue?.("bac")'],
+  ])('form %s to %s', (code, expected) => {
+    expectValue(expected, fixSyntaxError(code));
+  });
 });
