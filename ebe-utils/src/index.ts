@@ -312,7 +312,9 @@ export const fetchData = async ({
       }),
       new Promise((resolve) => setTimeout(resolve, 3000)),
     ]);
-  } catch (error) {}
+  } catch (error) {
+    console.error('====获取主题失败', error);
+  }
 
   // 根据 appId 获取当前应用的使用的自定义组件
   onProgress({
