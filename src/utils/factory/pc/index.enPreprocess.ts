@@ -755,6 +755,7 @@ const pc: { [key: string]: ProcessFunctionType } = {
     }
     return compDSL;
   },
+
   DynamicTabs: (compDSL) => {
     const { props: originProps = {} } = compDSL;
     // 将标签页的自定义渲染的 badgeRendering中的$$去掉，防止被提前转换

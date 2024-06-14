@@ -1,9 +1,36 @@
 import jsx from '../../../src/plugins/react/jsx';
-import { containerIr } from '../containerIr';
+import { drawerIr, homeIr, modalIr, popoverIr } from '../containerIr';
 describe('plugin react jsx', () => {
-  test('compilation completed', async () => {
+  test('compilation completed page', async () => {
     const result = await jsx()({
-      ir: containerIr,
+      ir: homeIr,
+      contextData: {},
+      chunks: [],
+      depNames: [],
+    });
+    expect(result).toMatchSnapshot();
+  });
+  test('compilation completed modal', async () => {
+    const result = await jsx()({
+      ir: modalIr,
+      contextData: {},
+      chunks: [],
+      depNames: [],
+    });
+    expect(result).toMatchSnapshot();
+  });
+  test('compilation completed drawer', async () => {
+    const result = await jsx()({
+      ir: drawerIr,
+      contextData: {},
+      chunks: [],
+      depNames: [],
+    });
+    expect(result).toMatchSnapshot();
+  });
+  test('compilation completed popover', async () => {
+    const result = await jsx()({
+      ir: popoverIr,
       contextData: {},
       chunks: [],
       depNames: [],

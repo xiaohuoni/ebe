@@ -1,9 +1,11 @@
 import {
+  clearLXPagesDSL,
   clearProps,
   getNewDataByRules,
   IRulesType,
   removeObjectByRules,
 } from '../../ebe-utils/src/index';
+import n from '../solutions/n.json';
 
 describe('removeObjectByRules', () => {
   it('should remove object by key', () => {
@@ -30,8 +32,6 @@ describe('removeObjectByRules', () => {
     const result = removeObjectByRules(value, rules);
     expect(result).toEqual(expected);
   });
-
-  // Add more test cases here...
 });
 
 describe('clearProps', () => {
@@ -113,5 +113,11 @@ describe('getNewDataByRules', () => {
     };
     const result = getNewDataByRules(value, rule, path);
     expect(result).toEqual(expected);
+  });
+});
+describe('clearLXPagesDSL', () => {
+  it('should clear LX pages DSL based on rules', () => {
+    const result = clearLXPagesDSL(n.pages);
+    expect(result).toMatchSnapshot();
   });
 });

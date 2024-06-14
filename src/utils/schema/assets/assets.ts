@@ -1,4 +1,5 @@
-import Command from './command';
+// TODO: 指令没用吧？
+// import Command from './command';
 import comPreprocess from './comPreprocess';
 // import platformFunctions from './functions';
 import comRunPreprocess from './runComPreprocess';
@@ -13,29 +14,29 @@ export interface AssetsOptions {
 class Assets {
   opts?: AssetsOptions;
 
-  private get enableAlias() {
-    return this.opts?.enableAlias ?? false;
-  }
+  // private get enableAlias() {
+  //   return this.opts?.enableAlias ?? false;
+  // }
 
-  public getComponentName(type: string, alias?: string) {
-    if (this.enableAlias && alias) {
-      return alias;
-    }
-    return type;
-  }
+  // public getComponentName(type: string, alias?: string) {
+  //   if (this.enableAlias && alias) {
+  //     return alias;
+  //   }
+  //   return type;
+  // }
 
   /**
    * 初始化资源配置
    */
-  initOptions(opts: AssetsOptions) {
-    this.opts = opts;
-    this.comPreprocess.updateOptions({
-      getComponentName: this.getComponentName.bind(this),
-    });
-    this.comRunPreprocess.updateOptions({
-      getComponentName: this.getComponentName.bind(this),
-    });
-  }
+  // initOptions(opts: AssetsOptions) {
+  //   this.opts = opts;
+  //   this.comPreprocess.updateOptions({
+  //     getComponentName: this.getComponentName.bind(this),
+  //   });
+  //   this.comRunPreprocess.updateOptions({
+  //     getComponentName: this.getComponentName.bind(this),
+  //   });
+  // }
   // 平台函数资源
   // eslint-disable-next-line new-cap
   // function = new platformFunctions();
@@ -49,7 +50,7 @@ class Assets {
   comRunPreprocess = new comRunPreprocess();
 
   // 指令
-  command = new Command();
+  // command = new Command();
 }
 
 export default new Assets();

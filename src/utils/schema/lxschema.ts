@@ -279,10 +279,11 @@ export const parseSchema = (schema: IProjectSchema, isRoot: boolean) => {
  */
 const modifySchemaCompName = (schema: IProjectSchema, isRoot: boolean) => {
   const compName = schema?.compName || schema?.type;
-  if (schema.path) {
-    // @ts-ignore
-    delete schema.path;
-  }
+  // path 在数据清理中已删除
+  // if (schema.path) {
+  //   // @ts-ignore
+  //   delete schema.path;
+  // }
   if (!isRoot && compName) {
     if (schema.compName) {
       schema.compName = compName;

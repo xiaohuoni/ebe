@@ -13,9 +13,9 @@ class comPreprocess {
 
   opts?: ComPreprocessOptions;
 
-  updateOptions(opts: ComPreprocessOptions) {
-    this.opts = opts;
-  }
+  // updateOptions(opts: ComPreprocessOptions) {
+  //   this.opts = opts;
+  // }
 
   /**
    * 注册平台指令

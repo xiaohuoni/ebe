@@ -8,5 +8,10 @@ describe('solutions/alita', () => {
       useEbeSetup: false,
     });
     expect(result).toMatchSnapshot();
+    const project = await result.generateProject(
+      // @ts-ignore
+      schema.pages,
+    );
+    expect(project).toMatchSnapshot();
   });
 });

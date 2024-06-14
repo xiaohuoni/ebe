@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pc enPreprocess compilation completed 1`] = `
+Object {
+  "compName": "Table",
+  "id": "test-id",
+  "props": Object {
+    "columns": Array [
+      Object {
+        "attr": Object {
+          "attrNbr": "data.attr1",
+          "childKeys": Array [
+            "data.attr2",
+          ],
+        },
+      },
+      Object {
+        "options": Array [
+          "option1",
+          "option2",
+        ],
+      },
+    ],
+    "page": true,
+    "pageSize": 10,
+    "rowKey": "data.id",
+    "rowSelection": true,
+    "style": Object {
+      "color": "red",
+    },
+  },
+  "style": Object {
+    "fontSize": "16px",
+  },
+}
+`;

@@ -5,226 +5,79 @@ ProjectBuilder {
   "extraContextData": Object {
     "options": Object {
       "appConfig": Object {
-        "appCode": "APP_868681578956083200",
-        "appId": "868681578956083200",
-        "appMenuJson": null,
-        "appName": "集客成员营销任务管理",
-        "applicationIcon": null,
-        "frameExtension": Object {},
-        "frontendHookList": Array [
-          Object {
-            "hookCode": "appDidInit",
-            "hookCompiledContent": "(function(appInfo){window.scqx_fetch_num=0;document.title=\\"\\\\u96C6\\\\u5BA2\\\\u5168\\\\u606F\\\\u4E13\\\\u533A\\";window.parent.document.title=document.title;var script=document.createElement(\\"script\\");script.src=\\"https://api.map.baidu.com/library/GeoUtils/1.2/docs/symbols/src/BMapLib_GeoUtils.js\\";document.body.appendChild(script)});",
-            "hookSourceContent": "/**
- * @param {object} appInfo 应用信息
-*/
-(appInfo) => {
-  window.scqx_fetch_num = 0
-  document.title = '集客全息专区';
-  window.parent.document.title = document.title;
-  const script = document.createElement('script');
-  script.src = 'https://api.map.baidu.com/library/GeoUtils/1.2/docs/symbols/src/BMapLib_GeoUtils.js';
-  document.body.appendChild(script);
-}
-",
-            "hookType": "app",
-          },
-          Object {
-            "hookCode": "fetchResponse",
-            "hookCompiledContent": "(function(response,httpCode,success,fail,_ref,_ref2){var url=_ref.url,params=_ref.params;var CryptoJS=_ref2.CryptoJS;window.scqx_fetch_num=window.scqx_fetch_num-1});",
-            "hookSourceContent": "/**
- * @param {object} response 响应报文
- * @param {number} httpCode http响应编码
- * @param {function} success 触发成功，传入报文业务数据
- * @param {function} fail 触发失败，传入错误信息
- * @param {string} url 请求地址
- * @param {object} params 请求参数
- * @param {object} CryptoJS 加密工具
-*/
-(response, httpCode, success, fail, { url, params }, { CryptoJS }) => {
-    // if(window.location.href.includes('zhongzhuanyemian4662')){
-     window.scqx_fetch_num=window.scqx_fetch_num-1
-  // }
-}
-",
-            "hookType": "req",
-          },
-          Object {
-            "hookCode": "fetchSendBefore",
-            "hookCompiledContent": "(function(url,method,params,_ref){var CryptoJS=_ref.CryptoJS;window.scqx_fetch_num=window.scqx_fetch_num+1});",
-            "hookSourceContent": "/**
- * @param {string} url 请求地址
- * @param {string} method 请求方法
- * @param {object} params 请求参数
- * @param {object} CryptoJS 加密工具
- * @return {object} {
-    header:'附带请求头数据',
-    params:'参数',
-    url: '改写请求地址',
-    fetchOption: 'fetch支持的配置',
-  } 返回对象，请求层将对请求配置二次处理
-  * @return {boolean} false 中止该请求
-  * @return {promise} 不执行网络请求，但会根据Promise执行 ‘请求成功’和‘请求失败’
-*/
-(url, method, params, { CryptoJS }) => {
-  // if(window.location.href.includes('zhongzhuanyemian4662')){
-    window.scqx_fetch_num=window.scqx_fetch_num+1
-  // }
-}
-",
-            "hookType": "req",
-          },
-        ],
-        "globalDataSource": null,
-        "i18nInfo": Object {
-          "enabled": null,
-          "locales": null,
-        },
+        "frontendHookList": Array [],
       },
-      "appId": "868681578956083200",
-      "baseUrl": "http://10.10.193.65:9012/",
+      "appId": "1118378899259215872",
+      "appInfo": Object {
+        "appCode": "APP_1118378899259215872",
+        "appId": "1118378899259215872",
+        "appName": "0613",
+        "applicationIcon": "data:image/png;base64,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",
+      },
+      "attrSpecPage": Array [],
+      "baseUrl": "http://172.21.72.205:10010/",
       "busiCompMapping": Object {},
       "compAssetList": Array [],
-      "frontendHookMap": Object {
-        "appDidInit": "/**
- * @param {object} appInfo 应用信息
-*/
- const appDidInit = (appInfo) => {
-  window.scqx_fetch_num = 0
-  document.title = '集客全息专区';
-  window.parent.document.title = document.title;
-  const script = document.createElement('script');
-  script.src = 'https://api.map.baidu.com/library/GeoUtils/1.2/docs/symbols/src/BMapLib_GeoUtils.js';
-  document.body.appendChild(script);
-}
-",
-        "fetchResponse": "/**
- * @param {object} response 响应报文
- * @param {number} httpCode http响应编码
- * @param {function} success 触发成功，传入报文业务数据
- * @param {function} fail 触发失败，传入错误信息
- * @param {string} url 请求地址
- * @param {object} params 请求参数
- * @param {object} CryptoJS 加密工具
-*/
- const fetchResponse = (response, httpCode, success, fail, { url, params }, { CryptoJS }) => {
-    // if(window.location.href.includes('zhongzhuanyemian4662')){
-     window.scqx_fetch_num=window.scqx_fetch_num-1
-  // }
-}
-",
-        "fetchSendBefore": "/**
- * @param {string} url 请求地址
- * @param {string} method 请求方法
- * @param {object} params 请求参数
- * @param {object} CryptoJS 加密工具
- * @return {object} {
-    header:'附带请求头数据',
-    params:'参数',
-    url: '改写请求地址',
-    fetchOption: 'fetch支持的配置',
-  } 返回对象，请求层将对请求配置二次处理
-  * @return {boolean} false 中止该请求
-  * @return {promise} 不执行网络请求，但会根据Promise执行 ‘请求成功’和‘请求失败’
-*/
- const fetchSendBefore = (url, method, params, { CryptoJS }) => {
-  // if(window.location.href.includes('zhongzhuanyemian4662')){
-    window.scqx_fetch_num=window.scqx_fetch_num+1
-  // }
-}
-",
+      "frontendHookMap": Object {},
+      "models": Object {
+        "1118379296078123008": Object {
+          "appId": "1118378899259215872",
+          "createdTime": "2024-06-13 11:37:58",
+          "creatorId": "1",
+          "datasourceType": "custom",
+          "frontendDatasourceCode": "n",
+          "frontendDatasourceContent": Object {
+            "config": Object {
+              "hooks": Array [],
+            },
+            "description": "nothing",
+            "filterParams": Array [],
+            "id": 171824880249913060,
+            "isGlobalData": true,
+            "name": "n",
+            "outParams": Array [
+              Object {
+                "attrId": "450549",
+                "code": "a",
+                "initialData": Object {
+                  "type": "static",
+                },
+                "isGlobalData": true,
+                "name": "属性",
+                "showInput": false,
+                "type": "string",
+              },
+            ],
+            "rootOutParams": Object {
+              "type": "static",
+              "value": "$({a:1})$",
+            },
+            "source": "custom",
+            "type": "object",
+          },
+          "frontendDatasourceId": "1118383807295344640",
+          "frontendDatasourceMainId": "1118379296078123008",
+          "frontendDatasourceName": "nothing",
+          "isInit": "F",
+          "latestFrontendDatasource": null,
+          "originObjectCode": null,
+          "originObjectType": "custom",
+          "overdue": null,
+          "queryType": null,
+          "remark": null,
+          "statusCd": "00A",
+          "statusTime": "2024-06-13 11:39:09",
+          "tenantCode": null,
+          "updatedTime": "2024-06-13 11:39:09",
+          "updatorId": "1",
+          "versionNo": "6",
+        },
       },
       "pageIdMapping": Object {
-        "/TTTC1858": "899834190456836096",
-        "/TTTTTTT0978": "897865290545934336",
-        "/TTTTTTT0978copy": "955659038239764480",
-        "/TracyTest1247": "869780141765591040",
-        "/applicationFormSetList?appId=868681578956083200&catalogItemId=882206099849510912&pageId=882206104794595328&type=page": "882206104794595328",
-        "/biaogejiazaitupianceshi0015123": "956383215578001408",
-        "/biaozhunchanpinyingxiao2435": "1019132055831023616",
-        "/ceshibiaogejiazaitupian5316": "956029665732726784",
-        "/ceshiyemian012332": "899118936410267648",
-        "/changjingxuanzeyemian2411": "876720646100758528",
-        "/daijiandangqiye2910": "1045238349683339264",
-        "/daipaifajituanfenbuxiangqingtanchuang3926": "869758859921620992",
-        "/daoru6125": "871590497857712128",
-        "/diaoyongfuchuangkoufangfa7521": "1067800877664919552",
-        "/gequxianjituanduiying": "927743380699754496",
-        "/gongdanchuli9650": "971613994714750976",
-        "/gongdanfaqiguanlijiemian2425copycopy": "889083791716089856",
-        "/gongdanfaqiguanlijiemian2425copycopycopy": "945580960623509504",
-        "/gongdangmingxitongjibaobiao": "909615118796615680",
-        "/gongdanpaifa6251": "871281670436302848",
-        "/gongdanpaifa62511copy": "907922822368804864",
-        "/gongdanpaifa6251copy": "1002115088770547712",
-        "/gongdanpicipaifatongjibaobiao145": "953538989051117568",
-        "/gongdanpicipaifatongjibaobiao1454": "912596729668415488",
-        "/gongdanpicipaifatongjibaobiao1454copy": "946304764975820800",
-        "/gongdanpicipaifatongjibaobiao1454copycopy": "951013791857922048",
-        "/gongdanpicipaifatongjibaobiao145copy": "956454499648569344",
-        "/gongdanpicipaifatongjibaobiao145copycopy": "956879786506088448",
-        "/gongdanrenyuanpeizhi5800": "891908709324177408",
-        "/gongdanrenyuanpeizhi5800-new": "903211721105510400",
-        "/gongdanrenyuanpeizhi5800copy": "892221456175607808",
-        "/gongdanrenyuanpeizhi5800copycopycopy": "898472894087344128",
-        "/gongdanzhongzhitanchuang7731": "1008926366107435008",
-        "/hangyezongjian6654": "899133742030757888",
-        "/haomaqingdan0168": "981131908525371392",
-        "/huaxiangmingxi8861": "942982691350474752",
-        "/imageViewer": "955842601212207104",
-        "/imageViewerWindow": "956490978775220224",
-        "/imageViewercopy": "956487143990181888",
-        "/jikechengyuangongjian": "903831414833057792",
-        "/jikechengyuangongjiancopy": "927873289162076160",
-        "/jikeliuchengfaqiqishihuanjie5389": "874125593343266816",
-        "/jikequanxipaoxiaomingxibaobiao3323": "897003315829030912",
-        "/jikequanxitongtanmingxibaobiao0957": "896941245100081152",
-        "/jikequanxizhuanhualvbaobiao5891": "896941025859616768",
-        "/jikezhongkegongdanpaifa6251copy": "898455841213296640",
-        "/jikezongjianshenpi-modihou4964": "881738185543417856",
-        "/jituanbiaoqiankoujing3998": "963066086472966144",
-        "/jituanbiaoqiankoujing3998copy": "964111772751933440",
-        "/jituanbiaoqiankoujing3998copycopy": "969141912905732096",
-        "/jituanchengyuanqingdan": "916882232428281856",
-        "/jituandaorucuowutishi1190": "900029343968677888",
-        "/jituankehuxuanzetanchuangyemian6218": "870565605452427264",
-        "/jituanxinxi2650": "943040967534538752",
-        "/jituanxinxi4636": "942243904962838528",
-        "/jituanzhongkegongdanguiji6251": "898456240108384256",
-        "/kehujinglimodichulihuanjie6349": "874130140828635136",
-        "/kehujinglimodichulihuanjie6349copy": "881790219080597504",
-        "/liuchengdiaoduyichanggongdanchaxun9364": "942251215550824448",
-        "/luyinzhijian4049": "963686167003422720",
-        "/msceshibiaoge4226": "1002111390342938624",
-        "/paifachuliren8124": "902388256959332352",
-        "/paoxiao5207": "978572536241909760",
-        "/paoxiao5207copy": "990550162314813440",
-        "/piliangdaoruhaoma1065": "981021638165823488",
-        "/renwuzhixing4449": "954996620153348096",
-        "/shaixuanjituan8136copy": "983192562538672128",
-        "/shijianceshi1230058": "914766039526518784",
-        "/shuangdigongdanguijixiangxi6251": "901047083795439616",
-        "/testzzh12425copycopycopy": "902484901092884480",
-        "/tongtan8515": "973509311629885440",
-        "/tongtan8743copy": "873146627329892352",
-        "/tongtan8743copycopy": "873525059763052544",
-        "/tongtan8743copycopycopy": "927936604223582208",
-        "/tongtanjikezongjianshenpifenzhipanduantiaojian7895": "881805735010664448",
-        "/tongtanjikezongjianshenpifenzhipanduantiaojian7895copy": "901099424242425856",
-        "/ttplan": "976028589426262016",
-        "/tupianzhanshi5631": "956870760006053888",
-        "/woderenwu2258copy": "898435362863755264",
-        "/xinjikeshuangdichenggonggongjiangongdanfaqi9076": "954928233963356160",
-        "/xuanzehaoma8158": "872310912473243648",
-        "/xuanzejikezongjian2731": "979301546524704768",
-        "/xuanzejikezongjian2731copy": "980647618656370688",
-        "/yewuxiangqing2512": "909617376865140736",
-        "/yingxiaotongtanjindujituanweidu4023": "940417506565959680",
-        "/zhixiaoduizuzhixuanze5800": "912268597019127808",
-        "/zhuanhualvbaobiao5891": "911867890456674304",
-        "/zuozhanzhihuishenpifenzhipanduantiaojian4403": "901043509225021440",
+        "/Index": "1118379076695052288",
       },
-      "platform": "pc",
+      "platform": "PC",
+      "themeCss": "",
     },
     "useEbeSetup": false,
   },
@@ -345,5 +198,4251 @@ ProjectBuilder {
       },
     },
   },
+}
+`;
+
+exports[`solutions/alita compilation completed 2`] = `
+Object {
+  "dirs": Array [
+    Object {
+      "dirs": Array [
+        Object {
+          "dirs": Array [],
+          "files": Array [
+            Object {
+              "content": "export const attrSpecPage = [];
+export const handleAttrDataMap = (list: any[]) => {
+  return (list || []).map((item: any) => {
+    // 记录子级静态数据与编码关系
+    const zattrNbrValueMap: Record<any, any[]> = {};
+    if (
+      Array.isArray(item.relatedAttrSpecList) &&
+      item.relatedAttrSpecList.length
+    ) {
+      const children = item.relatedAttrSpecList
+        .map((aItem: any) => {
+          if (aItem.zrelatedAttrValueList) {
+            // 记录子级编码
+            const zattrValues = new Set();
+            // 这级只做展示不做选择
+            const zChildren = aItem.zrelatedAttrValueList.map((zItem: any) => {
+              zattrValues.add(zItem.zattrValue);
+              return {
+                label: zItem.zattrValueName,
+                title: zItem.zattrValueName,
+                value: zItem.zattrValue,
+                isLeaf: false,
+              };
+            });
+            zattrNbrValueMap[aItem.zattrNbr] = [...zattrValues];
+            return zChildren;
+          }
+          return undefined;
+        })
+        .filter(Boolean)
+        .flat();
+      if (children.length) {
+        return {
+          ...item,
+          label: item.attrValueName,
+          title: item.attrValueName,
+          value: item.attrValue,
+          relatedAttrSpecList: item.relatedAttrSpecList,
+          children,
+          zattrNbrValueMap,
+        };
+      }
+    }
+    return {
+      ...item,
+      label: item.attrValueName,
+      title: item.attrValueName,
+      value: item.attrValue,
+      relatedAttrSpecList: item.relatedAttrSpecList,
+    };
+  });
+};
+
+/**
+ * 应用信息
+ */
+export const appInfo = {
+  appId: '1118378899259215872',
+  appCode: 'APP_1118378899259215872',
+  appName: '0613',
+  applicationIcon:
+    'data:image/png;base64,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',
+};
+",
+              "ext": "ts",
+              "name": "attrSpecPage",
+              "options": undefined,
+            },
+            Object {
+              "content": "import React, { useContext, useEffect, useState, useRef, useMemo } from 'react';
+import { api as baseApi } from '@/services/api';
+import { messageApi } from '@/utils/messageApi';
+import BannerModal from '@/components/common/BannerModal';
+import ExpBusiObjModal from '@/components/common/ExpBusiObjModal';
+import { createRenderId } from '@/utils/customFuncMapping';
+import ImportBusiObjModal from '@/components/ImportBusiObjModal';
+import ExpSQLServiceModal from '@/components/ExpSQLServiceModal';
+import { PageProvider } from '@/utils/Context/Container';
+import * as functorsMap from '@/utils/functors';
+import Sandbox from '@/utils/sandbox';
+import { useTopContainerHidden } from './Context/Container';
+import locales from '@/utils/i18n/locales';
+import { i18n } from '@/utils/i18n';
+import { useLocation } from 'alita';
+import { parse } from 'qs';
+import lcdpApi from '@/utils/lcdpApi';
+import AwaitHandleData from '@/utils/AwaitHandleData';
+import { Context } from './Context/context';
+import { sandBoxLoadModule } from './sandBoxLoadModule';
+import { getStateListener } from './StateListener';
+const getStaticDataSourceService = (
+  ds: any[],
+  labelKey: string,
+  valueKey: string,
+) => {
+  if (!ds?.length) return [];
+  if (!labelKey || !valueKey) return ds;
+  return ds.map((item) => ({
+    label: item[labelKey],
+    value: item[valueKey],
+  }));
+};
+export interface PageProps {
+  CMDGenerator?: any;
+  injectData?: any;
+  [key: string]: any;
+}
+export interface PageHOCOptions {
+  renderId: string;
+  dataSource?: any[];
+  hasLogin?: boolean;
+}
+export const withPageHOC = (
+  WrappedComponent: React.FC<PageProps>,
+  options: PageHOCOptions,
+) => {
+  return React.forwardRef((props: any, ref) => {
+    const renderId = props?.$$componentItem?.uid ?? options.renderId;
+    const location = useLocation();
+    const refs = useRef<Record<string, any>>({}).current;
+    const {
+      ModalManagerRef,
+      refs: renerRefs,
+      attrDataMap,
+    } = useContext(Context);
+    const ExpBusiObjModalRef = React.useRef<any>();
+    const ExpSQLServiceModalRef = React.useRef<any>();
+    const ImportBusiObjModalRef = React.useRef<any>();
+    const sandBoxContext = useRef<Record<string, any>>({});
+    const urlParam = useMemo(() => {
+      const queryParams = parse((location?.search ?? '?')?.split('?')[1]);
+      return {
+        ...queryParams,
+        ...props.urlParam,
+      };
+    }, [props.urlParam]);
+    const awaitHandleData = useMemo(() => new AwaitHandleData(), []);
+
+    // 指令定时器存储
+    const actionTimerRef = useRef<Record<string, any>>({
+      timeout: {},
+      interval: {},
+    });
+
+    // 清除定时器
+    const clearActionTimer = (timerName: string) => {
+      const actionTimer = actionTimerRef.current;
+      if (actionTimer.interval?.[timerName]) {
+        clearInterval(actionTimer.interval[timerName]);
+        actionTimer.interval[timerName] = null;
+      }
+      if (actionTimer.timeout?.[timerName]) {
+        clearTimeout(actionTimer.timeout[timerName]);
+        actionTimer.timeout[timerName] = null;
+      }
+    };
+    const addActionTimer = (
+      type: 'interval' | 'timeout' = 'timeout',
+      timerName: string,
+      callback: () => void,
+      time: number = 0,
+    ) => {
+      const actionTimer = actionTimerRef.current;
+      clearActionTimer(type);
+      const delay = time > 0 ? +time : 0;
+      if (type === 'interval') {
+        actionTimer.interval[timerName] = setInterval(() => {
+          callback?.();
+        }, delay);
+      }
+      if (type === 'timeout') {
+        actionTimer.interval[timerName] = setTimeout(() => {
+          callback?.();
+        }, delay);
+      }
+    };
+    const { getLocaleLanguage, getLocale, getLocaleEnv, locale, language } =
+      i18n.useLocale(
+        {
+          locale: props.i18n?.locale!,
+          remoteLocale: props.i18n?.remoteLocale,
+          language: props.i18n?.language!,
+          configLocale: {},
+        },
+        locales,
+      );
+    sandBoxContext.current = useMemo(() => {
+      const injectData = {
+        getEngineApis: () => {
+          return {
+            compatConfig: {},
+            BannerModal,
+            stateListener: getStateListener(renderId),
+            ...baseApi,
+            // TODO: 这需要正确的请求
+            downloadFileByFileCode: () => null,
+            downloadByFileId: () => null,
+            getLocaleLanguage,
+            getLocale,
+            getLocaleEnv,
+            locale,
+            language,
+            useTopContainerHidden,
+            // 打开弹窗能力
+            openModal: (data: any) =>
+              ModalManagerRef.current?.openModal({
+                ...data,
+              }),
+            getVisible: (compId: string) => {
+              // @ts-ignore
+              return refs?.[compId]?.visible;
+            },
+            sandBoxLoadModule: (
+              code: string,
+              options?: {
+                dependencies?: Record<string, any>;
+                allowMap?: Record<string, any>;
+              },
+            ) => {
+              return sandBoxLoadModule(
+                code,
+                sandBoxContext.current,
+                undefined,
+                options,
+              );
+            },
+            sandBoxRun,
+            sandBoxSafeRun: (
+              code: string,
+              extendAllowMap: Record<string, any> = {},
+            ) => {
+              try {
+                return sandBoxRun(code, extendAllowMap);
+                // eslint-disable-next-line no-empty
+              } catch {}
+              return undefined;
+            },
+            // ??? 外层和 service 都需要？
+            service: {
+              ...baseApi,
+            },
+          };
+        },
+      };
+      // 设置默认属性
+      BannerModal.defaultProps = {
+        // @ts-ignore
+        api: baseApi,
+      };
+      const defaultContext = {
+        urlParam,
+        // TODO 需要将lcdpApi移动过来
+        lcdpApi,
+        api: baseApi,
+        getStaticDataSourceService,
+        ModalManagerRef,
+        ExpBusiObjModalRef,
+        ExpSQLServiceModalRef,
+        ImportBusiObjModalRef,
+        closeModal: (modalId: string) => {
+          ModalManagerRef.current?.closeModal(modalId, renderId);
+        },
+      };
+      const sandBoxRun = (
+        code: string,
+        extendAllowMap: Record<string, any> = {},
+      ) => {
+        return Sandbox.run(code, {
+          ...defaultContext,
+          ...extendAllowMap,
+        });
+      };
+      return {
+        ...injectData,
+        ...defaultContext,
+        sandBoxRun,
+        attrDataMap,
+        functorsMap,
+        messageApi,
+        refs,
+      };
+    }, []);
+    const customActionId = useMemo(() => createRenderId(renderId), []);
+    return (
+      <>
+        <PageProvider
+          value={{
+            renderId,
+            runAwaitQueue: (comId: string) => {
+              awaitHandleData.runQueue(comId, refs);
+            },
+            registerRefs: (ref, id) => {
+              if (ref) {
+                // @ts-ignore
+                refs[id] = ref;
+              }
+              renerRefs.setSystemRef(renderId, refs);
+            },
+          }}
+        >
+          <WrappedComponent
+            {...props}
+            urlParam={urlParam}
+            ref={ref}
+            refs={refs}
+            lcdpParentRenderId={props.lcdpParentRenderId}
+            renerRefs={renerRefs}
+            lcdpApi={lcdpApi}
+            injectData={{
+              getEngineApis: sandBoxContext.current.getEngineApis,
+            }}
+            attrDataMap={attrDataMap}
+            ModalManagerRef={ModalManagerRef}
+            sandBoxContext={sandBoxContext}
+            functorsMap={functorsMap}
+            addActionTimer={addActionTimer}
+            clearActionTimer={clearActionTimer}
+            ExpSQLServiceModalRef={ExpSQLServiceModalRef}
+            ExpBusiObjModalRef={ExpBusiObjModalRef}
+            ImportBusiObjModalRef={ImportBusiObjModalRef}
+            BannerModal={BannerModal}
+            customActionId={customActionId}
+            addToAwaitQueue={(
+              compId: string,
+              functionName: string,
+              ...args: any[]
+            ) => awaitHandleData.addToAwaitQueue(compId, functionName, ...args)}
+            getStaticDataSourceService={getStaticDataSourceService}
+          />
+        </PageProvider>
+        <ExpBusiObjModal
+          ref={ExpBusiObjModalRef}
+          key={\`ExpBusiObjModal-\${renderId}\`}
+          // api={baseApi}
+          // utils写内部了，看后面需不需要整合
+          // utils={{}}
+          getLocale={getLocale}
+        />
+        <ImportBusiObjModal
+          ref={ImportBusiObjModalRef}
+          key={\`ImportBusiObjModal-\${renderId}\`}
+          // TODO: 控件内部还存在需要 appId 和 pageId 的场景
+          // pageId={pageId}
+          // utils写内部了，看后面需不需要整合
+          // utils={renderCtx.utils}
+          getLocale={getLocale}
+        />
+        <ExpSQLServiceModal
+          ref={ExpSQLServiceModalRef}
+          key={\`ExpSQLServiceModal-\${renderId}\`}
+          // TODO: 控件内部还存在需要 appId 的场景
+          // api={baseApi}
+          // pageId={renderId}
+          // utils写内部了，看后面需不需要整合
+          // utils={{}}
+          getLocale={getLocale}
+        />
+      </>
+    );
+  });
+};
+",
+              "ext": "tsx",
+              "name": "withPageHOC",
+              "options": undefined,
+            },
+          ],
+          "name": "utils",
+        },
+        Object {
+          "dirs": Array [
+            Object {
+              "dirs": Array [],
+              "files": Array [
+                Object {
+                  "content": "import { getAppFileUrlByFileCode } from '@/services/api/getAppFileUrlByFileCode';
+import { LingxiForwardRef } from '@lingxiteam/types';
+import { createRequires } from '@paciolan/remote-component/dist/createRequires';
+import { createUseRemoteComponent } from '@paciolan/remote-component/dist/hooks/useRemoteComponent';
+import React from 'react';
+export interface MyCustomComponentProps {
+  fileCode: string;
+  visible: boolean;
+  type: string;
+  style?: React.CSSProperties;
+}
+const presetDependencies = {
+  React: require('react'),
+  react: require('react'),
+  ReactDOM: require('react-dom'),
+  'react-dom': require('react-dom'),
+  antd: require('antd'),
+  // TODO: 依赖清理
+  // classnames: require('classnames'),
+  // 'rc-tween-one': require('rc-tween-one'),
+  // 'react-player': require('react-player'),
+  // 'react-soundplayer': require('react-soundplayer'),
+  // ahooks: require('ahooks'),
+  // lodash: require('lodash'),
+  // '@ant-design/icons': require('@ant-design/icons'),
+  // '@lingxiteam/icons': require('@lingxiteam/icons'),
+  // moment: require('moment'),
+};
+const Error = ({ type, fileCode }: { type: string; fileCode: string }) => {
+  return (
+    <div>
+      自定义组件加载失败，类型{type},远程文件ID {fileCode}
+    </div>
+  );
+};
+export const getUseRemoteComponent = (config: any) => {
+  const requires = createRequires(() => config);
+  return createUseRemoteComponent({
+    requires,
+  });
+};
+const useRemoteComponent = getUseRemoteComponent(presetDependencies);
+export const CustomComponent = LingxiForwardRef<any, MyCustomComponentProps>(
+  (props, ref) => {
+    const { fileCode, visible = true, ...restProps } = props;
+    const url = getAppFileUrlByFileCode(fileCode);
+    const [loading, err, Component] = useRemoteComponent(url, 'component');
+    if (!visible) {
+      return <></>;
+    }
+    if (loading) {
+      return <div>加载中...</div>;
+    }
+    if (err || !Component) {
+      return <Error {...props} />;
+    }
+    return (
+      <Component
+        {...restProps}
+        style={{
+          ...restProps.style,
+        }}
+      />
+    );
+  },
+);
+",
+                  "ext": "tsx",
+                  "name": "index",
+                  "options": undefined,
+                },
+              ],
+              "name": "CustomComponent",
+            },
+            Object {
+              "dirs": Array [
+                Object {
+                  "dirs": Array [],
+                  "files": Array [
+                    Object {
+                      "content": "import { Popover } from 'antd';
+import classnames from 'classnames';
+import React, { FC, useEffect, useMemo, useState } from 'react';
+import lcdpApi from '@/utils/lcdpApi';
+import { getSafePage } from '@/components/common/Pageview';
+import PopoverMap from '@/components/popover';
+export interface DynamicPopoverProps {
+  page?: {
+    pageId: string;
+    options?: any[];
+    placement: string;
+    trigger: string;
+    [key: string]: any;
+  };
+  options?: {
+    content: any;
+    maxWidth: number;
+    [key: string]: any;
+  };
+  state?: Record<string, any>;
+  id?: string;
+  parentEngineId?: string;
+  children?: any;
+}
+const DynamicPopover: FC<DynamicPopoverProps> = (props) => {
+  const [update, forceUpdate] = useState({});
+  const {
+    page = {} as any,
+    options: popoverOptions,
+    id,
+    children,
+    parentEngineId,
+  } = props;
+  // 气泡卡片显隐受控，提供给关闭所有气泡卡片动作
+  const [visible, setVisible] = useState<boolean>(false);
+  const content = useMemo(() => {
+    if (page?.pagePath) {
+      const Page = getSafePage(page.pagePath, PopoverMap);
+      return <Page pageSrc={page.pagePath} parentEngineId={parentEngineId} />;
+    }
+    if (popoverOptions?.content) {
+      return popoverOptions.content;
+    }
+    return null;
+  }, [page, update]);
+  const options = useMemo<any>(() => {
+    if (page?.pageId) {
+      return {
+        placement: page.placement,
+        trigger: page.trigger,
+        arrowPointAtCenter: true,
+      };
+    }
+    if (popoverOptions?.content) {
+      const { maxWidth, ...resOptions } = popoverOptions;
+      return {
+        overlayClassName: maxWidth ? 'dynamicPage-popver' : '',
+        key: \`\${id}_popover\`,
+        overlayStyle: {
+          maxWidth: maxWidth || 'none',
+          wordBreak: 'break-word',
+        },
+        ...resOptions,
+      };
+    }
+    return {};
+  }, [page, popoverOptions, update]);
+  useEffect(() => {
+    const ref = {
+      close: () => setVisible(false),
+    };
+    lcdpApi?.refs?.PopoverManager?.setPopover?.(ref, 'lcdpParentRenderId');
+    return () => {
+      lcdpApi?.refs?.PopoverManager?.removePopover?.(ref, 'lcdpParentRenderId');
+    };
+  }, []);
+  return (
+    <Popover
+      content={content}
+      {...options}
+      overlayClassName={classnames(
+        options?.overlayClassName,
+        \`dynamic_popover_\${page?.pageId || ''}\`,
+      )}
+      open={visible}
+      onOpenChange={setVisible}
+    >
+      {children}
+    </Popover>
+  );
+};
+export default DynamicPopover;
+",
+                      "ext": "tsx",
+                      "name": "index",
+                      "options": undefined,
+                    },
+                  ],
+                  "name": "Popover",
+                },
+                Object {
+                  "dirs": Array [],
+                  "files": Array [
+                    Object {
+                      "content": "import React, { FC, useEffect, useMemo, useState } from 'react';
+// @ts-ignore
+import { antPrefix as clsPrefix } from '@/components/pcfactory/src/variables';
+import { ConfigProvider } from 'antd';
+import * as ReactDOM from 'react-dom';
+import Loadable from 'react-loadable';
+import pageIcon from '@/assets/pageicon';
+import { LoadingComponennt } from '@/components/LoaderHelper';
+// import Watermark from '@/components/WaterMark';
+import './index.less';
+interface BannerModalProps {
+  visible?: boolean;
+  onClose?: () => void;
+  onComplete?: () => void;
+  isEnableWaterMark?: boolean;
+  fileObj?: any;
+  fileList?: any[];
+  fileIndex?: number;
+  // appId?: any;
+  // pageId?: any;
+  viewMode: 'newTab' | 'popUp' | 'window';
+  modalWidth?: number | string;
+  modalHeight?: number | string;
+  localPreviewUrl?: string;
+  // TODO 多语言
+  getLocale: any;
+  language: string;
+}
+interface BMFC<T> extends FC<T> {
+  open: (props: Omit<T, 'visible'>) => void;
+}
+const prefixCls = 'lcdp-bannermodal';
+const PreviewFile = Loadable({
+  loader: async () => {
+    const factoryCom = await import(
+      /* webpackChunkName: \\"PreviewFile\\" */ '../PreviewFile/index'
+    );
+    const com: any = factoryCom?.default ?? factoryCom;
+    return com;
+  },
+  loading: LoadingComponennt,
+});
+const BannerModal: BMFC<BannerModalProps> = (props) => {
+  const { fileList, onClose, fileIndex = 0, getLocale, language } = props;
+  const [exist, setExist] = useState(false);
+  // const { appId } = props;
+  const [fileData, setFileData] = useState<any[]>([]);
+  const [current, setCurrent] = useState(-1);
+  // const { appInst } = useGetApp({ appId });
+  // 应用水印配置
+  // const { watermarkInfo } = appInst || {};
+
+  const initFileList = async () => {
+    if (fileList && fileList.length > 0) {
+      const { fileId, file } = fileList[fileIndex];
+      let list = fileList || [];
+      let matchSinglePreviewFile;
+      list = list.filter((f) => {
+        if (
+          f?.fileId ||
+          f?.file?.fileId ||
+          f?.previewUrl ||
+          f?.file?.previewUrl
+        ) {
+          // 过滤掉未上传成功的文件
+          if ((f?.fileId || f?.file?.fileId) === (fileId || file?.fileId)) {
+            // 若当前文件不支持在线预览，单独打开浏览器预览
+            matchSinglePreviewFile = f;
+          }
+          return true;
+        }
+        return false;
+      });
+      const curIndex = list.findIndex(
+        (f) => (f?.fileId || f?.file?.fileId) === (fileId || file?.fileId),
+      );
+      if (curIndex === -1 && matchSinglePreviewFile) {
+        onClose?.();
+      } else {
+        setExist(true);
+      }
+      setFileData(list);
+      setCurrent(curIndex);
+    }
+  };
+  useEffect(() => {
+    if (fileList && fileList.length > 0) {
+      initFileList();
+    }
+  }, [fileList, fileIndex]);
+
+  // const isEnableWaterMark = useMemo(
+  //   () => watermarkInfo?.isEnable === 'T',
+  //   [watermarkInfo]
+  // );
+
+  return (
+    <ConfigProvider prefixCls={\`\${clsPrefix}\`}>
+      {/* {isEnableWaterMark && <Watermark config={watermarkInfo} appId={appId} />} */}
+      <div
+        className={exist ? \`\${prefixCls}-mask\` : ''}
+        onClick={(e) => {
+          e.stopPropagation();
+          if (onClose) {
+            onClose();
+          }
+        }}
+      >
+        {exist && (
+          <div className={prefixCls}>
+            <div className={\`\${prefixCls}-content\`}>
+              {onClose && (
+                <div
+                  className={\`\${prefixCls}-content-closeIcon\`}
+                  onClick={onClose}
+                >
+                  <img src={pageIcon.closeIcon} alt=\\"\\" />
+                </div>
+              )}
+              {fileData?.length > 1 && (
+                // 多文件时用于切换文件
+                <div className=\\"content-direction\\">
+                  {current > 0 && (
+                    <div
+                      className=\\"direction-control left\\"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (current > 0) setCurrent((pre) => pre - 1);
+                      }}
+                    >
+                      <img src={pageIcon.leftIcon} alt=\\"\\" />
+                    </div>
+                  )}
+                  {current < fileData?.length - 1 && (
+                    <div
+                      className=\\"direction-control right\\"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (current < fileData?.length - 1) {
+                          setCurrent((pre) => pre + 1);
+                        }
+                      }}
+                    >
+                      <img src={pageIcon.rightIcon} alt=\\"\\" />
+                    </div>
+                  )}
+                </div>
+              )}
+              {fileData?.length > 0 && current > -1 && fileData[current] && (
+                <PreviewFile
+                  // appId={appId}
+                  {...fileData[current]}
+                  windowWidth={window.innerWidth}
+                  // pageId={pageId}
+                  fileIdOrUrl={
+                    fileData[current]?.fileId ||
+                    fileData[current]?.file?.previewUrl
+                  }
+                  deleteClick={(file: any) => {
+                    const { deleteClick } = fileData[current];
+                    if (typeof deleteClick === 'function') {
+                      setFileData((pre) => {
+                        const newFileList = (pre || []).filter(
+                          (c) => c?.fileId !== file?.fileId,
+                        );
+                        if (newFileList?.length === 0) {
+                          // 文件被删除，则关闭当前蒙层
+                          onClose?.();
+                        }
+                        return newFileList;
+                      });
+                      // 当前文件被删除后，预览前一个
+                      setCurrent((pre) => Math.max(pre - 1, 0));
+                      deleteClick(file);
+                    }
+                  }}
+                  getLocale={getLocale}
+                  onClose={onClose}
+                  language={language}
+                />
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </ConfigProvider>
+  );
+};
+BannerModal.open = (props) => {
+  const {
+    fileList = [],
+    fileIndex = 0,
+    modalWidth: width,
+    modalHeight: height,
+    // appId,
+    // pageId,
+    localPreviewUrl: temLocalPreviewUrl,
+    getLocale,
+    language,
+  } = props;
+  let closed = false;
+  // const appInst = getAppInst({ appId });
+  // const viewMode = appInst?.lcdpApi?.data?.appConfig?.viewMode || props.viewMode || 'popUp';
+  const viewMode = props.viewMode || 'popUp';
+  const div = document.createElement('div');
+  function close() {
+    ReactDOM.unmountComponentAtNode(div);
+    if (div && div.parentNode) {
+      div.parentNode.removeChild(div);
+    }
+  }
+  const isNotEmpty = (val: any) =>
+    val !== undefined && val !== null && val !== '';
+
+  // 新标签页'newTab' | 页面弹窗'popUp' | 新窗口'window'
+  const openNewWindows = (params: any) => {
+    // const { pageId, appId } = params;
+    let { localPreviewUrl = '#/_preview' } = params || {};
+    let features = 'noopener';
+    if ((isNotEmpty(width) || isNotEmpty(height)) && viewMode === 'window') {
+      const w = Number.isNaN(+(width || '')) ? '' : +width!;
+      features += \`,width=\${w || ''},left=\${screen.width / 2 - (w || 0) / 2}\`;
+      const h = Number.isNaN(+(height || '')) ? '' : +height!;
+      features += \`,height=\${h || ''},top=\${screen.height / 2 - (h || 0) / 2}\`;
+    } else if (viewMode === 'window') {
+      features += \`,height=\${screen.height},width=\${screen.width}\`;
+    }
+    if (fileList?.length) {
+      let fileIds = '';
+      fileList.forEach((f: any) => {
+        if (f?.fileId || f?.file?.previewUrl) {
+          // 过滤掉未上传成功的文件
+          fileIds += \`\${fileIds ? ',' : ''}\${f?.fileId || f?.file?.previewUrl}\`;
+        }
+      });
+      localPreviewUrl += \`\${
+        localPreviewUrl.includes('?') ? '' : '?'
+      }fileIds=\${fileIds}&fileIndex=\${fileIndex}\`;
+    }
+    window.open(localPreviewUrl, viewMode, features);
+  };
+
+  // 没传fileId的不进行预览
+  if (fileList.length > 0 && fileList[fileIndex]) {
+    const { fileId, file } = fileList[fileIndex];
+    if (fileId || file?.fileId || file?.previewUrl) {
+      if (viewMode === 'popUp') {
+        document.body.appendChild(div);
+        ReactDOM.render(
+          (() => {
+            return (
+              <BannerModal
+                {...props}
+                onClose={() => {
+                  if (closed) {
+                    return;
+                  }
+                  closed = true;
+                  close();
+                  if (props.onClose) {
+                    props.onClose();
+                  }
+                }}
+                getLocale={getLocale}
+                language={language}
+              />
+            );
+          })(),
+          div,
+        );
+      } else {
+        openNewWindows({
+          // appId,
+          // pageId,
+          localPreviewUrl: temLocalPreviewUrl,
+        });
+      }
+    }
+  }
+};
+BannerModal.defaultProps = {
+  getLocale: (_k: any, t: any) => t ?? '',
+};
+export default BannerModal;
+",
+                      "ext": "tsx",
+                      "name": "index",
+                      "options": undefined,
+                    },
+                    Object {
+                      "content": "@import (reference) '../../../styles/index.less';
+@prefixCls: lcdp-bannermodal;
+.@{prefixCls} {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  &-enter {
+    transform: scale(0.3);
+    animation-duration: 0.2s;
+    animation-play-state: paused;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+    animation-fill-mode: both;
+
+    &-enter-active {
+      animation-name: fadeIn;
+      animation-play-state: running;
+    }
+  }
+
+  &-appear {
+    transform: scale(0.3);
+    animation-duration: 0.2s;
+    animation-play-state: paused;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+    animation-fill-mode: both;
+
+    &-appear-active {
+      animation-name: fadeIn;
+      animation-play-state: running;
+    }
+  }
+
+  &-leave {
+    animation-duration: 0.2s;
+    animation-play-state: paused;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+    animation-fill-mode: both;
+
+    &-leave-active {
+      animation-name: fadeOut;
+      animation-play-state: running;
+    }
+  }
+  @keyframes fadeIn {
+    0% {
+      transform: scale(0.3);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes fadeOut {
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(0.3);
+    }
+  }
+
+  &-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    .content-direction {
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      .direction-control {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        cursor: pointer;
+
+        &.left {
+          left: 2%;
+        }
+
+        &.right {
+          right: 2%;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    &-closeIcon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+      z-index: 2;
+      cursor: pointer;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .pdf-disbtn {
+      position: absolute;
+      bottom: 80px;
+      display: flex;
+      align-items: center;
+      background-color: #323232;
+      border-radius: 4px;
+      justify-content: center;
+      left: 50%;
+      transform: translateX(-50%);
+
+      &:empty {
+        display: none;
+      }
+
+      .pdf-bt {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        display: flex;
+        margin-right: 16px;
+        align-items: center;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .pdf-bt-text {
+        color: #fff;
+        font-size: 14px;
+        margin-right: 16px;
+      }
+    }
+    .pdf-bt,
+    .pdf-bt-line,
+    .pdf-bt-text {
+      color: #fff;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    .pdf-bt {
+      font-size: 18px;
+    }
+  }
+
+  &-image {
+    width: 80%;
+    height: 366px;
+    object-fit: contain;
+    background-color: #fff;
+  }
+
+  &-iframe {
+    flex: 1;
+    width: 100%;
+    background-color: #fff;
+    border: none;
+    outline: none;
+  }
+
+  &-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+  }
+
+  &-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    background-color: #fff;
+    .am-button {
+      flex: 1;
+      &:not(:first-child) {
+        margin-left: 8px;
+      }
+    }
+  }
+
+  &-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+",
+                      "ext": "less",
+                      "name": "index",
+                      "options": undefined,
+                    },
+                  ],
+                  "name": "BannerModal",
+                },
+                Object {
+                  "dirs": Array [],
+                  "files": Array [
+                    Object {
+                      "content": "import React, { useRef, useImperativeHandle } from 'react';
+import { useAppData } from 'alita';
+import { parse } from 'qs';
+import useListenProps from '@/hooks/useListenProps';
+import { Hoc } from '@/components/factory';
+import { useTopContainerHidden } from '@/utils/Context/Container';
+import { useHiddenStyle } from '@/utils/hooks';
+import classNames from 'classnames';
+export const pageStaticData: any = {};
+const pageRouteMapping: any = {
+  '1118379076695052288': '/Index',
+};
+const P = (props: any) => <div>{props?.pageSrc} 页面未找到</div>;
+export const getSafePage = (target: string, routeComponents: any) => {
+  let path = target;
+  // 支持传进来的是 pageId
+  if (!target.startsWith('/')) {
+    path = pageRouteMapping[target] ?? target;
+  }
+  return routeComponents[path] ?? P;
+};
+const getPage = (target: string, clientRoutes: any, routeComponents: any) => {
+  const { routes = [] } = clientRoutes[0];
+  let path = target;
+  // 支持传进来的是 pageId
+  if (!target.startsWith('/')) {
+    path = pageRouteMapping[target] ?? target;
+  }
+  const route = routes.find((r: any) => \`/\${r.path}\` === path);
+  return routeComponents[route?.id] ?? P;
+};
+export function parseSrc(src: string = ''): [string, any] {
+  const arr = src?.split('?') as string[];
+  return [arr[0], parse(arr[1])];
+}
+// 页面容器
+const Pageview = React.forwardRef<any, any>((props, ref) => {
+  const { className, visible, style } = props;
+  const { clientRoutes, routeComponents } = useAppData();
+  const [pageState, setPageState] = useListenProps(props?.state);
+  const [pageSrc, setPageSrc] = useListenProps(props?.pageSrc);
+
+  // 页面 src 可能是带参数的如 /a?b=1&c=2
+  const [path, query] = parseSrc(pageSrc);
+  const pageRef = useRef<any>();
+  const Page = getPage(path, clientRoutes, routeComponents);
+  const isDid = useRef(false);
+  // 获取上层容器是否被隐藏
+  // 获取上层容器是否被隐藏
+  const topHidden = useTopContainerHidden();
+  const hiddenStyle = useHiddenStyle(visible, style);
+  React.useImperativeHandle(ref, () => ({
+    renderId: props.$$componentItem.uid,
+    get customActionMap() {
+      return pageRef.current?.customActionMap || {};
+    },
+    setPageSrc(pathname?: string, state?: any) {
+      if (pathname) {
+        setPageSrc(pathname);
+      }
+      if (state) {
+        setPageState(state);
+      }
+    },
+  }));
+  if (!Page) {
+    return null;
+  }
+  if (isDid.current !== true) {
+    // 如果上层隐藏，就不要渲染，加载接口等
+    if (topHidden || !props.visible) {
+      return null;
+    }
+  }
+  isDid.current = true;
+  return (
+    <div
+      className={classNames('lcdp-pageview', \`\${className}\`)}
+      style={hiddenStyle}
+    >
+      <Page
+        {...props}
+        extraUrlParam={query}
+        state={{
+          ...pageState,
+          ...query,
+        }}
+        ref={pageRef}
+      />
+    </div>
+  );
+});
+// 普通页面
+export const PageComent = React.forwardRef<any, any>((props, ref) => {
+  const { clientRoutes, routeComponents } = useAppData();
+  // const pageRef = React.useRef<any>();
+  // 页面 src 可能是带参数的如 /a?b=1&c=2
+  const [path] = parseSrc(props?.pageSrc);
+  const Page = getPage(path, clientRoutes, routeComponents);
+  // React.useImperativeHandle(ref, () => ({
+  //   get customActionMap() {
+  //     return pageRef.current?.customActionMap;
+  //   },
+  //   onOk: () => {
+  //     return pageRef.current?.onOk();
+  //   },
+  //   onCancel: () => {
+  //     return pageRef.current?.onCancel();
+  //   },
+  // }));
+  return <Page {...props} ref={ref} />;
+});
+export default Hoc(Pageview, {
+  type: 'Pageview',
+  // 容器类组件标识
+  isContainer: true,
+});
+",
+                      "ext": "tsx",
+                      "name": "index",
+                      "options": undefined,
+                    },
+                  ],
+                  "name": "Pageview",
+                },
+              ],
+              "files": Array [],
+              "name": "common",
+            },
+            Object {
+              "dirs": Array [],
+              "files": Array [
+                Object {
+                  "content": "import React from 'react';
+const ModalMap: any = {};
+export default ModalMap;
+",
+                  "ext": "ts",
+                  "name": "index",
+                  "options": undefined,
+                },
+              ],
+              "name": "modal",
+            },
+            Object {
+              "dirs": Array [],
+              "files": Array [
+                Object {
+                  "content": "import React from 'react';
+const DrawerMap: any = {};
+export default DrawerMap;
+",
+                  "ext": "ts",
+                  "name": "index",
+                  "options": undefined,
+                },
+              ],
+              "name": "drawer",
+            },
+            Object {
+              "dirs": Array [],
+              "files": Array [
+                Object {
+                  "content": "import React from 'react';
+const PopoverMap: any = {};
+export default PopoverMap;
+",
+                  "ext": "ts",
+                  "name": "index",
+                  "options": undefined,
+                },
+              ],
+              "name": "popover",
+            },
+          ],
+          "files": Array [
+            Object {
+              "content": "import React, {
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+  useEffect,
+} from 'react';
+import { isEqual } from 'lodash';
+import { mergeGetter } from '../utils/Context/context';
+import { Container } from '../utils/Context/Container';
+import { useComponentHoc } from '../utils/useComponentHoc';
+import { usePageProvider } from '@/utils/Context/Container';
+import {
+  Cascader as _Cascader,
+  Checkbox as _Checkbox,
+  CheckboxGroup as _CheckboxGroup,
+  DatePicker as _DatePicker,
+  Input as _Input,
+  InputNumber as _InputNumber,
+  LoopList as _LoopList,
+  ModalSelect as _ModalSelect,
+  MultipleSelect as _MultipleSelect,
+  Password as _Password,
+  Progress as _Progress,
+  QRCode as _QRCode,
+  QuillEditor as _QuillEditor,
+  Radio as _Radio,
+  RangePicker as _RangePicker,
+  Rate as _Rate,
+  RichTextEditor as _RichTextEditor,
+  Select as _Select,
+  Slider as _Slider,
+  StdUpload as _StdUpload,
+  SuperSelect as _SuperSelect,
+  Switch as _Switch,
+  Tag as _Tag,
+  Text as _Text,
+  TextArea as _TextArea,
+  TimePicker as _TimePicker,
+  Transfer as _Transfer,
+  TreeSelect as _TreeSelect,
+  Upload as _Upload,
+  VerificationCode as _VerificationCode,
+  Alert as _Alert,
+  Animation as _Animation,
+  Audio as _Audio,
+  BarChart as _BarChart,
+  Button as _Button,
+  Card as _Card,
+  ChartBar as _ChartBar,
+  ChartLine as _ChartLine,
+  Collapse as _Collapse,
+  CollapsePanel as _CollapsePanel,
+  Condition as _Condition,
+  Description as _Description,
+  Divider as _Divider,
+  Dropdown as _Dropdown,
+  Form as _Form,
+  FreeLayout as _FreeLayout,
+  Gantt as _Gantt,
+  GridView as _GridView,
+  HorizontalView as _HorizontalView,
+  Icon as _Icon,
+  Img as _Img,
+  LXPieChart as _LXPieChart,
+  LXRadarChart as _LXRadarChart,
+  Layout as _Layout,
+  LineChart as _LineChart,
+  Link as _Link,
+  Menu as _Menu,
+  Pagination as _Pagination,
+  PictureVerifyCode as _PictureVerifyCode,
+  PieChart as _PieChart,
+  RadarChart as _RadarChart,
+  RemoteComponent as _RemoteComponent,
+  Result as _Result,
+  Row as _Row,
+  Steps as _Steps,
+  Swiper as _Swiper,
+  TabPane as _TabPane,
+  Table as _Table,
+  Tabs as _Tabs,
+  TlrView as _TlrView,
+  Tree as _Tree,
+  TreeTable as _TreeTable,
+  VerticalView as _VerticalView,
+  VideoPlayer as _VideoPlayer,
+  View as _View,
+  VirtualGroup as _VirtualGroup,
+  Webview as _Webview,
+} from './pcfactory/src/index.component';
+import { preprocessMethods } from '@/utils/preprocess';
+export { CustomComponent } from './CustomComponent';
+export const syncInputValue = (
+  e: unknown,
+  preValue: unknown,
+  setValue: (v: unknown) => void,
+) => {
+  if (!isEqual(e, preValue)) {
+    setValue(e);
+    return true;
+  }
+  return false;
+};
+export const Hoc = (Component: any, config?: any) => {
+  const fieldPropsChange = () => {};
+  const { type, fieldProps, isContainer } = config;
+  const { run } = preprocessMethods(type, {
+    extraData: {},
+  });
+  const HOC = React.forwardRef<unknown, any>((initialProps, ref) => {
+    // 属性预处理
+    const props = useMemo(() => run(initialProps), [initialProps]);
+    const { registerRefs, renderId, runAwaitQueue } = usePageProvider();
+
+    // 自定义组件HOC hooks  保持visible逻辑
+    //@ts-ignore
+    const { state, setState, onChangeHandle } = useComponentHoc(props, {
+      // @ts-ignore
+      config: {
+        fieldProps,
+      },
+      fieldPropsChange,
+      renderId,
+    });
+    const compProps: any = {
+      ...props,
+      visible: state.visible,
+    };
+    const compRef = useRef<Record<string, any>>({}); // 组件库的ref
+
+    if (onChangeHandle) {
+      compProps[fieldProps?.trigger!] = onChangeHandle;
+    }
+    if (fieldProps?.valuePropName) {
+      compProps[fieldProps?.valuePropName] = state.value;
+    }
+
+    // 引擎能力增加仅同步数据的方法
+    compProps.getEngineApis = () => {
+      return {
+        ...props.getEngineApis(),
+        onlySyncValue: (v: unknown) => {
+          syncInputValue(v, state.value, (v) =>
+            setState({
+              value: v,
+            }),
+          );
+        },
+      };
+    };
+    let imperative: any = {
+      get compName() {
+        return config.type;
+      },
+      get visible() {
+        return state.visible;
+      },
+      get compId() {
+        return compProps.$$componentItem.id;
+      },
+      setVisible(show: boolean | 'toggle') {
+        setState({
+          visible: show === 'toggle' ? !state.visible : show,
+        });
+      },
+    };
+    if (fieldProps) {
+      imperative = {
+        ...imperative,
+        get value() {
+          return compProps[fieldProps.valuePropName!];
+        },
+        setValue(v: unknown) {
+          syncInputValue(v, compProps[fieldProps.valuePropName!], (v) =>
+            setState({
+              value: v,
+            }),
+          );
+        },
+      };
+    }
+
+    // 更新refs
+    const uploadRef = (refInstance?: Record<string, any>) => {
+      if (refInstance) {
+        compRef.current = refInstance;
+      }
+      const ref = mergeGetter(imperative, compRef.current);
+      if (props?.$$componentItem?.uid) {
+        registerRefs(ref, props?.$$componentItem?.uid);
+      }
+    };
+    useEffect(() => {
+      uploadRef();
+    });
+    useEffect(() => {
+      runAwaitQueue(props?.$$componentItem?.uid);
+      return () => {
+        // 注销ref
+        registerRefs(null, props?.$$componentItem?.uid);
+      };
+    }, []);
+
+    // 容器类组件
+    if (isContainer === true) {
+      return (
+        <Container visible={state.visible}>
+          <Component
+            {...compProps}
+            {...(compProps?.extendProps || {})}
+            ref={uploadRef}
+          />
+        </Container>
+      );
+    }
+    // 统一处理部分逻辑
+    return (
+      <Component
+        {...compProps}
+        {...(compProps?.extendProps || {})}
+        ref={uploadRef}
+      />
+    );
+  });
+  return HOC;
+};
+// 低代码组件中，表单组件，要根据 fieldProps 配置，操作 value 和 setValue
+export const Cascader = Hoc(_Cascader, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'Cascader',
+});
+export const Checkbox = Hoc(_Checkbox, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'Checkbox',
+});
+export const CheckboxGroup = Hoc(_CheckboxGroup, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'CheckboxGroup',
+});
+export const DatePicker = Hoc(_DatePicker, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'DatePicker',
+});
+export const Input = Hoc(_Input, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'Input',
+});
+export const InputNumber = Hoc(_InputNumber, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'InputNumber',
+});
+export const LoopList = Hoc(_LoopList, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  // 容器类组件
+  isContainer: true,
+  type: 'LoopList',
+});
+export const ModalSelect = Hoc(_ModalSelect, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'ModalSelect',
+});
+export const MultipleSelect = Hoc(_MultipleSelect, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'MultipleSelect',
+});
+export const Password = Hoc(_Password, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'Password',
+});
+export const Progress = Hoc(_Progress, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'Progress',
+});
+export const QRCode = Hoc(_QRCode, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'content',
+  },
+  type: 'QRCode',
+});
+export const QuillEditor = Hoc(_QuillEditor, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'QuillEditor',
+});
+export const Radio = Hoc(_Radio, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'Radio',
+});
+export const RangePicker = Hoc(_RangePicker, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'RangePicker',
+});
+export const Rate = Hoc(_Rate, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'Rate',
+});
+export const RichTextEditor = Hoc(_RichTextEditor, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'RichTextEditor',
+});
+export const Select = Hoc(_Select, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'Select',
+});
+export const Slider = Hoc(_Slider, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'Slider',
+});
+export const StdUpload = Hoc(_StdUpload, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'StdUpload',
+});
+export const SuperSelect = Hoc(_SuperSelect, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'SuperSelect',
+});
+export const Switch = Hoc(_Switch, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'Switch',
+});
+export const Tag = Hoc(_Tag, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'title',
+  },
+  type: 'Tag',
+});
+export const Text = Hoc(_Text, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'content',
+  },
+  type: 'Text',
+});
+export const TextArea = Hoc(_TextArea, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'TextArea',
+});
+export const TimePicker = Hoc(_TimePicker, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'TimePicker',
+});
+export const Transfer = Hoc(_Transfer, {
+  fieldProps: {
+    trigger: 'onTransferChange',
+    valuePropName: 'value',
+  },
+  type: 'Transfer',
+});
+export const TreeSelect = Hoc(_TreeSelect, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'TreeSelect',
+});
+export const Upload = Hoc(_Upload, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'Upload',
+});
+export const VerificationCode = Hoc(_VerificationCode, {
+  fieldProps: {
+    trigger: 'onChange',
+    valuePropName: 'value',
+  },
+  type: 'VerificationCode',
+});
+export const Alert = Hoc(_Alert, {
+  type: 'Alert',
+});
+export const Animation = Hoc(_Animation, {
+  // 容器类组件
+  isContainer: true,
+  type: 'Animation',
+});
+export const Audio = Hoc(_Audio, {
+  type: 'Audio',
+});
+export const BarChart = Hoc(_BarChart, {
+  type: 'BarChart',
+});
+export const Button = Hoc(_Button, {
+  type: 'Button',
+});
+export const Card = Hoc(_Card, {
+  // 容器类组件
+  isContainer: true,
+  type: 'Card',
+});
+export const ChartBar = Hoc(_ChartBar, {
+  type: 'ChartBar',
+});
+export const ChartLine = Hoc(_ChartLine, {
+  type: 'ChartLine',
+});
+export const Collapse = Hoc(_Collapse, {
+  // 容器类组件
+  isContainer: true,
+  type: 'Collapse',
+});
+export const CollapsePanel = Hoc(_CollapsePanel, {
+  // 容器类组件
+  isContainer: true,
+  type: 'CollapsePanel',
+});
+export const Condition = Hoc(_Condition, {
+  // 容器类组件
+  isContainer: true,
+  type: 'Condition',
+});
+export const Description = Hoc(_Description, {
+  type: 'Description',
+});
+export const Divider = Hoc(_Divider, {
+  type: 'Divider',
+});
+export const Dropdown = Hoc(_Dropdown, {
+  type: 'Dropdown',
+});
+export const Form = Hoc(_Form, {
+  // 容器类组件
+  isContainer: true,
+  type: 'Form',
+});
+export const FreeLayout = Hoc(_FreeLayout, {
+  // 容器类组件
+  isContainer: true,
+  type: 'FreeLayout',
+});
+export const Gantt = Hoc(_Gantt, {
+  type: 'Gantt',
+});
+export const GridView = Hoc(_GridView, {
+  // 容器类组件
+  isContainer: true,
+  type: 'GridView',
+});
+export const HorizontalView = Hoc(_HorizontalView, {
+  // 容器类组件
+  isContainer: true,
+  type: 'HorizontalView',
+});
+export const Icon = Hoc(_Icon, {
+  type: 'Icon',
+});
+export const Img = Hoc(_Img, {
+  type: 'Img',
+});
+export const LXPieChart = Hoc(_LXPieChart, {
+  type: 'LXPieChart',
+});
+export const LXRadarChart = Hoc(_LXRadarChart, {
+  type: 'LXRadarChart',
+});
+export const Layout = Hoc(_Layout, {
+  // 容器类组件
+  isContainer: true,
+  type: 'Layout',
+});
+export const LineChart = Hoc(_LineChart, {
+  type: 'LineChart',
+});
+export const Link = Hoc(_Link, {
+  type: 'Link',
+});
+export const Menu = Hoc(_Menu, {
+  type: 'Menu',
+});
+export const Pagination = Hoc(_Pagination, {
+  // 容器类组件
+  isContainer: true,
+  type: 'Pagination',
+});
+export const PictureVerifyCode = Hoc(_PictureVerifyCode, {
+  type: 'PictureVerifyCode',
+});
+export const PieChart = Hoc(_PieChart, {
+  type: 'PieChart',
+});
+export const RadarChart = Hoc(_RadarChart, {
+  type: 'RadarChart',
+});
+export const RemoteComponent = Hoc(_RemoteComponent, {
+  type: 'RemoteComponent',
+});
+export const Result = Hoc(_Result, {
+  type: 'Result',
+});
+export const Row = Hoc(_Row, {
+  // 容器类组件
+  isContainer: true,
+  type: 'Row',
+});
+export const Steps = Hoc(_Steps, {
+  type: 'Steps',
+});
+export const Swiper = Hoc(_Swiper, {
+  type: 'Swiper',
+});
+export const TabPane = Hoc(_TabPane, {
+  // 容器类组件
+  isContainer: true,
+  type: 'TabPane',
+});
+export const Table = Hoc(_Table, {
+  type: 'Table',
+});
+export const Tabs = Hoc(_Tabs, {
+  // 容器类组件
+  isContainer: true,
+  type: 'Tabs',
+});
+export const TlrView = Hoc(_TlrView, {
+  // 容器类组件
+  isContainer: true,
+  type: 'TlrView',
+});
+export const Tree = Hoc(_Tree, {
+  type: 'Tree',
+});
+export const TreeTable = Hoc(_TreeTable, {
+  type: 'TreeTable',
+});
+export const VerticalView = Hoc(_VerticalView, {
+  // 容器类组件
+  isContainer: true,
+  type: 'VerticalView',
+});
+export const VideoPlayer = Hoc(_VideoPlayer, {
+  type: 'VideoPlayer',
+});
+export const View = Hoc(_View, {
+  // 容器类组件
+  isContainer: true,
+  type: 'View',
+});
+export const VirtualGroup = Hoc(_VirtualGroup, {
+  // 容器类组件
+  isContainer: true,
+  type: 'VirtualGroup',
+});
+export const Webview = Hoc(_Webview, {
+  type: 'Webview',
+});
+",
+              "ext": "tsx",
+              "name": "factory",
+              "options": undefined,
+            },
+          ],
+          "name": "components",
+        },
+        Object {
+          "dirs": Array [
+            Object {
+              "dirs": Array [],
+              "files": Array [
+                Object {
+                  "content": "import { useAppData } from 'alita';
+import React, { FC } from 'react';
+import styles from './index.less';
+interface HomePageProps {}
+const HomePage: FC<HomePageProps> = (props) => {
+  const { clientRoutes } = useAppData();
+  return (
+    <div className={styles.indexPage}>
+      <div className={styles.indexText}>
+        欢迎登录使用{process.env.SYSTEM_NAME || '灵犀平台'}
+      </div>
+      <div
+        onClick={() => {
+          // @ts-ignore
+          props.history.push(\`/\${clientRoutes[0]?.children[0]?.path}\`);
+        }}
+      >
+        暂无登录,尝试跳转到可用页面
+      </div>
+    </div>
+  );
+};
+export default HomePage;
+",
+                  "ext": "tsx",
+                  "name": "index",
+                  "options": undefined,
+                },
+                Object {
+                  "content": ".indexPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 90px);
+  color: rgba(28, 36, 46, 45%);
+  font-size: 44px;
+
+  .indexText {
+    margin-bottom: 25px;
+    color: rgba(28, 36, 46, 85%);
+    font-weight: 500;
+    font-size: 34px;
+  }
+
+  .indexImg {
+    height: 392px;
+    margin-top: 280px;
+  }
+}
+",
+                  "ext": "less",
+                  "name": "index",
+                  "options": undefined,
+                },
+              ],
+              "name": "index",
+            },
+            Object {
+              "dirs": Array [],
+              "files": Array [
+                Object {
+                  "content": "const useCustomAction = (context: any) => {
+  return {};
+};
+export default useCustomAction;
+",
+                  "ext": "tsx",
+                  "name": "customAction",
+                  "options": undefined,
+                },
+                Object {
+                  "content": "// 注意: 出码模块正在调试
+import React, { useImperativeHandle, useEffect, useRef } from 'react';
+import { api } from '@/services/api';
+import {
+  View,
+  Tabs,
+  TabPane,
+  Button,
+  Text,
+  Transfer,
+  DatePicker,
+  TimePicker,
+  RangePicker,
+  Dropdown,
+  Input,
+  Icon,
+  StdUpload,
+  Form,
+  InputNumber,
+  Tree,
+  Description,
+  Rate,
+  Steps,
+  Card,
+  Audio,
+  Table,
+  Select,
+  MultipleSelect,
+  ModalSelect,
+} from '@/components/factory';
+import { PageProps, withPageHOC } from '@/utils/withPageHOC';
+import { messageApi, Spin } from '@/utils/messageApi';
+import { useTool } from '@/utils/useTool';
+import useGlobalData from './useGlobalData';
+import useDataSource from './useDataSource';
+import useTransSuperObjectParams from '@/hooks/useTransSuperObjectParams';
+import useLifeCycle from '@/hooks/useLifeCycle';
+import { history } from 'alita';
+
+// 生成一个Id，用来记录当前页面所有的自定义事件
+const renderId = '/Index';
+const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
+  const {
+    attrDataMap = {},
+    routerData,
+    lcdpApi,
+    injectData,
+    refs,
+    state,
+    style,
+    urlParam,
+    addToAwaitQueue,
+  } = props;
+  const useDataSourceTool = useDataSource({
+    urlParam,
+    routerData,
+    state,
+    lcdpApi,
+  });
+  const { data, dataSnapshot, dataReadyComplete } = useDataSourceTool;
+  const globalDataSourceTool = useGlobalData({
+    urlParam,
+    routerData,
+    state,
+    lcdpApi,
+  });
+  const { globalDataReadyComplete, globalData } = globalDataSourceTool;
+  const { transSuperObjectParams } = useTransSuperObjectParams({
+    refs,
+    dataSnapshot,
+    data,
+    sceneCode: urlParam?.sceneCode,
+  });
+
+  //通用的工具类方法
+  const useTools = useTool(refs, {
+    addToAwaitQueue,
+  });
+  const {} = useTools;
+  const didMount = async () => {};
+  useEffect(() => {}, [state]);
+
+  // 获取生命周期
+  const { useMount, useStateUpdate, useUnmounted } = useLifeCycle({
+    monutDeps: [dataReadyComplete, globalDataReadyComplete],
+    stateDeps: [state],
+    mountCond: () => dataReadyComplete && globalDataReadyComplete,
+  });
+
+  // 页面加载完成
+  useMount(() => {
+    didMount();
+  });
+
+  // 组件状态发生变化
+  useStateUpdate(() => {});
+
+  // 页面将要卸载
+  useUnmounted(() => {});
+  useImperativeHandle(ref, () => ({}));
+  if (!dataReadyComplete) {
+    return <Spin spinning />;
+  }
+  return (
+    <div
+      style={{
+        height: '100%',
+        ...style,
+      }}
+      className=\\"lcdp-renderer lcdp-renderer-dynamicPage-view_box dynamic_page_1118379076695052288 __CustomClass_780418__\\"
+    >
+      <View
+        backgroundType={{
+          type: 'cleanColor',
+          color: 'rgba(255, 255, 255, 1)',
+        }}
+        $$componentItem={{
+          id: 'View_780418_1',
+          uid: 'View_780418_1',
+        }}
+        className=\\"View_View_780418_1\\"
+        visible
+        style={{
+          minHeight: '100%',
+          display: 'flex',
+          padding: '20px 20px 20px 20px',
+          flexDirection: 'column',
+          overflowY: 'auto',
+          width: 'auto',
+          height: 'auto',
+        }}
+        {...injectData}
+      >
+        <Tabs
+          type=\\"line\\"
+          animated={false}
+          defaultActiveKey=\\"1\\"
+          tabBarGutter=\\"4px\\"
+          tabPosition=\\"top\\"
+          size=\\"default\\"
+          $$componentItem={{
+            id: 'Tabs_424411',
+            uid: 'Tabs_424411',
+          }}
+          className=\\"Tabs_Tabs_424411\\"
+          visible
+          style={{
+            width: '100%',
+            margin: '0 0 16px 0',
+            padding: '20px 20px 20px 20px',
+          }}
+          {...injectData}
+        >
+          <TabPane
+            schema={{
+              props: {
+                key: '1',
+              },
+              style: {
+                minHeight: 40,
+              },
+            }}
+            tab=\\"标题1\\"
+            key=\\"1\\"
+            $$componentItem={{
+              id: 'TabPane_458269',
+              uid: 'TabPane_458269',
+            }}
+            className=\\"TabPane_TabPane_458269\\"
+            visible
+            style={{
+              minHeight: 40,
+            }}
+            {...injectData}
+          />
+          <TabPane
+            schema={{
+              props: {
+                key: '2',
+              },
+              style: {
+                minHeight: 40,
+              },
+            }}
+            tab=\\"标题2\\"
+            key=\\"2\\"
+            $$componentItem={{
+              id: 'TabPane_504014',
+              uid: 'TabPane_504014',
+            }}
+            className=\\"TabPane_TabPane_504014\\"
+            visible
+            style={{
+              minHeight: 40,
+            }}
+            {...injectData}
+          />
+        </Tabs>
+        <Button
+          hasIcon={false}
+          btnText=\\"按钮\\"
+          $$componentItem={{
+            id: 'Button_859674',
+            uid: 'Button_859674',
+          }}
+          className=\\"Button_Button_859674\\"
+          visible
+          style={{
+            textAlign: 'center',
+          }}
+          onClick={(e: any) => {
+            // 打印日志
+            console.log(globalData?.n);
+          }}
+          {...injectData}
+        />
+        <Text
+          content={globalData?.n?.a}
+          textType=\\"span\\"
+          $$componentItem={{
+            id: 'Text_297765',
+            uid: 'Text_297765',
+          }}
+          className=\\"Text_Text_297765\\"
+          visible
+          style={{
+            textAlign: 'left',
+            fontSize: '14px',
+            lineHeight: '24px',
+            color: '#1c242e',
+            backgroundColor: 'rgba(255, 255, 255,0)',
+          }}
+          {...injectData}
+        />
+        <Transfer
+          name=\\"穿梭框\\"
+          displayStyle=\\"base\\"
+          pageSize={10}
+          current={1}
+          titleTip=\\"notext\\"
+          tipSize=\\"default\\"
+          tipWidth=\\"240px\\"
+          tipHeight=\\"auto\\"
+          size=\\"small\\"
+          required={false}
+          labelCol={8}
+          wrapperCol={16}
+          transferWidth={0}
+          transferHeight={200}
+          showSelectAll
+          dataSource={[
+            {
+              id: 1,
+              key: 1,
+              title: '第1项',
+              children: [
+                {
+                  id: '1-1',
+                  key: '1-1',
+                  title: '子 1-1',
+                },
+                {
+                  id: '1-2',
+                  key: '1-2',
+                  title: '子 1-2',
+                },
+                {
+                  id: '1-3',
+                  key: '1-3',
+                  title: '子 1-3',
+                },
+                {
+                  id: '1-4',
+                  key: '1-4',
+                  title: '子 1-4',
+                },
+              ],
+            },
+            {
+              id: 2,
+              key: 2,
+              title: '第2项',
+              children: [
+                {
+                  id: '2-1',
+                  key: '2-1',
+                  title: '子 2-1',
+                },
+                {
+                  id: '2-2',
+                  key: '2-2',
+                  title: '子 2-2',
+                },
+                {
+                  id: '2-3',
+                  key: '2-3',
+                  title: '子 2-3',
+                },
+                {
+                  id: '2-4',
+                  key: '2-4',
+                  title: '子 2-4',
+                },
+              ],
+            },
+            {
+              id: 3,
+              key: 3,
+              title: '第3项',
+              children: [
+                {
+                  id: '3-1',
+                  key: '3-1',
+                  title: '子 3-1',
+                },
+                {
+                  id: '3-2',
+                  key: '3-2',
+                  title: '子 3-2',
+                },
+                {
+                  id: '3-3',
+                  key: '3-3',
+                  title: '子 3-3',
+                },
+                {
+                  id: '3-4',
+                  key: '3-4',
+                  title: '子 3-4',
+                },
+              ],
+            },
+            {
+              id: 4,
+              key: 4,
+              title: '第4项',
+              children: [
+                {
+                  id: '4-1',
+                  key: '4-1',
+                  title: '子 4-1',
+                },
+                {
+                  id: '4-2',
+                  key: '4-2',
+                  title: '子 4-2',
+                },
+                {
+                  id: '4-3',
+                  key: '4-3',
+                  title: '子 4-3',
+                },
+                {
+                  id: '4-4',
+                  key: '4-4',
+                  title: '子 4-4',
+                },
+              ],
+            },
+          ]}
+          page={false}
+          pageSizeOptions=\\"[5,10,20]\\"
+          showQuickJumper={false}
+          showSizeChanger={false}
+          showTotal={false}
+          columns={[]}
+          fieldName=\\"da\\"
+          uid=\\"a\\"
+          labelCode=\\"as\\"
+          $$componentItem={{
+            id: 'Transfer_917728',
+            uid: 'Transfer_917728',
+          }}
+          className=\\"Transfer_Transfer_917728\\"
+          visible
+          {...injectData}
+        />
+        <DatePicker
+          name=\\"日期选择\\"
+          timeMode=\\"date\\"
+          valueFormat=\\"show\\"
+          size=\\"default\\"
+          labelCol={8}
+          wrapperCol={16}
+          titleTip=\\"notext\\"
+          tipSize=\\"default\\"
+          tipWidth=\\"240px\\"
+          tipHeight=\\"auto\\"
+          required={false}
+          limitRange=\\"no\\"
+          format=\\"YYYY-MM-DD\\"
+          placeholder=\\"请选择日期\\"
+          pickerType=\\"DatePicker\\"
+          defaultValue={{}}
+          allowClear
+          fieldName=\\"asdf\\"
+          $$componentItem={{
+            id: 'DatePicker_662424',
+            uid: 'DatePicker_662424',
+          }}
+          className=\\"DatePicker_DatePicker_662424\\"
+          visible
+          {...injectData}
+        />
+        <TimePicker
+          name=\\"时间选择\\"
+          valueFormat=\\"show\\"
+          size=\\"default\\"
+          showNow
+          labelCol={8}
+          wrapperCol={16}
+          titleTip=\\"notext\\"
+          tipSize=\\"default\\"
+          tipWidth=\\"240px\\"
+          tipHeight=\\"auto\\"
+          required={false}
+          limitRange=\\"no\\"
+          format=\\"YYYY-MM-DD HH:mm:ss\\"
+          timeMode=\\"time\\"
+          pickerType=\\"TimePicker\\"
+          placeholder=\\"请选择时间\\"
+          allowClear
+          fieldName=\\"frsd\\"
+          $$componentItem={{
+            id: 'TimePicker_0120795',
+            uid: 'TimePicker_0120795',
+          }}
+          className=\\"TimePicker_TimePicker_0120795\\"
+          visible
+          {...injectData}
+        />
+        <Text
+          content={data?.ll?.param}
+          textType=\\"span\\"
+          $$componentItem={{
+            id: 'Text_97176',
+            uid: 'Text_97176',
+          }}
+          className=\\"Text_Text_97176\\"
+          visible
+          style={{
+            textAlign: 'left',
+            fontSize: '14px',
+            lineHeight: '24px',
+            color: '#1c242e',
+            backgroundColor: 'rgba(255, 255, 255,0)',
+          }}
+          {...injectData}
+        />
+        <RangePicker
+          name=\\"时间段选择\\"
+          timeMode=\\"date\\"
+          valueFormat=\\"show\\"
+          separator=\\"~\\"
+          size=\\"default\\"
+          labelCol={8}
+          wrapperCol={16}
+          titleTip=\\"notext\\"
+          tipSize=\\"default\\"
+          tipWidth=\\"240px\\"
+          tipHeight=\\"auto\\"
+          required={false}
+          format=\\"YYYY-MM-DD\\"
+          pickerType=\\"RangePicker\\"
+          allowClear
+          fieldName=\\"vxc\\"
+          $$componentItem={{
+            id: 'RangePicker_6433572',
+            uid: 'RangePicker_6433572',
+          }}
+          className=\\"RangePicker_RangePicker_6433572\\"
+          visible
+          {...injectData}
+        />
+        <Dropdown
+          trigger={['hover']}
+          isUsePrimary={false}
+          clickClose
+          treeData={[]}
+          menuType=\\"normal\\"
+          buttonType=\\"default\\"
+          placement=\\"bottomLeft\\"
+          size=\\"default\\"
+          buttonIcon={{
+            isIconFont: false,
+            theme: 'outlined',
+            type: 'ellipsis',
+          }}
+          $$componentItem={{
+            id: 'Dropdown_774414',
+            uid: 'Dropdown_774414',
+          }}
+          className=\\"Dropdown_Dropdown_774414\\"
+          visible
+          style={{
+            fontSize: '14px',
+            lineHeight: '24px',
+            color: '#1c242e',
+            backgroundColor: 'rgba(255, 255, 255,0)',
+            padding: '5px 5px 5px 5px',
+          }}
+          {...injectData}
+        />
+        <Input
+          name=\\"输入框\\"
+          size=\\"default\\"
+          labelCol={8}
+          wrapperCol={16}
+          titleTip=\\"notext\\"
+          tipSize=\\"default\\"
+          tipWidth=\\"240px\\"
+          tipHeight=\\"auto\\"
+          prefixIconPosition=\\"before\\"
+          postfixIconPosition=\\"before\\"
+          required={false}
+          placeholder=\\"请输入\\"
+          allowClear
+          fieldName=\\"sd\\"
+          icon={{
+            theme: 'outlined',
+            fontAddress: '',
+            isIconFont: false,
+            iconFileInfo: {},
+          }}
+          prefixIcon={{
+            theme: 'outlined',
+            fontAddress: '',
+            isIconFont: false,
+            iconFileInfo: {},
+          }}
+          $$componentItem={{
+            id: 'Input_89811',
+            uid: 'Input_89811',
+          }}
+          className=\\"Input_Input_89811\\"
+          visible
+          {...injectData}
+        />
+        <Icon
+          mode=\\"normal\\"
+          rotate={0}
+          icon={{
+            theme: 'outlined',
+            type: 'smile',
+            isIconFont: false,
+          }}
+          $$componentItem={{
+            id: 'Icon_270659',
+            uid: 'Icon_270659',
+          }}
+          className=\\"Icon_Icon_270659\\"
+          visible
+          {...injectData}
+        />
+        <StdUpload
+          name=\\"文件上传\\"
+          uploadStyle=\\"click\\"
+          listType=\\"text\\"
+          titleTip=\\"notext\\"
+          tipSize=\\"default\\"
+          tipWidth=\\"240px\\"
+          tipHeight=\\"auto\\"
+          viewMode=\\"popUp\\"
+          fileNameEncode={false}
+          isWatermark={false}
+          optionalFile={false}
+          fileName=\\"file\\"
+          labelCol={8}
+          wrapperCol={16}
+          numberLimit={5}
+          singleFileMaxSize=\\"50MB\\"
+          uploadText=\\"点击上传\\"
+          uploadTimeout={30000}
+          deleteIcon={{
+            deleteIconTheme: 'outlined',
+            deleteIconType: 'delete',
+            deleteIconIsIconFont: false,
+            showRemoveIcon: true,
+          }}
+          downloadIcon={{
+            downloadIconTheme: 'outlined',
+            downloadIconType: 'download',
+            downloadIconIsIconFont: false,
+            showDownloadIcon: true,
+          }}
+          previewIcon={{
+            previewIconTheme: 'outlined',
+            previewIconType: 'eye',
+            previewIconIsIconFont: false,
+            showPreviewIcon: true,
+          }}
+          modalWidth={960}
+          modalHeight={648}
+          icon={{
+            theme: 'outlined',
+            fontAddress: '',
+            isIconFont: false,
+            iconFileInfo: {},
+            type: undefined,
+          }}
+          fieldName=\\"bc\\"
+          $$componentItem={{
+            id: 'StdUpload_46152',
+            uid: 'StdUpload_46152',
+          }}
+          className=\\"StdUpload_StdUpload_46152\\"
+          visible
+          {...injectData}
+        />
+        <Form
+          colSpan={8}
+          labelCol={8}
+          wrapperCol={16}
+          layout=\\"vertical\\"
+          colon
+          labelAlign=\\"right\\"
+          colSpace={16}
+          rowSpace={16}
+          formCode=\\"Code_Form_43058\\"
+          genRuleType=\\"object\\"
+          formType=\\"normal\\"
+          relationDataSource={data?.lcdp_domain_user_325234}
+          busiObjectId=\\"1001\\"
+          $$componentItem={{
+            id: 'Form_43058',
+            uid: 'Form_43058',
+          }}
+          className=\\"Form_Form_43058\\"
+          visible
+          style={{
+            padding: '0px 0px 0px 0px',
+          }}
+          {...injectData}
+        >
+          <InputNumber
+            name=\\"用户ID\\"
+            size=\\"default\\"
+            labelCol={8}
+            wrapperCol={16}
+            step={1}
+            titleTip=\\"notext\\"
+            tipSize=\\"default\\"
+            tipWidth=\\"240px\\"
+            tipHeight=\\"auto\\"
+            required={false}
+            min={0}
+            fieldName=\\"user_id\\"
+            showMore={false}
+            defaultValue={null}
+            attr={{}}
+            regexp={[]}
+            value={data?.lcdp_domain_user_325234?.user_id}
+            formItemIndex={0}
+            $$componentItem={{
+              id: 'InputNumber_user_id_9233913',
+              uid: 'InputNumber_user_id_9233913',
+            }}
+            className=\\"InputNumber_InputNumber_user_id_9233913\\"
+            visible
+            isFormRootChild
+            {...injectData}
+          />
+        </Form>
+        <Tree
+          defaultExpandAll
+          showLine
+          selectable
+          isAsync={false}
+          treeData={[]}
+          showLineIcon={false}
+          $$componentItem={{
+            id: 'Tree_6934174',
+            uid: 'Tree_6934174',
+          }}
+          className=\\"Tree_Tree_6934174\\"
+          visible
+          {...injectData}
+        />
+        <Description
+          layout=\\"horizontal\\"
+          columns={[
+            {
+              label: '第一列',
+              dataIndex: 'column1',
+              key: 'column1',
+              customRendering: undefined,
+            },
+            {
+              label: '第二列',
+              dataIndex: 'column2',
+              key: 'column2',
+              customRendering: undefined,
+            },
+            {
+              label: '第三列',
+              dataIndex: 'column3',
+              key: 'column3',
+              customRendering: undefined,
+            },
+            {
+              label: '第四列',
+              dataIndex: 'column4',
+              key: 'column4',
+              customRendering: undefined,
+            },
+            {
+              label: '第五列',
+              dataIndex: 'column5',
+              key: 'column5',
+              customRendering: undefined,
+            },
+            {
+              label: '第六列',
+              dataIndex: 'column6',
+              key: 'column6',
+              customRendering: undefined,
+            },
+          ]}
+          bordered
+          labelSize=\\"120px\\"
+          colSpan={8}
+          colon
+          labelAlign=\\"left\\"
+          $$componentItem={{
+            id: 'Description_926608',
+            uid: 'Description_926608',
+          }}
+          className=\\"Description_Description_926608\\"
+          visible
+          {...injectData}
+        />
+        <Rate
+          name=\\"评分\\"
+          labelCol={8}
+          wrapperCol={16}
+          titleTip=\\"notext\\"
+          tipSize=\\"default\\"
+          tipWidth=\\"240px\\"
+          tipHeight=\\"auto\\"
+          required={false}
+          tooltipType=\\"number\\"
+          count={5}
+          value={3}
+          tooltips={[]}
+          allowClear
+          fieldName=\\"hf\\"
+          $$componentItem={{
+            id: 'Rate_8203694',
+            uid: 'Rate_8203694',
+          }}
+          className=\\"Rate_Rate_8203694\\"
+          visible
+          onChange={(e: any) => {}}
+          {...injectData}
+        />
+        <Steps
+          labelPlacement=\\"horizontal\\"
+          stepStyle=\\"number\\"
+          type=\\"default\\"
+          direction=\\"horizontal\\"
+          size=\\"default\\"
+          iconSetting={[
+            {
+              label: '等待状态',
+              value: 'wait',
+              color: '#999999',
+            },
+            {
+              label: '处理中状态',
+              value: 'process',
+              color: '#4477EE',
+            },
+            {
+              label: '完成状态',
+              value: 'finish',
+              color: '#4477EE',
+            },
+            {
+              label: '错误状态',
+              value: 'error',
+              color: '#FF7474',
+            },
+          ]}
+          stepsOptions={[
+            {
+              id: 1,
+              title: '1',
+              status: 'finish',
+              subTitle: 'first',
+              description: '第一步',
+              color: '#4477EE',
+            },
+            {
+              id: 2,
+              title: '2',
+              status: 'process',
+              subTitle: 'second',
+              description: '第二步',
+              color: '#4477EE',
+            },
+            {
+              id: 3,
+              title: '3',
+              status: 'wait',
+              subTitle: 'third',
+              description: '第三步',
+              color: '#999999',
+            },
+            {
+              id: 4,
+              title: '4',
+              status: 'error',
+              subTitle: 'fourth',
+              description: '第四步',
+              color: '#FF7474',
+            },
+          ]}
+          alias={{
+            id: 'id',
+            description: 'description',
+            disabled: 'disabled',
+            status: 'status',
+            subTitle: 'subTitle',
+            title: 'title',
+            icon: 'icon',
+          }}
+          $$componentItem={{
+            id: 'Steps_94315',
+            uid: 'Steps_94315',
+          }}
+          className=\\"Steps_Steps_94315\\"
+          visible
+          {...injectData}
+        />
+        <Card
+          cardIconType=\\"left\\"
+          extendNum={3}
+          title=\\"标题\\"
+          bordered
+          size=\\"default\\"
+          hasHeader
+          hasIcon
+          extend={[]}
+          icon={{
+            theme: 'outlined',
+            fontAddress: '',
+            isIconFont: false,
+            iconFileInfo: {},
+          }}
+          prefixIcon={{
+            theme: 'outlined',
+            fontAddress: '',
+            isIconFont: false,
+            iconFileInfo: {},
+          }}
+          $$componentItem={{
+            id: 'Card_250052',
+            uid: 'Card_250052',
+          }}
+          className=\\"Card_Card_250052\\"
+          visible
+          style={{
+            padding: '20px 20px 20px 20px',
+            overflowY: 'visible',
+            margin: '0 0 16px 0',
+          }}
+          {...injectData}
+        >
+          <Audio
+            hideType=\\"hidden\\"
+            audioTitle=\\"音频\\"
+            preloadType=\\"none\\"
+            autoPlay={false}
+            streamType=\\"fileCode\\"
+            backgroundType={{
+              type: 'cleanColor',
+              color: '#fff',
+            }}
+            $$componentItem={{
+              id: 'Audio_0940493',
+              uid: 'Audio_0940493',
+            }}
+            className=\\"Audio_Audio_0940493\\"
+            visible
+            style={{
+              padding: '12px 16px 12px 16px',
+            }}
+            {...injectData}
+          />
+        </Card>
+        <Table
+          extendNum={3}
+          pageSize={10}
+          current={1}
+          expandIconPosition=\\"left\\"
+          adjustModel=\\"auto\\"
+          tableTitle=\\"表格名称\\"
+          columns={[
+            {
+              title: '第一列',
+              dataIndex: 'column1',
+              key: 'column1',
+              lineNum: 1,
+              titleLineNum: 1,
+              customRendering: undefined,
+            },
+            {
+              title: '第二列',
+              dataIndex: 'column2',
+              key: 'column2',
+              lineNum: 1,
+              titleLineNum: 1,
+              customRendering: undefined,
+            },
+            {
+              title: '第三列',
+              dataIndex: 'column3',
+              key: 'column3',
+              lineNum: 1,
+              titleLineNum: 1,
+              customRendering: undefined,
+            },
+            {
+              title: '第四列',
+              dataIndex: 'column4',
+              key: 'column4',
+              lineNum: 1,
+              titleLineNum: 1,
+              customRendering: undefined,
+            },
+            {
+              title: '第五列',
+              dataIndex: 'column5',
+              key: 'column5',
+              lineNum: 1,
+              titleLineNum: 1,
+              customRendering: undefined,
+            },
+          ]}
+          rowKeyType=\\"specified\\"
+          editMode=\\"single\\"
+          bordered=\\"segmentation\\"
+          size=\\"middle\\"
+          rowSelection={undefined}
+          pageSizeOptions=\\"[5,10,20]\\"
+          showCustom={{
+            hasCustom: false,
+            customTitle: '自定义列',
+            iconPosition: 'left',
+            customStyle: 'default',
+          }}
+          customNum={3}
+          summaryTotal={{
+            type: 'none',
+            name: '合计',
+          }}
+          rowKey=\\"uytry\\"
+          $$componentItem={{
+            id: 'Table_842633',
+            uid: 'Table_842633',
+          }}
+          className=\\"Table_Table_842633\\"
+          visible
+          {...injectData}
+        />
+        <Select
+          name=\\"下拉框\\"
+          size=\\"default\\"
+          labelCol={8}
+          wrapperCol={16}
+          titleTip=\\"notext\\"
+          tipSize=\\"default\\"
+          tipWidth=\\"240px\\"
+          tipHeight=\\"auto\\"
+          required={false}
+          filter=\\"none\\"
+          isInputSearch={false}
+          classification=\\"default\\"
+          placeholder=\\"请选择\\"
+          allowClear
+          fieldName=\\"bcs\\"
+          $$componentItem={{
+            id: 'Select_2379145',
+            uid: 'Select_2379145',
+          }}
+          className=\\"Select_Select_2379145\\"
+          visible
+          {...injectData}
+        />
+        <MultipleSelect
+          name=\\"下拉多选框\\"
+          size=\\"default\\"
+          labelCol={8}
+          wrapperCol={16}
+          titleTip=\\"notext\\"
+          tipSize=\\"default\\"
+          tipWidth=\\"240px\\"
+          tipHeight=\\"auto\\"
+          required={false}
+          filter=\\"none\\"
+          isInputSearch={false}
+          placeholder=\\"请选择\\"
+          mode=\\"multiple\\"
+          isKeyEnterSearch={false}
+          allowClear
+          fieldName=\\"dgfre\\"
+          $$componentItem={{
+            id: 'MultipleSelect_7959066',
+            uid: 'MultipleSelect_7959066',
+          }}
+          className=\\"MultipleSelect_MultipleSelect_7959066\\"
+          visible
+          {...injectData}
+        />
+        <ModalSelect
+          name=\\"弹窗选择\\"
+          size=\\"default\\"
+          mode=\\"normal\\"
+          labelCol={8}
+          wrapperCol={16}
+          titleTip=\\"notext\\"
+          tipSize=\\"default\\"
+          tipWidth=\\"240px\\"
+          tipHeight=\\"auto\\"
+          postfixIconPosition=\\"before\\"
+          required={false}
+          placeholder=\\"请选择\\"
+          postfixIcon={{
+            isIconFont: false,
+            theme: 'outlined',
+            type: 'search',
+          }}
+          isIconFont={false}
+          theme=\\"outlined\\"
+          type=\\"search\\"
+          postfixStyle=\\"1\\"
+          allowClear
+          fieldName=\\"brf\\"
+          $$componentItem={{
+            id: 'ModalSelect_971166',
+            uid: 'ModalSelect_971166',
+          }}
+          className=\\"ModalSelect_ModalSelect_971166\\"
+          visible
+          {...injectData}
+        />
+        <View
+          backgroundType={{
+            type: 'cleanColor',
+            color: 'rgba(255, 255, 255, 1)',
+          }}
+          $$componentItem={{
+            id: 'View_0837106',
+            uid: 'View_0837106',
+          }}
+          className=\\"View_View_0837106\\"
+          visible
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            padding: '12px 0 12px 0',
+            width: 'auto',
+            height: 'auto',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          {...injectData}
+        >
+          <Button
+            type=\\"primary\\"
+            hasIcon={false}
+            btnText=\\"提交\\"
+            $$componentItem={{
+              id: 'Button_322253',
+              uid: 'Button_322253',
+            }}
+            className=\\"Button_Button_322253\\"
+            visible
+            style={{
+              textAlign: 'center',
+              color: '#fff',
+              margin: '0px 24px 0px 0px',
+            }}
+            useEffect={() => {}}
+            onClick={async (e: any) => {
+              // postObjectData 提交业务对象
+              const postObjectParams_19338 = await transSuperObjectParams(
+                {
+                  ll: {
+                    busiObjectId: undefined,
+                    formId: 'Form_43058',
+                  },
+                },
+                [],
+              );
+              api
+                .commonFetch('post', '/app/object/run', postObjectParams_19338)
+                .then((reply_19338: any) => {
+                  // 提示消息
+                  messageApi('success', '保存成功！');
+                })
+                .catch(() => {
+                  // 提示消息
+                  messageApi('error', '保存失败！');
+                });
+            }}
+            {...injectData}
+          />
+          <Button
+            hasIcon={false}
+            btnText=\\"取消\\"
+            $$componentItem={{
+              id: 'Button_8628098',
+              uid: 'Button_8628098',
+            }}
+            className=\\"Button_Button_8628098\\"
+            visible
+            style={{
+              textAlign: 'center',
+              color: '#1C242E',
+            }}
+            useEffect={() => {}}
+            onClick={(e: any) => {
+              // 页面返回
+              lcdpApi.setPageCallBackData({});
+              history.go(-1);
+            }}
+            {...injectData}
+          />
+        </View>
+      </View>
+    </div>
+  );
+});
+export default withPageHOC(Index$$Page, {
+  renderId,
+  hasLogin: true,
+});
+",
+                  "ext": "tsx",
+                  "name": "index",
+                  "options": undefined,
+                },
+                Object {
+                  "content": "export interface DataSourceType {
+  _others_: {
+    /**
+     * 用户信息
+     */
+    personInfo: Record<string, any>;
+  };
+  /**
+   * 过滤字段: list
+   */
+  llFilter?: {
+    orderByAsc?: string;
+    orderByDesc?: string;
+  };
+  /**
+   * list
+   */
+  ll?: {
+    /**
+     * 属性
+     */
+    param?: string;
+  };
+  /**
+   * 过滤字段: 用户_325234
+   */
+  lcdp_domain_user_325234Filter?: {
+    /**
+     * 主键值
+     */
+    primaryValue?: string;
+    orderByAsc?: string;
+    orderByDesc?: string;
+  };
+  /**
+   * 用户_325234
+   */
+  lcdp_domain_user_325234?: {
+    /**
+     * 用户ID
+     */
+    user_id?: number;
+
+    /**
+     * 用户名称
+     */
+    user_name?: string;
+
+    /**
+     * 用户类型
+     */
+    user_type?: number;
+
+    /**
+     * 手机
+     */
+    phone_no?: string;
+
+    /**
+     * 邮箱
+     */
+    email?: string;
+
+    /**
+     * 密码
+     */
+    password?: string;
+
+    /**
+     * 组织ID
+     */
+    org_id?: number;
+
+    /**
+     * 创建人
+     */
+    creator_id?: number;
+
+    /**
+     * 创建时间
+     */
+    created_time?: Date;
+
+    /**
+     * 状态
+     */
+    status_cd?: string;
+
+    /**
+     * 状态时间
+     */
+    status_time?: Date;
+
+    /**
+     * 修改人
+     */
+    updator_id?: number;
+
+    /**
+     * 修改时间
+     */
+    updated_time?: Date;
+
+    /**
+     * 备注
+     */
+    remark?: string;
+
+    /**
+     * 真实名称
+     */
+    real_name?: string;
+  };
+  [key: string]: any;
+}
+",
+                  "ext": "ts",
+                  "name": "dataSourceType",
+                  "options": undefined,
+                },
+                Object {
+                  "content": "import { useState, useRef, useEffect, useMemo } from 'react';
+import { cloneDeep, isPlainObject } from 'lodash';
+import useSetState from '@/hooks/useSetState';
+import ArrayUtil from '@/utils/array';
+import { fetchQueryObject, fetchQueryService } from '@/utils/dataSource';
+import { DataSourceType } from './dataSourceType';
+import { ARRAY_OPERATE_TYPE } from '@/constants';
+export interface UpdateDataSourceOptions {
+  /**
+   * 数据源名称
+   */
+  name: string;
+
+  /**
+   * 更新数据源的路径
+   */
+  path: string;
+
+  /**
+   * 目标值
+   */
+  value?: any;
+
+  /**
+   * 需要过滤的变量
+   */
+  predicate?: (item: any, index: number) => boolean;
+
+  /**
+   * 操作类型 数组时需要
+   */
+  operateType?: 0 | 1 | 2 | 3;
+
+  /**
+   * 数组或者对象类型
+   */
+  type: 'object' | 'array';
+
+  /**
+   * 是否局部赋值
+   */
+  onlySetPatch: boolean;
+}
+export interface DataSourceOptions {
+  urlParam?: Record<string, any>;
+  routerData?: Record<string, any>;
+  state?: Record<string, any>;
+  lcdpApi?: any;
+}
+const useDataSource = (options: DataSourceOptions) => {
+  const { urlParam, lcdpApi } = options;
+
+  // 是否正在加载数据，发起请求时会切换loading
+  const [loading, setLoading] = useState(false);
+  // 数据源是否准备完成
+  const [dataReadyComplete, setDataReadyComplete] = useState(false);
+  // 数据源
+  const [data, setData] = useSetState<DataSourceType>();
+  // 保存数据源快照，只有服务和对象发起成功后才会保存，用来缓存服务数据
+  const dataSnapshotRef = useRef<Record<string, any>>({});
+
+  /**
+   * 保存快照
+   */
+  const setDataSnapshot = (snapshot: Record<string, any>) => {
+    Object.assign(dataSnapshotRef.current, snapshot);
+  };
+
+  /**
+   * 设置用户信息
+   */
+  useEffect(() => {
+    setData({
+      _others_: {
+        personInfo: lcdpApi.data?.user || {},
+      },
+    });
+  }, [lcdpApi.data?.user]);
+
+  /**
+   * 初始化数据
+   */
+  const initialData: Partial<DataSourceType> = {
+    /**
+     * 对象数据源: ll
+     */
+    llFilter: {},
+    ll: {},
+    /**
+     * 对象数据源: lcdp_domain_user_325234
+     */
+    lcdp_domain_user_325234Filter: {
+      primaryValue: urlParam?.bizId,
+    },
+    lcdp_domain_user_325234: {},
+  };
+
+  /**
+   * 初始化数据源
+   */
+  const initialDataSource = () => {
+    const newData: Partial<DataSourceType> = cloneDeep(initialData);
+    setLoading(true);
+    const dataSourceValues: Promise<any>[] = [];
+    Promise.all(dataSourceValues)
+      .catch((err) => {
+        console.log('数据源初始化失败');
+        console.log(err);
+      })
+      .finally(() => {
+        setData(newData as DataSourceType);
+        setLoading(false);
+        setDataReadyComplete(true);
+      });
+  };
+  useEffect(() => {
+    initialDataSource();
+  }, []);
+
+  /**
+   * 更新数据源
+   */
+  const updateData = async ({
+    name,
+    path,
+    value,
+    type,
+    operateType,
+    predicate = () => false,
+    onlySetPatch = true,
+  }: UpdateDataSourceOptions) => {
+    try {
+      // 对象类型 直接赋值
+      if (type === 'object') {
+        ArrayUtil.updateObject({
+          data,
+          path,
+          value,
+          isPatch: onlySetPatch,
+        });
+      } else if (type === 'array') {
+        if (operateType === ARRAY_OPERATE_TYPE.ADD) {
+          ArrayUtil.push(data, path, value);
+        } else if (operateType === ARRAY_OPERATE_TYPE.DELETE) {
+          ArrayUtil.remove(data, path, predicate);
+        } else if (operateType === ARRAY_OPERATE_TYPE.REPLACE) {
+          ArrayUtil.replace(data, path, value);
+        } else if (operateType === ARRAY_OPERATE_TYPE.UPDATE) {
+          ArrayUtil.update(
+            {
+              data,
+              path,
+              value,
+              isPatch: onlySetPatch,
+            },
+            predicate,
+          );
+        }
+      }
+      return setData({
+        [name]: cloneDeep(data![name]),
+      });
+    } catch (error) {
+      return Promise.reject(error as Error);
+    }
+  };
+
+  // 清空数据源
+  const cleanDataSource = (name: string) => {
+    const newData = initialData[name];
+    if (Array.isArray(newData)) {
+      return [];
+    }
+    if (isPlainObject(newData)) {
+      return {};
+    }
+    return undefined;
+  };
+
+  /**
+   * 重置数据源
+   */
+  const resetDataSource = (name: string) => {
+    /**
+     * 数据源名字不存在，无需重置数据源
+     */
+    if (!name) return Promise.resolve(null);
+    return setData({
+      [name]: cleanDataSource(name),
+    });
+  };
+
+  /**
+   * 刷新自定义数据源
+   */
+  const reloadCustomDataSource = (name: string, params?: any) =>
+    setData({
+      [name]: params,
+    });
+
+  /**
+   * 刷新对象数据源
+   */
+  const reloadObjectDataSource = (
+    name: string,
+    url: string,
+    options: any,
+    params: any,
+  ) => {
+    setLoading(true);
+    return fetchQueryObject(url, {
+      ...options,
+      attrs: params,
+    })
+      .then((res) => {
+        setData({
+          [name]: res,
+        });
+        const snapShot = cloneDeep(res);
+        setDataSnapshot({
+          [name]: snapShot,
+          [\`\${name}Filter\`]: params,
+        });
+        return res;
+      })
+      .catch(console.log)
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  /**
+   * 刷新服务数据源
+   */
+  const reloadServiceDataSource = (name: string, service: any, params: any) => {
+    setLoading(true);
+    return fetchQueryService(service, params)
+      .then((res) => {
+        setData({
+          [name]: res,
+        });
+        const snapShot = cloneDeep(res);
+        setDataSnapshot({
+          [name]: snapShot,
+          [\`\${name}Filter\`]: params,
+        });
+        return res;
+      })
+      .catch(console.log)
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  return {
+    data,
+    updateData,
+    resetDataSource,
+    reloadCustomDataSource,
+    loading,
+    dataSnapshot: dataSnapshotRef.current,
+    reloadServiceDataSource,
+    reloadObjectDataSource,
+    dataReadyComplete,
+  };
+};
+export default useDataSource;
+",
+                  "ext": "ts",
+                  "name": "useDataSource",
+                  "options": undefined,
+                },
+                Object {
+                  "content": "import { useEffect, useState, useMemo, useRef } from 'react';
+import { useModel } from 'alita';
+interface ContextOptions {
+  urlParam?: Record<string, any>;
+  routerData?: Record<string, any>;
+  state?: Record<string, any>;
+  lcdpApi?: any;
+}
+const useGlobalData = (context: ContextOptions) => {
+  // 数据源是否准备完成
+  const [globalDataReadyComplete, setDataReadyComplete] = useState(false);
+  const { n, nFilter, updateNModel, reloadNModel, resetNModel, initialNModel } =
+    useModel('useN');
+  const globalDataRef = useRef<{
+    n: typeof n;
+    nFilter: typeof nFilter;
+  }>({
+    n,
+    nFilter,
+  });
+  const globalData = useMemo(() => {
+    Object.assign(globalDataRef.current, {
+      n,
+      nFilter,
+    });
+    return globalDataRef.current;
+  }, [n, nFilter]);
+  useEffect(() => {
+    Promise.all([initialNModel(context)]).finally(() => {
+      setDataReadyComplete(true);
+    });
+  }, []);
+  return {
+    globalDataReadyComplete,
+    globalData,
+    updateNModel,
+    reloadNModel,
+    resetNModel,
+  };
+};
+export default useGlobalData;
+",
+                  "ext": "ts",
+                  "name": "useGlobalData",
+                  "options": undefined,
+                },
+              ],
+              "name": "/Index",
+            },
+          ],
+          "files": Array [],
+          "name": "pages",
+        },
+        Object {
+          "dirs": Array [],
+          "files": Array [
+            Object {
+              "content": "import ModalView from '@/utils/ModalManager';
+import { Context, RefsManager } from '@/utils/Context/context';
+import React, { useEffect, useRef, useState } from 'react';
+import { api } from '@/services/api';
+import { Spin } from '@/utils/messageApi';
+import { attrSpecPage, handleAttrDataMap } from '@/utils/attrSpecPage';
+import { useKeepOutlets } from 'alita';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
+const Layout = (props: any) => {
+  const ModalManagerRef = useRef<any>(); // 页面弹窗的所有实例
+  const refs = new RefsManager();
+  const element = useKeepOutlets();
+  const [isLoding, setIsLoding] = useState(true);
+  const attrDataMap = useRef<Record<string, any>>({}).current;
+  const getLocale = (_: string, t: string) => t || _;
+  useEffect(() => {
+    const reqNbrKeys = attrSpecPage;
+    const params = {
+      attrCodes: reqNbrKeys,
+    };
+    api
+      .batchGetAppStaticAttr(params)
+      .then((res: any) => {
+        if (res) {
+          reqNbrKeys?.forEach((key: string) => {
+            const list = res?.[key];
+            attrDataMap[key] = handleAttrDataMap(list);
+          });
+        }
+      })
+      .finally(() => {
+        setIsLoding(false);
+      });
+  }, []);
+  if (isLoding === true) {
+    return <Spin spinning />;
+  }
+  return (
+    <ConfigProvider locale={zhCN}>
+      <Context.Provider
+        value={{
+          ModalManagerRef,
+          refs,
+          attrDataMap,
+        }}
+      >
+        {element}
+        <ModalView getLocale={getLocale as any} ref={ModalManagerRef} />
+      </Context.Provider>
+    </ConfigProvider>
+  );
+};
+export default Layout;
+",
+              "ext": "tsx",
+              "name": "index",
+              "options": undefined,
+            },
+          ],
+          "name": "layouts",
+        },
+        Object {
+          "dirs": Array [],
+          "files": Array [
+            Object {
+              "content": "
+        import { useState } from \\"react\\";
+        import cloneDeep from 'lodash/cloneDeep';
+        import { fetchQueryObject, fetchQueryService } from '@/utils/dataSource';
+        import ArrayUtil from '@/utils/array';
+        import useSetState from '@/hooks/useSetState';
+        import { ARRAY_OPERATE_TYPE } from '@/constants';
+
+        export type NModel = {
+          
+      /**
+      * 过滤字段: nothing
+      */
+      nFilter?: {
+      orderByAsc?: string; orderByDesc?: string
+      }
+      /**
+      * nothing
+      */
+      n?: { /**
+      * 属性
+      */
+      a?: string
+      }
+      
+
+          [key: string]: any;
+        };
+
+        interface UpdatenModelOptions {
+          /**
+           * 全局数据源 
+           */
+          globalData: Record<string, any>;
+
+          /**
+           * 更新数据源的路径
+           */
+          path: string;
+        
+          /**
+           * 目标值
+           */
+          value?: any;
+        
+          /**
+           * 需要过滤的变量
+           */
+          predicate?: (item: any, index: number) => boolean;
+        
+          /**
+           * 操作类型 数组时需要
+           */
+          operateType?: 0 | 1 | 2 | 3;
+        
+          /**
+           * 数组或者对象类型
+           */
+          type: 'object' | 'array';
+        
+          /**
+           * 是否局部赋值
+           */
+          onlySetPatch: boolean;
+        }
+
+        export interface ContextOptions {
+          urlParam?: Record<string, any>;
+          routerData?: Record<string, any>;
+          state?: Record<string, any>;
+          lcdpApi?: any;
+        }
+
+        const useN = () => {
+
+          const initialData:  Partial<NModel> = {
+            
+      
+
+      /**
+     * 自定义数据源: n
+     */
+    nFilter: {},
+    n: {}
+    
+
+  ,
+          };
+
+          const [model, setModel] = useSetState<NModel>(initialData);
+          const [nReadyComplete, setReadyComplete] = useState(false);
+          const [nLoading, setLoading] = useState(false);
+          const [{ urlParam, routerData, state, lcdpApi }, setContext] = useState<ContextOptions>({});
+
+          const initialModel = (context: ContextOptions) => {
+            const { urlParam, routerData, state, lcdpApi } = context;
+            return Promise.resolve(initialData?.n)
+            
+            
+          }
+
+          /**
+           * 初始化数据源
+           */
+          const initialNModel = (context: ContextOptions) => {
+            setContext(context);
+            if (nReadyComplete) return Promise.resolve(model);
+
+            const newData: NModel = cloneDeep(initialData);
+            setLoading(true);
+           return initialModel(context).catch((err) => {
+              console.log('全局数据源n初始化失败');
+              console.log(err);
+            }).then(res => {
+              setModel({
+                n: res,
+              })
+            })
+            .finally(() => {
+              setLoading(false);
+              setReadyComplete(true);
+            });
+          };
+
+          // 更新数据源
+          const updateNModel = ({
+            globalData,
+            path,
+            value,
+            type,
+            operateType,
+            predicate = () => false,
+            onlySetPatch = true
+          }: UpdatenModelOptions) => {
+            try {
+              // 对象类型 直接赋值
+              if (type === 'object') {
+                ArrayUtil.updateObject({
+                  data: model,
+                  path,
+                  value,
+                  isPatch: onlySetPatch,
+                });
+              } else if (type === 'array') {
+                if (operateType === ARRAY_OPERATE_TYPE.ADD) {
+                  ArrayUtil.push(model, path, value);
+                } else if (operateType === ARRAY_OPERATE_TYPE.DELETE) {
+                  ArrayUtil.remove(model, path, predicate);
+                } else if (operateType === ARRAY_OPERATE_TYPE.REPLACE) {
+                  ArrayUtil.replace(n, path, value);
+                } else if (operateType === ARRAY_OPERATE_TYPE.UPDATE) {
+                  ArrayUtil.update(
+                    {
+                      data: n,
+                      path,
+                      value,
+                      isPatch: onlySetPatch,
+                    },
+                    predicate,
+                  );
+                }
+              }
+
+              const nextModel = cloneDeep(model?.n);
+              globalData.n = nextModel;
+              return setModel({
+                n: nextModel,
+              }).then(() => globalData);
+
+            } catch (error) {
+              return Promise.reject(error as Error);
+            }
+          }
+
+          
+            // 刷新全局数据源 
+            const reloadNModel = (params?: any, globalData: Record<string, any>) => {
+              globalData.n = params;
+              setModel({
+                n: params;
+              });
+            }
+          
+          
+          
+          
+
+          // 重置数据源
+          const resetNModel = (globalData: Record<string, any>) => {
+            const nextModel: any = {};
+            globalData.n = nextModel;
+            return setModel({
+              n: nextModel,
+            }).then(() => globalData);
+          };
+
+          return {
+            nFilter: model?.nFilter,
+            n: model?.n,
+            nReadyComplete,
+            nLoading,
+            initialNModel,
+            resetNModel,
+            updateNModel,
+            reloadNModel,
+          }
+        };
+
+        export default useN;
+      
+",
+              "ext": "ts",
+              "name": "useN",
+              "options": undefined,
+            },
+          ],
+          "name": "models",
+        },
+      ],
+      "files": Array [
+        Object {
+          "content": "export const PLATFORM: 'pc' | 'h5' = 'pc';
+export const APPID = '1118378899259215872';
+
+// 数组操作类型 operateType
+export const ARRAY_OPERATE_TYPE = {
+  ADD: 0,
+  // 新增元素
+  UPDATE: 1,
+  // 更新元素
+  DELETE: 2,
+  // 删除元素
+  REPLACE: 3, // 替换数据
+} as const;
+",
+          "ext": "ts",
+          "name": "constants",
+          "options": undefined,
+        },
+        Object {
+          "content": "// 直接引入 pcfactory 打包好的 css，不需要主工程再单独构建了
+// TODO: 组件移到项目中，这个文件从哪来？
+// import '@lingxiteam/pcfactory/dist/index.component.min.css';
+
+import security from './utils/Security';
+security.httpEncryption.start({
+  // @ts-ignore
+  mode: '1.0',
+});
+",
+          "ext": "ts",
+          "name": "global",
+          "options": undefined,
+        },
+        Object {
+          "content": "*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.page {
+  height: 100%;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    -moz-print-color-adjust: exact;
+    -ms-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+* {
+  /* firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #e5e5e5 transparent;
+  /* ie11 */
+  scrollbar-face-color: #e5e5e5;
+  scrollbar-arrow-color: #ffffff;
+  scrollbar-shadow-color: #e5e5e5;
+}
+
+// chrome safari
+::-webkit-scrollbar {
+  background: inherit;
+  width: 4px !important;
+  height: 4px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: #e5e5e5;
+}
+
+::-webkit-scrollbar-track {
+  background: inherit;
+}
+.ued-modal-wrap {
+  .pcfactory-modal-body {
+    padding: 0;
+  }
+}
+
+.ued-drawer-wrap {
+  .pcfactory-drawer-header {
+    height: 48px;
+    padding: 16px 20px;
+
+    .pcfactory-drawer-title {
+      color: #1c242e;
+    }
+  }
+
+  .pcfactory-drawer-header-title > button {
+    position: absolute;
+    right: 0;
+  }
+  .pcfactory-drawer-body {
+    padding: 0;
+  }
+  .pcfactory-drawer-footer {
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 56px;
+    button {
+      margin-left: 8px;
+    }
+  }
+}
+",
+          "ext": "less",
+          "name": "global",
+          "options": undefined,
+        },
+        Object {
+          "content": "",
+          "ext": "css",
+          "name": "overrides",
+          "options": undefined,
+        },
+        Object {
+          "content": "import { defaultResponense } from '@/utils/service/defaultResponseInterceptor';
+import type {
+  RequestInterceptor,
+  ResponseInterceptor,
+  Context,
+  RequestConfig,
+} from 'alita';
+import user from './utils/User';
+export function getKeepAlive(keepalive: any) {
+  return [];
+}
+
+// 请求中间件 就是发起请求和响应之后需要统一操作数据就写这
+const middleware = async (ctx: Context, next: () => void) => {
+  // 可以在这写一些请求前做的事情 操作ctx.req
+  await next();
+};
+export const request: RequestConfig = {
+  timeout: 300000,
+  middlewares: [middleware],
+  prefix: 'server/',
+  method: 'get',
+  headers: {
+    'Zsmart-Locale': 'zh-CN',
+  },
+  errorHandler: (error) => {
+    console.error('请求服务失败：', error);
+  },
+  requestInterceptors: [],
+  responseInterceptors: [defaultResponense],
+};
+
+/**
+ * 渲染前的钩子
+ */
+const renderBefore = async () => {
+  await user.init();
+};
+export async function render(oldRender: () => void) {
+  renderBefore().finally(() => {
+    oldRender();
+  });
+}
+",
+          "ext": "tsx",
+          "name": "app",
+          "options": undefined,
+        },
+      ],
+      "name": "src",
+    },
+    Object {
+      "dirs": Array [],
+      "files": Array [
+        Object {
+          "content": "const BASE_URL = 'http://172.21.72.205:10010/';
+const DEV_URL = process.env.LCDP_SERVICE_URL || \`\${BASE_URL}lcdp-app/server/\`;
+export default {
+  '/portal': {
+    target: BASE_URL,
+    changeOrigin: true,
+  },
+  '/server': {
+    target: DEV_URL,
+    changeOrigin: true,
+    pathRewrite: {
+      '^/server': '',
+    },
+  },
+  '/app': {
+    target: DEV_URL,
+    changeOrigin: true,
+    // pathRewrite: { '^/app': '' },
+  },
+  '/login': {
+    target: DEV_URL,
+    changeOrigin: true,
+    // pathRewrite: { '^/login': '' },
+  },
+  '/lcdp': {
+    target: \`\${DEV_URL}\`,
+    changeOrigin: true,
+  },
+  '/img': {
+    target: BASE_URL,
+    changeOrigin: true,
+    pathRewrite: {
+      '^/img': '',
+    },
+  },
+  '/engine': {
+    target: BASE_URL,
+    changeOrigin: true,
+    pathRewrite: {
+      '^/engine': 'engine',
+    },
+  },
+};
+",
+          "ext": "ts",
+          "name": "proxy",
+          "options": undefined,
+        },
+        Object {
+          "content": "import { defineConfig } from 'alita';
+import proxy from './proxy';
+export default defineConfig({
+  appType: 'pc',
+  mfsu: false,
+  hash: false,
+  npmClient: 'yarn',
+  proxy,
+  antd: {
+    configProvider: {
+      prefixCls: 'pcfactory',
+    },
+  },
+  autoprefixer: {
+    remove: false,
+  },
+  retainLog: process.env.COMPRESS === 'none',
+  publicPath: process.env.PUBLIC_PATH || './',
+  outputPath: 'build',
+  keepalive: [],
+  // info 文件配置
+  scripts: [
+    {
+      src: 'server/app/env/info.js',
+    },
+  ],
+  links: [
+    {
+      rel: 'icon',
+      href: './favicon.ico',
+    },
+  ],
+});
+",
+          "ext": "ts",
+          "name": "config",
+          "options": undefined,
+        },
+      ],
+      "name": "config",
+    },
+    Object {
+      "dirs": Array [],
+      "files": Array [
+        Object {
+          "content": "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",
+          "ext": "ico",
+          "name": "favicon",
+          "options": Object {
+            "base64": true,
+          },
+        },
+      ],
+      "name": "public",
+    },
+  ],
+  "files": Array [
+    Object {
+      "content": "# 请求地址前缀
+REACT_APP_REQUEST_PREFIX=../server/
+
+# http加密 1.0(参数签名)  2.0(rsa加密)  3.0(aes加密)  4.0(des 加密)
+LCDP_HTTP_SECURITY_MODE=1.0
+
+# TODO 以下变量最好迁移到 .env.development
+# 大吉大利端口号
+PORT=8888
+
+# 以下配置请在.env.local文件里设置
+#环境地址
+# LCDP_SERVICE_URL=http://172.21.72.205:10010/lcdp-app/server/
+ ",
+      "ext": "",
+      "name": ".env",
+      "options": undefined,
+    },
+    Object {
+      "content": "{
+  \\"name\\": \\"app-pc\\",
+  \\"private\\": true,
+  \\"version\\": \\"1.0.0\\",
+  \\"scripts\\": {
+    \\"build\\": \\"alita build\\",
+    \\"dev\\": \\"alita dev\\",
+    \\"format\\": \\"prettier --write .\\",
+    \\"plugin\\": \\"alita plugin list\\",
+    \\"postinstall\\": \\"\\",
+    \\"start\\": \\"alita dev\\"
+  },
+  \\"dependencies\\": {
+    \\"react\\": \\"^17.0.2\\",
+    \\"react-dom\\": \\"^17.0.2\\",
+    \\"@alita/flow\\": \\"*\\",
+    \\"@lingxiteam/types\\": \\"3.3.1-alpha.14\\",
+    \\"alita\\": \\"3.4.0\\",
+    \\"@lingxiteam/charts-common\\": \\"^3.7.1-alpha.10\\",
+    \\"@lingxiteam/lcdp-ueditor-react\\": \\"^1.0.0-alpha.8\\",
+    \\"@lingxiteam/load-framework\\": \\"0.2.1\\",
+    \\"@lingxiteam/richtext\\": \\"0.5.1\\",
+    \\"@paciolan/remote-component\\": \\"^2.12.1\\",
+    \\"classnames\\": \\"^2.2.6\\",
+    \\"echarts\\": \\"^5.1.2\\",
+    \\"lcdp-message\\": \\"0.1.9\\",
+    \\"qr-code-with-logo\\": \\"1.1.0\\",
+    \\"rc-tween-one\\": \\"3.0.6\\",
+    \\"react-player\\": \\"2.11.0\\",
+    \\"react-quill\\": \\"^2.0.0\\",
+    \\"react-resizable\\": \\"^3.0.4\\",
+    \\"react-soundplayer\\": \\"^1.0.5\\",
+    \\"size-sensor\\": \\" ^1.0.1\\",
+    \\"antd\\": \\"4.24.13\\",
+    \\"lodash\\": \\"^4.17.21\\",
+    \\"qs\\": \\"^6.11.2\\",
+    \\"copy-to-clipboard\\": \\"^3.3.1\\",
+    \\"@lingxiteam/icons\\": \\"0.0.3\\",
+    \\"crypto-js\\": \\"^4.2.0\\",
+    \\"jsencrypt\\": \\"^3.3.2\\",
+    \\"merge\\": \\"^2.1.1\\",
+    \\"uuid\\": \\"^9.0.1\\",
+    \\"dayjs\\": \\"1.11.3\\",
+    \\"@ant-design/icons\\": \\"^4.2.2\\",
+    \\"react-loadable\\": \\"^5.5.0\\",
+    \\"react-pdf\\": \\"4.2.0\\",
+    \\"moment\\": \\"^2.30.1\\",
+    \\"es6-proxy-polyfill\\": \\"^2.1.1\\"
+  },
+  \\"devDependencies\\": {
+    \\"@lingxiteam/ebe-utils\\": \\"latest\\",
+    \\"@types/react\\": \\"^18.0.15\\",
+    \\"@types/react-dom\\": \\"^18.0.6\\",
+    \\"cross-env\\": \\"^6.0.3\\",
+    \\"prettier\\": \\"^2\\",
+    \\"ts-node\\": \\"^10\\",
+    \\"typescript\\": \\"^4\\",
+    \\"@types/qs\\": \\"^6.9.6\\",
+    \\"@types/lodash\\": \\"^4.14.162\\"
+  },
+  \\"engines\\": {
+    \\"node\\": \\">=14.0.1\\"
+  }
+}
+",
+      "ext": "json",
+      "name": "package",
+      "options": undefined,
+    },
+  ],
+  "name": ".",
 }
 `;

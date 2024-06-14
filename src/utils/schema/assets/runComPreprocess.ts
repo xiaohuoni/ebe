@@ -13,9 +13,9 @@ class runComPreprocess {
 
   opts?: RunComPreprocessOptions;
 
-  updateOptions(opts: RunComPreprocessOptions) {
-    this.opts = opts;
-  }
+  // updateOptions(opts: RunComPreprocessOptions) {
+  //   this.opts = opts;
+  // }
 
   /**
    * 注册平台指令

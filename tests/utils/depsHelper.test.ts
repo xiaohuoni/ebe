@@ -1,4 +1,4 @@
-import { getImportFrom } from '../../../src/utils/depsHelper';
+import { getImportFrom } from '../../src/utils/depsHelper';
 
 describe('getImportFrom', () => {
   test('should return the correct IDependency object', () => {
