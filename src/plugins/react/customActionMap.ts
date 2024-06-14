@@ -108,10 +108,6 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       ...pre,
     };
 
-    if (!next.contextData.options) {
-      console.log(next.contextData.options, '===sl');
-    }
-
     const ir = next.ir as IContainerInfo;
     const isModal =
       ir.containerType === 'MobileModal' ||
@@ -281,18 +277,19 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           PAGE_TOOL_CHUNK_NAME.PageTooL,
         ],
       });
-    } else {
-      next.chunks.push({
-        type: ChunkType.STRING,
-        fileType: cfg.fileType,
-        name: CUSTOM_ACTION_CHUNK_NAME.Map,
-        subModule: 'customAction',
-        content: `const useCustomAction = (context: any) => { return {}; }\n export default useCustomAction;`,
-        linkAfter: [
-          ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
-        ],
-      });
     }
+    // else {
+    //   next.chunks.push({
+    //     type: ChunkType.STRING,
+    //     fileType: cfg.fileType,
+    //     name: CUSTOM_ACTION_CHUNK_NAME.Map,
+    //     subModule: 'customAction',
+    //     content: `const useCustomAction = (context: any) => { return {}; }\n export default useCustomAction;`,
+    //     linkAfter: [
+    //       ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
+    //     ],
+    //   });
+    // }
     return next;
   };
   return plugin;
