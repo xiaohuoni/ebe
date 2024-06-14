@@ -39,7 +39,7 @@ import {
   findApplication,
 } from '@/services/api';
 import { useEffect } from 'react';
-import { codeCreate, init } from 'ebe-utils';
+import { codeCreate, init } from '@lingxiteam/ebe-utils';
 
 const Page = () => {
   useEffect(() => {

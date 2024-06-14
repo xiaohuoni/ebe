@@ -57,7 +57,7 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
       },
       devDependencies: {
         // TODO: 现状最新的，如果有版本管控，需要建立关联关系
-        'ebe-utils': 'latest',
+        '@lingxiteam/ebe-utils': 'latest',
         '@types/react': '^18.0.15',
         '@types/react-dom': '^18.0.6',
         'cross-env': '^6.0.3',

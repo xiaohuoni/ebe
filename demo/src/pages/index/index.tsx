@@ -11,9 +11,9 @@ import {
   queryFrontendDatasourcePage,
   queryFrontendHookList,
 } from '@/services/api';
+import { generateCode, publishers } from '@lingxiteam/ebe';
+import { fetchData, init, setWorkerJsUrl } from '@lingxiteam/ebe-utils';
 import { Button, Form, Input, message, Progress, Switch } from 'antd';
-import { generateCode, publishers } from 'ebe';
-import { fetchData, init, setWorkerJsUrl } from 'ebe-utils';
 import { useEffect, useState } from 'react';
 
 const Item = Form.Item;

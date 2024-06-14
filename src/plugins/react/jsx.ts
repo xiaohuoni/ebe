@@ -80,7 +80,10 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       }
       if (isBrawer) {
         mdProps.placement = pageInst.placement || 'right';
-        mdProps.height=pageInst.width === 'custom' ? `${pageInst.customHeight}px` || 'auto': `${pageInst.height}px`;
+        mdProps.height =
+          pageInst.width === 'custom'
+            ? `${pageInst.customHeight}px` || 'auto'
+            : `${pageInst.height}px`;
       }
       if (pageInst.footer === 0) {
         mdProps.footer = null;

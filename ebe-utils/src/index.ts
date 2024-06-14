@@ -1,5 +1,5 @@
-import { generateCode, init as ebeInit, publishers } from 'ebe';
-import { type ResultDir } from 'ebe/types/core';
+import { generateCode, init as ebeInit, publishers } from '@lingxiteam/ebe';
+import { type ResultDir } from '@lingxiteam/ebe/types/core';
 import { lingxiDslRules } from './constants';
 import { IRulePrams, IRulesType } from './types';
 

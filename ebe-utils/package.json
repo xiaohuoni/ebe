@@ -1,6 +1,6 @@
 {
-  "name": "ebe-utils",
-  "version": "0.1.18",
+  "name": "@lingxiteam/ebe-utils",
+  "version": "0.0.1",
   "description": "",
   "keywords": [],
   "author": "",
@@ -21,8 +21,11 @@
     "@babel/parser": "^7.12.12",
     "@babel/traverse": "^7.12.12",
     "@babel/types": "^7.12.12",
+    "@lingxiteam/ebe": "workspace:*",
     "cac": "^6.7.14",
-    "ebe": "workspace:*",
     "fs-extra": "9.x"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

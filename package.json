@@ -1,6 +1,6 @@
 {
-  "name": "ebe",
-  "version": "0.1.15",
+  "name": "@lingxiteam/ebe",
+  "version": "0.0.1",
   "description": "",
   "keywords": [],
   "license": "ISC",
@@ -28,7 +28,9 @@
     "build:worker": "esno build-standalone-worker.js",
     "dev": "father dev",
     "format": "prettier --write .",
+    "lerna": "lerna version --exact --no-commit-hooks --no-git-tag-version --no-push --loglevel error",
     "prepare": "husky",
+    "release": "npm run lerna && npm run build && npm publish && npx cnpm sync @lingxiteam/ebe && cd ebe-utils && pnpm publish --no-git-checks && npx cnpm sync @lingxiteam/ebe-utils && exit 1",
     "req": "esno req.ts",
     "sync": "esno scripts/syncFactoryConfig.ts",
     "test": "jest",
@@ -100,6 +102,7 @@
     "husky": "^9.0.11",
     "jest": "^26.6.3",
     "jest-util": "^27.4.2",
+    "lerna": "^8.1.3",
     "prettier-plugin-organize-imports": "^3.2.4",
     "prettier-plugin-packagejson": "^2.5.0",
     "react": "17.0.2",
@@ -112,5 +115,8 @@
     "tsconfig-paths": "^3.9.0",
     "typescript": "4.x",
     "yargs-parser": "^20.2.9"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

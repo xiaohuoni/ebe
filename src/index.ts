@@ -10,8 +10,8 @@ declare const __PACKAGE_VERSION__: string;
 
 const packageVersion = __PACKAGE_VERSION__ ?? 'latest';
 
-// export const DEFAULT_WORKER_JS = `https://cdn.jsdelivr.net/npm/ebe@${packageVersion}/dist/worker.js`;
-export const DEFAULT_WORKER_JS = `https://cdn.jsdelivr.net/npm/ebe@latest/dist/ebeWorker.js`;
+// export const DEFAULT_WORKER_JS = `https://cdn.jsdelivr.net/npm/@lingxiteam/ebe@${packageVersion}/dist/worker.js`;
+export const DEFAULT_WORKER_JS = `https://cdn.jsdelivr.net/npm/@lingxiteam/ebe@latest/dist/ebeWorker.js`;
 
 export const DEFAULT_TIMEOUT_IN_MS = 60 * 10000;
 

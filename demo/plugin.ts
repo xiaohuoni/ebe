@@ -8,7 +8,7 @@ import archiver from 'archiver';
 // @ts-ignore
 import { crossSpawn, fsExtra } from '@umijs/utils';
 // @ts-ignore
-// import { publishers, solutions } from 'ebe';
+// import { publishers, solutions } from '@lingxiteam/ebe';
 import * as child_process from 'child_process';
 import { existsSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
@@ -35,7 +35,7 @@ async function spawnSync(
   });
 }
 const generateZip = async ({ options, pages, appId, outputPath }) => {
-  const ebe = require('ebe');
+  const ebe = require('@lingxiteam/ebe');
   const projectBuilder = ebe.solutions?.alita({ options });
   const project = await projectBuilder.generateProject(
     pages, // 编排搭建出来的 schema

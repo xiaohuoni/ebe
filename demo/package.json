@@ -24,6 +24,8 @@
   "dependencies": {
     "@alita/flow": "^3.1.1",
     "@lingxiteam/assets": "3.3.1-alpha.13",
+    "@lingxiteam/ebe": "workspace:*",
+    "@lingxiteam/ebe-utils": "workspace:*",
     "@monaco-editor/react": "^4.6.0",
     "alita": "^3.2.27",
     "antd": "^5.11.1",
@@ -31,8 +33,6 @@
     "archiver": "^6.0.1",
     "body-parser": "^1.20.2",
     "compression": "^1.7.4",
-    "ebe": "workspace:*",
-    "ebe-utils": "workspace:*",
     "es6-proxy-polyfill": "^2.1.1",
     "express": "^4.19.2",
     "file-saver": "^2.0.5",
