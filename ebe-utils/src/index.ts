@@ -414,7 +414,8 @@ export const fetchData = async ({
     ),
   );
   const busiCompMapping: any = {};
-  const busiPages = busiData.map((i, index) => {
+  // 过滤为空
+  const busiPages = busiData.filter(Boolean).map((i, index) => {
     const busiData = JSON.parse(i?.busiCompVersion?.sourceCodeJson);
     busiData.busiCompId = i?.busiCompId;
     busiCompMapping[itemLists[index]] = busiData.id;
