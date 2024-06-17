@@ -31,6 +31,7 @@ Object {
       destroyOnClose
       className='ued-drawer-wrap'
       
+      
     >
 <Drawer><View backgroundType={{\\"type\\": \\"cleanColor\\",
 \\"color\\": \\"rgba(255, 255, 255, 1)\\"}} $$componentItem={{id: 'View_015712_1',uid: \\"View_015712_1\\"}} className=\\"View_View_015712_1\\" visible style={{\\"minHeight\\": \\"100%\\",
@@ -448,14 +449,8 @@ Object {
       open={props.visible}
       destroyOnClose
       className='ued-modal-wrap'
-       onOk={onOk}
-      onCancel={() => {
-        // onCancel为内置取消处理函数，用于关闭弹窗
-        // @ts-ignore
-        if (onCancel !== false && onCancel) {
-          onCancel();
-        }
-      }}
+      
+      
     >
 <div
 style={

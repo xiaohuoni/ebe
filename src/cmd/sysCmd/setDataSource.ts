@@ -237,11 +237,16 @@ export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
 
   if (['objectArray', 'array'].includes(fieldType)) {
     updateParams.operateType = operateType;
-    updateParams.path = getPath([...path, allPathMap[attrId]?.code]);
+    updateParams.path = getPath([...path]);
     if (
       [ARRAY_OPERATE_TYPE.UPDATE, ARRAY_OPERATE_TYPE.ADD].includes(operateType)
     ) {
-      const node = findNode(dSSetVals, attrId);
+      let node = findNode(dSSetVals, attrId);
+      // 再去根节点查一下是否存在
+      if (attrId === `${dsConfig.id}`) {
+        node = { children: options.dataSourceSetValue, code: dataSourceName };
+      }
+
       if (!node) {
         return `// FIXME: 更新数据源出错! ${dataSourceName}: 不存在的节点id[${attrId}]
           console.warn('不存在的节点id[${attrId}]');

@@ -150,7 +150,7 @@ export const parseDSSetVal = (options: any) => {
       });
     }
   }
-  return dataSourceSetValue;
+  return dataSourceSetValue || [];
 };
 
 export const transformValueDefined = (
@@ -198,7 +198,10 @@ export const transformValueDefined = (
       code: dataSourceName,
     },
     ({ item }, stop) => {
-      if (item?.value?.type?.length) {
+      if (
+        item?.value?.type?.length &&
+        (item?.value?.type.length > 1 || item?.value?.code)
+      ) {
         if (item?.[getType(item)] === 'object') {
           stop();
         }

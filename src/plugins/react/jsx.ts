@@ -45,6 +45,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       ...next.contextData,
       ir,
     };
+
     const generator = createReactNodeGenerator(generatorPlugins);
 
     const scope: IScope = Scope.createRootScope();
@@ -53,6 +54,22 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     const isBrawer = ir.pageContainerType === 'Drawer';
     if (isModal || isBrawer) {
       next.ir.deps.push(getImportFrom('antd', isModal ? 'Modal' : 'Drawer'));
+
+      const shouldUsedOnOk = () => {
+        if (!isModal || !ir.events?.onOk) return '';
+        return `onOk={onOk}`;
+      };
+
+      const shouldUsedOnCancel = () => {
+        if (!isModal || !ir.events?.onOk) return '';
+        return `onCancel={() => {
+          // onCancel为内置取消处理函数，用于关闭弹窗
+          // @ts-ignore
+          if (onCancel !== false && onCancel) {
+            onCancel();
+          }
+        }}`;
+      };
       // {
       //   path: '/tanchuang',
       //   fileName: '/tanchuang',
@@ -121,18 +138,8 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       open={props.visible}
       destroyOnClose
       className='${isModal ? 'ued-modal-wrap' : 'ued-drawer-wrap'}'
-      ${
-        isModal
-          ? ` onOk={onOk}
-      onCancel={() => {
-        // onCancel为内置取消处理函数，用于关闭弹窗
-        // @ts-ignore
-        if (onCancel !== false && onCancel) {
-          onCancel();
-        }
-      }}`
-          : ''
-      }
+      ${shouldUsedOnOk()}
+      ${shouldUsedOnCancel()}
     >
 ${
   isModal

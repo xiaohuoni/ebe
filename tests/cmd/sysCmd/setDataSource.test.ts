@@ -40,7 +40,7 @@ describe('getSetDataSource', () => {
     const expectedCode = `
   // 更新数据源 myDataSource
   updateData({
-    path: "myDataSource.myDataSource",value: {},operateType: update,type: "array",onlySetPatch: true,name: "myDataSource"
+    path: "myDataSource",value: {},operateType: update,type: "array",onlySetPatch: true,name: "myDataSource"
   })`;
 
     const result = getSetDataSource(generateParams as any);

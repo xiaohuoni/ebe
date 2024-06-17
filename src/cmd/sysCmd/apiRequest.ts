@@ -22,7 +22,11 @@ export function apiRequest(generateParams: CMDGeneratorPrames): string {
   let topCode = '';
 
   if (root && root.isRoot) {
-    if (Array.isArray(root.value?.type) && root.value.type.length > 0) {
+    if (
+      Array.isArray(root.value?.type) &&
+      ((root.value.type.length === 1 && root.value.code) ||
+        root.value.type.length > 1)
+    ) {
       paramsCode = GetReqParamValues(root.value);
     } else {
       [paramsCode, topCode] = transformValueDefined(root.children, '', false);
