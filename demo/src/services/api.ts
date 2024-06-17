@@ -142,3 +142,17 @@ export async function findApplication(params: any): Promise<any> {
     headers,
   });
 }
+
+// 查询水印
+export async function getWaterMarkByAppId(params: any): Promise<any> {
+  const headers: any = {
+    'Content-Type': 'application/json',
+    'APP-ID': params.appId,
+  };
+
+  return request('/api/lcdp/appPage/getWaterMarkByAppId', {
+    method: 'get',
+    params,
+    headers,
+  });
+}

@@ -195,6 +195,8 @@ export interface LXProjectOptions {
   modalDrawerMap?: any;
   // 转化源码是否包含appId
   transformHasAppId: boolean;
+  // 水印信息
+  waterMark?: Record<string, any>;
 }
 export type PrintUtilPrettier = (data: {
   tag: string;

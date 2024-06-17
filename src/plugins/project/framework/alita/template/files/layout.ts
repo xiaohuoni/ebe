@@ -1,4 +1,5 @@
 import { LXProjectOptions, ResultFile } from '../../../../../../core';
+import { parse2Var } from '../../../../../../core/utils/compositeType';
 import { createResultFile } from '../../../../../../core/utils/resultHelper';
 
 export default function getFile(
@@ -7,6 +8,13 @@ export default function getFile(
   const isMobile = config?.platform === 'h5';
   const transformHasAppId = config?.transformHasAppId;
   const { routerChange } = config?.frontendHookMap;
+  const waterMark = config?.waterMark;
+
+  let unableWaterMark = true;
+  if (!waterMark?.waterMarkInfoResultValue || waterMark?.isEnable === 'F') {
+    unableWaterMark = false;
+  }
+
   const file = createResultFile(
     'index',
     'tsx',
@@ -16,6 +24,7 @@ export default function getFile(
     import { api } from '@/services/api';
     ${transformHasAppId ? `import { APPID } from '@/constants';` : ''}
     import { Spin } from '@/utils/messageApi';
+    import WaterMark from '@/components/WaterMark';
     import { attrSpecPage, handleAttrDataMap } from '@/utils/attrSpecPage';
   ${
     routerChange
@@ -81,6 +90,11 @@ ${routerChange ? `let prePathname = '';` : ''}
           transformHasAppId ? `appId: APPID,` : ''
         } attrDataMap}}>
           {element}
+          ${
+            unableWaterMark
+              ? `<WaterMark config={${parse2Var(waterMark)}} />`
+              : ''
+          }
           <ModalView
             getLocale={getLocale as any}
             ${transformHasAppId ? `appId={APPID}` : ''}

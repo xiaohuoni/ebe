@@ -15,6 +15,7 @@ describe('template files layout', () => {
     import { api } from '@/services/api';
     
     import { Spin } from '@/utils/messageApi';
+    import WaterMark from '@/components/WaterMark';
     import { attrSpecPage, handleAttrDataMap } from '@/utils/attrSpecPage';
     import { useKeepOutlets } from 'alita';
     import { ConfigProvider } from 'antd';
@@ -56,6 +57,7 @@ describe('template files layout', () => {
             value={{ ModalManagerRef, refs, attrDataMap }}
           >
             {element}
+            
             <ModalView
               getLocale={getLocale as any}
               ref={ModalManagerRef}

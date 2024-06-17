@@ -3791,6 +3791,7 @@ const Layout = (props: any) => {
         }}
       >
         {element}
+
         <ModalView getLocale={getLocale as any} ref={ModalManagerRef} />
       </Context.Provider>
     </ConfigProvider>

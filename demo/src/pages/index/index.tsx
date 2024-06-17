@@ -4,6 +4,7 @@ import {
   findBusiCompById,
   findPageInstByVersionId,
   getThemeCss,
+  getWaterMarkByAppId,
   localgenerate,
   qryAttrSpecPage,
   qryPageCompAssetList,
@@ -51,6 +52,7 @@ const Page = () => {
         queryFrontendDatasourcePage,
         queryFrontendHookList,
         findApplication,
+        getWaterMarkByAppId,
       },
       onProgress: (d: any) => {
         setLog(d.log);
