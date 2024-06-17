@@ -1,5 +1,5 @@
-import fixSyntaxError from '../../../src/core/utils/fixSyntaxError';
-import { expectValue } from '../../utils';
+import compile from '../../../../src/core/utils/compile';
+import { expectValue } from '../../../utils';
 
 describe('给代码片段增加操作链', () => {
   test.each([
@@ -14,17 +14,17 @@ describe('给代码片段增加操作链', () => {
     ],
     ['from a[0]() to a?.[0]?.()', { code: 'a[0]()', expected: 'a?.[0]?.()' }],
   ])('%s', (name, { code, expected }) => {
-    expectValue(expected, fixSyntaxError(code));
+    expectValue(expected, compile(code));
   });
 
   test('customSyntaxToJS', () => {
     expectValue(
       'functorsMap?.IF?.(functorsMap?.MAX?.(1,2),1,2)',
-      fixSyntaxError('IF(MAX(1,2),1,2)'),
+      compile('IF(MAX(1,2),1,2)'),
     );
     expectValue(
       'functorsMap?.IF?.(functorsMap?.MAX?.(globalData?.a?.b,2),state?.a,2)',
-      fixSyntaxError('IF(MAX("$globalData.a.b$",2),"$state.a$",2)'),
+      compile('IF(MAX("$globalData.a.b$",2),"$state.a$",2)'),
     );
   });
 
@@ -40,6 +40,6 @@ describe('给代码片段增加操作链', () => {
     ['\'$getValue("bac")$\'', 'getValue?.("bac")'],
     ['\'$getDynamicDataValue("bac")$\'', 'getValue?.("bac")'],
   ])('form %s to %s', (code, expected) => {
-    expectValue(expected, fixSyntaxError(code));
+    expectValue(expected, compile(code));
   });
 });

@@ -2149,16 +2149,6 @@ export default HomePage;
               "dirs": Array [],
               "files": Array [
                 Object {
-                  "content": "const useCustomAction = (context: any) => {
-  return {};
-};
-export default useCustomAction;
-",
-                  "ext": "tsx",
-                  "name": "customAction",
-                  "options": undefined,
-                },
-                Object {
                   "content": "// 注意: 出码模块正在调试
 import React, { useImperativeHandle, useEffect, useRef } from 'react';
 import { api } from '@/services/api';

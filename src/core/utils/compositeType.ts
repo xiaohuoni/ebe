@@ -16,8 +16,8 @@ import {
 } from '../types';
 import { executeFunctionStack } from './aopHelper';
 import { isJSExpressionFn } from './common';
+import compile from './compile';
 import { parseExpressionGetKeywords } from './expressionParser';
-import fixSyntaxError from './fixSyntaxError';
 import { generateExpression, generateFunction } from './jsExpression';
 import { generateJsSlot } from './jsSlot';
 
@@ -136,8 +136,8 @@ export function generateVarString(value: any): string {
   // .replace(/(?<!\d)\.(?!\d)/g, '?.')
   // .replace(/\?\?\./g, '?.');
 
-  // 修正语法错误导致的项目无法正常运行
-  code = fixSyntaxError(code);
+  // 代码编译
+  code = compile(code);
 
   return checkJavaScriptSyntax(code);
 }
