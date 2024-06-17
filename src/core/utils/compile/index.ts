@@ -5,7 +5,10 @@ import semicolon from './plugins/semicolon';
 
 // 插件按照从上到下的顺序执行
 // 简单的字符串处理，可以直接从此添加插件自行处理，防止过多的if分支
-const plugins = [semicolon, patchObjectParenthesis];
+const plugins = [
+  semicolon,
+  patchObjectParenthesis
+];
 
 const { runPluginBegin, runPluginTransformCode, runPluginEnd } =
   parsePlugins(plugins);
