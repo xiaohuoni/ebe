@@ -320,7 +320,7 @@ export const fetchData = async ({
       new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve('');
-        }, 3000);
+        }, 5000);
       }),
     ]);
     console.log('====获取主题成功', themeCss);
