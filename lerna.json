@@ -1,7 +1,4 @@
 {
   "version": "0.0.4",
-  "packages": [
-    "ebe-utils",
-    "."
-  ]
+  "packages": ["ebe-utils", "."]
 }

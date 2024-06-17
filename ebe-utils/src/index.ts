@@ -307,17 +307,19 @@ export const fetchData = async ({
     // 根据 appId 获取当前应用的全部页面
     themeCss = await Promise.race([
       new Promise((resolve, reject) => {
-        services.getThemeCss({
-          appId,
-          terminalType: platform,
-        }).then((res) => {
-          resolve(res);
-        })
+        services
+          .getThemeCss({
+            appId,
+            terminalType: platform,
+          })
+          .then((res) => {
+            resolve(res);
+          });
       }),
       new Promise((resolve, reject) => {
         setTimeout(() => {
-          resolve('')
-        }, 3000)
+          resolve('');
+        }, 3000);
       }),
     ]);
     console.log('====获取主题成功', themeCss);
