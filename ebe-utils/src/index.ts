@@ -301,17 +301,26 @@ export const fetchData = async ({
     appId,
   });
 
-  let themeCss = '';
+  let themeCss: any = '';
   try {
     // 这个接口没有数据就直接等到死，无语！！！
     // 根据 appId 获取当前应用的全部页面
     themeCss = await Promise.race([
-      services.getThemeCss({
-        appId,
-        terminalType: platform,
+      new Promise((resolve, reject) => {
+        services.getThemeCss({
+          appId,
+          terminalType: platform,
+        }).then((res) => {
+          resolve(res);
+        })
       }),
-      new Promise((resolve) => setTimeout(resolve, 3000)),
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('')
+        }, 3000)
+      }),
     ]);
+    console.log('====获取主题成功', themeCss);
   } catch (error) {
     console.error('====获取主题失败', error);
   }
