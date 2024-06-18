@@ -2,7 +2,7 @@ import {
   CLASS_DEFINE_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
-import { getGlobalDataExportNamesCode } from '../../utils/globalDataSource/template';
+import { getGlobalDataExportNamesCode, getGlobalDataVars } from '../../utils/globalDataSource/template';
 
 import { groupDepsByPack } from '../../core/plugins/common/esmodule';
 import {
@@ -26,6 +26,7 @@ import {
   LIFE_CYCLE_CHUNK_NAME,
   PAGE_TOOL_CHUNK_NAME,
 } from './const';
+import { getContextInfo } from '../../utils/pageVarConfig';
 
 /**
  * 导入依赖转成import生命代码
@@ -167,6 +168,8 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       // 通过deps 生成 导入语句
       const importString = depsToImportDeclarationCode(ir.deps);
 
+      const { deconstructionCode } = getContextInfo({ paramsName: 'context', includeVars: getGlobalDataVars(ir.globalDataSource) });
+
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: cfg.fileType,
@@ -186,53 +189,8 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
 
           ${importString}
 
-          const useCustomAction = (context: any) => { const { 
-            api,
-            getValue,
-    setValue,
-    getVisible,
-    setVisible,
-    getRequired,
-    setRequired,
-    callComponentMethod,
-    setDisabled,
-    getDisabled,
-    getFormValue,
-    validateForm,
-    resetForm,
-    clearValue,
-    setFormValues,
-    asyncCallComponentMethod,
-    validateAllForm,
-    getAllFormValues,
-    resetAllForm,
-    saveBlobFile,
-    messageApi,
-    refs,
-             data,
-            updateData,
-            resetDataSource,
-            reloadCustomDataSource,
-            dataSnapshot,
-            reloadServiceDataSource,
-            reloadObjectDataSource,
-            ModalManagerRef,
-            functorsMap,
-            ExpBusiObjModalRef,
-            ExpSQLServiceModalRef,
-            ImportBusiObjModalRef,
-            lcdpApi,
-            urlParam,
-            state,
-            getTriggerRelDataSource,
-            fatherOnOk,
-            closeModal,
-            customActionId,
-            asyncGetValue,
-            transSuperObjectParams,
-            appInfo,
-            ${getGlobalDataExportNamesCode(ir.globalDataSource)}
-           } = context; ` +
+          const useCustomAction = (context: any) => { 
+          ${deconstructionCode}`+
           eventCodeString +
           `\n const customActionMap =  {\n${customFuctionsIds
             .map((i) => i)

@@ -75,11 +75,7 @@ Object {
           lcdpApi,
         });
         const {
-          
-    globalDataReadyComplete,
-    globalData,
-    updateNModel,reloadNModel,resetNModel,
-  
+          updateNModel,reloadNModel,resetNModel,globalDataReadyComplete,globalData,
         } = globalDataSourceTool;
         ",
       "fileType": "tsx",

@@ -52,11 +52,7 @@ Object {
           }, []);
           
           return {
-            
-    globalDataReadyComplete,
-    globalData,
-    updateNModel,reloadNModel,resetNModel,
-  
+            updateNModel,reloadNModel,resetNModel,globalDataReadyComplete,globalData,
           }
         };
         export default useGlobalData;
