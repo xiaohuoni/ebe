@@ -229,7 +229,7 @@ import { ARRAY_OPERATE_TYPE } from '@/constants';
       
 
       /**
-     * 对象数据源: ll
+     * 自定义数据源: ll
      */
     llFilter: {},
     ll: {}

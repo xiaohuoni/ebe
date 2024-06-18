@@ -261,7 +261,7 @@ export const initialDataSource = (dataSource: any[]) => {
     switch (source) {
       case 'custom':
         {
-          const { initialValue } = gData.object(dataItem);
+          const { initialValue } = gData.custom(dataItem);
           initialData.push(`${initialValue},`);
         }
         break;
