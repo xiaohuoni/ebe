@@ -2,7 +2,7 @@ import {
   CLASS_DEFINE_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
-import { getGlobalDataExportNamesCode, getGlobalDataVars } from '../../utils/globalDataSource/template';
+import { getGlobalDataVars } from '../../utils/globalDataSource/template';
 
 import { groupDepsByPack } from '../../core/plugins/common/esmodule';
 import {
@@ -19,6 +19,7 @@ import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
 import { getImportFrom } from '../../utils/depsHelper';
 import { getSaleEventName } from '../../utils/getSaleEventName';
 import { shouldUsedGlobalData } from '../../utils/globalDataSource/general';
+import { getContextInfo } from '../../utils/pageVarConfig';
 import { getEvents } from '../../utils/schema/parseDsl';
 import {
   CUSTOM_ACTION_CHUNK_NAME,
@@ -26,7 +27,6 @@ import {
   LIFE_CYCLE_CHUNK_NAME,
   PAGE_TOOL_CHUNK_NAME,
 } from './const';
-import { getContextInfo } from '../../utils/pageVarConfig';
 
 /**
  * 导入依赖转成import生命代码
@@ -168,7 +168,10 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       // 通过deps 生成 导入语句
       const importString = depsToImportDeclarationCode(ir.deps);
 
-      const { deconstructionCode } = getContextInfo({ paramsName: 'context', includeVars: getGlobalDataVars(ir.globalDataSource) });
+      const { deconstructionCode } = getContextInfo({
+        paramsName: 'context',
+        includeVars: getGlobalDataVars(ir.globalDataSource),
+      });
 
       next.chunks.push({
         type: ChunkType.STRING,
@@ -190,7 +193,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           ${importString}
 
           const useCustomAction = (context: any) => { 
-          ${deconstructionCode}`+
+          ${deconstructionCode}` +
           eventCodeString +
           `\n const customActionMap =  {\n${customFuctionsIds
             .map((i) => i)

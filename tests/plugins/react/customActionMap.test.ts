@@ -17,4 +17,3 @@ describe('plugin react customActionMap', () => {
     expect(result).toMatchSnapshot();
   });
 });
-
