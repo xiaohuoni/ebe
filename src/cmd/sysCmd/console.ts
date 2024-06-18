@@ -39,7 +39,6 @@ export function getConsole({ value }: CMDGeneratorPrames): string {
       if (isJSVar(v)) {
         return generateVarString(v);
       }
-      // TODO: 增加单元测试
       const val = v.replaceAll('`', '\\`').replaceAll('${', '\\${');
       // v可能是data.b + '222';
       // if (v.includes('\n')) {

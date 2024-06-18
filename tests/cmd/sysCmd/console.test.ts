@@ -42,4 +42,21 @@ describe('getConsole', () => {
     const result = getConsole({ value });
     expect(result).toEqual(expected);
   });
+  it('template string in a string', () => {
+    const value = {
+      options: {
+        compId: 'console',
+        compName: 'system',
+        id: '5479363',
+        pageJsonId: '041646',
+        value: ['document.querySelector(`[data-compid=${rowData.id}]`)'],
+      },
+      type: 'log',
+      dataId: '123',
+    };
+    const expected =
+      '// 打印日志\n console.log(`document.querySelector(\\`[data-compid=\\${rowData.id}]\\`)`);';
+    const result = getConsole({ value });
+    expect(result).toEqual(expected);
+  });
 });
