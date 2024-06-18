@@ -170,14 +170,14 @@ export function getSetDataSource(generateParams: CMDGeneratorPrames): string {
   const { isGlobalData } = options;
   // 检查数据源
   const dataSourceName = options?.dataSourceName;
-  if (!dataSourceName) return `//【更新数据源】数据源名称不存在，请检查配置`;
+  if (!dataSourceName) return `//【更新数据源】数据源名称不存在，请检查配置\n`;
 
   const dsConfig = getDataSourceConfig(generateParams, dataSourceName);
   if (!dsConfig) {
     if (isGlobalData) {
-      return `//【更新全局数据源】全局数据源${dataSourceName}不存在，请检查配置`;
+      return `//【更新全局数据源】全局数据源${dataSourceName}不存在，请检查配置\n`;
     }
-    return `//【更新数据源】数据源${dataSourceName}不存在，请检查配置`;
+    return `//【更新数据源】数据源${dataSourceName}不存在，请检查配置\n`;
   }
 
   // 页面数据源检查是否配置了该数据源
