@@ -51,6 +51,7 @@ export const getBusiCompName = (
     `${pageName
       .replaceAll(' ', '')
       .replaceAll('/', '')
+      .replaceAll('-', '')
       .replaceAll('(', '')
       .replaceAll(')', '')}`,
     {
