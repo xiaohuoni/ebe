@@ -4,6 +4,7 @@ import { runFileGenerator } from '../../../../../core/utils/templateHelper';
 import attrSpecPage from './files/attrSpecPage';
 import constants from './files/constants';
 import customComponent from './files/customComponent';
+import customFuncMapping from './files/customFuncMapping';
 import drawermap from './files/drawermap';
 import env from './files/env';
 import PCErrorBoundary from './files/ErrorBoundary/pcindex';
@@ -124,6 +125,12 @@ export function generateStaticFiles(
   );
 
   runFileGenerator(postProcessors, root, favicon, parseResult?.staticFiles);
+  runFileGenerator(
+    postProcessors,
+    root,
+    customFuncMapping,
+    parseResult?.staticFiles,
+  );
 
   return root;
 }

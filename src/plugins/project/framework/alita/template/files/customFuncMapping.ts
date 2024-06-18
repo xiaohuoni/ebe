@@ -1,4 +1,18 @@
+import { LXProjectOptions, ResultFile } from '../../../../../../core';
+import { parse2Var } from '../../../../../../core/utils/compositeType';
+import { createResultFile } from '../../../../../../core/utils/resultHelper';
+import pageVar from '../../../../../../utils/pageVarConfig';
+
+export default function getFile(
+  config?: LXProjectOptions,
+): [string[], ResultFile] {
+  const file = createResultFile(
+    'customFuncMapping',
+    'ts',
+    ` 
 export declare type RenderId = string;
+
+const keywords = ${parse2Var(Object.keys(pageVar))};
 
 const getSaleEventName = (eventName: any) => {
   const sale =
@@ -6,7 +20,11 @@ const getSaleEventName = (eventName: any) => {
     !/^(?:abstract|arguments|await|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|eval|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|let|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with|yield)$/.test(
       eventName,
     );
-  return sale ? eventName : `event_${eventName}`;
+  const target = sale ? eventName : \`event_\${eventName}\`;
+  if (keywords.includes(target)) {
+    return \`safe_\${target}\`;
+  }
+    return target;
 };
 
 /**
@@ -73,7 +91,7 @@ class customFuncMapping {
       if (typeof customActionMapRef?.[eventName] === 'function') {
         customActionMapRef?.[eventName](...args);
       } else {
-        console.error(`${eventName}不存在`);
+        console.error(\`\${eventName}不存在\`);
       }
     } else {
       console.error('renderId不能为空');
@@ -105,3 +123,8 @@ class customFuncMapping {
 }
 
 export default new customFuncMapping();
+    `,
+  );
+
+  return [['src', 'utils'], file];
+}
