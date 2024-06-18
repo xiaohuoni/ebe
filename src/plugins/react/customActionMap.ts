@@ -135,14 +135,25 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
               return `// 编排时为空
           const ${eventName} = (options: any)=>{}`;
             }
-            const startIndex = e.originDynamicActionSource.indexOf('try {');
-            const endIndex =
+            // originDynamicActionSource 可能是带 try catch 的，我们只需要中间执行的代码
+            let startStrLength = 5;
+            let startIndex = e.originDynamicActionSource.indexOf('try {');
+            // 如果没带 try catch ，匹配函数中间的字符串
+            if (startIndex === -1) {
+              startStrLength = 6;
+              startIndex = e.originDynamicActionSource.indexOf(') => {');
+            }
+            let endIndex =
               e.originDynamicActionSource.indexOf('} catch (err) {');
+            if (endIndex === -1) {
+              endIndex = e.originDynamicActionSource.lastIndexOf('}');
+            }
+            // 裁剪字符串，只要中间实际的函数内容
             const extractedString = e.originDynamicActionSource.substring(
-              startIndex,
-              endIndex,
+              startIndex === -1 ? 0 : startIndex + startStrLength,
+              endIndex === -1 ? e.originDynamicActionSource.length : endIndex,
             );
-            return `export const ${eventName} = (options: any)=>{${extractedString}} catch (err) {
+            return `const ${eventName} = (options: any)=>{ try { ${extractedString}} catch (err) {
           console.log(err);
         }}`;
           }

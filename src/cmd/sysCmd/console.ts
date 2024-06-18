@@ -35,16 +35,17 @@ export function getConsole({ value }: CMDGeneratorPrames): string {
       : [options?.value]
     : [];
   return `// 打印日志\n console.log(${consoleValue
-    ?.map((v: string) => {
+    ?.map((v: any) => {
       if (isJSVar(v)) {
         return generateVarString(v);
       }
-
+      // TODO: 增加单元测试
+      const val = v.replaceAll('`', '\\`').replaceAll('${', '\\${');
       // v可能是data.b + '222';
       // if (v.includes('\n')) {
       // return `\`${v}\``;
       // } else {
-      return `\`${v}\``;
+      return `\`${val}\``;
       // }
     })
     .filter(Boolean)

@@ -52,10 +52,17 @@ function mergeNodeGeneratorConfig(
 
 export function isPureString(v: string) {
   // FIXME: 目前的方式不够严谨
-  return (
-    (v[0] === "'" && v[v.length - 1] === "'" && !v.includes('\\’')) ||
-    (v[0] === '"' && v[v.length - 1] === '"' && !v.includes('\\"'))
-  );
+  if (v.includes("\\'") || v.includes('\\"')) {
+    return false;
+  }
+  if (v[0] === "'" && v[v.length - 1] === "'") {
+    const count = v.split("'").length - 1;
+    if (count === 2) return true;
+  }
+  if (v[0] === '"' && v[v.length - 1] === '"') {
+    const count = v.split('"').length - 1;
+    if (count === 2) return true;
+  }
 }
 
 function generateAttrValue(
