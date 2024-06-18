@@ -416,7 +416,11 @@ export const fetchData = async ({
   const busiCompMapping: any = {};
   // 过滤为空
   const busiPages = busiData.filter(Boolean).map((i, index) => {
-    const busiData = JSON.parse(i?.busiCompVersion?.sourceCodeJson);
+    // 业务组件为空，返回一个 fallback
+    const busiData = JSON.parse(
+      i?.busiCompVersion?.sourceCodeJson ||
+        '{"id":"100101","pageContainerType":"BusiComp","pageName":"错误组件","pagePath":"","objType":"app","busiCompCode":"Custom","callbacks":["onChange"],"compState":"","events":[],"actions":[],"pageDynamicFlag":true,"setEvents":[{"dataName":"event","dataId":"798407","path":[],"value":"useEffect","params":[],"children":[]}],"layout":"BaseLayout","searchParams":[{"name":"业务主键","code":"bizId"},{"name":"业务场景","code":"sceneCode"},{"name":"业务数据","code":"bizData"}],"catalogItemId":"-1","platformType":"LowCode","editorVersion":"3.6.1.04251034","createdEditorVersion":"0.2.1130.05051011","busiCompObjectRelDTOList":[],"platform":"pc","appId":"1064722784465846272","components":[{"id":"Icon_2609852","label":"图标","compName":"Icon","type":"Icon","compType":1,"compLib":"@/components","props":{"name":"图标","mode":"normal","rotate":0,"basicStatus":1,"icon":{"theme":"outlined","type":"smile","isIconFont":false},"popoverSetting":{"page":{"pagePath":"/ceshiqipao2781","pageId":"1049616591121936384","pageName":"测试气泡1206","options":[{"name":"业务主键","code":"bizId"},{"name":"业务场景","code":"sceneCode"},{"name":"业务数据","code":"bizData"}],"tipType":"1","trigger":"click"}}},"style":{},"isContainer":false,"isBusiObjContainer":false,"cmdgroup":["basic"],"platform":"pc","icon":"Icon","description":"","image":"","groupsName":"通用","isInlineBlock":true,"setEvents":[],"isLabelDropBoxChild":false,"components":[],"path":["965041"]}],"path":[]}',
+    );
     busiData.busiCompId = i?.busiCompId;
     busiCompMapping[itemLists[index]] = busiData.id;
     return busiData;

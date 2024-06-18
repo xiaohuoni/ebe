@@ -5,7 +5,6 @@ import {
   BuilderComponentPlugin,
   BuilderComponentPluginFactory,
   ChunkType,
-  CodeGeneratorError,
   DependencyType,
   FileType,
   ICodeChunk,
@@ -289,12 +288,15 @@ function buildPackageImport(
   depsInfo.forEach((info) => {
     const name = info.aliasName || info.exportName;
     if (!isValidIdentifier(name)) {
-      throw new CodeGeneratorError(`Invalid Identifier [${name}]`);
+      // throw new CodeGeneratorError(`Invalid Identifier [${name}]`);
+      console.error(`Invalid Identifier [${name}]`);
     }
     if (info.nodeIdentifier && !isValidIdentifier(info.nodeIdentifier)) {
-      throw new CodeGeneratorError(
-        `Invalid Identifier [${info.nodeIdentifier}]`,
-      );
+      console.error(`Invalid Identifier [${info.nodeIdentifier}]`);
+
+      // throw new CodeGeneratorError(
+      //   `Invalid Identifier [${info.nodeIdentifier}]`,
+      // );
     }
   });
 
