@@ -22,7 +22,8 @@ describe('template files factory', () => {
     import { Container } from '../utils/Context/Container';
     import { useComponentHoc } from '../utils/useComponentHoc';
     import { usePageProvider } from '@/utils/Context/Container';
-    
+    import { WithCatchErrorBoundary } from '@/components/common/ErrorBoundary';
+
     import {
       Cascader as _Cascader,
       Checkbox as _Checkbox,
@@ -241,7 +242,7 @@ describe('template files factory', () => {
         );
       });
     
-      return HOC;
+      return WithCatchErrorBoundary(HOC, { compName: type });
     };
     // 低代码组件中，表单组件，要根据 fieldProps 配置，操作 value 和 setValue
     export const Cascader = Hoc(_Cascader, {

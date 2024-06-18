@@ -6,6 +6,8 @@ import constants from './files/constants';
 import customComponent from './files/customComponent';
 import drawermap from './files/drawermap';
 import env from './files/env';
+import PCErrorBoundary from './files/ErrorBoundary/pcindex';
+import PCErrorBoundaryLess from './files/ErrorBoundary/pcless';
 import factory from './files/factory';
 import favicon from './files/favicon';
 import global from './files/global';
@@ -89,6 +91,18 @@ export function generateStaticFiles(
       parseResult?.staticFiles,
     );
   } else {
+    runFileGenerator(
+      postProcessors,
+      root,
+      PCErrorBoundary,
+      parseResult?.staticFiles,
+    );
+    runFileGenerator(
+      postProcessors,
+      root,
+      PCErrorBoundaryLess,
+      parseResult?.staticFiles,
+    );
   }
   runFileGenerator(postProcessors, root, modalmap, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, drawermap, parseResult?.staticFiles);
