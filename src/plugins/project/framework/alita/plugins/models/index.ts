@@ -237,7 +237,7 @@ const pluginModels: BuilderComponentPluginFactory<unknown> = () => {
             const ${ir.reloadFunctionName} = (params?: any, globalData: Record<string, any>) => {
               globalData.${ir.dataName} = params;
               setModel({
-                ${ir.dataName}: params;
+                ${ir.dataName}: params,
               });
             }
           `

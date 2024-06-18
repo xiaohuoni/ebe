@@ -3939,216 +3939,192 @@ export default Layout;
           "dirs": Array [],
           "files": Array [
             Object {
-              "content": "
-        import { useState } from \\"react\\";
-        import cloneDeep from 'lodash/cloneDeep';
-        import { fetchQueryObject, fetchQueryService } from '@/utils/dataSource';
-        import ArrayUtil from '@/utils/array';
-        import useSetState from '@/hooks/useSetState';
-        import { ARRAY_OPERATE_TYPE } from '@/constants';
+              "content": "import { useState } from 'react';
+import cloneDeep from 'lodash/cloneDeep';
+import ArrayUtil from '@/utils/array';
+import useSetState from '@/hooks/useSetState';
+import { ARRAY_OPERATE_TYPE } from '@/constants';
+export type NModel = {
+  /**
+   * 过滤字段: nothing
+   */
+  nFilter?: {
+    orderByAsc?: string;
+    orderByDesc?: string;
+  };
+  /**
+   * nothing
+   */
+  n?: {
+    /**
+     * 属性
+     */
+    a?: string;
+  };
+  [key: string]: any;
+};
+interface UpdatenModelOptions {
+  /**
+   * 全局数据源
+   */
+  globalData: Record<string, any>;
 
-        export type NModel = {
-          
-      /**
-      * 过滤字段: nothing
-      */
-      nFilter?: {
-      orderByAsc?: string; orderByDesc?: string
-      }
-      /**
-      * nothing
-      */
-      n?: { /**
-      * 属性
-      */
-      a?: string
-      }
-      
+  /**
+   * 更新数据源的路径
+   */
+  path: string;
 
-          [key: string]: any;
-        };
+  /**
+   * 目标值
+   */
+  value?: any;
 
-        interface UpdatenModelOptions {
-          /**
-           * 全局数据源 
-           */
-          globalData: Record<string, any>;
+  /**
+   * 需要过滤的变量
+   */
+  predicate?: (item: any, index: number) => boolean;
 
-          /**
-           * 更新数据源的路径
-           */
-          path: string;
-        
-          /**
-           * 目标值
-           */
-          value?: any;
-        
-          /**
-           * 需要过滤的变量
-           */
-          predicate?: (item: any, index: number) => boolean;
-        
-          /**
-           * 操作类型 数组时需要
-           */
-          operateType?: 0 | 1 | 2 | 3;
-        
-          /**
-           * 数组或者对象类型
-           */
-          type: 'object' | 'array';
-        
-          /**
-           * 是否局部赋值
-           */
-          onlySetPatch: boolean;
-        }
+  /**
+   * 操作类型 数组时需要
+   */
+  operateType?: 0 | 1 | 2 | 3;
 
-        export interface ContextOptions {
-          urlParam?: Record<string, any>;
-          routerData?: Record<string, any>;
-          state?: Record<string, any>;
-          lcdpApi?: any;
-        }
+  /**
+   * 数组或者对象类型
+   */
+  type: 'object' | 'array';
 
-        const useN = () => {
-
-          const initialData:  Partial<NModel> = {
-            
-      
-
-      /**
+  /**
+   * 是否局部赋值
+   */
+  onlySetPatch: boolean;
+}
+export interface ContextOptions {
+  urlParam?: Record<string, any>;
+  routerData?: Record<string, any>;
+  state?: Record<string, any>;
+  lcdpApi?: any;
+}
+const useN = () => {
+  const initialData: Partial<NModel> = {
+    /**
      * 自定义数据源: n
      */
     nFilter: {},
-    n: {}
-    
+    n: {},
+  };
+  const [model, setModel] = useSetState<NModel>(initialData);
+  const [nReadyComplete, setReadyComplete] = useState(false);
+  const [nLoading, setLoading] = useState(false);
+  const [{}, setContext] = useState<ContextOptions>({});
+  const initialModel = (context: ContextOptions) => {
+    const {} = context;
+    return Promise.resolve(initialData?.n);
+  };
 
-  ,
-          };
+  /**
+   * 初始化数据源
+   */
+  const initialNModel = (context: ContextOptions) => {
+    setContext(context);
+    if (nReadyComplete) return Promise.resolve(model);
+    setLoading(true);
+    return initialModel(context)
+      .catch((err) => {
+        console.log('全局数据源n初始化失败');
+        console.log(err);
+      })
+      .then((res) => {
+        setModel({
+          n: res,
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+        setReadyComplete(true);
+      });
+  };
 
-          const [model, setModel] = useSetState<NModel>(initialData);
-          const [nReadyComplete, setReadyComplete] = useState(false);
-          const [nLoading, setLoading] = useState(false);
-          const [{ urlParam, routerData, state, lcdpApi }, setContext] = useState<ContextOptions>({});
-
-          const initialModel = (context: ContextOptions) => {
-            const { urlParam, routerData, state, lcdpApi } = context;
-            return Promise.resolve(initialData?.n)
-            
-            
-          }
-
-          /**
-           * 初始化数据源
-           */
-          const initialNModel = (context: ContextOptions) => {
-            setContext(context);
-            if (nReadyComplete) return Promise.resolve(model);
-
-            const newData: NModel = cloneDeep(initialData);
-            setLoading(true);
-           return initialModel(context).catch((err) => {
-              console.log('全局数据源n初始化失败');
-              console.log(err);
-            }).then(res => {
-              setModel({
-                n: res,
-              })
-            })
-            .finally(() => {
-              setLoading(false);
-              setReadyComplete(true);
-            });
-          };
-
-          // 更新数据源
-          const updateNModel = ({
-            globalData,
+  // 更新数据源
+  const updateNModel = ({
+    globalData,
+    path,
+    value,
+    type,
+    operateType,
+    predicate = () => false,
+    onlySetPatch = true,
+  }: UpdatenModelOptions) => {
+    try {
+      // 对象类型 直接赋值
+      if (type === 'object') {
+        ArrayUtil.updateObject({
+          data: model,
+          path,
+          value,
+          isPatch: onlySetPatch,
+        });
+      } else if (type === 'array') {
+        if (operateType === ARRAY_OPERATE_TYPE.ADD) {
+          ArrayUtil.push(model, path, value);
+        } else if (operateType === ARRAY_OPERATE_TYPE.DELETE) {
+          ArrayUtil.remove(model, path, predicate);
+        } else if (operateType === ARRAY_OPERATE_TYPE.REPLACE) {
+          ArrayUtil.replace(
+            /* FIXME: 变量n没有被定义，源码生成时被替换为undefined，请检查页面配置 */ undefined,
             path,
             value,
-            type,
-            operateType,
-            predicate = () => false,
-            onlySetPatch = true
-          }: UpdatenModelOptions) => {
-            try {
-              // 对象类型 直接赋值
-              if (type === 'object') {
-                ArrayUtil.updateObject({
-                  data: model,
-                  path,
-                  value,
-                  isPatch: onlySetPatch,
-                });
-              } else if (type === 'array') {
-                if (operateType === ARRAY_OPERATE_TYPE.ADD) {
-                  ArrayUtil.push(model, path, value);
-                } else if (operateType === ARRAY_OPERATE_TYPE.DELETE) {
-                  ArrayUtil.remove(model, path, predicate);
-                } else if (operateType === ARRAY_OPERATE_TYPE.REPLACE) {
-                  ArrayUtil.replace(n, path, value);
-                } else if (operateType === ARRAY_OPERATE_TYPE.UPDATE) {
-                  ArrayUtil.update(
-                    {
-                      data: n,
-                      path,
-                      value,
-                      isPatch: onlySetPatch,
-                    },
-                    predicate,
-                  );
-                }
-              }
+          );
+        } else if (operateType === ARRAY_OPERATE_TYPE.UPDATE) {
+          ArrayUtil.update(
+            {
+              data: /* FIXME: 变量n没有被定义，源码生成时被替换为undefined，请检查页面配置 */ undefined,
+              path,
+              value,
+              isPatch: onlySetPatch,
+            },
+            predicate,
+          );
+        }
+      }
+      const nextModel = cloneDeep(model?.n);
+      globalData.n = nextModel;
+      return setModel({
+        n: nextModel,
+      }).then(() => globalData);
+    } catch (error) {
+      return Promise.reject(error as Error);
+    }
+  };
 
-              const nextModel = cloneDeep(model?.n);
-              globalData.n = nextModel;
-              return setModel({
-                n: nextModel,
-              }).then(() => globalData);
+  // 刷新全局数据源
+  const reloadNModel = (params?: any, globalData: Record<string, any>) => {
+    globalData.n = params;
+    setModel({
+      n: params,
+    });
+  };
 
-            } catch (error) {
-              return Promise.reject(error as Error);
-            }
-          }
-
-          
-            // 刷新全局数据源 
-            const reloadNModel = (params?: any, globalData: Record<string, any>) => {
-              globalData.n = params;
-              setModel({
-                n: params;
-              });
-            }
-          
-          
-          
-          
-
-          // 重置数据源
-          const resetNModel = (globalData: Record<string, any>) => {
-            const nextModel: any = {};
-            globalData.n = nextModel;
-            return setModel({
-              n: nextModel,
-            }).then(() => globalData);
-          };
-
-          return {
-            nFilter: model?.nFilter,
-            n: model?.n,
-            nReadyComplete,
-            nLoading,
-            initialNModel,
-            resetNModel,
-            updateNModel,
-            reloadNModel,
-          }
-        };
-
-        export default useN;
-      
+  // 重置数据源
+  const resetNModel = (globalData: Record<string, any>) => {
+    const nextModel: any = {};
+    globalData.n = nextModel;
+    return setModel({
+      n: nextModel,
+    }).then(() => globalData);
+  };
+  return {
+    nFilter: model?.nFilter,
+    n: model?.n,
+    nReadyComplete,
+    nLoading,
+    initialNModel,
+    resetNModel,
+    updateNModel,
+    reloadNModel,
+  };
+};
+export default useN;
 ",
               "ext": "ts",
               "name": "useN",
