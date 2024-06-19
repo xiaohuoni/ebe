@@ -7,6 +7,14 @@ const busiCompMaps: Record<string, string> = {};
 // 存储组件名，防止组件重复
 const busiCompNameSet = new Set();
 
+export const getSafeTypeName = (name: any) => {
+  return name
+    .replaceAll(' ', '')
+    .replaceAll('/', '')
+    .replaceAll('-', '')
+    .replaceAll('(', '')
+    .replaceAll(')', '');
+};
 /**
  * 通过label或者名字生成的组件名可能会重复，如果重复直接通过索引累加
  * @param name
@@ -47,18 +55,10 @@ export const getBusiCompName = (
   }
 
   // 如果是两个字符以上的，首字母大写，因为英文会被拆成单个字母，原样拼回去即可
-  const name = pinyin(
-    `${pageName
-      .replaceAll(' ', '')
-      .replaceAll('/', '')
-      .replaceAll('-', '')
-      .replaceAll('(', '')
-      .replaceAll(')', '')}`,
-    {
-      type: 'array',
-      toneType: 'none',
-    },
-  )
+  const name = pinyin(`${getSafeTypeName(pageName)}`, {
+    type: 'array',
+    toneType: 'none',
+  })
     .map((i) => (i.length > 1 ? changeCase.pascalCase(i) : i))
     .join('');
   const compName = getName(name);

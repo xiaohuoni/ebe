@@ -39,8 +39,7 @@ const Page = () => {
     setLog('');
     const { options, cleanedTree } = await fetchData({
       appId: values.appId,
-      // platform: values.platform ? 'APP' : 'PC',
-      platform: 'PC',
+      platform: values.platform ? 'APP' : 'PC',
       baseUrl: 'http://172.21.72.205:10010/',
       services: {
         findBusiCompById,

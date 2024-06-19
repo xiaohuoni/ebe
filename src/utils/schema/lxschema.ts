@@ -6,6 +6,7 @@ import { CodeGeneratorError } from '../../core/types/error';
 import { generateVarString, parse2Var } from '../../core/utils/compositeType';
 import { isJSVar, isNodeSchema } from '../../core/utils/deprecated';
 import assetHelper from './assets/assets';
+import { getSafeTypeName } from './getBusiCompName';
 import { parseDsl } from './parseDsl';
 
 const noop = () => undefined;
@@ -278,17 +279,19 @@ export const parseSchema = (schema: IProjectSchema, isRoot: boolean) => {
  * @param isRoot
  */
 const modifySchemaCompName = (schema: IProjectSchema, isRoot: boolean) => {
-  const compName = schema?.compName || schema?.type;
+  const compName: any = schema?.compName || schema?.type;
   // path 在数据清理中已删除
   // if (schema.path) {
   //   // @ts-ignore
   //   delete schema.path;
   // }
   if (!isRoot && compName) {
+    // OrganizationTree-h5
     if (schema.compName) {
-      schema.compName = compName;
+      schema.compName = getSafeTypeName(compName);
     }
-    schema.type = compName;
+    // OrganizationTree-h5
+    schema.type = getSafeTypeName(compName);
     if (schema?.customClass) {
       schema.props.className = schema.id;
     }

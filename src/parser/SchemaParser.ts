@@ -24,7 +24,10 @@ import enPreprocessPC from '../utils/factory/pc/index.enPreprocess';
 import enRunPreprocessPC from '../utils/factory/pc/index.enRunPreprocess';
 import { parseGlobalData } from '../utils/globalDataSource/parseGlobalData';
 import assetHelper from '../utils/schema/assets/assets';
-import { getBusiCompName } from '../utils/schema/getBusiCompName';
+import {
+  getBusiCompName,
+  getSafeTypeName,
+} from '../utils/schema/getBusiCompName';
 import {
   handleSubNodes,
   markerLoopComponent,
@@ -69,7 +72,7 @@ export class SchemaParser implements ISchemaParser {
     hooks?.callHook('compAssetList', { msg: '查找项目使用到的自定义组件' });
 
     compAssetList.forEach((asset: any) => {
-      compAssetListMapping[asset.compCode] = asset;
+      compAssetListMapping[getSafeTypeName(asset.compCode)] = asset;
     });
 
     const globalModels: Record<string, LXGlobalDataInfo> = {};
