@@ -59,22 +59,28 @@ ${routerChange ? `let prePathname = '';` : ''}
       }
 
       useEffect(() => {
-        const reqNbrKeys = attrSpecPage;
-        const params = {
-          attrCodes: reqNbrKeys,
-          ${transformHasAppId ? `appId: APPID,` : ''}
-        };
-       api.batchGetAppStaticAttr(params).then((res: any) => {
-        if (res) {
-          reqNbrKeys?.forEach((key : string) => {
-            const list = res?.[key];
-            attrDataMap[key] = handleAttrDataMap(list);
-          })
-    
-        }
-       }).finally(() => {
-        setIsLoding(false);
-       });
+       const reqNbrKeys = attrSpecPage;
+      if (Array.isArray(reqNbrKeys) && reqNbrKeys.length > 0) {
+      const params = {
+        attrCodes: reqNbrKeys,
+        appId: APPID,
+      };
+      api
+        .batchGetAppStaticAttr(params)
+        .then((res: any) => {
+          if (res) {
+            reqNbrKeys?.forEach((key: string) => {
+              const list = res?.[key];
+              attrDataMap[key] = handleAttrDataMap(list);
+            });
+          }
+        })
+        .finally(() => {
+          setIsLoding(false);
+        });
+    } else {
+      setIsLoding(false); 
+    }
         getWaterMarkByAppId(APPID).then(setWaterMark).catch(console.log);
       }, []);
       if (isLoding === true) {

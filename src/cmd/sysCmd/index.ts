@@ -12,6 +12,7 @@ export { customActionCode } from './customActionCode';
 export { getDefault as defaultCmd } from './defaultCmd';
 export { downloadByFileId } from './downloadByFileId';
 export { dropPageByCatch } from './dropPageByCatch';
+export { exportBusiObjectData } from './exportBusiObjectData';
 export { exportCustomBusiObjectData } from './exportCustomBusiObjectData';
 export { exportCustomData } from './exportCustomData';
 export { exportSQLServiceData } from './exportSQLServiceData';

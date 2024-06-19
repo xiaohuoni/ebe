@@ -32,24 +32,29 @@ describe('template files layout', () => {
     const [waterMark, setWaterMark] = useState<AppWaterMarkCfgType>();
 
       useEffect(() => {
-        const reqNbrKeys = attrSpecPage;
-        const params = {
-          attrCodes: reqNbrKeys,
-        };
-        api
-          .batchGetAppStaticAttr(params)
-          .then((res: any) => {
-            if (res) {
-              reqNbrKeys?.forEach((key: string) => {
-                const list = res?.[key];
-                attrDataMap[key] = handleAttrDataMap(list);
-              });
-            }
-          })
-          .finally(() => {
-            setIsLoding(false);
-          });
-          getWaterMarkByAppId(APPID).then(setWaterMark).catch(console.log);
+       const reqNbrKeys = attrSpecPage;
+      if (Array.isArray(reqNbrKeys) && reqNbrKeys.length > 0) {
+      const params = {
+        attrCodes: reqNbrKeys,
+        appId: APPID,
+      };
+      api
+        .batchGetAppStaticAttr(params)
+        .then((res: any) => {
+          if (res) {
+            reqNbrKeys?.forEach((key: string) => {
+              const list = res?.[key];
+              attrDataMap[key] = handleAttrDataMap(list);
+            });
+          }
+        })
+        .finally(() => {
+          setIsLoding(false);
+        });
+    } else {
+      setIsLoding(false); 
+    }
+        getWaterMarkByAppId(APPID).then(setWaterMark).catch(console.log);
       }, []);
       if (isLoding === true) {
         return <Spin spinning />;

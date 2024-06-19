@@ -3716,22 +3716,28 @@ const Layout = (props: any) => {
   const [waterMark, setWaterMark] = useState<AppWaterMarkCfgType>();
   useEffect(() => {
     const reqNbrKeys = attrSpecPage;
-    const params = {
-      attrCodes: reqNbrKeys,
-    };
-    api
-      .batchGetAppStaticAttr(params)
-      .then((res: any) => {
-        if (res) {
-          reqNbrKeys?.forEach((key: string) => {
-            const list = res?.[key];
-            attrDataMap[key] = handleAttrDataMap(list);
-          });
-        }
-      })
-      .finally(() => {
-        setIsLoding(false);
-      });
+    if (Array.isArray(reqNbrKeys) && reqNbrKeys.length > 0) {
+      const params = {
+        attrCodes: reqNbrKeys,
+        appId:
+          /* FIXME: 变量APPID没有被定义，源码生成时被替换为undefined，请检查页面配置 */ undefined,
+      };
+      api
+        .batchGetAppStaticAttr(params)
+        .then((res: any) => {
+          if (res) {
+            reqNbrKeys?.forEach((key: string) => {
+              const list = res?.[key];
+              attrDataMap[key] = handleAttrDataMap(list);
+            });
+          }
+        })
+        .finally(() => {
+          setIsLoding(false);
+        });
+    } else {
+      setIsLoding(false);
+    }
     getWaterMarkByAppId(
       /* FIXME: 变量APPID没有被定义，源码生成时被替换为undefined，请检查页面配置 */ undefined,
     )
