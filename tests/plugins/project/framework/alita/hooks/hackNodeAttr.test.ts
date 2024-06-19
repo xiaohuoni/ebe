@@ -1,5 +1,4 @@
 import hackEngineApis from '../../../../../../src/plugins/project/framework/alita/hooks/hackNodeAttr';
-import { expectValueIgnoreWhitespace } from '../../../../../utils';
 
 const scope: any = {
   bindings: undefined,
