@@ -154,4 +154,5 @@ export const excludeIdentifiers = [
   'onOk',
   'onCancel',
   'BannerModal',
+  'require',
 ];

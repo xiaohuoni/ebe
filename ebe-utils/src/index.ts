@@ -252,7 +252,6 @@ interface CodeServices {
   findPageInstByVersionId: (data: any) => Promise<any>;
   findBusiCompById: (data: any) => Promise<any>;
   findApplication: (params: { appId: string }) => Promise<any>;
-  getWaterMarkByAppId: (params: { appId: string }) => Promise<any>;
 }
 
 interface CodeOptions {
@@ -428,13 +427,6 @@ export const fetchData = async ({
   // 合并页面，生成器那边支持页面类型和业务组件类型
   const pageDSLS = [...pages, ...busiPages];
 
-  onProgress({
-    log: '查询水印配置信息',
-    progress: 7,
-  });
-  // 获取水印
-  const waterMark = await services.getWaterMarkByAppId({ appId });
-
   const options = {
     platform,
     appId,
@@ -449,7 +441,6 @@ export const fetchData = async ({
     themeCss,
     models: globalDataMap,
     appInfo: clearAppInfo(appInfo),
-    waterMark,
   };
   onProgress({
     log: '清理无用数据',

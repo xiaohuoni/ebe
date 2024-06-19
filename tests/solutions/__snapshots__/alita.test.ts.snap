@@ -3874,6 +3874,8 @@ import { Context, RefsManager } from '@/utils/Context/context';
 import React, { useEffect, useRef, useState } from 'react';
 import { api } from '@/services/api';
 import { Spin } from '@/utils/messageApi';
+import WaterMark, { AppWaterMarkCfgType } from '@/components/WaterMark';
+import { getWaterMarkByAppId } from '@/services/api/getWaterMarkByAppId';
 import { attrSpecPage, handleAttrDataMap } from '@/utils/attrSpecPage';
 import { useKeepOutlets } from 'alita';
 import { ConfigProvider } from 'antd';
@@ -3885,6 +3887,7 @@ const Layout = (props: any) => {
   const [isLoding, setIsLoding] = useState(true);
   const attrDataMap = useRef<Record<string, any>>({}).current;
   const getLocale = (_: string, t: string) => t || _;
+  const [waterMark, setWaterMark] = useState<AppWaterMarkCfgType>();
   useEffect(() => {
     const reqNbrKeys = attrSpecPage;
     const params = {
@@ -3903,6 +3906,11 @@ const Layout = (props: any) => {
       .finally(() => {
         setIsLoding(false);
       });
+    getWaterMarkByAppId(
+      /* FIXME: 变量APPID没有被定义，源码生成时被替换为undefined，请检查页面配置 */ undefined,
+    )
+      .then(setWaterMark)
+      .catch(console.log);
   }, []);
   if (isLoding === true) {
     return <Spin spinning />;
@@ -3917,7 +3925,9 @@ const Layout = (props: any) => {
         }}
       >
         {element}
-
+        {waterMark?.waterMarkInfoResultValue && waterMark?.isEnable === 'T' && (
+          <WaterMark config={waterMark} />
+        )}
         <ModalView getLocale={getLocale as any} ref={ModalManagerRef} />
       </Context.Provider>
     </ConfigProvider>

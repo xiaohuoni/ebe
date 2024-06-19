@@ -1,5 +1,4 @@
 import { LXProjectOptions, ResultFile } from '../../../../../../core';
-import { parse2Var } from '../../../../../../core/utils/compositeType';
 import { createResultFile } from '../../../../../../core/utils/resultHelper';
 
 export default function getFile(
@@ -8,12 +7,6 @@ export default function getFile(
   const isMobile = config?.platform === 'h5';
   const transformHasAppId = config?.transformHasAppId;
   const { routerChange } = config?.frontendHookMap;
-  const waterMark = config?.waterMark;
-
-  let unableWaterMark = true;
-  if (!waterMark?.waterMarkInfoResultValue || waterMark?.isEnable === 'F') {
-    unableWaterMark = false;
-  }
 
   const file = createResultFile(
     'index',
@@ -24,7 +17,8 @@ export default function getFile(
     import { api } from '@/services/api';
     ${transformHasAppId ? `import { APPID } from '@/constants';` : ''}
     import { Spin } from '@/utils/messageApi';
-    import WaterMark from '@/components/WaterMark';
+    import WaterMark, { AppWaterMarkCfgType } from '@/components/WaterMark';
+    import { getWaterMarkByAppId } from '@/services/api/getWaterMarkByAppId';
     import { attrSpecPage, handleAttrDataMap } from '@/utils/attrSpecPage';
   ${
     routerChange
@@ -46,6 +40,7 @@ ${routerChange ? `let prePathname = '';` : ''}
       const [isLoding, setIsLoding] = useState(true);
       const attrDataMap = useRef<Record<string, any>>({}).current;
       const getLocale = (_: string, t: string) => t || _;
+      const [waterMark, setWaterMark] = useState<AppWaterMarkCfgType>();
       ${
         routerChange
           ? `
@@ -80,6 +75,7 @@ ${routerChange ? `let prePathname = '';` : ''}
        }).finally(() => {
         setIsLoding(false);
        });
+        getWaterMarkByAppId(APPID).then(setWaterMark).catch(console.log);
       }, []);
       if (isLoding === true) {
         return <Spin spinning/>;
@@ -90,11 +86,7 @@ ${routerChange ? `let prePathname = '';` : ''}
           transformHasAppId ? `appId: APPID,` : ''
         } attrDataMap}}>
           {element}
-          ${
-            unableWaterMark
-              ? `<WaterMark config={${parse2Var(waterMark)}} />`
-              : ''
-          }
+          {waterMark?.waterMarkInfoResultValue && waterMark?.isEnable === 'T' && <WaterMark config={waterMark} />}
           <ModalView
             getLocale={getLocale as any}
             ${transformHasAppId ? `appId={APPID}` : ''}
