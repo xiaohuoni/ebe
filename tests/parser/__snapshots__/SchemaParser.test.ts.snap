@@ -453,6 +453,7 @@ Object {
       ],
       "editorVersion": "3.3.1.05141705",
       "global": Object {
+        "pagePathEnglishMapping": Object {},
         "pageTypeMap": Object {},
       },
       "globalDataSource": Object {},

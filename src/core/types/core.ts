@@ -195,6 +195,10 @@ export interface LXProjectOptions {
   modalDrawerMap?: any;
   // 转化源码是否包含appId
   transformHasAppId?: boolean;
+  // 英文路径的对应关系, 页面，弹窗，气泡，推拉窗，都要单独处理关系
+  // cmd 页面跳转，打开自定义弹窗，都要修改
+  // 如果你需要操作它，请先全局搜索
+  pagePathEnglishMapping?: any;
 }
 export type PrintUtilPrettier = (data: {
   tag: string;

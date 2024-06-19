@@ -2303,7 +2303,7 @@ import { history } from 'alita';
 
 // 生成一个Id，用来记录当前页面所有的自定义事件
 const renderId = '/Index';
-const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
+const Index = React.forwardRef<unknown, PageProps>((props, ref) => {
   const { basicContext, state, style } = props;
 
   // 获取页面信息
@@ -3415,7 +3415,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
     </div>
   );
 });
-export default withPageHOC(Index$$Page, {
+export default withPageHOC(Index, {
   renderId,
   hasLogin: true,
 });

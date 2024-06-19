@@ -65,8 +65,13 @@ export class SchemaParser implements ISchemaParser {
       busiCompMapping = {},
       compAssetList = [],
       pageIdMapping = {},
+      pagePathEnglishMapping = {},
     } = options || {};
     const compAssetListMapping: Record<string, any> = {};
+    // 先生成业务组件名称map
+    schemaArr
+      .filter((i) => i.pageContainerType === 'BusiComp')
+      .forEach((b) => getBusiCompName(b, 'page'));
 
     // 细化日志
     hooks?.callHook('compAssetList', { msg: '查找项目使用到的自定义组件' });
@@ -174,7 +179,7 @@ export class SchemaParser implements ISchemaParser {
       );
       // 标记循环容器
       markerLoopComponent(schema);
-      const newSchema = parseSchema(schema, true);
+      const newSchema = parseSchema(schema, true, { pagePathEnglishMapping });
 
       if (newSchema?.pageDynamicFlag && newSchema.pagePath) {
         keepalive.push(newSchema.pagePath);
@@ -354,7 +359,10 @@ export class SchemaParser implements ISchemaParser {
     npms = uniqueArray<INpmPackage>(npms, (i: any) => i.package).filter(
       Boolean,
     );
-    containers = containers.map((c) => ({ ...c, global: { pageTypeMap } }));
+    containers = containers.map((c) => ({
+      ...c,
+      global: { pageTypeMap, pagePathEnglishMapping },
+    }));
     return {
       containers,
       // globalRouter: {

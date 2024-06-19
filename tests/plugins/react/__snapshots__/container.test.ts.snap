@@ -7,7 +7,7 @@ Object {
       "content": "
         // 生成一个Id，用来记录当前页面所有的自定义事件
         const renderId = 'pageIdError';
-        const $1231781$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
+        const $1231781 = React.forwardRef<unknown, PageProps>((props, ref) => {
           const {
             basicContext,
             state,
@@ -382,7 +382,7 @@ Object {
       "type": "string",
     },
     Object {
-      "content": "export default withPageHOC($1231781$$Page, {
+      "content": "export default withPageHOC($1231781, {
       renderId,
       hasLogin: false,
     })",

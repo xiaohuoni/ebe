@@ -116,13 +116,13 @@ export default (api: IApi) => {
             const { pages, options } = req.body;
 
             pages.forEach((p: any) => {
-              const pagePath = p.pagePath ? p.pagePath : `BusiComp${p.id}`;
-
+              // 页面用 pagePath ，业务组件用 pageName
+              const pagePath = p.pagePath ? p.pagePath : p.pageName;
               let tmpPagePath = join(
                 api.paths.absNodeModulesPath,
                 '.cache',
                 appId,
-                `${pagePath}.json`,
+                `${p.pageContainerType}${pagePath.replace('/', '_')}.json`,
               );
               writeFileSync(tmpPagePath, JSON.stringify(p));
             });
@@ -134,6 +134,7 @@ export default (api: IApi) => {
             );
             writeFileSync(tmpOptionsPath, JSON.stringify(options));
           } catch (error) {
+            console.error(error);
           } finally {
             console.log('缓存文件写入完成');
           }

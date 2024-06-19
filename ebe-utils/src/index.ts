@@ -258,13 +258,21 @@ interface CodeServices {
     rule: string;
   }) => Promise<any>;
 }
-
+export const getSafeTypeName = (name: any) => {
+  return name
+    .replaceAll(' ', '')
+    .replaceAll('/', '')
+    .replaceAll('-', '')
+    .replaceAll('(', '')
+    .replaceAll(')', '');
+};
 interface CodeOptions {
   appId: string;
   baseUrl: string;
   platform: string;
   services: CodeServices;
   onProgress: (data: { log: string; progress: number }) => void;
+  needTranslatePagePathToEnglish?: boolean;
 }
 let workerJsUrl = '';
 
@@ -281,6 +289,7 @@ export const fetchData = async ({
   platform,
   baseUrl,
   onProgress,
+  needTranslatePagePathToEnglish,
 }: CodeOptions) => {
   const appInfo = await services.findApplication({ appId });
   onProgress({
@@ -429,14 +438,94 @@ export const fetchData = async ({
     busiCompMapping[itemLists[index]] = busiData.id;
     return busiData;
   });
-  // 翻译业务组件的名字
-  for (let key = 0; key < busiPages.length; key++) {
+  /**
+   * 新增中文转英文功能
+  ● API：translateToEnglish  GET 请求，参数：chinese 
+
+  rule
+  ● 支持多种生成规则
+  ○ UPPER_CAMEL 驼峰首字母大写
+  ○ LOWER_CAMEL 驼峰首字母小写
+  ○ UPPER_UNDERSCORE 下划线大写
+  ○ LOWER_UNDERSCORE 下划线小写
+   */
+  // 获取翻译，尝试三次
+  const getTranslateName = async (
+    appId: string,
+    chinese: string,
+    rule: string,
+    count = 0,
+  ): Promise<string> => {
     const translateName = await services?.translateToEnglish?.({
       appId,
-      chinese: busiPages[key].pageName,
-      rule: 'UPPER_CAMEL',
+      chinese,
+      rule,
     });
+    if (translateName && typeof translateName === 'string') {
+      return translateName;
+    } else if (count < 3) {
+      console.error(`翻译错误：${chinese}，第${count + 1}重新尝试`);
+      return await getTranslateName(appId, chinese, rule, count + 1);
+    } else {
+      console.error(`翻译错误：尝试无效`);
+      return 'TranslateError';
+    }
+  };
+  // 翻译业务组件的名字
+  for (let key = 0; key < busiPages.length; key++) {
+    const translateName = await getTranslateName(
+      appId,
+      getSafeTypeName(busiPages[key].pageName),
+      'UPPER_CAMEL',
+    );
+    onProgress({
+      log: '翻译业务组件名称',
+      progress: 6 + key / busiPages.length,
+    });
+    busiPages[key]._pageName = busiPages[key].pageName;
     busiPages[key].pageName = translateName;
+  }
+  let pagePathEnglishMapping: any = {};
+  if (needTranslatePagePathToEnglish) {
+    const pagePathEnglishSet: any = {};
+
+    const getName = (name: string, type: string, index = 0): string => {
+      const compName = `${name}${index === 0 ? '' : index}`;
+      pagePathEnglishSet[type] ??= new Set();
+      // 名称重复，不同页面类型，名称允许重复
+      if (!pagePathEnglishSet[type].has(compName)) {
+        const saleName = `/${getSafeTypeName(compName)}`;
+        pagePathEnglishSet[type].add(saleName);
+        return saleName;
+      }
+      return getName(`${compName}`, type, index + 1);
+    };
+    // 翻译页面的名字
+    for (let key = 0; key < pages.length; key++) {
+      const translateName = await getTranslateName(
+        appId,
+        getSafeTypeName(pages[key].pageName),
+        'LOWER_CAMEL',
+      );
+      onProgress({
+        log: '翻译页面路径',
+        progress: 7 + key / pages.length,
+      });
+      console.log(translateName);
+      // 如果页面路径翻译失败，就不处理路径
+      if (translateName !== 'TranslateError') {
+        pagePathEnglishMapping[pages[key].pageContainerType] ??= {};
+        const safeTranslateName = getName(
+          translateName,
+          pages[key].pageContainerType,
+        );
+        pagePathEnglishMapping[pages[key].pageContainerType][
+          pages[key].pagePath
+        ] = safeTranslateName;
+        pages[key]._pagePath = pages[key].pagePath;
+        pages[key].pagePath = safeTranslateName;
+      }
+    }
   }
   // 合并页面，生成器那边支持页面类型和业务组件类型
   const pageDSLS = [...pages, ...busiPages];
@@ -455,6 +544,8 @@ export const fetchData = async ({
     themeCss,
     models: globalDataMap,
     appInfo: clearAppInfo(appInfo),
+    // 英文路径的对应关系
+    pagePathEnglishMapping,
   };
   onProgress({
     log: '清理无用数据',
@@ -473,6 +564,7 @@ export const codeCreate = async ({
   platform,
   baseUrl,
   onProgress,
+  needTranslatePagePathToEnglish = false,
 }: CodeOptions) => {
   try {
     const { cleanedTree, options } = await fetchData({
@@ -481,6 +573,7 @@ export const codeCreate = async ({
       platform,
       baseUrl,
       onProgress,
+      needTranslatePagePathToEnglish,
     });
     console.log(cleanedTree);
     console.log(options);

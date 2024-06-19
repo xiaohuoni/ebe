@@ -40,13 +40,17 @@ export function showCustomModal({
       : '\n';
 
   const Drawer = config?.ir?.global?.pageTypeMap?.Drawer || {};
+  let pagePathEnglishMapping =
+    config?.ir?.global?.pagePathEnglishMapping?.Drawer || {};
   const isDrawer = Drawer[pageId];
-  // TODO: bug 永远都找弹窗，推拉窗找不到
+  if (!isDrawer) {
+    pagePathEnglishMapping =
+      config?.ir?.global?.pagePathEnglishMapping?.Modal || {};
+  }
+  const pagePath = pagePathEnglishMapping[params.pagePath] ?? params.pagePath;
   return `// 打开${isDrawer ? '推拉窗' : '弹窗'}\n ModalManagerRef?.current?.${
     isDrawer ? 'openDrawer' : 'openModal'
-  }({pagePath: '${
-    params.pagePath
-  }', lcdpParentRenderId: customActionId, params: ${parse2Var(
+  }({pagePath: '${pagePath}', lcdpParentRenderId: customActionId, params: ${parse2Var(
     params.params,
   )}, ${onOkString}${onCancelString}})`;
 }

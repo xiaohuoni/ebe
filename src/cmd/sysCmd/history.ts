@@ -8,11 +8,13 @@ export function history({ value, config }: CMDGeneratorPrames): string {
   const paramsObj = generateVarString(options.paramsObj);
   const pathname = generateVarString(options.pathname);
   const routerData = generateVarString(options.routerData);
-
+  const pagePathEnglishMapping =
+    config?.ir?.global?.pagePathEnglishMapping?.Page || {};
+  const safePagePath = pagePathEnglishMapping[pathname] || pathname;
   config?.ir?.deps?.push(getImportFrom('alita', 'history'));
   return `// 路由跳转 \n  historytool(HISTORYTYPES.${type}, {
     history,
-    pathname:'${pathname}',
+    pathname:'${safePagePath}',
     search:${parse2Var(paramsObj)},
     state:${parse2Var(routerData || {})},
   });`;

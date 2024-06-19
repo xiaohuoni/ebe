@@ -123,9 +123,11 @@ export const extraData = {
 const preprocessComponentSchema = (
   schema: IProjectSchema,
   isRoot: boolean,
+  config: any,
 ): IProjectSchema => {
   let newSchema: any = _.cloneDeep(schema);
-
+  const { pagePathEnglishMapping = {} } = config;
+  const { Popover = {} } = pagePathEnglishMapping;
   const sandBoxContext = {};
   // 预处理事件
   newSchema = parseDsl(schema, isRoot);
@@ -203,6 +205,11 @@ const preprocessComponentSchema = (
   if (popoverSetting) {
     // 如果是弹窗的话，需要用组件包裹原始组件
     // @ts-ignore
+
+    if (popoverSetting?.page?.pagePath) {
+      popoverSetting.page.pagePath =
+        Popover[popoverSetting?.page?.pagePath] ?? popoverSetting.page.pagePath;
+    }
     return {
       compLib: 'antd-mobile-5',
       type: 'Popover',
@@ -262,13 +269,17 @@ export const markerLoopComponent = (schema: IProjectSchema) => {
 };
 
 // 解析schema数据
-export const parseSchema = (schema: IProjectSchema, isRoot: boolean) => {
+export const parseSchema = (
+  schema: IProjectSchema,
+  isRoot: boolean,
+  config: any,
+) => {
   modifySchemaCompName(schema, isRoot);
 
-  const target = preprocessComponentSchema(schema, isRoot) ?? schema;
+  const target = preprocessComponentSchema(schema, isRoot, config) ?? schema;
   const { components } = target as any;
   target.components = components?.map((schem: any) => {
-    return parseSchema(schem, false) ?? schem;
+    return parseSchema(schem, false, config) ?? schem;
   });
   return target;
 };

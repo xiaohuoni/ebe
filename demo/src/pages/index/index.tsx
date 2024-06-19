@@ -34,6 +34,13 @@ const Page = () => {
     bower: boolean = false,
     localGenerete: boolean = false,
   ) => {
+    // const rrr = await translateToEnglish({
+    //   appId: values.appId,
+    //   chinese: '你好,再见,页面',
+    //   rule: 'LOWER_CAMEL',
+    // })
+    // console.log(rrr);
+    // return
     setLoading(true);
     setPercent(0);
     setLog('');
@@ -57,6 +64,7 @@ const Page = () => {
         setLog(d.log);
         setPercent(d.progress);
       },
+      needTranslatePagePathToEnglish: true,
     });
     console.log('cleanedTree', cleanedTree);
     if (bower) {

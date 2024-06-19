@@ -38,10 +38,8 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
 
     const ir = next.ir as IContainerInfo;
 
-    // 将模块名转换成 PascalCase 的格式，并添加特定后缀，防止命名冲突
-    const type = ensureValidClassName(
-      `${changeCase.pascalCase(ir.moduleName)}$$${ir.containerType}`,
-    );
+    // 将模块名转换成 PascalCase 的格式
+    const type = ensureValidClassName(changeCase.pascalCase(ir.moduleName));
 
     const isModal =
       ir.containerType === 'MobileModal' ||

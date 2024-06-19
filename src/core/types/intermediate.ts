@@ -65,6 +65,7 @@ export interface IContainerInfo extends IProjectSchema, IWithDependency {
   // 一些全局的数据，都从这里塞进来，好找
   global?: {
     pageTypeMap?: any;
+    pagePathEnglishMapping?: any;
   };
 }
 
