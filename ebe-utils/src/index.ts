@@ -513,7 +513,11 @@ export const fetchData = async ({
       });
       console.log(translateName);
       // 如果页面路径翻译失败，就不处理路径
-      if (translateName !== 'TranslateError') {
+      // index 保留不处理
+      if (
+        translateName !== 'TranslateError' &&
+        pages[key].pagePath !== '/index'
+      ) {
         pagePathEnglishMapping[pages[key].pageContainerType] ??= {};
         const safeTranslateName = getName(
           translateName,
