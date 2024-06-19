@@ -13,15 +13,15 @@ describe('customActionCode', () => {
       },
     };
 
-    const expectedCode = `;(async () => {
-    console.log("Origin Code");
+    const expectedCode = `
     // 自定义代码块
-    return new Promise((resolve, reject) => {
+    new Promise((resolve, reject) => {
       try {
+        console.log("Origin Code");
         main(data, state, resolve, reject);
       } catch (error) {}
     })
-  })()`;
+`;
 
     const result = customActionCode(generateParams);
 
