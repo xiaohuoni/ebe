@@ -34,10 +34,12 @@ export default function hackEngineApis(
     //   value: `ref={(r:any)=>setComponentRef(r, ${generateUid(nodeItem)})}`,
     // });
     // }
-    pieces.push({
-      type: PIECE_TYPE.ATTR,
-      value: 'getEngineApis={getEngineApis}',
-    });
+    if (!LOOPCOMPONENTS.includes(nodeTags)) {
+      pieces.push({
+        type: PIECE_TYPE.ATTR,
+        value: 'getEngineApis={getEngineApis}',
+      });
+    }
   } else {
     // 页面容器可能会传 style
 

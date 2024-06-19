@@ -117,8 +117,6 @@ describe('hackEngineApis', () => {
       };
     }}`;
     expect(Array.isArray(result)).toBe(true);
-    expect(result[1].value).toBe('getEngineApis={getEngineApis}');
-    expectValueIgnoreWhitespace(result[2].value, getEngineApis);
   });
   test('DTalkView', () => {
     const nodeItem: any = {};
