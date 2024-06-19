@@ -1,5 +1,3 @@
-import changeCase from 'change-case';
-import { pinyin } from 'pinyin-pro';
 import { IContainerInfo } from '../../core';
 
 // 业务组件id 和 组件名字的对应关系
@@ -41,7 +39,7 @@ export const getBusiCompName = (
   type: 'component' | 'page' = 'component',
 ) => {
   let id = node?.props?.busiCompId;
-  let pageName = node?.label;
+  let pageName = '';
 
   if (type === 'page') {
     id = node.busiCompId;
@@ -54,14 +52,18 @@ export const getBusiCompName = (
     return otherType;
   }
 
+  if (!pageName) {
+    console.error('业务组件生成异常，未生成就先使用？');
+  }
+  // 在前置数据中翻译了 pageName 所以直接用就行
   // 如果是两个字符以上的，首字母大写，因为英文会被拆成单个字母，原样拼回去即可
-  const name = pinyin(`${getSafeTypeName(pageName)}`, {
-    type: 'array',
-    toneType: 'none',
-  })
-    .map((i) => (i.length > 1 ? changeCase.pascalCase(i) : i))
-    .join('');
-  const compName = getName(name);
+  // const name = pinyin(`${getSafeTypeName(pageName)}`, {
+  //   type: 'array',
+  //   toneType: 'none',
+  // })
+  //   .map((i) => (i.length > 1 ? changeCase.pascalCase(i) : i))
+  //   .join('');
+  const compName = getName(getSafeTypeName(pageName));
 
   busiCompMaps[id] = compName;
   busiCompNameSet.add(compName);

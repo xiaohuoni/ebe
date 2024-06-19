@@ -156,3 +156,17 @@ export async function getWaterMarkByAppId(params: any): Promise<any> {
     headers,
   });
 }
+
+// 翻译成英文
+export async function translateToEnglish(params: any): Promise<any> {
+  const headers: any = {
+    'Content-Type': 'application/json',
+    'APP-ID': params.appId,
+  };
+
+  return request('/api/lcdp/application/translateToEnglish', {
+    method: 'get',
+    params,
+    headers,
+  });
+}

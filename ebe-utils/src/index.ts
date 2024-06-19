@@ -252,6 +252,11 @@ interface CodeServices {
   findPageInstByVersionId: (data: any) => Promise<any>;
   findBusiCompById: (data: any) => Promise<any>;
   findApplication: (params: { appId: string }) => Promise<any>;
+  translateToEnglish: (params: {
+    appId: string;
+    chinese: string;
+    rule: string;
+  }) => Promise<any>;
 }
 
 interface CodeOptions {
@@ -414,7 +419,7 @@ export const fetchData = async ({
   );
   const busiCompMapping: any = {};
   // 过滤为空
-  const busiPages = busiData.filter(Boolean).map((i, index) => {
+  const busiPages: any[] = busiData.filter(Boolean).map((i, index) => {
     // 业务组件为空，返回一个 fallback
     const busiData = JSON.parse(
       i?.busiCompVersion?.sourceCodeJson ||
@@ -424,6 +429,15 @@ export const fetchData = async ({
     busiCompMapping[itemLists[index]] = busiData.id;
     return busiData;
   });
+  // 翻译业务组件的名字
+  for (let key = 0; key < busiPages.length; key++) {
+    const translateName = await services?.translateToEnglish?.({
+      appId,
+      chinese: busiPages[key].pageName,
+      rule: 'UPPER_CAMEL',
+    });
+    busiPages[key].pageName = translateName;
+  }
   // 合并页面，生成器那边支持页面类型和业务组件类型
   const pageDSLS = [...pages, ...busiPages];
 

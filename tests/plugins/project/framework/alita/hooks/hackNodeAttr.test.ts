@@ -1,4 +1,5 @@
 import hackEngineApis from '../../../../../../src/plugins/project/framework/alita/hooks/hackNodeAttr';
+import { getBusiCompName } from '../../../../../../src/utils/schema/getBusiCompName';
 
 const scope: any = {
   bindings: undefined,
@@ -17,6 +18,13 @@ describe('hackEngineApis', () => {
     expect(result[1].value).toBe('style={{ height: "100%", ...style }}');
   });
   test('BOFramer', () => {
+    getBusiCompName(
+      {
+        busiCompId: '1234',
+        pageName: 'HelloBusi',
+      },
+      'page',
+    );
     const nodeItem: any = {
       pageContainerType: 'BusiComp',
       busiCompId: '1234',
@@ -33,7 +41,7 @@ describe('hackEngineApis', () => {
 
     expect(Array.isArray(result)).toBe(true);
     expect(result[0].value).toBe('lcdpParentRenderId={customActionId}');
-    expect(result[1].value).toBe('YeWuZuJian');
+    expect(result[1].value).toBe('HelloBusi');
     expect(result[2].value).toBe('getEngineApis={getEngineApis}');
   });
   test('TabPane', () => {

@@ -10,6 +10,7 @@ import {
   qryPageInstListByAppId,
   queryFrontendDatasourcePage,
   queryFrontendHookList,
+  translateToEnglish,
 } from '@/services/api';
 import { generateCode, publishers } from '@lingxiteam/ebe';
 import { fetchData, init, setWorkerJsUrl } from '@lingxiteam/ebe-utils';
@@ -50,6 +51,7 @@ const Page = () => {
         queryFrontendDatasourcePage,
         queryFrontendHookList,
         findApplication,
+        translateToEnglish,
       },
       onProgress: (d: any) => {
         setLog(d.log);
@@ -118,9 +120,9 @@ const Page = () => {
         autoComplete="off"
         onFinish={onFinish}
         initialValues={{
-          appId: '1117743758138974208',
+          appId: '1106842174504439808',
           pageId: '',
-          platform: false,
+          platform: true,
         }}
       >
         <Item name="appId" label="AppID">
