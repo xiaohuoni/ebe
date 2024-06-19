@@ -35,7 +35,7 @@ describe('hackEngineApis', () => {
     expect(Array.isArray(result)).toBe(true);
     expect(result[0].value).toBe('lcdpParentRenderId={customActionId}');
     expect(result[1].value).toBe('YeWuZuJian');
-    expect(result[2].value).toBe('{...injectData}');
+    expect(result[2].value).toBe('getEngineApis={getEngineApis}');
   });
   test('TabPane', () => {
     const nodeItem: any = {
@@ -54,7 +54,7 @@ describe('hackEngineApis', () => {
 
     expect(Array.isArray(result)).toBe(true);
     expect(result[0].value).toBe("schema={{ props :{ key: '1' },style:{}}}");
-    expect(result[2].value).toBe('{...injectData}');
+    expect(result[2].value).toBe('getEngineApis={getEngineApis}');
   });
   test('CardHeader', () => {
     const nodeItem: any = {
@@ -86,7 +86,7 @@ describe('hackEngineApis', () => {
     const result = hackEngineApis(nodeItem, scope, config, next);
 
     expect(Array.isArray(result)).toBe(true);
-    expect(result[1].value).toBe('{...injectData}');
+    expect(result[1].value).toBe('getEngineApis={getEngineApis}');
     // 这里指验证孩子被删除
     expect(result[2].value).toBe('');
   });
@@ -106,7 +106,7 @@ describe('hackEngineApis', () => {
 
     const getEngineApis = `getEngineApis={() => {
       return {
-        ...injectData.getEngineApis(),
+        ...getEngineApis(),
         MemoRenderer: {
           renderer: null,
           MemoLoopItem: (props: any) => {
@@ -117,7 +117,7 @@ describe('hackEngineApis', () => {
       };
     }}`;
     expect(Array.isArray(result)).toBe(true);
-    expect(result[1].value).toBe('{...injectData}');
+    expect(result[1].value).toBe('getEngineApis={getEngineApis}');
     expectValueIgnoreWhitespace(result[2].value, getEngineApis);
   });
   test('DTalkView', () => {
@@ -138,7 +138,7 @@ describe('hackEngineApis', () => {
     const result = hackEngineApis(nodeItem, scope, config, next);
 
     expect(Array.isArray(result)).toBe(true);
-    expect(result[1].value).toBe('{...injectData}');
+    expect(result[1].value).toBe('getEngineApis={getEngineApis}');
     expect(result[2].value).toBe('lcdpParentRenderId={customActionId}');
   });
   test('CustomComponent', () => {

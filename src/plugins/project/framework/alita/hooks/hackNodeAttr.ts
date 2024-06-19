@@ -36,7 +36,7 @@ export default function hackEngineApis(
     // }
     pieces.push({
       type: PIECE_TYPE.ATTR,
-      value: '{...injectData}',
+      value: 'getEngineApis={getEngineApis}',
     });
   } else {
     // 页面容器可能会传 style
@@ -192,7 +192,7 @@ export default function hackEngineApis(
       type: PIECE_TYPE.ATTR,
       value: `getEngineApis={() => {
         return {
-          ...injectData.getEngineApis(),
+          ...getEngineApis(),
           MemoRenderer: {
             renderer: null,
             MemoLoopItem: (props: any) => {

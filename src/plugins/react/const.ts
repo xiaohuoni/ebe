@@ -60,4 +60,5 @@ export const DATA_SOURCE_CHUNK_NAME = {
 export const PAGE_TOOL_CHUNK_NAME = {
   PageTooL: 'PageTooL',
   UseSuperObjectHook: 'UseSuperObjectHookCall',
+  useMergeContextCallHook: 'useMergeContextCallHook',
 };

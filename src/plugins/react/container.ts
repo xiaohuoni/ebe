@@ -4,7 +4,7 @@ import {
   COMMON_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
-import { getGlobalDataExportNamesCode } from '../../utils/globalDataSource/template';
+import { getGlobalDataVars } from '../../utils/globalDataSource/template';
 import { MOBILE_CHUNK_NAME } from '../project/framework/alita/plugins/const';
 import {
   BOFRAMER_CHUNK_NAME,
@@ -27,6 +27,7 @@ import {
 import { ensureValidClassName } from '../../core/utils/validate';
 import { getImportFrom } from '../../utils/depsHelper';
 import { shouldUsedGlobalData } from '../../utils/globalDataSource/general';
+import { getContextInfo } from '../../utils/pageVarConfig';
 import { isBOFramer } from '../../utils/schema/getBusiCompName';
 
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
@@ -77,22 +78,9 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         const renderId = '${pageId}';
         const ${type} = React.forwardRef<unknown, PageProps>((props, ref) => {
           const {
-            attrDataMap={},customActionMapRef,routerData,lcdpApi, addActionTimer, clearActionTimer,
-            injectData, sandBoxContext, refs, functorsMap,
+            basicContext,
             ${isBOFramer(ir) ? '' : 'state,'}
-            style, urlParam, ${isModal ? 'forwardedRef,' : ''} 
-            setComponentRef,
-            ModalManagerRef,
-            ExpSQLServiceModalRef,
-            ExpBusiObjModalRef,
-            ImportBusiObjModalRef,
-            BannerModal,
-            customActionId,
-            lcdpParentRenderId,
-            addToAwaitQueue,
-            getStaticDataSourceService,
-            ${isModal ? 'onOk: fatherOnOk,' : ''}
-            ${isModal ? 'closeModal,' : ''}
+            style,
         } = props;
 
         ${
@@ -106,6 +94,8 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
             `
             : ''
         }
+        // 获取页面信息
+        const pageInfo = useGetPageInfo(props);
           `,
       linkAfter: [
         COMMON_CHUNK_NAME.ExternalDepsImport,
@@ -127,23 +117,13 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: DATA_SOURCE_CHUNK_NAME.CallDataSource,
       content: `
+       // 加载数据源管理 
         const useDataSourceTool = useDataSource({
-          urlParam,
-          routerData,
+          urlParam: pageInfo.urlParam,
+          routerData: pageInfo.routerData,
           state,
-          lcdpApi,
+          lcdpApi: pageInfo.lcdpApi,
         });
-        const {
-          data,
-          updateData,
-          resetDataSource,
-          reloadCustomDataSource,
-          dataSnapshot,
-          reloadServiceDataSource,
-          reloadObjectDataSource,
-          loading: dataLoading,
-          dataReadyComplete
-        } = useDataSourceTool;
         `,
       linkAfter: [CLASS_DEFINE_CHUNK_NAME.Start],
     });
@@ -153,15 +133,14 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         type: ChunkType.STRING,
         fileType: FileType.TSX,
         name: DATA_SOURCE_CHUNK_NAME.CallGlobalDataSource,
-        content: `const globalDataSourceTool = useGlobalData({
-          urlParam,
-          routerData,
+        content: `
+        // 全局数据源
+        const globalDataSourceTool = useGlobalData({
+          urlParam: pageInfo.urlParam,
+          routerData: pageInfo.routerData,
           state,
-          lcdpApi,
+          lcdpApi: pageInfo.lcdpApi,
         });
-        const {
-          ${getGlobalDataExportNamesCode(ir.globalDataSource)}
-        } = globalDataSourceTool;
         `,
         linkAfter: [
           DATA_SOURCE_CHUNK_NAME.CallDataSource,
@@ -175,11 +154,12 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: PAGE_TOOL_CHUNK_NAME.UseSuperObjectHook,
       content: `
-        const { transSuperObjectParams } = useTransSuperObjectParams({
-          refs,
-          dataSnapshot,
-          data,
-          sceneCode: urlParam?.sceneCode,
+       // 提交业务对象 
+        const useTransSuperObjectParamsTools = useTransSuperObjectParams({
+          refs: basicContext.refs,
+          dataSnapshot: useDataSourceTool.dataSnapshot,
+          data: useDataSourceTool.data,
+          sceneCode: pageInfo.urlParam?.sceneCode,
         });`,
       linkAfter: [
         DATA_SOURCE_CHUNK_NAME.CallGlobalDataSource,
@@ -192,8 +172,49 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: PAGE_TOOL_CHUNK_NAME.PageTooL,
-      content: `//通用的工具类方法 \n const useTools = useTool(refs, { addToAwaitQueue });\n const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled, getDisabled, asyncGetValue, validateForm, getFormValue, resetForm, clearValue, setFormValues, getTriggerRelDataSource, asyncCallComponentMethod,validateAllForm,getAllFormValues, resetAllForm, updateNodeChildren } = useTools`,
+      content: `//通用的工具类方法 \n const useTools = useTool(basicContext.refs, { addToAwaitQueue: pageInfo.addToAwaitQueue });\n`,
       linkAfter: [
+        PAGE_TOOL_CHUNK_NAME.UseSuperObjectHook,
+        DATA_SOURCE_CHUNK_NAME.CallGlobalDataSource,
+        DATA_SOURCE_CHUNK_NAME.CallDataSource,
+        CLASS_DEFINE_CHUNK_NAME.Start,
+      ],
+    });
+
+    next.chunks.push({
+      type: ChunkType.STRING,
+      fileType: FileType.TSX,
+      name: PAGE_TOOL_CHUNK_NAME.useMergeContextCallHook,
+      content: `
+      // 合并上下文
+      const { context, getEngineApis } = useMergeContext(props, {
+        state,
+        customActionId: props.customActionId,
+        lcdpParentRenderId: props.lcdpParentRenderId,
+        ${isModal ? 'fatherOnOk: props.onOk,' : ''}
+        ${isModal ? 'closeModal: props.closeModal,' : ''}
+        ...useTools,
+        ...pageInfo,
+        ...basicContext,
+        ...useDataSourceTool,
+        ${
+          shouldUsedGlobalData(ir.globalDataSource)
+            ? '...globalDataSourceTool,'
+            : ''
+        }
+        ...useTransSuperObjectParamsTools,
+      });
+
+      ${
+        getContextInfo({
+          paramsName: 'context',
+          includeVars: getGlobalDataVars(ir.globalDataSource),
+          excludeVars: ['state'],
+        }).deconstructionCode
+      }
+      `,
+      linkAfter: [
+        PAGE_TOOL_CHUNK_NAME.PageTooL,
         PAGE_TOOL_CHUNK_NAME.UseSuperObjectHook,
         DATA_SOURCE_CHUNK_NAME.CallGlobalDataSource,
         DATA_SOURCE_CHUNK_NAME.CallDataSource,

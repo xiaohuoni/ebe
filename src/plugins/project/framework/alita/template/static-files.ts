@@ -27,6 +27,7 @@ import popover from './files/popover';
 import popovermap from './files/popovermap';
 import popoverwrapper from './files/popoverwrapper';
 import proxy from './files/proxy';
+import useMergeContext from './files/useMergeContext';
 import withPageHOC from './files/withPageHOC';
 
 export function generateStaticFiles(
@@ -129,6 +130,13 @@ export function generateStaticFiles(
     postProcessors,
     root,
     customFuncMapping,
+    parseResult?.staticFiles,
+  );
+
+  runFileGenerator(
+    postProcessors,
+    root,
+    useMergeContext,
     parseResult?.staticFiles,
   );
 

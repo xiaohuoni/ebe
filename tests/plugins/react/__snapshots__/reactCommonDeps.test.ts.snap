@@ -7890,6 +7890,22 @@ import classNames from 'classnames';
         "type": "appInfo",
         "version": "*",
       },
+      Object {
+        "dependencyType": "External",
+        "destructuring": false,
+        "exportName": "useMergeContext",
+        "package": "@/hooks/useMergeContext",
+        "type": "useMergeContext",
+        "version": "*",
+      },
+      Object {
+        "dependencyType": "External",
+        "destructuring": true,
+        "exportName": "useGetPageInfo",
+        "package": "@/hooks/useMergeContext",
+        "type": "useGetPageInfo",
+        "version": "*",
+      },
     ],
     "events": Array [],
     "global": Object {

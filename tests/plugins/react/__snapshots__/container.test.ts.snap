@@ -9,25 +9,14 @@ Object {
         const renderId = 'pageIdError';
         const $1231781$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           const {
-            attrDataMap={},customActionMapRef,routerData,lcdpApi, addActionTimer, clearActionTimer,
-            injectData, sandBoxContext, refs, functorsMap,
+            basicContext,
             state,
-            style, urlParam,  
-            setComponentRef,
-            ModalManagerRef,
-            ExpSQLServiceModalRef,
-            ExpBusiObjModalRef,
-            ImportBusiObjModalRef,
-            BannerModal,
-            customActionId,
-            lcdpParentRenderId,
-            addToAwaitQueue,
-            getStaticDataSourceService,
-            
-            
+            style,
         } = props;
 
         
+        // 获取页面信息
+        const pageInfo = useGetPageInfo(props);
           ",
       "fileType": "tsx",
       "linkAfter": Array [
@@ -42,23 +31,13 @@ Object {
     },
     Object {
       "content": "
+       // 加载数据源管理 
         const useDataSourceTool = useDataSource({
-          urlParam,
-          routerData,
+          urlParam: pageInfo.urlParam,
+          routerData: pageInfo.routerData,
           state,
-          lcdpApi,
+          lcdpApi: pageInfo.lcdpApi,
         });
-        const {
-          data,
-          updateData,
-          resetDataSource,
-          reloadCustomDataSource,
-          dataSnapshot,
-          reloadServiceDataSource,
-          reloadObjectDataSource,
-          loading: dataLoading,
-          dataReadyComplete
-        } = useDataSourceTool;
         ",
       "fileType": "tsx",
       "linkAfter": Array [
@@ -68,15 +47,14 @@ Object {
       "type": "string",
     },
     Object {
-      "content": "const globalDataSourceTool = useGlobalData({
-          urlParam,
-          routerData,
+      "content": "
+        // 全局数据源
+        const globalDataSourceTool = useGlobalData({
+          urlParam: pageInfo.urlParam,
+          routerData: pageInfo.routerData,
           state,
-          lcdpApi,
+          lcdpApi: pageInfo.lcdpApi,
         });
-        const {
-          updateNModel,reloadNModel,resetNModel,globalDataReadyComplete,globalData,
-        } = globalDataSourceTool;
         ",
       "fileType": "tsx",
       "linkAfter": Array [
@@ -88,11 +66,12 @@ Object {
     },
     Object {
       "content": "
-        const { transSuperObjectParams } = useTransSuperObjectParams({
-          refs,
-          dataSnapshot,
-          data,
-          sceneCode: urlParam?.sceneCode,
+       // 提交业务对象 
+        const useTransSuperObjectParamsTools = useTransSuperObjectParams({
+          refs: basicContext.refs,
+          dataSnapshot: useDataSourceTool.dataSnapshot,
+          data: useDataSourceTool.data,
+          sceneCode: pageInfo.urlParam?.sceneCode,
         });",
       "fileType": "tsx",
       "linkAfter": Array [
@@ -105,8 +84,8 @@ Object {
     },
     Object {
       "content": "//通用的工具类方法 
- const useTools = useTool(refs, { addToAwaitQueue });
- const { getValue, setValue, setVisible, getVisible, callComponentMethod, setRequired, setDisabled, getDisabled, asyncGetValue, validateForm, getFormValue, resetForm, clearValue, setFormValues, getTriggerRelDataSource, asyncCallComponentMethod,validateAllForm,getAllFormValues, resetAllForm, updateNodeChildren } = useTools",
+ const useTools = useTool(basicContext.refs, { addToAwaitQueue: pageInfo.addToAwaitQueue });
+",
       "fileType": "tsx",
       "linkAfter": Array [
         "UseSuperObjectHookCall",
@@ -115,6 +94,36 @@ Object {
         "CommonClassDefineStart",
       ],
       "name": "PageTooL",
+      "type": "string",
+    },
+    Object {
+      "content": "
+      // 合并上下文
+      const { context, getEngineApis } = useMergeContext(props, {
+        state,
+        customActionId: props.customActionId,
+        lcdpParentRenderId: props.lcdpParentRenderId,
+        
+        
+        ...useTools,
+        ...pageInfo,
+        ...basicContext,
+        ...useDataSourceTool,
+        ...globalDataSourceTool,
+        ...useTransSuperObjectParamsTools,
+      });
+
+      const {urlParam,routerData,api,ModalManagerRef,functorsMap,fatherOnOk,closeModal,refs,attrDataMap,ExpSQLServiceModalRef,ExpBusiObjModalRef,ImportBusiObjModalRef,customActionId,lcdpApi,appInfo,clearActionTimer,addActionTimer,getFormValue,getValue,asyncGetValue,setValue,getVisible,setVisible,getRequired,setRequired,callComponentMethod,setDisabled,getDisabled,validateForm,resetForm,clearValue,setFormValues,asyncCallComponentMethod,validateAllForm,getAllFormValues,resetAllForm,updateNodeChildren,getTriggerRelDataSource,data,updateData,resetDataSource,reloadCustomDataSource,dataSnapshot,reloadServiceDataSource,reloadObjectDataSource,dataReadyComplete,globalData,globalDataReadyComplete,messageApi,saveBlobFile,transSuperObjectParams,lcdpParentRenderId,getStaticDataSourceService,addToAwaitQueue,sandBoxRun,sandBoxSafeRun,appId,updateNModel,reloadNModel,resetNModel } = context;
+      ",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "PageTooL",
+        "UseSuperObjectHookCall",
+        "CallGlobalDataSource",
+        "CallDataSource",
+        "CommonClassDefineStart",
+      ],
+      "name": "useMergeContextCallHook",
       "type": "string",
     },
     Object {

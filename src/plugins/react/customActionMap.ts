@@ -18,7 +18,6 @@ import {
 import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
 import { getImportFrom } from '../../utils/depsHelper';
 import { getSaleEventName } from '../../utils/getSaleEventName';
-import { shouldUsedGlobalData } from '../../utils/globalDataSource/general';
 import { getContextInfo } from '../../utils/pageVarConfig';
 import { getEvents } from '../../utils/schema/parseDsl';
 import {
@@ -228,15 +227,9 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         type: ChunkType.STRING,
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
-        content: `\n // 定义页面的自定义事件 \n  const customActionMap = useCustomAction({ ...useTools, ...useDataSourceTool, ${
-          shouldUsedGlobalData(ir.globalDataSource)
-            ? '...globalDataSourceTool,'
-            : ''
-        } ...sandBoxContext.current,customActionId, state,transSuperObjectParams,appInfo,${
-          isModal ? 'fatherOnOk,\n closeModal,' : ''
-        }},
-      )`,
+        content: `\n // 定义页面的自定义事件 \n  const customActionMap = useCustomAction(context)`,
         linkAfter: [
+          PAGE_TOOL_CHUNK_NAME.useMergeContextCallHook,
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
           DATA_SOURCE_CHUNK_NAME.CallDataSource,
           PAGE_TOOL_CHUNK_NAME.PageTooL,

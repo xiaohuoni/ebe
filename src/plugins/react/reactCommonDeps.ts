@@ -100,6 +100,13 @@ import classNames from 'classnames';
       );
     }
 
+    next.ir.deps.push(
+      getImportFrom('@/hooks/useMergeContext', 'useMergeContext', false),
+    );
+    next.ir.deps.push(
+      getImportFrom('@/hooks/useMergeContext', 'useGetPageInfo', true),
+    );
+
     return next;
   };
   return plugin;

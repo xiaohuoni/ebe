@@ -279,42 +279,18 @@ export const appInfo = {
               "options": undefined,
             },
             Object {
-              "content": "import React, { useContext, useEffect, useState, useRef, useMemo } from 'react';
-import { api as baseApi } from '@/services/api';
-import { messageApi } from '@/utils/messageApi';
-import BannerModal from '@/components/common/BannerModal';
+              "content": "import React, { useContext, useRef, useMemo } from 'react';
 import ExpBusiObjModal from '@/components/common/ExpBusiObjModal';
 import { createRenderId } from '@/utils/customFuncMapping';
 import ImportBusiObjModal from '@/components/ImportBusiObjModal';
 import ExpSQLServiceModal from '@/components/ExpSQLServiceModal';
 import { PageProvider } from '@/utils/Context/Container';
-import * as functorsMap from '@/utils/functors';
-import Sandbox from '@/utils/sandbox';
-import { useTopContainerHidden } from './Context/Container';
 import locales from '@/utils/i18n/locales';
 import { i18n } from '@/utils/i18n';
-import { useLocation } from 'alita';
-import { parse } from 'qs';
-import lcdpApi from '@/utils/lcdpApi';
 import AwaitHandleData from '@/utils/AwaitHandleData';
 import { Context } from './Context/context';
-import { sandBoxLoadModule } from './sandBoxLoadModule';
-import { getStateListener } from './StateListener';
-const getStaticDataSourceService = (
-  ds: any[],
-  labelKey: string,
-  valueKey: string,
-) => {
-  if (!ds?.length) return [];
-  if (!labelKey || !valueKey) return ds;
-  return ds.map((item) => ({
-    label: item[labelKey],
-    value: item[valueKey],
-  }));
-};
 export interface PageProps {
   CMDGenerator?: any;
-  injectData?: any;
   [key: string]: any;
 }
 export interface PageHOCOptions {
@@ -328,171 +304,33 @@ export const withPageHOC = (
 ) => {
   return React.forwardRef((props: any, ref) => {
     const renderId = props?.$$componentItem?.uid ?? options.renderId;
-    const location = useLocation();
     const refs = useRef<Record<string, any>>({}).current;
-    const {
-      ModalManagerRef,
-      refs: renerRefs,
-      attrDataMap,
-    } = useContext(Context);
+    const { refs: renerRefs } = useContext(Context);
+    const { getLocale } = i18n.useLocale(
+      {
+        locale: props.i18n?.locale!,
+        remoteLocale: props.i18n?.remoteLocale,
+        language: props.i18n?.language!,
+        configLocale: {},
+      },
+      locales,
+    );
     const ExpBusiObjModalRef = React.useRef<any>();
     const ExpSQLServiceModalRef = React.useRef<any>();
     const ImportBusiObjModalRef = React.useRef<any>();
-    const sandBoxContext = useRef<Record<string, any>>({});
-    const urlParam = useMemo(() => {
-      const queryParams = parse((location?.search ?? '?')?.split('?')[1]);
-      return {
-        ...queryParams,
-        ...props.urlParam,
-      };
-    }, [props.urlParam]);
     const awaitHandleData = useMemo(() => new AwaitHandleData(), []);
-
-    // 指令定时器存储
-    const actionTimerRef = useRef<Record<string, any>>({
-      timeout: {},
-      interval: {},
-    });
-
-    // 清除定时器
-    const clearActionTimer = (timerName: string) => {
-      const actionTimer = actionTimerRef.current;
-      if (actionTimer.interval?.[timerName]) {
-        clearInterval(actionTimer.interval[timerName]);
-        actionTimer.interval[timerName] = null;
-      }
-      if (actionTimer.timeout?.[timerName]) {
-        clearTimeout(actionTimer.timeout[timerName]);
-        actionTimer.timeout[timerName] = null;
-      }
-    };
-    const addActionTimer = (
-      type: 'interval' | 'timeout' = 'timeout',
-      timerName: string,
-      callback: () => void,
-      time: number = 0,
-    ) => {
-      const actionTimer = actionTimerRef.current;
-      clearActionTimer(type);
-      const delay = time > 0 ? +time : 0;
-      if (type === 'interval') {
-        actionTimer.interval[timerName] = setInterval(() => {
-          callback?.();
-        }, delay);
-      }
-      if (type === 'timeout') {
-        actionTimer.interval[timerName] = setTimeout(() => {
-          callback?.();
-        }, delay);
-      }
-    };
-    const { getLocaleLanguage, getLocale, getLocaleEnv, locale, language } =
-      i18n.useLocale(
-        {
-          locale: props.i18n?.locale!,
-          remoteLocale: props.i18n?.remoteLocale,
-          language: props.i18n?.language!,
-          configLocale: {},
-        },
-        locales,
-      );
-    sandBoxContext.current = useMemo(() => {
-      const injectData = {
-        getEngineApis: () => {
-          return {
-            compatConfig: {},
-            BannerModal,
-            stateListener: getStateListener(renderId),
-            ...baseApi,
-            // TODO: 这需要正确的请求
-            downloadFileByFileCode: () => null,
-            downloadByFileId: () => null,
-            getLocaleLanguage,
-            getLocale,
-            getLocaleEnv,
-            locale,
-            language,
-            useTopContainerHidden,
-            // 打开弹窗能力
-            openModal: (data: any) =>
-              ModalManagerRef.current?.openModal({
-                ...data,
-              }),
-            getVisible: (compId: string) => {
-              // @ts-ignore
-              return refs?.[compId]?.visible;
-            },
-            sandBoxLoadModule: (
-              code: string,
-              options?: {
-                dependencies?: Record<string, any>;
-                allowMap?: Record<string, any>;
-              },
-            ) => {
-              return sandBoxLoadModule(
-                code,
-                sandBoxContext.current,
-                undefined,
-                options,
-              );
-            },
-            sandBoxRun,
-            sandBoxSafeRun: (
-              code: string,
-              extendAllowMap: Record<string, any> = {},
-            ) => {
-              try {
-                return sandBoxRun(code, extendAllowMap);
-                // eslint-disable-next-line no-empty
-              } catch {}
-              return undefined;
-            },
-            // ??? 外层和 service 都需要？
-            service: {
-              ...baseApi,
-            },
-          };
-        },
-      };
-      // 设置默认属性
-      BannerModal.defaultProps = {
-        // @ts-ignore
-        api: baseApi,
-      };
-      const defaultContext = {
-        urlParam,
-        // TODO 需要将lcdpApi移动过来
-        lcdpApi,
-        api: baseApi,
-        getStaticDataSourceService,
-        ModalManagerRef,
+    const customActionId = useMemo(() => createRenderId(renderId), []);
+    const basicContext = useMemo(
+      () => ({
         ExpBusiObjModalRef,
         ExpSQLServiceModalRef,
         ImportBusiObjModalRef,
-        closeModal: (modalId: string) => {
-          ModalManagerRef.current?.closeModal(modalId, renderId);
-        },
-      };
-      const sandBoxRun = (
-        code: string,
-        extendAllowMap: Record<string, any> = {},
-      ) => {
-        return Sandbox.run(code, {
-          ...defaultContext,
-          ...extendAllowMap,
-        });
-      };
-      return {
-        ...injectData,
-        ...defaultContext,
-        sandBoxRun,
-        attrDataMap,
-        functorsMap,
-        messageApi,
         refs,
-      };
-    }, []);
-    const customActionId = useMemo(() => createRenderId(renderId), []);
+        customActionId,
+        renderId,
+      }),
+      [],
+    );
     return (
       <>
         <PageProvider
@@ -512,59 +350,25 @@ export const withPageHOC = (
         >
           <WrappedComponent
             {...props}
-            urlParam={urlParam}
             ref={ref}
-            refs={refs}
-            lcdpParentRenderId={props.lcdpParentRenderId}
-            renerRefs={renerRefs}
-            lcdpApi={lcdpApi}
-            injectData={{
-              getEngineApis: sandBoxContext.current.getEngineApis,
-            }}
-            attrDataMap={attrDataMap}
-            ModalManagerRef={ModalManagerRef}
-            sandBoxContext={sandBoxContext}
-            functorsMap={functorsMap}
-            addActionTimer={addActionTimer}
-            clearActionTimer={clearActionTimer}
-            ExpSQLServiceModalRef={ExpSQLServiceModalRef}
-            ExpBusiObjModalRef={ExpBusiObjModalRef}
-            ImportBusiObjModalRef={ImportBusiObjModalRef}
-            BannerModal={BannerModal}
-            customActionId={customActionId}
-            addToAwaitQueue={(
-              compId: string,
-              functionName: string,
-              ...args: any[]
-            ) => awaitHandleData.addToAwaitQueue(compId, functionName, ...args)}
-            getStaticDataSourceService={getStaticDataSourceService}
+            awaitHandleData={awaitHandleData}
+            basicContext={basicContext}
           />
         </PageProvider>
         <ExpBusiObjModal
           ref={ExpBusiObjModalRef}
           key={\`ExpBusiObjModal-\${renderId}\`}
-          // api={baseApi}
-          // utils写内部了，看后面需不需要整合
-          // utils={{}}
           getLocale={getLocale}
         />
         <ImportBusiObjModal
           ref={ImportBusiObjModalRef}
           key={\`ImportBusiObjModal-\${renderId}\`}
-          // TODO: 控件内部还存在需要 appId 和 pageId 的场景
-          // pageId={pageId}
-          // utils写内部了，看后面需不需要整合
-          // utils={renderCtx.utils}
           getLocale={getLocale}
         />
         <ExpSQLServiceModal
           ref={ExpSQLServiceModalRef}
           key={\`ExpSQLServiceModal-\${renderId}\`}
           // TODO: 控件内部还存在需要 appId 的场景
-          // api={baseApi}
-          // pageId={renderId}
-          // utils写内部了，看后面需不需要整合
-          // utils={{}}
           getLocale={getLocale}
         />
       </>
@@ -580,6 +384,7 @@ export const withPageHOC = (
               "content": "export declare type RenderId = string;
 const keywords = [
   'urlParam',
+  'routerData',
   'api',
   'ModalManagerRef',
   'functorsMap',
@@ -587,7 +392,6 @@ const keywords = [
   'closeModal',
   'refs',
   'state',
-  'getEngineApis',
   'attrDataMap',
   'ExpSQLServiceModalRef',
   'ExpBusiObjModalRef',
@@ -630,6 +434,13 @@ const keywords = [
   'globalDataReadyComplete',
   'messageApi',
   'saveBlobFile',
+  'transSuperObjectParams',
+  'lcdpParentRenderId',
+  'getStaticDataSourceService',
+  'addToAwaitQueue',
+  'sandBoxRun',
+  'sandBoxSafeRun',
+  'appId',
 ];
 const getSaleEventName = (eventName: any) => {
   const sale =
@@ -2447,7 +2258,6 @@ export default HomePage;
                 Object {
                   "content": "// 注意: 出码模块正在调试
 import React, { useImperativeHandle, useEffect, useRef } from 'react';
-import { api } from '@/services/api';
 import {
   View,
   Tabs,
@@ -2476,54 +2286,74 @@ import {
   ModalSelect,
 } from '@/components/factory';
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
-import { messageApi, Spin } from '@/utils/messageApi';
+import { Spin } from '@/utils/messageApi';
 import { useTool } from '@/utils/useTool';
 import useGlobalData from './useGlobalData';
 import useDataSource from './useDataSource';
 import useTransSuperObjectParams from '@/hooks/useTransSuperObjectParams';
+import useMergeContext, { useGetPageInfo } from '@/hooks/useMergeContext';
 import useLifeCycle from '@/hooks/useLifeCycle';
 import { history } from 'alita';
 
 // 生成一个Id，用来记录当前页面所有的自定义事件
 const renderId = '/Index';
 const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
-  const {
-    attrDataMap = {},
-    routerData,
-    lcdpApi,
-    injectData,
-    refs,
-    state,
-    style,
-    urlParam,
-    addToAwaitQueue,
-  } = props;
+  const { basicContext, state, style } = props;
+
+  // 获取页面信息
+  const pageInfo = useGetPageInfo(props);
+
+  // 加载数据源管理
   const useDataSourceTool = useDataSource({
-    urlParam,
-    routerData,
+    urlParam: pageInfo.urlParam,
+    routerData: pageInfo.routerData,
     state,
-    lcdpApi,
+    lcdpApi: pageInfo.lcdpApi,
   });
-  const { data, dataSnapshot, dataReadyComplete } = useDataSourceTool;
+
+  // 全局数据源
   const globalDataSourceTool = useGlobalData({
-    urlParam,
-    routerData,
+    urlParam: pageInfo.urlParam,
+    routerData: pageInfo.routerData,
     state,
-    lcdpApi,
+    lcdpApi: pageInfo.lcdpApi,
   });
-  const { globalDataReadyComplete, globalData } = globalDataSourceTool;
-  const { transSuperObjectParams } = useTransSuperObjectParams({
-    refs,
-    dataSnapshot,
-    data,
-    sceneCode: urlParam?.sceneCode,
+
+  // 提交业务对象
+  const useTransSuperObjectParamsTools = useTransSuperObjectParams({
+    refs: basicContext.refs,
+    dataSnapshot: useDataSourceTool.dataSnapshot,
+    data: useDataSourceTool.data,
+    sceneCode: pageInfo.urlParam?.sceneCode,
   });
 
   //通用的工具类方法
-  const useTools = useTool(refs, {
-    addToAwaitQueue,
+  const useTools = useTool(basicContext.refs, {
+    addToAwaitQueue: pageInfo.addToAwaitQueue,
   });
-  const {} = useTools;
+
+  // 合并上下文
+  const { context, getEngineApis } = useMergeContext(props, {
+    state,
+    customActionId: props.customActionId,
+    lcdpParentRenderId: props.lcdpParentRenderId,
+    ...useTools,
+    ...pageInfo,
+    ...basicContext,
+    ...useDataSourceTool,
+    ...globalDataSourceTool,
+    ...useTransSuperObjectParamsTools,
+  });
+  const {
+    api,
+    lcdpApi,
+    data,
+    dataReadyComplete,
+    globalData,
+    globalDataReadyComplete,
+    messageApi,
+    transSuperObjectParams,
+  } = context;
   const didMount = async () => {};
   useEffect(() => {}, [state]);
 
@@ -2576,7 +2406,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           width: 'auto',
           height: 'auto',
         }}
-        {...injectData}
+        getEngineApis={getEngineApis}
       >
         <Tabs
           type=\\"line\\"
@@ -2596,7 +2426,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
             margin: '0 0 16px 0',
             padding: '20px 20px 20px 20px',
           }}
-          {...injectData}
+          getEngineApis={getEngineApis}
         >
           <TabPane
             schema={{
@@ -2618,7 +2448,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
             style={{
               minHeight: 40,
             }}
-            {...injectData}
+            getEngineApis={getEngineApis}
           />
           <TabPane
             schema={{
@@ -2640,7 +2470,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
             style={{
               minHeight: 40,
             }}
-            {...injectData}
+            getEngineApis={getEngineApis}
           />
         </Tabs>
         <Button
@@ -2659,7 +2489,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
             // 打印日志
             console.log(globalData?.n);
           }}
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <Text
           content={globalData?.n?.a}
@@ -2677,7 +2507,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
             color: '#1c242e',
             backgroundColor: 'rgba(255, 255, 255,0)',
           }}
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <Transfer
           name=\\"穿梭框\\"
@@ -2820,7 +2650,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           }}
           className=\\"Transfer_Transfer_917728\\"
           visible
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <DatePicker
           name=\\"日期选择\\"
@@ -2847,7 +2677,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           }}
           className=\\"DatePicker_DatePicker_662424\\"
           visible
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <TimePicker
           name=\\"时间选择\\"
@@ -2874,7 +2704,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           }}
           className=\\"TimePicker_TimePicker_0120795\\"
           visible
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <Text
           content={data?.ll?.param}
@@ -2892,7 +2722,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
             color: '#1c242e',
             backgroundColor: 'rgba(255, 255, 255,0)',
           }}
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <RangePicker
           name=\\"时间段选择\\"
@@ -2917,7 +2747,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           }}
           className=\\"RangePicker_RangePicker_6433572\\"
           visible
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <Dropdown
           trigger={['hover']}
@@ -2946,7 +2776,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
             backgroundColor: 'rgba(255, 255, 255,0)',
             padding: '5px 5px 5px 5px',
           }}
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <Input
           name=\\"输入框\\"
@@ -2981,7 +2811,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           }}
           className=\\"Input_Input_89811\\"
           visible
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <Icon
           mode=\\"normal\\"
@@ -2997,7 +2827,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           }}
           className=\\"Icon_Icon_270659\\"
           visible
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <StdUpload
           name=\\"文件上传\\"
@@ -3052,7 +2882,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           }}
           className=\\"StdUpload_StdUpload_46152\\"
           visible
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <Form
           colSpan={8}
@@ -3077,7 +2907,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           style={{
             padding: '0px 0px 0px 0px',
           }}
-          {...injectData}
+          getEngineApis={getEngineApis}
         >
           <InputNumber
             name=\\"用户ID\\"
@@ -3105,7 +2935,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
             className=\\"InputNumber_InputNumber_user_id_9233913\\"
             visible
             isFormRootChild
-            {...injectData}
+            getEngineApis={getEngineApis}
           />
         </Form>
         <Tree
@@ -3121,7 +2951,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           }}
           className=\\"Tree_Tree_6934174\\"
           visible
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <Description
           layout=\\"horizontal\\"
@@ -3174,7 +3004,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           }}
           className=\\"Description_Description_926608\\"
           visible
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <Rate
           name=\\"评分\\"
@@ -3198,7 +3028,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           className=\\"Rate_Rate_8203694\\"
           visible
           onChange={(e: any) => {}}
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <Steps
           labelPlacement=\\"horizontal\\"
@@ -3277,7 +3107,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           }}
           className=\\"Steps_Steps_94315\\"
           visible
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <Card
           cardIconType=\\"left\\"
@@ -3311,7 +3141,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
             overflowY: 'visible',
             margin: '0 0 16px 0',
           }}
-          {...injectData}
+          getEngineApis={getEngineApis}
         >
           <Audio
             hideType=\\"hidden\\"
@@ -3332,7 +3162,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
             style={{
               padding: '12px 16px 12px 16px',
             }}
-            {...injectData}
+            getEngineApis={getEngineApis}
           />
         </Card>
         <Table
@@ -3408,7 +3238,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           }}
           className=\\"Table_Table_842633\\"
           visible
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <Select
           name=\\"下拉框\\"
@@ -3432,7 +3262,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           }}
           className=\\"Select_Select_2379145\\"
           visible
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <MultipleSelect
           name=\\"下拉多选框\\"
@@ -3457,7 +3287,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           }}
           className=\\"MultipleSelect_MultipleSelect_7959066\\"
           visible
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <ModalSelect
           name=\\"弹窗选择\\"
@@ -3489,7 +3319,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
           }}
           className=\\"ModalSelect_ModalSelect_971166\\"
           visible
-          {...injectData}
+          getEngineApis={getEngineApis}
         />
         <View
           backgroundType={{
@@ -3511,7 +3341,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
             justifyContent: 'center',
             alignItems: 'center',
           }}
-          {...injectData}
+          getEngineApis={getEngineApis}
         >
           <Button
             type=\\"primary\\"
@@ -3551,7 +3381,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
                   messageApi('error', '保存失败！');
                 });
             }}
-            {...injectData}
+            getEngineApis={getEngineApis}
           />
           <Button
             hasIcon={false}
@@ -3572,7 +3402,7 @@ const Index$$Page = React.forwardRef<unknown, PageProps>((props, ref) => {
               lcdpApi.setPageCallBackData({});
               history.go(-1);
             }}
-            {...injectData}
+            getEngineApis={getEngineApis}
           />
         </View>
       </View>
@@ -4101,6 +3931,226 @@ export default Layout;
             },
           ],
           "name": "layouts",
+        },
+        Object {
+          "dirs": Array [],
+          "files": Array [
+            Object {
+              "content": "import { useContext, useMemo, useRef } from 'react';
+import { history } from 'alita';
+import { parse } from 'qs';
+import BannerModal from '@/components/common/BannerModal';
+import { api } from '@/services/api';
+import { useTopContainerHidden } from '@/utils/Context/Container';
+import { i18n } from '@/utils/i18n';
+import locales from '@/utils/i18n/locales';
+import { getStateListener } from '@/utils/StateListener';
+import { Context } from '@/utils/Context/context';
+import lcdpApi from '@/utils/lcdpApi';
+import { sandBoxLoadModule } from '@/utils/sandBoxLoadModule';
+import Sandbox from '@/utils/sandbox';
+import * as functorsMap from '@/utils/functors';
+import { messageApi } from '@/utils/messageApi';
+import { appInfo } from '@/utils/attrSpecPage';
+import { useLocation } from 'alita';
+
+// 设置默认属性
+BannerModal.defaultProps = {
+  // @ts-ignore
+  api,
+};
+const getStaticDataSourceService = (
+  ds: any[],
+  labelKey: string,
+  valueKey: string,
+) => {
+  if (!ds?.length) return [];
+  if (!labelKey || !valueKey) return ds;
+  return ds.map((item) => ({
+    label: item[labelKey],
+    value: item[valueKey],
+  }));
+};
+
+/**
+ * 获取信息
+ */
+export const useGetPageInfo = (props: Record<string, any>) => {
+  const location = useLocation();
+
+  /**
+   * url参数
+   */
+  const urlParam = useMemo(() => {
+    const queryParams = parse((location?.search ?? '?')?.split('?')[1]);
+    return {
+      ...queryParams,
+      ...props.urlParam,
+    };
+  }, [props.urlParam]);
+  const routerData = useMemo(
+    () =>
+      history?.location?.state ||
+      JSON.parse(window.sessionStorage.getItem(urlParam._k) || '{}'),
+    [],
+  );
+  return {
+    urlParam,
+    lcdpApi,
+    routerData,
+    addToAwaitQueue: (compId: string, functionName: string, ...args: any[]) =>
+      props.awaitHandleData.addToAwaitQueue(compId, functionName, ...args),
+  };
+};
+
+/**
+ * 生成基础上下文
+ * @param baseContext
+ */
+const useMergeContext = (
+  props: Record<string, any>,
+  basicContext: Record<string, any> = {},
+) => {
+  // 指令定时器存储
+  const actionTimerRef = useRef<Record<string, any>>({
+    timeout: {},
+    interval: {},
+  });
+  const { getLocaleLanguage, getLocale, getLocaleEnv, locale, language } =
+    i18n.useLocale(
+      {
+        locale: props.i18n?.locale!,
+        remoteLocale: props.i18n?.remoteLocale,
+        language: props.i18n?.language!,
+        configLocale: {},
+      },
+      locales,
+    );
+  const { ModalManagerRef, appId, attrDataMap } = useContext(Context);
+
+  // 清除定时器
+  const clearActionTimer = (timerName: string) => {
+    const actionTimer = actionTimerRef.current;
+    if (actionTimer.interval?.[timerName]) {
+      clearInterval(actionTimer.interval[timerName]);
+      actionTimer.interval[timerName] = null;
+    }
+    if (actionTimer.timeout?.[timerName]) {
+      clearTimeout(actionTimer.timeout[timerName]);
+      actionTimer.timeout[timerName] = null;
+    }
+  };
+
+  // 增加指令定时器
+  const addActionTimer = (
+    type: 'interval' | 'timeout' = 'timeout',
+    timerName: string,
+    callback: () => void,
+    time: number = 0,
+  ) => {
+    const actionTimer = actionTimerRef.current;
+    clearActionTimer(type);
+    const delay = time > 0 ? +time : 0;
+    if (type === 'interval') {
+      actionTimer.interval[timerName] = setInterval(() => {
+        callback?.();
+      }, delay);
+    }
+    if (type === 'timeout') {
+      actionTimer.interval[timerName] = setTimeout(() => {
+        callback?.();
+      }, delay);
+    }
+  };
+  const sandBoxRun = (
+    code: string,
+    extendAllowMap: Record<string, any> = {},
+  ) => {
+    return Sandbox.run(code, {
+      ...context,
+      ...extendAllowMap,
+    });
+  };
+  const sandBoxSafeRun = (
+    code: string,
+    extendAllowMap: Record<string, any> = {},
+  ) => {
+    try {
+      return sandBoxRun(code, extendAllowMap);
+      // eslint-disable-next-line no-empty
+    } catch {}
+    return undefined;
+  };
+  const context: Record<string, any> = {
+    ...basicContext,
+    clearActionTimer,
+    addActionTimer,
+    api,
+    ModalManagerRef,
+    attrDataMap,
+    functorsMap,
+    messageApi,
+    routerData: getStaticDataSourceService,
+    // closeModal: (modalId: string) => {
+    //   ModalManagerRef.current?.closeModal(modalId, basicContext.renderId);
+    // },
+    lcdpParentRenderId: props.lcdpParentRenderId,
+    sandBoxRun,
+    sandBoxSafeRun,
+    appInfo,
+  };
+  return {
+    context,
+    getEngineApis: () => {
+      return {
+        compatConfig: {},
+        BannerModal,
+        stateListener: getStateListener(basicContext.renderId),
+        ...api,
+        downloadFileByFileCode: () => null,
+        downloadByFileId: () => null,
+        getLocaleLanguage,
+        getLocale,
+        getLocaleEnv,
+        locale,
+        language,
+        useTopContainerHidden,
+        // 打开弹窗能力
+        openModal: (data: any) =>
+          ModalManagerRef.current?.openModal({
+            appId,
+            ...data,
+          }),
+        getVisible: (compId: string) => {
+          // @ts-ignore
+          return context.refs?.[compId]?.visible;
+        },
+        sandBoxLoadModule: (
+          code: string,
+          options?: {
+            dependencies?: Record<string, any>;
+            allowMap?: Record<string, any>;
+          },
+        ) => {
+          return sandBoxLoadModule(code, context, undefined, options);
+        },
+        sandBoxRun,
+        sandBoxSafeRun,
+        service: {
+          ...api,
+        },
+      };
+    },
+  };
+};
+export default useMergeContext;
+",
+              "ext": "ts",
+              "name": "useMergeContext",
+              "options": undefined,
+            },
+          ],
+          "name": "hooks",
         },
         Object {
           "dirs": Array [],

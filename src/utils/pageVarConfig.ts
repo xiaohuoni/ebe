@@ -1,7 +1,12 @@
 // TODO: 这里需要补充
+
 // 页面上下文配置
 const pageVar = {
   urlParam: {
+    type: 'Record<string, any>',
+    description: 'url参数',
+  },
+  routerData: {
     type: 'Record<string, any>',
     description: 'url参数',
   },
@@ -33,10 +38,10 @@ const pageVar = {
     type: 'Record<string, any>',
     description: '组件状态',
   },
-  getEngineApis: {
-    type: '() => Record<string, any>',
-    description: '引擎能力',
-  },
+  // getEngineApis: {
+  //   type: '() => Record<string, any>',
+  //   description: '引擎能力',
+  // },
   attrDataMap: {
     type: 'Record<string, any>',
     description: '静态数据',
@@ -58,7 +63,6 @@ const pageVar = {
     description: '自定义动作id',
   },
   lcdpApi: {
-    // TODO: 这里可能需要根据重新生成下
     type: 'Record<string, any>',
     description: '低代码接口',
   },
@@ -244,6 +248,41 @@ const pageVar = {
     }) => void`,
     description: '文件保存方法',
   },
+  transSuperObjectParams: {
+    type: `(busiObjectIdMap?: Record<string, {
+        formId?: string;
+        busiObjectId?: string;
+    }>, extServices?: {
+        sceneCode: string;
+        actionCode: string;
+    }[]) => Promise<Record<string, any>>;`,
+    description: '提交业务对象',
+  },
+  lcdpParentRenderId: {
+    type: `string`,
+    description: '父组件引擎id',
+  },
+  getStaticDataSourceService: {
+    type: `(ds: any[], labelKey: string, valueKey: string) => any[]`,
+    description: '获取静态数据',
+  },
+  addToAwaitQueue: {
+    type: `(compId: string, functionName: string, ...args: any[]) => void`,
+    description: '将组件放入到指令队列',
+  },
+
+  sandBoxRun: {
+    type: `(code: string, extendAllowMap?: Record<string, any>) => any`,
+    description: '运行沙箱',
+  },
+  sandBoxSafeRun: {
+    type: `(code: string, extendAllowMap?: Record<string, any>) => any`,
+    description: '安全运行沙箱',
+  },
+  appId: {
+    type: 'string',
+    description: '应用Id',
+  },
 };
 
 /**
@@ -253,16 +292,19 @@ export const getContextInfo = (
   opts: {
     paramsName?: string;
     includeVars?: string[];
-  } = { paramsName: 'context', includeVars: [] },
+    excludeVars?: string[];
+  } = { paramsName: 'context', includeVars: [], excludeVars: [] },
 ) => {
-  const { paramsName = 'context', includeVars = [] } = opts;
+  const { paramsName = 'context', includeVars = [], excludeVars = [] } = opts;
   // 去重，includeVars优先级大于默认的
   const vars = new Set([...Object.keys(pageVar), ...includeVars]);
   return {
     /**
      * 解构代码字符串
      */
-    deconstructionCode: `const {${[...vars].join(',')} } = ${paramsName};`,
+    deconstructionCode: `const {${[...vars]
+      .filter((v) => !excludeVars.includes(v))
+      .join(',')} } = ${paramsName};`,
 
     /**
      * 变量数组
