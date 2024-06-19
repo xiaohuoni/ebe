@@ -185,6 +185,12 @@ const sandBoxRun = (
     sandBoxRun,
     sandBoxSafeRun,
     appInfo,
+    BannerModal,
+    getLocaleLanguage,
+    getLocale,
+    getLocaleEnv,
+    locale,
+    language,
   };
   
   return {

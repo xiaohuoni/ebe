@@ -283,6 +283,30 @@ const pageVar = {
     type: 'string',
     description: '应用Id',
   },
+  BannerModal: {
+    type: 'Record<string, any>',
+    description: '预览弹窗',
+  },
+  getLocaleLanguage: {
+    type: '(id: string, placeholder?: string, kv?: Record<string, string>) => string | undefined',
+    description: '远端文字配置',
+  },
+  getLocale: {
+    type: '(key: string, placeholder?: string, kv?: Record<string, string>) => string',
+    description: '获取静态语言包。硬编码',
+  },
+  getLocaleEnv: {
+    type: '() => string',
+    description: '获取当前语言编码',
+  },
+  language: {
+    type: 'string',
+    description: '获取当前语言编码',
+  },
+  locale: {
+    type: 'Record<string, any>',
+    description: '当前语言文案对象',
+  },
 };
 
 /**

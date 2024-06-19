@@ -441,6 +441,12 @@ const keywords = [
   'sandBoxRun',
   'sandBoxSafeRun',
   'appId',
+  'BannerModal',
+  'getLocaleLanguage',
+  'getLocale',
+  'getLocaleEnv',
+  'language',
+  'locale',
 ];
 const getSaleEventName = (eventName: any) => {
   const sale =
@@ -3928,6 +3934,12 @@ const useMergeContext = (
     sandBoxRun,
     sandBoxSafeRun,
     appInfo,
+    BannerModal,
+    getLocaleLanguage,
+    getLocale,
+    getLocaleEnv,
+    locale,
+    language,
   };
   return {
     context,
