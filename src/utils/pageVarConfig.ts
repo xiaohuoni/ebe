@@ -1,5 +1,7 @@
 // TODO: 这里需要补充
 
+import { getImportFrom, getImportsFrom } from './depsHelper';
+
 // 页面上下文配置
 const pageVar = {
   urlParam: {
@@ -333,7 +335,23 @@ export const getContextInfo = (
     /**
      * 变量数组
      */
-    vars,
+    vars: [...vars],
+
+    deps: [
+      ...getImportsFrom('@/utils/historytool', ['historytool', 'HISTORYTYPES']),
+      ...getImportsFrom('@/utils/platform', [
+        'previewFile',
+        'saveBlobFile',
+        'batchDownloadFileByIds',
+        'downloadByFileCode',
+      ]),
+      ...getImportsFrom('@/utils/cmd', [
+        'checkIsEmpty',
+        'checkIsContains',
+        'safeNumber',
+      ]),
+      getImportFrom('@/utils/customFuncMapping', 'customFuncMapping', false),
+    ],
   };
 };
 

@@ -2,9 +2,7 @@ import {
   CLASS_DEFINE_CHUNK_NAME,
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
-import { getGlobalDataVars } from '../../utils/globalDataSource/template';
 
-import { groupDepsByPack } from '../../core/plugins/common/esmodule';
 import {
   BuilderComponentPlugin,
   BuilderComponentPluginFactory,
@@ -12,13 +10,12 @@ import {
   FileType,
   ICodeStruct,
   IContainerInfo,
-  IDependency,
   IScope,
 } from '../../core/types';
 import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
+import createEventFile from '../../core/utils/createEventFile';
 import { getImportFrom } from '../../utils/depsHelper';
 import { getSaleEventName } from '../../utils/getSaleEventName';
-import { getContextInfo } from '../../utils/pageVarConfig';
 import { getEvents } from '../../utils/schema/parseDsl';
 import {
   CUSTOM_ACTION_CHUNK_NAME,
@@ -26,58 +23,6 @@ import {
   LIFE_CYCLE_CHUNK_NAME,
   PAGE_TOOL_CHUNK_NAME,
 } from './const';
-
-/**
- * 导入依赖转成import生命代码
- * @param deps
- * @returns
- */
-const depsToImportDeclarationCode = (deps: IDependency[] = []) => {
-  const packs = groupDepsByPack(deps);
-  // TODO: 命令的 import 来源，应该是固定的，现在是生成所有的，又通过 noused 方案去掉了
-  const importString = Object.keys(packs)
-    .map((pkg: string) => {
-      const ips = packs[pkg];
-      if (!ips || ips.length === 0) {
-        return '';
-      }
-
-      // 取出需要importSpecifier的列表。
-      const importSpecifier = ips
-        .filter((i) => i.destructuring)
-        .map((i: any) => i.exportName);
-      // exportNames需要保证唯一
-      const exportNames = new Set(importSpecifier);
-
-      // 构造解构部分的导出字符串
-      const destructure =
-        exportNames.size > 0 ? `{ ${[...exportNames].join(',')} }` : '';
-
-      // 默认导出
-      const defaultIpsName = ips
-        .filter((i) => !i.destructuring)
-        .map((it) => it.exportName);
-
-      // 如果发现默认导出有多个不同的名称，需要抛出异常，以便更好的排查问题。
-      if (new Set(defaultIpsName).size > 1) {
-        const imparityDefaultNames = [...new Set(defaultIpsName)];
-        throw new Error(
-          `默认导入存在多个不同的变量名，请排查${imparityDefaultNames}`,
-        );
-      }
-
-      const defaultExportName = defaultIpsName?.[0];
-
-      // 导出的代码
-      const exportCode = [defaultExportName, destructure]
-        .filter(Boolean)
-        .join(',');
-
-      return `import ${exportCode} from '${pkg}';`;
-    })
-    .join('\n');
-  return importString;
-};
 
 export interface PluginConfig {
   fileType?: string;
@@ -102,103 +47,91 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     };
 
     const ir = next.ir as IContainerInfo;
-    const isModal =
-      ir.containerType === 'MobileModal' ||
-      ir.containerType === 'Modal' ||
-      ir.containerType === 'Drawer';
+
     if (ir?.customFuctions && ir?.customFuctions.length > 0) {
       const customFuctionsIds: string[] = [];
       // 写到独立文件
 
-      const eventCodeString = ir?.customFuctions
-        .map((e) => {
-          const value = e.setEvents?.map((event: any) => {
-            const { eName, eValue } = getEvents(event);
-            return {
-              id: `${eName}`,
-              value: eValue,
-            };
-          });
-          const item = value?.[0];
-          const eventName = getSaleEventName(e.eventCode);
-          customFuctionsIds.push(eventName);
-          // TODO: setEvents 不存在，应该要执行 dynamicActionSource？
-          if (!item) {
-            if (!e.originDynamicActionSource) {
-              return `// 编排时为空
+      const paramsName = 'context';
+
+      const content = await createEventFile(
+        { containerInfo: ir, paramsName },
+        async ({ deconstructionContextCode }) => {
+          const eventCodeString = ir?.customFuctions
+            ?.map((e) => {
+              const value = e.setEvents?.map((event: any) => {
+                const { eName, eValue } = getEvents(event);
+                return {
+                  id: `${eName}`,
+                  value: eValue,
+                };
+              });
+              const item = value?.[0];
+              const eventName = getSaleEventName(e.eventCode);
+              customFuctionsIds.push(eventName);
+
+              // TODO: setEvents 不存在，应该要执行 dynamicActionSource？
+              if (!item) {
+                if (!e.originDynamicActionSource) {
+                  return `// 编排时为空
           const ${eventName} = (options: any)=>{}`;
-            }
-            // originDynamicActionSource 可能是带 try catch 的，我们只需要中间执行的代码
-            let startStrLength = 5;
-            let startIndex = e.originDynamicActionSource.indexOf('try {');
-            // 如果没带 try catch ，匹配函数中间的字符串
-            if (startIndex === -1) {
-              startStrLength = 6;
-              startIndex = e.originDynamicActionSource.indexOf(') => {');
-            }
-            let endIndex =
-              e.originDynamicActionSource.indexOf('} catch (err) {');
-            if (endIndex === -1) {
-              endIndex = e.originDynamicActionSource.lastIndexOf('}');
-            }
-            // 裁剪字符串，只要中间实际的函数内容
-            const extractedString = e.originDynamicActionSource.substring(
-              startIndex === -1 ? 0 : startIndex + startStrLength,
-              endIndex === -1 ? e.originDynamicActionSource.length : endIndex,
-            );
-            return `const ${eventName} = (options: any)=>{ try { ${extractedString}} catch (err) {
+                }
+                // originDynamicActionSource 可能是带 try catch 的，我们只需要中间执行的代码
+                let startStrLength = 5;
+                let startIndex = e.originDynamicActionSource.indexOf('try {');
+                // 如果没带 try catch ，匹配函数中间的字符串
+                if (startIndex === -1) {
+                  startStrLength = 6;
+                  startIndex = e.originDynamicActionSource.indexOf(') => {');
+                }
+                let endIndex =
+                  e.originDynamicActionSource.indexOf('} catch (err) {');
+                if (endIndex === -1) {
+                  endIndex = e.originDynamicActionSource.lastIndexOf('}');
+                }
+                // 裁剪字符串，只要中间实际的函数内容
+                const extractedString = e.originDynamicActionSource.substring(
+                  startIndex === -1 ? 0 : startIndex + startStrLength,
+                  endIndex === -1
+                    ? e.originDynamicActionSource.length
+                    : endIndex,
+                );
+                return `const ${eventName} = (options: any)=>{ try { ${extractedString}} catch (err) {
           console.log(err);
         }}`;
+              }
+
+              return `const ${eventName} = ${CMDGeneratorEvent(
+                item?.value,
+                next?.contextData,
+                {} as IScope,
+                { ir, isCustomEvent: true, options: next.contextData.options },
+              )}`;
+            })
+            .join(';');
+
+          return `
+          const useCustomAction = (${paramsName}: any) => {
+            ${deconstructionContextCode}
+            ${eventCodeString}
+            const customActionMap = {
+              ${customFuctionsIds.join(',')}
+            };
+
+            return customActionMap;
           }
-          // const { eName, eValue } = events;
-          // schema.events[eName] = {
-          //   id: `${eName}`,
-          //   value: eValue,
-          // };
-          return `const ${eventName} = ${CMDGeneratorEvent(
-            item?.value,
-            next?.contextData,
-            {} as IScope,
-            { ir, isCustomEvent: true, options: next.contextData.options },
-          )}`;
-        })
-        .join(';');
-
-      // 通过deps 生成 导入语句
-      const importString = depsToImportDeclarationCode(ir.deps);
-
-      const { deconstructionCode } = getContextInfo({
-        paramsName: 'context',
-        includeVars: getGlobalDataVars(ir.globalDataSource),
-      });
+          
+          export default useCustomAction;
+        `;
+        },
+      );
 
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: cfg.fileType,
         name: CUSTOM_ACTION_CHUNK_NAME.Map,
         subModule: 'customAction',
-        content:
-          `
-          import { historytool, HISTORYTYPES } from '@/utils/historytool';
-          import {
-            previewFile,
-            saveBlobFile,
-            batchDownloadFileByIds,
-            downloadByFileCode,
-          } from '@/utils/platform';
-          import BannerModal from '@/components/common/BannerModal';
-          import customFuncMapping from '@/utils/customFuncMapping';
-
-          ${importString}
-
-          const useCustomAction = (context: any) => { 
-          ${deconstructionCode}` +
-          eventCodeString +
-          `\n const customActionMap =  {\n${customFuctionsIds
-            .map((i) => i)
-            .join(
-              ',',
-            )} \n} \nreturn customActionMap; \n} \n export default useCustomAction;`,
+        content,
         linkAfter: [
           ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
         ],
