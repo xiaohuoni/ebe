@@ -20,7 +20,15 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
 
     const cfg = `import { defineConfig } from 'alita';
     import proxy from './proxy';
-    
+  ${
+    isMobile
+      ? ''
+      : `const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
+const ueditorReactPath = require.resolve('@lingxiteam/lcdp-ueditor-react/package.json');
+
+`
+  }
     export default defineConfig({
       appType: '${isMobile ? 'h5' : 'pc'}',
       mfsu: false,
@@ -57,6 +65,13 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
       publicPath: process.env.PUBLIC_PATH || './',
       outputPath: 'build',
       keepalive: [],
+      ${
+        isMobile
+          ? ''
+          : ` copy: [
+    {from: path.join(path.dirname(ueditorReactPath), 'ueditor-resource'), to: 'build/ueditor-resource/'}
+  ],`
+      }
       // info 文件配置
       scripts:[{src:"server/app/env/info.js"}],
       links: [

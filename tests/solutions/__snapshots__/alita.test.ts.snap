@@ -4453,6 +4453,10 @@ export default {
         Object {
           "content": "import { defineConfig } from 'alita';
 import proxy from './proxy';
+const path = require('path');
+const ueditorReactPath = require.resolve(
+  '@lingxiteam/lcdp-ueditor-react/package.json',
+);
 export default defineConfig({
   appType: 'pc',
   mfsu: false,
@@ -4471,6 +4475,12 @@ export default defineConfig({
   publicPath: process.env.PUBLIC_PATH || './',
   outputPath: 'build',
   keepalive: [],
+  copy: [
+    {
+      from: path.join(path.dirname(ueditorReactPath), 'ueditor-resource'),
+      to: 'build/ueditor-resource/',
+    },
+  ],
   // info 文件配置
   scripts: [
     {
@@ -4547,7 +4557,7 @@ PORT=8888
     \\"@lingxiteam/types\\": \\"3.3.1-alpha.14\\",
     \\"alita\\": \\"3.4.0\\",
     \\"@lingxiteam/charts-common\\": \\"^3.7.1-alpha.10\\",
-    \\"@lingxiteam/lcdp-ueditor-react\\": \\"^1.0.0-alpha.8\\",
+    \\"@lingxiteam/lcdp-ueditor-react\\": \\"^1.0.0-alpha.15\\",
     \\"@lingxiteam/load-framework\\": \\"0.2.1\\",
     \\"@lingxiteam/richtext\\": \\"0.5.1\\",
     \\"@paciolan/remote-component\\": \\"^2.12.1\\",
@@ -4585,6 +4595,7 @@ PORT=8888
     \\"prettier\\": \\"^2\\",
     \\"ts-node\\": \\"^10\\",
     \\"typescript\\": \\"^4\\",
+    \\"copy-webpack-plugin\\": \\"5.1.1\\",
     \\"@types/qs\\": \\"^6.9.6\\",
     \\"@types/lodash\\": \\"^4.14.162\\"
   },

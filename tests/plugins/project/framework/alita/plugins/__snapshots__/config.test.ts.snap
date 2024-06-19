@@ -6,7 +6,11 @@ Object {
     Object {
       "content": "import { defineConfig } from 'alita';
     import proxy from './proxy';
-    
+  const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
+const ueditorReactPath = require.resolve('@lingxiteam/lcdp-ueditor-react/package.json');
+
+
     export default defineConfig({
       appType: 'pc',
       mfsu: false,
@@ -25,6 +29,9 @@ Object {
       publicPath: process.env.PUBLIC_PATH || './',
       outputPath: 'build',
       keepalive: [],
+       copy: [
+    {from: path.join(path.dirname(ueditorReactPath), 'ueditor-resource'), to: 'build/ueditor-resource/'}
+  ],
       // info 文件配置
       scripts:[{src:\\"server/app/env/info.js\\"}],
       links: [

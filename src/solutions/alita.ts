@@ -95,7 +95,7 @@ export default function createIceJsProjectBuilder(
           useEbeSetup: options?.useEbeSetup !== false,
           dependenciesPc: {
             '@lingxiteam/charts-common': '^3.7.1-alpha.10',
-            '@lingxiteam/lcdp-ueditor-react': '^1.0.0-alpha.8',
+            '@lingxiteam/lcdp-ueditor-react': '^1.0.0-alpha.15',
             '@lingxiteam/load-framework': '0.2.1',
             '@lingxiteam/richtext': '0.5.1',
             '@paciolan/remote-component': '^2.12.1',
@@ -129,15 +129,6 @@ export default function createIceJsProjectBuilder(
           dependencies: {
             '@lingxiteam/cli': '^0.4.6',
             qs: '^6.11.2',
-            '@lingxiteam/engine-app': '3.2.1-alpha.44',
-            '@lingxiteam/engine-plog': '3.2.1-alpha.44',
-            '@lingxiteam/engine-assets': '3.2.1-alpha.44',
-            '@lingxiteam/engine-command': '3.2.1-alpha.44',
-            '@lingxiteam/engine-meta': '3.2.1-alpha.44',
-            '@lingxiteam/engine-platform': '3.2.1-alpha.44',
-            '@lingxiteam/engine-sandbox': '3.2.1-alpha.44',
-            '@lingxiteam/sys-action': '3.2.1-alpha.44',
-            '@lingxiteam/engine-render-core': '3.2.1-alpha.44',
             '@lingxiteam/dform': '3.3.1-alpha.6',
             'antd-mobile-5': '5.26.0',
             'react-loadable': '^5.5.0',
@@ -150,6 +141,7 @@ export default function createIceJsProjectBuilder(
             'es6-proxy-polyfill': '^2.1.1',
           },
           devDependencies: {
+            'copy-webpack-plugin': '5.1.1',
             '@types/qs': '^6.9.6',
             '@types/lodash': '^4.14.162',
           },

@@ -23,4 +23,3 @@ export function customActionCode(generateParams: CMDGeneratorPrames): string {
     },
   });
 }
-
