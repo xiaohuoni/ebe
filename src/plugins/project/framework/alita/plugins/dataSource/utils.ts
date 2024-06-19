@@ -1,7 +1,6 @@
 import { isArray, isPlainObject } from 'lodash';
 import { parse2Var } from '../../../../../../core/utils/compositeType';
 import TreeParser from '../../../../../../core/utils/TreeParser';
-import { cleanDataSource } from './template';
 import { getDSFilterName } from './type';
 
 const DATADOURCE_TYPE_CN = {
@@ -320,7 +319,7 @@ export const initialDataSource = (dataSource: any[]) => {
   );
 
   return [
-    useInfo(),
+    // useInfo(),
     initialData.join('\n\n'),
     `
     `,
@@ -449,24 +448,12 @@ export const reloadDataSource = (dataSource: any[]) => {
  * 重置数据源
  */
 export const resetDataSource = () => {
-  const code = `
-  /**
-   * 数据源名字不存在，无需重置数据源
-   */
-  if (!name) return Promise.resolve(null);
-  return setData({
-    [name]: cleanDataSource(name),
-  });
-`;
-  return [
-    cleanDataSource,
-    `
-      /**
-       * 重置数据源
-       */
-    `,
-    `const resetDataSource = (name: string) => {`,
-    code,
-    '}',
-  ].join('');
+  return `
+    /**
+     * 重置数据源
+     */
+    const resetDataSource = (name: string) => {
+      return clearDataSource(name, initialData)
+    };
+  `;
 };
