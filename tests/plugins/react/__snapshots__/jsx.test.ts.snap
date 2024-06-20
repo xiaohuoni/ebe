@@ -6,6 +6,7 @@ Object {
     Object {
       "content": "<Drawer
       title=\\"tanchuang\\"
+      
     
 width='624px'
 placement='right'
@@ -437,6 +438,7 @@ Object {
     Object {
       "content": "<Modal
       title=\\"弹窗\\"
+      
     
 width='624px'
     

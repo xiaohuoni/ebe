@@ -7,12 +7,7 @@ export default function getFile(): [string[], ResultFile] {
     'tsx',
     `import CenterPopup from 'antd-mobile-5/es/components/center-popup';
 import Popup from 'antd-mobile-5/es/components/popup';
-import React, {
-  forwardRef,
-  useImperativeHandle,
-  useMemo,
-} from 'react';
-
+import React, { forwardRef, useImperativeHandle, useMemo } from 'react';
 export interface modePropsType {
   pageId?: string;
   open?: boolean;
@@ -36,8 +31,8 @@ export interface modePropsType {
   showCloseButton: boolean;
   width?: string;
   height?: string;
+  [key:string]:any;
 }
-
 const Modal = forwardRef<any, modePropsType>((props, ref) => {
   const {
     open,
@@ -49,6 +44,7 @@ const Modal = forwardRef<any, modePropsType>((props, ref) => {
     height,
     mode,
     destroyOnClose,
+    closeModal,
     ...other
   } = props;
   const style =
@@ -128,12 +124,14 @@ const Modal = forwardRef<any, modePropsType>((props, ref) => {
       visible={open}
       getContainer={document.body}
       onClose={() => {
+        closeModal();
         onClose && onClose(destroyOnClose);
       }}
-      destroyOnClose={destroyOnClose}
       afterClose={onCancel}
+      onMaskClick={()=>{
+        closeModal();
+      }}
       {...other}
-      closeOnMaskClick={true}
     >
       {children}
     </MyModal>

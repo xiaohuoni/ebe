@@ -153,6 +153,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         .join('\n');
       jsxContent = `<${isMobile ? 'Modal' : ir.pageContainerType}
       title=${parse2Var(mdProps.title)}
+      ${isMobile ? 'closeModal={closeModal}' : ''}
     ${attrString}
     ${footerStr}
       open={props.visible}

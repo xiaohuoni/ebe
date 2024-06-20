@@ -21,7 +21,7 @@ describe('template files popover', () => {
         pageId: string;
         options?: any[];
         placement: string;
-        trigger: string;
+        trigger?: string;
         [key: string]: any;
       };
       options?: {
