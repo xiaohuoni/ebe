@@ -6,8 +6,9 @@ import {
   ICodeStruct,
   IContainerInfo,
 } from '../../../../../core/types';
+import { parse2Var } from '../../../../../core/utils/compositeType';
 import { generateFunction } from '../../../../../core/utils/jsExpression';
-import { LIFE_CYCLE_CHUNK_NAME } from '../../../../../plugins/react/const';
+import { REACT_CHUNK_NAME } from '../../../../../plugins/react/const';
 import { getImportFrom } from '../../../../../utils/depsHelper';
 import { MOBILE_CHUNK_NAME } from './const';
 
@@ -46,10 +47,12 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: MOBILE_CHUNK_NAME.NavBarStart,
-      content: `setPageNavBar({
+      content: `
+       \n // 设置导航条
+      setPageNavBar({
         pagePath: '${ir.pagePath}',
         navBar: {`,
-      linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseMountStart],
+      linkAfter: [REACT_CHUNK_NAME.DidMountStart],
     });
 
     next.chunks.push({
@@ -57,7 +60,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       fileType: FileType.TSX,
       name: MOBILE_CHUNK_NAME.NavBarEnd,
       content: `      }
-    })`,
+    })\n`,
       linkAfter: [MOBILE_CHUNK_NAME.NavBarContent],
     });
 
@@ -65,9 +68,9 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: MOBILE_CHUNK_NAME.NavBarContent,
-      content: `pageTitle: '${ir.pageTitle ?? ir.pageName}',hideNavBar:${
-        ir.hideNavBar
-      },`,
+      content: `pageTitle: ${parse2Var(
+        ir.pageTitle ?? ir.pageName,
+      )},hideNavBar:${ir.hideNavBar},`,
       linkAfter: [MOBILE_CHUNK_NAME.NavBarStart],
     });
 

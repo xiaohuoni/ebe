@@ -181,6 +181,7 @@ Object {
 ",
       "fileType": "tsx",
       "linkAfter": Array [
+        "ReactComponentDidMountEnd",
         "CallContainerHook",
         "useMergeContextCallHook",
         "CommonClassDefineConstructorStart",

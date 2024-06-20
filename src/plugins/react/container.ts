@@ -27,6 +27,7 @@ import { getImportFrom } from '../../utils/depsHelper';
 import { shouldUsedGlobalData } from '../../utils/globalDataSource/general';
 import { getContextInfo } from '../../utils/pageVarConfig';
 import { isBOFramer } from '../../utils/schema/getBusiCompName';
+import { MOBILE_CHUNK_NAME } from '../project/framework/alita/plugins/const';
 
 const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
   const plugin: BuilderComponentPlugin = async (pre: ICodeStruct) => {
@@ -254,24 +255,27 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       ],
     });
 
-    // next.chunks.push({
-    //   type: ChunkType.STRING,
-    //   fileType: FileType.TSX,
-    //   name: REACT_CHUNK_NAME.DidUpdateStart,
-    //   content: 'useEffect(() => {',
-    //   linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorEnd],
-    // });
+    if (ir.platform === 'h5' && ir.type === 'Page') {
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: FileType.TSX,
+        name: REACT_CHUNK_NAME.DidMountStart,
+        content: '\nuseEffect(() => {',
+        linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorEnd],
+      });
 
-    // next.chunks.push({
-    //   type: ChunkType.STRING,
-    //   fileType: FileType.TSX,
-    //   name: REACT_CHUNK_NAME.DidUpdateEnd,
-    //   content: '  }, [state]);',
-    //   linkAfter: [
-    //     REACT_CHUNK_NAME.DidUpdateContent,
-    //     REACT_CHUNK_NAME.DidUpdateStart,
-    //   ],
-    // });
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: FileType.TSX,
+        name: REACT_CHUNK_NAME.DidMountEnd,
+        content: '  }, []);\n',
+        linkAfter: [
+          MOBILE_CHUNK_NAME.NavBarStart,
+          REACT_CHUNK_NAME.DidMountContent,
+          REACT_CHUNK_NAME.DidMountStart,
+        ],
+      });
+    }
 
     // ir.deps?.push(getImportFrom('@/hooks/useLifeCycle', 'useLifeCycle', false));
 
@@ -406,6 +410,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       name: LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleStart,
       content: `useImperativeHandle(ref, () => ({\n`,
       linkAfter: [
+        REACT_CHUNK_NAME.DidMountEnd,
         PAGE_TOOL_CHUNK_NAME.CallContainerHook,
         PAGE_TOOL_CHUNK_NAME.useMergeContextCallHook,
         ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorEnd],
