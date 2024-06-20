@@ -14,9 +14,7 @@ describe('editInlineRow', () => {
 
     const expectedCode = `
     // 表格·指定行开启行内编辑
-    if (refs["table1"].editInlineRow) {
-      refs["table1"].editInlineRow(2);
-    }
+    callComponentMethod('table1', 'editInlineRow', 2);
   `;
 
     const result = editInlineRow(generateParams);

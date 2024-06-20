@@ -14,9 +14,7 @@ describe('addTableRow', () => {
 
     const expectedCode = `
     // 表格·新增一行空白数据
-    if (refs["table1"].addTableEmptyRow) {
-      refs["table1"].addTableEmptyRow(updateData, true);
-    }
+    callComponentMethod('table1', 'addTableEmptyRow', updateData, true);
   `;
 
     const result = addTableRow(generateParams);

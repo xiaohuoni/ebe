@@ -4,19 +4,12 @@ import { GeneratorCallbackWithThenCatch } from '../utils';
 
 export function getLoopListValues(generateParams: CMDGeneratorPrames): string {
   const { compId, id } = generateParams.value?.options || {};
+
   const code = `
   // 循环列表获取选中值
-  new Promise<void>((resolve, reject) => {
-    if (refs[${parse2Var(compId)}].getValues) {
-      const values = refs[${parse2Var(compId)}].getValues();
-      if (values && values.length) {
-        resolve(values)
-      }else{
-        reject(values)
-      }
-    }
-  })
+  asyncCallComponentMethod(${parse2Var(compId)}, 'getValues')
   `;
+
   return GeneratorCallbackWithThenCatch(code, generateParams, {
     params: {
       callback1: [`loopData`],

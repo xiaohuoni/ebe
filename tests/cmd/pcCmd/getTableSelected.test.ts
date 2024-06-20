@@ -14,16 +14,7 @@ describe('getTableSelected', () => {
 
     const expectedCode = `
   // 表格·获取选中行
-  new Promise<void>((resolve, reject) => {
-    if (refs["table1"].getTableSelected) {
-      const values = refs["table1"].getTableSelected();
-      if (values) {
-        resolve(values)
-      }else{
-        reject([])
-      }
-    }
-  })
+  asyncCallComponentMethod('table1', 'getTableSelected');
   `;
 
     const result = getTableSelected(generateParams);

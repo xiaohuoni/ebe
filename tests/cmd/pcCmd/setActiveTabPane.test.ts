@@ -16,9 +16,7 @@ describe('setActiveTabPane', () => {
 
     const expectedCode = `
     // 设置激活的tab
-    if (refs["tab1"].setValue) {
-      refs["tab1"].setValue("tab2");
-    }
+    callComponentMethod('tab1', 'setValue', 'tab2');
   `;
 
     const result = setActiveTabPane(generateParams);

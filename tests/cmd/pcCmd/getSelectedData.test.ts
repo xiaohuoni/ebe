@@ -14,16 +14,7 @@ describe('getSelectedData', () => {
 
     const expectedCode = `
   // 获取选中数据
-  new Promise<void>((resolve, reject) => {
-    if (refs["table1"].getSelectedData) {
-      const values = refs["table1"].getSelectedData();
-      if (values && values.length) {
-        resolve(values)
-      }else{
-        reject(values)
-      }
-    }
-  })
+    asyncCallComponentMethod('table1', 'getSelectedData');
   `;
 
     const result = getSelectedData(generateParams);

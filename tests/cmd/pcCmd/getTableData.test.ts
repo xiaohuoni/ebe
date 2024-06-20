@@ -14,16 +14,7 @@ describe('getTableData', () => {
 
     const expectedCode = `
   // 表格·获取表格数据
-  new Promise<void>((resolve, reject) => {
-    if (refs["table1"].getTableData) {
-      const values = refs["table1"].getTableData();
-      if (values) {
-        resolve(values)
-      }else{
-        reject([])
-      }
-    }
-  })
+  asyncCallComponentMethod('table1', 'getTableData');
   `;
 
     const result = getTableData(generateParams);

@@ -6,10 +6,10 @@ export function delTableRow(generateParams: CMDGeneratorPrames): string {
   const { options } = value;
   const { compId, params } = options;
   const code = `
-    // 表格·删除指定行数据
-    if (refs[${parse2Var(compId)}].deleteTableRow) {
-      refs[${parse2Var(compId)}].deleteTableRow(_, ${parse2Var(params)});
-    }
+  // 表格·删除指定行数据
+  callComponentMethod(${parse2Var(compId)}, 'deleteTableRow',_,${parse2Var(
+    params,
+  )});
   `;
   return code;
 }

@@ -14,16 +14,7 @@ describe('getLoopListValues', () => {
 
     const expectedCode = `
   // 循环列表获取选中值
-  new Promise<void>((resolve, reject) => {
-    if (refs["table1"].getValues) {
-      const values = refs["table1"].getValues();
-      if (values && values.length) {
-        resolve(values)
-      }else{
-        reject(values)
-      }
-    }
-  })
+  asyncCallComponentMethod('table1', 'getValues');
   `;
 
     const result = getLoopListValues(generateParams);

@@ -14,9 +14,7 @@ describe('delTableRow', () => {
 
     const expectedCode = `
     // 表格·删除指定行数据
-    if (refs["table1"].deleteTableRow) {
-      refs["table1"].deleteTableRow(_, "rowIndex");
-    }
+    callComponentMethod('table1', 'deleteTableRow', _, 'rowIndex');
   `;
 
     const result = delTableRow(generateParams);

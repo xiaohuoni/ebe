@@ -6,12 +6,10 @@ export function addTableRow(generateParams: CMDGeneratorPrames): string {
   const { options } = value;
   const { compId, inlineeditnow } = options;
   const code = `
-    // 表格·新增一行空白数据
-    if (refs[${parse2Var(compId)}].addTableEmptyRow) {
-      refs[${parse2Var(
-        compId,
-      )}].addTableEmptyRow(updateData, ${!!inlineeditnow});
-    }
+  // 表格·新增一行空白数据
+  callComponentMethod(${parse2Var(
+    compId,
+  )}, 'addTableEmptyRow',updateData,${parse2Var(!!inlineeditnow)});
   `;
   return code;
 }

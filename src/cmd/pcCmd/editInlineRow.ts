@@ -6,11 +6,12 @@ export function editInlineRow(generateParams: CMDGeneratorPrames): string {
   const { options } = value;
   const { compId, inlineeditrow } = options;
   const code = `
-    // 表格·指定行开启行内编辑
-    if (refs[${parse2Var(compId)}].editInlineRow) {
-      refs[${parse2Var(compId)}].editInlineRow(${parse2Var(inlineeditrow)});
-    }
+  // 表格·指定行开启行内编辑
+  callComponentMethod(${parse2Var(compId)}, 'editInlineRow',${parse2Var(
+    inlineeditrow,
+  )});
   `;
+
   return code;
 }
 export default editInlineRow;

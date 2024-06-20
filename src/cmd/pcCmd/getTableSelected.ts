@@ -6,19 +6,12 @@ export function getTableSelected(generateParams: CMDGeneratorPrames): string {
   const { value } = generateParams;
   const { options } = value;
   const { id, compId } = options;
+
   const code = `
   // 表格·获取选中行
-  new Promise<void>((resolve, reject) => {
-    if (refs[${parse2Var(compId)}].getTableSelected) {
-      const values = refs[${parse2Var(compId)}].getTableSelected();
-      if (values) {
-        resolve(values)
-      }else{
-        reject([])
-      }
-    }
-  })
+  asyncCallComponentMethod(${parse2Var(compId)}, 'getTableSelected')
   `;
+
   return GeneratorCallbackWithThenCatch(code, generateParams, {
     params: {
       callback1: [`selectedRows_${id}`],

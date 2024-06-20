@@ -14,16 +14,7 @@ describe('getTableSelectedKey', () => {
 
     const expectedCode = `
   // 表格·获取选中行主键
-  new Promise<void>((resolve, reject) => {
-    if (refs["table1"].getTableSelectedKey) {
-      const values = refs["table1"].getTableSelectedKey();
-      if (values) {
-        resolve(values)
-      }else{
-        reject([])
-      }
-    }
-  })
+  asyncCallComponentMethod('table1', 'getTableSelectedKey');
   `;
 
     const result = getTableSelectedKey(generateParams);

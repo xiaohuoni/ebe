@@ -2,22 +2,22 @@ import { CMDGeneratorPrames } from '../../core/types';
 import { parse2Var } from '../../core/utils/compositeType';
 import { GeneratorCallbackWithThenCatch } from '../utils';
 
-export function getTableData(generateParams: CMDGeneratorPrames): string {
+export function getPageNum(generateParams: CMDGeneratorPrames): string {
   const { value } = generateParams;
   const { options } = value;
-  const { id, compId } = options;
+  const { id } = options;
 
   const code = `
-  // 表格·获取表格数据
-  asyncCallComponentMethod(${parse2Var(compId)}, 'getTableData')
+  // 表格·获取当前页
+  asyncCallComponentMethod(${parse2Var(options.compId)}, 'getPageNum')
   `;
 
   return GeneratorCallbackWithThenCatch(code, generateParams, {
     params: {
-      callback1: [`tableData_${id}`],
-      callback2: [`tableData_${id}`],
+      callback1: [`pageNum_${id}`],
+      callback2: [`pageNum_${id}`],
     },
   });
 }
 
-export default getTableData;
+export default getPageNum;
