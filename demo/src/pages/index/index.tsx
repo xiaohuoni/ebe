@@ -64,7 +64,7 @@ const Page = () => {
         setLog(d.log);
         setPercent(d.progress);
       },
-      needTranslatePagePathToEnglish: true,
+      needTranslatePagePathToEnglish: false,
     });
     console.log('cleanedTree', cleanedTree);
     if (bower) {
@@ -130,7 +130,7 @@ const Page = () => {
         initialValues={{
           appId: '1106842174504439808',
           pageId: '',
-          platform: true,
+          platform: false,
         }}
       >
         <Item name="appId" label="AppID">
