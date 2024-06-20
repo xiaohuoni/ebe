@@ -20,7 +20,6 @@ import { getEvents } from '../../utils/schema/parseDsl';
 import {
   CUSTOM_ACTION_CHUNK_NAME,
   DATA_SOURCE_CHUNK_NAME,
-  LIFE_CYCLE_CHUNK_NAME,
   PAGE_TOOL_CHUNK_NAME,
 } from './const';
 
@@ -140,22 +139,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       next.ir.deps.push(
         getImportFrom('./customAction', 'useCustomAction', false),
       );
-      next.chunks.push({
-        type: ChunkType.STRING,
-        fileType: cfg.fileType,
-        name: CUSTOM_ACTION_CHUNK_NAME.DidMount,
-        content: `// 挂载自定义事件
-        customFuncMapping.add(customActionId, customActionMap);`,
-        linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseMountStart],
-      });
-      next.chunks.push({
-        type: ChunkType.STRING,
-        fileType: cfg.fileType,
-        name: CUSTOM_ACTION_CHUNK_NAME.WillUnmount,
-        content: `// 页面销毁移除
-        customFuncMapping.remove(customActionId);`,
-        linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseUnMountStart],
-      });
+
       next.chunks.push({
         type: ChunkType.STRING,
         fileType: cfg.fileType,

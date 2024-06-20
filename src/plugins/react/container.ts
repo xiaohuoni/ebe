@@ -5,10 +5,8 @@ import {
   DEFAULT_LINK_AFTER,
 } from '../../core/const/generator';
 import { getGlobalDataVars } from '../../utils/globalDataSource/template';
-import { MOBILE_CHUNK_NAME } from '../project/framework/alita/plugins/const';
 import {
   BOFRAMER_CHUNK_NAME,
-  CUSTOM_ACTION_CHUNK_NAME,
   DATA_SOURCE_CHUNK_NAME,
   LIFE_CYCLE_CHUNK_NAME,
   MODAL_CHUNK_NAME,
@@ -256,135 +254,151 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       ],
     });
 
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: REACT_CHUNK_NAME.DidUpdateStart,
-      content: 'useEffect(() => {',
-      linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorEnd],
-    });
+    // next.chunks.push({
+    //   type: ChunkType.STRING,
+    //   fileType: FileType.TSX,
+    //   name: REACT_CHUNK_NAME.DidUpdateStart,
+    //   content: 'useEffect(() => {',
+    //   linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorEnd],
+    // });
 
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: REACT_CHUNK_NAME.DidUpdateEnd,
-      content: '  }, [state]);',
-      linkAfter: [
-        REACT_CHUNK_NAME.DidUpdateContent,
-        REACT_CHUNK_NAME.DidUpdateStart,
-      ],
-    });
+    // next.chunks.push({
+    //   type: ChunkType.STRING,
+    //   fileType: FileType.TSX,
+    //   name: REACT_CHUNK_NAME.DidUpdateEnd,
+    //   content: '  }, [state]);',
+    //   linkAfter: [
+    //     REACT_CHUNK_NAME.DidUpdateContent,
+    //     REACT_CHUNK_NAME.DidUpdateStart,
+    //   ],
+    // });
 
-    ir.deps?.push(getImportFrom('@/hooks/useLifeCycle', 'useLifeCycle', false));
+    // ir.deps?.push(getImportFrom('@/hooks/useLifeCycle', 'useLifeCycle', false));
+
+    // next.chunks.push({
+    //   type: ChunkType.STRING,
+    //   fileType: FileType.TSX,
+    //   name: PAGE_TOOL_CHUNK_NAME.CallContainerHook,
+    //   content: `
+    //     const {} =
+    //   `,
+    //   linkAfter: [
+    //     CUSTOM_ACTION_CHUNK_NAME.ImperativeHandle,
+    //     PAGE_TOOL_CHUNK_NAME.useMergeContextCallHook,
+    //     ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
+    //     DATA_SOURCE_CHUNK_NAME.CallDataSource,
+    //     PAGE_TOOL_CHUNK_NAME.PageTooL,
+    //   ],
+    // });
 
     // 生命周期引入
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks,
-      content: `
-      // 获取生命周期
-      const { useMount, useStateUpdate, useUnmounted } = useLifeCycle({
-        monutDeps: [
-          ${[
-            'dataReadyComplete',
-            shouldUsedGlobalData(ir.globalDataSource) &&
-              'globalDataReadyComplete',
-          ]
-            .filter(Boolean)
-            .join(',')}
-        ],
-        stateDeps: [state],
-        mountCond: () => ${[
-          'dataReadyComplete',
-          shouldUsedGlobalData(ir.globalDataSource) &&
-            'globalDataReadyComplete',
-        ]
-          .filter(Boolean)
-          .join('&&')},
-      })
-      `,
-      linkAfter: [REACT_CHUNK_NAME.DidUpdateEnd],
-    });
+    // next.chunks.push({
+    //   type: ChunkType.STRING,
+    //   fileType: FileType.TSX,
+    //   name: LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks,
+    //   content: `
+    //   // 获取生命周期
+    //   const { useMount, useStateUpdate, useUnmounted } = useLifeCycle({
+    //     monutDeps: [
+    //       ${[
+    //         'dataReadyComplete',
+    //         shouldUsedGlobalData(ir.globalDataSource) &&
+    //           'globalDataReadyComplete',
+    //       ]
+    //         .filter(Boolean)
+    //         .join(',')}
+    //     ],
+    //     stateDeps: [state],
+    //     mountCond: () => ${[
+    //       'dataReadyComplete',
+    //       shouldUsedGlobalData(ir.globalDataSource) &&
+    //         'globalDataReadyComplete',
+    //     ]
+    //       .filter(Boolean)
+    //       .join('&&')},
+    //   })
+    //   `,
+    //   linkAfter: [REACT_CHUNK_NAME.DidUpdateEnd],
+    // });
 
-    // 页面加载完成开始
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: LIFE_CYCLE_CHUNK_NAME.UseMountStart,
-      content: `
-      // 页面加载完成
-      useMount(() => {\n`,
-      linkAfter: [LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks],
-    });
+    // // 页面加载完成开始
+    // next.chunks.push({
+    //   type: ChunkType.STRING,
+    //   fileType: FileType.TSX,
+    //   name: LIFE_CYCLE_CHUNK_NAME.UseMountStart,
+    //   content: `
+    //   // 页面加载完成
+    //   useMount(() => {\n`,
+    //   linkAfter: [LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks],
+    // });
 
     // 页面加载完成结束
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
-      content: `\n})`,
-      linkAfter: [
-        LIFE_CYCLE_CHUNK_NAME.UseMountContent,
-        LIFE_CYCLE_CHUNK_NAME.UseMountStart,
-        MOBILE_CHUNK_NAME.NavBarEnd,
-        CUSTOM_ACTION_CHUNK_NAME.DidMount,
-      ],
-    });
+    // next.chunks.push({
+    //   type: ChunkType.STRING,
+    //   fileType: FileType.TSX,
+    //   name: LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
+    //   content: `\n})`,
+    //   linkAfter: [
+    //     LIFE_CYCLE_CHUNK_NAME.UseMountContent,
+    //     LIFE_CYCLE_CHUNK_NAME.UseMountStart,
+    //     MOBILE_CHUNK_NAME.NavBarEnd,
+    //     CUSTOM_ACTION_CHUNK_NAME.DidMount,
+    //   ],
+    // });
 
-    // 页面状态变更开始
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: LIFE_CYCLE_CHUNK_NAME.UseStateUpdateStart,
-      content: `
-      // 组件状态发生变化
-      useStateUpdate(() => {\n`,
-      linkAfter: [
-        LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
-        LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks,
-      ],
-    });
+    // // 页面状态变更开始
+    // next.chunks.push({
+    //   type: ChunkType.STRING,
+    //   fileType: FileType.TSX,
+    //   name: LIFE_CYCLE_CHUNK_NAME.UseStateUpdateStart,
+    //   content: `
+    //   // 组件状态发生变化
+    //   useStateUpdate(() => {\n`,
+    //   linkAfter: [
+    //     LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
+    //     LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks,
+    //   ],
+    // });
 
     // 页面状态变更结束
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
-      content: `\n})`,
-      linkAfter: [
-        LIFE_CYCLE_CHUNK_NAME.UseStateUpdateContent,
-        LIFE_CYCLE_CHUNK_NAME.UseStateUpdateStart,
-      ],
-    });
+    // next.chunks.push({
+    //   type: ChunkType.STRING,
+    //   fileType: FileType.TSX,
+    //   name: LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
+    //   content: `\n})`,
+    //   linkAfter: [
+    //     LIFE_CYCLE_CHUNK_NAME.UseStateUpdateContent,
+    //     LIFE_CYCLE_CHUNK_NAME.UseStateUpdateStart,
+    //   ],
+    // });
 
-    // 页面卸载开始
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: LIFE_CYCLE_CHUNK_NAME.UseUnMountStart,
-      content: `
-        // 页面将要卸载
-       useUnmounted(() => {\n`,
-      linkAfter: [
-        LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
-        LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
-        LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks,
-      ],
-    });
+    // // 页面卸载开始
+    // next.chunks.push({
+    //   type: ChunkType.STRING,
+    //   fileType: FileType.TSX,
+    //   name: LIFE_CYCLE_CHUNK_NAME.UseUnMountStart,
+    //   content: `
+    //     // 页面将要卸载
+    //    useUnmounted(() => {\n`,
+    //   linkAfter: [
+    //     LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
+    //     LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
+    //     LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks,
+    //   ],
+    // });
 
-    // 页面卸载结束
-    next.chunks.push({
-      type: ChunkType.STRING,
-      fileType: FileType.TSX,
-      name: LIFE_CYCLE_CHUNK_NAME.UseUnMountEnd,
-      content: `\n})\n`,
-      linkAfter: [
-        LIFE_CYCLE_CHUNK_NAME.UseUnMountContent,
-        LIFE_CYCLE_CHUNK_NAME.UseUnMountStart,
-        CUSTOM_ACTION_CHUNK_NAME.WillUnmount,
-      ],
-    });
+    // // 页面卸载结束
+    // next.chunks.push({
+    //   type: ChunkType.STRING,
+    //   fileType: FileType.TSX,
+    //   name: LIFE_CYCLE_CHUNK_NAME.UseUnMountEnd,
+    //   content: `\n})\n`,
+    //   linkAfter: [
+    //     LIFE_CYCLE_CHUNK_NAME.UseUnMountContent,
+    //     LIFE_CYCLE_CHUNK_NAME.UseUnMountStart,
+    //     CUSTOM_ACTION_CHUNK_NAME.WillUnmount,
+    //   ],
+    // });
 
     next.chunks.push({
       type: ChunkType.STRING,
@@ -392,11 +406,11 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       name: LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleStart,
       content: `useImperativeHandle(ref, () => ({\n`,
       linkAfter: [
-        LIFE_CYCLE_CHUNK_NAME.UseUnMountEnd,
-        LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
-        LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
-        LIFE_CYCLE_CHUNK_NAME.CallLifeCycleHooks,
-        REACT_CHUNK_NAME.DidUpdateEnd,
+        PAGE_TOOL_CHUNK_NAME.CallContainerHook,
+        PAGE_TOOL_CHUNK_NAME.useMergeContextCallHook,
+        ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.ConstructorEnd],
+        MODAL_CHUNK_NAME.OnCancel,
+        MODAL_CHUNK_NAME.OnOk,
       ],
     });
 
@@ -461,9 +475,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       linkAfter: [
         BOFRAMER_CHUNK_NAME.ControlVisible,
         LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleEnd,
-        LIFE_CYCLE_CHUNK_NAME.UseUnMountEnd,
-        LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
-        LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
         ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
         REACT_CHUNK_NAME.DidUpdateEnd,
       ],
@@ -475,9 +486,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       content: 'return (',
       linkAfter: [
         REACT_CHUNK_NAME.RenderLoading,
-        LIFE_CYCLE_CHUNK_NAME.UseUnMountEnd,
-        LIFE_CYCLE_CHUNK_NAME.UseStateUpdateEnd,
-        LIFE_CYCLE_CHUNK_NAME.UseMountEnd,
         ...DEFAULT_LINK_AFTER[CLASS_DEFINE_CHUNK_NAME.End],
         REACT_CHUNK_NAME.DidUpdateEnd,
       ],
@@ -501,11 +509,11 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     //     defaultState[item.code] = '';
     //   });
     // }
-    let hasDataSource = false;
-    if (ir.dataSource && ir.dataSource.length) {
-      // import dataSource from './dataSource';
-      hasDataSource = true;
-    }
+    // let hasDataSource = false;
+    // if (ir.dataSource && ir.dataSource.length) {
+    //   // import dataSource from './dataSource';
+    //   hasDataSource = true;
+    // }
 
     // "customFuctions": [
     //   {

@@ -14,33 +14,6 @@ Object {
       "name": "UseImperativeHandleContent",
       "type": "string",
     },
-    Object {
-      "content": "",
-      "fileType": "tsx",
-      "linkAfter": Array [
-        "UseStateUpdateStart",
-      ],
-      "name": "UseStateUpdateContent",
-      "type": "string",
-    },
-    Object {
-      "content": "",
-      "fileType": "tsx",
-      "linkAfter": Array [
-        "UseUnMountStart",
-      ],
-      "name": "UseUnMountContent",
-      "type": "string",
-    },
-    Object {
-      "content": "",
-      "fileType": "tsx",
-      "linkAfter": Array [
-        "UseMountStart",
-      ],
-      "name": "UseMountContent",
-      "type": "string",
-    },
   ],
   "contextData": Object {
     "options": Object {

@@ -10,6 +10,7 @@ import { babel, fixUndefinedVar, prettier } from '../core/postprocessor';
 import { SchemaParser } from '../parser/SchemaParser';
 import alita from '../plugins/project/framework/alita';
 import reactContainer from '../plugins/react/container';
+import containerHook from '../plugins/react/containerHook';
 import containerLifeCycle from '../plugins/react/containerLifeCycle';
 import customActionMap from '../plugins/react/customActionMap';
 import reactJsx from '../plugins/react/jsx';
@@ -58,6 +59,7 @@ export default function createIceJsProjectBuilder(
     schemaParser: new SchemaParser(),
     plugins: {
       pages: [
+        containerHook(),
         customActionMap(),
         reactCommonDeps(),
         alita.plugins.mobileLayout(),

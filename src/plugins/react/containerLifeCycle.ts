@@ -118,75 +118,75 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         }
       }
 
-      // 页面生命周期
-      if (events?.stateChange) {
-        next.chunks.push({
-          type: ChunkType.STRING,
-          fileType: cfg.fileType,
-          name: MODAL_CHUNK_NAME.PageStateChange,
-          content: `const stateChange = async ()=>{ ${generateFunction(
-            events?.stateChange,
-            {
-              name: ir.platform,
-            },
-            { ir, options: next.contextData.options },
-          )} }`,
-          linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
-        });
-      }
-      next.chunks.push({
-        type: ChunkType.STRING,
-        fileType: cfg.fileType,
-        name: LIFE_CYCLE_CHUNK_NAME.UseStateUpdateContent,
-        content: events?.stateChange ? 'stateChange()' : '',
-        linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseStateUpdateStart],
-      });
+      // // 页面生命周期
+      // if (events?.stateChange) {
+      //   next.chunks.push({
+      //     type: ChunkType.STRING,
+      //     fileType: cfg.fileType,
+      //     name: MODAL_CHUNK_NAME.PageStateChange,
+      //     content: `const stateChange = async ()=>{ ${generateFunction(
+      //       events?.stateChange,
+      //       {
+      //         name: ir.platform,
+      //       },
+      //       { ir, options: next.contextData.options },
+      //     )} }`,
+      //     linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
+      //   });
+      // }
+      // next.chunks.push({
+      //   type: ChunkType.STRING,
+      //   fileType: cfg.fileType,
+      //   name: LIFE_CYCLE_CHUNK_NAME.UseStateUpdateContent,
+      //   content: events?.stateChange ? 'stateChange()' : '',
+      //   linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseStateUpdateStart],
+      // });
 
-      if (events?.willUnmount) {
-        next.chunks.push({
-          type: ChunkType.STRING,
-          fileType: cfg.fileType,
-          name: MODAL_CHUNK_NAME.PageWillUnmount,
-          content: `const willUnmount = async ()=>{ ${generateFunction(
-            events?.willUnmount,
-            {
-              name: ir.platform,
-            },
-            { ir, options: next.contextData.options },
-          )} }`,
-          linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
-        });
-      }
-      next.chunks.push({
-        type: ChunkType.STRING,
-        fileType: cfg.fileType,
-        name: LIFE_CYCLE_CHUNK_NAME.UseUnMountContent,
-        content: events?.willUnmount ? 'willUnmount()' : '',
-        linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseUnMountStart],
-      });
+      // if (events?.willUnmount) {
+      //   next.chunks.push({
+      //     type: ChunkType.STRING,
+      //     fileType: cfg.fileType,
+      //     name: MODAL_CHUNK_NAME.PageWillUnmount,
+      //     content: `const willUnmount = async ()=>{ ${generateFunction(
+      //       events?.willUnmount,
+      //       {
+      //         name: ir.platform,
+      //       },
+      //       { ir, options: next.contextData.options },
+      //     )} }`,
+      //     linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
+      //   });
+      // }
+      // next.chunks.push({
+      //   type: ChunkType.STRING,
+      //   fileType: cfg.fileType,
+      //   name: LIFE_CYCLE_CHUNK_NAME.UseUnMountContent,
+      //   content: events?.willUnmount ? 'willUnmount()' : '',
+      //   linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseUnMountStart],
+      // });
 
-      if (events?.useEffect) {
-        next.chunks.push({
-          type: ChunkType.STRING,
-          fileType: cfg.fileType,
-          name: MODAL_CHUNK_NAME.PageDidMount,
-          content: `const didMount = async ()=>{ ${generateFunction(
-            events?.useEffect,
-            {
-              name: ir.platform,
-            },
-            { ir, options: next.contextData.options },
-          )} }`,
-          linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
-        });
-      }
-      next.chunks.push({
-        type: ChunkType.STRING,
-        fileType: cfg.fileType,
-        name: LIFE_CYCLE_CHUNK_NAME.UseMountContent,
-        content: events?.useEffect ? 'didMount()' : '',
-        linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseMountStart],
-      });
+      // if (events?.useEffect) {
+      //   next.chunks.push({
+      //     type: ChunkType.STRING,
+      //     fileType: cfg.fileType,
+      //     name: MODAL_CHUNK_NAME.PageDidMount,
+      //     content: `const didMount = async ()=>{ ${generateFunction(
+      //       events?.useEffect,
+      //       {
+      //         name: ir.platform,
+      //       },
+      //       { ir, options: next.contextData.options },
+      //     )} }`,
+      //     linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
+      //   });
+      // }
+      // next.chunks.push({
+      //   type: ChunkType.STRING,
+      //   fileType: cfg.fileType,
+      //   name: LIFE_CYCLE_CHUNK_NAME.UseMountContent,
+      //   content: events?.useEffect ? 'didMount()' : '',
+      //   linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseMountStart],
+      // });
     }
     return next;
   };

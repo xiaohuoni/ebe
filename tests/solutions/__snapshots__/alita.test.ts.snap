@@ -118,6 +118,7 @@ ProjectBuilder {
       [Function],
       [Function],
       [Function],
+      [Function],
     ],
     "pageview": Array [
       [Function],
@@ -2262,6 +2263,31 @@ export default HomePage;
               "dirs": Array [],
               "files": Array [
                 Object {
+                  "content": "import useLifeCycle from '@/hooks/useLifeCycle';
+const useIndex = (context: Record<string, any>) => {
+  const { state, dataReadyComplete, globalDataReadyComplete } = context;
+
+  // 获取生命周期
+  const { useMount } = useLifeCycle({
+    monutDeps: [dataReadyComplete, globalDataReadyComplete],
+    stateDeps: [state],
+    mountCond: () => dataReadyComplete && globalDataReadyComplete,
+  });
+  const didMount = async () => {};
+
+  // 页面加载完成
+  useMount(() => {
+    didMount();
+  });
+  return {};
+};
+export default useIndex;
+",
+                  "ext": "ts",
+                  "name": "useIndex",
+                  "options": undefined,
+                },
+                Object {
                   "content": "// 注意: 出码模块正在调试
 import React, { useImperativeHandle, useEffect, useRef } from 'react';
 import {
@@ -2291,6 +2317,7 @@ import {
   MultipleSelect,
   ModalSelect,
 } from '@/components/factory';
+import useIndex from './useIndex';
 import { PageProps, withPageHOC } from '@/utils/withPageHOC';
 import { Spin } from '@/utils/messageApi';
 import { useTool } from '@/utils/useTool';
@@ -2298,7 +2325,6 @@ import useGlobalData from './useGlobalData';
 import useDataSource from './useDataSource';
 import useTransSuperObjectParams from '@/hooks/useTransSuperObjectParams';
 import useMergeContext, { useGetPageInfo } from '@/hooks/useMergeContext';
-import useLifeCycle from '@/hooks/useLifeCycle';
 import { history } from 'alita';
 
 // 生成一个Id，用来记录当前页面所有的自定义事件
@@ -2356,30 +2382,10 @@ const Index = React.forwardRef<unknown, PageProps>((props, ref) => {
     data,
     dataReadyComplete,
     globalData,
-    globalDataReadyComplete,
     messageApi,
     transSuperObjectParams,
   } = context;
-  const didMount = async () => {};
-  useEffect(() => {}, [state]);
-
-  // 获取生命周期
-  const { useMount, useStateUpdate, useUnmounted } = useLifeCycle({
-    monutDeps: [dataReadyComplete, globalDataReadyComplete],
-    stateDeps: [state],
-    mountCond: () => dataReadyComplete && globalDataReadyComplete,
-  });
-
-  // 页面加载完成
-  useMount(() => {
-    didMount();
-  });
-
-  // 组件状态发生变化
-  useStateUpdate(() => {});
-
-  // 页面将要卸载
-  useUnmounted(() => {});
+  const {} = useIndex(context);
   useImperativeHandle(ref, () => ({}));
   if (!dataReadyComplete) {
     return <Spin spinning />;

@@ -6,7 +6,9 @@ Object {
     Object {
       "content": Array [
         "",
-        "import { historytool,HISTORYTYPES } from '@/utils/historytool';
+        "import { View,Button,Form,InputNumber,Input,StdUpload } from '@/components/factory';
+import XinZengWebYeWuZuJian from '@/components/XinZengWebYeWuZuJian';
+import { historytool,HISTORYTYPES } from '@/utils/historytool';
 import { previewFile,saveBlobFile,batchDownloadFileByIds,downloadByFileCode } from '@/utils/platform';
 import { checkIsEmpty,checkIsContains,safeNumber } from '@/utils/cmd';
 import customFuncMapping from '@/utils/customFuncMapping';",
@@ -42,26 +44,6 @@ import customFuncMapping from '@/utils/customFuncMapping';",
       ],
       "name": "CustomActionMap",
       "subModule": "customAction",
-      "type": "string",
-    },
-    Object {
-      "content": "// 挂载自定义事件
-        customFuncMapping.add(customActionId, customActionMap);",
-      "fileType": "tsx",
-      "linkAfter": Array [
-        "UseMountStart",
-      ],
-      "name": "DidMount",
-      "type": "string",
-    },
-    Object {
-      "content": "// 页面销毁移除
-        customFuncMapping.remove(customActionId);",
-      "fileType": "tsx",
-      "linkAfter": Array [
-        "UseUnMountStart",
-      ],
-      "name": "WillUnmount",
       "type": "string",
     },
     Object {
@@ -7809,6 +7791,86 @@ import customFuncMapping from '@/utils/customFuncMapping';",
         "exportName": "StdUpload",
         "package": "@/components/factory",
         "type": "StdUpload",
+        "version": "*",
+      },
+      Object {
+        "dependencyType": "External",
+        "destructuring": true,
+        "exportName": "historytool",
+        "package": "@/utils/historytool",
+        "type": "historytool",
+        "version": "*",
+      },
+      Object {
+        "dependencyType": "External",
+        "destructuring": true,
+        "exportName": "HISTORYTYPES",
+        "package": "@/utils/historytool",
+        "type": "HISTORYTYPES",
+        "version": "*",
+      },
+      Object {
+        "dependencyType": "External",
+        "destructuring": true,
+        "exportName": "previewFile",
+        "package": "@/utils/platform",
+        "type": "previewFile",
+        "version": "*",
+      },
+      Object {
+        "dependencyType": "External",
+        "destructuring": true,
+        "exportName": "saveBlobFile",
+        "package": "@/utils/platform",
+        "type": "saveBlobFile",
+        "version": "*",
+      },
+      Object {
+        "dependencyType": "External",
+        "destructuring": true,
+        "exportName": "batchDownloadFileByIds",
+        "package": "@/utils/platform",
+        "type": "batchDownloadFileByIds",
+        "version": "*",
+      },
+      Object {
+        "dependencyType": "External",
+        "destructuring": true,
+        "exportName": "downloadByFileCode",
+        "package": "@/utils/platform",
+        "type": "downloadByFileCode",
+        "version": "*",
+      },
+      Object {
+        "dependencyType": "External",
+        "destructuring": true,
+        "exportName": "checkIsEmpty",
+        "package": "@/utils/cmd",
+        "type": "checkIsEmpty",
+        "version": "*",
+      },
+      Object {
+        "dependencyType": "External",
+        "destructuring": true,
+        "exportName": "checkIsContains",
+        "package": "@/utils/cmd",
+        "type": "checkIsContains",
+        "version": "*",
+      },
+      Object {
+        "dependencyType": "External",
+        "destructuring": true,
+        "exportName": "safeNumber",
+        "package": "@/utils/cmd",
+        "type": "safeNumber",
+        "version": "*",
+      },
+      Object {
+        "dependencyType": "External",
+        "destructuring": false,
+        "exportName": "customFuncMapping",
+        "package": "@/utils/customFuncMapping",
+        "type": "customFuncMapping",
         "version": "*",
       },
       Object {

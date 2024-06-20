@@ -67,3 +67,17 @@ export const hasOwn = (
   val: object,
   key: string | symbol,
 ): key is keyof typeof val => hasOwnProperty.call(val, key);
+
+/**
+ * 提取数字和字母
+ * @param input
+ * @returns
+ */
+export function extractLettersAndNumbers(input: string) {
+  // 正则表达式匹配所有的字母和数字
+  const regex = /[a-zA-Z0-9]/g;
+  // 使用 match 方法提取所有匹配项，并将结果连接成一个字符串
+  const result = input.match(regex);
+  // 如果 result 不是 null，则将其连接成字符串返回；否则返回空字符串
+  return result ? result.join('') : '';
+}

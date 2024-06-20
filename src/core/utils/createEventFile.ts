@@ -67,9 +67,14 @@ interface DynamicFileOptions {
   containerInfo: IContainerInfo;
 
   /**
-   * 解构的名称
+   * 要解构的上下文名称
    */
   paramsName?: string;
+
+  /**
+   * 上下文变量
+   */
+  contextVars?: string[];
 }
 
 /**
@@ -121,11 +126,19 @@ const createEventFile = async (
   options: DynamicFileOptions,
   startGenerateMain: GenerateMainCodeFunction,
 ) => {
-  const { defaultDeps = [], containerInfo, paramsName } = options;
+  const {
+    defaultDeps = [],
+    containerInfo,
+    paramsName,
+    contextVars = [],
+  } = options;
 
   const { vars, deps, deconstructionCode } = getContextInfo({
     paramsName,
-    includeVars: getGlobalDataVars(containerInfo.globalDataSource),
+    includeVars: [
+      ...getGlobalDataVars(containerInfo.globalDataSource),
+      ...contextVars,
+    ],
   });
 
   // 存储代码
@@ -135,6 +148,7 @@ const createEventFile = async (
     addEndCode: [''],
   };
 
+  // 页面可以通过插件的方式插入到自己想要的位置
   const plugins = {
     addEntryCode: (cb: () => string | void) => {
       const entryCode = cb();
@@ -157,12 +171,16 @@ const createEventFile = async (
   };
 
   const provider = {
-    deps: [...defaultDeps, ...deps],
+    deps: [...(containerInfo.deps || []), ...defaultDeps, ...deps],
     contextVars: vars,
     deconstructionContextCode: deconstructionCode,
     plugins,
   };
 
+  // 覆盖原有的deps，防止
+  containerInfo.deps = provider.deps;
+
+  // 生成主代码
   const code = await startGenerateMain(provider);
 
   // 通过deps 生成 导入语句
@@ -175,6 +193,114 @@ const createEventFile = async (
     code,
     storageCode.addEndCode.join('\n'),
   ];
+};
+
+/**
+ * 生成函数代码
+ */
+export const generatorFuncCode = async (options: {
+  prefix?: string;
+  functionName?: string;
+  type: 'arrowFunction' /* 箭头函数 */ | 'Anonymous' /* 匿名函数 */;
+  paramsVars?: {
+    type?: string;
+    name: string;
+  }[];
+}) => {
+  const {
+    functionName,
+    type = 'arrowFunction',
+    paramsVars = [],
+    prefix = '',
+  } = options || {};
+
+  const storageCode = {
+    funcDefineCode: '',
+    insertFuncDefineTop: [''],
+    insertFuncHead: [''],
+    appendFuncBody: [''],
+    returnCode: '',
+  };
+
+  if (!['arrowFunction', 'Anonymous'].includes(type)) {
+    throw Error('不支持的函数类型');
+  }
+
+  if (type === 'arrowFunction') {
+    storageCode.funcDefineCode = `const ${functionName} = ${prefix} (${paramsVars
+      .map((it) => `${it.name}${it.type ? `:${it.type}` : ''}`)
+      .join(',')})  => {`;
+  } else if (type === 'Anonymous') {
+    storageCode.funcDefineCode = `${prefix} (${paramsVars
+      .map((it) => `${it.name}${it.type ? `:${it.type}` : ''}`)
+      .join(',')}) => {`;
+  }
+
+  const getReturnCode = (code?: string) => {
+    if (!code) return '';
+    let exitCode = code;
+    if (!code.trimStart().startsWith('return ')) {
+      exitCode = `return ${code}`;
+    }
+    return exitCode;
+  };
+
+  return {
+    /**
+     * 函数定义之上
+     * @param cb
+     */
+    insertFuncDefineTop: (cb: () => string) => {
+      const code = cb();
+      if (code) {
+        storageCode.insertFuncDefineTop.push(code);
+      }
+    },
+
+    /**
+     * 插入到到函数定义的顶部
+     * @param cb
+     */
+    insertFuncHead: (cb: () => string) => {
+      const code = cb();
+      if (code) {
+        storageCode.insertFuncHead.push(code);
+      }
+    },
+
+    /**
+     * 追加到函数体
+     */
+    appendFuncBody: (cb: () => string) => {
+      const code = cb();
+      if (code) {
+        storageCode.appendFuncBody.push(code);
+      }
+    },
+
+    returnCode: (cb: () => string) => {
+      storageCode.returnCode = getReturnCode(cb());
+    },
+
+    /**
+     * 生成函数
+     * @param returnCode 返回代码内容
+     */
+    toString: (returnCode?: string) => {
+      if (returnCode !== undefined) {
+        storageCode.returnCode = getReturnCode(returnCode);
+      }
+
+      return [
+        storageCode.insertFuncDefineTop.join('\n'),
+        storageCode.funcDefineCode,
+        storageCode.insertFuncHead.join('\n'),
+        storageCode.appendFuncBody.join('\n'),
+        storageCode.returnCode,
+        '}',
+      ].join('\n');
+    },
+  };
 };
 
 export default createEventFile;
