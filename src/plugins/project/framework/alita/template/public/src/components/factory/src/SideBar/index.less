@@ -1,0 +1,79 @@
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+@prefixCls: appSideBar;
+
+.@{prefixCls}-wrap {
+  width: 100%;
+  height: 100%;
+
+  .my-side-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+    height: 100%;
+    
+    .side {
+      flex: none;
+    }
+
+    .main {
+      flex: 1;
+    }
+
+    .content {
+      height: 100%;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      // padding: 12 * @hd;
+      font-size: 12 * @hd;
+      color: #cccccc;
+      word-break: break-all;
+      word-wrap: break-word;
+      &.active {
+        display: flex;
+      }
+    }
+
+    .adm-side-bar {
+      font-size: var(--my-side-bar-font-size);
+    }
+    .adm-side-bar-item-highlight {
+      background: var(--my-side-bar-pointer-color);
+    }
+    .adm-side-bar-item-active {
+      background-color: var(--my-side-bar-active-bg-color);
+    }
+    .adm-side-bar-item {
+      path {
+        fill: var(--my-side-bar-active-bg-color);
+      }
+    }
+    .adm-side-bar-item-active-next-sibling {
+      path {
+        fill: var(--my-side-bar-active-bg-color);
+      }
+    }
+  }
+
+  .my-side-bar-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    padding: 16 * @hd;
+    color: #afb4bd;
+    font-weight: 400;
+    font-size: 17 * @hd;
+    text-align: center;
+    background: #e9ecf5;
+
+    .notice {
+      color: #333;
+      font-weight: 600;
+    }
+  }
+}

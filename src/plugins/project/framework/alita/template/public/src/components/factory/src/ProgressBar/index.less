@@ -1,0 +1,44 @@
+@prefixCls: lcdp-adm-progressbar;
+
+
+.@{prefixCls}-wrapper {
+  display: flex;
+  align-items: center;
+
+  .@{prefixCls}-title {
+    max-width: 25%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 7px;
+  }
+
+  .@{prefixCls}-value {
+    padding-left: 7px;
+  }
+
+  .adm-progress-bar {
+    flex: 1;
+  }
+}
+
+.@{prefixCls}-wrapper-vertical {
+  display: block;
+
+  .@{prefixCls}-context {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+		padding-bottom: 4px;
+
+    .@{prefixCls}-title {
+      flex: 12;
+      max-width: initial;
+    }
+
+    .@{prefixCls}-value {
+      flex: 1;
+      text-align: right;
+    }
+  }
+}

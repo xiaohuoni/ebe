@@ -284,11 +284,17 @@ export class ProjectBuilder implements IProjectBuilder {
       parseResult.containers.map(async (containerInfo, index) => {
         let builder: IModuleBuilder = builders.pages;
         let path: string[];
-        if (containerInfo.containerType === 'Modal') {
+        if (
+          containerInfo.containerType === 'Modal' ||
+          containerInfo.containerType === 'MobileModal'
+        ) {
           path = this.template.slots.modalPages.path;
         } else if (containerInfo.containerType === 'Drawer') {
           path = this.template.slots.drawerPages.path;
-        } else if (containerInfo.containerType === 'Popover') {
+        } else if (
+          containerInfo.containerType === 'Popover' ||
+          containerInfo.containerType === 'MobilePopover'
+        ) {
           path = this.template.slots.popoverPages.path;
         } else if (PAGE_TYPES.includes(containerInfo.containerType)) {
           path = this.template.slots.pages.path;

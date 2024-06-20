@@ -6,12 +6,10 @@ Object {
     Object {
       "content": "<Drawer
       title=\\"tanchuang\\"
-    width='624px'
-    height='300px'
     
-    
-    placement='right'
-    maskClosable={false}
+width='624px'
+placement='right'
+height='300px'
     footer={<div className=\\"ant-drawer-footer-button\\">
           <Button
             onClick={() => {
@@ -439,12 +437,8 @@ Object {
     Object {
       "content": "<Modal
       title=\\"弹窗\\"
-    width='624px'
     
-    
-    
-    
-    maskClosable={false}
+width='624px'
     
       open={props.visible}
       destroyOnClose

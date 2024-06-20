@@ -1,0 +1,40 @@
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+
+@prefixCls: lcdp-dformlist-title;
+
+.@{prefixCls}-box {
+  padding: 8 * @hd 0;
+  .@{prefixCls}-error {
+    padding-top: 14 * @hd;
+    color: rgba(255, 72, 72, 1);
+    font-size: 14 * @hd;
+  }
+  .@{prefixCls}-redStar {
+    padding-top: 2 * @hd;
+    color: rgba(255, 72, 72, 1);
+    font-size: 15 * @hd !important;
+  }
+  .@{prefixCls}-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .@{prefixCls}-title {
+      flex: 1;
+      color: #333;
+      font-weight: 600;
+      font-size: 16 * @hd;
+      line-height: 22 * @hd;
+    }
+    .@{prefixCls}-btnText {
+      width: 64 * @hd;
+      height: 23 * @hd;
+      color: #0089ff;
+      font-size: 13 * @hd;
+      line-height: 23 * @hd;
+      text-align: center;
+      background: #dbf0ff;
+      border-radius: 14 * @hd;
+    }
+  }
+}

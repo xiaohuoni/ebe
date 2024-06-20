@@ -5,66 +5,61 @@ export default function getFile(): [string[], ResultFile] {
   const file = createResultFile(
     'Modal',
     'tsx',
-    `import Pageview, { RootProps } from '@/components/common/Pageview';
-import CenterPopup from 'antd-mobile-5/es/components/center-popup';
+    `import CenterPopup from 'antd-mobile-5/es/components/center-popup';
 import Popup from 'antd-mobile-5/es/components/popup';
 import React, {
   forwardRef,
-  useEffect,
   useImperativeHandle,
   useMemo,
-  useState,
 } from 'react';
-import type { ModelProps, modePropsType } from './types';
-const pos = {
-  sliderLeft: 'left',
-  sliderRight: 'right',
-  popup: 'bottom',
-  dropdown: 'top',
-};
-const defaultPopupProps: ModelProps = {
-  position: 'bottom',
-  mode: '',
-  closeOnMaskClick: true,
-  destroyOnClose: false,
-  showCloseButton: false,
-};
+
+export interface modePropsType {
+  pageId?: string;
+  open?: boolean;
+  onOk?: () => void;
+  onCancel?: () => void;
+  onClose?: (isDestroy: boolean) => void;
+  sceneCode?: string;
+  params?: Record<string, any>;
+  modalId?: string;
+  managerRef?: Record<string, any>;
+  lcdpParentRenderId?: string;
+  appId: string;
+  parseNodeBefore?: (node: any) => void;
+  getLocale?: any;
+  children?: any;
+  title?: string;
+  position: 'top' | 'bottom' | 'right' | 'left';
+  mode: 'alert' | 'sliderLeft' | 'sliderRight' | 'dropdown' | 'popup' | '';
+  closeOnMaskClick?: boolean;
+  destroyOnClose: boolean;
+  showCloseButton: boolean;
+  width?: string;
+  height?: string;
+}
 
 const Modal = forwardRef<any, modePropsType>((props, ref) => {
   const {
-    pageId,
-    visible = false,
-    onOk,
+    open,
     onCancel,
     onClose,
-    sceneCode,
-    params,
     modalId,
-    managerRef,
-    lcdpParentRenderId,
-    appId,
-    getLocale,
+    children,
+    width,
+    height,
+    mode,
+    destroyOnClose,
+    ...other
   } = props;
-
-  const [popupProps, setPopupProps] = useState<ModelProps>(defaultPopupProps);
-  const [show, setShow] = useState(false);
-  const style = useMemo(() => {
-    const { width } = popupProps;
-    switch (popupProps.mode) {
-      case 'alert':
-        return {
+  const style =
+    mode === 'alert'
+      ? {
           '--min-width': width,
-          '--max-width': width,
-        };
-
-      default:
-        break;
-    }
-    return {};
-  }, [popupProps]);
+          '--max-height': height,
+        }
+      : {};
   const bodyStyle = useMemo(() => {
-    const { width, height } = popupProps;
-    switch (popupProps.mode) {
+    switch (mode) {
       case 'alert':
         return {
           width: width || '75vw',
@@ -107,59 +102,46 @@ const Modal = forwardRef<any, modePropsType>((props, ref) => {
         break;
     }
     return {};
-  }, [popupProps]);
-
-  useEffect(() => {
-    setShow(visible);
-  }, [visible]);
-
-  useEffect(() => {
-    const modalProps = RootProps[pageId || ''] || defaultPopupProps;
-    setPopupProps(modalProps);
-  }, [pageId]);
+  }, [mode]);
   useImperativeHandle(ref, () => ({
     close: onClose,
     modalId,
   }));
-
   const MyModal = useMemo(() => {
-    if (popupProps.mode === 'alert') {
+    if (mode === 'alert') {
       return CenterPopup;
     }
-    if (popupProps.mode === 'popup') {
+    if (mode === 'popup') {
       return Popup;
     }
     return Popup;
-  }, [popupProps.mode]);
-
+  }, [mode]);
   if (!MyModal) {
     return null;
   }
-
   return (
     <MyModal
       // @ts-ignore
       round
-      {...popupProps}
       style={style}
-      bodyClassName={\`dynamic_modal_\${pageId || ''}\`}
       bodyStyle={bodyStyle}
-      visible={show}
+      visible={open}
       getContainer={document.body}
       onClose={() => {
-        onClose && onClose(popupProps.destroyOnClose);
+        onClose && onClose(destroyOnClose);
       }}
+      destroyOnClose={destroyOnClose}
       afterClose={onCancel}
+      {...other}
+      closeOnMaskClick={true}
     >
-      <Pageview pageSrc={pageId} />
+      {children}
     </MyModal>
   );
 });
-
 Modal.defaultProps = {
   getLocale: () => '',
 };
-
 export default Modal;
 `,
   );

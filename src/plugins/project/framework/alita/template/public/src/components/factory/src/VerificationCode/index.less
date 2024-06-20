@@ -1,0 +1,87 @@
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+
+@prefixCls: verificationCode;
+
+.@{prefixCls} {
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+  color: #1c242e;
+
+  .redStar {
+    color: #FF7474;
+    font-size: 16 * @hd;
+    padding-top: 6 * @hd;
+    padding-left: 2 * @hd;
+  }
+
+  &-titleTop {
+    display: flex;
+    flex-direction: column;
+
+    .topText {
+      display: flex;
+      align-items: center;
+      height: 32 * @hd;
+      padding: 0 5 * @hd;
+      line-height: 32 * @hd;
+    }
+  }
+
+  &-inputContent {
+    display: flex;
+    flex-direction: column;
+
+    .normalArea {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      height: 48 * @hd;
+      padding: 0 5 * @hd;
+
+      .titleText {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        margin-right: 16 * @hd;
+      }
+
+      input {
+        flex: 1;
+        background: none;
+        border: 0;
+      }
+
+      ::-webkit-input-placeholder {
+        color: rgba(28, 36, 46, 0.25);
+      }
+
+      .sendButtonActive {
+        flex-shrink: 0;
+        color: #4477ee;
+      }
+
+      .sendButtonDisable {
+        flex-shrink: 0;
+        color: rgba(28, 36, 46, 0.45);
+        font-size: 86%;
+      }
+
+      .imageActive {
+        width: 80 * @hd;
+        height: 30 * @hd;
+        background-color: #f5f5f5;
+      }
+    }
+
+
+  }
+
+  .errorNotice {
+    text-align: right;
+    padding: 0 5 * @hd 5 * @hd 5 * @hd;
+    font-size: 12 * @hd;
+    color: @brand-error;
+  }
+}

@@ -1,0 +1,120 @@
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+
+@prefixCls: lcdp-stepprocess;
+
+.@{prefixCls}-stepProcess {
+  display: block;
+  width: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  .@{prefixCls}-start-content {
+    justify-content: start;
+  }
+
+  .@{prefixCls}-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10 * @hd;
+    color: #c6c7c9;
+  }
+
+  .@{prefixCls}-title {
+    .@{prefixCls}-subTitle {
+      margin-top: 4 * @hd;
+      font-size: 12 * @hd;
+      opacity: 0.65;
+    }
+  }
+
+  .@{prefixCls}-description {
+    opacity: 0.85;
+  }
+
+
+  // 数字类型样式
+  .@{prefixCls}-numberBox {
+    text-align: center;
+    line-height: 16 * @hd;
+    width: 18 * @hd;
+    height: 18 * @hd;
+    border-radius: 50%;
+    font-size: 12 * @hd;
+  }
+
+  // 数字类型迷你样式
+  .@{prefixCls}-numberBox-small {
+    width: 12 * @hd;
+    height: 12 * @hd;
+    line-height: 14 * @hd;
+  }
+
+  // 点类型样式
+  .@{prefixCls}-dot {
+    width: 12 * @hd;
+    height: 12 * @hd;
+    opacity: 1;
+    border-radius: 50%;
+  }
+
+  // 点类型迷你样式
+  .@{prefixCls}-dot-small {
+    width: 8 * @hd;
+    height: 8 * @hd;
+  }
+
+  .@{prefixCls}-dot-finish {
+    background-color: @brand-primary; // FIXME:换主题色
+  }
+
+  .@{prefixCls}-dot-process {
+    background-color: @brand-primary; // FIXME:换主题色
+  }
+
+  .@{prefixCls}-dot-wait {
+    background-color: #e5e5e5; // FIXME:换主题色
+  }
+
+  .@{prefixCls}-dot-error {
+    background-color: @brand-error; // FIXME:换主题色
+  }
+
+  .@{prefixCls}-finish {
+    border: 2px solid @brand-primary; // FIXME:换主题色
+    color: @brand-primary; // FIXME:换主题色
+  }
+
+  .@{prefixCls}-process {
+    border: 2px solid @brand-primary; // FIXME:换主题色
+    background-color: @brand-primary; // FIXME:换主题色
+    color: #fff; // FIXME:换主题色
+  }
+
+  .@{prefixCls}-wait {
+    border: 2px solid #E5E5E5; // FIXME:换主题色
+    color: rgba(28, 36, 46, 0.85);
+  }
+
+  .@{prefixCls}-error {
+    border: 2px solid @brand-error; // FIXME:换主题色
+    color: @brand-error; // FIXME:换主题色
+  }
+}
+
+.@{prefixCls}-stepProcess-vertical {
+  .@{prefixCls}-title {
+    display: flex;
+
+    .@{prefixCls}-subTitle {
+      margin-left: 4 * @hd;
+    }
+  }
+}
+
+.@{prefixCls}-stepProcess-navigate {
+  .adm-steps-horizontal .adm-step .adm-step-indicator::after {
+    height: 0;
+  }
+}

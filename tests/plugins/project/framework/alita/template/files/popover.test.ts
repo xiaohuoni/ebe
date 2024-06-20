@@ -59,7 +59,7 @@ describe('template files popover', () => {
         if (page?.pageId) {
           return {
             placement: page.placement,
-            trigger: page.trigger,
+            trigger: page.trigger || 'click',
             arrowPointAtCenter: true,
           };
         }

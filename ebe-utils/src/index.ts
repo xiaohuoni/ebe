@@ -533,9 +533,18 @@ export const fetchData = async ({
   }
   // 合并页面，生成器那边支持页面类型和业务组件类型
   const pageDSLS = [...pages, ...busiPages];
-
+  const getPlatform = (platFormtype: string) => {
+    switch (platFormtype) {
+      case 'h5':
+      case 'APP':
+      case 'app':
+        return 'h5';
+      default:
+        return 'pc';
+    }
+  };
   const options = {
-    platform,
+    platform: getPlatform(platform),
     appId,
     pageIdMapping,
     busiCompMapping,

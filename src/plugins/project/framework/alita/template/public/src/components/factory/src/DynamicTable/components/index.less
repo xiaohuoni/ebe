@@ -1,0 +1,94 @@
+@import "../../styles/theme.less";
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+@prefixCls: appDynamicTable-cell;
+
+.@{prefixCls} {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  .buttonInsideView {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .buttonIcon {
+      font-size: 11 *@hd;
+      width: 11 * @hd;
+      height: 11 * @hd;
+    }
+
+    .buttonLeftIcon {
+      .buttonIcon;
+      margin-right: 4*@hd;
+    }
+    .buttonRightIcon {
+      .buttonIcon;
+      margin-left: 4*@hd;
+    }
+
+  }
+  button {
+    font-size: var(--ag-font-size);
+    padding-left: 0;
+    padding-right: 8 * @hd;
+  }
+
+  button:last-child {
+    padding-right: 0;
+  }
+}
+
+
+.@{prefixCls}-popover {
+  
+
+  .buttonInsideView {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 14 * @hd;
+  }
+
+  .buttonIcon {
+    font-size: 11 * @hd;
+    width: 11 * @hd;
+    height: 11 * @hd;
+  }
+
+  .buttonLeftIcon {
+    .buttonIcon;
+    margin-right: 4 * @hd;
+  }
+
+  .buttonRightIcon {
+    .buttonIcon;
+    margin-left: 4 * @hd;
+  }
+
+  button {
+    padding: 6 * @hd 0;
+   }
+
+  .adm-popover-arrow {
+    display: none !important;
+  }
+  .adm-popover-inner {
+    margin-top: -10 * @hd;
+    box-shadow: 0 4 * @hd 12*@hd 0 rgba(100,103,122,0.24);
+    border-radius: 2 * @hd;
+  }
+
+  .adm-popover-inner-content {
+    display: flex;
+    flex-direction: column !important;
+    padding: 2 * @hd 6 * @hd;
+
+    .buttonInsideView;
+    
+  }
+
+}

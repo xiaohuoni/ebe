@@ -1,0 +1,24 @@
+@prefixCls: lcdp-loadmore;
+.@{prefixCls}-loadMore {
+  .adm-list-body {
+    border: none;
+    background-color: transparent;
+    &::before,
+    &::after {
+      display: none !important;
+    }
+  }
+  .@{prefixCls}-row {
+    display: flex;
+    flex-direction: row;
+    .@{prefixCls}-column {
+      flex: 1;
+      word-break: break-all;
+    }
+    .@{prefixCls}-columnPlaceholder {
+      flex: 1;
+      word-break: break-all;
+      opacity: 0;
+    }
+  }
+}

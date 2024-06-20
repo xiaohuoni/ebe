@@ -1,0 +1,210 @@
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+
+@prefixCls: lcdp-blockselect;
+
+.@{prefixCls}-blockSelectView {
+  overflow: hidden;
+
+
+  .blockSelect-ActionView {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+    min-height: 47 * @hd;
+
+    .noticeView {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .allSelectedIcon {
+        width: 16 * @hd;
+        height: 16 * @hd;
+        margin-left: 12 * @hd;
+        // font-size: 16 * @hd;
+        svg {
+          width: 16 * @hd;
+          height: 16 * @hd;
+        }
+      }
+
+      .styleOne {
+        display: flex;
+        align-items: center;
+        // margin-left: 6 * @hd;
+        margin-right: 6 * @hd;
+        font-size: 14 * @hd;
+        color: #1C242E;
+        line-height: 22 * @hd;
+
+        &-number {
+          margin-left: 10 * @hd;
+          font-size: 12 * @hd;
+          color: rgba(28, 36, 46, 0.35);
+        }
+      }
+
+      .styleTwo {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        // margin-left: 6 * @hd;
+        margin-right: 8 * @hd;
+        font-size: 14 * @hd;
+        color: #1C242E;
+        line-height: 22 * @hd;
+
+        &-number {
+          margin-left: 6 * @hd;
+          font-size: 13 * @hd;
+          color: rgba(28, 36, 46, 0.35);
+        }
+
+      }
+
+      .styleThree {
+        margin-right: 6 * @hd;
+        font-size: 13 * @hd;
+        color: #1C242E;
+      }
+
+      .styleDefault {
+        display: flex;
+        flex-direction: column;
+        margin-left: 6 * @hd;
+        margin-right: 6 * @hd;
+        font-size: 13 * @hd;
+        color: #1C242E;
+
+        &-number {
+          font-size: 10 * @hd;
+          color: rgba(28, 36, 46, 0.35);
+        }
+      }
+
+
+    }
+
+
+    .rigthView {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: auto;
+
+
+      .normalBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 300 * @hd;
+        color: var(--adm-color-primary);
+        font-size: 16 * @hd;
+        font-weight: 500;
+      }
+
+      .borderBtn {
+        .normalBtn;
+        border: 1 * @hd solid var(--adm-color-primary);
+      }
+
+      .lightBtn {
+        .normalBtn;
+        color: var(--adm-color-primary);
+        background: rgba(68, 119, 238, 0.10);
+      }
+
+      .primaryBtn {
+        .normalBtn;
+        color: #ffffff;
+        background: var(--adm-color-primary);
+      }
+
+    }
+
+  }
+
+
+  .@{prefixCls}-blockSelectWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    overflow: auto;
+    align-content: flex-start;
+  }
+
+  .@{prefixCls}-blockSelect {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .@{prefixCls}-placeholder {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    height: 45 * @hd;
+    color: rgba(28, 36, 46, 0.45);
+    font-size: 12 * @hd;
+    background: #f2f3f5;
+    border: 1 * @hd solid rgba(0, 0, 0, 0.15);
+  }
+
+  .@{prefixCls}-content {
+    flex: 1;
+    overflow: auto;
+    width: auto;
+  }
+
+  .@{prefixCls}-showIcon {
+    border-radius: 8 * @hd;
+  }
+
+  .@{prefixCls}-icon {
+    display: block;
+    width: 16 * @hd;
+    height: 16 * @hd;
+    margin-right: 10 * @hd;
+    margin-left: 12 * @hd;
+    // font-size: 16 * @hd;
+
+    svg {
+      width: 16 * @hd;
+      height: 16 * @hd;
+    }
+  }
+
+  .@{prefixCls}-iconRight {
+    display: block;
+    width: 16 * @hd;
+    height: 16 * @hd;
+    margin-right: 12 * @hd;
+    margin-left: 10 * @hd;
+    // font-size: 16 * @hd;
+
+    svg {
+      width: 16 * @hd;
+      height: 16 * @hd;
+    }
+  }
+
+  .@{prefixCls}-nobox {
+    overflow: hidden;
+    background-color: #fff;
+    border: 1 * @hd solid transparent;
+    border-radius: 3 * @hd;
+  }
+
+  .@{prefixCls}-select {
+    color: #1677ff;
+    border: 1 * @hd solid #1677ff;
+  }
+
+}

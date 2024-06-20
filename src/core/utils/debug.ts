@@ -15,7 +15,7 @@ const debugPrintCmd = true;
 export const printCmdList = (platform: string) => {
   if (!debugPrintCmd) return;
   const { cmdHash = {} } = allDebugData;
-  const platformCmd = platform === 'APP' ? h5Cmd : pcCmd;
+  const platformCmd = platform === 'h5' ? h5Cmd : pcCmd;
   const cmd = { ...sysCmd, ...platformCmd };
   const cmdList = Object.keys(cmdHash)?.filter(
     (key) => typeof (cmd as any)[key] !== 'function',

@@ -16,16 +16,13 @@ import globalless from './files/globalless';
 import indexpage from './files/indexpage';
 import indexpageless from './files/indexpageless';
 import layout from './files/layout';
-import modalindex from './files/modalindex';
 import modalmap from './files/modalmap';
 import modalmodal from './files/modalmodal';
-import modaltypes from './files/modaltypes';
 import overrides from './files/overrides';
 import pcbannermodal from './files/pcbannermodal';
 import pcbannermodalless from './files/pcbannermodalless';
 import popover from './files/popover';
 import popovermap from './files/popovermap';
-import popoverwrapper from './files/popoverwrapper';
 import proxy from './files/proxy';
 import useMergeContext from './files/useMergeContext';
 import withPageHOC from './files/withPageHOC';
@@ -68,28 +65,22 @@ export function generateStaticFiles(
 
   runFileGenerator(postProcessors, root, popover, parseResult?.staticFiles);
   if (isMobile) {
-    runFileGenerator(
-      postProcessors,
-      root,
-      popoverwrapper,
-      parseResult?.staticFiles,
-    );
-    runFileGenerator(
-      postProcessors,
-      root,
-      modalindex,
-      parseResult?.staticFiles,
-    );
+    // runFileGenerator(
+    //   postProcessors,
+    //   root,
+    //   popoverwrapper,
+    //   parseResult?.staticFiles,
+    // );
+    // runFileGenerator(
+    //   postProcessors,
+    //   root,
+    //   modalindex,
+    //   parseResult?.staticFiles,
+    // );
     runFileGenerator(
       postProcessors,
       root,
       modalmodal,
-      parseResult?.staticFiles,
-    );
-    runFileGenerator(
-      postProcessors,
-      root,
-      modaltypes,
       parseResult?.staticFiles,
     );
   } else {
@@ -106,8 +97,8 @@ export function generateStaticFiles(
       parseResult?.staticFiles,
     );
   }
-  runFileGenerator(postProcessors, root, modalmap, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, drawermap, parseResult?.staticFiles);
+  runFileGenerator(postProcessors, root, modalmap, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, popovermap, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, overrides, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, proxy, parseResult?.staticFiles);

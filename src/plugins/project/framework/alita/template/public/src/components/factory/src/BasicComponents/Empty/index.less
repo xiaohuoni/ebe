@@ -1,0 +1,25 @@
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+@prefixCls: lcdp-app-empty;
+
+.@{prefixCls} {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .adm-error-block-image {
+    height: auto;
+  }
+  .adm-error-block-description {
+    margin-top: .16rem;
+    .adm-error-block-description-title {
+      display: none;
+    }
+    .adm-error-block-description-subtitle {
+      margin-top: 0;
+      font-size: var(--adm-font-size-6);
+      color: #B0B2BF;
+    }
+  }
+}

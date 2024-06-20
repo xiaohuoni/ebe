@@ -698,7 +698,7 @@ const DynamicPopover: FC<DynamicPopoverProps> = (props) => {
     if (page?.pageId) {
       return {
         placement: page.placement,
-        trigger: page.trigger,
+        trigger: page.trigger || 'click',
         arrowPointAtCenter: true,
       };
     }
@@ -1524,21 +1524,6 @@ export default Hoc(Pageview, {
               "files": Array [
                 Object {
                   "content": "import React from 'react';
-const ModalMap: any = {};
-export default ModalMap;
-",
-                  "ext": "ts",
-                  "name": "index",
-                  "options": undefined,
-                },
-              ],
-              "name": "modal",
-            },
-            Object {
-              "dirs": Array [],
-              "files": Array [
-                Object {
-                  "content": "import React from 'react';
 const DrawerMap: any = {};
 export default DrawerMap;
 ",
@@ -1548,6 +1533,21 @@ export default DrawerMap;
                 },
               ],
               "name": "drawer",
+            },
+            Object {
+              "dirs": Array [],
+              "files": Array [
+                Object {
+                  "content": "import React from 'react';
+const ModalMap: any = {};
+export default ModalMap;
+",
+                  "ext": "ts",
+                  "name": "index",
+                  "options": undefined,
+                },
+              ],
+              "name": "modal",
             },
             Object {
               "dirs": Array [],
@@ -4562,17 +4562,20 @@ PORT=8888
     \\"start\\": \\"alita dev\\"
   },
   \\"dependencies\\": {
+    \\"qs\\": \\"^6.11.2\\",
     \\"react\\": \\"^17.0.2\\",
     \\"react-dom\\": \\"^17.0.2\\",
     \\"@alita/flow\\": \\"*\\",
+    \\"classnames\\": \\"^2.2.6\\",
+    \\"jsencrypt\\": \\"^3.3.2\\",
+    \\"crypto-js\\": \\"^4.2.0\\",
+    \\"@paciolan/remote-component\\": \\"^2.12.1\\",
     \\"@lingxiteam/types\\": \\"3.3.1-alpha.14\\",
     \\"alita\\": \\"3.4.0\\",
     \\"@lingxiteam/charts-common\\": \\"^3.7.1-alpha.10\\",
     \\"@lingxiteam/lcdp-ueditor-react\\": \\"^1.0.0-alpha.15\\",
     \\"@lingxiteam/load-framework\\": \\"0.2.1\\",
     \\"@lingxiteam/richtext\\": \\"0.5.1\\",
-    \\"@paciolan/remote-component\\": \\"^2.12.1\\",
-    \\"classnames\\": \\"^2.2.6\\",
     \\"echarts\\": \\"^5.1.2\\",
     \\"lcdp-message\\": \\"0.1.9\\",
     \\"qr-code-with-logo\\": \\"1.1.0\\",
@@ -4584,11 +4587,8 @@ PORT=8888
     \\"size-sensor\\": \\" ^1.0.1\\",
     \\"antd\\": \\"4.24.13\\",
     \\"lodash\\": \\"^4.17.21\\",
-    \\"qs\\": \\"^6.11.2\\",
     \\"copy-to-clipboard\\": \\"^3.3.1\\",
     \\"@lingxiteam/icons\\": \\"0.0.3\\",
-    \\"crypto-js\\": \\"^4.2.0\\",
-    \\"jsencrypt\\": \\"^3.3.2\\",
     \\"merge\\": \\"^2.1.1\\",
     \\"uuid\\": \\"^9.0.1\\",
     \\"dayjs\\": \\"1.11.3\\",

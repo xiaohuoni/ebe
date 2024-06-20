@@ -1,0 +1,26 @@
+@prefixCls: lcdp-button;
+
+.@{prefixCls}-imageRight {
+  flex-direction: row-reverse !important;
+}
+
+.@{prefixCls}-imageLeft {
+  flex-direction: row !important;
+}
+
+.@{prefixCls}-type-dashed {
+  --adm-button-border-style: dashed;
+}
+
+.@{prefixCls}-type-text {
+  --adm-button-border-width: 0;
+  background: transparent;
+  border-color: transparent;
+}
+
+.@{prefixCls}-type-link {
+  --adm-button-border-width: 0;
+  --adm-button-text-color: var(--adm-color-primary);
+  background: transparent;
+  border-color: transparent;
+}

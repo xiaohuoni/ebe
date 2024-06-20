@@ -50,10 +50,17 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
 
     const scope: IScope = Scope.createRootScope();
     let jsxContent = generator(ir, scope);
-    const isModal = ir.pageContainerType === 'Modal';
-    const isBrawer = ir.pageContainerType === 'Drawer';
-    if (isModal || isBrawer) {
-      next.ir.deps.push(getImportFrom('antd', isModal ? 'Modal' : 'Drawer'));
+    const isModal =
+      ir.pageContainerType === 'Modal' ||
+      ir.pageContainerType === 'MobileModal';
+    const isDrawer = ir.pageContainerType === 'Drawer';
+    const isMobile = ir?.platform === 'h5';
+    if (isModal || isDrawer) {
+      if (isMobile) {
+        next.ir.deps.push(getImportFrom('@/utils/Modal/Modal', 'Modal', false));
+      } else {
+        next.ir.deps.push(getImportFrom('antd', isModal ? 'Modal' : 'Drawer'));
+      }
 
       const shouldUsedOnOk = () => {
         if (!isModal || !ir.events?.onOk) return '';
@@ -95,7 +102,16 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         mdProps.okText = pageInst.okText;
         mdProps.cancelText = pageInst.cancelText;
       }
-      if (isBrawer) {
+      if (isMobile) {
+        mdProps.width = pageInst.width;
+        mdProps.height = pageInst.height;
+        mdProps.mode = pageInst.mode;
+        mdProps.mode = pageInst.mode;
+        mdProps.showCloseButton = pageInst.showCloseButton;
+        mdProps.closeOnClickOverlay = pageInst.closeOnClickOverlay;
+        delete mdProps.maskClosable;
+      }
+      if (isDrawer) {
         mdProps.placement = pageInst.placement || 'right';
         mdProps.height =
           pageInst.width === 'custom'
@@ -108,7 +124,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       const footerStr =
         pageInst.footer === 0
           ? 'footer={null}'
-          : isBrawer
+          : isDrawer
           ? `footer={<div className="ant-drawer-footer-button">
           <Button
             onClick={() => {
@@ -125,15 +141,19 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
             onClick={onOk} type="primary" />
 </div>}`
           : '';
-
-      jsxContent = `<${ir.pageContainerType}
+      const attrString = Object.keys(mdProps)
+        .filter((i) => !!mdProps[i])
+        .map((attr) => {
+          if (attr === 'title') return '';
+          if (typeof mdProps[attr] === 'string') {
+            return `${attr}='${mdProps[attr]}'`;
+          }
+          return `${attr}={${mdProps[attr]}}`;
+        })
+        .join('\n');
+      jsxContent = `<${isMobile ? 'Modal' : ir.pageContainerType}
       title=${parse2Var(mdProps.title)}
-    ${mdProps.width ? `width='${mdProps.width}'` : ''}
-    ${mdProps.height ? `height='${mdProps.height}'` : ''}
-    ${mdProps.okText ? `okText='${mdProps.okText}'` : ''}
-    ${mdProps.cancelText ? `cancelText='${mdProps.cancelText}'` : ''}
-    ${mdProps.placement ? `placement='${mdProps.placement}'` : ''}
-    maskClosable={${mdProps.maskClosable}}
+    ${attrString}
     ${footerStr}
       open={props.visible}
       destroyOnClose
@@ -142,7 +162,7 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       ${shouldUsedOnCancel()}
     >
 ${
-  isModal
+  isModal && !isMobile
     ? `<div
 style={
   ${JSON.stringify(
@@ -157,8 +177,8 @@ style={
   )}}
 >`
     : ''
-}${jsxContent}${isModal ? '</div>' : ''}
-</${ir.pageContainerType}>`;
+}${jsxContent}${isModal && !isMobile ? '</div>' : ''}
+</${isMobile ? 'Modal' : ir.pageContainerType}>`;
     }
     // next.ir.deps.push(getImportFrom('react', 'useRef'));
     next.chunks.push({

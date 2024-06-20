@@ -1,0 +1,312 @@
+@import "../styles/theme.less";
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+
+@prefixCls: appDynamicTable;
+
+.@{prefixCls} {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  overflow: hidden;
+
+  .table-header {
+    padding: 8 * @hd 0;
+    font-size: @font-size-base;
+    font-weight: 600;
+    color: #1C242E;
+    flex-shrink: 0;
+  }
+
+  .table-body {
+    // flex: 1 1 auto;
+    overflow: hidden;
+  }
+
+  .table-footer {
+    height: 44 * @hd;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+    .button {
+      width: 20 * @hd;
+      height: 20 * @hd;
+      padding: 0 5 * @hd;
+      color: rgba(28, 36, 46, 0.55);
+      background-color: #F6F8FA;
+      svg {
+        margin-top: 5 * @hd;
+      }
+    }
+
+    .text {
+      height: 20 * @hd;
+      margin: 0 4 * @hd;
+      padding: 0 8 * @hd;
+      font-size: 12 * @hd;
+      line-height: 20 * @hd;
+      color: rgba(28, 36, 46, 0.25);
+      background-color: #F6F8FA;
+
+      .current-page {
+        color: var(--adm-color-primary);
+      }
+    }
+  }
+
+  .more-cell {
+    font-size: @font-size-caption-sm;
+    height: 40 * @hd;
+    line-height: 40 * @hd;
+    text-align: center;
+    color: rgba(28, 36, 46, 0.45);
+  }
+
+  .table-empty {
+    width: 100%;
+    height: 100 * @hd;
+    span {
+      color: #EFEFEF;
+      font-size: 70 * @hd;
+    }
+    .empty-tip {
+      color: rgba(28, 36, 46, 0.45);
+    }
+  }
+
+  .customer-cell-common {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .customer-cell-pure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    .customer-cell-common;
+  }
+
+  .customer-cell-point-tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .point {
+      flex-shrink: 0;
+      width: 4 * @hd;
+      height: 4 * @hd;
+      border-radius: 50%;
+      margin-right: 4 * @hd;
+    }
+  }
+
+
+  .customer-cell-gost-tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    .span-cell {
+      .customer-cell-common;
+      height: 20 * @hd;
+      line-height: 18 * @hd;
+      padding: 0 5 * @hd;
+      border: 1 * @hd solid transparent;
+      border-radius: 1000 * @hd;
+    }
+  }
+
+  .customer-cell-color-tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    .span-cell {
+      .customer-cell-common;
+      height: 20 * @hd;
+      line-height: 20 * @hd;
+      border-radius: 2 * @hd;
+      padding: 0 5 * @hd;
+    }
+  }
+
+  .customer-cell-hyperlink {
+    .customer-cell-common;
+    color: var(--adm-color-primary);
+    text-decoration: underline;
+  }
+
+  .customer-cell-progress-bar {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    .progressBar {
+      width: 100%;
+      height: 8 * @hd;
+      border-radius: 4 * @hd;
+      overflow: hidden;
+
+      .current {
+        height: 8 * @hd;
+        border-radius: 4 * @hd;
+      }
+    }
+  }
+
+
+  // loading 样式
+  .ag-overlay {
+    margin-top: 40 * @hd;
+    height: calc(100% - 40 * @hd);
+    --ag-modal-overlay-background-color: #ffffff;
+    .ag-react-container {
+      width: 100%;
+      height: 100%;
+    }
+    .ag-overlay-no-rows-wrapper {
+      padding-top: 0;
+    }
+    .no-record {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .ag-body-viewport {
+    min-height: 100 * @hd;
+    .ag-center-cols-clipper {
+       min-height: 0;
+       .ag-center-cols-viewport {
+        &::-webkit-scrollbar{
+          display: none;
+        }
+      }
+    }
+  }
+
+  .ag-body-horizontal-scroll {
+    height: 0 !important;
+    min-height: 0 !important;
+    .ag-body-horizontal-scroll-viewport {
+      height: 0 !important;
+      min-height: 0 !important;
+    }
+  }
+  .ag-body-vertical-scroll {
+    height: 0 !important;
+    min-height: 0 !important;
+  }
+
+  .theme-common-style {
+    --ag-font-size: 12 * @hd;
+    --ag-header-height: 40 * @hd;
+    --ag-row-height: 40 * @hd;
+    // 标题背景颜色
+    --ag-header-background-color: var(--dynamic-table-header-bg-color);
+    // // 标题字体颜色
+    --ag-header-foreground-color: var(--dynamic-table-header-color);
+    // 选中项边框样式
+    --ag-range-selection-border-color: transparent;
+    --ag-selected-row-background-color: var(--adm-color-primary);
+    // --ag-cell-horizontal-padding: 0;
+
+    .ag-header-cell-label {
+      justify-content: center;
+    }
+
+    .ag-ltr .ag-cell {
+      text-align: center;
+    }
+
+    .ag-header .ag-pinned-left-header,
+    .ag-body-viewport .ag-pinned-left-cols-container {
+      position: relative;
+      z-index: 1;
+      -webkit-box-shadow: 2 * @hd 0 8 * @hd 0 rgba(103,109,126,0.12);
+      box-shadow: 2 * @hd 0 8 * @hd 0 rgba(103,109,126,0.12);
+    }
+
+    .ag-header .ag-pinned-right-header,
+    .ag-body-viewport .ag-pinned-right-cols-container {
+      position: relative;
+      z-index: 1;
+      -webkit-box-shadow: -2 * @hd 0 8 * @hd 0 rgba(103,109,126,0.12);
+      box-shadow: -2 * @hd 0 8 * @hd 0 rgba(103,109,126,0.12);
+    }
+
+  }
+
+  .common-span-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+  }
+
+
+  .ag-theme-segmentation {
+    .theme-common-style;
+    --ag-borders-critical: #EFEFEF;
+    --ag-row-border-color: #EFEFEF;
+    --ag-header-border-color: #EFEFEF;
+
+    .ag-header {
+      border-bottom-color: #EFEFEF;
+    }
+
+    .ag-root-wrapper {
+      border: none;
+    }
+  }
+
+  .segmentation-span-cell {
+    .common-span-cell;
+    // border-bottom: 1px solid #efefef;
+    // // border-right: 1px solid #efefef;
+    // --ag-cell-horizontal-border: 1px solid #efefef;
+    background: #F7F7F7;//rgba(43, 45, 48, 0.25);
+  }
+
+  .ag-theme-zebra {
+    .theme-common-style;
+    // 斑马纹颜色
+    --ag-odd-row-background-color: #FAFAFA;
+    --ag-borders: none;
+    --ag-row-border-color: none;
+  }
+
+  .zebra-span-cell {
+    .common-span-cell;
+    background: #F2F3F5;
+  }
+
+  .ag-theme-border {
+    .theme-common-style;
+    --ag-border-color: #EFEFEF;
+    // columns隔条颜色
+    --ag-cell-horizontal-border: solid #EFEFEF;
+    // 表头隔条颜色
+    .ag-header-cell {
+      border-right: 1 * @hd solid #EFEFEF;
+    }
+  }
+
+  .border-span-cell {
+    .common-span-cell;
+    border-bottom: 1 * @hd solid #EFEFEF;
+  }
+
+}

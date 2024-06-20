@@ -1,0 +1,96 @@
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+@prefixCls: lcdp-audio;
+
+.@{prefixCls} {
+  display: flex;
+  align-items: center;
+
+  .sb-soundplayer-btn {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    flex: none;
+    height: auto;
+    vertical-align: middle;
+    background-color: transparent;
+    border: 1px solid transparent;
+  }
+
+  .sb-soundplayer-play-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24 * @hd;
+    height: 24 * @hd;
+    background-color: #47e;
+    border-radius: 100%;
+
+    &>.sb-soundplayer-icon {
+      position: relative;
+      width: 8 * @hd;
+      height: 8 * @hd;
+      vertical-align: middle;
+      color: #fff;
+    }
+  }
+
+
+  .sb-soundplayer-progress-container {
+    width: 100%;
+    height: 4 * @hd;
+    overflow: hidden;
+    background-color: rgba(68, 119, 238, 0.2);
+    cursor: pointer;
+    border-radius: 25 * @hd;
+  }
+
+  .sb-soundplayer-progress-inner {
+    height: 100%;
+    background-color: #47e;
+    transition: width 0.2s ease-in;
+    border-radius: 25 * @hd;
+
+  }
+
+  .audioTitle {
+    flex: 1;
+    overflow: hidden;
+    color: #1C242E;
+    font-weight: 400;
+    font-size: 16 * @hd;
+    letter-spacing: 0.2em;
+    white-space: nowrap;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+  }
+
+  .audioContent {
+    flex: 3;
+    display: flex;
+    align-items: center;
+
+    .playBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24 * @hd;
+      height: 24 * @hd;
+      background-color: #47e;
+      border-radius: 100%;
+    }
+
+    .progress {
+      margin: 0 8 * @hd;
+    }
+  }
+
+  .audioTimer {
+    flex: none;
+    font-size: 14* @hd;
+    font-weight: 400;
+    color: #1C242E;
+    width: 38* @hd;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}

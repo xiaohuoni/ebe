@@ -38,6 +38,7 @@ export { setPageSrc } from './setPageSrc';
 export { setSrc } from './setSrc';
 export { setTimeout } from './setTimeout';
 export { setTimer } from './setTimer';
+export { showAppCustomModal } from './showAppCustomModal';
 export { showCustomModal } from './showCustomModal';
 export { showMessage } from './showMessage';
 export { showModal } from './showModal';

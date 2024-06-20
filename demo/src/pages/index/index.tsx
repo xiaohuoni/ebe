@@ -46,7 +46,7 @@ const Page = () => {
     setLog('');
     const { options, cleanedTree } = await fetchData({
       appId: values.appId,
-      platform: values.platform ? 'APP' : 'PC',
+      platform: values.isH5 ? 'APP' : 'PC',
       baseUrl: 'http://172.21.72.205:10010/',
       services: {
         findBusiCompById,
@@ -130,7 +130,7 @@ const Page = () => {
         initialValues={{
           appId: '1106842174504439808',
           pageId: '',
-          platform: false,
+          isH5: true,
         }}
       >
         <Item name="appId" label="AppID">
@@ -139,7 +139,7 @@ const Page = () => {
         <Item name="pageId" label="PageID">
           <Input />
         </Item>
-        <Item name="platform" label="是否是 H5">
+        <Item name="isH5" label="是否是 H5">
           <Switch />
         </Item>
         <Item wrapperCol={{ offset: 8, span: 16 }}>

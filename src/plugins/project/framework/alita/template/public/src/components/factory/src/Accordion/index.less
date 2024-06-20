@@ -1,0 +1,80 @@
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+
+@prefixCls: lcdp-accordion;
+
+.pannel-default {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  margin-right: -60* @hd;
+  padding-top: 12* @hd;
+  padding-bottom: 12* @hd;
+}
+
+.@{prefixCls} {
+  .adm-list-item-content-main {
+    padding: 0 !important;
+  }
+
+  .adm-list-item-content {
+    padding-right: 0;
+  }
+
+  .adm-collapse-arrow {
+    margin-right: 8* @hd;
+  }
+
+  &-header-default {
+    .pannel-default;
+  }
+
+  &-header {
+    .pannel-default;
+
+    &-default-icon {
+      width: 8px;
+      height: 32px;
+      background: #47e;
+      margin-right: 12px;
+      border-radius: 4px;
+    }
+
+    &-icon-left {
+      position: absolute;
+      left: 0;
+      width: 24px;
+      height: 16px;
+      margin-right: 12px;
+      border-radius: 0 16px 16px 0;
+      background: #47e;
+    }
+
+    &-icon-auto {
+      &::before {
+        content: none;
+      }
+
+      >i,
+      span {
+        margin-right: 8* @hd;
+        color: #47e;
+      }
+    }
+  }
+
+  &-border-none {
+    border: none;
+  }
+
+  .lcdp-accordion-header {
+    padding-left: 12 * @hd;
+  }
+
+  .adm-list-body {
+    border: none;
+  }
+
+  .adm-list-item {
+    padding-left: 0;
+  }
+}

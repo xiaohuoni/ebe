@@ -1,0 +1,36 @@
+/* stylelint-disable-next-line CssSyntaxError */
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+
+@prefixCls: alita-search-view-wrap;
+
+.@{prefixCls} {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &-date-range {
+    //    width: 100%;
+    height: 40 * @hd;
+    padding: 5 * @hd 10 * @hd;
+    background: #fff;
+    border-top: 1 * @hd solid #eee;
+    .range-content {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 100%;
+      line-height: 30 * @hd;
+      background: #f1f9ff;
+      border-radius: 999999 * @hd;
+      .date {
+        flex: 1;
+        color: #39a8fb;
+        text-align: center;
+      }
+      .date-space {
+        width: 30 * @hd;
+        text-align: center;
+      }
+    }
+  }
+}

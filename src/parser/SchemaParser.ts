@@ -240,7 +240,9 @@ export class SchemaParser implements ISchemaParser {
           (value) => _.isNil(value) || value === '' || _.isUndefined(value),
         );
         const pcDraw = _.mergeWith({}, drawObject);
-        const isModal = newSchema.pageContainerType === 'Modal';
+        const isModal =
+          newSchema.pageContainerType === 'Modal' ||
+          newSchema.pageContainerType === 'MobileModal';
         const isDrawer = newSchema.pageContainerType === 'Drawer';
         if (isModal) {
           modalDrawerMap.modal.push(page.pagePath);

@@ -20,7 +20,11 @@ export default function getFile(
     import { Container } from '../utils/Context/Container';
     import { useComponentHoc } from '../utils/useComponentHoc';
     import { usePageProvider } from '@/utils/Context/Container';
-    import { WithCatchErrorBoundary } from '@/components/common/ErrorBoundary'
+    ${
+      isMobile
+        ? ''
+        : "import { WithCatchErrorBoundary } from '@/components/common/ErrorBoundary'"
+    }
 
   
   import {${Object.keys(data.formHash)
@@ -171,7 +175,9 @@ export default function getFile(
       );
     });
   
-    return WithCatchErrorBoundary(HOC, { compName: type });
+    return ${
+      isMobile ? 'HOC' : 'WithCatchErrorBoundary(HOC, { compName: type })'
+    };
   };
   // 低代码组件中，表单组件，要根据 fieldProps 配置，操作 value 和 setValue
   ${Object.keys(data.formHash)

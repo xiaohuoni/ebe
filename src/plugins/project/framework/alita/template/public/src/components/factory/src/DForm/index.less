@@ -1,0 +1,22 @@
+// .dynamic-form-wrapper {
+//   .lcdp-form-item:last-child .alitajs-dform-bottom-line {
+//     display: none;
+//   }
+// }
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+
+.dynamic-form-wrapper {
+  background-color: @fill-base;
+  // 在表单下不隐藏
+  .lcdp-form-item .lingxiteam-dform-bottom-line {
+    display: block;
+  }
+  .lcdp-form-item:last-child .lingxiteam-dform-bottom-line {
+    display: none;
+  }
+}
+
+// 不在表单下隐藏表单
+.lcdp-form-item .lingxiteam-dform-bottom-line {
+  display: none;
+}
