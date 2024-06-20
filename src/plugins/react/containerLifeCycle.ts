@@ -1,12 +1,8 @@
 import { PAGE_TYPES } from '../../constants';
-import { CLASS_DEFINE_CHUNK_NAME } from '../../core/const/generator';
-import { generateFunction } from '../../core/utils/jsExpression';
-import { LIFE_CYCLE_CHUNK_NAME, MODAL_CHUNK_NAME } from './const';
 
 import {
   BuilderComponentPlugin,
   BuilderComponentPluginFactory,
-  ChunkType,
   FileType,
   ICodeStruct,
   IContainerInfo,
@@ -60,62 +56,62 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       // ConstructorStart
 
       if (events?.onOk || events?.onCancel) {
-        next.chunks.push({
-          type: ChunkType.STRING,
-          fileType: cfg.fileType,
-          name: MODAL_CHUNK_NAME.OnOk,
-          content: events?.onOk
-            ? `const onOk = async ()=>{ ${generateFunction(
-                events?.onOk,
-                {
-                  name: ir.platform,
-                },
-                { ir, options: next.contextData.options },
-              )} }`
-            : '',
-          linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
-        });
-        next.chunks.push({
-          type: ChunkType.STRING,
-          fileType: cfg.fileType,
-          name: MODAL_CHUNK_NAME.OnCancel,
-          content: events?.onCancel
-            ? `const onCancel = async ()=>{ ${generateFunction(
-                events?.onCancel,
-                {
-                  name: ir.platform,
-                },
-                { ir, options: next.contextData.options },
-              )} }`
-            : '',
-          linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
-        });
-        next.chunks.push({
-          type: ChunkType.STRING,
-          fileType: cfg.fileType,
-          name: LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleContent,
-          content: [
-            events?.onOk ? 'onOk' : '',
-            events?.onCancel ? 'onCancel' : '',
-            ir?.customFuctions?.length ? 'customActionMap' : '',
-          ]
-            .filter(Boolean)
-            .join(','),
-          linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleStart],
-        });
+        // next.chunks.push({
+        //   type: ChunkType.STRING,
+        //   fileType: cfg.fileType,
+        //   name: MODAL_CHUNK_NAME.OnOk,
+        //   content: events?.onOk
+        //     ? `const onOk = async ()=>{ ${generateFunction(
+        //         events?.onOk,
+        //         {
+        //           name: ir.platform,
+        //         },
+        //         { ir, options: next.contextData.options },
+        //       )} }`
+        //     : '',
+        //   linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
+        // });
+        // next.chunks.push({
+        //   type: ChunkType.STRING,
+        //   fileType: cfg.fileType,
+        //   name: MODAL_CHUNK_NAME.OnCancel,
+        //   content: events?.onCancel
+        //     ? `const onCancel = async ()=>{ ${generateFunction(
+        //         events?.onCancel,
+        //         {
+        //           name: ir.platform,
+        //         },
+        //         { ir, options: next.contextData.options },
+        //       )} }`
+        //     : '',
+        //   linkAfter: [CLASS_DEFINE_CHUNK_NAME.ConstructorStart],
+        // });
+        // next.chunks.push({
+        //   type: ChunkType.STRING,
+        //   fileType: cfg.fileType,
+        //   name: LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleContent,
+        //   content: [
+        //     events?.onOk ? 'onOk' : '',
+        //     events?.onCancel ? 'onCancel' : '',
+        //     ir?.customFuctions?.length ? 'customActionMap' : '',
+        //   ]
+        //     .filter(Boolean)
+        //     .join(','),
+        //   linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleStart],
+        // });
       } else {
         // 拼接useImperativeHandle
-        if (ir?.customFuctions && ir?.customFuctions.length > 0) {
-          next.chunks.push({
-            type: ChunkType.STRING,
-            fileType: cfg.fileType,
-            name: LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleContent,
-            content: `
-              customActionMap,
-            `,
-            linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleStart],
-          });
-        }
+        // if (ir?.customFuctions && ir?.customFuctions.length > 0) {
+        //   next.chunks.push({
+        //     type: ChunkType.STRING,
+        //     fileType: cfg.fileType,
+        //     name: LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleContent,
+        //     content: `
+        //       customActionMap,
+        //     `,
+        //     linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleStart],
+        //   });
+        // }
       }
 
       // // 页面生命周期

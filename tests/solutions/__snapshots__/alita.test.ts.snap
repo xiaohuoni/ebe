@@ -118,7 +118,6 @@ ProjectBuilder {
       [Function],
       [Function],
       [Function],
-      [Function],
     ],
     "pageview": Array [
       [Function],
@@ -2385,7 +2384,7 @@ const Index = React.forwardRef<unknown, PageProps>((props, ref) => {
     messageApi,
     transSuperObjectParams,
   } = context;
-  const {} = useIndex(context);
+  useIndex(context);
   useImperativeHandle(ref, () => ({}));
   if (!dataReadyComplete) {
     return <Spin spinning />;

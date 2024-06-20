@@ -2,19 +2,7 @@
 
 exports[`plugin react containerLifeCycle compilation completed 1`] = `
 Object {
-  "chunks": Array [
-    Object {
-      "content": "
-              customActionMap,
-            ",
-      "fileType": "tsx",
-      "linkAfter": Array [
-        "UseImperativeHandleStart",
-      ],
-      "name": "UseImperativeHandleContent",
-      "type": "string",
-    },
-  ],
+  "chunks": Array [],
   "contextData": Object {
     "options": Object {
       "busiCompMapping": Object {},

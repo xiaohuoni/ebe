@@ -11,7 +11,7 @@ import { SchemaParser } from '../parser/SchemaParser';
 import alita from '../plugins/project/framework/alita';
 import reactContainer from '../plugins/react/container';
 import containerHook from '../plugins/react/containerHook';
-import containerLifeCycle from '../plugins/react/containerLifeCycle';
+// import containerLifeCycle from '../plugins/react/containerLifeCycle';
 import customActionMap from '../plugins/react/customActionMap';
 import reactJsx from '../plugins/react/jsx';
 import reactCommonDeps from '../plugins/react/reactCommonDeps';
@@ -65,7 +65,8 @@ export default function createIceJsProjectBuilder(
         alita.plugins.mobileLayout(),
         alita.plugins.styleInject(),
         reactContainer(),
-        containerLifeCycle(),
+        // TODO: 临时注释，后续稳定后移除
+        // containerLifeCycle(),
         reactJsx({
           nodePlugins: [alita.hooks.hackNodeAttr],
           nodeTypeMapping: {

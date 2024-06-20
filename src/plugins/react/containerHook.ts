@@ -22,6 +22,7 @@ import { shouldUsedGlobalData } from '../../utils/globalDataSource/general';
 import {
   CUSTOM_ACTION_CHUNK_NAME,
   DATA_SOURCE_CHUNK_NAME,
+  LIFE_CYCLE_CHUNK_NAME,
   PAGE_TOOL_CHUNK_NAME,
 } from './const';
 
@@ -50,6 +51,12 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
     const ir = next.ir as IContainerInfo;
     const hasCustomFunctions =
       ir?.customFuctions && ir?.customFuctions.length > 0;
+    // 字符串容器
+    const imperativeContent: string[] = hasCustomFunctions
+      ? ['customActionMap']
+      : [];
+    // 要导出的变量
+    const exportVars: string[] = [];
 
     const subModule = [
       'use',
@@ -217,6 +224,62 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           `);
           }
 
+          // 弹窗确定
+          if (events?.onOk) {
+            const funcName = 'onOk';
+            exportVars.push(funcName);
+            imperativeContent.push(funcName);
+
+            // 定义事件
+            const onOkFunction = await generatorFuncCode({
+              type: 'arrowFunction',
+              functionName: funcName,
+              prefix: 'async',
+            });
+            onOkFunction.insertFuncDefineTop(() => `\n// 关闭弹窗`);
+
+            // 生成函数体
+            onOkFunction.appendFuncBody(() =>
+              generateFunction(
+                events?.onOk,
+                {
+                  name: ir.platform,
+                },
+                { ir, options: next.contextData.options },
+              ),
+            );
+
+            lifeCycleCallHook.push(onOkFunction.toString());
+          }
+
+          // 弹窗取消
+          if (events.onCancel) {
+            const funcName = 'onCancel';
+            exportVars.push(funcName);
+            imperativeContent.push(funcName);
+            // 定义事件
+            const onCancel = await generatorFuncCode({
+              type: 'arrowFunction',
+              functionName: funcName,
+              prefix: 'async',
+            });
+
+            onCancel.insertFuncDefineTop(() => `\n// 确定事件`);
+
+            // 生成函数体
+            onCancel.appendFuncBody(() =>
+              generateFunction(
+                events?.onCancel,
+                {
+                  name: ir.platform,
+                },
+                { ir, options: next.contextData.options },
+              ),
+            );
+
+            lifeCycleCallHook.push(onCancel.toString());
+          }
+
           return lifeCycleCallHook.join('\n');
         };
 
@@ -225,7 +288,9 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
           ${deconstructionContextCode}
           ${await lifeCycleCode()}
           
-          return {}
+          return {
+            ${exportVars.filter(Boolean).join(',')}
+          }
         }
         export default ${subModule}
       `;
@@ -243,13 +308,20 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
       ],
     });
 
+    let callContainerHookEequalLeft = `const { ${exportVars
+      .filter(Boolean)
+      .join(',')} } = `;
+    if (!exportVars.filter(Boolean).length) {
+      callContainerHookEequalLeft = '';
+    }
+
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,
       name: PAGE_TOOL_CHUNK_NAME.CallContainerHook,
       content: `
         \n 
-       const {} = ${subModule}(${
+       ${callContainerHookEequalLeft} ${subModule}(${
         hasCustomFunctions ? `{...context, customActionMap}` : 'context'
       })
         \n
@@ -262,6 +334,18 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
         PAGE_TOOL_CHUNK_NAME.PageTooL,
       ],
     });
+
+    const imperativeCodes = imperativeContent.filter(Boolean);
+    if (imperativeCodes.length) {
+      // 在useImperativeHandle暴漏onOk/onCancel/customActionMap方法
+      next.chunks.push({
+        type: ChunkType.STRING,
+        fileType: cfg.fileType,
+        name: LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleContent,
+        content: `${imperativeCodes.join(',')},`,
+        linkAfter: [LIFE_CYCLE_CHUNK_NAME.UseImperativeHandleStart],
+      });
+    }
 
     // 在文件头引入
     next.ir.deps.push(getImportFrom(`./${subModule}`, subModule, false));

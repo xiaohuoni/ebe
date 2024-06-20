@@ -1,6 +1,7 @@
 import { CMDGeneratorPrames } from '../../core/types';
 import { CMDGeneratorEvent } from '../../core/utils/CMDGenerator';
 import { parse2Var } from '../../core/utils/compositeType';
+import { getImportFrom } from '../../utils/depsHelper';
 export function showModal({
   value,
   platform,
@@ -20,6 +21,9 @@ export function showModal({
       ? // @ts-ignore
         `onCancel: ${CMDGeneratorEvent(callback2, { platform }, scope, config)}`
       : '\n';
+
+  config?.ir?.deps?.push(getImportFrom('antd', 'Modal', true));
+
   return `//消息框提示 \n Modal.${type}({type: '${type}', title: ${parse2Var(
     title,
   )}, content: ${parse2Var(content)}, okText: ${parse2Var(
