@@ -1,5 +1,16 @@
-import { getSafePage } from '@/components/common/Pageview';
-import DrawerMap from '@/components/drawer';
+import { LXProjectOptions, ResultFile } from '../../../../../../core';
+import { createResultFile } from '../../../../../../core/utils/resultHelper';
+
+export default function getFile(
+  config?: LXProjectOptions,
+): [string[], ResultFile] {
+  const isMobile = config?.platform === 'h5';
+
+  const file = createResultFile(
+    'index',
+    'tsx',
+    `import { getSafePage } from '@/components/common/Pageview';
+${isMobile ? '' : "import DrawerMap from '@/components/drawer';"}
 import ModalMap from '@/components/modal';
 import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';
 
@@ -27,48 +38,53 @@ export interface OpenModalProps {
   onOk: (...arg0: any[]) => void;
   onCancel: (...arg0: any[]) => void;
 }
+
+export interface StatueOption {
+  modalInstId?: string;
+  pagePath?: string;
+  type: 'Modal' ${isMobile ? '' : "| 'Drawer'"};
+  propsName: string;
+  propsValue: any;
+}
+
 export interface ModalManagerHooks {
   /**
    * 弹窗打开
    * @param data
    */
   openModal: (data: OpenModalProps) => void;
-  /**
-   * pc端抽屉打开
+  ${
+    isMobile
+      ? ''
+      : `/**
+   * 抽屉打开
    * @param data
    */
-  openDrawer?: (data: OpenDrawerProps) => void;
+  openDrawer?: (data: OpenDrawerProps) => void;`
+  }
   /**
    * 弹窗关闭
    * @param instId
    * @param pagePath
    */
   closeModal: (instId?: string, pagePath?: string) => void;
-  /**
-   * pc端抽屉关闭
+  ${
+    isMobile
+      ? ''
+      : `/**
+   * 抽屉关闭
    * @param instId
    * @param pagePath
    */
-  closeDrawer?: (instId?: string, pagePath?: string) => void;
+  closeDrawer?: (instId?: string, pagePath?: string) => void;`
+  }
   /**
-   * PC端弹窗/抽屉设置属性
+   * 设置属性
    * @param param0
    */
-  setStatue?: ({
-    modalInstId,
-    pagePath,
-    type,
-    propsName,
-    propsValue,
-  }: {
-    modalInstId?: string;
-    pagePath?: string;
-    type: 'model' | 'drawer';
-    propsName: string;
-    propsValue: any;
-  }) => void;
+  setStatue?: (options: StatueOption) => void;
 }
-export declare type OpenDrawerProps = OpenModalProps;
+${isMobile ? '' : 'export declare type OpenDrawerProps = OpenModalProps;'}
 /**
  * 弹窗管理器
  * 每一个动态渲染页面需要引入一个弹窗管理器组件【只应引入一个】，他会暴露出ref供动态渲染页面使用
@@ -77,7 +93,9 @@ export declare type OpenDrawerProps = OpenModalProps;
 const ModalManager = React.forwardRef<ModalManagerHooks, ModalManagerProps>(
   (props, ref) => {
     const [ModalData, setModalData] = useState<any[]>([]);
-    const [DrawerData, setDrawerData] = useState<any[]>([]);
+    ${
+      isMobile ? '' : 'const [DrawerData, setDrawerData] = useState<any[]>([]);'
+    }
     const [idSerial, setIdSerial] = useState<number>(0);
     const refModalData = useRef<any[]>([]);
     const refDrawerData = useRef<any[]>([]);
@@ -90,8 +108,8 @@ const ModalManager = React.forwardRef<ModalManagerHooks, ModalManagerProps>(
     // 解决取不到最新值
     useMemo(() => {
       refModalData.current = ModalData;
-      refDrawerData.current = DrawerData;
-    }, [ModalData, DrawerData]);
+      ${isMobile ? '' : 'refDrawerData.current = DrawerData;'}
+    }, [ModalData, ${isMobile ? '' : 'DrawerData'}]);
     const open = ({
       pagePath,
       onOk,
@@ -100,8 +118,16 @@ const ModalManager = React.forwardRef<ModalManagerHooks, ModalManagerProps>(
       lcdpParentRenderId,
       type,
     }: any) => {
-      const instData = type === 'Modal' ? ModalData : DrawerData;
-      const instMethod = type === 'Modal' ? setModalData : setDrawerData;
+      ${
+        isMobile
+          ? 'const instData = ModalData;'
+          : "const instData = type === 'Modal' ? ModalData : DrawerData;"
+      }
+      ${
+        isMobile
+          ? 'const instMethod = setModalData;'
+          : "const instMethod = type === 'Modal' ? setModalData : setDrawerData;"
+      }
       if (!pagePath) {
         console.error('弹窗操作失败：缺少页面实例ID或页面路径');
         return;
@@ -118,7 +144,7 @@ const ModalManager = React.forwardRef<ModalManagerHooks, ModalManagerProps>(
         // targetObj.onCancel = onCancel;
         instMethod([...instData]);
       } else {
-        const modalInstId = `D${type}_${idSerial}`;
+        const modalInstId = \`D\${type}_\${idSerial}\`;
         instMethod([
           ...instData,
           {
@@ -145,9 +171,16 @@ const ModalManager = React.forwardRef<ModalManagerHooks, ModalManagerProps>(
       }
     };
     const _close = (modalInstId: any, pagePath?: any, type = 'Modal') => {
-      const instData =
-        type === 'Modal' ? refModalData.current : refDrawerData.current;
-      const instMethod = type === 'Modal' ? setModalData : setDrawerData;
+      ${
+        isMobile
+          ? 'const instData = refModalData.current;'
+          : "const instData = type === 'Modal' ? refModalData.current : refDrawerData.current;"
+      }
+      ${
+        isMobile
+          ? 'const instMethod = setModalData;'
+          : "const instMethod = type === 'Modal' ? setModalData : setDrawerData;"
+      }
       if (modalInstId) {
         const targetIndex = instData.findIndex(
           (i) => i.modalInstId === modalInstId,
@@ -176,19 +209,20 @@ const ModalManager = React.forwardRef<ModalManagerHooks, ModalManagerProps>(
     const setStatue = ({
       modalInstId,
       pagePath,
-      type = 'model',
+      type = 'Modal',
       propsName,
       propsValue,
-    }: {
-      modalInstId?: string;
-      pagePath?: string;
-      type: 'model' | 'drawer';
-      propsName: string;
-      propsValue: any;
-    }) => {
-      const instData =
-        type === 'model' ? refModalData.current : refDrawerData.current;
-      const instMethod = type === 'model' ? setModalData : setDrawerData;
+    }: StatueOption) => {
+      ${
+        isMobile
+          ? 'const instData = refModalData.current;'
+          : "const instData = type === 'Modal' ? refModalData.current : refDrawerData.current;"
+      }
+      ${
+        isMobile
+          ? 'const instMethod = setModalData;'
+          : "const instMethod = type === 'Modal' ? setModalData : setDrawerData;"
+      }
       if (modalInstId) {
         const targetIndex = instData.findIndex(
           (i: any) => i.modalInstId === modalInstId,
@@ -221,7 +255,10 @@ const ModalManager = React.forwardRef<ModalManagerHooks, ModalManagerProps>(
           ...pageOptions,
           type: 'Modal',
         }),
-      /**
+      ${
+        isMobile
+          ? ''
+          : `/**
        * 打开一个弹窗
        * @param {Object} pageOptions
        * @param {string|number} pageOptions.pagePath - 要打开的页面的pagePath
@@ -234,21 +271,26 @@ const ModalManager = React.forwardRef<ModalManagerHooks, ModalManagerProps>(
         open({
           ...pageOptions,
           type: 'Drawer',
-        }),
+        }),`
+      }
       /**
        * 关闭一个弹窗，不传参的话则是关闭所有弹窗
        * @param {number} [modalInstId] - 要关闭的弹窗的实例ID
        * @param {string|number} [pagePath] 该弹窗的pagePath，如果传入了pagePath，在ModalInstId为null时则为关闭所有对应pagePath的弹窗实例
        */
       closeModal: (instId, pagePath) => _close(instId, pagePath, 'Modal'),
-      /**
+      ${
+        isMobile
+          ? ''
+          : `/**
        * 关闭一个推拉门，不传参的话则是关闭所有推拉门
        * @param {number} [modalInstId] - 要关闭的推拉门的实例ID
        * @param {string|number} [pagePath] 该弹窗的pagePath，如果传入了pagePath，在ModalInstId为null时则为关闭所有对应pagePath的弹窗实例
        */
-      closeDrawer: (instId, pagePath) => _close(instId, pagePath, 'Drawer'),
+      closeDrawer: (instId, pagePath) => _close(instId, pagePath, 'Drawer'),`
+      }
       /**
-       * 更改推拉门/弹窗属性 如弹窗标题
+       * 更改属性 如弹窗标题
        */
       setStatue,
     }));
@@ -270,9 +312,14 @@ const ModalManager = React.forwardRef<ModalManagerHooks, ModalManagerProps>(
     return (
       <div>
         {renderModalOrDrawer(ModalData, ModalMap)}
-        {renderModalOrDrawer(DrawerData, DrawerMap)}
+        ${isMobile ? '' : '{renderModalOrDrawer(DrawerData, DrawerMap)}'}
       </div>
     );
   },
 );
 export default ModalManager;
+`,
+  );
+
+  return [['src', 'utils', 'ModalManager'], file];
+}

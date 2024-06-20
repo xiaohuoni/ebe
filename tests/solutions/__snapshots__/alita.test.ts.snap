@@ -207,7 +207,286 @@ Object {
     Object {
       "dirs": Array [
         Object {
-          "dirs": Array [],
+          "dirs": Array [
+            Object {
+              "dirs": Array [],
+              "files": Array [
+                Object {
+                  "content": "import { getSafePage } from '@/components/common/Pageview';
+import DrawerMap from '@/components/drawer';
+import ModalMap from '@/components/modal';
+import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';
+interface ModalManagerProps {
+  parseNodeBefore?: any;
+}
+
+/**
+ * 打开弹窗入参
+ */
+export interface OpenModalProps {
+  /**
+   * 页面路径
+   */
+
+  pagePath: string;
+  /**
+   * 弹窗的state（组件状态）
+   */
+  params?: Record<string, any>;
+  /**
+   * 父页面的容器ID，是页面的上下文中的renderId
+   */
+  lcdpParentRenderId: string;
+  onOk: (...arg0: any[]) => void;
+  onCancel: (...arg0: any[]) => void;
+}
+export interface StatueOption {
+  modalInstId?: string;
+  pagePath?: string;
+  type: 'Modal' | 'Drawer';
+  propsName: string;
+  propsValue: any;
+}
+export interface ModalManagerHooks {
+  /**
+   * 弹窗打开
+   * @param data
+   */
+  openModal: (data: OpenModalProps) => void;
+  /**
+   * 抽屉打开
+   * @param data
+   */
+  openDrawer?: (data: OpenDrawerProps) => void;
+  /**
+   * 弹窗关闭
+   * @param instId
+   * @param pagePath
+   */
+  closeModal: (instId?: string, pagePath?: string) => void;
+  /**
+   * 抽屉关闭
+   * @param instId
+   * @param pagePath
+   */
+  closeDrawer?: (instId?: string, pagePath?: string) => void;
+  /**
+   * 设置属性
+   * @param param0
+   */
+  setStatue?: (options: StatueOption) => void;
+}
+export declare type OpenDrawerProps = OpenModalProps;
+/**
+ * 弹窗管理器
+ * 每一个动态渲染页面需要引入一个弹窗管理器组件【只应引入一个】，他会暴露出ref供动态渲染页面使用
+ * @module ModalManager
+ */
+const ModalManager = React.forwardRef<ModalManagerHooks, ModalManagerProps>(
+  (props, ref) => {
+    const [ModalData, setModalData] = useState<any[]>([]);
+    const [DrawerData, setDrawerData] = useState<any[]>([]);
+    const [idSerial, setIdSerial] = useState<number>(0);
+    const refModalData = useRef<any[]>([]);
+    const refDrawerData = useRef<any[]>([]);
+
+    /**
+     *  兼容lcdapi.router
+     */
+    // lcdpApi.setRefs('ModalManager', ref);
+
+    // 解决取不到最新值
+    useMemo(() => {
+      refModalData.current = ModalData;
+      refDrawerData.current = DrawerData;
+    }, [ModalData, DrawerData]);
+    const open = ({
+      pagePath,
+      onOk,
+      onCancel,
+      params,
+      lcdpParentRenderId,
+      type,
+    }: any) => {
+      const instData = type === 'Modal' ? ModalData : DrawerData;
+      const instMethod = type === 'Modal' ? setModalData : setDrawerData;
+      if (!pagePath) {
+        console.error('弹窗操作失败：缺少页面实例ID或页面路径');
+        return;
+      }
+      const targetObj = instData.find(
+        (i) => i.pagePath && i.pagePath === pagePath,
+      );
+      if (targetObj) {
+        // 这个pagePath已经存在一个弹窗，改为打开它
+        targetObj.visible = true;
+        targetObj.params = params;
+        targetObj.onOk = onOk;
+        targetObj.lcdpParentRenderId = lcdpParentRenderId;
+        // targetObj.onCancel = onCancel;
+        instMethod([...instData]);
+      } else {
+        const modalInstId = \`D\${type}_\${idSerial}\`;
+        instMethod([
+          ...instData,
+          {
+            modalInstId,
+            pagePath,
+            visible: true,
+            onOk,
+            params,
+            lcdpParentRenderId,
+            onCancel: (() => () => {
+              let cancelResult;
+              if (onCancel) {
+                cancelResult = onCancel();
+              }
+              // cancelResult: 用于今后使用，如果onCancel返回false，表示取消关闭操作，不能关闭
+              if (cancelResult === false) {
+                return;
+              }
+              _close(modalInstId, null, type);
+            })(),
+          },
+        ]);
+        setIdSerial(idSerial + 1);
+      }
+    };
+    const _close = (modalInstId: any, pagePath?: any, type = 'Modal') => {
+      const instData =
+        type === 'Modal' ? refModalData.current : refDrawerData.current;
+      const instMethod = type === 'Modal' ? setModalData : setDrawerData;
+      if (modalInstId) {
+        const targetIndex = instData.findIndex(
+          (i) => i.modalInstId === modalInstId,
+        );
+        if (targetIndex !== -1) {
+          instData[targetIndex].visible = false;
+          instMethod([...instData]);
+        }
+      } else if (pagePath) {
+        instData
+          .filter((i) => i.pagePath === pagePath)
+          .forEach((i) => {
+            i.visible = false;
+          });
+        instMethod([...instData]);
+      }
+      if (!modalInstId && !pagePath) {
+        instData.forEach((i) => {
+          i.visible = false;
+        });
+        instMethod([...instData]);
+      }
+    };
+
+    // 更改弹窗属性值
+    const setStatue = ({
+      modalInstId,
+      pagePath,
+      type = 'Modal',
+      propsName,
+      propsValue,
+    }: StatueOption) => {
+      const instData =
+        type === 'Modal' ? refModalData.current : refDrawerData.current;
+      const instMethod = type === 'Modal' ? setModalData : setDrawerData;
+      if (modalInstId) {
+        const targetIndex = instData.findIndex(
+          (i: any) => i.modalInstId === modalInstId,
+        );
+        if (targetIndex !== -1) {
+          instData[targetIndex][propsName] = propsValue;
+          instMethod([...instData]);
+        }
+      } else if (pagePath) {
+        instData
+          .filter((i: any) => i.pagePath === pagePath)
+          .forEach((i: any) => {
+            i[propsName] = propsValue;
+          });
+        instMethod([...instData]);
+      }
+    };
+    useImperativeHandle<any, ModalManagerHooks>(ref, () => ({
+      /**
+       * 打开一个弹窗
+       * @param {Object} pageOptions
+       * @param {string|number} pageOptions.pagePath - 要打开的页面的pagePath
+       * @param {Object} pageOptions.params - 要传入给打开页面的数据
+       * @param {Object} pageOptions.onOk - 该弹窗确认回调
+       * @param {Object} pageOptions.onCancel - 该弹窗关闭回调
+       * @return {number} 此次生成的实例ID
+       */
+      openModal: (pageOptions: OpenModalProps) =>
+        open({
+          ...pageOptions,
+          type: 'Modal',
+        }),
+      /**
+       * 打开一个弹窗
+       * @param {Object} pageOptions
+       * @param {string|number} pageOptions.pagePath - 要打开的页面的pagePath
+       * @param {Object} pageOptions.params - 要传入给打开页面的数据
+       * @param {Object} pageOptions.onOk - 该弹窗确认回调
+       * @param {Object} pageOptions.onCancel - 该弹窗关闭回调
+       * @return {number} 此次生成的实例ID
+       */
+      openDrawer: (pageOptions: OpenDrawerProps) =>
+        open({
+          ...pageOptions,
+          type: 'Drawer',
+        }),
+      /**
+       * 关闭一个弹窗，不传参的话则是关闭所有弹窗
+       * @param {number} [modalInstId] - 要关闭的弹窗的实例ID
+       * @param {string|number} [pagePath] 该弹窗的pagePath，如果传入了pagePath，在ModalInstId为null时则为关闭所有对应pagePath的弹窗实例
+       */
+      closeModal: (instId, pagePath) => _close(instId, pagePath, 'Modal'),
+      /**
+       * 关闭一个推拉门，不传参的话则是关闭所有推拉门
+       * @param {number} [modalInstId] - 要关闭的推拉门的实例ID
+       * @param {string|number} [pagePath] 该弹窗的pagePath，如果传入了pagePath，在ModalInstId为null时则为关闭所有对应pagePath的弹窗实例
+       */
+      closeDrawer: (instId, pagePath) => _close(instId, pagePath, 'Drawer'),
+      /**
+       * 更改属性 如弹窗标题
+       */
+      setStatue,
+    }));
+    console.log(ModalData);
+    const renderModalOrDrawer = (data: any[], map: any) => {
+      return data.map((m) => {
+        const Page = getSafePage(m.pagePath, map);
+        return (
+          <Page
+            {...m}
+            pageSrc={m.pagePath}
+            state={m.params}
+            lcdpParentRenderId={m.lcdpParentRenderId}
+            closeModal={m.onCancel}
+          />
+        );
+      });
+    };
+    return (
+      <div>
+        {renderModalOrDrawer(ModalData, ModalMap)}
+        {renderModalOrDrawer(DrawerData, DrawerMap)}
+      </div>
+    );
+  },
+);
+export default ModalManager;
+",
+                  "ext": "tsx",
+                  "name": "index",
+                  "options": undefined,
+                },
+              ],
+              "name": "ModalManager",
+            },
+          ],
           "files": Array [
             Object {
               "content": "export const attrSpecPage = [];
@@ -753,132 +1032,6 @@ export default DynamicPopover;
                   "dirs": Array [],
                   "files": Array [
                     Object {
-                      "content": "import React, { FC, useState } from 'react';
-import { Button, Drawer, Row } from 'antd';
-import { catchErrorBoundary } from './catchErrorBoundary';
-import type { FallbackRenderProps } from './catchErrorBoundary';
-import styles from './index.less';
-interface ErrorBoundaryProps extends FallbackRenderProps {}
-const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
-  const { error, componentStack, compName } = props;
-  const [open, setOpen] = useState(false);
-  return (
-    <div className={styles.errorBoundary}>
-      <div className={styles.engineErrorBoundary}>
-        <div className={styles.warnIcon}>!</div>
-        <div className={styles.text}>
-          组件加载失败，点击<span onClick={() => setOpen(true)}>查看详情</span>
-        </div>
-      </div>
-      <Drawer
-        title=\\"组件渲染错误\\"
-        width={640}
-        placement=\\"right\\"
-        closable={false}
-        onClose={() => setOpen(false)}
-        open={open}
-        className={styles.errorDetail}
-        footer={
-          <Row justify=\\"end\\">
-            <Button type=\\"primary\\" onClick={() => setOpen(false)}>
-              知道了
-            </Button>
-          </Row>
-        }
-      >
-        <div>
-          <div className={styles.row}>
-            <span className={styles.rowTitle}>组件名称</span>：{compName}
-          </div>
-          <div className={styles.row}>
-            <span className={styles.rowTitle}>错误信息</span>：{error.message}
-          </div>
-          <div className={styles.row}>
-            <span className={styles.rowTitle}>错误堆栈</span>:
-            <div>{componentStack || error.stack}</div>
-          </div>
-        </div>
-      </Drawer>
-    </div>
-  );
-};
-const WithCatchErrorBoundary = <T extends Record<string, any>>(
-  WrappedComponent: React.ComponentClass<T> | React.FunctionComponent<T>,
-  options: {
-    compName: string;
-  },
-) =>
-  catchErrorBoundary(
-    WrappedComponent,
-    (props) => <ErrorBoundary {...props} />,
-    options,
-  );
-export { WithCatchErrorBoundary };
-export default ErrorBoundary;
-",
-                      "ext": "tsx",
-                      "name": "index",
-                      "options": undefined,
-                    },
-                    Object {
-                      "content": ".errorBoundary {
-  .engineErrorBoundary {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 44px;
-    padding-left: 16px;
-    .warnIcon {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      width: 11px;
-      height: 11px;
-      color: #fff;
-      background-color: #faad14;
-      border-radius: 50%;
-    }
-
-    .text {
-      padding-left: 4px;
-      font-size: 12px;
-      color: rgba(28, 36, 46, 0.75);
-      line-height: 22px;
-      span {
-        color: #4477ee;
-      }
-    }
-  }
-}
-
-.errorDetail {
-  .title {
-    font-size: 16px;
-    font-weight: 600;
-    color: #000;
-  }
-
-  .row {
-    line-height: 25px;
-    .rowTitle {
-      font-weight: 500;
-      color: #000;
-    }
-  }
-}
-",
-                      "ext": "less",
-                      "name": "index",
-                      "options": undefined,
-                    },
-                  ],
-                  "name": "ErrorBoundary",
-                },
-                Object {
-                  "dirs": Array [],
-                  "files": Array [
-                    Object {
                       "content": "import React, { FC, useEffect, useMemo, useState } from 'react';
 // @ts-ignore
 import { antPrefix as clsPrefix } from '@/components/pcfactory/src/variables';
@@ -1390,6 +1543,132 @@ export default BannerModal;
                   "dirs": Array [],
                   "files": Array [
                     Object {
+                      "content": "import React, { FC, useState } from 'react';
+import { Button, Drawer, Row } from 'antd';
+import { catchErrorBoundary } from './catchErrorBoundary';
+import type { FallbackRenderProps } from './catchErrorBoundary';
+import styles from './index.less';
+interface ErrorBoundaryProps extends FallbackRenderProps {}
+const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
+  const { error, componentStack, compName } = props;
+  const [open, setOpen] = useState(false);
+  return (
+    <div className={styles.errorBoundary}>
+      <div className={styles.engineErrorBoundary}>
+        <div className={styles.warnIcon}>!</div>
+        <div className={styles.text}>
+          组件加载失败，点击<span onClick={() => setOpen(true)}>查看详情</span>
+        </div>
+      </div>
+      <Drawer
+        title=\\"组件渲染错误\\"
+        width={640}
+        placement=\\"right\\"
+        closable={false}
+        onClose={() => setOpen(false)}
+        open={open}
+        className={styles.errorDetail}
+        footer={
+          <Row justify=\\"end\\">
+            <Button type=\\"primary\\" onClick={() => setOpen(false)}>
+              知道了
+            </Button>
+          </Row>
+        }
+      >
+        <div>
+          <div className={styles.row}>
+            <span className={styles.rowTitle}>组件名称</span>：{compName}
+          </div>
+          <div className={styles.row}>
+            <span className={styles.rowTitle}>错误信息</span>：{error.message}
+          </div>
+          <div className={styles.row}>
+            <span className={styles.rowTitle}>错误堆栈</span>:
+            <div>{componentStack || error.stack}</div>
+          </div>
+        </div>
+      </Drawer>
+    </div>
+  );
+};
+const WithCatchErrorBoundary = <T extends Record<string, any>>(
+  WrappedComponent: React.ComponentClass<T> | React.FunctionComponent<T>,
+  options: {
+    compName: string;
+  },
+) =>
+  catchErrorBoundary(
+    WrappedComponent,
+    (props) => <ErrorBoundary {...props} />,
+    options,
+  );
+export { WithCatchErrorBoundary };
+export default ErrorBoundary;
+",
+                      "ext": "tsx",
+                      "name": "index",
+                      "options": undefined,
+                    },
+                    Object {
+                      "content": ".errorBoundary {
+  .engineErrorBoundary {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 44px;
+    padding-left: 16px;
+    .warnIcon {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 11px;
+      height: 11px;
+      color: #fff;
+      background-color: #faad14;
+      border-radius: 50%;
+    }
+
+    .text {
+      padding-left: 4px;
+      font-size: 12px;
+      color: rgba(28, 36, 46, 0.75);
+      line-height: 22px;
+      span {
+        color: #4477ee;
+      }
+    }
+  }
+}
+
+.errorDetail {
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .row {
+    line-height: 25px;
+    .rowTitle {
+      font-weight: 500;
+      color: #000;
+    }
+  }
+}
+",
+                      "ext": "less",
+                      "name": "index",
+                      "options": undefined,
+                    },
+                  ],
+                  "name": "ErrorBoundary",
+                },
+                Object {
+                  "dirs": Array [],
+                  "files": Array [
+                    Object {
                       "content": "import React, { useRef, useImperativeHandle } from 'react';
 import { useAppData } from 'alita';
 import { parse } from 'qs';
@@ -1524,21 +1803,6 @@ export default Hoc(Pageview, {
               "files": Array [
                 Object {
                   "content": "import React from 'react';
-const DrawerMap: any = {};
-export default DrawerMap;
-",
-                  "ext": "ts",
-                  "name": "index",
-                  "options": undefined,
-                },
-              ],
-              "name": "drawer",
-            },
-            Object {
-              "dirs": Array [],
-              "files": Array [
-                Object {
-                  "content": "import React from 'react';
 const ModalMap: any = {};
 export default ModalMap;
 ",
@@ -1563,6 +1827,21 @@ export default PopoverMap;
                 },
               ],
               "name": "popover",
+            },
+            Object {
+              "dirs": Array [],
+              "files": Array [
+                Object {
+                  "content": "import React from 'react';
+const DrawerMap: any = {};
+export default DrawerMap;
+",
+                  "ext": "ts",
+                  "name": "index",
+                  "options": undefined,
+                },
+              ],
+              "name": "drawer",
             },
           ],
           "files": Array [
@@ -2194,6 +2473,315 @@ export const Webview = Hoc(_Webview, {
             },
           ],
           "name": "components",
+        },
+        Object {
+          "dirs": Array [],
+          "files": Array [
+            Object {
+              "content": "import ModalView from '@/utils/ModalManager';
+import { Context, RefsManager } from '@/utils/Context/context';
+import React, { useEffect, useRef, useState } from 'react';
+import { api } from '@/services/api';
+import { Spin } from '@/utils/messageApi';
+import WaterMark, { AppWaterMarkCfgType } from '@/components/WaterMark';
+import { getWaterMarkByAppId } from '@/services/api/getWaterMarkByAppId';
+import { attrSpecPage, handleAttrDataMap } from '@/utils/attrSpecPage';
+import { useKeepOutlets } from 'alita';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
+const Layout = (props: any) => {
+  const ModalManagerRef = useRef<any>(); // 页面弹窗的所有实例
+  const refs = new RefsManager();
+  const element = useKeepOutlets();
+  const [isLoding, setIsLoding] = useState(true);
+  const attrDataMap = useRef<Record<string, any>>({}).current;
+  const getLocale = (_: string, t: string) => t || _;
+  const [waterMark, setWaterMark] = useState<AppWaterMarkCfgType>();
+  useEffect(() => {
+    const reqNbrKeys = attrSpecPage;
+    if (Array.isArray(reqNbrKeys) && reqNbrKeys.length > 0) {
+      const params = {
+        attrCodes: reqNbrKeys,
+        appId:
+          /* FIXME: 变量APPID没有被定义，源码生成时被替换为undefined，请检查页面配置 */ undefined,
+      };
+      api
+        .batchGetAppStaticAttr(params)
+        .then((res: any) => {
+          if (res) {
+            reqNbrKeys?.forEach((key: string) => {
+              const list = res?.[key];
+              attrDataMap[key] = handleAttrDataMap(list);
+            });
+          }
+        })
+        .finally(() => {
+          setIsLoding(false);
+        });
+    } else {
+      setIsLoding(false);
+    }
+    getWaterMarkByAppId(
+      /* FIXME: 变量APPID没有被定义，源码生成时被替换为undefined，请检查页面配置 */ undefined,
+    )
+      .then(setWaterMark)
+      .catch(console.log);
+  }, []);
+  if (isLoding === true) {
+    return <Spin spinning />;
+  }
+  return (
+    <ConfigProvider locale={zhCN}>
+      <Context.Provider
+        value={{
+          ModalManagerRef,
+          refs,
+          attrDataMap,
+        }}
+      >
+        {element}
+        {waterMark?.waterMarkInfoResultValue && waterMark?.isEnable === 'T' && (
+          <WaterMark config={waterMark} />
+        )}
+        <ModalView getLocale={getLocale as any} ref={ModalManagerRef} />
+      </Context.Provider>
+    </ConfigProvider>
+  );
+};
+export default Layout;
+",
+              "ext": "tsx",
+              "name": "index",
+              "options": undefined,
+            },
+          ],
+          "name": "layouts",
+        },
+        Object {
+          "dirs": Array [],
+          "files": Array [
+            Object {
+              "content": "import { useContext, useMemo, useRef } from 'react';
+import { history } from 'alita';
+import { parse } from 'qs';
+import BannerModal from '@/components/common/BannerModal';
+import { api } from '@/services/api';
+import { useTopContainerHidden } from '@/utils/Context/Container';
+import { i18n } from '@/utils/i18n';
+import locales from '@/utils/i18n/locales';
+import { getStateListener } from '@/utils/StateListener';
+import { Context } from '@/utils/Context/context';
+import lcdpApi from '@/utils/lcdpApi';
+import { sandBoxLoadModule } from '@/utils/sandBoxLoadModule';
+import Sandbox from '@/utils/sandbox';
+import * as functorsMap from '@/utils/functors';
+import { messageApi } from '@/utils/messageApi';
+import { appInfo } from '@/utils/attrSpecPage';
+import { useLocation } from 'alita';
+
+// 设置默认属性
+BannerModal.defaultProps = {
+  // @ts-ignore
+  api,
+};
+const getStaticDataSourceService = (
+  ds: any[],
+  labelKey: string,
+  valueKey: string,
+) => {
+  if (!ds?.length) return [];
+  if (!labelKey || !valueKey) return ds;
+  return ds.map((item) => ({
+    label: item[labelKey],
+    value: item[valueKey],
+  }));
+};
+
+/**
+ * 获取信息
+ */
+export const useGetPageInfo = (props: Record<string, any>) => {
+  const location = useLocation();
+
+  /**
+   * url参数
+   */
+  const urlParam = useMemo(() => {
+    const queryParams = parse((location?.search ?? '?')?.split('?')[1]);
+    return {
+      ...queryParams,
+      ...props.urlParam,
+    };
+  }, [props.urlParam]);
+  const routerData = useMemo(
+    () =>
+      history?.location?.state ||
+      JSON.parse(window.sessionStorage.getItem(urlParam._k) || '{}'),
+    [],
+  );
+  return {
+    urlParam,
+    lcdpApi,
+    routerData,
+    addToAwaitQueue: (compId: string, functionName: string, ...args: any[]) =>
+      props.awaitHandleData.addToAwaitQueue(compId, functionName, ...args),
+  };
+};
+
+/**
+ * 生成基础上下文
+ * @param baseContext
+ */
+const useMergeContext = (
+  props: Record<string, any>,
+  basicContext: Record<string, any> = {},
+) => {
+  // 指令定时器存储
+  const actionTimerRef = useRef<Record<string, any>>({
+    timeout: {},
+    interval: {},
+  });
+  const { getLocaleLanguage, getLocale, getLocaleEnv, locale, language } =
+    i18n.useLocale(
+      {
+        locale: props.i18n?.locale!,
+        remoteLocale: props.i18n?.remoteLocale,
+        language: props.i18n?.language!,
+        configLocale: {},
+      },
+      locales,
+    );
+  const { ModalManagerRef, appId, attrDataMap } = useContext(Context);
+
+  // 清除定时器
+  const clearActionTimer = (timerName: string) => {
+    const actionTimer = actionTimerRef.current;
+    if (actionTimer.interval?.[timerName]) {
+      clearInterval(actionTimer.interval[timerName]);
+      actionTimer.interval[timerName] = null;
+    }
+    if (actionTimer.timeout?.[timerName]) {
+      clearTimeout(actionTimer.timeout[timerName]);
+      actionTimer.timeout[timerName] = null;
+    }
+  };
+
+  // 增加指令定时器
+  const addActionTimer = (
+    type: 'interval' | 'timeout' = 'timeout',
+    timerName: string,
+    callback: () => void,
+    time: number = 0,
+  ) => {
+    const actionTimer = actionTimerRef.current;
+    clearActionTimer(type);
+    const delay = time > 0 ? +time : 0;
+    if (type === 'interval') {
+      actionTimer.interval[timerName] = setInterval(() => {
+        callback?.();
+      }, delay);
+    }
+    if (type === 'timeout') {
+      actionTimer.interval[timerName] = setTimeout(() => {
+        callback?.();
+      }, delay);
+    }
+  };
+  const sandBoxRun = (
+    code: string,
+    extendAllowMap: Record<string, any> = {},
+  ) => {
+    return Sandbox.run(code, {
+      ...context,
+      ...extendAllowMap,
+    });
+  };
+  const sandBoxSafeRun = (
+    code: string,
+    extendAllowMap: Record<string, any> = {},
+  ) => {
+    try {
+      return sandBoxRun(code, extendAllowMap);
+      // eslint-disable-next-line no-empty
+    } catch {}
+    return undefined;
+  };
+  const context: Record<string, any> = {
+    ...basicContext,
+    clearActionTimer,
+    addActionTimer,
+    api,
+    ModalManagerRef,
+    attrDataMap,
+    functorsMap,
+    messageApi,
+    routerData: getStaticDataSourceService,
+    // closeModal: (modalId: string) => {
+    //   ModalManagerRef.current?.closeModal(modalId, basicContext.renderId);
+    // },
+    lcdpParentRenderId: props.lcdpParentRenderId,
+    sandBoxRun,
+    sandBoxSafeRun,
+    appInfo,
+    BannerModal,
+    getLocaleLanguage,
+    getLocale,
+    getLocaleEnv,
+    locale,
+    language,
+  };
+  return {
+    context,
+    getEngineApis: () => {
+      return {
+        compatConfig: {},
+        BannerModal,
+        stateListener: getStateListener(basicContext.renderId),
+        ...api,
+        downloadFileByFileCode: () => null,
+        downloadByFileId: () => null,
+        getLocaleLanguage,
+        getLocale,
+        getLocaleEnv,
+        locale,
+        language,
+        useTopContainerHidden,
+        // 打开弹窗能力
+        openModal: (data: any) =>
+          ModalManagerRef.current?.openModal({
+            appId,
+            ...data,
+          }),
+        getVisible: (compId: string) => {
+          // @ts-ignore
+          return context.refs?.[compId]?.visible;
+        },
+        sandBoxLoadModule: (
+          code: string,
+          options?: {
+            dependencies?: Record<string, any>;
+            allowMap?: Record<string, any>;
+          },
+        ) => {
+          return sandBoxLoadModule(code, context, undefined, options);
+        },
+        sandBoxRun,
+        sandBoxSafeRun,
+        service: {
+          ...api,
+        },
+      };
+    },
+  };
+};
+export default useMergeContext;
+",
+              "ext": "ts",
+              "name": "useMergeContext",
+              "options": undefined,
+            },
+          ],
+          "name": "hooks",
         },
         Object {
           "dirs": Array [
@@ -3695,315 +4283,6 @@ export default useGlobalData;
           ],
           "files": Array [],
           "name": "pages",
-        },
-        Object {
-          "dirs": Array [],
-          "files": Array [
-            Object {
-              "content": "import ModalView from '@/utils/ModalManager';
-import { Context, RefsManager } from '@/utils/Context/context';
-import React, { useEffect, useRef, useState } from 'react';
-import { api } from '@/services/api';
-import { Spin } from '@/utils/messageApi';
-import WaterMark, { AppWaterMarkCfgType } from '@/components/WaterMark';
-import { getWaterMarkByAppId } from '@/services/api/getWaterMarkByAppId';
-import { attrSpecPage, handleAttrDataMap } from '@/utils/attrSpecPage';
-import { useKeepOutlets } from 'alita';
-import { ConfigProvider } from 'antd';
-import zhCN from 'antd/es/locale/zh_CN';
-const Layout = (props: any) => {
-  const ModalManagerRef = useRef<any>(); // 页面弹窗的所有实例
-  const refs = new RefsManager();
-  const element = useKeepOutlets();
-  const [isLoding, setIsLoding] = useState(true);
-  const attrDataMap = useRef<Record<string, any>>({}).current;
-  const getLocale = (_: string, t: string) => t || _;
-  const [waterMark, setWaterMark] = useState<AppWaterMarkCfgType>();
-  useEffect(() => {
-    const reqNbrKeys = attrSpecPage;
-    if (Array.isArray(reqNbrKeys) && reqNbrKeys.length > 0) {
-      const params = {
-        attrCodes: reqNbrKeys,
-        appId:
-          /* FIXME: 变量APPID没有被定义，源码生成时被替换为undefined，请检查页面配置 */ undefined,
-      };
-      api
-        .batchGetAppStaticAttr(params)
-        .then((res: any) => {
-          if (res) {
-            reqNbrKeys?.forEach((key: string) => {
-              const list = res?.[key];
-              attrDataMap[key] = handleAttrDataMap(list);
-            });
-          }
-        })
-        .finally(() => {
-          setIsLoding(false);
-        });
-    } else {
-      setIsLoding(false);
-    }
-    getWaterMarkByAppId(
-      /* FIXME: 变量APPID没有被定义，源码生成时被替换为undefined，请检查页面配置 */ undefined,
-    )
-      .then(setWaterMark)
-      .catch(console.log);
-  }, []);
-  if (isLoding === true) {
-    return <Spin spinning />;
-  }
-  return (
-    <ConfigProvider locale={zhCN}>
-      <Context.Provider
-        value={{
-          ModalManagerRef,
-          refs,
-          attrDataMap,
-        }}
-      >
-        {element}
-        {waterMark?.waterMarkInfoResultValue && waterMark?.isEnable === 'T' && (
-          <WaterMark config={waterMark} />
-        )}
-        <ModalView getLocale={getLocale as any} ref={ModalManagerRef} />
-      </Context.Provider>
-    </ConfigProvider>
-  );
-};
-export default Layout;
-",
-              "ext": "tsx",
-              "name": "index",
-              "options": undefined,
-            },
-          ],
-          "name": "layouts",
-        },
-        Object {
-          "dirs": Array [],
-          "files": Array [
-            Object {
-              "content": "import { useContext, useMemo, useRef } from 'react';
-import { history } from 'alita';
-import { parse } from 'qs';
-import BannerModal from '@/components/common/BannerModal';
-import { api } from '@/services/api';
-import { useTopContainerHidden } from '@/utils/Context/Container';
-import { i18n } from '@/utils/i18n';
-import locales from '@/utils/i18n/locales';
-import { getStateListener } from '@/utils/StateListener';
-import { Context } from '@/utils/Context/context';
-import lcdpApi from '@/utils/lcdpApi';
-import { sandBoxLoadModule } from '@/utils/sandBoxLoadModule';
-import Sandbox from '@/utils/sandbox';
-import * as functorsMap from '@/utils/functors';
-import { messageApi } from '@/utils/messageApi';
-import { appInfo } from '@/utils/attrSpecPage';
-import { useLocation } from 'alita';
-
-// 设置默认属性
-BannerModal.defaultProps = {
-  // @ts-ignore
-  api,
-};
-const getStaticDataSourceService = (
-  ds: any[],
-  labelKey: string,
-  valueKey: string,
-) => {
-  if (!ds?.length) return [];
-  if (!labelKey || !valueKey) return ds;
-  return ds.map((item) => ({
-    label: item[labelKey],
-    value: item[valueKey],
-  }));
-};
-
-/**
- * 获取信息
- */
-export const useGetPageInfo = (props: Record<string, any>) => {
-  const location = useLocation();
-
-  /**
-   * url参数
-   */
-  const urlParam = useMemo(() => {
-    const queryParams = parse((location?.search ?? '?')?.split('?')[1]);
-    return {
-      ...queryParams,
-      ...props.urlParam,
-    };
-  }, [props.urlParam]);
-  const routerData = useMemo(
-    () =>
-      history?.location?.state ||
-      JSON.parse(window.sessionStorage.getItem(urlParam._k) || '{}'),
-    [],
-  );
-  return {
-    urlParam,
-    lcdpApi,
-    routerData,
-    addToAwaitQueue: (compId: string, functionName: string, ...args: any[]) =>
-      props.awaitHandleData.addToAwaitQueue(compId, functionName, ...args),
-  };
-};
-
-/**
- * 生成基础上下文
- * @param baseContext
- */
-const useMergeContext = (
-  props: Record<string, any>,
-  basicContext: Record<string, any> = {},
-) => {
-  // 指令定时器存储
-  const actionTimerRef = useRef<Record<string, any>>({
-    timeout: {},
-    interval: {},
-  });
-  const { getLocaleLanguage, getLocale, getLocaleEnv, locale, language } =
-    i18n.useLocale(
-      {
-        locale: props.i18n?.locale!,
-        remoteLocale: props.i18n?.remoteLocale,
-        language: props.i18n?.language!,
-        configLocale: {},
-      },
-      locales,
-    );
-  const { ModalManagerRef, appId, attrDataMap } = useContext(Context);
-
-  // 清除定时器
-  const clearActionTimer = (timerName: string) => {
-    const actionTimer = actionTimerRef.current;
-    if (actionTimer.interval?.[timerName]) {
-      clearInterval(actionTimer.interval[timerName]);
-      actionTimer.interval[timerName] = null;
-    }
-    if (actionTimer.timeout?.[timerName]) {
-      clearTimeout(actionTimer.timeout[timerName]);
-      actionTimer.timeout[timerName] = null;
-    }
-  };
-
-  // 增加指令定时器
-  const addActionTimer = (
-    type: 'interval' | 'timeout' = 'timeout',
-    timerName: string,
-    callback: () => void,
-    time: number = 0,
-  ) => {
-    const actionTimer = actionTimerRef.current;
-    clearActionTimer(type);
-    const delay = time > 0 ? +time : 0;
-    if (type === 'interval') {
-      actionTimer.interval[timerName] = setInterval(() => {
-        callback?.();
-      }, delay);
-    }
-    if (type === 'timeout') {
-      actionTimer.interval[timerName] = setTimeout(() => {
-        callback?.();
-      }, delay);
-    }
-  };
-  const sandBoxRun = (
-    code: string,
-    extendAllowMap: Record<string, any> = {},
-  ) => {
-    return Sandbox.run(code, {
-      ...context,
-      ...extendAllowMap,
-    });
-  };
-  const sandBoxSafeRun = (
-    code: string,
-    extendAllowMap: Record<string, any> = {},
-  ) => {
-    try {
-      return sandBoxRun(code, extendAllowMap);
-      // eslint-disable-next-line no-empty
-    } catch {}
-    return undefined;
-  };
-  const context: Record<string, any> = {
-    ...basicContext,
-    clearActionTimer,
-    addActionTimer,
-    api,
-    ModalManagerRef,
-    attrDataMap,
-    functorsMap,
-    messageApi,
-    routerData: getStaticDataSourceService,
-    // closeModal: (modalId: string) => {
-    //   ModalManagerRef.current?.closeModal(modalId, basicContext.renderId);
-    // },
-    lcdpParentRenderId: props.lcdpParentRenderId,
-    sandBoxRun,
-    sandBoxSafeRun,
-    appInfo,
-    BannerModal,
-    getLocaleLanguage,
-    getLocale,
-    getLocaleEnv,
-    locale,
-    language,
-  };
-  return {
-    context,
-    getEngineApis: () => {
-      return {
-        compatConfig: {},
-        BannerModal,
-        stateListener: getStateListener(basicContext.renderId),
-        ...api,
-        downloadFileByFileCode: () => null,
-        downloadByFileId: () => null,
-        getLocaleLanguage,
-        getLocale,
-        getLocaleEnv,
-        locale,
-        language,
-        useTopContainerHidden,
-        // 打开弹窗能力
-        openModal: (data: any) =>
-          ModalManagerRef.current?.openModal({
-            appId,
-            ...data,
-          }),
-        getVisible: (compId: string) => {
-          // @ts-ignore
-          return context.refs?.[compId]?.visible;
-        },
-        sandBoxLoadModule: (
-          code: string,
-          options?: {
-            dependencies?: Record<string, any>;
-            allowMap?: Record<string, any>;
-          },
-        ) => {
-          return sandBoxLoadModule(code, context, undefined, options);
-        },
-        sandBoxRun,
-        sandBoxSafeRun,
-        service: {
-          ...api,
-        },
-      };
-    },
-  };
-};
-export default useMergeContext;
-",
-              "ext": "ts",
-              "name": "useMergeContext",
-              "options": undefined,
-            },
-          ],
-          "name": "hooks",
         },
         Object {
           "dirs": Array [],

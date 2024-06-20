@@ -16,6 +16,7 @@ import globalless from './files/globalless';
 import indexpage from './files/indexpage';
 import indexpageless from './files/indexpageless';
 import layout from './files/layout';
+import modalManager from './files/modalManager';
 import modalmap from './files/modalmap';
 import modalmodal from './files/modalmodal';
 import overrides from './files/overrides';
@@ -51,53 +52,17 @@ export function generateStaticFiles(
   runFileGenerator(postProcessors, root, factory, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, global, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, globalless, parseResult?.staticFiles);
-  // index 定义了就不生成默认的 index
-  if (!hasIndex) {
-    runFileGenerator(postProcessors, root, indexpage, parseResult?.staticFiles);
-    runFileGenerator(
-      postProcessors,
-      root,
-      indexpageless,
-      parseResult?.staticFiles,
-    );
-  }
+
   runFileGenerator(postProcessors, root, layout, parseResult?.staticFiles);
 
   runFileGenerator(postProcessors, root, popover, parseResult?.staticFiles);
-  if (isMobile) {
-    // runFileGenerator(
-    //   postProcessors,
-    //   root,
-    //   popoverwrapper,
-    //   parseResult?.staticFiles,
-    // );
-    // runFileGenerator(
-    //   postProcessors,
-    //   root,
-    //   modalindex,
-    //   parseResult?.staticFiles,
-    // );
-    runFileGenerator(
-      postProcessors,
-      root,
-      modalmodal,
-      parseResult?.staticFiles,
-    );
-  } else {
-    runFileGenerator(
-      postProcessors,
-      root,
-      PCErrorBoundary,
-      parseResult?.staticFiles,
-    );
-    runFileGenerator(
-      postProcessors,
-      root,
-      PCErrorBoundaryLess,
-      parseResult?.staticFiles,
-    );
-  }
-  runFileGenerator(postProcessors, root, drawermap, parseResult?.staticFiles);
+
+  runFileGenerator(
+    postProcessors,
+    root,
+    modalManager,
+    parseResult?.staticFiles,
+  );
   runFileGenerator(postProcessors, root, modalmap, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, popovermap, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, overrides, parseResult?.staticFiles);
@@ -130,6 +95,50 @@ export function generateStaticFiles(
     useMergeContext,
     parseResult?.staticFiles,
   );
+  // index 定义了就不生成默认的 index
+  if (!hasIndex) {
+    runFileGenerator(postProcessors, root, indexpage, parseResult?.staticFiles);
+    runFileGenerator(
+      postProcessors,
+      root,
+      indexpageless,
+      parseResult?.staticFiles,
+    );
+  }
+  if (isMobile) {
+    // runFileGenerator(
+    //   postProcessors,
+    //   root,
+    //   popoverwrapper,
+    //   parseResult?.staticFiles,
+    // );
+    // runFileGenerator(
+    //   postProcessors,
+    //   root,
+    //   modalindex,
+    //   parseResult?.staticFiles,
+    // );
+    runFileGenerator(
+      postProcessors,
+      root,
+      modalmodal,
+      parseResult?.staticFiles,
+    );
+  } else {
+    runFileGenerator(
+      postProcessors,
+      root,
+      PCErrorBoundary,
+      parseResult?.staticFiles,
+    );
+    runFileGenerator(
+      postProcessors,
+      root,
+      PCErrorBoundaryLess,
+      parseResult?.staticFiles,
+    );
+    runFileGenerator(postProcessors, root, drawermap, parseResult?.staticFiles);
+  }
 
   return root;
 }
