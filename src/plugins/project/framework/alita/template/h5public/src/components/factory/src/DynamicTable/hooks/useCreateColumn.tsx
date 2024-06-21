@@ -35,6 +35,7 @@ export interface CreateColumnProps {
   extend?: any[];
   extendNum?: number;
   getEngineApis?: any;
+  renderIcon: (props: any) => JSX.Element;
 }
 
 const useCreateColumn = (props: CreateColumnProps) => {
@@ -175,6 +176,7 @@ const useCreateColumn = (props: CreateColumnProps) => {
         extendActions={extendActions}
         getEngineApis={getEngineApis}
         $$componentItem={$$componentItem}
+        renderIcon={props.renderIcon}
       />
     );
   };

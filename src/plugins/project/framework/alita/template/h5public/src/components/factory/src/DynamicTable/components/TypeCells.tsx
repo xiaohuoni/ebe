@@ -2,8 +2,6 @@ import { EngineApisType, EngineBaseProps } from '@lingxiteam/types';
 import { ICellRendererParams } from 'ag-grid-community';
 import { Button, Popover } from 'antd-mobile-5';
 import React from 'react';
-import Icon from '../../Icon';
-import IconEd from '../../Icon/IconED';
 import CustomModule from '../../utils/CustomModule';
 import { useFuncExpExecute } from '../../utils/hooks/useFuncExpExecute';
 import useFormatCell from '../hooks/useFormatCell';
@@ -27,6 +25,8 @@ import {
   PURE_COLOUR_TAG,
   RELATION_OR,
 } from '../utils/constant';
+// import Icon from '../../Icon';
+// import IconEd from '../../Icon/IconED';
 import './index.less';
 
 export interface CellProps {
@@ -40,6 +40,7 @@ export interface CellProps {
   extendActions?: Record<string, any>;
   getEngineApis?: any;
   $$componentItem: EngineBaseProps['$$componentItem'];
+  renderIcon: (props: any) => JSX.Element;
 }
 
 interface extendItem {
@@ -69,6 +70,7 @@ const TypeCells: React.FC<CellProps> = (props) => {
     $$componentItem,
     extendActions,
     getEngineApis,
+    renderIcon,
   } = props;
   const engineApis = getEngineApis?.();
   const { colorFormatInfo, customRendering, extendInfo } = item;
@@ -183,41 +185,19 @@ const TypeCells: React.FC<CellProps> = (props) => {
           <div className="buttonInsideView">
             {item.iconPos === 'left' &&
               item?.icon &&
-              (isEditor ? (
-                <IconEd
-                  icon={item.icon}
-                  className="buttonLeftIcon"
-                  getEdEngineApi={getEngineApis}
-                  $$componentItem={$$componentItem}
-                />
-              ) : (
-                <Icon
-                  icon={item.icon}
-                  className="buttonLeftIcon"
-                  name={item?.title}
-                  getEngineApis={getEngineApis}
-                  $$componentItem={$$componentItem}
-                />
-              ))}
+              renderIcon({
+                icon: item.icon,
+                className: 'buttonLeftIcon',
+                name: item.title,
+              })}
             <div>{!item?.isIcon && item.title}</div>
             {item.iconPos === 'right' &&
               item?.icon &&
-              (isEditor ? (
-                <IconEd
-                  icon={item.icon}
-                  className="buttonRightIcon"
-                  getEdEngineApi={getEngineApis}
-                  $$componentItem={$$componentItem}
-                />
-              ) : (
-                <Icon
-                  icon={item.icon}
-                  className="buttonRightIcon"
-                  name={item?.title}
-                  getEngineApis={getEngineApis}
-                  $$componentItem={$$componentItem}
-                />
-              ))}
+              renderIcon({
+                icon: item.icon,
+                className: 'buttonRightIcon',
+                name: item.title,
+              })}
           </div>
         </Button>
       );

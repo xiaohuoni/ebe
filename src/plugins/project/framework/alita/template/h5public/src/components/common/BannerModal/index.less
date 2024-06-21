@@ -1,0 +1,211 @@
+
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+@prefixCls: lcdp-bannermodal;
+
+.@{prefixCls} {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  // top: 50%;
+  // transform: translate(-50%, -50%);
+  // left: 50%;
+  
+  &-with-mask {
+    transition: all 0.2s ease-out;
+    background-color: rgba(0, 0, 0, 0.8);
+    .adm-mask {
+      background-color: transparent !important;
+    }
+  }
+  &-enter {
+    transform: scale(0.3);
+    animation-duration: 0.2s;
+    animation-play-state: paused;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+    animation-fill-mode: both;
+
+    &-enter-active {
+      animation-name: fadeIn;
+      animation-play-state: running;
+    }
+  }
+
+  &-appear {
+    transform: scale(0.3);
+    animation-duration: 0.2s;
+    animation-play-state: paused;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+    animation-fill-mode: both;
+
+    &-appear-active {
+      animation-name: fadeIn;
+      animation-play-state: running;
+    }
+  }
+
+  &-leave {
+    animation-duration: 0.2s;
+    animation-play-state: paused;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+    animation-fill-mode: both;
+
+    &&-leave-active {
+      animation-name: fadeOut;
+      animation-play-state: running;
+    }
+  }
+  @keyframes fadeIn {
+    0% {
+      transform: scale(0.3);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+    @keyframes fadeOut {
+      0% {
+        transform: scale(1);
+      }
+  
+      100% {
+        transform: scale(0.3);
+      }
+    }
+  
+    &-left-icon {
+      position: absolute;
+      top: 10 * @hd;
+      left: 10 * @hd;
+      width: 20 * @hd;
+      height: 20 * @hd;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-self: center;
+      .anticon {
+        color: white;
+        font-size: 18 * @hd;
+      }
+    }
+  
+    &-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+  
+      &-closeIcon {
+        position: absolute;
+        top: 10 * @hd;
+        right: 10 * @hd;
+        width: 20 * @hd;
+        height: 20 * @hd;
+        z-index: 1001;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .pdf-disbtn {
+      position: absolute;
+      bottom: 20 * @hd;
+      display: flex;
+      align-items: center;
+      padding: 13 * @hd 32 * @hd;
+      background-color: #323232;
+      border-radius: 4 * @hd;
+
+      .pdf-bt {
+        width: 20 * @hd;
+        height: 20 * @hd;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .pdf-bt-text {
+        margin: 0 16 * @hd;
+        color: #fff;
+        font-size: 14 * @hd;
+      }
+
+      .pdf-bt-line {
+        width: 1 * @hd;
+        height: 14 * @hd;
+        margin: 0 16 * @hd;
+        background-color: #fff;
+      }
+    }
+  }
+
+  &-image {
+    width: 80%;
+    height: 366 * @hd;
+    object-fit: contain;
+    background-color: #fff;
+  }
+
+  &-iframe {
+    flex: 1;
+    width: 90%;
+    background-color: #fff;
+    border: none;
+    outline: none;
+  }
+
+  &-close {
+    position: fixed;
+    top: 20 * @hd;
+    right: 20 * @hd;
+    z-index: 1000;
+    width: 40 * @hd;
+    height: 40 * @hd;
+  }
+
+  &-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 8 * @hd;
+    background-color: #fff;
+    .am-button {
+      flex: 1;
+      &:not(:first-child) {
+        margin-left: 8 * @hd;
+      }
+    }
+  }
+
+  &-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    // background-color: rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease-out;
+  }
+
+  &-modal {
+    transform: scale(0.85);
+    .@{prefixCls}-left-icon,
+    .@{prefixCls}-content-closeIcon,
+    .pdf-disbtn {
+      transform: scale(1.176);
+    }
+    .adm-image-viewer-indicator {
+      transform: scale(1.176) translateX(-50%);
+    }
+  }
+}

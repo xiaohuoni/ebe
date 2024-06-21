@@ -13,7 +13,7 @@ const copyFileSyncAlias = (from: string, to: string) => {
     [];
   importList.forEach((source) => {
     const absolute = join(process.cwd(), 'src', source);
-    const filePath = relative(from, absolute);
+    const filePath = relative(dirname(from), absolute);
     context = context.replace(`@/${source}`, filePath);
   });
   writeFileSync(to, context, 'utf-8');

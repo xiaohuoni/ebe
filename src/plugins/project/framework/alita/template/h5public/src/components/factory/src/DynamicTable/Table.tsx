@@ -15,6 +15,7 @@ import React, {
   useState,
 } from 'react';
 import { Empty } from '../BasicComponents';
+import Icon from '../Icon';
 import { leftDirection, rightDirection } from './assets/index';
 import useCreateColumn from './hooks/useCreateColumn';
 import './index.less';
@@ -142,6 +143,13 @@ const DynamicTable = LingxiForwardRef<any, MyDynamicTableProps>(
       headerBgColor,
       sandBoxLoadModule: engineApis.sandBoxLoadModule,
       getEngineApis,
+      renderIcon: (iconProps) => (
+        <Icon
+          {...iconProps}
+          $$componentItem={$$componentItem}
+          getEngineApis={getEngineApis}
+        />
+      ),
     });
 
     if (typeof currentPage !== 'undefined') {

@@ -1,9 +1,6 @@
 import { EngineBaseProps } from '@lingxiteam/types';
 import { SwipeAction } from 'antd-mobile-5';
 import React, { ReactNode } from 'react';
-import Icon from '../../Icon';
-import IconED from '../../Icon/IconED';
-// import { useFuncExpExecute } from '../../utils/hooks/useFuncExpExecute';
 
 export interface SwipeActionProps {
   btnBackgroundColor: string;
@@ -24,11 +21,10 @@ interface MySwipeProps {
   children: ReactNode;
   swipeAction: [SwipeActionProps];
   getEngineApis?: EngineBaseProps['getEngineApis'];
-  $$componentItem?: EngineBaseProps['$$componentItem'];
   rowData?: any;
   index?: string | number;
   swipActionClick?: Record<string, any>;
-  getEdEngineApi?: any;
+  renderIcon: (props: any) => JSX.Element;
 }
 
 const CustomButton: React.FC<MySwipeProps> = (props) => {
@@ -41,9 +37,8 @@ const CustomButton: React.FC<MySwipeProps> = (props) => {
     getEngineApis,
     rowData,
     index: rowIndex,
-    $$componentItem,
     swipActionClick,
-    getEdEngineApi,
+    renderIcon,
   } = props;
 
   const getActionText = (swipeAction: [SwipeActionProps]) => {
@@ -68,27 +63,11 @@ const CustomButton: React.FC<MySwipeProps> = (props) => {
       if (icon) {
         const svgContent =
           (icon?.iconFileInfo && icon?.iconFileInfo?.svgContent) || null;
-        if (isEdit) {
-          iconView = (
-            <IconED
-              {...icon}
-              svgContent={svgContent}
-              getEdEngineApi={getEdEngineApi}
-              $$componentItem={props.$$componentItem}
-            />
-          );
-        } else {
-          iconView = (
-            <Icon
-              {...icon}
-              className=""
-              svgContent={svgContent}
-              getEngineApis={getEngineApis as any}
-              name={value || String(index)}
-              $$componentItem={$$componentItem as any}
-            />
-          );
-        }
+        iconView = renderIcon({
+          ...icon,
+          svgContent,
+          name: value,
+        });
       }
       if (!isEdit) {
         viewDisabled = false;

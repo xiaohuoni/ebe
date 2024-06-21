@@ -1,0 +1,135 @@
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+@prefixCls: lcdp-preview;
+
+.@{prefixCls} {
+  &-wrapPic {
+    display: flex;
+    align-items: center; /*垂直居中*/
+    justify-content: center; /*水平居中*/
+    height: auto !important;
+    // min-height: 100%;
+  }
+  &-wrap {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    // background-color: #fff;
+    .content {
+      width: 100%;
+      height: 100%;
+      padding: 30 * @hd;
+      .code {
+        height: 100%;
+        padding: 10 * @hd;
+        overflow-y: auto;
+        white-space: pre;
+        background-color: #fff;
+        border: 1 * @hd solid rgba(0, 0, 0, 0.15);
+      }
+    }
+    .ppt {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      padding: 30 * @hd;
+      text-align: center;
+      .adm-mask {
+        background: transparent !important;
+      }
+      .pptList {
+        padding-right: 10 * @hd;
+        overflow-y: auto;
+        border-right: 3 * @hd solid rgb(200, 200, 200);
+      }
+      .selectedImg {
+        flex: 1;
+        padding-left: 20 * @hd;
+        img {
+          max-width: calc(100% - 20 * @hd);
+          max-height: calc(100% - 20 * @hd);
+          padding: 4 * @hd;
+          -webkit-box-shadow: 0 0 10 * @hd 3 * @hd #888;
+          box-shadow: 0 0 10 * @hd 3 * @hd #888;
+        }
+      }
+      .pptImgs {
+        img {
+          max-width: 200 * @hd;
+          max-height: 110 * @hd;
+          padding: 4 * @hd;
+          border: 3 * @hd solid #ddd;
+        }
+      }
+      .selected {
+        img {
+          border: 3 * @hd solid darkorange !important;
+        }
+      }
+    }
+    .iframe {
+      width: 90%;
+      height: 80%;
+      border: medium none;
+      background-color: white;
+      margin: 0 auto;
+    }
+  
+    .preview_html {
+      width: 100%;
+      height: 100%;
+      padding: 30 * @hd 0;
+      overflow: scroll;
+    }
+
+    .preview_docx {
+      margin: 40* @hd 20 * @hd;
+      height: 100%;
+      padding: 30 * @hd 0;
+      overflow: scroll;
+      background-color: #ffffff;
+    }
+  
+    .preview_content {
+      img {
+        width: 100%;
+      }
+    }
+  
+    .pdf-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30 * @hd 0;
+      overflow: hidden;
+  
+      .react-pdf__Document {
+        max-width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        overflow: scroll;
+      }
+  
+      .react-pdf__Page__textContent {
+        display: none;
+      }
+      .react-pdf__Page__annotations {
+        display: none;
+      }
+      .pdf-content {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .adm-mask {
+      overflow: hidden;
+    }
+  }
+}

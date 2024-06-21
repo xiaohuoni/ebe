@@ -1,0 +1,21 @@
+@import '~@lingxiteam/antd-mobile-v2-theme/es/index.less';
+@prefixCls: lcdp-docviewer;
+
+.@{prefixCls} {
+  position: relative;
+  margin: 40* @hd 20 * @hd;
+  height: 100%;
+  // padding: 30 * @hd 0;
+  overflow: scroll;
+  background-color: #ffffff;
+
+  .vue-office-excel .x-spreadsheet-sheet {
+    width: 100% !important;
+  }
+  .spin-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+  }
+}

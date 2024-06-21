@@ -15,6 +15,7 @@ import {
   useState,
 } from 'react';
 import { Empty, SpinComp } from '../BasicComponents';
+import Icon from '../Icon';
 import './index.less';
 import MySwipe, { SwipeActionProps } from './MySwipe';
 
@@ -360,10 +361,17 @@ const DynamicList = LingxiForwardRef<any, MyDynamicListProps>((props, ref) => {
           isEdit={false}
           swipeAction={swipeAction}
           getEngineApis={getEngineApis}
-          $$componentItem={$$componentItem}
           rowData={columnData}
           index={i}
           swipActionClick={swipActionClick}
+          renderIcon={(p) => (
+            <Icon
+              {...p}
+              $$componentItem={$$componentItem}
+              getEngineApis={getEngineApis}
+              className=""
+            />
+          )}
         >
           <MemoLoopItem {...renderProps} />
         </MySwipe>

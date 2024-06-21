@@ -16,5 +16,5 @@ test('ebe move', async () => {
   );
 
   // 别名处理
-  expect(index).toContain(`export * from '../../../../src/constants';`);
+  expect(index).toContain(`export * from '../../../src/constants';`);
 });
