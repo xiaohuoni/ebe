@@ -6,8 +6,8 @@ Object {
     Object {
       "content": "import { defineConfig } from 'alita';
     import proxy from './proxy';
+    import path from 'path';
   const CopyWebpackPlugin = require('copy-webpack-plugin');
-const path = require('path');
 const ueditorReactPath = require.resolve('@lingxiteam/lcdp-ueditor-react/package.json');
 
 

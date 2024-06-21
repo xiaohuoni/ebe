@@ -4743,7 +4743,7 @@ export default {
         Object {
           "content": "import { defineConfig } from 'alita';
 import proxy from './proxy';
-const path = require('path');
+import path from 'path';
 const ueditorReactPath = require.resolve(
   '@lingxiteam/lcdp-ueditor-react/package.json',
 );

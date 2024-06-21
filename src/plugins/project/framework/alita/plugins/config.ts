@@ -20,11 +20,11 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
 
     const cfg = `import { defineConfig } from 'alita';
     import proxy from './proxy';
+    import path from 'path';
   ${
     isMobile
       ? ''
       : `const CopyWebpackPlugin = require('copy-webpack-plugin');
-const path = require('path');
 const ueditorReactPath = require.resolve('@lingxiteam/lcdp-ueditor-react/package.json');
 
 `
