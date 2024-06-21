@@ -67,9 +67,12 @@ const ueditorReactPath = require.resolve('@lingxiteam/lcdp-ueditor-react/package
       keepalive: [],
       ${
         isMobile
-          ? ''
-          : ` copy: [
-    {from: path.join(path.dirname(ueditorReactPath), 'ueditor-resource'), to: 'build/ueditor-resource/'}
+          ? `copy: [
+      {from: path.join(path.dirname(require.resolve('pdfjs-dist/package.json')), 'cmaps'), to: 'build/static/cmaps/'}
+  ],`
+          : `copy: [
+    {from: path.join(path.dirname(ueditorReactPath), 'ueditor-resource'), to: 'build/ueditor-resource/'},
+      {from: path.join(path.dirname(require.resolve('pdfjs-dist/package.json')), 'cmaps'), to: 'build/static/cmaps/'}
   ],`
       }
       // info 文件配置

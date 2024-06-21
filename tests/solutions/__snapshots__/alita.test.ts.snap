@@ -4770,6 +4770,13 @@ export default defineConfig({
       from: path.join(path.dirname(ueditorReactPath), 'ueditor-resource'),
       to: 'build/ueditor-resource/',
     },
+    {
+      from: path.join(
+        path.dirname(require.resolve('pdfjs-dist/package.json')),
+        'cmaps',
+      ),
+      to: 'build/static/cmaps/',
+    },
   ],
   // info 文件配置
   scripts: [
