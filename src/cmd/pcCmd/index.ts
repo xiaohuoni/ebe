@@ -1,6 +1,7 @@
 // 把命令都整理出来
 export { addTableRow } from './addTableRow';
 export { addTableRowData } from './addTableRowData';
+export { addTransferKeys } from './addTransferKeys';
 export { appendMenuNodeData } from './appendMenuNodeData';
 export { appendTreeNode } from './appendTreeNode';
 export { changeContent } from './changeContent';
@@ -32,6 +33,8 @@ export { reloadData } from './reloadData';
 export { reloadDescData } from './reloadDescData';
 export { reloadSelectData } from './reloadSelectData';
 export { reloadTableData } from './reloadTableData';
+export { reloadTransferData } from './reloadTransferData';
+export { removeTransferKeys } from './removeTransferKeys';
 export { resetAllForm } from './resetAllForm';
 export { getResetCurrentForm as resetCurrentForm } from './resetCurrentForm';
 export { resetForm } from './resetForm';
@@ -47,6 +50,8 @@ export { setFormValues } from './setFormValues';
 export { setRangeValue } from './setRangeValue';
 export { setSelectAll } from './setSelectAll';
 export { setSelectedRowKeys } from './setSelectedRowKeys';
+export { setTransferLeftTitle } from './setTransferLeftTitle';
+export { setTransferRightTitle } from './setTransferRightTitle';
 export { setTreeSelectedKey } from './setTreeSelectedKey';
 export { triggerRelDataSource } from './triggerRelDataSource';
 export { validateAllForm } from './validateAllForm';

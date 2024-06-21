@@ -7,6 +7,7 @@ export function reloadTableData(generateParams: CMDGeneratorPrames): string {
   const { data, total, current, compId } = options;
 
   const code = `
+  // 表格·加载数据
    asyncCallComponentMethod(${parse2Var(compId)}, 'setTableData', ${parse2Var({
     dataSource: data,
     total,

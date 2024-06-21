@@ -15,6 +15,7 @@ describe('reloadTableData', () => {
     };
 
     const expectedCode = `
+    // 表格·加载数据
     asyncCallComponentMethod('table1', 'setTableData', {
       dataSource: [],
       total: 0,
