@@ -1033,132 +1033,6 @@ export default DynamicPopover;
                   "dirs": Array [],
                   "files": Array [
                     Object {
-                      "content": "import React, { FC, useState } from 'react';
-import { Button, Drawer, Row } from 'antd';
-import { catchErrorBoundary } from './catchErrorBoundary';
-import type { FallbackRenderProps } from './catchErrorBoundary';
-import styles from './index.less';
-interface ErrorBoundaryProps extends FallbackRenderProps {}
-const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
-  const { error, componentStack, compName } = props;
-  const [open, setOpen] = useState(false);
-  return (
-    <div className={styles.errorBoundary}>
-      <div className={styles.engineErrorBoundary}>
-        <div className={styles.warnIcon}>!</div>
-        <div className={styles.text}>
-          组件加载失败，点击<span onClick={() => setOpen(true)}>查看详情</span>
-        </div>
-      </div>
-      <Drawer
-        title=\\"组件渲染错误\\"
-        width={640}
-        placement=\\"right\\"
-        closable={false}
-        onClose={() => setOpen(false)}
-        open={open}
-        className={styles.errorDetail}
-        footer={
-          <Row justify=\\"end\\">
-            <Button type=\\"primary\\" onClick={() => setOpen(false)}>
-              知道了
-            </Button>
-          </Row>
-        }
-      >
-        <div>
-          <div className={styles.row}>
-            <span className={styles.rowTitle}>组件名称</span>：{compName}
-          </div>
-          <div className={styles.row}>
-            <span className={styles.rowTitle}>错误信息</span>：{error.message}
-          </div>
-          <div className={styles.row}>
-            <span className={styles.rowTitle}>错误堆栈</span>:
-            <div>{componentStack || error.stack}</div>
-          </div>
-        </div>
-      </Drawer>
-    </div>
-  );
-};
-const WithCatchErrorBoundary = <T extends Record<string, any>>(
-  WrappedComponent: React.ComponentClass<T> | React.FunctionComponent<T>,
-  options: {
-    compName: string;
-  },
-) =>
-  catchErrorBoundary(
-    WrappedComponent,
-    (props) => <ErrorBoundary {...props} />,
-    options,
-  );
-export { WithCatchErrorBoundary };
-export default ErrorBoundary;
-",
-                      "ext": "tsx",
-                      "name": "index",
-                      "options": undefined,
-                    },
-                    Object {
-                      "content": ".errorBoundary {
-  .engineErrorBoundary {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 44px;
-    padding-left: 16px;
-    .warnIcon {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      width: 11px;
-      height: 11px;
-      color: #fff;
-      background-color: #faad14;
-      border-radius: 50%;
-    }
-
-    .text {
-      padding-left: 4px;
-      font-size: 12px;
-      color: rgba(28, 36, 46, 0.75);
-      line-height: 22px;
-      span {
-        color: #4477ee;
-      }
-    }
-  }
-}
-
-.errorDetail {
-  .title {
-    font-size: 16px;
-    font-weight: 600;
-    color: #000;
-  }
-
-  .row {
-    line-height: 25px;
-    .rowTitle {
-      font-weight: 500;
-      color: #000;
-    }
-  }
-}
-",
-                      "ext": "less",
-                      "name": "index",
-                      "options": undefined,
-                    },
-                  ],
-                  "name": "ErrorBoundary",
-                },
-                Object {
-                  "dirs": Array [],
-                  "files": Array [
-                    Object {
                       "content": "import React, { FC, useEffect, useMemo, useState } from 'react';
 // @ts-ignore
 import { antPrefix as clsPrefix } from '@/components/pcfactory/src/variables';
@@ -1670,6 +1544,132 @@ export default BannerModal;
                   "dirs": Array [],
                   "files": Array [
                     Object {
+                      "content": "import React, { FC, useState } from 'react';
+import { Button, Drawer, Row } from 'antd';
+import { catchErrorBoundary } from './catchErrorBoundary';
+import type { FallbackRenderProps } from './catchErrorBoundary';
+import styles from './index.less';
+interface ErrorBoundaryProps extends FallbackRenderProps {}
+const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
+  const { error, componentStack, compName } = props;
+  const [open, setOpen] = useState(false);
+  return (
+    <div className={styles.errorBoundary}>
+      <div className={styles.engineErrorBoundary}>
+        <div className={styles.warnIcon}>!</div>
+        <div className={styles.text}>
+          组件加载失败，点击<span onClick={() => setOpen(true)}>查看详情</span>
+        </div>
+      </div>
+      <Drawer
+        title=\\"组件渲染错误\\"
+        width={640}
+        placement=\\"right\\"
+        closable={false}
+        onClose={() => setOpen(false)}
+        open={open}
+        className={styles.errorDetail}
+        footer={
+          <Row justify=\\"end\\">
+            <Button type=\\"primary\\" onClick={() => setOpen(false)}>
+              知道了
+            </Button>
+          </Row>
+        }
+      >
+        <div>
+          <div className={styles.row}>
+            <span className={styles.rowTitle}>组件名称</span>：{compName}
+          </div>
+          <div className={styles.row}>
+            <span className={styles.rowTitle}>错误信息</span>：{error.message}
+          </div>
+          <div className={styles.row}>
+            <span className={styles.rowTitle}>错误堆栈</span>:
+            <div>{componentStack || error.stack}</div>
+          </div>
+        </div>
+      </Drawer>
+    </div>
+  );
+};
+const WithCatchErrorBoundary = <T extends Record<string, any>>(
+  WrappedComponent: React.ComponentClass<T> | React.FunctionComponent<T>,
+  options: {
+    compName: string;
+  },
+) =>
+  catchErrorBoundary(
+    WrappedComponent,
+    (props) => <ErrorBoundary {...props} />,
+    options,
+  );
+export { WithCatchErrorBoundary };
+export default ErrorBoundary;
+",
+                      "ext": "tsx",
+                      "name": "index",
+                      "options": undefined,
+                    },
+                    Object {
+                      "content": ".errorBoundary {
+  .engineErrorBoundary {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 44px;
+    padding-left: 16px;
+    .warnIcon {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 11px;
+      height: 11px;
+      color: #fff;
+      background-color: #faad14;
+      border-radius: 50%;
+    }
+
+    .text {
+      padding-left: 4px;
+      font-size: 12px;
+      color: rgba(28, 36, 46, 0.75);
+      line-height: 22px;
+      span {
+        color: #4477ee;
+      }
+    }
+  }
+}
+
+.errorDetail {
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .row {
+    line-height: 25px;
+    .rowTitle {
+      font-weight: 500;
+      color: #000;
+    }
+  }
+}
+",
+                      "ext": "less",
+                      "name": "index",
+                      "options": undefined,
+                    },
+                  ],
+                  "name": "ErrorBoundary",
+                },
+                Object {
+                  "dirs": Array [],
+                  "files": Array [
+                    Object {
                       "content": "import React, { useRef, useImperativeHandle } from 'react';
 import { useAppData } from 'alita';
 import { parse } from 'qs';
@@ -1678,7 +1678,6 @@ import { Hoc } from '@/components/factory';
 import { useTopContainerHidden } from '@/utils/Context/Container';
 import { useHiddenStyle } from '@/utils/hooks';
 import classNames from 'classnames';
-export const pageStaticData: any = {};
 const pageRouteMapping: any = {
   '1118379076695052288': '/Index',
 };

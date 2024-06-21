@@ -38,14 +38,6 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       fileType: FileType.TSX,
       name: COMMON_CHUNK_NAME.FileVarDefine,
       content: `
-      export const pageStaticData:any = {
-        ${Object.keys(ir.pageStaticData)
-          ?.map(
-            (pageId: any) =>
-              ` '${pageId}':${JSON.stringify(ir.pageStaticData[pageId])}`,
-          )
-          .join(',')}
-      }
       const pageRouteMapping: any = {${ir.routes?.map(
         (r: any) => `'${r.pageId}':'${r.path}'`,
       )}}
