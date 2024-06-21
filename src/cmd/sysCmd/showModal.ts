@@ -22,7 +22,7 @@ export function showModal({
         `onCancel: ${CMDGeneratorEvent(callback2, { platform }, scope, config)}`
       : '\n';
 
-  config?.ir?.deps?.push(getImportFrom('antd', 'Modal', true));
+  config?.ir?.deps?.push(getImportFrom('@/utils/messageApi', 'Modal', true));
 
   return `//消息框提示 \n Modal.${type}({type: '${type}', title: ${parse2Var(
     title,
