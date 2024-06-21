@@ -3,7 +3,14 @@
 import { getImportFrom, getImportsFrom } from './depsHelper';
 
 // 页面上下文配置
-const pageVar = {
+const pageVar: Record<
+  string,
+  {
+    type: string;
+    description: string;
+    platform?: 'h5' | 'pc' | 'all';
+  }
+> = {
   urlParam: {
     type: 'Record<string, any>',
     description: 'url参数',
@@ -309,6 +316,11 @@ const pageVar = {
     type: 'Record<string, any>',
     description: '当前语言文案对象',
   },
+  px2rem: {
+    type: '(style: Record<string, any>) => {}',
+    description: '把px转化成rem',
+    platform: 'h5',
+  },
 };
 
 /**
@@ -319,11 +331,27 @@ export const getContextInfo = (
     paramsName?: string;
     includeVars?: string[];
     excludeVars?: string[];
-  } = { paramsName: 'context', includeVars: [], excludeVars: [] },
+    platform: 'h5' | 'pc';
+  } = {
+    paramsName: 'context',
+    includeVars: [],
+    excludeVars: [],
+    platform: 'pc',
+  },
 ) => {
-  const { paramsName = 'context', includeVars = [], excludeVars = [] } = opts;
+  const {
+    paramsName = 'context',
+    includeVars = [],
+    excludeVars = [],
+    platform: p,
+  } = opts;
   // 去重，includeVars优先级大于默认的
-  const vars = new Set([...Object.keys(pageVar), ...includeVars]);
+  const filePageVar = Object.keys(pageVar).filter((it) => {
+    const { platform = 'all' } = pageVar[it];
+    return platform === 'all' || platform === p;
+  });
+
+  const vars = new Set([...filePageVar, ...includeVars]);
   return {
     /**
      * 解构代码字符串

@@ -25,6 +25,7 @@ import pcbannermodalless from './files/pcbannermodalless';
 import popover from './files/popover';
 import popovermap from './files/popovermap';
 import proxy from './files/proxy';
+import px2rem from './files/px2rem';
 import useMergeContext from './files/useMergeContext';
 import withPageHOC from './files/withPageHOC';
 
@@ -63,6 +64,42 @@ export function generateStaticFiles(
     modalManager,
     parseResult?.staticFiles,
   );
+  if (isMobile) {
+    // runFileGenerator(
+    //   postProcessors,
+    //   root,
+    //   popoverwrapper,
+    //   parseResult?.staticFiles,
+    // );
+    // runFileGenerator(
+    //   postProcessors,
+    //   root,
+    //   modalindex,
+    //   parseResult?.staticFiles,
+    // );
+    runFileGenerator(postProcessors, root, px2rem, parseResult?.staticFiles);
+    runFileGenerator(
+      postProcessors,
+      root,
+      modalmodal,
+      parseResult?.staticFiles,
+    );
+  } else {
+    runFileGenerator(
+      postProcessors,
+      root,
+      PCErrorBoundary,
+      parseResult?.staticFiles,
+    );
+    runFileGenerator(
+      postProcessors,
+      root,
+      PCErrorBoundaryLess,
+      parseResult?.staticFiles,
+    );
+    runFileGenerator(postProcessors, root, drawermap, parseResult?.staticFiles);
+  }
+  runFileGenerator(postProcessors, root, drawermap, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, modalmap, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, popovermap, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, overrides, parseResult?.staticFiles);
@@ -104,40 +141,6 @@ export function generateStaticFiles(
       indexpageless,
       parseResult?.staticFiles,
     );
-  }
-  if (isMobile) {
-    // runFileGenerator(
-    //   postProcessors,
-    //   root,
-    //   popoverwrapper,
-    //   parseResult?.staticFiles,
-    // );
-    // runFileGenerator(
-    //   postProcessors,
-    //   root,
-    //   modalindex,
-    //   parseResult?.staticFiles,
-    // );
-    runFileGenerator(
-      postProcessors,
-      root,
-      modalmodal,
-      parseResult?.staticFiles,
-    );
-  } else {
-    runFileGenerator(
-      postProcessors,
-      root,
-      PCErrorBoundary,
-      parseResult?.staticFiles,
-    );
-    runFileGenerator(
-      postProcessors,
-      root,
-      PCErrorBoundaryLess,
-      parseResult?.staticFiles,
-    );
-    runFileGenerator(postProcessors, root, drawermap, parseResult?.staticFiles);
   }
 
   return root;

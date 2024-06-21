@@ -1,7 +1,9 @@
-import { ResultFile } from '../../../../../../core';
+import { LXProjectOptions, ResultFile } from '../../../../../../core';
 import { createResultFile } from '../../../../../../core/utils/resultHelper';
 
-export default function getFile(): [string[], ResultFile] {
+export default function getFile(
+  config?: LXProjectOptions,
+): [string[], ResultFile] {
   const file = createResultFile(
     'useMergeContext',
     'ts',
@@ -24,6 +26,12 @@ import { messageApi } from '@/utils/messageApi';
 import AwaitHandleData from '@/utils/AwaitHandleData';
 import { appInfo } from '@/utils/attrSpecPage';
 import { useLocation } from 'alita';
+${
+  config?.platform === 'h5'
+    ? `import px2rem from '@/utils/px2rem';
+`
+    : ``
+}
 
 
 // 设置默认属性
@@ -191,6 +199,7 @@ const sandBoxRun = (
     getLocaleEnv,
     locale,
     language,
+    ${config?.platform === 'h5' ? 'px2rem,' : ''}
   };
   
   return {
@@ -233,6 +242,7 @@ const sandBoxRun = (
         service: {
           ...api,
         },
+        ${config?.platform === 'h5' ? 'px2rem,' : ''}
       };
     },
   };

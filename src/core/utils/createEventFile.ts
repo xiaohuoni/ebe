@@ -134,6 +134,7 @@ const createEventFile = async (
   } = options;
 
   const { vars, deps, deconstructionCode } = getContextInfo({
+    platform: containerInfo.platform ?? 'pc',
     paramsName,
     includeVars: [
       ...getGlobalDataVars(containerInfo.globalDataSource),

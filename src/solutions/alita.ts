@@ -131,6 +131,7 @@ export default function createIceJsProjectBuilder(
             merge: '^2.1.1',
             uuid: '^9.0.1',
             dayjs: '1.11.3',
+            'browserify-zlib': '^0.2.0',
             'es6-proxy-polyfill': '^2.1.1',
             '@lingxiteam/antd-mobile-plus': '0.5.0',
             '@lingxiteam/antd-mobile-v2-theme': '0.0.1',

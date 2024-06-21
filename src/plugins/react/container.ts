@@ -204,6 +204,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
 
       ${
         getContextInfo({
+          platform: ir.platform ?? 'pc',
           paramsName: 'context',
           includeVars: getGlobalDataVars(ir.globalDataSource),
           excludeVars: ['state'],

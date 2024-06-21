@@ -726,6 +726,7 @@ const keywords = [
   'getLocaleEnv',
   'language',
   'locale',
+  'px2rem',
 ];
 const getSaleEventName = (eventName: any) => {
   const sale =
