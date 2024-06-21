@@ -1804,6 +1804,21 @@ export default Hoc(Pageview, {
               "files": Array [
                 Object {
                   "content": "import React from 'react';
+const DrawerMap: any = {};
+export default DrawerMap;
+",
+                  "ext": "ts",
+                  "name": "index",
+                  "options": undefined,
+                },
+              ],
+              "name": "drawer",
+            },
+            Object {
+              "dirs": Array [],
+              "files": Array [
+                Object {
+                  "content": "import React from 'react';
 const ModalMap: any = {};
 export default ModalMap;
 ",
@@ -1828,21 +1843,6 @@ export default PopoverMap;
                 },
               ],
               "name": "popover",
-            },
-            Object {
-              "dirs": Array [],
-              "files": Array [
-                Object {
-                  "content": "import React from 'react';
-const DrawerMap: any = {};
-export default DrawerMap;
-",
-                  "ext": "ts",
-                  "name": "index",
-                  "options": undefined,
-                },
-              ],
-              "name": "drawer",
             },
           ],
           "files": Array [

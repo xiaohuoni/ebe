@@ -65,18 +65,6 @@ export function generateStaticFiles(
     parseResult?.staticFiles,
   );
   if (isMobile) {
-    // runFileGenerator(
-    //   postProcessors,
-    //   root,
-    //   popoverwrapper,
-    //   parseResult?.staticFiles,
-    // );
-    // runFileGenerator(
-    //   postProcessors,
-    //   root,
-    //   modalindex,
-    //   parseResult?.staticFiles,
-    // );
     runFileGenerator(postProcessors, root, px2rem, parseResult?.staticFiles);
     runFileGenerator(
       postProcessors,
@@ -85,6 +73,18 @@ export function generateStaticFiles(
       parseResult?.staticFiles,
     );
   } else {
+    runFileGenerator(
+      postProcessors,
+      root,
+      pcbannermodal,
+      parseResult?.staticFiles,
+    );
+    runFileGenerator(
+      postProcessors,
+      root,
+      pcbannermodalless,
+      parseResult?.staticFiles,
+    );
     runFileGenerator(
       postProcessors,
       root,
@@ -105,18 +105,6 @@ export function generateStaticFiles(
   runFileGenerator(postProcessors, root, overrides, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, proxy, parseResult?.staticFiles);
   runFileGenerator(postProcessors, root, withPageHOC, parseResult?.staticFiles);
-  runFileGenerator(
-    postProcessors,
-    root,
-    pcbannermodal,
-    parseResult?.staticFiles,
-  );
-  runFileGenerator(
-    postProcessors,
-    root,
-    pcbannermodalless,
-    parseResult?.staticFiles,
-  );
 
   runFileGenerator(postProcessors, root, favicon, parseResult?.staticFiles);
   runFileGenerator(
