@@ -18,7 +18,7 @@ describe('setCheckedKey', () => {
 
     const expectedCode = `
     // 树形控件·设置复选框选中值
-    asyncCallComponentMethod('Tree_717662', 'setCheckedKeys', ["1"]})
+    asyncCallComponentMethod('Tree_717662', 'setCheckedKeys', ["1"])
   `;
 
     const result = setCheckedKey(generateParams);
