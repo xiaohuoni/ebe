@@ -2912,6 +2912,7 @@ import useGlobalData from './useGlobalData';
 import useDataSource from './useDataSource';
 import useTransSuperObjectParams from '@/hooks/useTransSuperObjectParams';
 import useMergeContext, { useGetPageInfo } from '@/hooks/useMergeContext';
+import usePageForm from '@/hooks/usePageForm';
 import { history } from 'alita';
 
 // 生成一个Id，用来记录当前页面所有的自定义事件
@@ -2951,6 +2952,9 @@ const Index = React.forwardRef<unknown, PageProps>((props, ref) => {
     addToAwaitQueue: pageInfo.addToAwaitQueue,
   });
 
+  // 页面表单方法
+  const pageFormUtils = usePageForm(basicContext.refs);
+
   // 合并上下文
   const { context, getEngineApis } = useMergeContext(props, {
     state,
@@ -2960,6 +2964,7 @@ const Index = React.forwardRef<unknown, PageProps>((props, ref) => {
     ...pageInfo,
     ...basicContext,
     ...useDataSourceTool,
+    ...pageFormUtils,
     ...globalDataSourceTool,
     ...useTransSuperObjectParamsTools,
   });

@@ -1,18 +1,8 @@
-import { useContext } from 'react';
-import { Context } from './Context/context';
-import {
-  getAllForm,
-  getBoframerOwnForms,
-  getBOFramerOwnFormValues,
-  getFieldsValue,
-  getFormByCompId,
-  getOwnFormValues,
-  updateNodeChildren,
-} from './formUtils';
+import { updateNodeChildren } from './formUtils';
 
 const toBool = (v: string | boolean, defaultValue?: any) => {
   let val = v;
-  if ([null, undefined].includes(val) && defaultValue !== undefined) {
+  if ([null, undefined].includes(val as any) && defaultValue !== undefined) {
     val = defaultValue;
   }
 
@@ -35,8 +25,6 @@ export interface ToolsContext {
 }
 
 export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
-  const { refs: renderRefs } = useContext(Context);
-
   const { addToAwaitQueue } = context;
 
   const asyncGetValue = (id: string, stateName?: string) => {
@@ -208,157 +196,6 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
     });
 
   /**
-   * 获取当前表单值
-   */
-  const getFormValue = async (compId: string): Promise<any> => {
-    // 为了兼容动态渲染引擎，表单不存在 就返回空对象
-    if (!refs[compId]) return Promise.resolve({});
-
-    // 表单的情况 可能是循环容器
-    if (refs[compId].compName === 'Form') {
-      const forms = getFormByCompId(compId, refs);
-      return getFieldsValue(forms, (form) => {
-        return form?.getFieldsValue?.();
-      });
-    }
-
-    if (refs[compId].compName === 'BOFramer') {
-      return getBOFramerOwnFormValues(
-        {
-          refs,
-          renderRefs,
-          compId,
-        },
-        (form) => form?.getFieldsValue?.(),
-      );
-    }
-
-    return Promise.reject(
-      new Error('该组件不支持使用getFormValues获取表单数据'),
-    );
-  };
-
-  /**
-   * 验证并取值
-   * @param compId
-   */
-  const validateForm = async (compId: string): Promise<any> => {
-    // 为了兼容动态渲染引擎，表单不存在 就返回空对象
-    if (!refs[compId]) return Promise.resolve({});
-
-    // 表单的情况 可能是循环容器
-    if (refs[compId].compName === 'Form') {
-      const forms = getFormByCompId(compId, refs);
-      return getFieldsValue(forms, (form) => {
-        return form?.validateFormAndScroll?.();
-      });
-    }
-
-    if (refs[compId].compName === 'BOFramer') {
-      return getBOFramerOwnFormValues(
-        {
-          refs,
-          renderRefs,
-          compId,
-        },
-        (form) => form?.validateFormAndScroll?.(),
-      );
-    }
-    return Promise.reject(
-      new Error('该组件不支持使用getFormValues获取表单数据'),
-    );
-  };
-
-  /**
-   * 重置表单值
-   * @param compId
-   */
-  const resetForm = (compId: string) => {
-    if (!refs[compId]) return;
-    const compName = refs[compId].compName;
-    if (compName === 'BOFramer') {
-      const forms = getBoframerOwnForms({
-        currentRefs: refs,
-        renderRefs,
-        compId,
-      });
-
-      forms.forEach((form) => {
-        form?.resetFields?.();
-      });
-    } else {
-      const forms = getFormByCompId(compId, refs);
-      // 支持循环容器中的表单重置
-      (Array.isArray(forms) ? forms : [forms]).forEach((form) =>
-        form?.resetFields(),
-      );
-    }
-  };
-
-  /**
-   * 设置表单值
-   * @param compId 组件id
-   * @param formValues 表单值
-   */
-  const setFormValues = (
-    compId: string,
-    formValues: Record<string, any> = {},
-  ) => {
-    if (!refs[compId]) return;
-    const compName = refs[compId].compName;
-
-    if (compName === 'BOFramer') {
-      const forms = getBoframerOwnForms({
-        currentRefs: refs,
-        renderRefs,
-        compId,
-      });
-
-      forms.forEach((form) => {
-        form?.setFieldsValue(formValues);
-      });
-    } else {
-      refs[compId]?.setFieldsValue?.(formValues);
-    }
-  };
-
-  /**
-   * 校验并获取所有表单值
-   * 获取页面下的所有表单，包含当前页面下的表单、页面容器下的表单、业务组件下的表单。
-   * 不包含所有弹窗类组件的表单数据
-   */
-  const validateAllForm = () =>
-    getOwnFormValues({ currentRefs: refs, renderRefs }, (form) =>
-      form.validateFormAndScroll?.(false),
-    );
-
-  /**
-   * 获取所有表单值 但不校验
-   * 获取页面下的所有表单，包含当前页面下的表单、页面容器下的表单、业务组件下的表单。
-   * 不包含所有弹窗类组件的表单数据
-   */
-  const getAllFormValues = () =>
-    getOwnFormValues({ currentRefs: refs, renderRefs }, (form) =>
-      form.getFieldsValue?.(),
-    );
-
-  /**
-   * 重置所有表单
-   * 获取页面下的所有表单，包含当前页面下的表单、页面容器下的表单、业务组件下的表单。
-   * 不包含所有弹窗类组件的表单数据
-   */
-  const resetAllForm = () => {
-    const forms = getAllForm({
-      currentRefs: refs,
-      renderRefs,
-    });
-
-    forms.forEach((form) => {
-      form.resetFields();
-    });
-  };
-
-  /**
    * 获取联动数据值
    * @param attrDataMap  静态数据
    * @param aNbr a端值
@@ -413,15 +250,8 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
     callComponentMethod,
     setDisabled,
     getDisabled,
-    getFormValue,
-    validateForm,
-    resetForm,
     clearValue,
-    setFormValues,
     asyncCallComponentMethod,
-    validateAllForm,
-    getAllFormValues,
-    resetAllForm,
     updateNodeChildren,
     getTriggerRelDataSource,
   };

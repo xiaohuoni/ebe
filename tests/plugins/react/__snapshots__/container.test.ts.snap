@@ -97,6 +97,20 @@ Object {
       "type": "string",
     },
     Object {
+      "content": "// 页面表单方法 
+ const pageFormUtils = usePageForm(basicContext.refs);
+",
+      "fileType": "tsx",
+      "linkAfter": Array [
+        "UseSuperObjectHookCall",
+        "CallGlobalDataSource",
+        "CallDataSource",
+        "CommonClassDefineStart",
+      ],
+      "name": "CallUsePageFormHook",
+      "type": "string",
+    },
+    Object {
       "content": "
       // 合并上下文
       const { context, getEngineApis } = useMergeContext(props, {
@@ -109,6 +123,7 @@ Object {
         ...pageInfo,
         ...basicContext,
         ...useDataSourceTool,
+        ...pageFormUtils,
         ...globalDataSourceTool,
         ...useTransSuperObjectParamsTools,
       });
@@ -117,6 +132,7 @@ Object {
       ",
       "fileType": "tsx",
       "linkAfter": Array [
+        "CallUsePageFormHook",
         "PageTooL",
         "UseSuperObjectHookCall",
         "CallGlobalDataSource",

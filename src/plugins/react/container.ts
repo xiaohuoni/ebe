@@ -181,6 +181,19 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
     next.chunks.push({
       type: ChunkType.STRING,
       fileType: FileType.TSX,
+      name: PAGE_TOOL_CHUNK_NAME.CallUsePageFormHook,
+      content: `// 页面表单方法 \n const pageFormUtils = usePageForm(basicContext.refs);\n`,
+      linkAfter: [
+        PAGE_TOOL_CHUNK_NAME.UseSuperObjectHook,
+        DATA_SOURCE_CHUNK_NAME.CallGlobalDataSource,
+        DATA_SOURCE_CHUNK_NAME.CallDataSource,
+        CLASS_DEFINE_CHUNK_NAME.Start,
+      ],
+    });
+
+    next.chunks.push({
+      type: ChunkType.STRING,
+      fileType: FileType.TSX,
       name: PAGE_TOOL_CHUNK_NAME.useMergeContextCallHook,
       content: `
       // 合并上下文
@@ -194,6 +207,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
         ...pageInfo,
         ...basicContext,
         ...useDataSourceTool,
+        ...pageFormUtils,
         ${
           shouldUsedGlobalData(ir.globalDataSource)
             ? '...globalDataSourceTool,'
@@ -212,6 +226,7 @@ const pluginFactory: BuilderComponentPluginFactory<unknown> = () => {
       }
       `,
       linkAfter: [
+        PAGE_TOOL_CHUNK_NAME.CallUsePageFormHook,
         PAGE_TOOL_CHUNK_NAME.PageTooL,
         PAGE_TOOL_CHUNK_NAME.UseSuperObjectHook,
         DATA_SOURCE_CHUNK_NAME.CallGlobalDataSource,

@@ -134,10 +134,12 @@ const pageVar: Record<
   validateForm: {
     type: '(compId: string) => Promise<any>',
     description: '校验表单',
+    platform: 'pc',
   },
   resetForm: {
     type: '(compId: string) => void',
     description: '重置表单',
+    platform: 'pc',
   },
   clearValue: {
     type: '(compId: string) => void',
@@ -146,6 +148,7 @@ const pageVar: Record<
   setFormValues: {
     type: '(compId: string, formValues?: Record<string, any>) => void',
     description: '设置表单值',
+    platform: 'pc',
   },
   asyncCallComponentMethod: {
     type: '(comId: string, methodName: string, ...args: any[]) => Promise<unknown>',
@@ -154,18 +157,22 @@ const pageVar: Record<
   validateAllForm: {
     type: '() => Promise<any>',
     description: '校验并获取所有表单值',
+    platform: 'pc',
   },
   getAllFormValues: {
     type: '() => Promise<any>',
     description: '获取所有表单值',
+    platform: 'pc',
   },
   resetAllForm: {
     type: '() => void',
     description: '重置所有表单',
+    platform: 'pc',
   },
   updateNodeChildren: {
     type: '(nodeKey: any, odata: any[], arr: any[], key: string, title: string, selectable: string | undefined) => any[]',
     description: '加载子节点数据',
+    platform: 'pc',
   },
   getTriggerRelDataSource: {
     type: '(attrDataMap: Record<string, any[]>, aNbr: any, zNbr: any, targetValue?: any) => any',

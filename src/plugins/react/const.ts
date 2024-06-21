@@ -63,4 +63,5 @@ export const PAGE_TOOL_CHUNK_NAME = {
   useMergeContextCallHook: 'useMergeContextCallHook',
   PageHookFile: 'PageHookFile',
   CallContainerHook: 'CallContainerHook',
+  CallUsePageFormHook: 'CallUsePageFormHook',
 };

@@ -107,6 +107,10 @@ import classNames from 'classnames';
       getImportFrom('@/hooks/useMergeContext', 'useGetPageInfo', true),
     );
 
+    next.ir.deps.push(
+      getImportFrom('@/hooks/usePageForm', 'usePageForm', false),
+    );
+
     return next;
   };
   return plugin;
