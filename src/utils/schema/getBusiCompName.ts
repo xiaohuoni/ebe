@@ -45,7 +45,6 @@ export const getBusiCompName = (
     id = node.busiCompId;
     pageName = node.pageName;
   }
-
   const otherType = busiCompMaps?.[id] ?? '';
 
   if (otherType) {
@@ -53,7 +52,7 @@ export const getBusiCompName = (
   }
 
   if (!pageName) {
-    console.error('业务组件生成异常，未生成就先使用？');
+    console.error(`业务组件id (${id} )生成异常，未生成就先使用？`);
   }
   // 在前置数据中翻译了 pageName 所以直接用就行
   // 如果是两个字符以上的，首字母大写，因为英文会被拆成单个字母，原样拼回去即可

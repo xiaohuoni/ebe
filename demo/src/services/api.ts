@@ -164,9 +164,9 @@ export async function translateToEnglish(params: any): Promise<any> {
     'APP-ID': params.appId,
   };
 
-  return request('/api/lcdp/application/translateToEnglish', {
-    method: 'get',
-    params,
+  return request('/api/lcdp/application/batchTranslateToEnglish', {
+    method: 'post',
+    data: params,
     headers,
   });
 }

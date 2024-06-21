@@ -130,7 +130,7 @@ const Page = () => {
         initialValues={{
           appId: '1106842174504439808',
           pageId: '',
-          isH5: true,
+          isH5: false,
         }}
       >
         <Item name="appId" label="AppID">

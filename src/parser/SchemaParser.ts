@@ -77,7 +77,9 @@ export class SchemaParser implements ISchemaParser {
     hooks?.callHook('compAssetList', { msg: '查找项目使用到的自定义组件' });
 
     compAssetList.forEach((asset: any) => {
-      compAssetListMapping[getSafeTypeName(asset.compCode)] = asset;
+      if (asset.compCode) {
+        compAssetListMapping[getSafeTypeName(asset.compCode)] = asset;
+      }
     });
 
     const globalModels: Record<string, LXGlobalDataInfo> = {};

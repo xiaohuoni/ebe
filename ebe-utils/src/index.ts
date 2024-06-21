@@ -254,7 +254,7 @@ interface CodeServices {
   findApplication: (params: { appId: string }) => Promise<any>;
   translateToEnglish: (params: {
     appId: string;
-    chinese: string;
+    chinese: string[];
     rule: string;
   }) => Promise<any>;
 }
@@ -452,38 +452,44 @@ export const fetchData = async ({
   // 获取翻译，尝试三次
   const getTranslateName = async (
     appId: string,
-    chinese: string,
+    chinese: string[],
     rule: string,
     count = 0,
-  ): Promise<string> => {
+  ): Promise<Record<string, string>> => {
     const translateName = await services?.translateToEnglish?.({
       appId,
       chinese,
       rule,
     });
-    if (translateName && typeof translateName === 'string') {
+    if (translateName && typeof translateName === 'object') {
       return translateName;
     } else if (count < 3) {
       console.error(`翻译错误：${chinese}，第${count + 1}重新尝试`);
       return await getTranslateName(appId, chinese, rule, count + 1);
     } else {
       console.error(`翻译错误：尝试无效`);
-      return 'TranslateError';
+      return {};
     }
   };
-  // 翻译业务组件的名字
-  for (let key = 0; key < busiPages.length; key++) {
-    const translateName = await getTranslateName(
+
+  const chinese = busiPages?.map(item => getSafeTypeName(item.pageName));
+  let translateNames: any = {};
+  if (chinese.length > 0) {
+    translateNames = await getTranslateName(
       appId,
-      getSafeTypeName(busiPages[key].pageName),
+      chinese,
       'UPPER_CAMEL',
     );
+  }
+  // 翻译业务组件的名字
+  for (let key = 0; key < busiPages.length; key++) {
     onProgress({
       log: '翻译业务组件名称',
       progress: 6 + key / busiPages.length,
     });
     busiPages[key]._pageName = busiPages[key].pageName;
-    busiPages[key].pageName = translateName;
+    console.log('====翻译成功', translateNames?.[getSafeTypeName(busiPages[key].pageName)] || busiPages[key].pageName);
+    busiPages[key].pageName = translateNames?.[getSafeTypeName(busiPages[key].pageName)] || busiPages[key].pageName;
   }
   let pagePathEnglishMapping: any = {};
   if (needTranslatePagePathToEnglish) {
@@ -500,27 +506,30 @@ export const fetchData = async ({
       }
       return getName(`${compName}`, type, index + 1);
     };
+
+    const pagesChinese = pages?.map(item => getSafeTypeName(item.pageName));
+    let pagesTranslateNames: any = {};
+    if (pagesChinese.length > 0) {
+      pagesTranslateNames = await getTranslateName(
+        appId,
+        pagesChinese,
+        'UPPER_CAMEL',
+      );
+    }
     // 翻译页面的名字
     for (let key = 0; key < pages.length; key++) {
-      const translateName = await getTranslateName(
-        appId,
-        getSafeTypeName(pages[key].pageName),
-        'LOWER_CAMEL',
-      );
       onProgress({
         log: '翻译页面路径',
         progress: 7 + key / pages.length,
       });
-      console.log(translateName);
       // 如果页面路径翻译失败，就不处理路径
       // index 保留不处理
       if (
-        translateName !== 'TranslateError' &&
         pages[key].pagePath !== '/index'
       ) {
         pagePathEnglishMapping[pages[key].pageContainerType] ??= {};
         const safeTranslateName = getName(
-          translateName,
+          pagesTranslateNames?.[getSafeTypeName(pages[key].pageName)] || pages[key].pageName,
           pages[key].pageContainerType,
         );
         pagePathEnglishMapping[pages[key].pageContainerType][
