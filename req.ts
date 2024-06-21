@@ -28,6 +28,7 @@ process.env.APPID = process.argv.slice(2)[0] ?? process.env.APPID;
   // 读取 Schema
   const schema = await loadSchemaFile(schemaFile);
 
+  const isMobile = schema.options.platform === 'h5';
   const projectBuilder = alita({
     options: { ...schema.options, transformHasAppId },
     useEbeSetup: false,
@@ -70,8 +71,25 @@ process.env.APPID = process.argv.slice(2)[0] ?? process.env.APPID;
   // 走 ebe setup
   copyStatic(
     join(__dirname, './src/plugins/project/framework/alita/template/public'),
-    join(__dirname, './templates/', projectSlug),
+    join(__dirname, './templates/', projectSlug!),
   );
+  if (isMobile) {
+    copyStatic(
+      join(
+        __dirname,
+        './src/plugins/project/framework/alita/template/h5public',
+      ),
+      join(__dirname, './templates/', projectSlug!),
+    );
+  } else {
+    copyStatic(
+      join(
+        __dirname,
+        './src/plugins/project/framework/alita/template/pcpublic',
+      ),
+      join(__dirname, './templates/', projectSlug!),
+    );
+  }
   async function loadSchemaFile(schemaFile: string): Promise<any> {
     if (!schemaFile) {
       throw new Error('invalid schema file name');
