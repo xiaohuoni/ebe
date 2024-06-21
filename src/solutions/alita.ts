@@ -151,12 +151,13 @@ export default function createIceJsProjectBuilder(
             'rmc-tabs': '~1.2.0',
             '@alitajs/f2': '^0.1.1',
             '@lingxiteam/icons': '0.0.3',
-            // 先 fix 这些要整理
-            '@lingxiteam/engine-app': '3.8.1-alpha.10',
-            antd: '4.24.13',
-            '@ant-design/icons': '^4.2.2',
+            'rc-animate': '^2.4.4',
+            ahooks: '^3.7.7',
+            '@js-preview/excel': '^1.4.5',
+            'docx-preview': '0.1.20',
             'react-pdf': '4.2.0',
             'copy-to-clipboard': '^3.3.1',
+            'pdfjs-dist': '2.1.266',
           },
           devDependencies: {
             'copy-webpack-plugin': '5.1.1',
