@@ -12,5 +12,5 @@ test('ebe setup', async () => {
   });
 
   const pkg = JSON.parse(readFileSync(join(outDir, 'package.json'), 'utf-8'));
-  expect(pkg.scripts.postinstall).toBe('');
+  expect(pkg.scripts.postinstall).toBe(undefined);
 });

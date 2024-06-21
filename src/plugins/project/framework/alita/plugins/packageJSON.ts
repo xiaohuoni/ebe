@@ -28,6 +28,7 @@ const pluginFactory: BuilderComponentPluginFactory<any> = (cfg) => {
     const isMobile = options?.platform === 'h5';
     const packageJson: PackageJSON = {
       name: cfg?.packageName || isMobile ? 'app-mobile' : 'app-pc',
+      platform: options?.platform!,
       private: true,
       version: cfg?.packageVersion || '1.0.0',
       scripts: {

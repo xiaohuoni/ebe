@@ -63,6 +63,7 @@ export interface IProjectSchema extends Component {
 export interface PackageJSON {
   name: string;
   version: string;
+  platform: string;
   description?: string;
   dependencies: Record<string, string>;
   devDependencies: Record<string, string>;
