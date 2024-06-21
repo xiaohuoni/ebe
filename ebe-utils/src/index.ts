@@ -472,14 +472,10 @@ export const fetchData = async ({
     }
   };
 
-  const chinese = busiPages?.map(item => getSafeTypeName(item.pageName));
+  const chinese = busiPages?.map((item) => getSafeTypeName(item.pageName));
   let translateNames: any = {};
   if (chinese.length > 0) {
-    translateNames = await getTranslateName(
-      appId,
-      chinese,
-      'UPPER_CAMEL',
-    );
+    translateNames = await getTranslateName(appId, chinese, 'UPPER_CAMEL');
   }
   // 翻译业务组件的名字
   for (let key = 0; key < busiPages.length; key++) {
@@ -488,8 +484,14 @@ export const fetchData = async ({
       progress: 6 + key / busiPages.length,
     });
     busiPages[key]._pageName = busiPages[key].pageName;
-    console.log('====翻译成功', translateNames?.[getSafeTypeName(busiPages[key].pageName)] || busiPages[key].pageName);
-    busiPages[key].pageName = translateNames?.[getSafeTypeName(busiPages[key].pageName)] || busiPages[key].pageName;
+    console.log(
+      '====翻译成功',
+      translateNames?.[getSafeTypeName(busiPages[key].pageName)] ||
+        busiPages[key].pageName,
+    );
+    busiPages[key].pageName =
+      translateNames?.[getSafeTypeName(busiPages[key].pageName)] ||
+      busiPages[key].pageName;
   }
   let pagePathEnglishMapping: any = {};
   if (needTranslatePagePathToEnglish) {
@@ -507,7 +509,7 @@ export const fetchData = async ({
       return getName(`${compName}`, type, index + 1);
     };
 
-    const pagesChinese = pages?.map(item => getSafeTypeName(item.pageName));
+    const pagesChinese = pages?.map((item) => getSafeTypeName(item.pageName));
     let pagesTranslateNames: any = {};
     if (pagesChinese.length > 0) {
       pagesTranslateNames = await getTranslateName(
@@ -524,12 +526,11 @@ export const fetchData = async ({
       });
       // 如果页面路径翻译失败，就不处理路径
       // index 保留不处理
-      if (
-        pages[key].pagePath !== '/index'
-      ) {
+      if (pages[key].pagePath !== '/index') {
         pagePathEnglishMapping[pages[key].pageContainerType] ??= {};
         const safeTranslateName = getName(
-          pagesTranslateNames?.[getSafeTypeName(pages[key].pageName)] || pages[key].pageName,
+          pagesTranslateNames?.[getSafeTypeName(pages[key].pageName)] ||
+            pages[key].pageName,
           pages[key].pageContainerType,
         );
         pagePathEnglishMapping[pages[key].pageContainerType][
