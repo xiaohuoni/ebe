@@ -2752,8 +2752,7 @@ const Layout = (props: any) => {
     if (Array.isArray(reqNbrKeys) && reqNbrKeys.length > 0) {
       const params = {
         attrCodes: reqNbrKeys,
-        appId:
-          /* FIXME: 变量APPID没有被定义，源码生成时被替换为undefined，请检查页面配置 */ undefined,
+        appId: APPID,
       };
       api
         .batchGetAppStaticAttr(params)
@@ -2771,11 +2770,7 @@ const Layout = (props: any) => {
     } else {
       setIsLoding(false);
     }
-    getWaterMarkByAppId(
-      /* FIXME: 变量APPID没有被定义，源码生成时被替换为undefined，请检查页面配置 */ undefined,
-    )
-      .then(setWaterMark)
-      .catch(console.log);
+    getWaterMarkByAppId(APPID).then(setWaterMark).catch(console.log);
   }, []);
   if (isLoding === true) {
     return <Spin spinning />;
@@ -4674,15 +4669,11 @@ const useN = () => {
         } else if (operateType === ARRAY_OPERATE_TYPE.DELETE) {
           ArrayUtil.remove(model, path, predicate);
         } else if (operateType === ARRAY_OPERATE_TYPE.REPLACE) {
-          ArrayUtil.replace(
-            /* FIXME: 变量n没有被定义，源码生成时被替换为undefined，请检查页面配置 */ undefined,
-            path,
-            value,
-          );
+          ArrayUtil.replace(n, path, value);
         } else if (operateType === ARRAY_OPERATE_TYPE.UPDATE) {
           ArrayUtil.update(
             {
-              data: /* FIXME: 变量n没有被定义，源码生成时被替换为undefined，请检查页面配置 */ undefined,
+              data: n,
               path,
               value,
               isPatch: onlySetPatch,

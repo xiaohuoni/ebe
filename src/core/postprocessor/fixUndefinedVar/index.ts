@@ -7,7 +7,18 @@ import { parse } from '../babel/parse';
 import { excludeIdentifiers } from './excludeIdentifiers';
 
 export interface ProcessorConfig {
-  customFileTypeParser: Record<string, string>;
+  /**
+   * 包含要处理的文件路径,
+   * excludes优先级高于includes 无论includes怎么配置，只要excludes包含就不会被处理
+   * @default 全部处理
+   */
+  includes?: RegExp[];
+
+  /**
+   * 要排除的文件
+   * @default 默认不排除
+   */
+  excludes?: RegExp[];
 }
 
 export const getContext = () => {
@@ -62,12 +73,29 @@ const isTopLevelMemberExpressionIdentifier = (path: NodePath<t.Identifier>) => {
   return false;
 };
 
-const factory: PostProcessorFactory<ProcessorConfig> = (config) => {
+const factory: PostProcessorFactory<ProcessorConfig> = (config = {}) => {
+  const { includes = [], excludes = [] } = config;
   const fixUndefinedVar: PostProcessor = (
     content: string,
     fileType: string,
+    name,
+    dir,
   ) => {
-    if (fileType === 'tsx' || fileType === 'ts') {
+    const filePath = `${dir}/${name}${fileType ? `.${fileType}` : ''}`;
+
+    let shouldFix = fileType === 'tsx' || fileType === 'ts';
+
+    if (shouldFix && includes.length) {
+      shouldFix = includes.filter((reg) => reg.test(filePath)).length > 0;
+    }
+
+    if (shouldFix) {
+      if (excludes.filter((reg) => reg.test(filePath)).length > 0) {
+        shouldFix = false;
+      }
+    }
+
+    if (shouldFix) {
       let ast = parse(content);
 
       traverse(ast, {
@@ -114,6 +142,7 @@ const factory: PostProcessorFactory<ProcessorConfig> = (config) => {
         decoratorsBeforeExport: true,
       }).code;
     }
+
     return content;
   };
 

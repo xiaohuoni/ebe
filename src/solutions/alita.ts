@@ -168,7 +168,14 @@ export default function createIceJsProjectBuilder(
       ],
       models: [alita.plugins.models()],
     },
-    postProcessors: [babel(), fixUndefinedVar(), prettier()],
+    postProcessors: [
+      babel(),
+      fixUndefinedVar({
+        // 只需要处理pages/components目录
+        includes: [/^src\/(pages|components)/],
+      }),
+      prettier(),
+    ],
     // postProcessors: [],
     printUtil: options?.printUtil,
   });
