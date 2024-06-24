@@ -1,6 +1,6 @@
 import { CheckOutlined } from '@ant-design/icons';
 import { EngineBaseProps } from '@lingxiteam/types';
-import { Empty, Select as AntdSelect, Spin, Tag } from 'antd';
+import { Select as AntdSelect, Tag } from 'antd';
 import type { SelectProps } from 'antd/es/select';
 import classNames from 'classnames';
 import { isEqual } from 'lodash';
@@ -19,9 +19,11 @@ import {
 } from '../utils';
 import { useMemoizedFn } from '../utils/ahooks';
 import CustomModule from '../utils/CustomModule';
+import EmptyComp from '../utils/Empty';
 import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
 import { useLocale } from '../utils/hooks/useLocale';
 import { renderCommonList } from '../utils/renderReadOnly';
+import SpinComp from '../utils/Spin';
 import {
   checkIfSelectedAll,
   CHECK_ALL_VALUE,
@@ -166,8 +168,13 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
     return _defaultValue;
   }, []);
 
-  const { sandBoxSafeRun, sandBoxLoadModule, onlySyncValue, compatConfig } =
-    getEngineApis() || {};
+  const {
+    sandBoxSafeRun,
+    sandBoxLoadModule,
+    onlySyncValue,
+    compatConfig,
+    dataState,
+  } = getEngineApis() || {};
   const { getLocale, lang } = useLocale(getEngineApis());
   const CHECK_ALL_TEXT = getLocale?.('all', '全选');
   const funcExpExecute = useFuncExpExecute(sandBoxSafeRun, getLocale);
@@ -275,6 +282,34 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
     );
     setDataSource(newData);
   }, [JSON.stringify(propsDataSource)]);
+
+  const renderEmpty = useMemo(
+    () => (
+      <EmptyComp
+        getLocale={getLocale}
+        dataState={dataState}
+        clsName="pcfactory-empty-small"
+      />
+    ),
+    [dataState],
+  );
+
+  // 远程过滤搜索
+  const onRemoteFilter = async (searchText: string) => {
+    try {
+      if (filterOption) {
+        setSearching(true);
+        // 所配置的动作，如发送请求需‘同步’才能正确展示loading
+        await filterOption(searchText ?? '');
+      }
+    } catch (err) {
+      searchTextRef.current = '';
+      console.log('err', err);
+    } finally {
+      setSearching(false);
+    }
+  };
+
   const filterObject: SelectProps = useMemo(() => {
     if (filter === 'local') {
       return {
@@ -289,24 +324,11 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
       return {
         defaultActiveFirstOption: false,
         showSearch: true,
-        notFoundContent: searching ? <Spin size="small" /> : <Empty />,
         filterOption: false,
         onKeyDown: (e) => {
           // 兼容旧浏览器使用keyCode
           if (e.key === 'Enter' || e.keyCode === 13) {
-            try {
-              setSearching(true);
-              if (filterOption) {
-                // filterOption(searchText);
-                filterOption(searchTextRef?.current || '');
-              }
-              setSearching(false);
-            } catch (err) {
-              setSearching(false);
-              // setSearchText('');
-              searchTextRef.current = '';
-              console.log('err', err);
-            }
+            onRemoteFilter(searchTextRef?.current || '');
           }
         },
         onSearch: (input) => {
@@ -320,7 +342,7 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
             // 下拉单选，失去焦点的时候，会触发，多选不触发，导致下拉单选在失去焦点时，会多触发一次，所以input?.length > 0 判断下
             if (filterOption && isInputSearch === true) {
               // filterOption(searchText);
-              filterOption(input);
+              onRemoteFilter(input);
             }
           } catch (err) {
             // setSearchText('');
@@ -331,7 +353,7 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
       };
     }
     return {};
-  }, [filter]);
+  }, [filter, dataState]);
 
   const renderLabel = (c: any, index: number) => {
     if (
@@ -494,9 +516,7 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
   const resetRemoteFilter = () => {
     // 当选中后，需要重新调用远程过滤
     if (filter === 'remote') {
-      if (filterOption) {
-        filterOption('');
-      }
+      onRemoteFilter('');
     }
   };
 
@@ -560,6 +580,9 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
         open={open}
         mode={mode}
         optionLabelProp="label"
+        notFoundContent={
+          searching ? <SpinComp dataState={dataState} /> : renderEmpty
+        }
         onChange={(v) => {
           if (filter === 'local' && searchTextRef.current) {
             // 点击时需要重置过滤条件
@@ -602,23 +625,26 @@ const Select = React.forwardRef<any, MySelectProps>((props, ref) => {
         }}
       >
         {renderCheckAll()}
-        {(dataSource || []).map((c: any, index: number) => {
-          return (
-            <AntdSelect.Option
-              label={renderLabel(c, index)}
-              title={c.label}
-              key={c.value || Math.random()}
-              value={transformValueType(c.value, value ?? [])}
-              disabled={
-                rangeLimit &&
-                rangeLimit.length > 0 &&
-                !rangeLimit.includes(+c.value)
-              }
-            >
-              {renderOption(c, index)}
-            </AntdSelect.Option>
-          );
-        })}
+        {/* 远程过滤searching时展示notFoundContent内的loading */}
+        {searching
+          ? []
+          : (dataSource || []).map((c: any, index: number) => {
+              return (
+                <AntdSelect.Option
+                  label={renderLabel(c, index)}
+                  title={c.label}
+                  key={c.value || Math.random()}
+                  value={transformValueType(c.value, value ?? [])}
+                  disabled={
+                    rangeLimit &&
+                    rangeLimit.length > 0 &&
+                    !rangeLimit.includes(+c.value)
+                  }
+                >
+                  {renderOption(c, index)}
+                </AntdSelect.Option>
+              );
+            })}
       </AntdSelect>
     </FormFields>
   );

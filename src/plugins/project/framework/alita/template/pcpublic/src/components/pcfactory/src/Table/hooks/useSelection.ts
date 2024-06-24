@@ -254,17 +254,28 @@ const useSelection = <T extends { [key: string]: unknown }>(
   const onRowSelectClick = (record: any, index?: number) => {
     // 行禁用，不允许界面选中
     if (rowSelection && !handleIsRowSelectDisabled(record, index)) {
-      if (selectedRowKeys.includes(record[currentRowKey])) {
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        rowSelection.type === 'radio'
-          ? onRowSelected([record], true)
-          : onRowSelected(triggerSingleSelection(selectedRows, record), true);
-      } else {
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        rowSelection.type === 'radio'
-          ? onRowSelected([record], true)
-          : onRowSelected(triggerSingleSelection(selectedRows, record), true);
-      }
+      // 下面if else代码一样？？
+      // if (selectedRowKeys.includes(record[currentRowKey])) {
+      //   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      //   rowSelection.type === 'radio'
+      //     ? onRowSelected([record], true)
+      //     : onRowSelected(
+      //       triggerSingleSelection(selectedRows, record),
+      //       true,
+      //     );
+      // } else {
+      //   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      //   rowSelection.type === 'radio'
+      //     ? onRowSelected([record], true)
+      //     : onRowSelected(
+      //       triggerSingleSelection(selectedRows, record),
+      //       true,
+      //     );
+      // }
+
+      rowSelection.type === 'radio'
+        ? onRowSelected([record], true)
+        : onRowSelected(triggerSingleSelection(selectedRows, record), true);
     }
   };
 

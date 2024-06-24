@@ -17,7 +17,12 @@ export type ColItem = {
 export type Column = {
   key?: string;
   dataIndex: string;
-  type?: string;
+  type?: 'orderCol' | 'dynamicCol';
+
+  /**
+   * 动态列原始key
+   */
+  dynamicOriginKey?: string;
   fixed?: TableColumnProps<any>['fixed'];
   align?: TableColumnProps<any>['align'];
   children?: Array<Column>;
@@ -29,7 +34,10 @@ export interface SummaryProps<T> {
 }
 const useSummaryCol = <T>(props: SummaryProps<T>) => {
   const { summaryConfig, dataSource, columns } = props;
-  const { summaryType, summaryGroup } = useMemo(() => {
+  const { summaryType, summaryGroup } = useMemo<{
+    summaryType: SummaryConfig['type'];
+    summaryGroup: SummaryConfig['group'];
+  }>(() => {
     if (!summaryConfig) {
       return {
         summaryType: 'none',
@@ -43,6 +51,24 @@ const useSummaryCol = <T>(props: SummaryProps<T>) => {
         type === 'single' ? summaryConfig?.col : summaryConfig?.group,
     };
   }, [summaryConfig]);
+
+  // 真实的字段columns
+  const fieldColumns = useMemo(() => {
+    const colList: typeof columns = [];
+    const recursive = (arr: typeof columns) => {
+      if (Array.isArray(arr)) {
+        arr.forEach((c) => {
+          if (c?.children?.length) {
+            recursive(c.children);
+          } else {
+            colList.push(c);
+          }
+        });
+      }
+    };
+    recursive(columns);
+    return colList;
+  }, [columns]);
 
   const summaryColIndexMap = useMemo(() => {
     const map = new Map<
@@ -80,6 +106,7 @@ const useSummaryCol = <T>(props: SummaryProps<T>) => {
       colSpan?: number;
       dataIndexList?: string[];
       operateType?: ColItem['operateType'];
+      type?: Column['type'];
       prev?: {
         index: number;
         fixed?: TableColumnProps<T>['fixed'];
@@ -88,8 +115,19 @@ const useSummaryCol = <T>(props: SummaryProps<T>) => {
     }> = [];
     // 标记当前已经记录的总结列
     const currentSummaryColMap: Record<number, (typeof col)[number]> = {};
-    columns?.forEach((c, i) => {
-      if (i === 0 && c.type === 'orderCol' && summaryConfig?.name) {
+    fieldColumns?.forEach((c, i) => {
+      const { key, dataIndex, dynamicOriginKey, type } = c;
+      let matchKey = key;
+      if (type === 'dynamicCol' && dynamicOriginKey) {
+        matchKey = dynamicOriginKey;
+      }
+      const summaryCol = summaryColIndexMap.get(matchKey || '');
+      // 首列是序号列或者是没有参与合并的，用于展示合并文案
+      if (
+        i === 0 &&
+        (type === 'orderCol' || !summaryCol) &&
+        summaryConfig?.name
+      ) {
         col.push({
           title: summaryConfig?.name,
           align: c.align,
@@ -99,9 +137,8 @@ const useSummaryCol = <T>(props: SummaryProps<T>) => {
           title: '',
           dataIndexList: [],
           align: c.align,
+          type,
         };
-        const { key, dataIndex } = c;
-        const summaryCol = summaryColIndexMap.get(key || '');
         if (summaryCol) {
           const { index, operateType } = summaryCol;
           if (currentSummaryColMap[index]) {
@@ -109,9 +146,15 @@ const useSummaryCol = <T>(props: SummaryProps<T>) => {
             if (
               prevItem?.prev &&
               i === prevItem?.prev?.index + 1 &&
-              prevItem?.prev?.fixed === c?.fixed
+              prevItem?.prev?.fixed === c?.fixed &&
+              !(
+                summaryType === 'single' &&
+                type === 'dynamicCol' &&
+                type === prevItem?.type
+              )
             ) {
               // 勾选列是相邻的，则允许合并
+              // 单列合计时，需排除动态列情况
               item = prevItem;
             } else {
               // 单独一列
@@ -180,7 +223,7 @@ const useSummaryCol = <T>(props: SummaryProps<T>) => {
     dataSource,
     summaryConfig?.name,
     summaryConfig?.decimal,
-    columns,
+    fieldColumns,
     summaryColIndexMap,
   ]);
   return {

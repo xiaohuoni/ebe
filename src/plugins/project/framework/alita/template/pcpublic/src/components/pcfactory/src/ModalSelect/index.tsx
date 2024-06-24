@@ -375,7 +375,7 @@ const ModalSelect = LingxiForwardRef<any, MyModalSelectProps>((props, ref) => {
   };
   const lastValue: any = useMemo(() => {
     if (options?.length) {
-      return options[options?.length - 1] && options[options?.length - 1];
+      return options[options?.length - 1];
     }
     return {};
   }, [options]);

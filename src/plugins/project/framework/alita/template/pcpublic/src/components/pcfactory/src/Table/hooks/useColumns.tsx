@@ -29,10 +29,12 @@ import HeaderCellTitle from '../HeaderCell/HeaderCellTitle';
 import {
   compareFn,
   handleExpandColumn,
+  handleMergeHeader,
   handleMultiLevelHeader,
   handleRecursiveParseColumns,
   treeRootName,
 } from '../utils';
+import { getOrSaveData } from '../utils/indexedDBHelper';
 
 const ACTION_COL_KEY = '_actions';
 
@@ -97,9 +99,15 @@ const useColumns = (props: any) => {
     getLocale,
     onTableCellClick,
     getRealIndexById,
+    showCustom,
   } = props;
 
   const actionsMap: any = actionsMapFn(getLocale);
+
+  const { customEngineApi, getUserInfo } = engineApis || {};
+
+  const { userId = '' } = getUserInfo?.() || {};
+  const fatherBOFramerId = customEngineApi?.getFatherComId?.();
 
   // const api = getApis();
 
@@ -393,7 +401,7 @@ const useColumns = (props: any) => {
           index,
           i,
           btnList,
-          undefined,
+          isPopover,
           btnList?.slice(i),
         );
       }
@@ -536,6 +544,9 @@ const useColumns = (props: any) => {
                 }
                 trigger="click"
                 placement="topRight"
+                getPopupContainer={(triggerNode: HTMLElement) =>
+                  triggerNode?.parentNode as HTMLElement
+                }
               >
                 <Button
                   type="link"
@@ -737,11 +748,12 @@ const useColumns = (props: any) => {
                 };
               }
 
+              // 动态列标记一下，合计行需要根据key处理
+              realCol.dynamicOriginKey = realCol.key;
               // key增强，拼接index，防止重复
               realCol.key = `${realCol.key}_${index}`;
-
               // 移除动态列标识字段，和动态列数据源字段
-              delete realCol.type;
+              // delete realCol.type;
               delete realCol.dataSource;
               return realCol;
             });
@@ -900,7 +912,7 @@ const useColumns = (props: any) => {
    * customCols：左右固定列 + 已选的、自定义顺序的列
    * customizableCols：可自定义(显隐、顺序)的列
    */
-  const [customCols, customizableCols] = useMemo(() => {
+  const [customCols, customizableCols, groupMark] = useMemo(() => {
     const fixedLeft: any[] = [];
     const fixedRight: any[] = [];
     let newColumns = [...columns];
@@ -915,6 +927,8 @@ const useColumns = (props: any) => {
     const colMap: any = {};
     // 记录重新调整列内容后之前没有的列
     const extendCols: any[] = [];
+    // 记录每层分组的数量
+    const group = new Map<number, number>();
     columns.forEach((c: any, i: number) => {
       try {
         let isHidden;
@@ -943,6 +957,17 @@ const useColumns = (props: any) => {
             extendCols.push(newCol);
           }
         }
+        if (!isHidden && newCol?.group) {
+          newCol.group.forEach((c: string, gi: number) => {
+            if (!group.has(gi)) {
+              group.set(gi, 0);
+            }
+            const len = group.get(gi) || 0;
+            if (c) {
+              group.set(gi, len + 1);
+            }
+          });
+        }
       } catch (e) {
         console.log(e);
       }
@@ -962,7 +987,7 @@ const useColumns = (props: any) => {
     );
     // 固定列与自定义列拼接在一起组成最终展示列
     customCols = fixedLeft.concat(customCols).concat(fixedRight);
-    return [customCols, customizableCols];
+    return [customCols, customizableCols, group];
   }, [columns, colCustomOrder, customSelectedCols]);
 
   const actionRowFlag = useRef<boolean>(false);
@@ -1112,7 +1137,7 @@ const useColumns = (props: any) => {
 
   const finalcolumns: any[] = useMemo(() => {
     const newColumns = [...customCols];
-    const finalCols: ColumnProps<any>[] = [];
+    let finalCols: ColumnProps<any>[] = [];
 
     // 用于表格头分组的数据结构：左树根节点，为第0层
     const leftTree: any = {
@@ -1517,6 +1542,13 @@ const useColumns = (props: any) => {
         );
       }
 
+      if (c?.group) {
+        // 过滤掉整层为空的分组
+        c.group = c.group.filter(
+          (_: string, gi: number) => groupMark.get(gi) !== 0,
+        );
+      }
+
       // 处理分组逻辑
       handleMultiLevelHeader(leftTree, newColumns[i]);
     });
@@ -1527,6 +1559,8 @@ const useColumns = (props: any) => {
     } else {
       finalCols.push(...newColumns);
     }
+
+    finalCols = handleMergeHeader(finalCols as any[]) || finalCols;
 
     if (
       !hiddenAction &&
@@ -1759,7 +1793,6 @@ const useColumns = (props: any) => {
       setTimeout(() => {
         const thList =
           tableRef?.current?.querySelectorAll('colgroup')?.[1]?.children || [];
-
         for (let i = 0; i < thList.length; i += 1) {
           const rowWidth = thList[i].offsetWidth;
           columnWidth[i] = rowWidth;
@@ -1776,40 +1809,64 @@ const useColumns = (props: any) => {
 
   // 将自定义列地相关操作记录到sessionStorage中，刷新时保留
   useEffect(() => {
+    // 需要开启自定义列才进行存储
     if (
       compId &&
-      (colCustomOrder?.length > 0 || customSelectedCols !== undefined)
+      (colCustomOrder?.length > 0 || customSelectedCols !== undefined) &&
+      showCustom?.hasCustom
     ) {
-      const tableStr: string =
-        window.sessionStorage.getItem('TABLE_CUSTOM') || '{}';
-      try {
-        const tableInfo = JSON.parse(tableStr);
-        if (!tableInfo[compId]) {
-          tableInfo[compId] = {};
-        }
-        const target = tableInfo[compId];
-        target.ORDER = colCustomOrder;
-        target.SELECTED = customSelectedCols;
-        const newRes = JSON.stringify(tableInfo);
-        if (tableStr !== newRes) {
-          window.sessionStorage.setItem('TABLE_CUSTOM', newRes);
-        }
-      } catch (e) {
-        //
-      }
+      // const tableStr: string = window.sessionStorage.getItem('TABLE_CUSTOM') || '{}';
+      // try {
+      //   const tableInfo = JSON.parse(tableStr);
+      //   if (!tableInfo[compId]) {
+      //     tableInfo[compId] = {};
+      //   }
+      //   const target = tableInfo[compId];
+      //   target.ORDER = colCustomOrder;
+      //   target.SELECTED = customSelectedCols;
+      //   const newRes = JSON.stringify(tableInfo);
+      //   if (tableStr !== newRes) {
+      //     window.sessionStorage.setItem('TABLE_CUSTOM', newRes);
+      //   }
+      // } catch (e) {
+      //   //
+      // }
+
+      // 修改数据的存储方法
+      getOrSaveData({
+        appId: props?.appId || props?.$$componentItem?.appId || '',
+        userId,
+        compId: fatherBOFramerId
+          ? `${fatherBOFramerId}-${props.$$componentItem?.uid}`
+          : props.$$componentItem?.uid,
+        save: true,
+        order: colCustomOrder,
+        selected: customSelectedCols,
+      });
     }
-  }, [colCustomOrder, customSelectedCols, compId]);
+  }, [colCustomOrder, customSelectedCols, compId, showCustom]);
 
   useEffect(() => {
-    if (compId) {
-      const tableStr: string =
-        window.sessionStorage.getItem('TABLE_CUSTOM') || '{}';
-      const tableInfo = JSON.parse(tableStr);
-      const { ORDER = [], SELECTED } = tableInfo[compId] || {};
-      setColCustomOrder(ORDER);
-      setCustomSelectedCols(SELECTED);
+    if (compId && showCustom?.hasCustom) {
+      // const tableStr: string = window.sessionStorage.getItem('TABLE_CUSTOM') || '{}';
+      // const tableInfo = JSON.parse(tableStr);
+      // const { ORDER = [], SELECTED } = tableInfo[compId] || {};
+      // setColCustomOrder(ORDER);
+      // setCustomSelectedCols(SELECTED);
+      getOrSaveData({
+        appId: props?.appId || props?.$$componentItem?.appId || '',
+        userId,
+        compId: fatherBOFramerId
+          ? `${fatherBOFramerId}-${props.$$componentItem?.uid}`
+          : props.$$componentItem?.uid,
+        save: false,
+      }).then((result: any) => {
+        const { ORDER = [], SELECTED } = result || {};
+        setColCustomOrder(ORDER);
+        setCustomSelectedCols(SELECTED);
+      });
     }
-  }, [compId]);
+  }, [compId, showCustom]);
 
   useEffect(() => {
     const newColumns = [...columns];

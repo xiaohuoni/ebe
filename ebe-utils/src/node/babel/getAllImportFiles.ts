@@ -4,7 +4,11 @@ import { dirname, resolve } from 'path';
 import { getRealPath, isJsFile, isLessFile } from './getRealPath';
 import { parse } from './parse';
 
-export const getAllImportFiles = (target: string, allImportFiles: any = {}) => {
+export const getAllImportFiles = (
+  cwd: string,
+  target: string,
+  allImportFiles: any = {},
+) => {
   if (!existsSync(target)) {
     return allImportFiles;
   }
@@ -23,12 +27,12 @@ export const getAllImportFiles = (target: string, allImportFiles: any = {}) => {
       // @/ 是别名到 ${cwd}/src
       let nextPath = resolve(dirname(target), importName);
       if (isAlias) {
-        nextPath = importName.replace('@/', `${process.cwd()}/src/`);
+        nextPath = importName.replace('@/', `${cwd}/src/`);
       }
       let nextTarget = getRealPath(nextPath);
       if (!allImportFiles[nextTarget]) {
         allImportFiles[nextTarget] = true;
-        getAllImportFiles(nextTarget, allImportFiles);
+        getAllImportFiles(cwd, nextTarget, allImportFiles);
       }
     }
   };

@@ -1,3 +1,4 @@
+import { createFromIconfontCN } from '@ant-design/icons';
 import { Icon as LegacyIcon } from '@lingxiteam/icons';
 import { LingxiForwardRef } from '@lingxiteam/types';
 import classnames from 'classnames';
@@ -5,8 +6,6 @@ import { useEffect, useImperativeHandle, useMemo, useState } from 'react';
 import useHiddenStyle from '../utils/hooks/useHiddenStyle';
 import { useListenProps } from '../utils/hooks/useListenState';
 import './index.less';
-
-const { createFromIconfontCN } = LegacyIcon;
 
 export interface IconFileProps {
   fileId: string;

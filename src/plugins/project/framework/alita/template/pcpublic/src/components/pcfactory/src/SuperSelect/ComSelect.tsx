@@ -245,7 +245,7 @@ const ComSelect = forwardRef<any, ComSelectProps>((props) => {
           });
           // 针对选择的数据在对应表中已删除时，手动补齐数据做展示
           const others: any[] = [];
-          ids.map((i: any) => {
+          ids.forEach((i: any) => {
             // eslint-disable-next-line eqeqeq
             if (!res.find((r) => r[valueKey?.key] == i)) {
               others.push({
@@ -253,7 +253,6 @@ const ComSelect = forwardRef<any, ComSelectProps>((props) => {
                 [labelKey?.key || valueKey?.key]: i,
               });
             }
-            return i;
           });
           setSelectedRows([...res, ...others]);
           // 如果初次未传入正确的value数据类型

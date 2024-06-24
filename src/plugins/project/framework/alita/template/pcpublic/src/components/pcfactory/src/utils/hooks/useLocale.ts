@@ -103,6 +103,7 @@ const langOptions = {
   'Upload.actionStrict': '上传接口未配置，请返回修改！',
   'Upload.fileLimit': (params: any) => `超出文件数量限制，当前为${params.num}`,
   cancelConfirm: '取消后修改内容将不保存，确认取消吗？',
+  cancel: '取消',
 };
 
 export const lang = (t: string, tip?: unknown) => {

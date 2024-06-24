@@ -9,6 +9,8 @@ import {
   useCommonImperativeHandle,
   useListenProps,
 } from '../utils';
+import EmptyComp from '../utils/Empty';
+import { useLocale } from '../utils/hooks/useLocale';
 import { flattenTreeData, renderCommonList } from '../utils/renderReadOnly';
 
 const { TreeNode } = TreeSelect;
@@ -136,7 +138,7 @@ const MyTreeSelect = LingxiForwardRef<any, MyTreeSelectProps>((props, ref) => {
 
   const engineApis = getEngineApis?.() || {};
 
-  const { onlySyncValue } = engineApis;
+  const { onlySyncValue, dataState } = engineApis;
 
   // 加载数据字段映射
   const [treeService, setTreeService] = useListenProps(props.treeService);
@@ -152,6 +154,8 @@ const MyTreeSelect = LingxiForwardRef<any, MyTreeSelectProps>((props, ref) => {
   const treeNodeMap = useRef<any>({});
   // 用来记录当前展开的key，节点展开事件中以获取展开的节点
   const [expandedKeys, setExpandedKeys] = useState<any[]>([]);
+
+  const { getLocale } = useLocale(engineApis);
 
   const { formFieldsRef, required, readOnly, disabled, finalRules } =
     useCommonImperativeHandle(ref, props, {
@@ -610,6 +614,13 @@ const MyTreeSelect = LingxiForwardRef<any, MyTreeSelectProps>((props, ref) => {
           }
           resetSelectAll();
         }}
+        notFoundContent={
+          <EmptyComp
+            getLocale={getLocale}
+            dataState={dataState}
+            clsName="pcfactory-empty-small"
+          />
+        }
         onTreeExpand={(keys) => {
           setExpandedKeys(keys);
           // 展开的时候触发

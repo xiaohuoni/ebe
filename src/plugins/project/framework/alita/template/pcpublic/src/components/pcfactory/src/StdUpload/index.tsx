@@ -266,6 +266,16 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
           ) {
             effectDownUrl = filePathInServer;
           }
+          if (
+            effectDownUrl &&
+            effectDownUrl.match('X-SIGN=') &&
+            engineApis?.service?.buildXSignUrl
+          ) {
+            // 如果资源地址使用签名模式，需更新地址签名
+            effectDownUrl = engineApis.service.buildXSignUrl(
+              effectDownUrl.slice(0, url.indexOf('&X-SIGN')),
+            );
+          }
           return {
             ...file,
             url:
@@ -458,7 +468,7 @@ const FormUpload = LingxiForwardRef<any, MyFormUploadProps>((props, ref) => {
         const addWaterMark =
           isWatermark && (!optionalFile || downloadWay === '2');
 
-        downUrl = engineApis?.service?.getAppFileUrlById({
+        downUrl = await engineApis?.service?.getAppFileUrlById({
           addWaterMark,
           fileId: file.fileId,
         });

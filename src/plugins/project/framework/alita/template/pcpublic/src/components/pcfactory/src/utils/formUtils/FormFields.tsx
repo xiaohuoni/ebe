@@ -506,12 +506,17 @@ export const FormFields = React.forwardRef<FormFieldsHooks, FormFieldsProps>(
       }
     }, []);
 
+    const finalValue = useMemo(
+      () =>
+        props.handleFormValue
+          ? props.handleFormValue(props.value)
+          : props.value,
+      [props.value],
+    );
+
     useUpdateEffect(() => {
       const { compatConfig } = getEngineApis?.() || {};
 
-      const finalValue = props.handleFormValue
-        ? props.handleFormValue(props.value)
-        : props.value;
       // 控件在表单内需要更新值到form中
       if (formContext.inForm && formContext.form) {
         if (compatConfig?.isFormCompat && finalValue === undefined) {
@@ -530,11 +535,11 @@ export const FormFields = React.forwardRef<FormFieldsHooks, FormFieldsProps>(
           widgetRef.current?.onChange(finalValue);
         }
       }
-    }, [props.value]);
+    }, [finalValue]);
 
     if (!inForm) {
       const valueObj = {
-        [valuePropName]: props.value,
+        [valuePropName]: finalValue,
       };
       return props.visible ? (
         <WrapperInput

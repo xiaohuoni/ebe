@@ -21,11 +21,11 @@ const deepCopy = (data: any) => JSON.parse(JSON.stringify(data));
 const evalMyFunction = (str: any, params: any = {}) => {
   if (!str) return '';
 
-  // eslint-disable-next-line no-control-regex
+  // 去除前后$, 去除注释，去除换行
   let codeStr = str
     .replace(/^\$/, '')
     .replace(/\$$/, '')
-    .replace(/\/\*.+[^\x05]*\*\//, '')
+    .replace(/\/\*.+[\s\S]*\*\//, '')
     .replace(/\n/, '');
 
   try {

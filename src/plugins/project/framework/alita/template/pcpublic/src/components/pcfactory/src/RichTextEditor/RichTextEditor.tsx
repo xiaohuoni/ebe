@@ -3,9 +3,8 @@ import { LingxiForwardRef } from '@lingxiteam/types';
 import type { FormItemProps } from 'antd/lib/form';
 import classnames from 'classnames';
 import React, { CSSProperties, useMemo } from 'react';
-import { FormFields, getFieldsProps } from '../utils';
+import { filterHtmlNode, FormFields, getFieldsProps } from '../utils';
 import { useLocale } from '../utils/hooks/useLocale';
-import { renderRichText } from '../utils/renderReadOnly';
 
 export interface MyRichTextEditorProps extends FormItemProps {
   visible?: boolean;
@@ -84,7 +83,6 @@ const BaseRichTextEditor = React.forwardRef(
       style,
       richTextRef,
     } = props;
-    engineApis;
 
     const heightStyle = useMemo(
       () =>
@@ -129,7 +127,7 @@ const BaseRichTextEditor = React.forwardRef(
           ref={richTextRef}
           {...richTextProps}
           {...heightStyle}
-          autofocus={!disabled}
+          autofocus={false} // 现场希望不要默认获取焦点
           disabled={disabled}
           value={value ?? ''}
           language={language}
@@ -211,7 +209,16 @@ const RichTextEditor = LingxiForwardRef<any, MyRichTextEditorProps>(
         disabled={disabled as any}
         readOnly={readOnly}
         rules={finalRules}
-        render={renderRichText}
+        render={(val: string) => {
+          const newVal = filterHtmlNode(val);
+          return (
+            <span
+              className="ued-input-readonly"
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{ __html: newVal ?? '--' }}
+            />
+          );
+        }}
       >
         <BaseRichTextEditor
           richTextRef={richTextRef}

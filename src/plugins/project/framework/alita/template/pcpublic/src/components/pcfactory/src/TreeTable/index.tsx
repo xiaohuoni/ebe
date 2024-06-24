@@ -18,7 +18,8 @@ import {
 } from '../Table/hooks';
 import TableHead from '../Table/TableHead';
 import type { MyTableProps } from '../Table/types/prop';
-import { customLocale } from '../utils/Empty/customLocale';
+import { useCreation } from '../utils/ahooks';
+import EmptyComp from '../utils/Empty';
 import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
 import { useLocale } from '../utils/hooks/useLocale';
 import { useCMDAction, useExpandable } from './hooks';
@@ -48,7 +49,7 @@ const TreeTable = React.forwardRef<any, MyTableProps>((props, ref) => {
   const [form] = Form.useForm();
 
   const engineApis = getEngineApis?.();
-  const { sandBoxSafeRun } = engineApis || {};
+  const { sandBoxSafeRun, dataState } = engineApis || {};
 
   const { getLocale } = useLocale(engineApis);
 
@@ -71,6 +72,25 @@ const TreeTable = React.forwardRef<any, MyTableProps>((props, ref) => {
     currentRowKey,
     boundDataSource,
   });
+
+  // 根据id获取真实的下标，避免过滤和排序后影响下标
+  const { getRealIndexById } = useCreation(() => {
+    const indexMap = new Map<string | number, number>();
+    return {
+      getRealIndexById: (id: string | number) => {
+        if (indexMap.has(id)) {
+          return indexMap.get(id);
+        }
+        const index = (innerDataSource || []).findIndex(
+          (c: any) => c[currentRowKey] === id,
+        );
+        if (index !== -1) {
+          indexMap.set(id, index);
+        }
+        return index;
+      },
+    };
+  }, [innerDataSource, currentRowKey]);
 
   const {
     rowSelection,
@@ -164,6 +184,7 @@ const TreeTable = React.forwardRef<any, MyTableProps>((props, ref) => {
     loading,
     rowSelection,
     getLocale,
+    getRealIndexById,
   });
 
   const { scroll, tableWrapRef, initTableWrapWidthRef, getTableWrapWidth } =
@@ -229,7 +250,11 @@ const TreeTable = React.forwardRef<any, MyTableProps>((props, ref) => {
           engineApis={engineApis}
         />
         <Table
-          locale={customLocale}
+          locale={{
+            emptyText: (
+              <EmptyComp dataState={dataState} getLocale={getLocale} />
+            ),
+          }}
           ref={tableRef}
           bordered={isBordered}
           className={innerClassName}

@@ -1,5 +1,4 @@
 import { LingxiForwardRef } from '@lingxiteam/types';
-import { Spin } from 'antd';
 import React, {
   CSSProperties,
   useEffect,
@@ -10,6 +9,7 @@ import React, {
 } from 'react';
 import { useHiddenStyle, useListenProps } from '../utils';
 import { useLocale } from '../utils/hooks/useLocale';
+import SpinComp from '../utils/Spin';
 import useBackgroundStyle from './useBackgroundStyle';
 
 export interface MyViewProps {
@@ -37,9 +37,13 @@ const View = LingxiForwardRef<any, MyViewProps>((props: any, ref) => {
 
   const [loading, setLoading] = useListenProps(props.loading);
 
+  const [loadingText, setLoadingText] = useState<string>();
+
   const engineApis = getEngineApis?.() || {};
 
-  const { getLocale, lang } = useLocale(engineApis);
+  const { dataState } = engineApis;
+
+  const { lang } = useLocale(engineApis);
 
   const { backgroundStyle } = useBackgroundStyle({
     engineApis,
@@ -93,12 +97,19 @@ const View = LingxiForwardRef<any, MyViewProps>((props: any, ref) => {
     if (loading && loadingRef.current) {
       return (
         <div style={getLoadingStyle(true)}>
-          <Spin tip={getLocale?.('loading')} />
+          <SpinComp dataState={dataState} tip={loadingText} />
         </div>
       );
     }
     return null;
-  }, [loading, loadingRef.current, reload, lang]);
+  }, [
+    loading,
+    loadingRef.current,
+    reload,
+    lang,
+    dataState?.loading,
+    loadingText,
+  ]);
 
   useEffect(() => {
     if (loading) {
@@ -109,6 +120,9 @@ const View = LingxiForwardRef<any, MyViewProps>((props: any, ref) => {
   useImperativeHandle(ref, () => ({
     setLoading(_loading: boolean) {
       setLoading(_loading);
+    },
+    setLoadingText(_loadingText: string) {
+      setLoadingText(_loadingText);
     },
   }));
 

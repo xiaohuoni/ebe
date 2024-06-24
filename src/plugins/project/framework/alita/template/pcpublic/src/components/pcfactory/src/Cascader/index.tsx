@@ -7,6 +7,8 @@ import {
   useCommonImperativeHandle,
   useListenProps,
 } from '../utils';
+import EmptyComp from '../utils/Empty';
+import { useLocale } from '../utils/hooks/useLocale';
 import { renderCommonList } from '../utils/renderReadOnly';
 
 const CASCADER_WRAPPER_CLASSNAME = 'ued-cascader-wrap';
@@ -74,6 +76,7 @@ export interface MyCascaderProps {
   tipSize?: string; // 文字提示
   tipWidth?: string; // 提示自定义的宽度
   tipHeight?: string; // 提示自定义的高度
+  getEngineApis?: any;
 }
 
 const prefixCls = 'cascader';
@@ -153,8 +156,13 @@ const MyCascader: React.FC<MyCascaderProps> = forwardRef((props, ref) => {
     tipSize,
     tipWidth,
     tipHeight,
+    getEngineApis,
     ...restProps
   } = props;
+  const engineApis = getEngineApis?.() || {};
+
+  const { dataState } = engineApis;
+  const { getLocale } = useLocale(engineApis);
 
   const customStyle = restProps.style || {};
   const dropdownClassName = `dropdownClassName_${compId}`;
@@ -342,6 +350,13 @@ const MyCascader: React.FC<MyCascaderProps> = forwardRef((props, ref) => {
         style={restCusStyles}
         multiple={multiple}
         displayRender={renderDisplay}
+        notFoundContent={
+          <EmptyComp
+            getLocale={getLocale}
+            dataState={dataState}
+            clsName="pcfactory-empty-small"
+          />
+        }
         showSearch={
           showSearch
             ? {

@@ -13,7 +13,7 @@ import {
   useListenProps,
 } from '../utils';
 import CustomModule from '../utils/CustomModule';
-import { customLocale } from '../utils/Empty/customLocale';
+import EmptyComp from '../utils/Empty';
 import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
 import { useLocale } from '../utils/hooks/useLocale';
 
@@ -131,7 +131,8 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
     ...restProps
   } = props;
 
-  const { sandBoxSafeRun, sandBoxLoadModule } = getEngineApis() || {};
+  const { sandBoxSafeRun, sandBoxLoadModule, dataState } =
+    getEngineApis() || {};
 
   const { getLocale, lang } = useLocale(getEngineApis());
 
@@ -548,7 +549,11 @@ const MyTransfer = LingxiForwardRef<any, MyTransferProps>((props, ref) => {
           }
           return (
             <Table
-              locale={customLocale}
+              locale={{
+                emptyText: (
+                  <EmptyComp dataState={dataState} getLocale={getLocale} />
+                ),
+              }}
               columns={finalColumns}
               dataSource={currentDataSource}
               rowKey={`${uid}`}

@@ -19,6 +19,7 @@ import DatePicker from './DatePicker';
 import Description from './Description';
 import Divider from './Divider';
 import Dropdown from './Dropdown';
+import DynamicDataContainer from './DynamicDataContainer';
 import DynamicTabs from './DynamicTabs';
 import Form from './Form';
 import FormGroup from './FormGroup';
@@ -103,6 +104,7 @@ export default {
   Description,
   Divider,
   Dropdown,
+  DynamicDataContainer,
   DynamicTabs,
   Form,
   FormGroup,
@@ -187,6 +189,7 @@ export {
   Description,
   Divider,
   Dropdown,
+  DynamicDataContainer,
   DynamicTabs,
   Form,
   FormGroup,

@@ -2,11 +2,17 @@ import { Table } from 'antd';
 import { LevelItem } from '../types/prop';
 // 以下逻辑调整时需同步到packages/editor/src/Input/TableColorGroup/utils.ts
 export const treeRootName = 'tree-root';
+export const hiddenHeaderCellClass = 'ued-table-hidden-head-cell';
 export type SingleRowInfo = {
   [rowIndex: number]: {
     rowIdAndTitleColMap: any;
     nextRowsChildren: any;
   };
+};
+// 获取分组名称，为空的向下补全
+const findGroupName = (groupList: string[], startIndex: number) => {
+  const list = groupList.slice(startIndex);
+  return list.find((g) => !!g) || '';
 };
 export const handleMultiLevelHeader = (leftTree: any, column: any) => {
   const { fixed = '' } = column;
@@ -23,8 +29,8 @@ export const handleMultiLevelHeader = (leftTree: any, column: any) => {
   }
 
   // 过滤掉空的配置
-  group = group.filter((g: any) => g);
-  // 保留一个空配置，以进入构造
+  // group = group.filter((g: any) => g);
+  // // 保留一个空配置，以进入构造
   group = group.length === 0 ? [''] : group;
 
   const groupLen = group.length;
@@ -67,7 +73,7 @@ export const handleMultiLevelHeader = (leftTree: any, column: any) => {
       }
 
       const rightTreeCurrLevelLast: any = {
-        title: group[rightLevel - 1] || '', // 为空的话，强制设置为 ''
+        title: findGroupName(group, rightLevel - 1), // 为空的话，强制设置为 ''
         // 当前层为第一层时，将parent指向左树的根节点，为后续合并做准备
         parent: tempRightTree.title === treeRootName ? leftTree : tempRightTree,
         //
@@ -106,47 +112,91 @@ export const handleMultiLevelHeader = (leftTree: any, column: any) => {
     }
 
     // 遍历右树（i 表示右树的层级）：
-    for (let i = 0; i <= groupLen + 1; i += 1) {
+    for (let i = 0; i <= groupLen; i += 1) {
       const leftTreeLast = leftTreeLevelMap[i]; // 左树第i层的最后一个
       const current = rightTreeLevelMap[i]; // 右树第 i 层的最后一个（唯一一个）
-
-      // 当前层相同组名相同
-      if (
-        current?.title === leftTreeLast?.title &&
-        // 如果是第一层，还要额外比对列固定配置是否相同
-        i === 1
-          ? current?.fixed === leftTreeLast?.fixed
-          : true
-      ) {
-        // 需要进一步比较下一层组名是否相同
-        const currentNext = rightTreeLevelMap[i + 1];
-        const leftTreeNextLast = leftTreeLevelMap[i + 1]; // 左树第i层的最后一个
-
-        // 如果相同 且 右树下一层非最后一层(即，有 children)，则continue，直接进行下一层处理
-        if (
-          currentNext?.title === leftTreeNextLast?.title &&
-          currentNext?.children &&
-          Array.isArray(currentNext?.children)
-        ) {
-          // eslint-disable-next-line no-continue
-          continue;
-        } else {
-          // 如果不相同，则直接将右树的下一层接入左树的下一层
-          if (leftTreeLast?.children) {
-            leftTreeLast.children.push(...current.children);
-          } else {
-            leftTreeLast.children = [...current.children];
-          }
-          // 退出循环，等待合并下一列右树
-          break;
+      if (i === 0) {
+        if (!leftTreeLast.children) {
+          leftTreeLast.children = [];
         }
-      } else {
-        // 当前层组名不同，则直接将右树，并入左树
-        leftTreeLast.parent.children.push(current);
-        break;
+        leftTreeLast.children.push(...(current?.children || []));
+      } else if (
+        current &&
+        current?.title === leftTreeLast?.title &&
+        current?.fixed === leftTreeLast?.fixed
+      ) {
+        current.colSpanStart = leftTreeLast?.colSpanStart || leftTreeLast;
+        const colSpan = current?.colSpanStart?.colSpan || 1;
+        current.colSpanStart.colSpan = colSpan + 1;
+        // 被合并的单元格隐藏
+        current.className = hiddenHeaderCellClass;
+      }
+      if (current) {
+        current.colSpan = 1;
       }
     }
   }
+};
+
+// 合并上下相同的分组
+export const handleMergeHeader = <
+  T extends {
+    title?: string;
+    className?: string;
+    children?: T[];
+    colSpan?: number;
+  },
+>(
+  columns?: Array<T>,
+) => {
+  const getRowSpan = (col: T) => {
+    let span = 1;
+    const newCol = { ...col };
+    let current: T | null = newCol;
+    while (current !== null) {
+      if (current?.children?.length === 1) {
+        const next: T = current.children?.[0];
+        if (
+          next.title === col?.title &&
+          col?.title &&
+          next.className !== hiddenHeaderCellClass &&
+          col?.colSpan === next?.colSpan
+        ) {
+          // 分组名一致，上下合并
+          span += 1;
+          next.className = hiddenHeaderCellClass;
+          current = next;
+        } else {
+          break;
+        }
+      } else {
+        break;
+      }
+    }
+    return {
+      ...newCol,
+      rowSpan: span,
+    };
+  };
+  const recursive = (cols: T[]) => {
+    return cols.map((col) => {
+      if (col?.title) {
+        const { rowSpan } = getRowSpan(col);
+        if (rowSpan > 1) {
+          return {
+            ...col,
+            rowSpan,
+            // 重置一下子级，将相同的分组上下合并
+          };
+        }
+      }
+      if (col.children) {
+        col.children = recursive(col.children);
+      }
+      return col;
+    });
+  };
+  return recursive(columns || []);
 };
 
 export const handleExpandColumn = ({
@@ -198,7 +248,9 @@ export const EMPTY_ROW_TEMP_KEY_ATTR = '_lxTempKey';
 export const LATEST_EMPTY_ROW_FLAG_ATTR = '_latestCreation';
 
 export const deleteTempRowProperties = (row: any) => {
-  delete row?.[LATEST_EMPTY_ROW_FLAG_ATTR];
+  if (row) {
+    delete row[LATEST_EMPTY_ROW_FLAG_ATTR];
+  }
 };
 
 export const createEmptyRow = () => ({

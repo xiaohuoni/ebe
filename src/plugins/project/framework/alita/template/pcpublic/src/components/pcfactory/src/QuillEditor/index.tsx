@@ -1,6 +1,7 @@
 import { LingxiForwardRef } from '@lingxiteam/types';
 import { useRef } from 'react';
 import {
+  filterHtmlNode,
   FormFields,
   getFieldsProps,
   useCommonImperativeHandle,
@@ -21,6 +22,16 @@ const QuillEditor = LingxiForwardRef<unknown, any>((props, ref) => {
       disabled={disabled as any}
       readOnly={readOnly}
       rules={finalRules}
+      render={(val: string) => {
+        const newVal = filterHtmlNode(val);
+        return (
+          <span
+            className="ued-input-readonly"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: newVal ?? '--' }}
+          />
+        );
+      }}
     >
       <QuillEditorLoad
         {...props}

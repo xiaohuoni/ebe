@@ -119,7 +119,7 @@ const MyCheckbox = React.forwardRef<any, MyCheckboxProps>((props, ref) => {
       ref={formFieldsRef}
       rules={finalRules}
       handleFormValue={(value) => {
-        if (value === 'false') {
+        if (String(value).trim() === 'false') {
           return false;
         }
         return value;
@@ -127,7 +127,7 @@ const MyCheckbox = React.forwardRef<any, MyCheckboxProps>((props, ref) => {
     >
       <CheckboxItem
         {...rProps}
-        value={value === 'false' ? false : value}
+        value={String(value).trim() === 'false' ? false : value}
         onChange={(e) => {
           if (onChange) {
             onChange(e.target.checked);

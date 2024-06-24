@@ -146,16 +146,16 @@ const Audio: React.FC<MyAudioProps> = forwardRef((props, ref) => {
     if (streamType === 'fileCode') {
       // 选择的文件资源
       if (fileCode) {
-        try {
-          (async () => {
+        (async () => {
+          try {
             const url = await engineApis?.service?.getAppFileUrlByFileCode(
               fileCode,
             );
             setAudioUrl(url);
-          })();
-        } catch (e) {
-          console.error(`${getLocale?.('Audio.warning')}:${e}`);
-        }
+          } catch (e) {
+            console.error(`${getLocale?.('Audio.warning')}:${e}`);
+          }
+        })();
       } else {
         setAudioUrl('');
       }

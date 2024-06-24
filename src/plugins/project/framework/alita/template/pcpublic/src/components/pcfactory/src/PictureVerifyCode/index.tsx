@@ -26,18 +26,18 @@ const PictureVerifyCode: React.FC<PictureVerifyCodeProps> = forwardRef(
     const getPicVerifyCode = () => {
       const newTimestamp = new Date().getTime();
       if (digit && newTimestamp) {
-        try {
-          (async () => {
+        (async () => {
+          try {
             const params = {
               validateCodeCount: `${digit}`,
               t: `${newTimestamp}`,
             };
             const url = await engineApis.getValidateCodePicture(params);
             setImgSrc(url);
-          })();
-        } catch (e) {
-          console.log(e);
-        }
+          } catch (e) {
+            console.log(e);
+          }
+        })();
       }
     };
     useEffect(() => {

@@ -90,7 +90,7 @@ const INPUT_WRAPPER_CLASSNAME = 'ued-input-wrap';
 
 const WrapperInput: React.FC<WrapperInputProps> = ({ children }) =>
   React.cloneElement(children, {
-    className: `${INPUT_WRAPPER_CLASSNAME}`,
+    className: `${INPUT_WRAPPER_CLASSNAME} ${children?.props?.className || ''}`,
   });
 const Input = LingxiForwardRef<any, MyInputProps>((props, ref) => {
   const {

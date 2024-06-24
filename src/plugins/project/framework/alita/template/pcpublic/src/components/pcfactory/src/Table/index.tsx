@@ -5,10 +5,10 @@
 /* eslint-disable no-underscore-dangle */
 import { Form, Table } from 'antd';
 import classnames from 'classnames';
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { PrintContainer, usePrintMode } from '../utils';
 import { useCreation } from '../utils/ahooks';
-import { customLocale } from '../utils/Empty/customLocale';
+import EmptyComp from '../utils/Empty';
 import { useFuncExpExecute } from '../utils/hooks/useFuncExpExecute';
 import { useLocale } from '../utils/hooks/useLocale';
 import BodyCell from './BodyCell';
@@ -76,7 +76,7 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
   const [form] = Form.useForm();
 
   const engineApis = getEngineApis?.();
-  const { sandBoxSafeRun, renderBusiComponent } = engineApis || {};
+  const { sandBoxSafeRun, renderBusiComponent, dataState } = engineApis || {};
 
   const { getLocale } = useLocale(engineApis || {});
 
@@ -396,6 +396,11 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
     'data-compid': (props as any)?.['data-compid'],
   };
 
+  const isEmptyLoading = useMemo(
+    () => loading && sortDataSource?.length === 0,
+    [loading, sortDataSource],
+  );
+
   return visible ? (
     <Form form={form}>
       <div
@@ -416,7 +421,11 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
         <Table
           // {...restProps} // TODO: 不要这么透传，需要什么传什么，先注释，之后缺什么再补
           {...tableProps}
-          locale={customLocale}
+          locale={{
+            emptyText: (
+              <EmptyComp dataState={dataState} getLocale={getLocale} />
+            ),
+          }}
           ref={tableRef}
           // loading={loading}
           bordered={isBordered}
@@ -461,9 +470,10 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
             };
           }}
           rowSelection={rowSelection}
-          dataSource={sortDataSource}
+          // loading没有数据的时候模拟3个数据,当数据为空时依然展示骨架屏
+          dataSource={isEmptyLoading ? [{}, {}, {}] : sortDataSource}
           expandable={realExpandable}
-          pagination={page && pagination}
+          pagination={isEmptyLoading ? false : page && pagination}
           summary={(pageData: any[]) => (
             <Table.Summary fixed={!!props?.scroll}>
               <TableSummaryRow
@@ -471,6 +481,7 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
                 dataSource={pageData as any[]}
                 summary={props.summary}
                 summaryConfig={props?.summaryTotal}
+                selectionType={rowSelection?.type}
               />
             </Table.Summary>
           )}
@@ -515,6 +526,17 @@ const MyTable = React.forwardRef<any, MyTableProps>((props, ref) => {
             }
             expandable={realExpandable}
             pagination={false}
+            summary={(pageData: readonly any[]) => (
+              <Table.Summary fixed={!!props?.scroll}>
+                <TableSummaryRow
+                  columns={finalcolumns}
+                  dataSource={pageData as any[]}
+                  summary={props.summary}
+                  summaryConfig={props?.summaryTotal}
+                  selectionType={rowSelection?.type}
+                />
+              </Table.Summary>
+            )}
           />
         </PrintContainer>
       )}

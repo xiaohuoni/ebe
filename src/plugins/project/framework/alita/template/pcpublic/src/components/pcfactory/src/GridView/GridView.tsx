@@ -10,7 +10,8 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { IconCheckSvg, IconNormalCheckSvg } from '../../../../utils/svgImage';
+// @ts-ignore
+import { IconCheckSvg, IconNormalCheckSvg } from '@lingxiteam/assets';
 import { useListenProps } from '../utils';
 
 const basicStyle = { backgroundColor: '#fff' };

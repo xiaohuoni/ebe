@@ -11,7 +11,7 @@ const CHECK_ARR = ['[', ']', '.'];
 // 判断当前索引是否在引号的字符串引用范围内
 const inRange = (ind: number, rangearr: any[]) => {
   let result = false;
-  rangearr.find((r) => {
+  const findObj = rangearr.find((r) => {
     if (ind > r.end || ind < r.start) {
       // 如果索引已经超过了区间的范围，那么根本不用考虑
       return false;
@@ -23,7 +23,7 @@ const inRange = (ind: number, rangearr: any[]) => {
     return false;
   });
 
-  return result;
+  return findObj ? result : false;
 };
 // 检查路径。这个方法返回被切分好的标识符数组，空数组代表这个路径是不合法的
 const pathSplit = (str: string) => {

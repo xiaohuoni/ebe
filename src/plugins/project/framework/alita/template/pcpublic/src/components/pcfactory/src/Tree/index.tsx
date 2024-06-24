@@ -224,9 +224,12 @@ const MyTree = LingxiForwardRef<any, MyTreeProps>((props, ref) => {
     setSelectAll(_flag: boolean) {
       setIsSelectAll(_flag);
     },
-    setSelectedKeys(keys: any[]) {
+    setSelectedKeys(keys: any[] | string) {
       if (Array.isArray(keys)) {
         setSelectedKeys(keys);
+      } else {
+        // 兼容浩鲸E之前版本设置选中数据
+        setSelectedKeys([keys]);
       }
     },
     setRightMenuData(rightInfo: any) {

@@ -34,6 +34,7 @@
     "release": "npm run lerna && npm run build && npm publish && npx cnpm sync @lingxiteam/ebe && cd ebe-utils && pnpm publish --no-git-checks && npx cnpm sync @lingxiteam/ebe-utils && exit 1",
     "req": "esno req.ts",
     "sync": "esno scripts/syncFactoryConfig.ts",
+    "syncComs": "esno scripts/syncFactory.ts",
     "test": "jest",
     "test:cov": "jest --collectCoverage",
     "test:update-snapshots": "jest -u"

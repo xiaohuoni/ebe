@@ -4,7 +4,7 @@ import { jsonc } from 'jsonc';
 import { join } from 'path';
 import { clearLXPagesDSL } from './ebe-utils/src/index';
 import { copyStatic } from './ebe-utils/src/node/copyStatic';
-import { parseEnv } from './parseEnv';
+import { parseEnv } from './scripts/parseEnv';
 import { createDiskPublisher } from './src/core/publisher/disk';
 import alita from './src/solutions/alita';
 

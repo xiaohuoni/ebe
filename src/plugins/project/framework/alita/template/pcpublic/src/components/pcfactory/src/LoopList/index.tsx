@@ -7,7 +7,8 @@ import React, {
   useImperativeHandle,
   useMemo,
 } from 'react';
-import { IconCheckSvg, IconNormalCheckSvg } from '../../../../utils/svgImage';
+// @ts-ignore
+import { IconCheckSvg, IconNormalCheckSvg } from '@lingxiteam/assets';
 import useBackgroundStyle from '../View/useBackgroundStyle';
 
 const basicStyle = { backgroundColor: '#fff' };

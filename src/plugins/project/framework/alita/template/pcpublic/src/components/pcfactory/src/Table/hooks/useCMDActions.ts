@@ -139,7 +139,7 @@ const useCMDAction = (props: UseCMDActionPropsType) => {
           name: dataName,
           patch: undefined,
           operateType: 0,
-          itemIndex: {},
+          itemIndex: 0,
           newData: {},
           payload,
         };
@@ -154,7 +154,7 @@ const useCMDAction = (props: UseCMDActionPropsType) => {
               name: dataName,
               patch: undefined,
               operateType: 0,
-              itemIndex: {},
+              itemIndex: 0,
               newData: {},
               payload,
             },
@@ -166,7 +166,7 @@ const useCMDAction = (props: UseCMDActionPropsType) => {
         updateData(params);
       } else {
         // 注意，不是直接使用 setInnerDataSource，而是通过 setOuterDataSource 间接驱动 -> setInnerDataSource
-        setOuterDataSource([...innerDataSource, newRowData]);
+        setOuterDataSource([newRowData, ...innerDataSource]);
       }
 
       // 是否开启行编辑
@@ -186,7 +186,7 @@ const useCMDAction = (props: UseCMDActionPropsType) => {
        * 而是通过 setOuterDataSource 间接驱动 -> setInnerDataSource
        * 因为需要对数据进行初始化
        */
-      setOuterDataSource([...innerDataSource, newRowData]);
+      setOuterDataSource([newRowData, ...innerDataSource]);
     },
 
     /**

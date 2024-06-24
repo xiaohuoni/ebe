@@ -16,9 +16,14 @@ export interface SummaryRowProps<T> {
    * 默认总结行
    */
   summary?: TableProps<T>['summary'];
+
+  /**
+   * 选择模式
+   */
+  selectionType?: Required<TableProps<T>>['rowSelection']['type'];
 }
 const TableSummaryRow = <T,>(props: SummaryRowProps<T>) => {
-  const { dataSource, columns, summaryConfig, summary } = props;
+  const { dataSource, columns, summaryConfig, summary, selectionType } = props;
   const { background } = summaryConfig || {};
   const { summaryColList } = useSummaryCol({
     dataSource,
@@ -32,6 +37,8 @@ const TableSummaryRow = <T,>(props: SummaryRowProps<T>) => {
         background,
       }}
     >
+      {/* 开启选择模式时，预置一个占位单元格 */}
+      {selectionType !== undefined && <Cell index={0} />}
       {summaryColList.map(({ colSpan, title, align }, i) => (
         <Cell index={i} colSpan={colSpan || 1} align={align}>
           {title}

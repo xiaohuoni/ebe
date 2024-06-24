@@ -73,15 +73,15 @@ const VideoPlayer: React.FC<ReactPlayerProps> = (props, ref) => {
    */
   useEffect(() => {
     if (fileCode) {
-      try {
-        (async () => {
+      (async () => {
+        try {
           setLight(
             await engineApis?.service?.getAppFileUrlByFileCode(fileCode),
           );
-        })();
-      } catch (e) {
-        console.log(`获取视频封面出错:${e}`);
-      }
+        } catch (e) {
+          console.log(`获取视频封面出错:${e}`);
+        }
+      })();
     } else {
       setLight(false);
     }
@@ -90,15 +90,15 @@ const VideoPlayer: React.FC<ReactPlayerProps> = (props, ref) => {
   useEffect(() => {
     if (streamType === 'fileCode') {
       if (videoCode) {
-        try {
-          (async () => {
+        (async () => {
+          try {
             setVideoUrl(
               await engineApis?.service?.getAppFileUrlByFileCode(videoCode),
             );
-          })();
-        } catch (e) {
-          console.log(`获取视频资源出错:${e}`);
-        }
+          } catch (e) {
+            console.log(`获取视频资源出错:${e}`);
+          }
+        })();
       } else {
         setVideoUrl('');
       }
