@@ -27,6 +27,7 @@ import popovermap from './files/popovermap';
 import proxy from './files/proxy';
 import px2rem from './files/px2rem';
 import useMergeContext from './files/useMergeContext';
+import useTool from './files/useTool';
 import withPageHOC from './files/withPageHOC';
 
 export function generateStaticFiles(
@@ -130,6 +131,8 @@ export function generateStaticFiles(
       parseResult?.staticFiles,
     );
   }
+
+  runFileGenerator(postProcessors, root, useTool, parseResult?.staticFiles);
 
   return root;
 }

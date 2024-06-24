@@ -80,68 +80,49 @@ interface DynamicFileOptions {
 /**
  * 生成函数主体
  */
-type GenerateMainCodeFunction = (provider: {
-  /**
-   * 导入依赖
-   */
-  deps: IDependency[];
-  /**
-   * 上下文变量
-   */
-  contextVars: string[];
-
-  /**
-   * 解构上下文
-   */
-  deconstructionContextCode: string;
-
-  /**
-   * 插件
-   */
-  plugins: {
+type GenerateMainCodeFunction<T extends Record<string, any>> = (
+  provider: T & {
     /**
-     * 在文件的入口出增加， import上面
-     * @param cb
-     * @returns
+     * 导入依赖
      */
-    addEntryCode: (cb: () => string | void) => void;
+    deps: IDependency[];
 
     /**
-     * 在文件import之后、startGenerateMain的代码之前插入
-     * @param cb
-     * @returns
+     * 插件
      */
-    addImportAfterCode: (cb: () => string | void) => void;
+    plugins: {
+      /**
+       * 在文件的入口出增加， import上面
+       * @param cb
+       * @returns
+       */
+      addEntryCode: (cb: () => string | void) => void;
 
-    /**
-     * 在文件结尾处增加。处于startGenerateMain之后
-     * @param cb
-     * @returns
-     */
-    addEndCode: (cb: () => string | void) => void;
-  };
-}) => Promise<string>;
+      /**
+       * 在文件import之后、startGenerateMain的代码之前插入
+       * @param cb
+       * @returns
+       */
+      addImportAfterCode: (cb: () => string | void) => void;
 
-const createEventFile = async (
-  options: DynamicFileOptions,
-  startGenerateMain: GenerateMainCodeFunction,
+      /**
+       * 在文件结尾处增加。处于startGenerateMain之后
+       * @param cb
+       * @returns
+       */
+      addEndCode: (cb: () => string | void) => void;
+    };
+  },
+) => Promise<string>;
+
+export const createFile = async <T extends Record<string, any>>(
+  options: {
+    deps?: IDependency[];
+    provider: T;
+  },
+  startGenerateMain: GenerateMainCodeFunction<T>,
 ) => {
-  const {
-    defaultDeps = [],
-    containerInfo,
-    paramsName,
-    contextVars = [],
-  } = options;
-
-  const { vars, deps, deconstructionCode } = getContextInfo({
-    platform: containerInfo.platform ?? 'pc',
-    paramsName,
-    includeVars: [
-      ...getGlobalDataVars(containerInfo.globalDataSource),
-      ...contextVars,
-    ],
-  });
-
+  const { deps = [], provider: useProvider } = options;
   // 存储代码
   const storageCode = {
     addEntryCode: [''],
@@ -171,15 +152,11 @@ const createEventFile = async (
     },
   };
 
-  const provider = {
-    deps: [...(containerInfo.deps || []), ...defaultDeps, ...deps],
-    contextVars: vars,
-    deconstructionContextCode: deconstructionCode,
+  const provider: Parameters<GenerateMainCodeFunction<T>>[0] = {
+    deps,
     plugins,
+    ...useProvider,
   };
-
-  // 覆盖原有的deps，防止
-  containerInfo.deps = provider.deps;
 
   // 生成主代码
   const code = await startGenerateMain(provider);
@@ -193,7 +170,56 @@ const createEventFile = async (
     storageCode.addImportAfterCode.join('\n'),
     code,
     storageCode.addEndCode.join('\n'),
-  ];
+  ].join('\n');
+};
+
+interface GenerateEventMainParams {
+  /**
+   * 上下文变量
+   */
+  contextVars: string[];
+
+  /**
+   * 解构上下文
+   */
+  deconstructionContextCode: string;
+}
+
+const createEventFile = async (
+  options: DynamicFileOptions,
+  startGenerateMain: GenerateMainCodeFunction<GenerateEventMainParams>,
+) => {
+  const {
+    defaultDeps = [],
+    containerInfo,
+    paramsName,
+    contextVars = [],
+  } = options;
+
+  const { vars, deps, deconstructionCode } = getContextInfo({
+    platform: containerInfo.platform ?? 'pc',
+    paramsName,
+    includeVars: [
+      ...getGlobalDataVars(containerInfo.globalDataSource),
+      ...contextVars,
+    ],
+  });
+
+  // 覆盖原有的deps，防止
+  containerInfo.deps = [...(containerInfo.deps || []), ...defaultDeps, ...deps];
+
+  const code = await createFile(
+    {
+      deps: containerInfo.deps,
+      provider: {
+        contextVars: vars,
+        deconstructionContextCode: deconstructionCode,
+      },
+    },
+    startGenerateMain,
+  );
+
+  return code;
 };
 
 /**

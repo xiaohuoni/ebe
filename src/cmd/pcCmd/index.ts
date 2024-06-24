@@ -46,7 +46,6 @@ export { restoreInlineRow } from './restoreInlineRow';
 export { saveInlineRow } from './saveInlineRow';
 export { setActiveTabPane } from './setActiveTabPane';
 export { setCheckedKey } from './setCheckedKey';
-export { setCompState } from './setCompState';
 export { setCurrentFormValues } from './setCurrentFormValues';
 export { setExpandedKey } from './setExpandedKey';
 export { setExpansionTerm } from './setExpansionTerm';

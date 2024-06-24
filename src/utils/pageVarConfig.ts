@@ -134,12 +134,10 @@ const pageVar: Record<
   validateForm: {
     type: '(compId: string) => Promise<any>',
     description: '校验表单',
-    platform: 'pc',
   },
   resetForm: {
     type: '(compId: string) => void',
     description: '重置表单',
-    platform: 'pc',
   },
   clearValue: {
     type: '(compId: string) => void',
@@ -157,12 +155,10 @@ const pageVar: Record<
   validateAllForm: {
     type: '() => Promise<any>',
     description: '校验并获取所有表单值',
-    platform: 'pc',
   },
   getAllFormValues: {
     type: '() => Promise<any>',
     description: '获取所有表单值',
-    platform: 'pc',
   },
   resetAllForm: {
     type: '() => void',

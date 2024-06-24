@@ -8,8 +8,6 @@ export default function getFile(
     'px2rem',
     'ts',
     `
-
-
 /**
  * 模板工程暂时有这几个字段是数字类型的，需要特殊处理
  */

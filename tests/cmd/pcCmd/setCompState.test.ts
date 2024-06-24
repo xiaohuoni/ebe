@@ -1,4 +1,4 @@
-import { setCompState } from '../../../src/cmd/pcCmd/setCompState';
+import { setCompState } from '../../../src/cmd/sysCmd/setCompState';
 import { expectValue } from '../../utils';
 
 describe('setCompState', () => {

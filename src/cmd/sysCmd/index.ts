@@ -30,6 +30,7 @@ export { reloadDataSource } from './reloadDataSource';
 export { getResetDataSource as resetDataSource } from './resetDataSource';
 export { returnCmd as return } from './return';
 export { saveBlobFile } from './saveBlobFile';
+export { setCompState } from './setCompState';
 export { getSetDataSource as setDataSource } from './setDataSource';
 export { setDownloadResponse } from './setDownloadResponse';
 export { setInterval } from './setInterval';

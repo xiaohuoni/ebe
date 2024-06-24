@@ -1,5 +1,16 @@
-import { updateNodeChildren } from './formUtils';
+import { LXProjectOptions, ResultFile } from '../../../../../../core';
+import { createResultFile } from '../../../../../../core/utils/resultHelper';
 
+export default function getFile(
+  config?: LXProjectOptions,
+): [string[], ResultFile] {
+  const isMobile = config?.platform === 'h5';
+
+  const file = createResultFile(
+    'useTool',
+    'ts',
+    `
+    ${!isMobile ? `import { updateNodeChildren } from './formUtils'` : ''}
 const toBool = (v: string | boolean, defaultValue?: any) => {
   let val = v;
   if ([null, undefined].includes(val as any) && defaultValue !== undefined) {
@@ -136,7 +147,7 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
    */
   const clearValue = (compId: string) => {
     if (!refs[compId]) {
-      console.warn(`当前组件ID=${compId}不存在，有可能已经删除或未初始化`);
+      console.warn(\`当前组件ID=\${compId}不存在，有可能已经删除或未初始化\`);
       return;
     }
 
@@ -149,7 +160,7 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
       refs[compId]?.setValue(null);
       return;
     }
-    console.error(`当前组件ID=${compId}的clearValue方法不存在`);
+    console.error(\`当前组件ID=\${compId}的clearValue方法不存在\`);
   };
 
   /**
@@ -195,49 +206,55 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
       }
     });
 
-  /**
-   * 获取联动数据值
-   * @param attrDataMap  静态数据
-   * @param aNbr a端值
-   * @param zNbr z端值
-   * @param targetValue 关联值
-   */
-  const getTriggerRelDataSource = (
-    attrDataMap: Record<string, any[]>,
-    aNbr: any,
-    zNbr: any,
-    targetValue?: any,
-  ) => {
-    if (attrDataMap) {
-      // 用于处理联动规则的工具方法
-      // 下拉清空，返回z端数据
-      if (
-        targetValue === undefined ||
-        (Array.isArray(targetValue) && targetValue.length === 0)
-      ) {
-        return attrDataMap?.[zNbr] || [];
+  ${
+    !isMobile
+      ? `
+    /**
+     * 获取联动数据值
+     * @param attrDataMap  静态数据
+     * @param aNbr a端值
+     * @param zNbr z端值
+     * @param targetValue 关联值
+     */
+    const getTriggerRelDataSource = (
+      attrDataMap: Record<string, any[]>,
+      aNbr: any,
+      zNbr: any,
+      targetValue?: any,
+    ) => {
+      if (attrDataMap) {
+        // 用于处理联动规则的工具方法
+        // 下拉清空，返回z端数据
+        if (
+          targetValue === undefined ||
+          (Array.isArray(targetValue) && targetValue.length === 0)
+        ) {
+          return attrDataMap?.[zNbr] || [];
+        }
+        const res = attrDataMap?.[aNbr]?.find((i) => {
+          const targetValueArr = Array.isArray(targetValue)
+            ? targetValue[0]
+            : targetValue;
+          return i.value === targetValueArr;
+        });
+        if (res && res.relatedAttrSpecList) {
+          const targetRelRule = res.relatedAttrSpecList.find(
+            (i: any) => i.zattrNbr === zNbr,
+          );
+          return targetRelRule
+            ? targetRelRule.zrelatedAttrValueList.map((o: any) => ({
+                label: o.zattrValueName,
+                value: o.zattrValue,
+              }))
+            : [];
+        }
+        return [];
       }
-      const res = attrDataMap?.[aNbr]?.find((i) => {
-        const targetValueArr = Array.isArray(targetValue)
-          ? targetValue[0]
-          : targetValue;
-        return i.value === targetValueArr;
-      });
-      if (res && res.relatedAttrSpecList) {
-        const targetRelRule = res.relatedAttrSpecList.find(
-          (i: any) => i.zattrNbr === zNbr,
-        );
-        return targetRelRule
-          ? targetRelRule.zrelatedAttrValueList.map((o: any) => ({
-              label: o.zattrValueName,
-              value: o.zattrValue,
-            }))
-          : [];
-      }
-      return [];
-    }
-    return undefined;
-  };
+      return undefined;
+    };  
+  `
+      : ''
+  }
 
   return {
     getValue,
@@ -252,7 +269,11 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
     getDisabled,
     clearValue,
     asyncCallComponentMethod,
-    updateNodeChildren,
+    ${!isMobile ? `updateNodeChildren,` : ''}
     getTriggerRelDataSource,
   };
-};
+};`,
+  );
+
+  return [['src', 'utils'], file];
+}
