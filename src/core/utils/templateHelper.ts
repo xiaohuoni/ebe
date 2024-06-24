@@ -39,7 +39,7 @@ export function runFileGenerator(
       postProcessors.forEach((processer) => {
         try {
           // 尝试使用格式化
-          content = processer(content, type, name);
+          content = processer(content, type, name, path.join('/'));
         } catch (error) {
           console.log('尝试使用格式化失败', error);
         }

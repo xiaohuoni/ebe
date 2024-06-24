@@ -48,6 +48,12 @@ export function createModuleBuilder(
     }
 
     let files: ResultFile[] = [];
+    // @ts-ignore
+    const dir = `${input?.dirPath}${
+      // @ts-ignore
+      input?.moduleName ? `/${input?.moduleName}` : ''
+      // @ts-ignore
+    }`.replaceAll('//', '/');
 
     const { chunks } = await chunkGenerator.run(input, {
       ir: input,
@@ -65,14 +71,13 @@ export function createModuleBuilder(
       );
       files.push(file);
     });
-
     if (options.postProcessors.length > 0) {
       files = files.map((file) => {
         let { content, ext: type, name } = file;
         options.postProcessors.forEach((processer) => {
           try {
             // 尝试使用格式化
-            content = processer(content, type, name);
+            content = processer(content, type, name, dir);
           } catch (error) {
             console.log('[尝试使用格式化失败]', error);
           }

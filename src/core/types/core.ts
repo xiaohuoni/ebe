@@ -286,6 +286,7 @@ export type PostProcessor = (
   content: string,
   fileType: string,
   name?: string,
+  dir?: string,
 ) => string;
 
 export type LogHooks = Hookable<Record<string, any>, string>;

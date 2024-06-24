@@ -74,7 +74,10 @@ const factory: PostProcessorFactory<ProcessorConfig> = (
     content: string,
     fileType: string,
     fileName: any,
+    dir?: string,
   ) => {
+    // console.log('dir',dir);
+    // console.log('fileName',fileName);
     if (fileType === 'tsx' || fileType === 'ts') {
       let ast = parse(content);
       const visitor = {

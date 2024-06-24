@@ -280,48 +280,54 @@ export class ProjectBuilder implements IProjectBuilder {
     // pages
 
     const pagesLength = parseResult.containers.length;
-    const containerBuildResult: IModuleInfo[] = await Promise.all<IModuleInfo>(
-      parseResult.containers.map(async (containerInfo, index) => {
-        let builder: IModuleBuilder = builders.pages;
-        let path: string[];
-        if (
-          containerInfo.containerType === 'Modal' ||
-          containerInfo.containerType === 'MobileModal'
-        ) {
-          path = this.template.slots.modalPages.path;
-        } else if (containerInfo.containerType === 'Drawer') {
-          path = this.template.slots.drawerPages.path;
-        } else if (
-          containerInfo.containerType === 'Popover' ||
-          containerInfo.containerType === 'MobilePopover'
-        ) {
-          path = this.template.slots.popoverPages.path;
-        } else if (PAGE_TYPES.includes(containerInfo.containerType)) {
-          path = this.template.slots.pages.path;
-        } else {
-          path = this.template.slots.components.path;
-        }
-        const { files } = await builder.generateModule(containerInfo);
-        hooks.callHook('containers', {
-          msg: `生成 ${containerInfo.containerType} - ${
-            containerInfo.moduleName
-          } 进度${index + 1}/${pagesLength}`,
-          childProcess: (index + 1) / pagesLength,
-        });
-        return {
-          moduleName: containerInfo.moduleName,
-          path,
-          files,
-        };
-      }),
-    );
-    buildResult = buildResult.concat(containerBuildResult);
+    if (pagesLength !== 0 && builders.pages) {
+      const containerBuildResult: IModuleInfo[] =
+        await Promise.all<IModuleInfo>(
+          parseResult.containers.map(async (containerInfo, index) => {
+            let builder: IModuleBuilder = builders.pages;
+            let path: string[];
+            if (
+              containerInfo.containerType === 'Modal' ||
+              containerInfo.containerType === 'MobileModal'
+            ) {
+              path = this.template.slots.modalPages.path;
+            } else if (containerInfo.containerType === 'Drawer') {
+              path = this.template.slots.drawerPages.path;
+            } else if (
+              containerInfo.containerType === 'Popover' ||
+              containerInfo.containerType === 'MobilePopover'
+            ) {
+              path = this.template.slots.popoverPages.path;
+            } else if (PAGE_TYPES.includes(containerInfo.containerType)) {
+              path = this.template.slots.pages.path;
+            } else {
+              path = this.template.slots.components.path;
+            }
+            containerInfo.dirPath = path.join('/');
+            const { files } = await builder.generateModule(containerInfo);
+            hooks.callHook('containers', {
+              msg: `生成 ${containerInfo.containerType} - ${
+                containerInfo.moduleName
+              } 进度${index + 1}/${pagesLength}`,
+              childProcess: (index + 1) / pagesLength,
+            });
 
+            return {
+              moduleName: containerInfo.moduleName,
+              path,
+              files,
+            };
+          }),
+        );
+      buildResult = buildResult.concat(containerBuildResult);
+    }
     // app
     if (parseResult.app && builders.app) {
       hooks.callHook('app', {
         msg: `生成运行时配置，配置项目钩子，生命周期函数...`,
       });
+      // @ts-ignore
+      parseResult.app.dirPath = this.template.slots.app.path.join('/');
       const { files } = await builders.app.generateModule(parseResult.app);
 
       buildResult.push({
@@ -334,6 +340,9 @@ export class ProjectBuilder implements IProjectBuilder {
       hooks.callHook('pageview', {
         msg: `生成页面视图，建立页面之间联系`,
       });
+      // @ts-ignore
+      parseResult.pageview.dirPath =
+        this.template.slots.pageview.path.join('/');
       const { files } = await builders.pageview.generateModule(
         parseResult.pageview,
       );
@@ -345,6 +354,9 @@ export class ProjectBuilder implements IProjectBuilder {
     }
     // router
     if (parseResult.globalRouter && builders.router) {
+      // @ts-ignore
+      parseResult.globalRouter.dirPath =
+        this.template.slots.router.path.join('/');
       const { files } = await builders.router.generateModule(
         parseResult.globalRouter,
       );
@@ -360,6 +372,8 @@ export class ProjectBuilder implements IProjectBuilder {
       hooks.callHook('appConfig', {
         msg: `生成项目级配置，配置代理`,
       });
+      // @ts-ignore
+      parseResult.dirPath = this.template.slots.appConfig.path.join('/');
       const { files } = await builders.appConfig.generateModule(parseResult);
 
       buildResult.push({
@@ -370,6 +384,9 @@ export class ProjectBuilder implements IProjectBuilder {
 
     // packageJSON
     if (parseResult.project && builders.packageJSON) {
+      // @ts-ignore
+      parseResult.project.dirPath =
+        this.template.slots.packageJSON.path.join('/');
       const { files } = await builders.packageJSON.generateModule(
         parseResult.project,
       );
@@ -390,6 +407,8 @@ export class ProjectBuilder implements IProjectBuilder {
         await Promise.all<IModuleInfo>(
           Object.keys(parseResult.models).map(async (key, index) => {
             const item = parseResult.models[key]!;
+            // @ts-ignore
+            item.dirPath = ['src', 'models'].join('/');
             const { files } = await builders.models.generateModule(item);
             hooks.callHook('globalDataSource', {
               msg: `生成全局数据源 ${item?.moduleName ?? key} 进度${
@@ -489,6 +508,8 @@ export class ProjectBuilder implements IProjectBuilder {
     let count = 1;
     for (const slotName in this.template.slots) {
       if (!isBuiltinSlotName(slotName)) {
+        // @ts-ignore
+        parseResult.dirPath = this.template.slots[slotName].path.join('/');
         const { files } = await builders[slotName].generateModule(parseResult);
         hooks.callHook('generateExtraSlots', {
           msg: `执行其他插件 ${slotName} 进度${count}/${length}`,

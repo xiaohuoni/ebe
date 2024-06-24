@@ -67,6 +67,8 @@ export interface IContainerInfo extends IProjectSchema, IWithDependency {
     pageTypeMap?: any;
     pagePathEnglishMapping?: any;
   };
+  // 给后置处理器的文件路径
+  dirPath?: string;
 }
 
 export interface IUtilInfo extends IWithDependency {}
