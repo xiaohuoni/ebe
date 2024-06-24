@@ -55,12 +55,16 @@ async function getStageFiles() {
 const run = async () => {
   // 获取暂存区的文件列表
   const stageFiles = await getStageFiles();
-  await runNpmScript(['test'], 'pnpm');
+  // 如果暂存区没有文件就
   if (stageFiles.length) {
+    await runNpmScript(['test'], 'pnpm');
     await runNpmScript(stageFiles, 'prettier');
     await runCommand(`git add ${stageFiles.join(' ')}`);
+    console.log(chalk.green('提交成功🎉'));
+  } else {
+    console.log(chalk.yellow('请先执行git add命令，把文件添加到暂存区'));
+    process.exit(1);
   }
-  console.log(chalk.green('提交成功🎉'));
 };
 
 run();
