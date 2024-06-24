@@ -146,10 +146,9 @@ const pageVar: Record<
   setFormValues: {
     type: '(compId: string, formValues?: Record<string, any>) => void',
     description: '设置表单值',
-    platform: 'pc',
   },
   asyncCallComponentMethod: {
-    type: '(comId: string, methodName: string, ...args: any[]) => Promise<unknown>',
+    type: '(compId: string, methodName: string, ...args: any[]) => Promise<unknown>',
     description: '异步调用组件的方法',
   },
   validateAllForm: {
@@ -322,6 +321,11 @@ const pageVar: Record<
   px2rem: {
     type: '(style: Record<string, any>) => {}',
     description: '把px转化成rem',
+    platform: 'h5',
+  },
+  switchAppTabs: {
+    type: '(compId: string, page: number | string) => Promise<any>',
+    description: '切换tabs组件面板',
     platform: 'h5',
   },
 };

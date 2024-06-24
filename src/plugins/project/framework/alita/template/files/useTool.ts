@@ -256,6 +256,18 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
       : ''
   }
 
+  ${
+    isMobile
+      ? `
+      const switchAppTabs = (compId: string, page: number | string) => {
+        return new Promise((resolve, reject) => {
+          callComponentMethod(compId, 'goToTab', page, resolve);
+        });
+      }
+    `
+      : ''
+  }
+
   return {
     getValue,
     asyncGetValue,
@@ -271,6 +283,7 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
     asyncCallComponentMethod,
     ${!isMobile ? `updateNodeChildren,` : ''}
     getTriggerRelDataSource,
+    ${isMobile ? 'switchAppTabs' : ''},
   };
 };`,
   );

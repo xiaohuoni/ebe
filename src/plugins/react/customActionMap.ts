@@ -102,7 +102,9 @@ const pluginFactory: BuilderComponentPluginFactory<PluginConfig> = (
 
               return `const ${eventName} = ${CMDGeneratorEvent(
                 item?.value,
-                next?.contextData,
+                {
+                  platform: ir.platform,
+                },
                 {} as IScope,
                 { ir, isCustomEvent: true, options: next.contextData.options },
               )}`;

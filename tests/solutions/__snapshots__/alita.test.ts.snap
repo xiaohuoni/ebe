@@ -727,6 +727,7 @@ const keywords = [
   'language',
   'locale',
   'px2rem',
+  'switchAppTabs',
 ];
 const getSaleEventName = (eventName: any) => {
   const sale =
@@ -841,20 +842,24 @@ export default new customFuncMapping();
               "options": undefined,
             },
             Object {
-              "content": "import { updateNodeChildren } from './formUtils';
+              "content": "
+    import { updateNodeChildren } from './formUtils'
 const toBool = (v: string | boolean, defaultValue?: any) => {
   let val = v;
   if ([null, undefined].includes(val as any) && defaultValue !== undefined) {
     val = defaultValue;
   }
+
   if (val === 'true') {
     return true;
   }
   if (val === 'false') {
     return false;
   }
+
   return val;
 };
+
 export interface ToolsContext {
   addToAwaitQueue: (
     compId: string,
@@ -862,8 +867,10 @@ export interface ToolsContext {
     ...args: any[]
   ) => void;
 }
+
 export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
   const { addToAwaitQueue } = context;
+
   const asyncGetValue = (id: string, stateName?: string) => {
     if (stateName) {
       return Promise.resolve(refs?.[id]?.[stateName]);
@@ -872,6 +879,7 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
     // return refs?.[id]?.value;
     return Promise.resolve(refs?.[id]?.value);
   };
+
   const getValue = (id: string, stateName?: string) => {
     if (stateName) {
       // @ts-ignore
@@ -895,6 +903,7 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
   const getVisible = (id: string) => {
     return refs?.[id]?.visible ?? true;
   };
+
   const setVisible = (
     ids: Record<string, boolean | 'toggle'> | string,
     value?: any,
@@ -915,9 +924,11 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
       console.error('传入的组件ID数据异常');
     }
   };
+
   const getRequired = (id: string) => {
     return refs?.[id]?.required || false;
   };
+
   const setRequired = (
     ids: Record<string, boolean | 'toggle'> | string,
     value?: any,
@@ -938,9 +949,11 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
       console.error('传入的组件ID数据异常');
     }
   };
+
   const getDisabled = (id: string) => {
     return refs?.[id]?.disabled || false;
   };
+
   const setDisabled = (
     ids: Record<string, boolean | 'toggle' | 'false' | 'true'> | string,
     value?: any,
@@ -970,10 +983,12 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
       console.warn(\`当前组件ID=\${compId}不存在，有可能已经删除或未初始化\`);
       return;
     }
+
     if (typeof refs[compId]?.clearValue === 'function') {
       refs[compId]?.clearValue();
       return;
     }
+
     if (typeof refs[compId]?.setValue === 'function') {
       refs[compId]?.setValue(null);
       return;
@@ -1024,49 +1039,54 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
       }
     });
 
-  /**
-   * 获取联动数据值
-   * @param attrDataMap  静态数据
-   * @param aNbr a端值
-   * @param zNbr z端值
-   * @param targetValue 关联值
-   */
-  const getTriggerRelDataSource = (
-    attrDataMap: Record<string, any[]>,
-    aNbr: any,
-    zNbr: any,
-    targetValue?: any,
-  ) => {
-    if (attrDataMap) {
-      // 用于处理联动规则的工具方法
-      // 下拉清空，返回z端数据
-      if (
-        targetValue === undefined ||
-        (Array.isArray(targetValue) && targetValue.length === 0)
-      ) {
-        return attrDataMap?.[zNbr] || [];
+  
+    /**
+     * 获取联动数据值
+     * @param attrDataMap  静态数据
+     * @param aNbr a端值
+     * @param zNbr z端值
+     * @param targetValue 关联值
+     */
+    const getTriggerRelDataSource = (
+      attrDataMap: Record<string, any[]>,
+      aNbr: any,
+      zNbr: any,
+      targetValue?: any,
+    ) => {
+      if (attrDataMap) {
+        // 用于处理联动规则的工具方法
+        // 下拉清空，返回z端数据
+        if (
+          targetValue === undefined ||
+          (Array.isArray(targetValue) && targetValue.length === 0)
+        ) {
+          return attrDataMap?.[zNbr] || [];
+        }
+        const res = attrDataMap?.[aNbr]?.find((i) => {
+          const targetValueArr = Array.isArray(targetValue)
+            ? targetValue[0]
+            : targetValue;
+          return i.value === targetValueArr;
+        });
+        if (res && res.relatedAttrSpecList) {
+          const targetRelRule = res.relatedAttrSpecList.find(
+            (i: any) => i.zattrNbr === zNbr,
+          );
+          return targetRelRule
+            ? targetRelRule.zrelatedAttrValueList.map((o: any) => ({
+                label: o.zattrValueName,
+                value: o.zattrValue,
+              }))
+            : [];
+        }
+        return [];
       }
-      const res = attrDataMap?.[aNbr]?.find((i) => {
-        const targetValueArr = Array.isArray(targetValue)
-          ? targetValue[0]
-          : targetValue;
-        return i.value === targetValueArr;
-      });
-      if (res && res.relatedAttrSpecList) {
-        const targetRelRule = res.relatedAttrSpecList.find(
-          (i: any) => i.zattrNbr === zNbr,
-        );
-        return targetRelRule
-          ? targetRelRule.zrelatedAttrValueList.map((o: any) => ({
-              label: o.zattrValueName,
-              value: o.zattrValue,
-            }))
-          : [];
-      }
-      return [];
-    }
-    return undefined;
-  };
+      return undefined;
+    };  
+  
+
+  
+
   return {
     getValue,
     asyncGetValue,
@@ -1082,9 +1102,9 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
     asyncCallComponentMethod,
     updateNodeChildren,
     getTriggerRelDataSource,
+    ,
   };
-};
-",
+};",
               "ext": "ts",
               "name": "useTool",
               "options": undefined,

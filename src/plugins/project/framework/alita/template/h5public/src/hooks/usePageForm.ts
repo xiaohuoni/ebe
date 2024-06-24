@@ -77,6 +77,33 @@ const usePageForm = (refs: Record<string, any>) => {
   };
 
   /**
+   * 设置表单值
+   * @param compId 组件id
+   * @param formValues 表单值
+   */
+  const setFormValues = (
+    compId: string,
+    formValues: Record<string, any> = {},
+  ) => {
+    if (!refs[compId]) return;
+    const compName = refs[compId].compName;
+
+    if (compName === 'BOFramer') {
+      const forms = getFormsByBoframerId({
+        refs,
+        renderRefs,
+        compId,
+      });
+
+      forms.forEach((form) => {
+        form?.setFieldsValue(formValues);
+      });
+    } else {
+      refs[compId]?.setFieldsValue?.(formValues);
+    }
+  };
+
+  /**
    * 校验并获取所有表单值
    * 获取页面下的所有表单，包含当前页面下的表单、页面容器下的表单、业务组件下的表单。
    * 不包含所有弹窗类组件的表单数据
@@ -98,6 +125,7 @@ const usePageForm = (refs: Record<string, any>) => {
     validateAllForm,
     getAllFormValues,
     resetForm,
+    setFormValues,
   };
 };
 
