@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { exec, spawn } from 'child_process';
 
 function runCommand(command: string) {
@@ -17,7 +18,6 @@ function runCommand(command: string) {
  * @param {string} script - package.json 中定义的脚本命令
  */
 function runNpmScript(script: string) {
-
   return new Promise((resolve, reject) => {
     // 通过 spawn 执行 npm run <script> 命令
     const child = spawn('pnpm', ['run', script], { stdio: 'inherit' });
@@ -41,11 +41,12 @@ async function getStageFiles() {
 const run = async () => {
   // 获取暂存区的文件列表
   const stageFiles = await getStageFiles();
-  await runNpmScript('pnpm format');
-  await runNpmScript('pnpm test');
+  await runNpmScript('format');
+  await runNpmScript('test');
   if (stageFiles.length) {
     await runCommand(`git add ${stageFiles.join(' ')}`);
   }
+  console.log(chalk.green('提交成功🎉'));
 };
 
 run();
