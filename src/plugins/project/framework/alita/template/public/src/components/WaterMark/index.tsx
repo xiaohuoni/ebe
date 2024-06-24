@@ -5,7 +5,7 @@ import './index.less';
 /**
  * 水印配置
  */
-interface AppWaterMarkCfgType {
+export interface AppWaterMarkCfgType {
   fontColor: string;
   fontSize: string;
   tiltAngle?: string;
