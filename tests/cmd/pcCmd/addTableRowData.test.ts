@@ -26,11 +26,10 @@ describe('addTableRowData', () => {
     };
 
     const expectedCode = `// 表格·新增一行数据
-    const obj = data_994564 === 'object' ? undefined : data_994564;
-    if (typeof obj !== 'object') {
+    if (typeof data_994564 !== 'object') {
       console.error("数据类型不正确")
-    } else if (refs["Table_724355"].addTableRowData) {
-      refs["Table_724355"].addTableRowData(obj);
+    } else {
+      callComponentMethod('Table_724355', 'addTableRowData', data_994564);
     }
   `;
 

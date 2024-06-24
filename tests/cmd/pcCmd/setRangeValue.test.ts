@@ -14,10 +14,12 @@ describe('setRangeValue', () => {
     };
 
     const expectedCode = `
-  // 设置时间段区间
-    if (refs["datePicker1"].setValue) {
-      refs["datePicker1"].setValue(["2022-01-01","2022-12-31"]);
-    }
+    // 时间段选择·设置时间段区间
+    asyncCallComponentMethod(
+      'datePicker1', 
+      'setValue',
+      ['2022-01-01', '2022-12-31']
+    )
   `;
 
     const result = setRangeValue(generateParams);

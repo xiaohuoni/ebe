@@ -6,7 +6,7 @@ export function triggerRelDataSource(
   const { custTargetVal, target, arelStaticData, zrelStaticData, compId } =
     generateParams.value.options;
 
-  if (arelStaticData.attr.attrNbr && zrelStaticData.attr.attrNbr) {
+  if (arelStaticData?.attr.attrNbr && zrelStaticData?.attr.attrNbr) {
     let TargetVal = custTargetVal ? parse2Var(custTargetVal) : undefined;
     if (!TargetVal && target) {
       // 如果当前上下文不存在值的话，优先取cmd.options.target 控件ID 的值

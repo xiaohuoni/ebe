@@ -18,10 +18,12 @@ describe('goTo', () => {
 
     const expectedCode = `
     // 轮播图·去第几页
-    const values = ('2' || '').split(',');
-    values.forEach((value: any) => {
-      callComponentMethod('Swiper_953784', 'goTo',Number(value)||0)
-    });
+    if('2'){
+      const values = ('2' || '').split(',');
+      values.forEach((value: any) => {
+        callComponentMethod('Swiper_953784', 'goTo',Number(value)||0)
+      });
+    }
   `;
 
     const result = goTo(generateParams);

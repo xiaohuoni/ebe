@@ -18,10 +18,9 @@ describe('addTransferKeys', () => {
 
     const expectedCode = ` 
     // 穿梭框·加载右侧列表值
-    const valueMap = "1,2,3"
-    const currentVal = [...(refs['Transfer_160313']?.value || [])];
-    if (typeof valueMap === 'string') {
-     const vals = (valueMap || '').replace(/ /g, '').split(',');
+    if (typeof '1,2,3' === 'string') {
+     const currentVal = [...(getValue('Transfer_160313') || [])];
+     const vals = ('1,2,3' || '').replace(/ /g, '').split(',');
      if (vals.length > 0 && Array.isArray(currentVal)) {
        vals.forEach(key => {
          if (!currentVal.includes(key)) {

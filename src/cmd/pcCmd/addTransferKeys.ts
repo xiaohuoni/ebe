@@ -7,10 +7,11 @@ export function addTransferKeys(generateParams: CMDGeneratorPrames): string {
   const { compId, transferValue } = options;
   const code = `
    // 穿梭框·加载右侧列表值
-   const valueMap = ${parse2Var(transferValue)}
-   const currentVal = [...(refs[${parse2Var(compId)}]?.value || [])];
-   if (typeof valueMap === 'string') {
-    const vals = (valueMap || '').replace(/ /g, '').split(',');
+   if (typeof ${parse2Var(transferValue)} === 'string') {
+    const currentVal = [...(getValue(${parse2Var(compId)}) || [])];
+    const vals = (${parse2Var(
+      transferValue,
+    )} || '').replace(/ /g, '').split(',');
     if (vals.length > 0 && Array.isArray(currentVal)) {
       vals.forEach(key => {
         if (!currentVal.includes(key)) {

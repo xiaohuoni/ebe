@@ -4,12 +4,11 @@ import { GeneratorCallbackWithThenCatch } from '../utils';
 export function reloadData(generateParams: CMDGeneratorPrames): string {
   const { value } = generateParams;
   const { options } = value;
-  const { data: myData, compId, compName: myCompName } = options;
-  const compName = parse2Var(myCompName);
+  const { data: myData, compId, compName } = options;
   const data = parse2Var(myData);
 
   // 树选择加载服务移到事件中，兼容存量数据
-  if (['"TreeSelect"', '"Tree"'].includes(compName)) {
+  if (['TreeSelect', 'Tree'].includes(compName)) {
     const code = `
     // 加载数据
     asyncCallComponentMethod(${parse2Var(compId)}, 'setStateMap', ${parse2Var({
@@ -25,12 +24,11 @@ export function reloadData(generateParams: CMDGeneratorPrames): string {
     return GeneratorCallbackWithThenCatch(code, generateParams, {
       topFuncAsync: true,
     });
-  } else if (['"Cascader"'].includes(compName)) {
+  } else if (['Cascader'].includes(compName)) {
     return `
     // 加载数据
     // 根据key组装数据
-    const source = ${data}
-    if (Array.isArray(source)) {
+    if (Array.isArray(${data})) {
       // 根据配置的key组装好数组
       const nodeKeysMap = {
         key: ${parse2Var(options.nodeValueKey)} || 'value',
@@ -66,11 +64,19 @@ export function reloadData(generateParams: CMDGeneratorPrames): string {
           }) || []
         );
       };
-      const finalData = resloveData(source);
-      refs[${parse2Var(compId)}]?.setOptions(finalData);
+      const finalData = resloveData(${data});
+      ${GeneratorCallbackWithThenCatch(
+        `asyncCallComponentMethod(${parse2Var(
+          compId,
+        )}, "setOptions", finalData)`,
+        generateParams,
+        {
+          topFuncAsync: true,
+        },
+      )};
     }
     `;
-  } else if (['"Steps"'].includes(compName)) {
+  } else if (['Steps'].includes(compName)) {
     const code = `
     // 加载数据
     asyncCallComponentMethod(${parse2Var(compId)}, 'setStepsOptions', ${data})
