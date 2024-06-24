@@ -1,2 +1,2 @@
-pnpm format
-pnpm test
+# 暂时先这么处理下，后续可修改为lint-staged
+pnpm run commit

@@ -26,6 +26,7 @@
     "build:ebe-utils": "cd ebe-utils && npm run build",
     "build:types": "tsc --declaration --emitDeclarationOnly",
     "build:worker": "esno build-standalone-worker.js",
+    "commit": "esno scripts/commit.ts",
     "dev": "father dev",
     "format": "prettier --write .",
     "lerna": "lerna version --exact --no-commit-hooks --no-git-tag-version --no-push --loglevel error",
