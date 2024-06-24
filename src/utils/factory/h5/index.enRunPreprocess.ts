@@ -96,12 +96,12 @@ const h5: { [key: string]: PatchPropsFunctionType } = {
     return originProps;
   },
   'BOFramer|Pageview| RemoteComponent': (instance, originProps, Sandbox) => {
-    originProps.lcdpParentRenderId = Sandbox.renderId;
+    // originProps.lcdpParentRenderId = Sandbox.renderId;
     return originProps;
   },
   BOFramer: (instance, originProps, Sandbox) => {
-    originProps.appId = Sandbox.appId;
-    originProps.pageId = Sandbox.pageId;
+    // originProps.appId = Sandbox.appId;
+    // originProps.pageId = Sandbox.pageId;
     return originProps;
   },
   DformDate: (instance, originProps, Sandbox) => {

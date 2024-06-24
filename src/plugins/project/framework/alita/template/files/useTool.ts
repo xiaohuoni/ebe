@@ -206,9 +206,6 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
       }
     });
 
-  ${
-    !isMobile
-      ? `
     /**
      * 获取联动数据值
      * @param attrDataMap  静态数据
@@ -252,9 +249,6 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
       }
       return undefined;
     };  
-  `
-      : ''
-  }
 
   ${
     isMobile

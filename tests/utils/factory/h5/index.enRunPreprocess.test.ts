@@ -26,7 +26,7 @@ describe('h5', () => {
       extraData,
     );
 
-    expect(originProps.lcdpParentRenderId).toBe('exampleRenderId');
+    expect(originProps.lcdpParentRenderId).toBe(undefined);
   });
 
   it('should preprocess originProps for "BOFramer" key', () => {
@@ -36,8 +36,8 @@ describe('h5', () => {
 
     h5['BOFramer'](instance, originProps, Sandbox, extraData);
 
-    expect(originProps.appId).toBe('exampleAppId');
-    expect(originProps.pageId).toBe('examplePageId');
+    expect(originProps.appId).toBe(undefined);
+    expect(originProps.pageId).toBe(undefined);
   });
 
   it('should preprocess originProps for "DformDate" key', () => {
