@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { exec, spawn } from 'child_process';
+import { ChildProcess, exec, spawn } from 'child_process';
 
 function runCommand(command: string) {
   return new Promise((resolve, reject) => {
@@ -17,10 +17,18 @@ function runCommand(command: string) {
  * 执行 npm 脚本命令
  * @param {string} script - package.json 中定义的脚本命令
  */
-function runNpmScript(script: string) {
+function runNpmScript(script: string[], type: 'pnpm' | 'prettier') {
   return new Promise<void>((resolve, reject) => {
+    let child: ChildProcess;
+
     // 通过 spawn 执行 npm run <script> 命令
-    const child = spawn('pnpm', ['run', script], { stdio: 'inherit' });
+    if (type === 'prettier') {
+      child = spawn('npx', ['prettier', '--write', ...script], {
+        stdio: 'inherit',
+      });
+    } else {
+      child = spawn('pnpm', ['run', script.join(' ')], { stdio: 'inherit' });
+    }
 
     // 监听子进程的错误事件
     child.on('error', reject);
@@ -47,9 +55,9 @@ async function getStageFiles() {
 const run = async () => {
   // 获取暂存区的文件列表
   const stageFiles = await getStageFiles();
-  await runNpmScript('test');
-  await runNpmScript('format');
+  await runNpmScript(['test'], 'pnpm');
   if (stageFiles.length) {
+    await runNpmScript(stageFiles, 'prettier');
     await runCommand(`git add ${stageFiles.join(' ')}`);
   }
   console.log(chalk.green('提交成功🎉'));
