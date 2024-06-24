@@ -18,7 +18,7 @@ function runCommand(command: string) {
  * @param {string} script - package.json 中定义的脚本命令
  */
 function runNpmScript(script: string) {
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     // 通过 spawn 执行 npm run <script> 命令
     const child = spawn('pnpm', ['run', script], { stdio: 'inherit' });
 
@@ -26,7 +26,13 @@ function runNpmScript(script: string) {
     child.on('error', reject);
 
     // 监听子进程的退出事件
-    child.on('close', resolve);
+    child.on('close', (code) => {
+      if (code !== 0) {
+        reject();
+      } else {
+        resolve();
+      }
+    });
   });
 }
 
@@ -41,8 +47,8 @@ async function getStageFiles() {
 const run = async () => {
   // 获取暂存区的文件列表
   const stageFiles = await getStageFiles();
-  await runNpmScript('format');
   await runNpmScript('test');
+  await runNpmScript('format');
   if (stageFiles.length) {
     await runCommand(`git add ${stageFiles.join(' ')}`);
   }
