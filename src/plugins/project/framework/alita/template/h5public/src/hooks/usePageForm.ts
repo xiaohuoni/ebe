@@ -50,7 +50,7 @@ const usePageForm = (refs: Record<string, any>) => {
       // 表单的情况 可能是循环容器
       if (refs[compId].compName === 'DForm') {
         if (refs[compId]?.getFieldsValue) {
-          refs[compId].getFieldsValue(resolve, reject);
+          return refs[compId].getFieldsValue(resolve, reject);
         }
       }
 

@@ -283,7 +283,7 @@ export const useTool = (refs: Record<string, any>, context: ToolsContext) => {
     asyncCallComponentMethod,
     ${!isMobile ? `updateNodeChildren,` : ''}
     getTriggerRelDataSource,
-    ${isMobile ? 'switchAppTabs' : ''},
+    ${isMobile ? 'switchAppTabs,' : ''}
   };
 };`,
   );
