@@ -35,4 +35,11 @@ export const api = {
 
     return resolveApiPath(security.createHttpSignWithUrl(`${url}${urlParam}`));
   },
+  // 获取图形验证码
+  getValidateCodePicture: ({ validateCodeCount, t }: any) =>
+    resolveApiPath(
+      security.createHttpSignWithUrl(
+        `app/validateCode/getValidateCodePicture?validateCodeCount=${validateCodeCount}&t=${t}&X-B-AUTH=1`,
+      ),
+    ),
 };
